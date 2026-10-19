@@ -52,6 +52,9 @@ export function testoAvvisi(dati) {
   return avvisi;
 }
 
+// Oltre lo stop la distanza è 0 (l'avviso di stop spiega il resto).
+export const distanzaDaMostrare = (b) => Math.max(0, b.distanzaStop ?? 0);
+
 // Segnatura più recente (per `ora`) di ogni giocata.
 export function ultimeSegnature(segnature) {
   const ultime = new Map();
@@ -214,7 +217,7 @@ function renderRiquadro(b) {
   return el('section', { class: 'riquadro', 'aria-label': 'Situazione bankroll' },
     voce('Bankroll', euro(b.bankroll)),
     voce('Risultato settimana', `${segno(b.risultatoSettimana)}${euro(b.risultatoSettimana)}`),
-    voce('Distanza dallo stop', euro(b.distanzaStop)),
+    voce('Distanza dallo stop', euro(distanzaDaMostrare(b))),
     voce('In gioco oggi / tetto', `${euro(b.inGiocoOggi)} / ${euro(tetto)}`),
   );
 }

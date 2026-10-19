@@ -20,7 +20,9 @@ function creaGiocata(candidato, tipo, bankroll) {
   };
 }
 
-export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiunto }) {
+// distanzaStop: euro che mancano allo stop settimanale (puntate in corso già contate come perse).
+// Assente (chiamanti vecchi) = nessun limite dallo stop.
+export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiunto, distanzaStop = Infinity }) {
   const scartate = [];
   const scarta = (id, motivo) => scartate.push({ idCandidato: id, motivo });
 
@@ -59,14 +61,21 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiun
   const multiple = costruisciMultiple(singole, bankroll);
   const tutte = [...singole, ...builder.slice(0, maxB), ...multiple].sort(perValue);
 
-  // Puntata minima e tetto giornaliero, per value decrescente.
+  // Puntata minima, tetto giornaliero e stop settimanale, per value decrescente.
+  // Le puntate proposte contano come perse: la loro somma non supera mai
+  // né il tetto residuo di oggi né la distanza dallo stop.
   const giocate = [];
-  const tetto = CONFIG.tettoGiornaliero * bankroll;
-  let impegnato = inGiocoOggi;
+  const residuoTetto = CONFIG.tettoGiornaliero * bankroll - inGiocoOggi;
+  // Valore non numerico (dato corrotto): per prudenza nessuna nuova puntata.
+  const residuoStop = typeof distanzaStop === 'number' && !Number.isNaN(distanzaStop) ? distanzaStop : 0;
+  const limite = Math.min(residuoTetto, residuoStop);
+  const motivoLimite = residuoStop < residuoTetto ? 'stop settimanale' : 'tetto giornaliero';
+  let proposto = 0;
   for (const g of tutte) {
     if (g.puntata.euro <= 0) { scarta(g.id, 'puntata troppo bassa'); continue; }
-    if (impegnato + g.puntata.euro > tetto + EPS) { scarta(g.id, 'tetto giornaliero'); continue; }
-    impegnato += g.puntata.euro;
+    const totale = proposto + g.puntata.euro;
+    if (totale > limite + EPS) { scarta(g.id, motivoLimite); continue; }
+    proposto = totale;
     giocate.push(g);
   }
   return { giocate, scartate };

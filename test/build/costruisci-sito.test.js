@@ -64,3 +64,15 @@ test('andamento: un punto per giorno con giocate chiuse', () => {
   assert.equal(r.segnature.length, 4);
   assert.equal(r.storico.riepiloghi.fatte.sport[0].n, 3);
 });
+
+test('build: con la settimana a −45 le puntate proposte oggi non superano i 5 € allo stop', () => {
+  const persa = giocata('p', '2026-10-19T09:00:00+02:00', 'persa');
+  const cands = Array.from({ length: 6 }, (_, i) => cand(`k${i}`, { prob: 0.56 + i * 0.01, quota: 1.92 }));
+  const d = dirTemp(
+    [{ data: '2026-10-19', candidati: [], giocate: [persa] }, { data: '2026-10-20', candidati: cands }],
+    [{ idGiocata: 'p', fatta: true, quotaReale: 2, puntataReale: 45, ora: '2026-10-19T09:00:00+02:00' }]);
+  const r = costruisciDati(d, new Date('2026-10-20T10:00:00Z'));
+  const somma = r.oggi.giornata.giocate.reduce((a, g) => a + g.puntata.euro, 0);
+  assert.ok(r.oggi.giornata.giocate.length > 0);
+  assert.ok(somma <= 5 + 1e-9, `somma ${somma}`);
+});

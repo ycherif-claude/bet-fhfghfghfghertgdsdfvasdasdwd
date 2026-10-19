@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filtraPerSport, etichettaStato, testoAvvisi } from '../../site/app.js';
+import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare } from '../../site/app.js';
 
 const bankrollOk = { bankroll: 200, risultatoSettimana: 0, inGiocoOggi: 0, stopRaggiunto: false, distanzaStop: 50, daSegnare: [] };
 const giornata = (extra = {}) => ({ data: '2026-10-19', giocate: [{ id: 'a' }], competizioniNonCoperte: [], erroriGiro: [], ...extra });
@@ -65,4 +65,10 @@ test('nessuna giocata con value: "Oggi nessuna giocata con value"', () => {
 
 test('dati di esempio', () => {
   assert.ok(testoAvvisi(dati({ esempio: true })).includes('Dati di esempio, non sono giocate reali'));
+});
+
+test('distanza dallo stop: 0 oltre lo stop, altrimenti il valore', () => {
+  assert.equal(distanzaDaMostrare({ distanzaStop: -3.5 }), 0);
+  assert.equal(distanzaDaMostrare({ distanzaStop: 0 }), 0);
+  assert.equal(distanzaDaMostrare({ distanzaStop: 12.5 }), 12.5);
 });

@@ -96,3 +96,38 @@ test('quota null: valutata alla quota minima, resta null e da verificare', () =>
   assert.equal(g.quotaMinima, 1.91);
   assert.ok(Math.abs(g.value - 0.0505) < 1e-9);
 });
+
+import { statoBankroll } from '../../src/bankroll/bankroll.js';
+
+test('stop esattamente a −50: stopRaggiunto true e nessuna giocata proposta', () => {
+  const adesso = new Date('2026-10-21T12:00:00Z');
+  const giocate = [{ id: 'x', inizio: '2026-10-20T18:00:00+02:00', stato: 'confermata', esito: 'persa' }];
+  const segn = [{ idGiocata: 'x', fatta: true, quotaReale: 2, puntataReale: 50, ora: '2026-10-20T09:00:00+02:00' }];
+  const s = statoBankroll(giocate, segn, adesso);
+  assert.equal(s.risultatoSettimana, -50);
+  assert.equal(s.stopRaggiunto, true);
+  assert.equal(s.distanzaStop, 0);
+  const cs = [candidato(), candidato()];
+  const r = selezionaGiocate(cs, s);
+  assert.equal(r.giocate.length, 0);
+  assert.ok(r.scartate.every((x) => x.motivo === 'stop settimanale'));
+});
+test('distanzaStop minore di una puntata: giocata scartata con motivo "stop settimanale"', () => {
+  const c = candidato({ prob: 0.61, quota: 1.85 }); // 6 € con bankroll 200
+  const r = selezionaGiocate([c], stato({ bankroll: 200, distanzaStop: 5 }));
+  assert.equal(r.giocate.length, 0);
+  assert.equal(motivi(r)[c.id], 'stop settimanale');
+});
+test('distanzaStop 5 con più candidati: somma delle puntate proposte ≤ 5 €', () => {
+  const cs = Array.from({ length: 6 }, (_, i) => candidato({ prob: 0.56 + i * 0.01, quota: 1.92 }));
+  const r = selezionaGiocate(cs, stato({ bankroll: 155, distanzaStop: 5 }));
+  const somma = r.giocate.reduce((a, g) => a + g.puntata.euro, 0);
+  assert.ok(r.giocate.length > 0);
+  assert.ok(somma <= 5 + 1e-9, `somma ${somma}`);
+  assert.ok(r.scartate.some((x) => x.motivo === 'stop settimanale'));
+});
+test('tetto giornaliero più stretto della distanza dallo stop: motivo resta "tetto giornaliero"', () => {
+  const c = candidato({ prob: 0.61, quota: 1.85 });
+  const r = selezionaGiocate([c], stato({ bankroll: 200, inGiocoOggi: 20, distanzaStop: 30 }));
+  assert.equal(motivi(r)[c.id], 'tetto giornaliero');
+});

@@ -139,7 +139,7 @@ test('speciali e builder usano × 1.10', () =>
   - `classificaTipo(candidato): "singola"|"speciale"|"builder"|null` (`null` = quota fuori range).
   - `puntataConsigliata({ tipo, prob, quota, bankroll }): { euro: number, percentuale: number }`.
   - `costruisciMultiple(singole: Giocata[], bankroll: number): Giocata[]`.
-  - `selezionaGiocate(candidati: Candidato[], stato: { bankroll, inGiocoOggi, stopRaggiunto }): { giocate: Giocata[], scartate: {idCandidato, motivo}[] }`.
+  - `selezionaGiocate(candidati: Candidato[], stato: { bankroll, inGiocoOggi, stopRaggiunto, distanzaStop }): { giocate: Giocata[], scartate: {idCandidato, motivo}[] }`. La somma delle puntate proposte non supera mai `min(tetto giornaliero − inGiocoOggi, distanzaStop)`; la giocata bloccata dallo stop ha motivo "stop settimanale", quella bloccata dal tetto "tetto giornaliero". `distanzaStop` assente = nessun limite dallo stop.
 
 - [ ] **Step 1: Scrivi i test che falliscono**
 
