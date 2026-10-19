@@ -76,3 +76,67 @@ test('build: con la settimana a −45 le puntate proposte oggi non superano i 5 
   assert.ok(r.oggi.giornata.giocate.length > 0);
   assert.ok(somma <= 5 + 1e-9, `somma ${somma}`);
 });
+
+const errori = (r) => r.erroriDati.map((e) => `${e.file}: ${e.errore}`);
+
+test('dati validi: erroriDati vuoto', () => {
+  const d = dirTemp([{ data: '2026-10-18', candidati: [], giocate: [giocata('a', '2026-10-18T20:00:00+02:00', null)] }],
+    [{ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' }]);
+  assert.deepEqual(costruisciDati(d, new Date('2026-10-19T10:00:00Z')).erroriDati, []);
+});
+
+test('file JSON non valido: build non fallisce, errore con nome del file', () => {
+  const d = dirTemp([{ data: '2026-10-19', candidati: [cand('c1')] }]);
+  fs.writeFileSync(path.join(d, 'giornate', '2026-10-17.json'), '{ rotto');
+  fs.writeFileSync(path.join(d, 'segnature', 'x.json'), 'nope');
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.equal(r.oggi.disponibile, true);
+  assert.equal(r.erroriDati.length, 2);
+  assert.equal(r.erroriDati[0].file, 'giornate/2026-10-17.json');
+  assert.match(r.erroriDati[0].errore, /^JSON non valido/);
+  assert.equal(r.erroriDati[1].file, 'segnature/x.json');
+});
+
+test('giocata con inizio o prob non validi: saltata e segnalata', () => {
+  const buona = giocata('a', '2026-10-18T20:00:00+02:00', null);
+  const data = giocata('b', 'domani sera', null);
+  const prob = giocata('c', '2026-10-18T20:00:00+02:00', null, { prob: 1.2 });
+  const d = dirTemp([{ data: '2026-10-18', candidati: [], giocate: [buona, data, prob] }],
+    [{ idGiocata: 'b', fatta: true, quotaReale: 2, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' }]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.deepEqual(r.storico.righe.map((x) => x.giocata.id), ['a']);
+  assert.ok(errori(r).includes('giornate/2026-10-18.json: giocata b: inizio non valido'));
+  assert.ok(errori(r).includes('giornate/2026-10-18.json: giocata c: probabilità non valida'));
+  assert.ok(errori(r).includes('segnature/b.json: Segnatura senza giocata: b'));
+});
+
+test('segnatura fatta con puntata o quota non valide: saltata e segnalata', () => {
+  const gs = ['a', 'b', 'c'].map((id) => giocata(id, '2026-10-18T20:00:00+02:00', 'persa'));
+  const d = dirTemp([{ data: '2026-10-18', candidati: [], giocate: gs }], [
+    { idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 0, ora: '2026-10-18T19:00:00+02:00' },
+    { idGiocata: 'b', fatta: true, quotaReale: 1, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' },
+    { idGiocata: 'c', fatta: true, quotaReale: 2, puntataReale: 'cinque', ora: '2026-10-18T19:00:00+02:00' },
+  ]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.equal(r.bankroll.bankroll, 200);
+  assert.equal(r.segnature.length, 0);
+  assert.ok(errori(r).includes('segnature/a.json: puntata reale non valida'));
+  assert.ok(errori(r).includes('segnature/b.json: quota reale non valida'));
+  assert.ok(errori(r).includes('segnature/c.json: puntata reale non valida'));
+});
+
+test('giornata passata senza giocate: errore visibile, le puntate segnate non spariscono in silenzio', () => {
+  const d = dirTemp([{ data: '2026-10-18', candidati: [cand('c1', { inizio: '2026-10-18T20:00:00+02:00' })] }],
+    [{ idGiocata: 'c1', fatta: true, quotaReale: 2, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' }]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.ok(errori(r).includes('giornate/2026-10-18.json: Giornata 2026-10-18 senza giocate: il giro del mattino deve scriverle'));
+  assert.ok(errori(r).includes('segnature/c1.json: Segnatura senza giocata: c1'));
+});
+
+test('candidato di oggi con prob non valida: scartato con motivo "dati non validi"', () => {
+  const d = dirTemp([{ data: '2026-10-19', candidati: [cand('c1'), cand('c2', { prob: 0 }), cand('c3', { prob: 1, quota: null })] }]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.deepEqual(r.oggi.giornata.giocate.map((g) => g.id), ['c1']);
+  assert.deepEqual(r.oggi.giornata.scartate, [
+    { idCandidato: 'c2', motivo: 'dati non validi' }, { idCandidato: 'c3', motivo: 'dati non validi' }]);
+});

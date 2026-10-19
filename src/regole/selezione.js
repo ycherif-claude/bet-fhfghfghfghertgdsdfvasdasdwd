@@ -1,9 +1,16 @@
 import { CONFIG } from '../config.js';
-import { calcolaValue, quotaMinima } from './value.js';
+import { calcolaValue, quotaMinima, probValida } from './value.js';
 import { classificaTipo, puntataConsigliata, quotaEffettiva } from './puntate.js';
 import { costruisciMultiple } from './multiple.js';
 
 const EPS = 1e-9;
+
+// Dati minimi per valutare un candidato: probabilità in (0, 1), inizio leggibile,
+// quota null (da verificare) oppure numero maggiore di 1.
+function datiValidi(c) {
+  const quotaOk = c.quota === null || c.quota === undefined || (Number.isFinite(c.quota) && c.quota > 1);
+  return probValida(c.prob) && Number.isFinite(Date.parse(c.inizio)) && quotaOk;
+}
 
 function creaGiocata(candidato, tipo, bankroll) {
   const quota = quotaEffettiva(candidato, tipo);
@@ -34,6 +41,7 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiun
   // Classificazione, range e soglia di value.
   const valide = [];
   for (const c of candidati) {
+    if (!datiValidi(c)) { scarta(c.id, 'dati non validi'); continue; }
     const tipo = classificaTipo(c);
     if (!tipo) { scarta(c.id, 'quota fuori range'); continue; }
     const g = creaGiocata(c, tipo, bankroll);

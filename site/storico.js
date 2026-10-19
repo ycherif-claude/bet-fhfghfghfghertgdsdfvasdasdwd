@@ -1,6 +1,6 @@
 // Pagina storico. Modulo ES usato dal browser e dai test in Node:
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
-import { el, euro, percento, segno, NOME_TIPO } from './app.js';
+import { el, euro, percento, segno, NOME_TIPO, avvisiDati, testoAggiornamento, schedaSicura } from './app.js';
 
 const VISTE = [
   { valore: 'fatte', etichetta: 'Giocate fatte' },
@@ -131,6 +131,8 @@ function renderRiga({ giocata: g, profitto }) {
 function avvia(dati) {
   let vista = 'fatte';
   document.getElementById('bankroll-attuale').textContent = `Bankroll attuale ${euro(dati.bankroll.bankroll)}`;
+  document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
+  document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));
 
   const interruttore = document.getElementById('vista');
@@ -140,7 +142,7 @@ function avvia(dati) {
     const r = dati.storico.riepiloghi[vista];
     riepiloghi.replaceChildren(...TABELLE.map((t) => renderTabella(t, r[t.chiave] ?? [])));
     const righe = righeVista(dati.storico.righe ?? [], vista);
-    elenco.replaceChildren(...(righe.length ? righe.map(renderRiga) : [el('p', { class: 'vuoto' }, 'Ancora nessuna giocata chiusa')]));
+    elenco.replaceChildren(...(righe.length ? righe.map((r) => schedaSicura(r.giocata?.id, () => renderRiga(r))) : [el('p', { class: 'vuoto' }, 'Ancora nessuna giocata chiusa')]));
     for (const b of interruttore.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.vista === vista));
   };
   interruttore.replaceChildren(...VISTE.map((v) => {

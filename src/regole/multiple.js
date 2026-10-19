@@ -27,7 +27,7 @@ function costruisci(gambe, bankroll) {
   const prob = gambe.reduce((a, g) => a * g.prob, 1);
   const value = prob * quota - 1;
   if (value < CONFIG.sogliaValue - EPS) return null;
-  const ordinate = [...gambe].sort((a, b) => a.inizio.localeCompare(b.inizio));
+  const ordinate = [...gambe].sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
   const candidato = { prob };
   return {
     id: 'M-' + gambe.map((g) => g.id).join('+'),

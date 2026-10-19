@@ -34,8 +34,23 @@ export function etichettaStato(giocata) {
   return { testo: conMotivo ? `${base.testo}: ${giocata.motivoStato}` : base.testo, classe: base.classe };
 }
 
-export function testoAvvisi(dati) {
+// Oltre questa età i dati della pagina si considerano forse non aggiornati
+// (la build gira ogni ora).
+const ORE_DATI_VECCHI = 2;
+
+// Avvisi sulla qualità dei dati, comuni a pagina del giorno e storico.
+export function avvisiDati(dati, adesso = new Date()) {
   const avvisi = [];
+  const generato = Date.parse(dati.generatoAlle);
+  if (!Number.isFinite(generato) || adesso.getTime() - generato > ORE_DATI_VECCHI * 3600000) {
+    avvisi.push('I dati potrebbero non essere aggiornati');
+  }
+  for (const e of dati.erroriDati ?? []) avvisi.push(`Dati non validi in ${e.file}: ${e.errore}`);
+  return avvisi;
+}
+
+export function testoAvvisi(dati, adesso = new Date()) {
+  const avvisi = avvisiDati(dati, adesso);
   const oggi = dati.oggi ?? {};
   const giornata = oggi.giornata ?? null;
   const b = dati.bankroll ?? {};
@@ -74,6 +89,11 @@ const fmtPerc0 = fmtNum(0);
 const fmtPerc1 = fmtNum(1);
 
 export const ora = (iso) => (iso ? fmtOra.format(new Date(iso)) : '');
+// "Dati aggiornati alle HH:MM" (ora di Roma), null se l'istante non è leggibile.
+export function testoAggiornamento(generatoAlle) {
+  const t = Date.parse(generatoAlle);
+  return Number.isFinite(t) ? `Dati aggiornati alle ${fmtOra.format(new Date(t))}` : null;
+}
 export const euro = (n) => fmtEuro.format(n);
 // `frazione` 0.56 -> "56%"
 export const percento = (frazione) => `${fmtPerc0.format(frazione * 100)}%`;
@@ -192,7 +212,7 @@ function renderGamba(g) {
     g.quota ? ` @ ${fmtQuota.format(g.quota)}` : '');
 }
 
-function renderScheda(g, segnatura) {
+export function renderScheda(g, segnatura) {
   const dettagli = el('details', {},
     el('summary', {}, 'Ragionamento'),
     el('ul', {}, (g.ragionamento ?? []).map((r) => el('li', {}, r))),
@@ -209,6 +229,16 @@ function renderScheda(g, segnatura) {
     renderPiedeScheda(g, segnatura),
     dettagli,
   );
+}
+
+// Una giocata con dati rotti non deve bloccare le altre: al posto della scheda
+// compare un piccolo riquadro d'errore con il suo id.
+export function schedaSicura(id, crea) {
+  try {
+    return crea();
+  } catch {
+    return el('article', { class: 'scheda-errore', role: 'alert' }, `Scheda non leggibile: ${id ?? '(senza id)'}`);
+  }
 }
 
 function renderRiquadro(b) {
@@ -252,12 +282,14 @@ function avvia(dati) {
   avvisi.replaceChildren(...testoAvvisi(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   const sottotitolo = document.getElementById('data-giornata');
   if (sottotitolo) sottotitolo.textContent = dati.oggi.data;
+  const aggiornamento = document.getElementById('aggiornamento');
+  if (aggiornamento) aggiornamento.textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
 
   const ultime = ultimeSegnature(dati.segnature ?? []);
   const tutte = dati.oggi.giornata?.giocate ?? [];
   const disegna = () => {
     const viste = filtraPerSport(tutte, sportScelto).slice().sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
-    lista.replaceChildren(...(viste.length ? viste.map((g) => renderScheda(g, ultime.get(g.id) ?? null)) : [el('p', { class: 'vuoto' }, 'Nessuna giocata da mostrare.')]));
+    lista.replaceChildren(...(viste.length ? viste.map((g) => schedaSicura(g?.id, () => renderScheda(g, ultime.get(g?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Nessuna giocata da mostrare.')]));
     for (const bt of filtri.querySelectorAll('button')) bt.setAttribute('aria-pressed', String(bt.dataset.sport === String(sportScelto)));
   };
   filtri.replaceChildren(...SPORT.map((s) => {

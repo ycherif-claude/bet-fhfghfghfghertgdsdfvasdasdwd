@@ -54,3 +54,10 @@ test('prob della multipla = prodotto delle prob delle gambe', () => {
   assert.equal(m.quota, 3.61);
   assert.equal(m.id, `M-${a.id}+${b.id}`);
 });
+
+test('inizio della multipla = istante più vicino anche con fusi diversi', () => {
+  const a = singola({ prob: 0.62, quota: 1.90, inizio: '2026-10-19T19:00:00Z' }); // 21:00 Roma
+  const b = singola({ prob: 0.65, quota: 1.90, inizio: '2026-10-19T20:00:00+02:00' }); // 18:00Z
+  const [m] = costruisciMultiple([a, b], 1000);
+  assert.equal(m.inizio, '2026-10-19T20:00:00+02:00');
+});

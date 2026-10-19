@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare } from '../../site/app.js';
+import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare, avvisiDati, testoAggiornamento } from '../../site/app.js';
 
 const bankrollOk = { bankroll: 200, risultatoSettimana: 0, inGiocoOggi: 0, stopRaggiunto: false, distanzaStop: 50, daSegnare: [] };
 const giornata = (extra = {}) => ({ data: '2026-10-19', giocate: [{ id: 'a' }], competizioniNonCoperte: [], erroriGiro: [], ...extra });
@@ -71,4 +71,29 @@ test('distanza dallo stop: 0 oltre lo stop, altrimenti il valore', () => {
   assert.equal(distanzaDaMostrare({ distanzaStop: -3.5 }), 0);
   assert.equal(distanzaDaMostrare({ distanzaStop: 0 }), 0);
   assert.equal(distanzaDaMostrare({ distanzaStop: 12.5 }), 12.5);
+});
+
+test('erroriDati: un avviso "Dati non validi in <file>: <errore>" per ciascuno', () => {
+  const adesso = new Date('2026-10-19T10:00:00Z');
+  const d = { ...dati(), generatoAlle: '2026-10-19T09:30:00Z',
+    erroriDati: [{ file: 'giornate/2026-10-18.json', errore: 'JSON non valido' }, { file: 'segnature/a.json', errore: 'ora non valida' }] };
+  const a = testoAvvisi(d, adesso);
+  assert.ok(a.includes('Dati non validi in giornate/2026-10-18.json: JSON non valido'));
+  assert.ok(a.includes('Dati non validi in segnature/a.json: ora non valida'));
+  assert.deepEqual(avvisiDati({ generatoAlle: '2026-10-19T09:30:00Z', erroriDati: [] }, adesso), []);
+});
+
+test('dati vecchi di più di 2 ore: avviso "I dati potrebbero non essere aggiornati"', () => {
+  const msg = 'I dati potrebbero non essere aggiornati';
+  const adesso = new Date('2026-10-19T12:00:00Z');
+  assert.ok(!avvisiDati({ generatoAlle: '2026-10-19T10:00:00Z' }, adesso).includes(msg)); // esattamente 2 ore
+  assert.ok(avvisiDati({ generatoAlle: '2026-10-19T09:59:00Z' }, adesso).includes(msg));
+  assert.ok(avvisiDati({}, adesso).includes(msg));
+  assert.ok(testoAvvisi({ ...dati(), generatoAlle: '2026-10-18T12:00:00Z' }, adesso).includes(msg));
+});
+
+test('testoAggiornamento: "Dati aggiornati alle HH:MM" in ora di Roma', () => {
+  assert.equal(testoAggiornamento('2026-10-19T07:05:00Z'), 'Dati aggiornati alle 09:05');
+  assert.equal(testoAggiornamento(undefined), null);
+  assert.equal(testoAggiornamento('non è una data'), null);
 });

@@ -21,3 +21,9 @@ test('CONFIG è congelato in profondità', () => {
   assert.equal(CONFIG.bankrollIniziale, 200);
   assert.equal(CONFIG.kelly, 0.25);
 });
+
+test('quotaMinima con prob fuori da (0,1): errore', () => {
+  for (const prob of [0, 1, -0.2, 1.5, NaN]) {
+    assert.throws(() => quotaMinima({ prob, quota: null }, 'singola'), /probabilità non valida/);
+  }
+});
