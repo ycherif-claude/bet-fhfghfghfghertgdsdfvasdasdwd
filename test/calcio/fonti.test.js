@@ -139,6 +139,16 @@ test('footballDataOrg.risultati tiene solo le partite FINISHED', async () => {
   assert.equal(init.headers['X-Auth-Token'], 'TOK');
 });
 
+test('footballDataOrg.risultati usa regularTime quando presente (supplementari)', async () => {
+  const corpo = JSON.stringify({ matches: [{ utcDate: '2026-10-18T18:45:00Z', status: 'FINISHED', homeTeam: { name: 'A' }, awayTeam: { name: 'B' },
+    score: { fullTime: { home: 3, away: 2 }, regularTime: { home: 2, away: 2 }, extraTime: { home: 1, away: 0 }, halfTime: { home: 1, away: 1 } } }] });
+  const opz = { fetch: fetchFinto([risposta(200, corpo)]), attesaMs: 0 };
+  const r = await footballDataOrg.risultati({ da: '2026-10-17', a: '2026-10-18' }, { ...opz, chiave: 'T' });
+  assert.equal(r[0].gc, 2);
+  assert.equal(r[0].gt, 2);
+  assert.equal(r[0].gcPT, 1);
+});
+
 test('scarica: il timeout interrompe la richiesta e conta come errore di rete (ripetuto)', async () => {
   let chiamate = 0;
   const f = (url, { signal }) => {

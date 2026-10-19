@@ -12,6 +12,7 @@ import { mercatiConteggi } from './modelli/conteggi.js';
 import { oddsApi } from './fonti/odds-api.js';
 import { footballDataUk } from './fonti/football-data-uk.js';
 import { footballDataOrg } from './fonti/football-data-org.js';
+import { aggiornaEsitiGiro } from './esiti.js';
 
 const TOTALE_MESE = 500;
 const COSTO_QUOTE = 2;
@@ -144,7 +145,10 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     }
   }
 
-  return { data, generataAlle: ora, crediti, competizioniNonCoperte, erroriGiro, partite };
+  const raccolta = { data, generataAlle: ora, crediti, competizioniNonCoperte, erroriGiro, partite };
+  // Righe dei CSV scaricate, per gli esiti: non enumerabili, quindi mai scritte nel JSON della raccolta.
+  Object.defineProperty(raccolta, 'csv', { value: new Map([...leghe].filter(([, v]) => v).map(([k, v]) => [k, v.righe])) });
+  return raccolta;
 }
 
 // Quota gratuita e probabilità di Pinnacle per i mercati con quote su The Odds API.
@@ -259,10 +263,18 @@ async function principale() {
     console.error('Manca ODDS_API_KEY');
     process.exit(1);
   }
-  const raccolta = await eseguiRaccolta({ data, adesso, fonti: { oddsApi, footballDataUk, footballDataOrg }, chiavi });
+  const fonti = { oddsApi, footballDataUk, footballDataOrg };
+  const raccolta = await eseguiRaccolta({ data, adesso, fonti, chiavi });
+  let esiti = { aggiornate: 0 };
+  try {
+    esiti = await aggiornaEsitiGiro({ dirData: 'data/giornate', adesso, fonti, chiavi, raccolta, csv: raccolta.csv });
+  } catch (e) {
+    raccolta.erroriGiro.push(`Esiti alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
+  }
   mkdirSync('data/raccolta', { recursive: true });
   writeFileSync(`data/raccolta/${data}.json`, `${JSON.stringify(raccolta, null, 2)}\n`);
   console.log(`Raccolta ${data}: ${raccolta.partite.length} partite, ${raccolta.erroriGiro.length} errori, crediti rimasti ${raccolta.crediti.rimasti}`);
+  console.log(`Esiti aggiornati: ${esiti.aggiornate}`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

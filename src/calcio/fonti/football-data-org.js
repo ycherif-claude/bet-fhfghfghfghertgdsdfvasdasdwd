@@ -13,8 +13,10 @@ export const footballDataOrg = {
     const out = [];
     for (const m of dati.matches ?? []) {
       if (m.status !== 'FINISHED') continue;
-      const gc = numero(m.score?.fullTime?.home);
-      const gt = numero(m.score?.fullTime?.away);
+      // Coppe con supplementari: conta il risultato dei 90 minuti (regularTime) quando c'è.
+      const tempi = m.score?.regularTime ?? m.score?.fullTime;
+      const gc = numero(tempi?.home);
+      const gt = numero(tempi?.away);
       if (gc === null || gt === null) continue;
       out.push({
         casa: m.homeTeam.name,

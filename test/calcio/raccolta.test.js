@@ -226,3 +226,9 @@ test('lambda non finito: errore in erroriGiro e nessuna partita', async () => {
   assert.equal(r.partite.length, 0);
   assert.ok(r.erroriGiro.some((e) => e === 'Gol attesi non validi per Inter Milan - Lecce (Serie A)'));
 });
+
+test('le righe dei CSV sono disponibili per gli esiti ma non finiscono nel JSON', async () => {
+  const r = await lancia(fonti({ eventiPer: SERIE_A }));
+  assert.ok(r.csv instanceof Map && r.csv.get('I1').length > 0);
+  assert.equal(JSON.parse(JSON.stringify(r)).csv, undefined);
+});
