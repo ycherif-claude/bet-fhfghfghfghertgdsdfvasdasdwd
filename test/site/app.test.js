@@ -16,6 +16,15 @@ test('filtra per sport', () => {
   assert.equal(filtraPerSport(g, 'nba').length, 0);
 });
 
+test('multipla compare sotto ogni sport delle gambe e sotto Tutti', () => {
+  const m = { id: 'M-a+b', sport: 'multipla', gambe: [{ sport: 'calcio' }, { sport: 'tennis' }] };
+  const g = [m, { sport: 'nba' }];
+  assert.deepEqual(filtraPerSport(g, 'calcio'), [m]);
+  assert.deepEqual(filtraPerSport(g, 'tennis'), [m]);
+  assert.equal(filtraPerSport(g, null).length, 2);
+  assert.equal(filtraPerSport(g, 'basket').length, 0);
+});
+
 test('etichetta stato', () => {
   assert.equal(etichettaStato({ stato: 'in_attesa' }).testo, 'In attesa formazioni');
   assert.equal(etichettaStato({ stato: 'confermata' }).testo, 'Confermata');
@@ -38,6 +47,7 @@ test('avviso stop settimanale raggiunto', () => {
 
 test('avviso giocate da segnare', () => {
   assert.ok(testoAvvisi(dati({}, { daSegnare: ['a', 'b'] })).includes('Hai 2 giocate da segnare'));
+  assert.ok(testoAvvisi(dati({}, { daSegnare: ['a'] })).includes('Hai 1 giocata da segnare'));
   assert.ok(!testoAvvisi(dati()).some((x) => x.includes('da segnare')));
 });
 

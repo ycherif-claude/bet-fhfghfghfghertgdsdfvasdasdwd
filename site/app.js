@@ -23,7 +23,7 @@ const STATI = {
 };
 
 export function filtraPerSport(giocate, sport) {
-  return sport ? giocate.filter((g) => g.sport === sport) : giocate;
+  return sport ? giocate.filter((g) => g.sport === sport || g.gambe?.some((l) => l.sport === sport)) : giocate;
 }
 
 export function etichettaStato(giocata) {
@@ -43,7 +43,7 @@ export function testoAvvisi(dati) {
   if (giornata?.esempio) avvisi.push('Dati di esempio, non sono giocate reali');
   if (b.stopRaggiunto) avvisi.push('Stop settimanale raggiunto: nessuna nuova giocata fino a lunedì');
   const n = (b.daSegnare ?? []).length;
-  if (n > 0) avvisi.push(`Hai ${n} giocate da segnare`);
+  if (n > 0) avvisi.push(n === 1 ? 'Hai 1 giocata da segnare' : `Hai ${n} giocate da segnare`);
   const nonCoperte = giornata?.competizioniNonCoperte ?? [];
   if (nonCoperte.length > 0) avvisi.push(`Competizioni non coperte oggi: ${nonCoperte.join(', ')}`);
   for (const e of giornata?.erroriGiro ?? []) avvisi.push(`Errore nel giro del mattino: ${e}`);

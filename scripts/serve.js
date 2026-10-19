@@ -14,7 +14,9 @@ const TIPI = {
 };
 
 http.createServer((req, res) => {
-  const percorso = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  let percorso;
+  try { percorso = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
+  catch { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Richiesta non valida'); return; }
   const file = path.join(radice, percorso.endsWith('/') ? `${percorso}index.html` : percorso);
   if (!file.startsWith(radice + path.sep)) { res.writeHead(403).end('Vietato'); return; }
   fs.readFile(file, (err, dati) => {
