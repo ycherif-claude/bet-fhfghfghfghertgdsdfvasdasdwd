@@ -107,3 +107,15 @@ export function salvaImpostazioni({ repo, token }) {
     return false;
   }
 }
+
+// Toglie il codice segreto da questo browser. Restituisce true se riuscito.
+export function cancellaToken() {
+  try {
+    const s = globalThis.localStorage;
+    if (!s) return false;
+    s.removeItem(CHIAVE_TOKEN);
+    return true;
+  } catch {
+    return false;
+  }
+}

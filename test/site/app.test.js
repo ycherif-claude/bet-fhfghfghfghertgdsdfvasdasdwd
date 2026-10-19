@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare, avvisiDati, testoAggiornamento } from '../../site/app.js';
+import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare, avvisiDati, testoAggiornamento, valoriCampi } from '../../site/app.js';
 
 const bankrollOk = { bankroll: 200, risultatoSettimana: 0, inGiocoOggi: 0, stopRaggiunto: false, distanzaStop: 50, daSegnare: [] };
 const giornata = (extra = {}) => ({ data: '2026-10-19', giocate: [{ id: 'a' }], competizioniNonCoperte: [], erroriGiro: [], ...extra });
@@ -96,4 +96,13 @@ test('testoAggiornamento: "Dati aggiornati alle HH:MM" in ora di Roma', () => {
   assert.equal(testoAggiornamento('2026-10-19T07:05:00Z'), 'Dati aggiornati alle 09:05');
   assert.equal(testoAggiornamento(undefined), null);
   assert.equal(testoAggiornamento('non è una data'), null);
+});
+
+test('valoriCampi: consigliati finché non si scrive, poi restano quelli scritti', () => {
+  const g = { quota: 2.1, puntata: { euro: 4.5 } };
+  assert.deepEqual(valoriCampi(g, null), { quota: '2,1', puntata: '4,5' });
+  assert.deepEqual(valoriCampi({ quota: null, puntata: { euro: 3 } }, null), { quota: '', puntata: '3' });
+  // dopo "Quota reale non valida" o un errore di rete il ridisegno mostra ancora il testo scritto
+  assert.deepEqual(valoriCampi(g, { quota: '1', puntata: '7' }), { quota: '1', puntata: '7' });
+  assert.deepEqual(valoriCampi(g, { quota: '', puntata: '' }), { quota: '', puntata: '' });
 });

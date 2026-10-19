@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura } from '../../site/giocata.js';
+import { costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura, cancellaToken, leggiImpostazioni, salvaImpostazioni } from '../../site/giocata.js';
 
 const adesso = new Date('2026-10-19T10:00:00Z');
 
@@ -108,4 +108,31 @@ test('token mancante → errore "Codice segreto non impostato"', async () => {
 test('repository mancante o malformato → errore', async () => {
   const f = fetchFinto([]);
   await assert.rejects(() => salvaSegnatura(seg, { repo: 'senzaslash', token: 't', fetch: f }), /Repository non impostato/);
+});
+
+function storageFinto() {
+  const m = new Map();
+  return { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, String(v)), removeItem: (k) => m.delete(k), m };
+}
+
+test('cancellaToken: toglie solo bet.token da localStorage', () => {
+  const s = storageFinto();
+  globalThis.localStorage = s;
+  try {
+    assert.equal(salvaImpostazioni({ repo: 'utente/nome', token: 'segreto' }), true);
+    assert.equal(cancellaToken(), true);
+    assert.equal(s.m.has('bet.token'), false);
+    assert.deepEqual(leggiImpostazioni(), { repo: 'utente/nome', token: '' });
+  } finally {
+    delete globalThis.localStorage;
+  }
+});
+
+test('cancellaToken: storage che lancia errori → false, nessuna eccezione', () => {
+  Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw new Error('bloccato'); } });
+  try {
+    assert.equal(cancellaToken(), false);
+  } finally {
+    delete globalThis.localStorage;
+  }
 });

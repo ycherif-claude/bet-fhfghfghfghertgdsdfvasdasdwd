@@ -1,4 +1,4 @@
-import { costruisciSegnatura, salvaSegnatura, cancellaSegnatura, leggiImpostazioni, salvaImpostazioni } from './giocata.js';
+import { costruisciSegnatura, salvaSegnatura, cancellaSegnatura, leggiImpostazioni, salvaImpostazioni, cancellaToken } from './giocata.js';
 
 // Pagina del giorno. Modulo ES usato sia dal browser sia dai test in Node:
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
@@ -129,6 +129,17 @@ const MSG_SALVATA = 'Salvata – aggiornamento della pagina in 1-2 minuti';
 // "2,10" o "2.10" -> 2.1; testo vuoto o non numerico -> NaN
 const leggiNumero = (testo) => (String(testo).trim() === '' ? NaN : Number(String(testo).trim().replace(',', '.')));
 
+const virgola = (n) => String(n).replace('.', ',');
+
+// Testo dei campi quota/puntata: quanto scritto dall'utente (`digitati`) se c'è,
+// altrimenti i valori consigliati. Così un errore non rimette i consigliati.
+export function valoriCampi(giocata, digitati) {
+  return {
+    quota: digitati?.quota ?? (giocata.quota ? virgola(giocata.quota) : ''),
+    puntata: digitati?.puntata ?? virgola(giocata.puntata.euro),
+  };
+}
+
 function testoSegnatura(s) {
   return s.fatta
     ? `Segnata come giocata: quota ${fmtQuota.format(s.quotaReale)}, puntata ${euro(s.puntataReale)}`
@@ -142,6 +153,7 @@ function renderSegnatura(giocata, iniziale) {
   let corrente = iniziale;
   let messaggio = null; // { testo, errore }
   let occupato = false;
+  let digitati = null; // { quota, puntata } scritti dall'utente; azzerati solo dopo un salvataggio riuscito
 
   const esegui = async (azione, riuscita) => {
     occupato = true;
@@ -150,6 +162,7 @@ function renderSegnatura(giocata, iniziale) {
     try {
       await azione();
       corrente = riuscita();
+      digitati = null;
       messaggio = { testo: MSG_SALVATA, errore: false };
     } catch (e) {
       messaggio = { testo: e.message, errore: true };
@@ -166,11 +179,16 @@ function renderSegnatura(giocata, iniziale) {
       figli.push(el('p', { class: 'segnata' }, testoSegnatura(corrente)), annulla);
     } else {
       const id = `q-${giocata.id}`.replace(/[^A-Za-z0-9_-]/g, '_');
-      const quota = el('input', { id: `${id}-quota`, type: 'text', inputmode: 'decimal', size: '5', value: giocata.quota ? String(giocata.quota).replace('.', ',') : '' });
-      const puntata = el('input', { id: `${id}-puntata`, type: 'text', inputmode: 'decimal', size: '5', value: String(giocata.puntata.euro).replace('.', ',') });
+      const valori = valoriCampi(giocata, digitati);
+      const quota = el('input', { id: `${id}-quota`, type: 'text', inputmode: 'decimal', size: '5', value: valori.quota });
+      const puntata = el('input', { id: `${id}-puntata`, type: 'text', inputmode: 'decimal', size: '5', value: valori.puntata });
+      const ricorda = () => { digitati = { quota: quota.value, puntata: puntata.value }; };
+      quota.addEventListener('input', ricorda);
+      puntata.addEventListener('input', ricorda);
       const bottone = (testo, classe, fatta) => {
         const b = el('button', { type: 'button', class: classe, disabled: occupato ? '' : null }, testo);
         b.addEventListener('click', () => {
+          ricorda();
           let segnatura;
           try {
             segnatura = costruisciSegnatura({ idGiocata: giocata.id, fatta, quotaReale: leggiNumero(quota.value), puntataReale: leggiNumero(puntata.value) }, new Date());
@@ -258,15 +276,24 @@ function avviaImpostazioni() {
   const campoRepo = document.getElementById('imp-repo');
   const campoToken = document.getElementById('imp-token');
   const stato = document.getElementById('imp-stato');
-  const iniziali = leggiImpostazioni();
-  campoRepo.value = iniziali.repo;
-  if (iniziali.token) campoToken.placeholder = 'Codice già salvato (lascia vuoto per non cambiarlo)';
+  const segnaposto = () => {
+    campoToken.placeholder = leggiImpostazioni().token ? 'Codice già salvato (lascia vuoto per non cambiarlo)' : '';
+  };
+  campoRepo.value = leggiImpostazioni().repo;
+  segnaposto();
+  document.getElementById('imp-cancella-token')?.addEventListener('click', () => {
+    const ok = cancellaToken();
+    campoToken.value = '';
+    segnaposto();
+    stato.textContent = ok ? 'Codice cancellato da questo dispositivo' : 'Impossibile cancellare il codice su questo browser';
+  });
   form.addEventListener('submit', (ev) => {
     ev.preventDefault();
     const repo = campoRepo.value.trim();
     const token = campoToken.value.trim() || leggiImpostazioni().token;
     const ok = salvaImpostazioni({ repo, token });
     campoToken.value = '';
+    segnaposto();
     stato.textContent = ok ? 'Impostazioni salvate su questo dispositivo' : 'Impossibile salvare le impostazioni su questo browser';
   });
 }
