@@ -34,8 +34,8 @@ Serve solo Node 24, nessun pacchetto da installare.
 2. Nel repository: Settings → Pages → Source: **GitHub Actions**.
 3. Crea il token come descritto sopra.
 4. Collega la cartella locale al repository (`git remote add origin <indirizzo>`), poi `git push -u origin main`.
-5. Controlla in Actions che "Pubblica sito" termini in verde e apri l'indirizzo del sito: deve mostrare la giornata d'esempio.
-6. Dal telefono inserisci repository e token in Impostazioni. Premi "Giocata" su una scheda: deve comparire un file in `data/segnature/` e, dopo la ripubblicazione, il bankroll si aggiorna. "Annulla segnatura" lo riporta al valore precedente.
+5. Controlla in Actions che "Pubblica sito" termini in verde e apri l'indirizzo del sito: mostra "Analisi di oggi non disponibile" finché non gira il primo giro reale (vedi la sezione sul calcio qui sotto).
+6. Dal telefono inserisci repository e token in Impostazioni. Dopo il primo giro reale, premi "Giocata" su una scheda: deve comparire un file in `data/segnature/` e, dopo la ripubblicazione, il bankroll si aggiorna. "Annulla segnatura" lo riporta al valore precedente.
 
 ## Calcio: chiavi e giro del mattino
 
@@ -64,6 +64,7 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 ### Cosa significano le scritte sulle schede
 
 - **Notizie non controllate**: la giocata viene dal giro di riserva, calcolata solo dai numeri. Nessuno ha controllato infortuni, squalifiche o altre notizie: prima di giocare dai un'occhiata tu.
+- **Notizie non controllate per questa partita**: il giro di Claude c'è stato, ma per quella partita non ha controllato le notizie (non è tra quelle esaminate). Vale lo stesso consiglio: verifica tu infortuni e squalifiche.
 - **Quota da verificare su bet365**: per quel mercato non c'è una quota gratuita. La giocata nasce dalla probabilità del modello: guarda la quota reale su bet365 prima di segnarla.
 
 ## Per chi sviluppa (fasi successive)

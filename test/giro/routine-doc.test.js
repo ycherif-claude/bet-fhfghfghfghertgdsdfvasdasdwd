@@ -16,3 +16,8 @@ test('il README spiega chiavi e orari', () => {
   const t = fs.readFileSync('README.md', 'utf8');
   for (const s of ['Calcio: chiavi e giro del mattino', 'ODDS_API_KEY', 'FOOTBALL_DATA_ORG_KEY', 'the-odds-api.com', 'Notizie non controllate', 'fase-2-calcio']) assert.ok(t.includes(s), s);
 });
+
+test('la routine spiega da dove copiare i nomi e cosa fare con raccolta vuota', () => {
+  const t = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
+  for (const s of ['partite[].mercati[]', 'idCandidato', 'calcio-2026-10-20-inter-roma-1x2-1', 'partiteControllate: []', 'TZ=Europe/Rome date +%F', 'git rebase --abort', 'dentro `fonte`']) assert.ok(t.includes(s), s);
+});

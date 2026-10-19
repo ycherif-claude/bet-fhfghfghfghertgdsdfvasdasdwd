@@ -16,15 +16,17 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 
 1. Node: se esiste la cartella `/opt/node24/bin`, esegui `export PATH=/opt/node24/bin:$PATH`. Poi `node --version` (serve la 24).
 2. Aggiorna il repository: `git checkout main && git pull`.
-3. Esegui `npm run giro -- --anteprima`. Stampa una riga per ogni partita in gara:
+3. Controlla che esista `data/raccolta/<oggi>.json` (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`). Se il file **non esiste**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
+   Poi esegui `npm run giro -- --anteprima`. Stampa una riga per ogni partita in gara:
    `idPartita · partita · inizio · mercati in gara`
-   Se dice che la raccolta di oggi manca, non fermarti: vai al passo 6 (il giro scrive una giornata vuota con l'errore).
+   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando il file della raccolta manca davvero.
 4. Ricerca web, **solo** per le partite elencate dall'anteprima. Per ognuna cerca: assenze e dubbi sui titolari chiave, squalifiche, cambio di allenatore recente, meteo estremo, motivazioni anomale (per esempio una squadra già salva o già retrocessa). Segna per ogni fatto la fonte e l'ora.
-5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG`. Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora.
+   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json`: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
+5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG` (`TZ=Europe/Rome date +%F`). Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora. L'ora della notizia va dentro `fonte` (per esempio "ANSA, 08:10"): non esiste un campo a parte.
 6. Esegui `npm run giro`. Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
 7. Esegui `npm test`. Se fallisce, non pubblicare: vedi le regole sopra.
 8. Salva e pubblica: `git add data/ && git commit -m "Giro del mattino <data>" && git push origin main`.
-   Se il push viene rifiutato: `git pull --rebase` e di nuovo `git push origin main`. Al massimo 3 tentativi in tutto. Se ancora non va per mancanza di permessi, passa al Piano B.
+   Se il push viene rifiutato: `git pull --rebase` e di nuovo `git push origin main`. Se il `git pull --rebase` dà un conflitto: `git rebase --abort`, fermati e spiega il motivo nell'ultimo messaggio (la riserva penserà al resto). Al massimo 3 tentativi in tutto. Se ancora non va per mancanza di permessi, passa al Piano B.
 9. Nell'ultimo messaggio riassumi: quante partite hai controllato, quante correzioni ed esclusioni hai scritto e perché, eventuali problemi.
 
 ## Formato di `data/raccolta/<oggi>-notizie.json`
@@ -46,6 +48,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 - `partiteControllate`: gli `idPartita` che hai davvero controllato. Compilalo **sempre**, anche se non hai trovato niente e `esclusioni` e `correzioni` sono vuote.
 - `esclusioni`: ogni voce ha `idPartita`, `motivo` e `fonte` (obbligatori). Senza `idCandidato` si esclude l'intera partita; con `idCandidato` si esclude solo quel candidato. Si può escludere qualunque mercato e qualunque partita, anche quelle senza correzione possibile.
 - `correzioni`: ogni voce ha `idPartita`, `mercato`, `selezione`, `delta`, `motivo`, `fonte` (tutti obbligatori). `mercato` e `selezione` devono essere scritti esattamente come nella raccolta di oggi.
+- `idCandidato` lo costruisce il codice: `<idPartita>-<mercato>-<selezione>`, con mercato e selezione scritti in minuscolo, senza accenti, con i simboli sostituiti da trattini (e "+"/"-" davanti a una cifra resi come "piu"/"meno"). Esempi: `calcio-2026-10-20-inter-roma-1x2-1` e `calcio-2026-10-20-inter-roma-under-over-2-5-over-2-5`. Per escludere un'intera partita basta `idPartita`, senza `idCandidato`.
 - `delta` è in **punti di probabilità**, come numero decimale con il punto: `-0.05` significa meno 5 punti percentuali, `0.03` più 3.
 
 ## Regole delle correzioni (§6.1 dello spec, per intero)
