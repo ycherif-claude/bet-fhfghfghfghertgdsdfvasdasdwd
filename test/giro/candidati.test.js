@@ -34,7 +34,7 @@ function raccolta() {
         m('1X2', '1', 0.50, 0.46, 2.30), m('1X2', 'X', 0.27, 0.28, 3.4), m('1X2', '2', 0.23, 0.26, 3.3),
         m('Cartellini Under/Over 4.5', 'Over 4.5', 0.62, null, null, 0.48),
         m('Cartellini Under/Over 4.5', 'Under 4.5', 0.38, null, null, 0.45),
-        m('Gol/No gol', 'Gol', 0.50, null, null, 0.41),
+        m('Gol/No gol', 'Gol', 0.50, null, null, 0.35),
       ], { inizio: '2026-10-20T18:00:00+02:00' }),
       partita(P3, 'Italia - Norvegia', 'solo-pinnacle', [
         m('1X2', '1', null, 0.45, 2.10), m('1X2', 'X', null, 0.30, null, 0.20), m('1X2', '2', null, 0.25, 4.2),
@@ -117,9 +117,10 @@ test('esclusione per partita: tutti i candidati con motivo "notizia: …"', () =
 test('senza quota: al massimo 2 al giorno, solo con scostamento ≥ 10 punti', () => {
   const r = costruisciCandidati(raccolta(), null);
   const senza = r.candidati.filter((c) => c.quota === null);
-  // Angoli Under 9.5 (15 punti) e Cartellini Over 4.5 (14 punti); fuori Angoli Over 9.5 (13),
-  // Cartellini Under 4.5 (7), Gol (9), Under/Over casa 1.5 (quota giusta fuori 1.60–3.00), solo-pinnacle.
-  assert.deepEqual(senza.map((c) => c.id).sort(), [`${P1}-angoli-under-over-9-5-under-9-5`, `${P2}-cartellini-under-over-4-5-over-4-5`].sort());
+  // Gol (+15 punti) e Cartellini Over 4.5 (+14); fuori Angoli Over 9.5 (+13, terzo), Angoli Under 9.5
+  // (−15: il modello la vede sotto la frequenza), Cartellini Under 4.5 (−7),
+  // Under/Over casa 1.5 (quota giusta fuori 1.60–3.00), solo-pinnacle.
+  assert.deepEqual(senza.map((c) => c.id).sort(), [`${P2}-gol-no-gol-gol`, `${P2}-cartellini-under-over-4-5-over-4-5`].sort());
   for (const c of senza) {
     assert.equal(c.quotaDaVerificare, true);
     assert.equal(c.fonteQuota, null);
@@ -127,7 +128,7 @@ test('senza quota: al massimo 2 al giorno, solo con scostamento ≥ 10 punti', (
     assert.equal(c.ragionamento[c.ragionamento.length - 2], 'Quota da verificare su bet365');
     assert.equal(c.ragionamento[c.ragionamento.length - 1], 'Notizie non controllate: giro di Claude non eseguito');
   }
-  assert.equal(trova(r, `${P1}-angoli-under-over-9-5-under-9-5`).ragionamento[1], 'Solo modello, probabilità usata 45%');
+  assert.equal(trova(r, `${P2}-gol-no-gol-gol`).ragionamento[1], 'Solo modello, probabilità usata 50%');
 });
 
 test('al massimo 5 mercati con quota per partita, solo value > 0', () => {
@@ -199,8 +200,18 @@ test('i posti vanno ai non pre-scartati: un mercato divergente non toglie posto 
   assert.equal(r.candidati.length, 6);
   assert.deepEqual(r.preScartate, [{ idCandidato: `${P1}-1x2-1`, motivo: 'stima troppo lontana dal mercato' }]);
   // Senza quota: escluso il primo per scostamento, i 2 posti vanno ai successivi.
-  const escl = costruisciCandidati(raccolta(), notizie([], [{ idPartita: P1, idCandidato: `${P1}-angoli-under-over-9-5-under-9-5`, motivo: 'x', fonte: 'y' }]));
+  const escl = costruisciCandidati(raccolta(), notizie([], [{ idPartita: P2, idCandidato: `${P2}-gol-no-gol-gol`, motivo: 'x', fonte: 'y' }]));
   const senza = escl.candidati.filter((c) => c.quota === null).map((c) => c.id).sort();
-  assert.deepEqual(senza, [`${P1}-angoli-under-over-9-5-over-9-5`, `${P1}-angoli-under-over-9-5-under-9-5`, `${P2}-cartellini-under-over-4-5-over-4-5`].sort());
-  assert.deepEqual(escl.preScartate, [{ idCandidato: `${P1}-angoli-under-over-9-5-under-9-5`, motivo: 'notizia: x' }]);
+  assert.deepEqual(senza, [`${P1}-angoli-under-over-9-5-over-9-5`, `${P2}-gol-no-gol-gol`, `${P2}-cartellini-under-over-4-5-over-4-5`].sort());
+  assert.deepEqual(escl.preScartate, [{ idCandidato: `${P2}-gol-no-gol-gol`, motivo: 'notizia: x' }]);
+});
+
+test("senza quota: conta solo lo scostamento verso l'alto (AH −1 casa sì, AH −1 trasferta no)", () => {
+  // Favorita netta: il modello vede la casa vincere di 2+ gol più spesso del campionato (+20 punti);
+  // la trasferta ha lo stesso scostamento in valore assoluto (−20) ma verso il basso: non passa.
+  const r = costruisciCandidati({ data: '2026-10-20', partite: [partita(P1, 'Inter - Lecce', 'dixon-coles', [
+    m('Handicap asiatico -1', 'casa', 0.55, null, null, 0.35),
+    m('Handicap asiatico -1', 'trasferta', 0.45, null, null, 0.65),
+  ])] }, null);
+  assert.deepEqual(r.candidati.map((c) => c.id), [`${P1}-handicap-asiatico-meno-1-casa`]);
 });

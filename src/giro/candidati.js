@@ -133,11 +133,12 @@ export function costruisciCandidati(raccolta, notizie, { adesso = null } = {}) {
     scelte.push(...lista.sort((a, b) => b.value - a.value || a.ordine - b.ordine).slice(0, C.maxMercatiPartita));
   }
 
-  // Senza quota (§5.4): solo modello, lontano dalla frequenza del campionato, quota giusta 1.60–3.00.
+  // Senza quota (§5.4): solo modello, sopra la frequenza del campionato di almeno 10 punti
+  // (scostamento con segno: il lato che il modello vede più probabile), quota giusta 1.60–3.00.
   const senza = voci
     .filter((v) => v.m.quota === null && v.partita.modello !== 'solo-pinnacle'
       && numerico(v.m.probModello) && numerico(v.m.frequenzaCampionato))
-    .map((v) => ({ ...v, scostamento: Math.abs(v.m.probModello - v.m.frequenzaCampionato) }))
+    .map((v) => ({ ...v, scostamento: v.m.probModello - v.m.frequenzaCampionato }))
     .filter((v) => v.scostamento >= C.scostamentoMinSenzaQuota - EPS
       && 1 / v.prob >= SINGOLA.min - EPS && 1 / v.prob <= SINGOLA.max + EPS);
   scelte.push(...senza.filter((v) => v.preScarto));

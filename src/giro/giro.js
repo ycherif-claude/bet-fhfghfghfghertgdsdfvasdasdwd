@@ -21,9 +21,14 @@ export function puoScrivere(fileEsistente, segnature, adesso, modo) {
   if (!fileEsistente) return { ok: true };
   if (fileEsistente.esempio === true) return { ok: true };
   const vuoto = (k) => !Array.isArray(fileEsistente[k]) || fileEsistente[k].length === 0;
-  // Un giro di Claude senza candidati né giocate (raccolta mancante) si può sostituire, anche dalla riserva.
-  if (fileEsistente.giro === 'claude' && modo === 'riserva' && !(vuoto('candidati') && vuoto('giocate'))) {
-    return { ok: false, motivo: 'la giornata viene dal giro di Claude: la riserva non la sostituisce' };
+  // La riserva sostituisce un giro di Claude solo se è vuoto perché mancava la raccolta di oggi.
+  // Negli altri casi (il caso normale di ogni giorno) non scrive nulla: `silenzioso`.
+  if (fileEsistente.giro === 'claude' && modo === 'riserva') {
+    const raccoltaMancante = Array.isArray(fileEsistente.erroriGiro)
+      && fileEsistente.erroriGiro.some((e) => typeof e === 'string' && e.includes('Raccolta di oggi mancante'));
+    if (!(vuoto('candidati') && vuoto('giocate') && raccoltaMancante)) {
+      return { ok: false, silenzioso: true, motivo: 'la giornata viene dal giro di Claude: la riserva non la sostituisce' };
+    }
   }
   const voci = [];
   for (const g of Array.isArray(fileEsistente.giocate) ? fileEsistente.giocate : []) {
@@ -127,7 +132,8 @@ function calcolaAnteprima(raccolta, stato, adesso) {
 
   const righe = partite.map((id) => {
     const p = raccolta.partite.find((x) => x.idPartita === id) ?? {};
-    const mercati = inGara.filter((c) => c.idPartita === id).map((c) => `${c.mercato} ${c.selezione}`);
+    // `idCandidato: mercato | selezione`: l'id si copia così com'è in `esclusioni`.
+    const mercati = inGara.filter((c) => c.idPartita === id).map((c) => `${c.id}: ${c.mercato} | ${c.selezione}`);
     return { idPartita: id, partita: p.partita, inizio: p.inizio, mercati };
   });
   return { partite, righe };
@@ -180,6 +186,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   }
 
   const verdetto = puoScrivere(esistente, segnature, adesso, modo);
+  if (!verdetto.ok && verdetto.silenzioso) return { scritto: false, giornata, motivo: verdetto.motivo };
   if (!verdetto.ok) {
     const riga = `Giro ${modo} delle ${oraRoma(adesso)} non applicato: giornata già in uso`;
     const errori = Array.isArray(esistente.erroriGiro) ? esistente.erroriGiro : [];

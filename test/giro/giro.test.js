@@ -35,7 +35,7 @@ function raccolta(data = '2026-10-20') {
           m('1X2', '1', 0.60, 0.56, 1.95), m('1X2', 'X', 0.24, 0.26, 3.8), m('1X2', '2', 0.16, 0.18, 5.0),
           m('Under/Over 2.5', 'Over 2.5', 0.58, 0.54, 1.80), m('Under/Over 2.5', 'Under 2.5', 0.42, 0.46, 2.20),
           m('Risultato esatto', '2-1', 0.10, null, null),
-          m('Angoli Under/Over 9.5', 'Under 9.5', 0.45, null, null, 0.60),
+          m('Angoli Under/Over 9.5', 'Over 9.5', 0.55, null, null, 0.40),
         ],
       },
       {
@@ -121,9 +121,12 @@ test('riserva non sovrascrive un file del giro claude', () => {
   const d = dirTemp();
   eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
   const prima = leggi(d);
+  const testoPrima = testo(d);
   const r = eseguiGiro({ dirData: d, adesso: new Date('2026-10-20T07:05:00Z'), modo: 'riserva' });
   assert.equal(r.scritto, false);
-  assert.deepEqual(leggi(d), { ...prima, erroriGiro: [...prima.erroriGiro, 'Giro riserva delle 09:05 non applicato: giornata già in uso'] });
+  // Caso normale di ogni giorno: nessuna scrittura, neppure una riga in erroriGiro.
+  assert.equal(testo(d), testoPrima);
+  assert.deepEqual(leggi(d), prima);
   assert.deepEqual(puoScrivere(prima, [], ADESSO, 'claude'), { ok: true });
   assert.equal(puoScrivere(prima, [], ADESSO, 'riserva').ok, false);
 });
@@ -263,6 +266,8 @@ test('CLI: notizie non valide → uscita 1, messaggio con correzione e motivo, n
   const a = spawnSync(process.execPath, [GIRO, '--anteprima'], { cwd: radice, encoding: 'utf8' });
   assert.equal(a.status, 0, a.stderr);
   assert.match(a.stdout, new RegExp(`${r.partite[0].idPartita} · Inter - Lecce · `));
+  // Accanto a ogni mercato in gara c'è l'id del candidato, da copiare in `esclusioni`.
+  assert.ok(a.stdout.includes(`${r.partite[0].idPartita}-1x2-1: 1X2 | 1`), a.stdout);
 });
 
 test('riserva dopo un giro claude vuoto (raccolta mancante): il file si sostituisce', () => {
@@ -300,4 +305,16 @@ test('bankroll: file e voci ignorati finiscono in erroriGiro', () => {
   assert.ok(e.includes('Bankroll: segnature/x.json ignorato (quota reale non valida)'));
   assert.ok(e.some((x) => x.startsWith('Bankroll: giornate/2026-10-18.json ignorato (JSON non valido')));
   assert.ok(e.includes('Bankroll: segnature/rotta.json ignorato (il file non contiene un oggetto)'));
+});
+
+test('riserva dopo un giro claude vuoto ma con la raccolta (nessun candidato): il file resta di Claude', () => {
+  const vuota = { data: '2026-10-20', generataAlle: '2026-10-20T08:10:00+02:00', giro: 'claude', notizieControllate: true,
+    competizioniNonCoperte: [], candidati: [], giocate: [], scartate: [], erroriGiro: ['football-data.co.uk I2 alle 07:35: HTTP 503'] };
+  const d = dirTemp({ giornate: [vuota] });
+  const testoPrima = testo(d);
+  const r = eseguiGiro({ dirData: d, adesso: new Date('2026-10-20T07:05:00Z'), modo: 'riserva' });
+  assert.equal(r.scritto, false);
+  assert.equal(testo(d), testoPrima);
+  assert.equal(puoScrivere(vuota, [], ADESSO, 'riserva').ok, false);
+  assert.deepEqual(puoScrivere({ ...vuota, erroriGiro: ['Raccolta di oggi mancante: data/raccolta/2026-10-20.json'] }, [], ADESSO, 'riserva'), { ok: true });
 });
