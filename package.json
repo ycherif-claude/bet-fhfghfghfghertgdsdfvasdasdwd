@@ -6,6 +6,7 @@
   "engines": { "node": ">=24" },
   "scripts": {
     "test": "node --test",
-    "build": "node src/build/costruisci-sito.js"
+    "build": "node src/build/costruisci-sito.js",
+    "serve": "node scripts/serve.js"
   }
 }
