@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura, cancellaToken, leggiImpostazioni, salvaImpostazioni } from '../../site/giocata.js';
+import { costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura, cancellaToken, leggiImpostazioni, salvaImpostazioni, normalizzaRepo } from '../../site/giocata.js';
+
+test('normalizzaRepo accetta forma breve e indirizzo GitHub completo', () => {
+  assert.equal(normalizzaRepo('utente/nome'), 'utente/nome');
+  assert.equal(normalizzaRepo(' https://github.com/utente/nome '), 'utente/nome');
+  assert.equal(normalizzaRepo('https://github.com/utente/nome.git'), 'utente/nome');
+  assert.equal(normalizzaRepo('https://github.com/utente/nome/settings'), 'utente/nome');
+  assert.equal(normalizzaRepo('github.com/utente/nome/'), 'utente/nome');
+  assert.equal(normalizzaRepo('https://utente.github.io/nome/'), 'utente/nome');
+  assert.equal(normalizzaRepo('nome'), 'nome');
+});
 
 const adesso = new Date('2026-10-19T10:00:00Z');
 

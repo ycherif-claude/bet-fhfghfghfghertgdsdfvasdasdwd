@@ -292,6 +292,7 @@ function avviaImpostazioni() {
     const repo = campoRepo.value.trim();
     const token = campoToken.value.trim() || leggiImpostazioni().token;
     const ok = salvaImpostazioni({ repo, token });
+    if (ok) campoRepo.value = leggiImpostazioni().repo;
     campoToken.value = '';
     segnaposto();
     stato.textContent = ok ? 'Impostazioni salvate su questo dispositivo' : 'Impossibile salvare le impostazioni su questo browser';

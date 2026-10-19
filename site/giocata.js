@@ -30,7 +30,8 @@ function base64Utf8(testo) {
   return btoa(binario);
 }
 
-function impostazioni({ repo, token }) {
+function impostazioni({ repo: grezzo, token }) {
+  const repo = normalizzaRepo(grezzo);
   if (!token) throw new Error('Codice segreto non impostato');
   if (!repo || !/^[^/\s]+\/[^/\s]+$/.test(repo)) throw new Error('Repository non impostato (formato utente/nome)');
   return {
@@ -95,12 +96,24 @@ export function leggiImpostazioni() {
   return { repo, token };
 }
 
+// Riduce l'indirizzo incollato dall'utente alla forma "utente/nome":
+// accetta anche https://github.com/utente/nome(.git)(/…) e https://utente.github.io/nome/.
+export function normalizzaRepo(testo) {
+  const t = String(testo ?? '').trim();
+  const pages = t.match(/^(?:https?:\/\/)?([^/\s.]+)\.github\.io\/([^/\s]+)/i);
+  if (pages) return `${pages[1]}/${pages[2]}`;
+  const gh = t.match(/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^/\s]+)\/([^/\s]+)/i);
+  if (gh) return `${gh[1]}/${gh[2].replace(/\.git$/i, '')}`;
+  return t;
+}
+
 // Restituisce true se salvato. Un valore vuoto cancella la voce.
 export function salvaImpostazioni({ repo, token }) {
   try {
     const s = globalThis.localStorage;
     if (!s) return false;
-    if (repo) s.setItem(CHIAVE_REPO, repo); else s.removeItem(CHIAVE_REPO);
+    const r = normalizzaRepo(repo);
+    if (r) s.setItem(CHIAVE_REPO, r); else s.removeItem(CHIAVE_REPO);
     if (token) s.setItem(CHIAVE_TOKEN, token); else s.removeItem(CHIAVE_TOKEN);
     return true;
   } catch {
