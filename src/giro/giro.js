@@ -20,7 +20,9 @@ const scriviJson = (file, dati) => fs.writeFileSync(file, `${JSON.stringify(dati
 export function puoScrivere(fileEsistente, segnature, adesso, modo) {
   if (!fileEsistente) return { ok: true };
   if (fileEsistente.esempio === true) return { ok: true };
-  if (fileEsistente.giro === 'claude' && modo === 'riserva') {
+  const vuoto = (k) => !Array.isArray(fileEsistente[k]) || fileEsistente[k].length === 0;
+  // Un giro di Claude senza candidati né giocate (raccolta mancante) si può sostituire, anche dalla riserva.
+  if (fileEsistente.giro === 'claude' && modo === 'riserva' && !(vuoto('candidati') && vuoto('giocate'))) {
     return { ok: false, motivo: 'la giornata viene dal giro di Claude: la riserva non la sostituisce' };
   }
   const voci = [];
@@ -71,23 +73,41 @@ function leggiNotizie(dirData, oggi, raccolta) {
   return notizie;
 }
 
-// Stato del bankroll senza la giornata di oggi: giocate e segnature valide.
+// Stato del bankroll senza la giornata di oggi: giocate e segnature valide. Ogni file o voce
+// ignorata finisce in `avvisi` ("Bankroll: <file> ignorato (<errore>)"): mai uno scarto silenzioso.
 function statoPrecedente(dirData, oggi, adesso) {
   const scarti = [];
-  const giocate = leggiJson(dirData, 'giornate', scarti)
-    .filter(({ file, contenuto }) => contenuto.data !== oggi && file !== `giornate/${oggi}.json`)
-    .flatMap(({ contenuto }) => (Array.isArray(contenuto.giocate) ? contenuto.giocate : []))
-    .filter((g) => erroreGiocata(g) === null);
-  const tutte = leggiJson(dirData, 'segnature', scarti).map((x) => x.contenuto);
-  const valide = tutte.filter((s) => erroreSegnatura(s) === null);
-  return { stato: statoBankroll(giocate, valide, adesso), segnature: tutte };
+  const avvisi = [];
+  const avvisa = (file, errore) => avvisi.push(`Bankroll: ${file} ignorato (${errore})`);
+  const giornate = leggiJson(dirData, 'giornate', scarti)
+    .filter(({ file, contenuto }) => contenuto.data !== oggi && file !== `giornate/${oggi}.json`);
+  const giocate = [];
+  for (const { file, contenuto } of giornate) {
+    if (!Array.isArray(contenuto.giocate)) { avvisa(file, 'giornata senza giocate'); continue; }
+    for (const g of contenuto.giocate) {
+      const motivo = erroreGiocata(g);
+      if (motivo) avvisa(file, motivo);
+      else giocate.push(g);
+    }
+  }
+  const lette = leggiJson(dirData, 'segnature', scarti);
+  const tutte = lette.map((x) => x.contenuto);
+  const valide = [];
+  for (const { file, contenuto: s } of lette) {
+    const motivo = erroreSegnatura(s);
+    if (motivo) avvisa(file, motivo);
+    else valide.push(s);
+  }
+  // Il file di oggi illeggibile ferma il giro più avanti: qui non si ripete.
+  for (const x of scarti) if (x.file !== `giornate/${oggi}.json`) avvisa(x.file, x.errore);
+  return { stato: statoBankroll(giocate, valide, adesso), segnature: tutte, avvisi };
 }
 
 const idPartiteGiocata = (g) => (Array.isArray(g.gambe) ? g.gambe.map((x) => x.idPartita) : [g.idPartita]);
 
-function calcolaAnteprima(raccolta, stato) {
+function calcolaAnteprima(raccolta, stato, adesso) {
   if (!raccolta) return { partite: [], righe: [] };
-  const { candidati, preScartate } = costruisciCandidati(raccolta, null);
+  const { candidati, preScartate } = costruisciCandidati(raccolta, null, { adesso });
   const fuori = new Set(preScartate.map((s) => s.idCandidato));
   const inGara = candidati.filter((c) => !fuori.has(c.id));
   const { giocate } = selezionaGiocate(inGara, stato);
@@ -97,7 +117,7 @@ function calcolaAnteprima(raccolta, stato) {
 
   // Le partite successive per miglior value, anche negativo: una notizia può alzarlo.
   const migliore = new Map();
-  for (const v of valutaMercati(raccolta, null)) {
+  for (const v of valutaMercati(raccolta, null, { adesso }).voci) {
     if (v.value === null) continue;
     const id = v.partita.idPartita;
     if (!migliore.has(id) || v.value > migliore.get(id)) migliore.set(id, v.value);
@@ -117,13 +137,15 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   if (modo !== 'claude' && modo !== 'riserva') throw new Error(`Modo del giro non valido: ${modo}`);
   const oggi = giornataDi(adesso);
   const { raccolta, errore } = leggiRaccolta(dirData, oggi);
-  const { stato, segnature } = statoPrecedente(dirData, oggi, adesso);
+  const { stato, segnature, avvisi } = statoPrecedente(dirData, oggi, adesso);
 
-  if (anteprima) return { scritto: false, giornata: null, anteprima: calcolaAnteprima(raccolta, stato) };
+  if (anteprima) return { scritto: false, giornata: null, anteprima: calcolaAnteprima(raccolta, stato, adesso) };
 
   // Le notizie servono solo se c'è la raccolta di oggi; la riserva le ignora.
   const notizie = modo === 'claude' && raccolta ? leggiNotizie(dirData, oggi, raccolta) : null;
-  const { candidati, preScartate } = raccolta ? costruisciCandidati(raccolta, notizie) : { candidati: [], preScartate: [] };
+  const { candidati, preScartate, iniziate } = raccolta
+    ? costruisciCandidati(raccolta, notizie, { adesso })
+    : { candidati: [], preScartate: [], iniziate: 0 };
   const fuori = new Set(preScartate.map((s) => s.idCandidato));
   const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato);
 
@@ -136,7 +158,13 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     candidati,
     giocate: scelta.giocate,
     scartate: [...preScartate, ...scelta.scartate],
-    erroriGiro: [...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []), ...(errore ? [errore] : [])],
+    erroriGiro: [
+      ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),
+      ...(errore ? [errore] : []),
+      ...(modo === 'riserva' ? ['Giro di Claude non eseguito: notizie non controllate'] : []),
+      ...(iniziate > 0 ? [iniziate === 1 ? '1 partita già iniziata esclusa' : `${iniziate} partite già iniziate escluse`] : []),
+      ...avvisi,
+    ],
   };
 
   const cartella = path.join(dirData, 'giornate');

@@ -1,7 +1,8 @@
 // Dalla raccolta (più le notizie di Claude) ai candidati della giornata (§5.2, §5.4, §5.7, §6.1).
 import { CONFIG } from '../config.js';
 import { calcolaValue, probValida } from '../regole/value.js';
-import { slug, oraRoma } from '../calcio/testo.js';
+import { oraRoma } from '../calcio/testo.js';
+import { idCandidato } from './id.js';
 import { applicaCorrezioni } from './notizie.js';
 
 const EPS = 1e-9;
@@ -14,7 +15,7 @@ const virgola = (q) => q.toFixed(2).replace('.', ',');
 const numerico = (x) => typeof x === 'number' && Number.isFinite(x);
 const ora = (iso) => (iso && Number.isFinite(Date.parse(iso)) ? oraRoma(new Date(iso)) : null);
 
-export const idCandidato = (idPartita, mercato, selezione) => `${idPartita}-${slug(mercato)}-${slug(selezione)}`;
+export { idCandidato };
 
 // Probabilità usata: media pesata modello/Pinnacle, oppure quella disponibile.
 export function probUsata(probModello, probPinnacle) {
@@ -81,32 +82,50 @@ function creaCandidato(partita, m, prob, notizie) {
   };
 }
 
-// Tutti i mercati con una probabilità utilizzabile, dopo le correzioni: [{ partita, m, prob, ordine }].
-export function valutaMercati(raccolta, notizie) {
+// Tutti i mercati con una probabilità utilizzabile, dopo le correzioni: [{ partita, m, prob, ordine, value }].
+// Con `adesso`, le partite già iniziate (inizio <= adesso) non contano: `iniziate` le conta.
+export function valutaMercati(raccolta, notizie, { adesso = null } = {}) {
   const correzioni = notizie?.correzioni ?? [];
-  const out = [];
+  const voci = [];
   let ordine = 0;
+  let iniziate = 0;
   for (const originale of raccolta?.partite ?? []) {
     if (!originale || !Array.isArray(originale.mercati)) continue;
+    if (adesso && Date.parse(originale.inizio) <= adesso.getTime()) { iniziate++; continue; }
     const partita = applicaCorrezioni(originale, correzioni.filter((c) => c.idPartita === originale.idPartita));
     for (const m of partita.mercati) {
       const prob = probUsata(m.probModello, m.probPinnacle);
       const o = ordine++;
       if (!probValida(prob)) continue;
       const quota = numerico(m.quota) && m.quota > 1 ? m.quota : null;
-      out.push({ partita, m: { ...m, quota }, prob, ordine: o, value: quota === null ? null : calcolaValue(prob, quota) });
+      voci.push({ partita, m: { ...m, quota }, prob, ordine: o, value: quota === null ? null : calcolaValue(prob, quota) });
     }
   }
-  return out;
+  return { voci, iniziate };
 }
 
-export function costruisciCandidati(raccolta, notizie) {
-  const voci = valutaMercati(raccolta, notizie);
+// Motivo di pre-scarto: esclusione delle notizie, poi scarto dal mercato (dopo la correzione); altrimenti null.
+function motivoPreScarto(v, esclusioni) {
+  const id = idCandidato(v.partita.idPartita, v.m.mercato, v.m.selezione);
+  const escl = esclusioni.find((x) => x.idPartita === v.partita.idPartita && (!x.idCandidato || x.idCandidato === id));
+  if (escl) return `notizia: ${escl.motivo}`;
+  const { probModello: pm, probPinnacle: pp } = v.m;
+  if (numerico(pm) && numerico(pp) && Math.abs(pm - pp) > C.scartoMaxPinnacle + EPS) return 'stima troppo lontana dal mercato';
+  return null;
+}
 
-  // Con quota: per partita i primi maxMercatiPartita per value, purché positivo.
+// I posti (maxMercatiPartita per partita, maxSenzaQuotaGiorno al giorno) vanno solo ai mercati
+// non pre-scartati; quelli pre-scartati restano fra i candidati, fuori dai posti.
+export function costruisciCandidati(raccolta, notizie, { adesso = null } = {}) {
+  const { voci, iniziate } = valutaMercati(raccolta, notizie, { adesso });
+  const esclusioni = notizie?.esclusioni ?? [];
+  for (const v of voci) v.preScarto = motivoPreScarto(v, esclusioni);
+
+  // Con quota: value positivo; per partita i primi maxMercatiPartita fra i non pre-scartati.
   const scelte = [];
   const perPartita = new Map();
   for (const v of voci.filter((x) => x.value !== null && x.value > EPS)) {
+    if (v.preScarto) { scelte.push(v); continue; }
     if (!perPartita.has(v.partita.idPartita)) perPartita.set(v.partita.idPartita, []);
     perPartita.get(v.partita.idPartita).push(v);
   }
@@ -120,23 +139,15 @@ export function costruisciCandidati(raccolta, notizie) {
       && numerico(v.m.probModello) && numerico(v.m.frequenzaCampionato))
     .map((v) => ({ ...v, scostamento: Math.abs(v.m.probModello - v.m.frequenzaCampionato) }))
     .filter((v) => v.scostamento >= C.scostamentoMinSenzaQuota - EPS
-      && 1 / v.prob >= SINGOLA.min - EPS && 1 / v.prob <= SINGOLA.max + EPS)
+      && 1 / v.prob >= SINGOLA.min - EPS && 1 / v.prob <= SINGOLA.max + EPS);
+  scelte.push(...senza.filter((v) => v.preScarto));
+  scelte.push(...senza.filter((v) => !v.preScarto)
     .sort((a, b) => b.scostamento - a.scostamento || a.ordine - b.ordine)
-    .slice(0, C.maxSenzaQuotaGiorno);
-  scelte.push(...senza);
+    .slice(0, C.maxSenzaQuotaGiorno));
 
   scelte.sort((a, b) => a.ordine - b.ordine);
   const candidati = scelte.map((v) => creaCandidato(v.partita, v.m, v.prob, notizie));
-
-  // Pre-scarti: esclusioni delle notizie, poi scarto dal mercato (dopo la correzione).
-  const esclusioni = notizie?.esclusioni ?? [];
-  const preScartate = [];
-  for (const c of candidati) {
-    const escl = esclusioni.find((x) => x.idPartita === c.idPartita && (!x.idCandidato || x.idCandidato === c.id));
-    if (escl) { preScartate.push({ idCandidato: c.id, motivo: `notizia: ${escl.motivo}` }); continue; }
-    if (c.probModello !== null && c.probPinnacle !== null && Math.abs(c.probModello - c.probPinnacle) > C.scartoMaxPinnacle + EPS) {
-      preScartate.push({ idCandidato: c.id, motivo: 'stima troppo lontana dal mercato' });
-    }
-  }
-  return { candidati, preScartate };
+  const preScartate = scelte.filter((v) => v.preScarto)
+    .map((v) => ({ idCandidato: idCandidato(v.partita.idPartita, v.m.mercato, v.m.selezione), motivo: v.preScarto }));
+  return { candidati, preScartate, iniziate };
 }

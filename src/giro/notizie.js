@@ -1,6 +1,6 @@
 // Notizie di Claude: controllo delle correzioni e delle esclusioni (§6.1) e loro applicazione.
 import { CONFIG } from '../config.js';
-import { slug } from '../calcio/testo.js';
+import { idCandidato } from './id.js';
 
 const EPS = 1e-9;
 const { correzioneMax, probMin, probMax } = CONFIG.calcio;
@@ -98,7 +98,7 @@ export function validaNotizie(notizie, raccolta) {
     const p = partite.get(x?.idPartita);
     if (!p) return err('partita inesistente nella raccolta di oggi');
     if (x.idCandidato !== undefined && x.idCandidato !== null
-      && !p.mercati.some((m) => `${p.idPartita}-${slug(m.mercato)}-${slug(m.selezione)}` === x.idCandidato)) {
+      && !p.mercati.some((m) => idCandidato(p.idPartita, m.mercato, m.selezione) === x.idCandidato)) {
       return err('candidato inesistente nella partita');
     }
     if (!testoPieno(x.motivo)) return err('motivo mancante');

@@ -157,3 +157,50 @@ test('stesso input due volte → stessi id', () => {
   assert.deepEqual(a, b);
   assert.equal(new Set(a.candidati.map((c) => c.id)).size, a.candidati.length);
 });
+
+test('id unici per tutti i mercati del modello (Handicap asiatico -1 e +1 distinti)', async () => {
+  const { mercatiGol } = await import('../../src/calcio/modelli/mercati-gol.js');
+  const { mercatiConteggi } = await import('../../src/calcio/modelli/conteggi.js');
+  const { idCandidato } = await import('../../src/giro/candidati.js');
+  const squadre = ['A', 'B', 'C', 'D'];
+  const righe = [];
+  for (let i = 0; i < 48; i++) {
+    const casa = squadre[i % 4];
+    const trasferta = squadre[(i + 1 + (i % 3)) % 4];
+    righe.push({ data: '2026-10-01', casa, trasferta, gc: i % 3, gt: i % 2, gcPT: 0, gtPT: 0, xgC: null, xgT: null,
+      angoliC: 3 + (i % 6), angoliT: 2 + (i % 5), cartC: 1 + (i % 3), cartT: 1 + (i % 4), arbitro: null });
+  }
+  const conteggi = mercatiConteggi(righe, 'A', 'B', { oggi: '2026-10-20' });
+  assert.ok(conteggi.length >= 14, 'angoli e cartellini presenti');
+  const tutti = [...mercatiGol(1.5, 1.1, 0.45), ...conteggi];
+  const ids = tutti.map((x) => idCandidato(P1, x.mercato, x.selezione));
+  assert.equal(new Set(ids).size, ids.length);
+  assert.ok(ids.includes(`${P1}-handicap-asiatico-meno-1-casa`));
+  assert.ok(ids.includes(`${P1}-handicap-asiatico-piu-1-casa`));
+  assert.ok(ids.includes(`${P1}-handicap-asiatico-meno-0-5-trasferta`));
+  assert.ok(ids.includes(`${P1}-risultato-esatto-2-1`));
+  assert.ok(ids.includes(`${P1}-under-over-2-5-over-2-5`));
+  // Il testo visibile non cambia.
+  assert.ok(tutti.some((x) => x.mercato === 'Handicap asiatico -1'));
+});
+
+test('partite già iniziate: nessun candidato, e si contano', () => {
+  const r = costruisciCandidati(raccolta(), null, { adesso: new Date('2026-10-20T16:05:00Z') }); // 18:05: Milan - Roma iniziata
+  assert.equal(r.iniziate, 1);
+  assert.ok(r.candidati.length > 0);
+  assert.ok(r.candidati.every((c) => c.idPartita !== P2));
+  assert.equal(costruisciCandidati(raccolta(), null, { adesso: new Date('2026-10-20T06:10:00Z') }).iniziate, 0);
+});
+
+test('i posti vanno ai non pre-scartati: un mercato divergente non toglie posto agli altri', () => {
+  const mercati = [2.1, 2.2, 2.3, 2.4, 2.5].map((q, i) => m(`Under/Over ${i}.5`, `Over ${i}.5`, 0.5, 0.5, q));
+  mercati.push(m('1X2', '1', 0.80, 0.60, 2.0)); // value 0.4, il più alto, ma 20 punti da Pinnacle
+  const r = costruisciCandidati({ data: '2026-10-20', partite: [partita(P1, 'Inter - Lecce', 'dixon-coles', mercati)] }, null);
+  assert.equal(r.candidati.length, 6);
+  assert.deepEqual(r.preScartate, [{ idCandidato: `${P1}-1x2-1`, motivo: 'stima troppo lontana dal mercato' }]);
+  // Senza quota: escluso il primo per scostamento, i 2 posti vanno ai successivi.
+  const escl = costruisciCandidati(raccolta(), notizie([], [{ idPartita: P1, idCandidato: `${P1}-angoli-under-over-9-5-under-9-5`, motivo: 'x', fonte: 'y' }]));
+  const senza = escl.candidati.filter((c) => c.quota === null).map((c) => c.id).sort();
+  assert.deepEqual(senza, [`${P1}-angoli-under-over-9-5-over-9-5`, `${P1}-angoli-under-over-9-5-under-9-5`, `${P2}-cartellini-under-over-4-5-over-4-5`].sort());
+  assert.deepEqual(escl.preScartate, [{ idCandidato: `${P1}-angoli-under-over-9-5-under-9-5`, motivo: 'notizia: x' }]);
+});

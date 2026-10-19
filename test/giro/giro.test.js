@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { eseguiGiro, puoScrivere } from '../../src/giro/giro.js';
 import { costruisciDati } from '../../src/build/costruisci-sito.js';
 import { giornataDi } from '../../src/bankroll/settimana.js';
+import { isoRoma } from '../../src/calcio/testo.js';
 
 const GIRO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'giro', 'giro.js');
 const P1 = 'calcio-2026-10-20-inter-lecce';
@@ -113,6 +114,7 @@ test('riserva: nessuna correzione, ragionamento "Notizie non controllate", giro 
     assert.equal(c.ragionamento.at(-1), 'Notizie non controllate: giro di Claude non eseguito');
   }
   assert.ok(!g.scartate.some((s) => s.motivo.startsWith('notizia:')));
+  assert.ok(g.erroriGiro.includes('Giro di Claude non eseguito: notizie non controllate'));
 });
 
 test('riserva non sovrascrive un file del giro claude', () => {
@@ -247,6 +249,8 @@ test('CLI: notizie non valide → uscita 1, messaggio con correzione e motivo, n
   const radice = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-cli-'));
   fs.mkdirSync(path.join(radice, 'data', 'raccolta'), { recursive: true });
   const r = raccolta(oggi);
+  // Orologio reale: partite fra qualche ora, così nessuna risulta già iniziata.
+  r.partite.forEach((p, i) => { p.inizio = isoRoma(new Date(Date.now() + (3 + i) * 3600000)); });
   fs.writeFileSync(path.join(radice, 'data', 'raccolta', `${oggi}.json`), JSON.stringify(r));
   fs.writeFileSync(path.join(radice, 'data', 'raccolta', `${oggi}-notizie.json`), JSON.stringify({
     ...notizie(), correzioni: [corr(r.partite[0].idPartita, 'Under/Over 2.5', 'Over 2.5', 0.12)],
@@ -259,4 +263,41 @@ test('CLI: notizie non valide → uscita 1, messaggio con correzione e motivo, n
   const a = spawnSync(process.execPath, [GIRO, '--anteprima'], { cwd: radice, encoding: 'utf8' });
   assert.equal(a.status, 0, a.stderr);
   assert.match(a.stdout, new RegExp(`${r.partite[0].idPartita} · Inter - Lecce · `));
+});
+
+test('riserva dopo un giro claude vuoto (raccolta mancante): il file si sostituisce', () => {
+  const d = dirTemp({ racc: null, noti: null });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  assert.equal(leggi(d).giro, 'claude');
+  fs.writeFileSync(path.join(d, 'raccolta', '2026-10-20.json'), JSON.stringify(raccolta()));
+  const r = eseguiGiro({ dirData: d, adesso: new Date('2026-10-20T07:05:00Z'), modo: 'riserva' });
+  assert.equal(r.scritto, true);
+  const g = leggi(d);
+  assert.equal(g.giro, 'riserva');
+  assert.ok(g.candidati.length > 0);
+});
+
+test('partite già iniziate: niente candidati e una riga in erroriGiro', () => {
+  const d = dirTemp();
+  eseguiGiro({ dirData: d, adesso: new Date('2026-10-20T16:05:00Z'), modo: 'claude' }); // 18:05 Roma
+  const g = leggi(d);
+  assert.ok(g.candidati.length > 0);
+  assert.ok(g.candidati.every((c) => c.idPartita !== P2));
+  assert.ok(g.erroriGiro.includes('1 partita già iniziata esclusa'));
+});
+
+test('bankroll: file e voci ignorati finiscono in erroriGiro', () => {
+  const ieri = { data: '2026-10-19', candidati: [], scartate: [], erroriGiro: [],
+    giocate: [{ id: 'rotta', inizio: 'ieri', prob: 0.5, puntata: { euro: 6, percentuale: 3 } }] };
+  const d = dirTemp({ giornate: [ieri, { data: '2026-10-17', candidati: [] }],
+    segnature: [{ idGiocata: 'x', fatta: true, quotaReale: 0.5, puntataReale: 5, ora: '2026-10-19T09:00:00+02:00' }] });
+  fs.writeFileSync(path.join(d, 'giornate', '2026-10-18.json'), '{ rotto');
+  fs.writeFileSync(path.join(d, 'segnature', 'rotta.json'), '[]');
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const e = leggi(d).erroriGiro;
+  assert.ok(e.includes('Bankroll: giornate/2026-10-19.json ignorato (giocata rotta: inizio non valido)'), e.join(' | '));
+  assert.ok(e.includes('Bankroll: giornate/2026-10-17.json ignorato (giornata senza giocate)'));
+  assert.ok(e.includes('Bankroll: segnature/x.json ignorato (quota reale non valida)'));
+  assert.ok(e.some((x) => x.startsWith('Bankroll: giornate/2026-10-18.json ignorato (JSON non valido')));
+  assert.ok(e.includes('Bankroll: segnature/rotta.json ignorato (il file non contiene un oggetto)'));
 });

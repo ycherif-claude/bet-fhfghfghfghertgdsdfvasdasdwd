@@ -125,3 +125,14 @@ test('1X2: la terza selezione riceve −(d1+d2); con una sola correzione le altr
   assert.ok(Math.abs(q('1') + q('X') + q('2') - 1) < 1e-9);
   assert.ok(Math.abs(q('X') - 0.264) < 1e-9); // 0.24 + 0.04·0.24/0.40
 });
+
+test('1X2: una sola correzione accettata; quota proporzionale fuori 0.02–0.98 rifiutata', () => {
+  assert.deepEqual(validaNotizie(notizie([corr(P1, '1X2', '1', 0.05)]), raccolta()), []);
+  const r = raccolta();
+  r.partite[0].mercati.splice(0, 3, m('1X2', '1', 0.90, 0.88), m('1X2', 'X', 0.07, 0.08), m('1X2', '2', 0.03, 0.04));
+  const errori = validaNotizie(notizie([corr(P1, '1X2', '1', 0.08)]), r); // "X" −0.056 → 0.014, "2" −0.024 → 0.006
+  assert.equal(errori.length, 2);
+  assert.match(errori[0], /"X"/);
+  assert.match(errori[1], /"2"/);
+  assert.match(errori[0], /0\.02/);
+});
