@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ev1", "sport_key": "soccer_italy_serie_a", "commence_time": "2026-10-20T18:45:00Z",
+    "home_team": "Inter", "away_team": "Monza",
+    "bookmakers": [
+      { "key": "pinnacle", "title": "Pinnacle", "last_update": "2026-10-20T05:50:00Z",
+        "markets": [
+          { "key": "h2h", "outcomes": [ { "name": "Inter", "price": 1.62 }, { "name": "Monza", "price": 5.5 }, { "name": "Draw", "price": 4.1 } ] },
+          { "key": "totals", "outcomes": [
+            { "name": "Over", "price": 1.9, "point": 2.5 }, { "name": "Under", "price": 1.95, "point": 2.5 },
+            { "name": "Over", "price": 1.5, "point": 1.5 }, { "name": "Under", "price": 2.6, "point": 1.5 } ] }
+        ] },
+      { "key": "betfair", "title": "Betfair", "last_update": "2026-10-20T05:45:00Z",
+        "markets": [ { "key": "h2h", "outcomes": [ { "name": "Inter", "price": 1.6 }, { "name": "Monza", "price": 5.4 }, { "name": "Draw", "price": 4.2 } ] } ] }
+    ]
+  }
+]

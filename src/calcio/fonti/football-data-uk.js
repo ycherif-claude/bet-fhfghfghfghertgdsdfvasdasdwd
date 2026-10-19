@@ -1,0 +1,60 @@
+import { scarica } from './http.js';
+import { leggiCsv } from '../csv.js';
+
+const AGENTE = 'analisi-giocate (progetto personale)';
+
+const numero = (v) => (v === undefined || v === null || String(v).trim() === '' || !Number.isFinite(Number(v)) ? null : Number(v));
+
+// gg/mm/aaaa (o gg/mm/aa) -> AAAA-MM-GG
+function dataIso(testo) {
+  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(String(testo).trim());
+  if (!m) return null;
+  const anno = m[3].length === 2 ? `20${m[3]}` : m[3];
+  return `${anno}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+}
+
+function somma(a, b) {
+  const x = numero(a);
+  const y = numero(b);
+  if (x === null && y === null) return null;
+  return (x ?? 0) + (y ?? 0);
+}
+
+function converti(r) {
+  const gc = numero(r.FTHG);
+  const gt = numero(r.FTAG);
+  const data = dataIso(r.Date);
+  if (gc === null || gt === null || !data) return null;
+  return {
+    data,
+    casa: r.HomeTeam,
+    trasferta: r.AwayTeam,
+    gc,
+    gt,
+    gcPT: numero(r.HTHG),
+    gtPT: numero(r.HTAG),
+    xgC: numero(r.HxG),
+    xgT: numero(r.AxG),
+    angoliC: numero(r.HC),
+    angoliT: numero(r.AC),
+    cartC: somma(r.HY, r.HR),
+    cartT: somma(r.AY, r.AR),
+    arbitro: r.Referee ? r.Referee : null,
+  };
+}
+
+export const footballDataUk = {
+  async partite(codice, stagioni, opz = {}) {
+    const { chiave, ...resto } = opz;
+    const out = [];
+    for (const stagione of stagioni) {
+      const r = await scarica(`https://www.football-data.co.uk/mmz4281/${stagione}/${codice}.csv`,
+        { ...resto, headers: { 'User-Agent': AGENTE } });
+      for (const riga of leggiCsv(r.testo)) {
+        const p = converti(riga);
+        if (p) out.push(p);
+      }
+    }
+    return out;
+  },
+};
