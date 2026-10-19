@@ -1,0 +1,146 @@
+{
+  "success": true,
+  "nextCursor": "abc123",
+  "data": [
+    {
+      "eventID": "EV1",
+      "sportID": "BASKETBALL",
+      "leagueID": "NBA",
+      "type": "match",
+      "teams": {
+        "home": {
+          "teamID": "H",
+          "names": {
+            "long": "New York Knicks",
+            "medium": "New York Knicks",
+            "short": "H"
+          }
+        },
+        "away": {
+          "teamID": "A",
+          "names": {
+            "long": "Boston Celtics",
+            "medium": "Boston Celtics",
+            "short": "A"
+          }
+        }
+      },
+      "status": {
+        "startsAt": "2026-10-20T23:30:00.000Z",
+        "started": false,
+        "ended": false,
+        "oddsAvailable": true
+      },
+      "odds": {
+        "points-home-game-ml-home": {
+          "oddID": "points-home-game-ml-home",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true
+            },
+            "fanduel": {
+              "odds": "+150",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true
+            },
+            "betmgm": {
+              "odds": "-200",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": false
+            }
+          }
+        },
+        "points-away-game-ml-away": {
+          "oddID": "points-away-game-ml-away",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true
+            },
+            "fanduel": {
+              "odds": "-180",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true
+            },
+            "betmgm": {
+              "odds": "+170",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true
+            }
+          }
+        },
+        "points-home-game-sp-home": {
+          "oddID": "points-home-game-sp-home",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "spread": "-4.5"
+            },
+            "fanduel": {
+              "odds": "-105",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "spread": "-5"
+            }
+          }
+        },
+        "points-away-game-sp-away": {
+          "oddID": "points-away-game-sp-away",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "spread": "4.5"
+            },
+            "fanduel": {
+              "odds": "-115",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "spread": "5"
+            }
+          }
+        },
+        "points-all-game-ou-over": {
+          "oddID": "points-all-game-ou-over",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-108",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "overUnder": "224.5"
+            },
+            "fanduel": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "overUnder": "225"
+            }
+          }
+        },
+        "points-all-game-ou-under": {
+          "oddID": "points-all-game-ou-under",
+          "byBookmaker": {
+            "draftkings": {
+              "odds": "-112",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "overUnder": "224.5"
+            },
+            "fanduel": {
+              "odds": "-110",
+              "lastUpdatedAt": "2026-10-20T10:00:00Z",
+              "available": true,
+              "overUnder": "225"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

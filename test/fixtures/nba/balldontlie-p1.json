@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": 1001,
+      "date": "2026-10-20",
+      "season": 2026,
+      "status": "7:30 pm ET",
+      "period": 0,
+      "time": "",
+      "postseason": false,
+      "postponed": false,
+      "home_team_score": null,
+      "visitor_team_score": null,
+      "datetime": "2026-10-20T23:30:00.000Z",
+      "home_team": {
+        "id": 20,
+        "conference": "East",
+        "division": "x",
+        "city": "New York",
+        "name": "Knicks",
+        "full_name": "New York Knicks",
+        "abbreviation": "NYK"
+      },
+      "visitor_team": {
+        "id": 2,
+        "conference": "East",
+        "division": "x",
+        "city": "Boston",
+        "name": "Celtics",
+        "full_name": "Boston Celtics",
+        "abbreviation": "BOS"
+      }
+    }
+  ],
+  "meta": {
+    "next_cursor": 1001,
+    "per_page": 100
+  }
+}

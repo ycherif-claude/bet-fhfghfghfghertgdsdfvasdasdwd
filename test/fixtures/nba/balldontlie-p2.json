@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "id": 1002,
+      "date": "2026-10-19",
+      "season": 2026,
+      "status": "Final",
+      "period": 0,
+      "time": "",
+      "postseason": false,
+      "postponed": false,
+      "home_team_score": 112,
+      "visitor_team_score": 108,
+      "datetime": "2026-10-19T23:00:00.000Z",
+      "home_team": {
+        "id": 14,
+        "conference": "East",
+        "division": "x",
+        "city": "Los Angeles",
+        "name": "Lakers",
+        "full_name": "Los Angeles Lakers",
+        "abbreviation": "LAL"
+      },
+      "visitor_team": {
+        "id": 16,
+        "conference": "East",
+        "division": "x",
+        "city": "Miami",
+        "name": "Heat",
+        "full_name": "Miami Heat",
+        "abbreviation": "MIA"
+      }
+    },
+    {
+      "id": 1003,
+      "date": "2026-10-19",
+      "season": 2026,
+      "status": "Final",
+      "period": 0,
+      "time": "",
+      "postseason": false,
+      "postponed": false,
+      "home_team_score": 100,
+      "visitor_team_score": 90,
+      "datetime": null,
+      "home_team": {
+        "id": 16,
+        "conference": "East",
+        "division": "x",
+        "city": "Miami",
+        "name": "Heat",
+        "full_name": "Miami Heat",
+        "abbreviation": "MIA"
+      },
+      "visitor_team": {
+        "id": 99,
+        "conference": "East",
+        "division": "x",
+        "city": "Seattle",
+        "name": "Foo",
+        "full_name": "Seattle Foo",
+        "abbreviation": "XXX"
+      }
+    }
+  ],
+  "meta": {
+    "next_cursor": 1003,
+    "per_page": 100
+  }
+}
