@@ -18,6 +18,17 @@
     <div id="avvisi"></div>
     <div id="filtri" class="filtri" role="group" aria-label="Filtro per sport"></div>
     <div id="giocate" class="giocate"><p class="vuoto">Caricamento…</p></div>
+    <details class="impostazioni">
+      <summary>Impostazioni</summary>
+      <form id="impostazioni">
+        <label for="imp-repo">Repository (utente/nome)</label>
+        <input id="imp-repo" type="text" autocomplete="off" placeholder="utente/nome">
+        <label for="imp-token">Codice segreto (token GitHub con permesso Contents lettura/scrittura solo su questo repository)</label>
+        <input id="imp-token" type="password" autocomplete="off">
+        <button type="submit" class="primario">Salva</button>
+        <p id="imp-stato" role="status"></p>
+      </form>
+    </details>
   </main>
   <script type="module" src="app.js"></script>
 </body>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Storico</title>
+  <link rel="stylesheet" href="stile.css">
+</head>
+<body>
+  <header>
+    <h1>Storico</h1>
+    <p class="data" id="bankroll-attuale"></p>
+    <nav><a href="index.html">Oggi</a></nav>
+  </header>
+  <main>
+    <div id="avvisi"></div>
+    <section id="andamento" class="grafico" aria-label="Andamento del bankroll"></section>
+    <div id="vista" class="interruttore" role="group" aria-label="Vista"></div>
+    <div id="riepiloghi" class="tabelle"></div>
+    <h2>Giocate passate</h2>
+    <div id="elenco" class="storico-elenco"><p class="vuoto">Caricamento…</p></div>
+  </main>
+  <script type="module" src="storico.js"></script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+import { costruisciSegnatura, salvaSegnatura, cancellaSegnatura, leggiImpostazioni, salvaImpostazioni } from './giocata.js';
+
 // Pagina del giorno. Modulo ES usato sia dal browser sia dai test in Node:
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
 
@@ -50,22 +52,32 @@ export function testoAvvisi(dati) {
   return avvisi;
 }
 
+// Segnatura più recente (per `ora`) di ogni giocata.
+export function ultimeSegnature(segnature) {
+  const ultime = new Map();
+  for (const s of segnature) {
+    const prec = ultime.get(s.idGiocata);
+    if (!prec || Date.parse(s.ora) >= Date.parse(prec.ora)) ultime.set(s.idGiocata, s);
+  }
+  return ultime;
+}
+
 // ---- Formattazione ----
 const fmtOra = new Intl.DateTimeFormat('it-IT', { timeZone: FUSO, hour: '2-digit', minute: '2-digit' });
 const fmtEuro = new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' });
 const fmtNum = (cifre) => new Intl.NumberFormat('it-IT', { minimumFractionDigits: cifre, maximumFractionDigits: cifre });
-const fmtQuota = fmtNum(2);
+export const fmtQuota = fmtNum(2);
 const fmtPerc0 = fmtNum(0);
 const fmtPerc1 = fmtNum(1);
 
-const ora = (iso) => (iso ? fmtOra.format(new Date(iso)) : '');
-const euro = (n) => fmtEuro.format(n);
+export const ora = (iso) => (iso ? fmtOra.format(new Date(iso)) : '');
+export const euro = (n) => fmtEuro.format(n);
 // `frazione` 0.56 -> "56%"
-const percento = (frazione) => `${fmtPerc0.format(frazione * 100)}%`;
-const segno = (n) => (n > 0 ? '+' : '');
+export const percento = (frazione) => `${fmtPerc0.format(frazione * 100)}%`;
+export const segno = (n) => (n > 0 ? '+' : '');
 
 // ---- DOM ----
-function el(tag, attrs = {}, ...figli) {
+export function el(tag, attrs = {}, ...figli) {
   const nodo = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
     if (v === null || v === undefined || v === false) continue;
@@ -79,7 +91,7 @@ function el(tag, attrs = {}, ...figli) {
   return nodo;
 }
 
-const NOME_TIPO = { singola: 'Singola', speciale: 'Singola speciale', multipla: 'Multipla', builder: 'Bet builder' };
+export const NOME_TIPO = { singola: 'Singola', speciale: 'Singola speciale', multipla: 'Multipla', builder: 'Bet builder' };
 
 function rigaQuota(g) {
   if (g.quotaDaVerificare || g.quota === null || g.quota === undefined) {
@@ -89,12 +101,86 @@ function rigaQuota(g) {
   return [el('strong', {}, `quota ${fmtQuota.format(g.quota)}`), fonte ? ` (${fonte})` : ''];
 }
 
-// Punto di estensione per il Task 6: qui andrà il pulsante "Giocata".
-function renderPiedeScheda(giocata) {
+const MSG_SALVATA = 'Salvata – aggiornamento della pagina in 1-2 minuti';
+
+// "2,10" o "2.10" -> 2.1; testo vuoto o non numerico -> NaN
+const leggiNumero = (testo) => (String(testo).trim() === '' ? NaN : Number(String(testo).trim().replace(',', '.')));
+
+function testoSegnatura(s) {
+  return s.fatta
+    ? `Segnata come giocata: quota ${fmtQuota.format(s.quotaReale)}, puntata ${euro(s.puntataReale)}`
+    : 'Segnata come saltata';
+}
+
+// Controlli di segnatura della scheda. `corrente` e il messaggio sono locali alla scheda:
+// dopo un salvataggio riuscito mostrano il nuovo stato fino alla ripubblicazione della pagina.
+function renderSegnatura(giocata, iniziale) {
+  const contenitore = el('div', { class: 'segnatura' });
+  let corrente = iniziale;
+  let messaggio = null; // { testo, errore }
+  let occupato = false;
+
+  const esegui = async (azione, riuscita) => {
+    occupato = true;
+    messaggio = null;
+    disegna();
+    try {
+      await azione();
+      corrente = riuscita();
+      messaggio = { testo: MSG_SALVATA, errore: false };
+    } catch (e) {
+      messaggio = { testo: e.message, errore: true };
+    }
+    occupato = false;
+    disegna();
+  };
+
+  function disegna() {
+    const figli = [];
+    if (corrente) {
+      const annulla = el('button', { type: 'button', class: 'secondario', disabled: occupato ? '' : null }, 'Annulla segnatura');
+      annulla.addEventListener('click', () => esegui(() => cancellaSegnatura(giocata.id, leggiImpostazioni()), () => null));
+      figli.push(el('p', { class: 'segnata' }, testoSegnatura(corrente)), annulla);
+    } else {
+      const id = `q-${giocata.id}`.replace(/[^A-Za-z0-9_-]/g, '_');
+      const quota = el('input', { id: `${id}-quota`, type: 'text', inputmode: 'decimal', size: '5', value: giocata.quota ? String(giocata.quota).replace('.', ',') : '' });
+      const puntata = el('input', { id: `${id}-puntata`, type: 'text', inputmode: 'decimal', size: '5', value: String(giocata.puntata.euro).replace('.', ',') });
+      const bottone = (testo, classe, fatta) => {
+        const b = el('button', { type: 'button', class: classe, disabled: occupato ? '' : null }, testo);
+        b.addEventListener('click', () => {
+          let segnatura;
+          try {
+            segnatura = costruisciSegnatura({ idGiocata: giocata.id, fatta, quotaReale: leggiNumero(quota.value), puntataReale: leggiNumero(puntata.value) }, new Date());
+          } catch (e) {
+            messaggio = { testo: e.message, errore: true };
+            disegna();
+            return;
+          }
+          esegui(() => salvaSegnatura(segnatura, leggiImpostazioni()), () => segnatura);
+        });
+        return b;
+      };
+      figli.push(
+        el('div', { class: 'campi' },
+          el('label', { for: `${id}-quota` }, 'Quota reale', quota),
+          el('label', { for: `${id}-puntata` }, 'Puntata reale (€)', puntata),
+        ),
+        el('div', { class: 'azioni' }, bottone('Giocata', 'primario', true), bottone('Saltata', 'secondario', false)),
+      );
+    }
+    if (messaggio) figli.push(el('p', { class: messaggio.errore ? 'esito-errore' : 'esito-ok', role: messaggio.errore ? 'alert' : 'status' }, messaggio.testo));
+    contenitore.replaceChildren(...figli);
+  }
+  disegna();
+  return contenitore;
+}
+
+function renderPiedeScheda(giocata, segnatura) {
   const stato = etichettaStato(giocata);
   return el('div', { class: 'scheda-piede' },
     el('span', { class: `stato ${stato.classe}` }, stato.testo),
     giocata.oraUltimoControllo ? el('span', { class: 'controllo' }, `ultimo controllo ${ora(giocata.oraUltimoControllo)}`) : null,
+    renderSegnatura(giocata, segnatura),
   );
 }
 
@@ -103,7 +189,7 @@ function renderGamba(g) {
     g.quota ? ` @ ${fmtQuota.format(g.quota)}` : '');
 }
 
-function renderScheda(g) {
+function renderScheda(g, segnatura) {
   const dettagli = el('details', {},
     el('summary', {}, 'Ragionamento'),
     el('ul', {}, (g.ragionamento ?? []).map((r) => el('li', {}, r))),
@@ -117,7 +203,7 @@ function renderScheda(g) {
     el('p', {}, `Quota minima da accettare: ${fmtQuota.format(g.quotaMinima)}`),
     el('p', {}, `Probabilità stimata ${percento(g.prob)} · value ${segno(g.value)}${percento(g.value)}`),
     el('p', {}, el('strong', {}, `Puntata ${euro(g.puntata.euro)}`), ` (${fmtPerc1.format(g.puntata.percentuale)}% del bankroll)`),
-    renderPiedeScheda(g),
+    renderPiedeScheda(g, segnatura),
     dettagli,
   );
 }
@@ -133,6 +219,25 @@ function renderRiquadro(b) {
   );
 }
 
+function avviaImpostazioni() {
+  const form = document.getElementById('impostazioni');
+  if (!form) return;
+  const campoRepo = document.getElementById('imp-repo');
+  const campoToken = document.getElementById('imp-token');
+  const stato = document.getElementById('imp-stato');
+  const iniziali = leggiImpostazioni();
+  campoRepo.value = iniziali.repo;
+  if (iniziali.token) campoToken.placeholder = 'Codice già salvato (lascia vuoto per non cambiarlo)';
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const repo = campoRepo.value.trim();
+    const token = campoToken.value.trim() || leggiImpostazioni().token;
+    const ok = salvaImpostazioni({ repo, token });
+    campoToken.value = '';
+    stato.textContent = ok ? 'Impostazioni salvate su questo dispositivo' : 'Impossibile salvare le impostazioni su questo browser';
+  });
+}
+
 function avvia(dati) {
   let sportScelto = null;
   const filtri = document.getElementById('filtri');
@@ -145,10 +250,11 @@ function avvia(dati) {
   const sottotitolo = document.getElementById('data-giornata');
   if (sottotitolo) sottotitolo.textContent = dati.oggi.data;
 
+  const ultime = ultimeSegnature(dati.segnature ?? []);
   const tutte = dati.oggi.giornata?.giocate ?? [];
   const disegna = () => {
     const viste = filtraPerSport(tutte, sportScelto).slice().sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
-    lista.replaceChildren(...(viste.length ? viste.map(renderScheda) : [el('p', { class: 'vuoto' }, 'Nessuna giocata da mostrare.')]));
+    lista.replaceChildren(...(viste.length ? viste.map((g) => renderScheda(g, ultime.get(g.id) ?? null)) : [el('p', { class: 'vuoto' }, 'Nessuna giocata da mostrare.')]));
     for (const bt of filtri.querySelectorAll('button')) bt.setAttribute('aria-pressed', String(bt.dataset.sport === String(sportScelto)));
   };
   filtri.replaceChildren(...SPORT.map((s) => {
@@ -159,7 +265,8 @@ function avvia(dati) {
   disegna();
 }
 
-if (typeof document !== 'undefined') {
+if (typeof document !== 'undefined' && document.getElementById('giocate')) {
+  avviaImpostazioni();
   fetch('dati.json')
     .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then(avvia)
