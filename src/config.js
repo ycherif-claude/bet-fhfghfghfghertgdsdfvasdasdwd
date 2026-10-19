@@ -49,4 +49,22 @@ export const CONFIG = congela({
     rho: -0.08,
     golMaxMatrice: 10,
   },
+  // Fase 4a (NBA): soglie del modello, della raccolta e della routine serale.
+  nba: {
+    mezzaVitaGiorni: 30,
+    regressioneStagione: 1 / 3,
+    minPartiteStagione: 10,
+    pesoModello: 0.5,
+    pesoModelloInizio: 0.25,
+    backToBack: -1.5,
+    sdMargine: 12.5,
+    sdTotale: 18,
+    minBookmaker: 3,
+    attesaBalldontlieMs: 13000,
+    ricercheMassime: 20,
+    oraSerale: '22:00',
+    sogliaAnticipo: '22:30',
+    anticipoMinuti: 60,
+    serale: { oraMinima: '14:00', ritardoAvvisoOre: 2 },
+  },
 });
