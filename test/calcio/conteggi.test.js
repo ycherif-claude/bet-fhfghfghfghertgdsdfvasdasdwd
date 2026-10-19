@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mercatiConteggi } from '../../src/calcio/modelli/conteggi.js';
+import { mercatiConteggi, cdf } from '../../src/calcio/modelli/conteggi.js';
 
 const OGGI = '2026-10-19';
 const squadre = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -65,7 +65,8 @@ test('arbitro con 4 partite ignorato, con 5 partite sposta la media dei cartelli
   assert.equal(sel(poche, 'Rossi'), sel(poche, null));
   // molte partite: sposta
   assert.ok(sel(forte, 'Rossi') > sel(forte, null));
-  assert.ok(sel(base, 'Rossi') !== undefined);
+  // l'arbitro severo alza l'Over anche rispetto a un campionato senza effetto arbitro
+  assert.ok(sel(forte, 'Rossi') > sel(base, 'Rossi'));
 });
 
 test('squadra con 2 partite: nessun mercato', () => {
@@ -98,4 +99,42 @@ test('righe senza conteggi vengono saltate', () => {
   p.push({ ...p[0], angoliC: null, angoliT: NaN });
   const m = mercatiConteggi(p, 'A', 'B', opz);
   assert.ok(trova(m, 'Angoli Under/Over 9.5', 'Over 9.5'));
+});
+
+function campionatoSovradisperso() {
+  const out = [];
+  for (let i = 0; i < 40; i++) {
+    const tot = (i >> 1) % 2 === 0 ? 2 : 18;
+    out.push({
+      data: OGGI, casa: i % 2 ? 'B' : 'A', trasferta: i % 2 ? 'A' : 'B', gc: 1, gt: 1, gcPT: 0, gtPT: 1,
+      xgC: null, xgT: null, angoliC: tot / 2, angoliT: tot / 2, cartC: 2, cartT: 2, arbitro: null,
+    });
+  }
+  return out;
+}
+
+test('campionato sovradisperso (r > 1.2): Over + Under = 1 e code più grasse del Poisson', () => {
+  const m = mercatiConteggi(campionatoSovradisperso(), 'A', 'B', opz);
+  const o = trova(m, 'Angoli Under/Over 11.5', 'Over 11.5');
+  const u = trova(m, 'Angoli Under/Over 11.5', 'Under 11.5');
+  assert.ok(Math.abs(o.prob + u.prob - 1) < 1e-9);
+  const sotto = trova(m, 'Angoli Under/Over 8.5', 'Under 8.5');
+  // media 10: Poisson(10) ha P(<=8) = 0.333 e P(>=12) = 0.303
+  assert.ok(sotto.prob > cdf(8, 10, 1) + 0.02, String(sotto.prob));
+  assert.ok(o.prob > 1 - cdf(11, 10, 1) + 0.02, String(o.prob));
+});
+
+test('cdf: la binomiale negativa ha la media richiesta e passa dal Poisson oltre 1.2', () => {
+  let media = 0;
+  for (let k = 0; k < 40; k++) media += 1 - cdf(k, 10, 6.4);
+  assert.ok(Math.abs(media - 10) < 0.15, 'media ' + media);
+  assert.equal(cdf(9, 10, 1.2), cdf(9, 10, 1));
+  assert.notEqual(cdf(9, 10, 1.25), cdf(9, 10, 1));
+});
+
+test('senza cartellini restano i mercati degli angoli', () => {
+  const p = partite().map((x) => ({ ...x, cartC: null, cartT: null }));
+  const m = mercatiConteggi(p, 'A', 'B', opz);
+  assert.equal(m.length, 8);
+  assert.ok(m.every((x) => x.mercato.startsWith('Angoli')));
 });

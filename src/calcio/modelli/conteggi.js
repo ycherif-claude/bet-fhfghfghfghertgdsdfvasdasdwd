@@ -25,7 +25,7 @@ function mediaPesata(coppie, ripiego) {
 }
 
 // P(totale <= k) con totale ~ Poisson(m) oppure binomiale negativa (media m, rapporto varianza/media r).
-function cdf(k, m, r) {
+export function cdf(k, m, r) {
   let somma = 0;
   if (r > SOGLIA_SOVRADISPERSIONE) {
     const dim = m / (r - 1);
@@ -88,7 +88,7 @@ export function mercatiConteggi(partite, casa, trasferta, { oggi, arbitro = null
   const out = [];
   for (const [nome, def] of Object.entries(LINEE)) {
     const r = statistica(partite, casa, trasferta, oggi, def.campi, def.linee, arbitro, def.arbitro);
-    if (!r) return [];
+    if (!r) continue;
     for (const l of r) {
       const mercato = `${nome} Under/Over ${l.linea}`;
       out.push({ mercato, selezione: `Over ${l.linea}`, prob: l.pOver, frequenzaCampionato: l.fOver });
