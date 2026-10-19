@@ -12,7 +12,7 @@ const cent = (n) => Math.round(n * 100) / 100;
 
 // Legge ogni file .json della cartella. Un file illeggibile non ferma la build:
 // finisce in `errori` ({ file, errore }) e viene saltato.
-function leggiJson(dirData, sotto, errori) {
+export function leggiJson(dirData, sotto, errori) {
   const cartella = path.join(dirData, sotto);
   if (!fs.existsSync(cartella)) return [];
   const letti = [];
@@ -32,7 +32,7 @@ function leggiJson(dirData, sotto, errori) {
 const istanteValido = (iso) => typeof iso === 'string' && Number.isFinite(Date.parse(iso));
 
 // Motivo per cui una giocata non è utilizzabile, oppure null.
-function erroreGiocata(g) {
+export function erroreGiocata(g) {
   if (!g || typeof g !== 'object') return 'giocata non valida';
   if (typeof g.id !== 'string' || g.id === '') return 'giocata senza id';
   if (!istanteValido(g.inizio)) return `giocata ${g.id}: inizio non valido`;
@@ -42,7 +42,7 @@ function erroreGiocata(g) {
 }
 
 // Motivo per cui una segnatura non è utilizzabile, oppure null.
-function erroreSegnatura(s) {
+export function erroreSegnatura(s) {
   if (typeof s.idGiocata !== 'string' || s.idGiocata === '') return 'segnatura senza idGiocata';
   if (typeof s.fatta !== 'boolean') return 'campo fatta non valido';
   if (!istanteValido(s.ora)) return 'ora non valida';
