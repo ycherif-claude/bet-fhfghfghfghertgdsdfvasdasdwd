@@ -6,9 +6,16 @@ import { pesoTemporale } from '../calcio/modelli/gol.js';
 const GIORNO_MS = 86400000;
 const ITERAZIONI = 50;
 const EPS = 1e-6;
-// Peso, in partite, dei valori della stagione precedente (riportati verso 1) per ogni squadra:
+// Peso iniziale, in partite, dei valori della stagione precedente (riportati verso 1) per ogni squadra:
 // è il prior verso cui si restringono le forze della stagione corrente. Senza stagione precedente il prior è 1.
 const PARTITE_FITTIZIE = 10;
+// Il peso del prior scende in modo lineare con le partite della squadra in stagione e si annulla a questa soglia.
+const PARTITE_FINE_PRIOR = 20;
+// Approssimazioni accettate (piccole):
+// - dopo il restringimento attacco e difesa non sono rinormalizzati: la loro media può scostarsi di poco da 1;
+// - casa e mediaPunti sono una media pesata delle due stagioni, non stimati insieme alle forze combinate;
+// - i residui della stagione corrente usano le forze finali (di oggi), non quelle del giorno della partita,
+//   e sono nel campione: le deviazioni standard risultano un po' ottimistiche.
 // Peso, in partite, del fattore campo e della media punti della stagione precedente.
 const PARTITE_FITTIZIE_LEGA = 100;
 // Media punti per squadra quando non c'è nessuna partita (solo come segnaposto).
@@ -113,14 +120,23 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
   const corr = adatta(righe(correnti, rif, cfg.mezzaVitaGiorni));
 
   const squadre = [...new Set([...prec.squadre, ...corr.squadre])];
+  const partiteStagione = new Map(squadre.map((s) => [s, 0]));
+  for (const x of correnti) {
+    partiteStagione.set(x.casa, partiteStagione.get(x.casa) + 1);
+    partiteStagione.set(x.trasferta, partiteStagione.get(x.trasferta) + 1);
+  }
+
+  // Prior per squadra con peso PARTITE_FITTIZIE·max(0, 1 − n/PARTITE_FINE_PRIOR), n = partite in stagione:
+  // a 0 partite vale 10 partite, dalla 20ª in poi conta solo la stagione corrente.
   const attacco = new Map();
   const difesa = new Map();
   for (const s of squadre) {
     const priorAtt = prec.att.has(s) ? riporta(prec.att.get(s)) : 1;
     const priorDif = prec.dif.has(s) ? riporta(prec.dif.get(s)) : 1;
     const w = corr.peso.get(s) ?? 0;
-    attacco.set(s, (w * (corr.att.get(s) ?? 1) + PARTITE_FITTIZIE * priorAtt) / (w + PARTITE_FITTIZIE));
-    difesa.set(s, (w * (corr.dif.get(s) ?? 1) + PARTITE_FITTIZIE * priorDif) / (w + PARTITE_FITTIZIE));
+    const wp = PARTITE_FITTIZIE * Math.max(0, 1 - partiteStagione.get(s) / PARTITE_FINE_PRIOR);
+    attacco.set(s, (w * (corr.att.get(s) ?? 1) + wp * priorAtt) / (w + wp));
+    difesa.set(s, (w * (corr.dif.get(s) ?? 1) + wp * priorDif) / (w + wp));
   }
 
   // Fattore campo e media punti: stagione corrente con la precedente come pseudo-partite.
@@ -132,12 +148,6 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
   };
   const casa = lega('casa');
   const mediaPunti = lega('mediaPunti');
-
-  const partiteStagione = new Map(squadre.map((s) => [s, 0]));
-  for (const x of correnti) {
-    partiteStagione.set(x.casa, partiteStagione.get(x.casa) + 1);
-    partiteStagione.set(x.trasferta, partiteStagione.get(x.trasferta) + 1);
-  }
 
   // Deviazioni standard dai residui: stagione precedente contro il suo modello, corrente contro le forze finali.
   let sdMargine = cfg.sdMargine;
@@ -204,6 +214,12 @@ function coppia(x, mu, sd) {
 // `nomi` = { casa, trasferta } con i nomi completi, per la selezione di "Vincente".
 export function mercatiNba(attesi, linee, forze, nomi) {
   if (!nomi?.casa || !nomi?.trasferta) throw new Error('mercatiNba: servono i nomi delle squadre');
+  // Solo linee intere o mezze: le altre (es. 4.25) non si arrotondano, si segnalano.
+  for (const l of [...(linee.handicap ?? []), ...(linee.totale ?? [])]) {
+    if (!Number.isFinite(l) || !Number.isInteger(l * 2)) {
+      throw new Error(`mercatiNba: linea ${l} non valida (servono linee intere o da mezzo punto)`);
+    }
+  }
   const mu = attesi.casa - attesi.trasferta;
   const totale = attesi.casa + attesi.trasferta;
   const out = [];

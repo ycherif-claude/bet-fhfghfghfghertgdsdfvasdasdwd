@@ -81,8 +81,28 @@ test('μ margine 0: Handicap 0 casa ≈ 0.5, Vincente casa ≈ 0.5', () => {
 test('μ margine +6, σ 12.5: Handicap -4.5 casa ≈ 0.53 ± 0.02', () => {
   const r = mercatiNba({ casa: 116, trasferta: 110 }, { handicap: [-4.5], totale: [] }, forzeFisse(), NOMI);
   const p = trova(r, 'Handicap -4.5', 'casa');
-  vicino(p, 0.53, 0.02);
+  // P(margine ≥ 5) = 1 − Φ((4.5 − 6)/12.5) ≈ 0.548.
+  vicino(p, 1 - phi(-1.5 / 12.5), 1e-9);
   vicino(p + trova(r, 'Handicap -4.5', 'trasferta'), 1, 1e-9);
+});
+
+test('linee né intere né mezze: errore, niente arrotondamento', () => {
+  const att = { casa: 112, trasferta: 109 };
+  assert.throws(() => mercatiNba(att, { handicap: [-4.25], totale: [] }, forzeFisse(), NOMI), /linea/);
+  assert.throws(() => mercatiNba(att, { handicap: [], totale: [221.75] }, forzeFisse(), NOMI), /linea/);
+  assert.throws(() => mercatiNba(att, { handicap: [NaN], totale: [] }, forzeFisse(), NOMI), /linea/);
+});
+
+test('squadra cambiata con 25 partite in stagione: stimata sul valore della stagione corrente', () => {
+  const prec = campionato({ squadre: SQ4, giorni: 80, inizio: '2026-01-20', stagione: 2025,
+    att: [1.15, 1, 0.93, 0.92], dif: [0.88, 1, 1.06, 1.06] });
+  const corr = campionato({ squadre: SQ4, giorni: 26, inizio: '2026-10-21', stagione: 2026,
+    att: [0.95, 1.05, 1, 1], dif: [1.05, 0.95, 1, 1] });
+  // 26 giorni = 52 partite: almeno 25 per ogni squadra.
+  const forze = stimaForzeNba([...prec, ...corr], { oggi: '2026-11-15', stagioneCorrente: 2026 });
+  assert.ok(forze.partiteStagione.get('Boston Celtics') >= 25);
+  vicino(forze.attacco.get('Boston Celtics'), 0.95, 0.01, 'attacco');
+  vicino(forze.difesa.get('Boston Celtics'), 1.05, 0.01, 'difesa');
 });
 
 test('Totale 220.5 con μ 230: Over > 0.69', () => {
