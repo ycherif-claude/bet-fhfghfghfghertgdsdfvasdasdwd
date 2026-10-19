@@ -58,7 +58,7 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 ### Gli orari del mattino
 
 - **Raccolta**: ogni giorno alle 05:35 UTC (07:35 ora legale, 06:35 ora solare). Scarica quote e statistiche e calcola le probabilità.
-- **Giro di Claude**: alle 08:07 ora di Roma. Claude controlla le notizie sulle partite (infortuni, squalifiche, allenatori, meteo) e fa girare il calcolo finale, secondo `docs/routine/giro-del-mattino.md`.
+- **Giro di Claude**: alle 07:07 UTC, cioè 08:07 con l'ora solare e 09:07 con l'ora legale (le routine usano un orario UTC fisso, e prima delle 08:00 di Roma la giornata non è ancora iniziata). Claude controlla le notizie sulle partite (infortuni, squalifiche, allenatori, meteo) e fa girare il calcolo finale, secondo `docs/routine/giro-del-mattino.md`.
 - **Giro di riserva**: alle 09:45 UTC (11:45 ora legale, 10:45 ora solare). Produce le giocate solo se il giro di Claude non c'è stato, e non sostituisce mai quello di Claude.
 
 ### Cosa significano le scritte sulle schede

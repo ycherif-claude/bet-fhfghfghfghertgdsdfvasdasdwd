@@ -1,6 +1,6 @@
 # Giro del mattino: istruzioni per Claude
 
-Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio). Ogni mattina, intorno alle 08:07 ora di Roma, controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
+Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
