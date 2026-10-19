@@ -10,7 +10,8 @@ export const CONFIG = congela({
   stopSettimanale: -50,
   sogliaValue: 0.05,
   sogliaValueSpeciali: 0.10,
-  // Estremi inclusi. La speciale è oltre 3.00 (min 3.00 escluso dalle singole speciali).
+  // Estremi inclusi, tranne il minimo della speciale: 3.00 esatto è una singola,
+  // la speciale è oltre 3.00 (> 3.00) fino a 4.50.
   quote: {
     singola: { min: 1.60, max: 3.00 },
     speciale: { min: 3.00, max: 4.50 },

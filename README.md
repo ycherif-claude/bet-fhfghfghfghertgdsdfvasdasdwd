@@ -18,6 +18,7 @@ Il repository e il sito sono **pubblici**: nessuna password, per scelta. Il sito
 4. Repository permissions: **Contents: Read and write**. Nessun altro permesso.
 5. Copia il token (si vede una volta sola).
 6. Apri il sito, sezione **Impostazioni**: scrivi il repository nel formato `utente/nome`, incolla il token e premi **Salva**. Restano solo nel browser di quel dispositivo (localStorage). Ripeti su ogni dispositivo.
+7. Per togliere il token da un dispositivo usa **Cancella codice** in Impostazioni. Attenzione: il localStorage di `<utente>.github.io` è condiviso da tutti i siti GitHub Pages "di progetto" dello stesso utente, quindi le altre tue pagine su quell'indirizzo potrebbero leggere il token. Non pubblicare lì codice di terzi e, se ne hai, preferisci un token di breve durata.
 
 ## Comandi in locale
 
@@ -35,6 +36,13 @@ Serve solo Node 24, nessun pacchetto da installare.
 4. Collega la cartella locale al repository (`git remote add origin <indirizzo>`), poi `git push -u origin main`.
 5. Controlla in Actions che "Pubblica sito" termini in verde e apri l'indirizzo del sito: deve mostrare la giornata d'esempio.
 6. Dal telefono inserisci repository e token in Impostazioni. Premi "Giocata" su una scheda: deve comparire un file in `data/segnature/` e, dopo la ripubblicazione, il bankroll si aggiorna. "Annulla segnatura" lo riporta al valore precedente.
+
+## Per chi sviluppa (fasi successive)
+
+- Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
+- Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
+- Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- Modello dati completo: `docs/superpowers/plans/2026-10-19-fase-1-fondamenta.md`, sezione "Modello dati".
 
 ## Avvertenza
 

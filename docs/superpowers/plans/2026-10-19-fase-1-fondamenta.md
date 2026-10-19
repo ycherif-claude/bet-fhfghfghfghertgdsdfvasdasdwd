@@ -86,11 +86,15 @@ test/…                        un file di test per ogni modulo di src/
 }
 ```
 
-`Candidato`: `{ id, sport, competizione, partita, idPartita, inizio /*ISO con offset*/, tipo: "singola"|"builder", mercato, selezione, prob, quota, fonteQuota|null, oraQuota|null, quotaDaVerificare: boolean, ragionamento: string[] }`. Per i builder, `prob` è già la probabilità congiunta stimata.
+`Candidato`: `{ id, sport: "calcio"|"tennis"|"nba"|"basket"|"pallavolo", competizione, partita, idPartita, inizio /*ISO con offset*/, tipo: "singola"|"builder", mercato, selezione, prob, quota, fonteQuota|null, oraQuota|null, quotaDaVerificare: boolean, ragionamento: string[] }`. Per i builder, `prob` è già la probabilità congiunta stimata. `sport` vale esattamente uno di questi valori, che sono anche i filtri della pagina: le partite NBA usano `"nba"`, `"basket"` è per gli altri campionati di basket.
 
 `Giocata` = `Candidato` + `{ tipo: "singola"|"speciale"|"multipla"|"builder", value, quotaMinima, puntata: { euro, percentuale }, stato: "in_attesa"|"confermata"|"modificata"|"annullata"|"in_revisione", motivoStato: string|null, oraUltimoControllo: string|null, esito: null|"vinta"|"persa"|"rimborsata", gambe?: Candidato[] }`. Per le multiple: `id = "M-" + id delle gambe uniti con "+"`, `inizio` = inizio della prima gamba.
 
 `data/segnature/<idGiocata>.json`: `{ idGiocata, fatta: boolean, quotaReale: number|null, puntataReale: number|null, ora }`. Un file per giocata; riscriverlo sostituisce la segnatura precedente; cancellarlo la annulla.
+
+**Il giro del mattino DEVE scrivere `giocate` e `scartate`** nel file della giornata. La selezione in memoria fatta dalla build (`selezionaGiocate` sui `candidati` quando manca `giocate`) è solo un ripiego di visualizzazione per la giornata di oggi: una giornata passata senza `giocate` produce un errore in `erroriDati` ("Giornata <data> senza giocate: il giro del mattino deve scriverle") e le segnature che puntano alle sue giocate risultano "Segnatura senza giocata: <id>".
+
+La build non si ferma per un file sbagliato: ogni file JSON illeggibile, ogni giocata con `inizio` non leggibile, `prob` fuori da (0, 1) o puntata non numerica, e ogni segnatura `fatta: true` con `puntataReale` non positiva o `quotaReale` ≤ 1 viene saltata e registrata in `erroriDati: [{ file, errore }]`; la pagina mostra ciascuna voce come avviso "Dati non validi in <file>: <errore>".
 
 ---
 
@@ -237,7 +241,7 @@ test('distanzaStop = 50 + risultatoSettimana', ...);
 - Produces:
   - `riepiloga(righe: {giocata, segnatura}[], chiave: "sport"|"tipo"|"mercato"|"quotaDaVerificare", vista: "fatte"|"proposte"): { gruppo, n, vinte, profitto, roi }[]`. Nella vista "proposte" si usa la quota e la puntata consigliata.
   - `costruisciDati(dirData: string, adesso: Date): DatiSito`; la CLI scrive `site/dati.json`.
-  - `DatiSito = { generatoAlle, oggi: { data, disponibile: boolean, giornata|null }, bankroll: <statoBankroll>, storico: { righe, riepiloghi: { fatte: {sport,tipo,mercato,quotaDaVerificare}, proposte: {…} }, andamento: {data, bankroll}[] }, segnature: Segnatura[] }`.
+  - `DatiSito = { generatoAlle, oggi: { data, disponibile: boolean, giornata|null }, bankroll: <statoBankroll>, storico: { righe, riepiloghi: { fatte: {sport,tipo,mercato,quotaDaVerificare}, proposte: {…} }, andamento: {data, bankroll}[] }, segnature: Segnatura[], erroriDati: { file, errore }[] }`.
 
 - [ ] **Step 1: Scrivi i test che falliscono**
 
