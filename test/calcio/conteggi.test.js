@@ -138,3 +138,15 @@ test('senza cartellini restano i mercati degli angoli', () => {
   assert.equal(m.length, 8);
   assert.ok(m.every((x) => x.mercato.startsWith('Angoli')));
 });
+
+test('probabilità non calcolabile (NaN): il mercato si salta, non diventa 50%', () => {
+  // Attesa infinita (valori enormi) → Poisson NaN: niente angoli, i cartellini restano.
+  const sq = ['A', 'B', 'C', 'D'];
+  const p = Array.from({ length: 24 }, (_, i) => ({
+    data: '2026-10-01', casa: sq[i % 4], trasferta: sq[(i + 1) % 4], angoliC: 1e200, angoliT: 1e200, cartC: 2 + (i % 2), cartT: 2, arbitro: null,
+  }));
+  const m = mercatiConteggi(p, 'A', 'B', opz);
+  assert.equal(m.filter((x) => x.mercato.startsWith('Angoli')).length, 0);
+  assert.ok(m.some((x) => x.mercato.startsWith('Cartellini')));
+  assert.ok(m.every((x) => Number.isFinite(x.prob) && x.prob !== 0.5));
+});

@@ -54,7 +54,7 @@ test('scarica: errore di rete con chiave nel messaggio non la rivela', async () 
 test('scarica: 401 fallisce subito senza ripetere', async () => {
   const f = fetchFinto([risposta(401, '')]);
   await assert.rejects(scarica('https://api.the-odds-api.com/v4/x?apiKey=K', { fetch: f, attesaMs: 0 }),
-    { message: 'api.the-odds-api.com: HTTP 401' });
+    { message: 'api.the-odds-api.com: HTTP 401', status: 401 });
   assert.equal(f.chiamate.length, 1);
 });
 

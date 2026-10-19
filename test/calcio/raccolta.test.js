@@ -154,11 +154,13 @@ test('una stagione che fallisce non fa perdere le altre', async () => {
   assert.ok(r.partite[0].lambda);
 });
 
-test('stagione corrente che fallisce: nessun modello per la lega', async () => {
+test('stagione corrente che fallisce: modello dalle stagioni precedenti e il buco in erroriGiro', async () => {
   const f = fonti({ eventiPer: SERIE_A, csvKo: ['2627'] });
   const r = await lancia(f);
-  assert.ok(r.erroriGiro.some((e) => e.includes('2627')));
-  assert.equal(r.partite[0].lambda, null);
+  assert.ok(r.erroriGiro.some((e) => /^football-data.co.uk I1 2627 alle 07:35: HTTP 503$/.test(e)));
+  assert.ok(r.erroriGiro.includes('football-data.co.uk I1 alle 07:35: stagione corrente 2627 mancante, modello dalle stagioni 2526, 2425'), r.erroriGiro.join(' | '));
+  assert.ok(r.partite[0].lambda);
+  assert.ok(r.partite[0].mercati.some((m) => m.probModello !== null));
 });
 
 test('squadre non riconosciute: nessuna partita e errore', async () => {
@@ -231,4 +233,19 @@ test('le righe dei CSV sono disponibili per gli esiti ma non finiscono nel JSON'
   const r = await lancia(fonti({ eventiPer: SERIE_A }));
   assert.ok(r.csv instanceof Map && r.csv.get('I1').length > 0);
   assert.equal(JSON.parse(JSON.stringify(r)).csv, undefined);
+});
+
+test('The Odds API: 404 o 422 sugli eventi di una competizione = nessuna partita, nessun errore', async () => {
+  const f = fonti({ eventiPer: SERIE_A });
+  const originale = f.oddsApi.eventi;
+  f.oddsApi.eventi = async (sport, ...r) => {
+    const stato = { soccer_epl: 404, soccer_germany_bundesliga: 422 }[sport];
+    if (stato) throw Object.assign(new Error(`api.the-odds-api.com: HTTP ${stato}`), { status: stato });
+    if (sport === 'soccer_spain_la_liga') throw Object.assign(new Error('api.the-odds-api.com: HTTP 401'), { status: 401 });
+    return originale(sport, ...r);
+  };
+  const r = await lancia(f);
+  assert.ok(!r.erroriGiro.some((e) => /HTTP 404|HTTP 422/.test(e)), r.erroriGiro.join(' | '));
+  assert.ok(r.erroriGiro.some((e) => e.startsWith('The Odds API (LaLiga) alle 07:35: api.the-odds-api.com: HTTP 401')), r.erroriGiro.join(' | '));
+  assert.equal(r.partite.length, 1);
 });

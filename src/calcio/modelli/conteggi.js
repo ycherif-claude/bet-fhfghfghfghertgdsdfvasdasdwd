@@ -13,7 +13,8 @@ const LINEE = {
   Cartellini: { campi: ['cartC', 'cartT'], linee: [3.5, 4.5, 5.5], arbitro: true },
 };
 
-const limita = (p) => Math.min(1 - EPS, Math.max(EPS, Number.isFinite(p) ? p : 0.5));
+// Una probabilità non calcolabile (NaN, infinito) resta null: quel mercato si salta, non diventa 50%.
+const limita = (p) => (Number.isFinite(p) ? Math.min(1 - EPS, Math.max(EPS, p)) : null);
 const valido = (v) => typeof v === 'number' && Number.isFinite(v);
 
 // Media pesata; `ripiego` se non c'è peso.
@@ -78,7 +79,9 @@ function statistica(partite, casa, trasferta, oggi, [fc, ft], linee, arbitro, us
     const k = Math.floor(linea);
     const under = cdf(k, attesa, rapporto);
     const freqOver = mediaPesata(righe.map((r) => [r.c + r.t > linea ? 1 : 0, r.w]), 0.5);
-    risultato.push({ linea, pOver: limita(1 - under), pUnder: limita(under), fOver: limita(freqOver), fUnder: limita(1 - freqOver) });
+    const voce = { linea, pOver: limita(1 - under), pUnder: limita(under), fOver: limita(freqOver), fUnder: limita(1 - freqOver) };
+    if ([voce.pOver, voce.pUnder, voce.fOver, voce.fUnder].includes(null)) continue;
+    risultato.push(voce);
   }
   return risultato;
 }

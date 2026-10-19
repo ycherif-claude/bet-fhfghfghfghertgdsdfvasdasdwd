@@ -73,6 +73,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
       const eventi = r.eventi.filter(dentro);
       if (eventi.length) eventiPer.set(c.chiave, eventi);
     } catch (e) {
+      // 404/422: competizione ferma, fuori stagione o sconosciuta all'API → nessuna partita, non è un errore.
+      if (e?.status === 404 || e?.status === 422) continue;
       errore(`The Odds API (${c.nome})`, e);
     }
   }
@@ -102,7 +104,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     }
   }
 
-  // 4. CSV: una volta per codice e stagione, un errore non fa perdere le altre stagioni.
+  // 4. CSV: una volta per codice e stagione, un errore non fa perdere le altre stagioni
+  // (senza la stagione corrente il modello usa le precedenti, e il buco va in erroriGiro).
   const stagioni = stagioniDa(data);
   const leghe = new Map();
   async function lega(codice) {
@@ -120,7 +123,11 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
       }
     }
     let stato = null;
-    if (perStagione[0]) {
+    const caricate = stagioni.filter((_, i) => perStagione[i]);
+    if (!perStagione[0] && caricate.length) {
+      errore(`football-data.co.uk ${codice}`, `stagione corrente ${stagioni[0]} mancante, modello dalle stagioni ${caricate.join(', ')}`);
+    }
+    if (caricate.length) {
       const ultima = perStagione[1] ? new Set(perStagione[1].flatMap((x) => [x.casa, x.trasferta])) : undefined;
       stato = {
         righe,

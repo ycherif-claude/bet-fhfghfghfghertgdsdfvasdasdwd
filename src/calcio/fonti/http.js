@@ -26,7 +26,7 @@ export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, 
       continue;
     }
     if (r.status >= 500 || r.status === 429) { motivo = `HTTP ${r.status}`; continue; }
-    if (!r.ok) throw new Error(`${nome}: HTTP ${r.status}`);
+    if (!r.ok) throw Object.assign(new Error(`${nome}: HTTP ${r.status}`), { status: r.status });
     return { status: r.status, headers: r.headers, testo: await r.text() };
   }
   throw new Error(`${nome}: ${motivo}`);
