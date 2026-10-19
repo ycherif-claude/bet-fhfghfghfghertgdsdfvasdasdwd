@@ -37,11 +37,41 @@ Serve solo Node 24, nessun pacchetto da installare.
 5. Controlla in Actions che "Pubblica sito" termini in verde e apri l'indirizzo del sito: deve mostrare la giornata d'esempio.
 6. Dal telefono inserisci repository e token in Impostazioni. Premi "Giocata" su una scheda: deve comparire un file in `data/segnature/` e, dopo la ripubblicazione, il bankroll si aggiorna. "Annulla segnatura" lo riporta al valore precedente.
 
+## Calcio: chiavi e giro del mattino
+
+Le giocate di calcio si costruiscono ogni mattina da dati gratuiti. Servono due chiavi gratuite.
+
+### Chiavi gratuite
+
+1. **The Odds API** (quote): vai su the-odds-api.com, scegli il piano gratuito "Starter" e inserisci la tua email. La chiave arriva per email.
+2. **football-data.org** (calendario e risultati): registrati gratis su football-data.org. La chiave arriva per email.
+
+### Dove incollarle
+
+Nel repository su GitHub: Settings → Secrets and variables → Actions → New repository secret. Crea due segreti:
+
+- `ODDS_API_KEY`: la chiave di The Odds API;
+- `FOOTBALL_DATA_ORG_KEY`: la chiave di football-data.org.
+
+Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo nei segreti di GitHub.
+
+### Gli orari del mattino
+
+- **Raccolta**: ogni giorno alle 05:35 UTC (07:35 ora legale, 06:35 ora solare). Scarica quote e statistiche e calcola le probabilità.
+- **Giro di Claude**: alle 08:07 ora di Roma. Claude controlla le notizie sulle partite (infortuni, squalifiche, allenatori, meteo) e fa girare il calcolo finale, secondo `docs/routine/giro-del-mattino.md`.
+- **Giro di riserva**: alle 09:45 UTC (11:45 ora legale, 10:45 ora solare). Produce le giocate solo se il giro di Claude non c'è stato, e non sostituisce mai quello di Claude.
+
+### Cosa significano le scritte sulle schede
+
+- **Notizie non controllate**: la giocata viene dal giro di riserva, calcolata solo dai numeri. Nessuno ha controllato infortuni, squalifiche o altre notizie: prima di giocare dai un'occhiata tu.
+- **Quota da verificare su bet365**: per quel mercato non c'è una quota gratuita. La giocata nasce dalla probabilità del modello: guarda la quota reale su bet365 prima di segnarla.
+
 ## Per chi sviluppa (fasi successive)
 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- Calcio (Fase 2): progetto in `docs/superpowers/specs/2026-10-19-fase-2-calcio-design.md`, piano in `docs/superpowers/plans/2026-10-19-fase-2-calcio.md`, istruzioni della routine in `docs/routine/giro-del-mattino.md`.
 - Modello dati completo: `docs/superpowers/plans/2026-10-19-fase-1-fondamenta.md`, sezione "Modello dati".
 
 ## Avvertenza
