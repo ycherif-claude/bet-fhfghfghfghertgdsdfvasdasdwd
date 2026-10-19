@@ -93,8 +93,9 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     try {
       const r = await fonti.oddsApi.quote(c.chiave, finestra, { chiave: chiavi.oddsApi });
       quotePer.set(c.chiave, new Map(r.eventi.map((e) => [e.id, e])));
+      // `usati` = spesa di questa raccolta (non il conteggio mensile dell'intestazione); le chiamate fallite non si contano.
+      crediti.usati += COSTO_QUOTE;
       crediti.rimasti = r.rimasti ?? crediti.rimasti - COSTO_QUOTE;
-      crediti.usati = r.usati ?? crediti.usati + COSTO_QUOTE;
     } catch (e) {
       errore(`The Odds API (${c.nome})`, e);
     }
@@ -190,10 +191,25 @@ function costruisciPartita({ c, evento, base, stato, data, ora, errore }) {
   } else {
     const csvCasa = abbinaSquadra(casa, stato.nomi);
     const csvTrasferta = abbinaSquadra(trasferta, stato.nomi);
-    lam = csvCasa && csvTrasferta ? lambda(stato.forze, csvCasa, csvTrasferta) : null;
+    lam = csvCasa && csvTrasferta && csvCasa !== csvTrasferta ? lambda(stato.forze, csvCasa, csvTrasferta) : null;
     if (!lam) {
-      const nome = !csvCasa ? casa : !csvTrasferta ? trasferta : casa;
-      errore(`Squadre non riconosciute: ${nome} (${c.nome})`);
+      const ignote = [];
+      if (!csvCasa) ignote.push(casa);
+      if (!csvTrasferta) ignote.push(trasferta);
+      if (!ignote.length) {
+        // Entrambe trovate: stessa squadra del CSV, oppure squadra senza forze stimate.
+        if (csvCasa === csvTrasferta) ignote.push(casa, trasferta);
+        else {
+          if (!stato.forze.attacco.has(csvCasa)) ignote.push(casa);
+          if (!stato.forze.attacco.has(csvTrasferta)) ignote.push(trasferta);
+          if (!ignote.length) ignote.push(casa, trasferta);
+        }
+      }
+      errore(`Squadre non riconosciute: ${ignote.join(', ')} (${c.nome})`);
+      return null;
+    }
+    if (![lam.casa, lam.trasferta].every((x) => Number.isFinite(x) && x > 0)) {
+      errore(`Gol attesi non validi per ${casa} - ${trasferta} (${c.nome})`);
       return null;
     }
     ragionamentoBase = [`Gol attesi: ${casa} ${virgola(lam.casa)} – ${trasferta} ${virgola(lam.trasferta)} (gol e xG, ultime 2 stagioni)`];

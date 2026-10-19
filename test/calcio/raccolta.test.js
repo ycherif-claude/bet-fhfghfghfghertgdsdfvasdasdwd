@@ -42,7 +42,7 @@ const BOOKS = [
 ];
 
 // Fonti finte: nessuna rete. `eventiPer` = { chiaveSport: [eventi] }.
-function fonti({ eventiPer, rimasti = 412, rimastiQuote = 410, csvKo = [], tutteCsvKo = false } = {}) {
+function fonti({ eventiPer, rimasti = 412, rimastiQuote = 410, csvKo = [], tutteCsvKo = false, righe = righeCsv } = {}) {
   const chiamate = { eventi: [], quote: [], csv: [] };
   return {
     chiamate,
@@ -60,7 +60,7 @@ function fonti({ eventiPer, rimasti = 412, rimastiQuote = 410, csvKo = [], tutte
       async partite(codice, stagioni) {
         chiamate.csv.push(`${codice}/${stagioni.join(',')}`);
         if (tutteCsvKo || csvKo.includes(stagioni[0])) throw new Error('HTTP 503');
-        return stagioni.flatMap(righeCsv);
+        return stagioni.flatMap(righe);
       },
     },
   };
@@ -101,7 +101,7 @@ test('eseguiRaccolta con fonti finte: idPartita stabile e 1X2 con probModello e 
   const r = await lancia(f);
   assert.equal(r.data, '2026-10-20');
   assert.equal(r.generataAlle, '2026-10-20T07:35:40+02:00');
-  assert.deepEqual(r.crediti, { usati: 90, rimasti: 410 });
+  assert.deepEqual(r.crediti, { usati: 2, rimasti: 410 });
   assert.deepEqual(f.chiamate.quote, ['soccer_italy_serie_a']);
   assert.equal(r.partite.length, 1);
   const p = r.partite[0];
@@ -197,4 +197,32 @@ test('errore di una sola competizione negli eventi: registrato, le altre prosegu
   const r = await lancia(f);
   assert.ok(r.erroriGiro.some((e) => e.startsWith('The Odds API (Premier League) alle 07:35: HTTP 500')));
   assert.equal(r.partite.length, 1);
+});
+
+test("usati = spesa di questa raccolta: 2 per ogni quote() riuscita, anche se l'intestazione dà il conteggio mensile", async () => {
+  const f = fonti({ eventiPer: { ...SERIE_A, soccer_epl: [ev('3', 'Arsenal', 'Chelsea')] } });
+  const r = await lancia(f);
+  assert.equal(f.chiamate.quote.length, 2);
+  assert.equal(r.crediti.usati, 4);
+});
+
+test('casa e trasferta sullo stesso nome del CSV: partita non riconosciuta', async () => {
+  const f = fonti({ eventiPer: { soccer_italy_serie_a: [ev('1', 'Lecce', 'US Lecce')] } });
+  const r = await lancia(f);
+  assert.equal(r.partite.length, 0);
+  assert.ok(r.erroriGiro.some((e) => e === 'Squadre non riconosciute: Lecce, US Lecce (Serie A)'));
+});
+
+test("squadre ignote: l'errore nomina quella giusta, o entrambe", async () => {
+  let r = await lancia(fonti({ eventiPer: { soccer_italy_serie_a: [ev('1', 'Inter Milan', 'Pippo')] } }));
+  assert.ok(r.erroriGiro.includes('Squadre non riconosciute: Pippo (Serie A)'));
+  r = await lancia(fonti({ eventiPer: { soccer_italy_serie_a: [ev('1', 'Pippo', 'Pluto')] } }));
+  assert.ok(r.erroriGiro.includes('Squadre non riconosciute: Pippo, Pluto (Serie A)'));
+});
+
+test('lambda non finito: errore in erroriGiro e nessuna partita', async () => {
+  const f = fonti({ eventiPer: SERIE_A, righe: (s) => righeCsv(s).map((x) => ({ ...x, gc: NaN, gt: NaN })) });
+  const r = await lancia(f);
+  assert.equal(r.partite.length, 0);
+  assert.ok(r.erroriGiro.some((e) => e === 'Gol attesi non validi per Inter Milan - Lecce (Serie A)'));
 });
