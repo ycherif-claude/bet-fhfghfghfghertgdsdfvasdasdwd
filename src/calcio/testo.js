@@ -35,3 +35,20 @@ export function finestraGiornata(data) {
   const dopo = new Date(Date.UTC(y, m - 1, g + 1)).toISOString().slice(0, 10);
   return { da: ottoRoma(data), a: ottoRoma(dopo) };
 }
+
+const formatoIso = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit',
+  hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', timeZoneName: 'longOffset',
+});
+
+// Istante in ora di Roma, ISO con offset (es. 2026-10-20T07:35:40+02:00).
+export function isoRoma(istante) {
+  const p = Object.fromEntries(formatoIso.formatToParts(istante).map((x) => [x.type, x.value]));
+  const offset = p.timeZoneName.replace('GMT', '') || '+00:00';
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:${p.second}${offset}`;
+}
+
+// Ora di Roma HH:MM.
+export function oraRoma(istante) {
+  return isoRoma(istante).slice(11, 16);
+}

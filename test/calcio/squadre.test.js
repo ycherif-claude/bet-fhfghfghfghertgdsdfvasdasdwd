@@ -34,3 +34,15 @@ test('Hertha Berlin sceglie Hertha, non Union Berlin', () =>
 test('tutte le chiavi di ALIAS sono gia normalizzate', () => {
   for (const k of Object.keys(ALIAS)) assert.equal(normalizzaNome(k), k);
 });
+
+import { abbinaSquadra } from '../../src/calcio/squadre.js';
+test('abbinaSquadra: trova il nome CSV tramite ALIAS', () =>
+  assert.equal(abbinaSquadra('Inter Milan', ['Inter', 'Lecce', 'Milan']), 'Inter'));
+test('abbinaSquadra: nome uguale dopo la normalizzazione', () =>
+  assert.equal(abbinaSquadra('Lecce', ['Inter', 'Lecce']), 'Lecce'));
+test('abbinaSquadra: ripiego su nomeCanonico', () =>
+  assert.equal(abbinaSquadra('Manchester City', ['Man City', 'Arsenal']), 'Man City'));
+test('abbinaSquadra: nessun abbinamento o ambiguo → null', () => {
+  assert.equal(abbinaSquadra('Pippo', ['Inter', 'Lecce']), null);
+  assert.equal(abbinaSquadra('Inter Milan', ['Inter', 'Internazionale']), null);
+});

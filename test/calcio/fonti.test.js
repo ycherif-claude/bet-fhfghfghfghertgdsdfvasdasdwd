@@ -138,3 +138,14 @@ test('footballDataOrg.risultati tiene solo le partite FINISHED', async () => {
   assert.match(url, /dateFrom=2026-10-17&dateTo=2026-10-18/);
   assert.equal(init.headers['X-Auth-Token'], 'TOK');
 });
+
+test('scarica: il timeout interrompe la richiesta e conta come errore di rete (ripetuto)', async () => {
+  let chiamate = 0;
+  const f = (url, { signal }) => {
+    chiamate++;
+    return new Promise((_, rifiuta) => signal.addEventListener('abort', () => rifiuta(signal.reason)));
+  };
+  await assert.rejects(scarica('https://esempio.it/x', { fetch: f, attesaMs: 0, timeoutMs: 10 }),
+    (e) => e.message.includes('errore di rete'));
+  assert.equal(chiamate, 3);
+});

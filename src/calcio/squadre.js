@@ -84,3 +84,15 @@ export function nomeCanonico(nome, candidati) {
   const simili = candidati.filter((c) => simile(t, token(c)));
   return simili.length === 1 ? simili[0] : null;
 }
+
+// Nome usato nel CSV per una squadra di The Odds API (nome canonico); null se assente o ambiguo.
+export function abbinaSquadra(nomeOdds, nomiCsv) {
+  const target = normalizzaNome(nomeOdds);
+  const diretti = nomiCsv.filter((c) => {
+    const norm = normalizzaNome(c);
+    return normalizzaNome(Object.hasOwn(ALIAS, norm) ? ALIAS[norm] : c) === target;
+  });
+  if (diretti.length === 1) return diretti[0];
+  if (diretti.length > 1) return null;
+  return nomeCanonico(nomeOdds, nomiCsv);
+}
