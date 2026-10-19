@@ -330,7 +330,7 @@ function avvia(dati) {
 
 if (typeof document !== 'undefined' && document.getElementById('giocate')) {
   avviaImpostazioni();
-  fetch('dati.json')
+  fetch('dati.json', { cache: 'no-cache' })
     .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then(avvia)
     .catch((e) => {
