@@ -30,4 +30,23 @@ export const CONFIG = congela({
   tettoGiornaliero: 0.12,
   massimiGiornalieri: { singole: 10, multiple: 2, builder: 2 },
   oreScadenzaSegnatura: 24,
+  // Fase 2 (calcio): soglie del modello e della raccolta dati.
+  calcio: {
+    pesoPinnacle: 0.5,
+    scartoMaxPinnacle: 0.10,
+    correzioneMax: 0.08,
+    probMin: 0.02,
+    probMax: 0.98,
+    scostamentoMinSenzaQuota: 0.10,
+    maxSenzaQuotaGiorno: 2,
+    maxMercatiPartita: 5,
+    riservaCrediti: 0.20,
+    mezzaVitaGiorni: 182,
+    pesoXg: 0.5,
+    minBookmaker: 3,
+    minPartiteArbitro: 5,
+    ripetizioni: 2,
+    rho: -0.08,
+    golMaxMatrice: 10,
+  },
 });
