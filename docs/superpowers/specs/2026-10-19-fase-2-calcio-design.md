@@ -29,7 +29,7 @@ Successo = per un mese il file `data/giornate/AAAA-MM-GG.json` esce ogni giorno 
 
 **Anti-obiettivi**
 - Giocate "per riempire": in particolare le giocate con "quota da verificare" (angoli, cartellini) non devono riempire la giornata (vedi §5.4).
-- Claude che cambia le probabilità a sentimento: le notizie possono **solo scartare** una giocata, mai aggiungerla o modificarne la probabilità. **[utente: "prudente"]**
+- Claude che cambia le probabilità a sentimento. Le notizie **possono cambiare le probabilità** **[utente, che ha cambiato la scelta iniziale "prudente"]**, ma solo per un fatto concreto con fonte e ora, entro un tetto fisso, e sempre tracciate in modo che lo storico misuri se le correzioni aiutano (§6.1). **[tetto e regole: scelta di Claude, delegata dall'utente]**
 - Superare i limiti gratuiti delle API o violarne i termini d'uso.
 - Un giro fallito che non lascia traccia sulla pagina.
 
@@ -44,7 +44,7 @@ Successo = per un mese il file `data/giornate/AAAA-MM-GG.json` esce ogni giorno 
 08:07 Europe/Rome   Routine Claude "Giro del mattino" (cloud, abbonamento Pro)
   1. legge data/raccolta/AAAA-MM-GG.json
   2. controlla le notizie delle partite in gara (ricerca web)
-  3. scrive data/raccolta/AAAA-MM-GG-notizie.json (solo esclusioni con motivo e fonte)
+  3. scrive data/raccolta/AAAA-MM-GG-notizie.json (correzioni ed esclusioni, con motivo e fonte)
   4. npm run giro → data/giornate/AAAA-MM-GG.json con candidati, giocate, scartate
   5. npm test, commit e push su main
 
@@ -129,7 +129,7 @@ Ogni candidato porta 3-4 righe in italiano generate dai numeri. Per esempio:
 Claude aggiunge una riga sulle notizie: "Notizie controllate alle 08:15: nessuna assenza rilevante (fonte)".
 
 ### 5.7 Quali candidati entrano nel file
-Per ogni partita si calcolano tutti i mercati. Nel file vanno al massimo i 5 mercati con value più alto purché positivo, più i candidati senza quota che superano il §5.4. Così `scartate` resta leggibile. **[scelta di Claude]**
+Per ogni partita si calcolano tutti i mercati, e il file interno di raccolta li conserva tutti, così una correzione può far salire un mercato rimasto sotto soglia. Nel file della giornata, **dopo** le correzioni, vanno al massimo i 5 mercati con value più alto purché positivo, più i candidati senza quota che superano il §5.4. Così `scartate` resta leggibile. **[scelta di Claude]**
 
 ## 6. Routine Claude
 
@@ -139,19 +139,30 @@ Per ogni partita si calcolano tutti i mercati. Nel file vanno al massimo i 5 mer
 - **Ambiente**: Default, con rete "Trusted": GitHub e nodejs.org sono già consentiti e non servono altri domini né chiavi. Connettori: nessuno.
 - **Node**: l'immagine cloud ha Node 20-22 (22 di default), mentre il repository chiede Node 24. Lo script di setup dell'ambiente scarica Node 24 da nodejs.org, e il risultato resta in cache. In alternativa, se tutti i test passano su Node 22, si abbassa `engines` a `>=22`. Si verifica nel primo giro di prova. **[scelta di Claude]**
 - **Push**: secondo la documentazione la routine spinge su `claude/…` a meno che il prompt non indichi un altro ramo. Il prompt indica `main`. Se il push fallisce perché nel frattempo il repository è cambiato (per esempio una segnatura dal telefono), si fa `git pull --rebase` e si riprova.
-- **Piano B se il push su `main` non è permesso** (da verificare nel primo giro di prova): la routine spinge solo `…-notizie.json` su un ramo `claude/notizie-<data>`. Una GitHub Action su quel push esegue `npm run giro` su `main` con le esclusioni. Il giro di riserva resta invariato.
+- **Piano B se il push su `main` non è permesso** (da verificare nel primo giro di prova): la routine spinge solo `…-notizie.json` su un ramo `claude/notizie-<data>`. Una GitHub Action su quel push esegue `npm run giro` su `main` con le correzioni e le esclusioni. Il giro di riserva resta invariato.
 - **Compito di Claude**, in ordine:
   1. `git pull`; se `data/raccolta/<oggi>.json` manca o è di un altro giorno, scrive un errore in `erroriGiro` e lancia comunque `npm run giro`, che produce una giornata vuota con l'errore.
   2. `npm run giro -- --anteprima`: elenca le partite che entrerebbero in gioco più le 5 successive per value. Solo su queste fa la ricerca web, per restare nei consumi.
-  3. Per ogni partita cerca infortuni e squalifiche dei titolari chiave, un cambio d'allenatore recente, meteo estremo e motivazioni anomale (per esempio una squadra già salva o retrocessa). Scrive un'esclusione **solo** se trova un fatto concreto, con fonte e ora.
-  4. Le esclusioni possono riguardare una partita intera o un singolo candidato (per esempio over gol se manca il centravanti). Non può aggiungere candidati né cambiare probabilità.
-  5. `npm run giro`: applica le esclusioni (motivo "notizia: …") prima di `selezionaGiocate`, calcola `statoBankroll` e scrive il file.
+  3. Per ogni partita cerca infortuni e squalifiche dei titolari chiave, un cambio d'allenatore recente, meteo estremo e motivazioni anomale (per esempio una squadra già salva o retrocessa). Scrive una correzione o un'esclusione **solo** se trova un fatto concreto, con fonte e ora.
+  4. Applica le regole del §6.1: correzioni di probabilità per singolo mercato, oppure esclusioni di una partita intera o di un singolo candidato.
+  5. `npm run giro`: applica correzioni ed esclusioni prima di `selezionaGiocate` (le esclusioni con motivo "notizia: …"), ricalcola le probabilità finali, calcola `statoBankroll` e scrive il file.
   6. `npm test`, commit "Giro del mattino AAAA-MM-GG", push.
+
+### 6.1 Correzioni dalle notizie [utente: le notizie possono cambiare le probabilità; dettagli: scelta di Claude, delegata]
+- **Su cosa si applica**: sulla probabilità **del modello**, prima della media con Pinnacle. Pinnacle alle 07:35 ha spesso già incorporato le notizie note: correggere la media intera conterebbe la notizia due volte. Con Pinnacle presente l'effetto sulla probabilità finale è quindi la metà della correzione; senza Pinnacle è intero.
+- **Tetto**: al massimo **±8 punti percentuali** sulla probabilità del modello per ogni mercato, e la probabilità corretta deve restare tra 0,02 e 0,98.
+- **Coerenza**: una correzione su una selezione vale anche per le altre selezioni dello stesso mercato. Per esempio over 2,5 −5 punti implica under 2,5 +5 punti: lo applica lo script, non Claude. Nell'1X2 Claude indica le correzioni di due esiti e il terzo si ricava, così il totale resta 100%.
+- **Controllo col mercato**: lo scarto oltre 10 punti da Pinnacle (§5.2) si calcola **dopo** la correzione. Una correzione esagerata fa scartare la giocata invece di gonfiarne il value.
+- **Cosa non si può fare**: inventare mercati o partite che il modello non ha calcolato. Correggere senza un fatto concreto, cioè senza fonte e ora. Si può invece far entrare un mercato che era sotto soglia.
+- **Scheda**: una riga di ragionamento del tipo "Notizie: assente Lautaro (fonte, 08:15) → over 2,5: modello da 58% a 53%, finale 55%".
+- **Storico**: le giocate con `correzioneNotizie` si potranno confrontare con le altre. Se dopo circa un mese le correzioni peggiorano i risultati, la regola si rivede.
+- **Giro di riserva**: nessuna correzione, perché le notizie non sono controllate.
 
 ## 7. File e formati
 
 - `data/raccolta/AAAA-MM-GG.json`: quote grezze con fonte e ora, probabilità del modello e di Pinnacle, candidati preliminari, crediti usati e rimasti, errori. È un file interno: non entra nella pagina.
-- `data/raccolta/AAAA-MM-GG-notizie.json`: `{ controllateAlle, esclusioni: [{ idPartita, idCandidato?, motivo, fonte }], partiteControllate: [idPartita] }`.
+- `data/raccolta/AAAA-MM-GG-notizie.json`: `{ controllateAlle, partiteControllate: [idPartita], esclusioni: [{ idPartita, idCandidato?, motivo, fonte }], correzioni: [{ idPartita, mercato, selezione, delta, motivo, fonte }] }`. `delta` è in punti di probabilità (per esempio `-0.05`). Correzioni che violano il §6.1 fanno fallire `npm run giro` con un messaggio chiaro, e Claude le deve sistemare.
+- I candidati nella giornata hanno tre campi opzionali in più, che la build ignora: `probModello`, `probPinnacle` (o null) e `correzioneNotizie` (`{ delta, motivo, fonte }` o null). Servono allo storico per confrontare le giocate corrette e quelle non corrette.
 - `data/giornate/AAAA-MM-GG.json`: **formato esistente**, senza `"esempio": true`. Si aggiungono solo campi opzionali che la build ignora: `"giro": "claude" | "riserva"` e `"notizieControllate": boolean`.
 - `id` del candidato: stabile e leggibile, per esempio `calcio-<data>-<casa>-<trasferta>-<mercato>-<selezione>` normalizzato. Le segnature dipendono dall'`id`, quindi non deve cambiare se il giro viene rifatto.
 - `sport` vale sempre `"calcio"`. `competizione` è il nome italiano (per esempio "Serie A", "Premier League").
