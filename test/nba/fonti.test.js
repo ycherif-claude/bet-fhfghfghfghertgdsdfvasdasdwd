@@ -103,3 +103,85 @@ test('errore 401 senza chiave nel messaggio', async () => {
   await assert.rejects(sportsgameodds.eventi(finestra, { fetch: g, attesaMs: 0, chiave: 'SEGRETA' }),
     (e) => e.status === 401 && !e.message.includes('SEGRETA'));
 });
+
+// --- Round di correzione 1 ---
+
+function eventoSgo(modifica) {
+  const corpo = JSON.parse(leggi('sgo-p1.json'));
+  delete corpo.nextCursor;
+  modifica?.(corpo.data[0]);
+  return fetchFinto([risposta(200, JSON.stringify(corpo))]);
+}
+const eventiSgo = (f) => sportsgameodds.eventi(finestra, { fetch: f, attesaMs: 0, chiave: 'K' });
+
+test('sportsgameodds: spread mancante → handicap non emesso e contato in lineaMancante', async () => {
+  const ev = await eventiSgo(eventoSgo((e) => { delete e.odds['points-home-game-sp-home'].byBookmaker.draftkings.spread; }));
+  const dk = ev[0].bookmaker.find((b) => b.chiave === 'draftkings');
+  assert.equal(dk.mercati.handicap, undefined);
+  assert.deepEqual(ev.diagnostica, { lineaMancante: { handicap: 1, totale: 0 }, quoteNonConvertibili: 0, handicapAsimmetrico: 0 });
+});
+
+test('sportsgameodds: handicap asimmetrico contato, nessun ripiego su overUnder', async () => {
+  const ev = await eventiSgo(eventoSgo((e) => {
+    e.odds['points-away-game-sp-away'].byBookmaker.draftkings.spread = '5';
+    // un overUnder sul mercato sp non deve essere usato al posto di spread
+    delete e.odds['points-home-game-sp-fanduel'];
+    delete e.odds['points-home-game-sp-home'].byBookmaker.fanduel.spread;
+    e.odds['points-home-game-sp-home'].byBookmaker.fanduel.overUnder = '-5';
+  }));
+  assert.equal(ev[0].bookmaker.find((b) => b.chiave === 'draftkings').mercati.handicap, undefined);
+  assert.equal(ev[0].bookmaker.find((b) => b.chiave === 'fanduel').mercati.handicap, undefined);
+  assert.deepEqual(ev.diagnostica, { lineaMancante: { handicap: 1, totale: 0 }, quoteNonConvertibili: 0, handicapAsimmetrico: 1 });
+});
+
+test('sportsgameodds: prezzo "EVEN" o non numerico → non convertibile, contato', async () => {
+  const ev = await eventiSgo(eventoSgo((e) => { e.odds['points-all-game-ou-over'].byBookmaker.draftkings.odds = 'EVEN'; }));
+  assert.equal(ev[0].bookmaker.find((b) => b.chiave === 'draftkings').mercati.totale, undefined);
+  assert.equal(ev[0].bookmaker.find((b) => b.chiave === 'fanduel').mercati.totale['225'].over, 1.91);
+  assert.equal(ev.diagnostica.quoteNonConvertibili, 1);
+  assert.equal(americanaInDecimale('abc'), null);
+  assert.equal(americanaInDecimale('EVEN'), null);
+});
+
+test('americane +100 e -100 → 2.0', () => {
+  assert.equal(americanaInDecimale('+100'), 2);
+  assert.equal(americanaInDecimale('-100'), 2);
+});
+
+test('inizio nella settimana 25/10-1/11 (USA EDT, Roma CET): 23:30Z → 00:30+01:00', async () => {
+  const corpo = { data: [{ id: 7, date: '2026-10-27', datetime: '2026-10-27T23:30:00.000Z', status: '7:30 pm ET', season: 2026, postseason: false,
+    home_team_score: null, visitor_team_score: null,
+    home_team: { full_name: 'Miami Heat' }, visitor_team: { full_name: 'Boston Celtics' } }], meta: {} };
+  const p = await balldontlie.partite({}, { fetch: fetchFinto([risposta(200, JSON.stringify(corpo))]), attesaMs: 0 });
+  assert.equal(p[0].inizio, '2026-10-28T00:30:00+01:00');
+  assert.equal(p[0].dataUsa, '2026-10-27');
+});
+
+test('cursore ripetuto → errore (balldontlie e sportsgameodds)', async () => {
+  const bdl = JSON.stringify({ data: [], meta: { next_cursor: 5 } });
+  await assert.rejects(balldontlie.partite({}, { fetch: fetchFinto([risposta(200, bdl)]), attesaMs: 0 }), /cursore ripetuto/);
+  const sgo = JSON.stringify({ data: [], nextCursor: 'x' });
+  await assert.rejects(eventiSgo(fetchFinto([risposta(200, sgo)])), /cursore ripetuto/);
+});
+
+test('oltre 50 pagine → errore', async () => {
+  let n = 0;
+  const f = async () => risposta(200, JSON.stringify({ data: [], meta: { next_cursor: ++n } }));
+  await assert.rejects(balldontlie.partite({}, { fetch: f, attesaMs: 0 }), /oltre 50 pagine/);
+  let m = 0;
+  const g = async () => risposta(200, JSON.stringify({ data: [], nextCursor: `c${++m}` }));
+  await assert.rejects(eventiSgo(g), /oltre 50 pagine/);
+});
+
+test('nonRiconosciute registra entrambi i nomi; balldontlie senza date è scartata e contata', async () => {
+  const corpo = { data: [
+    { id: 8, date: '2026-10-20', status: 'Final', home_team: { full_name: 'Foo A' }, visitor_team: { full_name: 'Foo B' } },
+    { id: 9, status: 'Final', season: 2026, home_team: { full_name: 'Miami Heat' }, visitor_team: { full_name: 'Boston Celtics' } },
+  ], meta: {} };
+  const p = await balldontlie.partite({}, { fetch: fetchFinto([risposta(200, JSON.stringify(corpo))]), attesaMs: 0 });
+  assert.equal(p.length, 0);
+  assert.deepEqual(p.nonRiconosciute, ['Foo A', 'Foo B']);
+  assert.equal(p.diagnostica.senzaData, 1);
+  const sgo = eventoSgo((e) => { e.teams.home.names.long = 'Foo A'; e.teams.away.names.long = 'Foo B'; });
+  assert.deepEqual((await eventiSgo(sgo)).nonRiconosciute, ['Foo A', 'Foo B']);
+});

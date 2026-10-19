@@ -3,6 +3,7 @@ import { scarica } from '../../calcio/fonti/http.js';
 import { isoRoma } from '../../calcio/testo.js';
 import { squadraNba } from '../squadre.js';
 
+const MAX_PAGINE = 50;
 const BASE = 'https://api.balldontlie.io/v1/games';
 const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
 const numero = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
@@ -27,9 +28,13 @@ export const balldontlie = {
     const { chiave, attesaMs = CONFIG.nba.attesaBalldontlieMs, fetch } = opz;
     const out = [];
     const nonRiconosciute = [];
+    const diagnostica = { senzaData: 0 };
+    const visti = new Set();
     let cursore = null;
     let primo = true;
     do {
+      if (visti.size >= MAX_PAGINE) throw new Error(`api.balldontlie.io: oltre ${MAX_PAGINE} pagine`);
+      visti.add(cursore ?? '');
       if (!primo) await pausa(attesaMs);
       primo = false;
       const r = await scarica(`${BASE}?${parametri(filtri, cursore)}`, {
@@ -40,9 +45,11 @@ export const balldontlie = {
         const casa = squadraNba(g.home_team?.full_name ?? g.home_team?.abbreviation);
         const trasferta = squadraNba(g.visitor_team?.full_name ?? g.visitor_team?.abbreviation);
         if (!casa || !trasferta) {
-          nonRiconosciute.push(!casa ? String(g.home_team?.full_name ?? g.home_team?.abbreviation) : String(g.visitor_team?.full_name ?? g.visitor_team?.abbreviation));
+          if (!casa) nonRiconosciute.push(String(g.home_team?.full_name ?? g.home_team?.abbreviation));
+          if (!trasferta) nonRiconosciute.push(String(g.visitor_team?.full_name ?? g.visitor_team?.abbreviation));
           continue;
         }
+        if (!g.date) { diagnostica.senzaData++; continue; }
         out.push({
           id: g.id,
           dataUsa: String(g.date).slice(0, 10),
@@ -57,8 +64,10 @@ export const balldontlie = {
         });
       }
       cursore = corpo.meta?.next_cursor ?? null;
+      if (cursore !== null && visti.has(cursore)) throw new Error('api.balldontlie.io: cursore ripetuto');
     } while (cursore !== null && cursore !== undefined);
     Object.defineProperty(out, 'nonRiconosciute', { value: nonRiconosciute, enumerable: false });
+    Object.defineProperty(out, 'diagnostica', { value: diagnostica, enumerable: false });
     return out;
   },
 };
