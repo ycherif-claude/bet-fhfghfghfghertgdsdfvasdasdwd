@@ -4,7 +4,20 @@ import fs from 'node:fs';
 
 test('le istruzioni della routine contengono i passi obbligatori', () => {
   const t = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
-  for (const s of ['npm run giro -- --anteprima', '-notizie.json', 'npm run giro', 'npm test', 'git push origin main', '0,08', 'claude/notizie-']) assert.ok(t.includes(s), s);
+  for (const s of ['npm run giro -- --anteprima', '-notizie.json', 'npm run giro', 'npm test', 'git push origin main', '0,08']) assert.ok(t.includes(s), s);
+  // Piano B non ancora attivo: nessuna Action legge un ramo delle notizie.
+  assert.ok(t.includes('non ancora attivo'));
+  assert.ok(!t.includes('claude/notizie-'));
+  // git pull subito prima del giro, e l'anteprima con gli id dei candidati.
+  assert.ok(t.includes('`git pull` e subito dopo `npm run giro`'));
+  assert.ok(t.includes('idCandidato: mercato | selezione'));
+});
+
+test('raccolta e riserva: push ripetuto fino a 3 volte, conflitto → rebase annullato e uscita con errore', () => {
+  for (const f of ['raccolta.yml', 'riserva.yml']) {
+    const t = fs.readFileSync(`.github/workflows/${f}`, 'utf8');
+    for (const s of ['for tentativo in 1 2 3', 'git pull --rebase', 'git rebase --abort', 'exit 1', 'sleep']) assert.ok(t.includes(s), `${f}: ${s}`);
+  }
 });
 
 test('la riserva esegue test, giro di riserva e poi avvia la pubblicazione', () => {

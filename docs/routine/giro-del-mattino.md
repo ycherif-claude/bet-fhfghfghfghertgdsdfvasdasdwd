@@ -6,7 +6,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 
 ## Regole che valgono sempre
 
-- Lavora su `main`. Non usare altri rami, tranne il "Piano B" descritto in fondo (`claude/notizie-<data>`).
+- Lavora su `main`. Non usare altri rami (il "Piano B" in fondo non è ancora attivo).
 - Non modificare codice, test, configurazione o workflow. Non toccare file di giorni diversi da oggi.
 - Non inventare dati, partite, mercati, fonti o orari. Se non trovi un fatto concreto, non scrivere nulla per quella partita.
 - Se un passo fallisce e non riesci a sistemarlo nei modi indicati, fermati: non inventare niente. Lascia che lo faccia il giro di riserva (parte alle 09:45 UTC, cioè 11:45 ora legale o 10:45 ora solare) e scrivi il motivo nell'ultimo messaggio della sessione.
@@ -19,14 +19,15 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 3. Controlla che esista `data/raccolta/<oggi>.json` (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`). Se il file **non esiste**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
    Poi esegui `npm run giro -- --anteprima`. Stampa una riga per ogni partita in gara:
    `idPartita · partita · inizio · mercati in gara`
+   dove ogni mercato in gara compare come `idCandidato: mercato | selezione`, separati da virgole (per esempio `calcio-2026-10-20-inter-roma-1x2-1: 1X2 | 1`). L'`idCandidato` si copia così com'è in `esclusioni`.
    Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando il file della raccolta manca davvero.
 4. Ricerca web, **solo** per le partite elencate dall'anteprima. Per ognuna cerca: assenze e dubbi sui titolari chiave, squalifiche, cambio di allenatore recente, meteo estremo, motivazioni anomale (per esempio una squadra già salva o già retrocessa). Segna per ogni fatto la fonte e l'ora.
    Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json`: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
 5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG` (`TZ=Europe/Rome date +%F`). Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora. L'ora della notizia va dentro `fonte` (per esempio "ANSA, 08:10"): non esiste un campo a parte.
-6. Esegui `npm run giro`. Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
+6. Esegui `git pull` e subito dopo `npm run giro` (così il giro vede anche le segnature arrivate nel frattempo). Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
 7. Esegui `npm test`. Se fallisce, non pubblicare: vedi le regole sopra.
 8. Salva e pubblica: `git add data/ && git commit -m "Giro del mattino <data>" && git push origin main`.
-   Se il push viene rifiutato: `git pull --rebase` e di nuovo `git push origin main`. Se il `git pull --rebase` dà un conflitto: `git rebase --abort`, fermati e spiega il motivo nell'ultimo messaggio (la riserva penserà al resto). Al massimo 3 tentativi in tutto. Se ancora non va per mancanza di permessi, passa al Piano B.
+   Se il push viene rifiutato: `git pull --rebase` e di nuovo `git push origin main`. Se il `git pull --rebase` dà un conflitto: `git rebase --abort`, fermati e spiega il motivo nell'ultimo messaggio (la riserva penserà al resto). Al massimo 3 tentativi in tutto. Se il push è rifiutato per mancanza di permessi, fermati: vedi il Piano B qui sotto.
 9. Nell'ultimo messaggio riassumi: quante partite hai controllato, quante correzioni ed esclusioni hai scritto e perché, eventuali problemi.
 
 ## Formato di `data/raccolta/<oggi>-notizie.json`
@@ -82,15 +83,10 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 
 I mercati non correggibili si possono soltanto escludere (con `esclusioni`).
 
-## Piano B: il push su `main` viene rifiutato per permessi
+## Piano B: il push su `main` viene rifiutato per permessi (non ancora attivo)
 
-Se il push su `main` è rifiutato perché non hai i permessi (non per un semplice conflitto, che si risolve con `git pull --rebase`), spingi **solo** il file notizie su un ramo dedicato:
+Il Piano B (spingere solo il file notizie su un ramo dedicato e far girare il giro da una GitHub Action) **non è ancora attivo**: nessuna Action legge quel ramo. Per ora, se il push su `main` è rifiutato perché non hai i permessi (non per un semplice conflitto, che si risolve con `git pull --rebase`):
 
-```
-git checkout -b claude/notizie-<data>
-git add data/raccolta/<oggi>-notizie.json
-git commit -m "Notizie <data>"
-git push origin claude/notizie-<data>
-```
-
-Una GitHub Action, su quel push, esegue `npm run giro` su `main` con le tue correzioni ed esclusioni. Non spingere altro e su nessun altro ramo. Spiega nell'ultimo messaggio che hai usato il Piano B e perché.
+- fermati, senza spingere niente su altri rami;
+- lascia che parta il giro di riserva (09:45 UTC), che scrive la giornata senza le notizie;
+- nell'ultimo messaggio spiega che il push è stato rifiutato, con il messaggio di errore, e quali correzioni ed esclusioni avevi trovato.

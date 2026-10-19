@@ -29,8 +29,22 @@ jobs:
           git add data/
           if [ -n "$(git status --porcelain data/)" ]; then
             git commit -m "Giro di riserva $(TZ=Europe/Rome date +%F)"
-            git pull --rebase
-            git push
+            # Fino a 3 tentativi: un push rifiutato (main avanzata nel frattempo) si riprova dopo una pausa.
+            # Un conflitto nel rebase non si risolve da solo: si annulla e il job fallisce.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: dati non salvati"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: dati non salvati"
+              exit 1
+            fi
           fi
       - name: Avvia la pubblicazione del sito
         run: gh workflow run pubblica.yml
