@@ -17,6 +17,8 @@ export const ALIAS = {
   'espanol': 'Espanyol',
   'sp-gijon': 'Sporting Gijon',
   'la-coruna': 'Deportivo La Coruna',
+  'brighton': 'Brighton and Hove Albion',
+  'preston': 'Preston North End',
   'brighton-hove-albion': 'Brighton and Hove Albion',
   'nott-m-forest': 'Nottingham Forest',
   'wolves': 'Wolverhampton Wanderers',
@@ -27,7 +29,6 @@ export const ALIAS = {
   'm-gladbach': 'Borussia Monchengladbach',
   'borussia-m-gladbach': 'Borussia Monchengladbach',
   'hamburg': 'Hamburger SV',
-  'hertha': 'Hertha Berlin',
   'karlsruhe': 'Karlsruher SC',
   'dresden': 'Dynamo Dresden',
   'preu-en-munster': 'Preussen Munster',
@@ -51,23 +52,35 @@ export const ALIAS = {
 };
 
 const token = (n) => new Set(normalizzaNome(n).split('-').filter(Boolean));
-const contiene = (grande, piccolo) => piccolo.size > 0 && [...piccolo].every((t) => grande.has(t));
+// Squadre giovanili o di riserva: non si abbinano mai alla prima squadra.
+const MARCATORI = ['b', 'ii', 'iii', '2', 'u17', 'u19', 'u21', 'u23', 'castilla', 'jong', 'reserves', 'amateure', 'youth', 'primavera'];
+const marcatori = (t) => MARCATORI.filter((m) => t.has(m)).join();
+const NOMI_CANONICI = new Set(Object.values(ALIAS).map(normalizzaNome));
+
+// Contenimento dei token: il nome piu corto deve coprire almeno meta di quello piu lungo,
+// e i marcatori di riserva/giovanili devono coincidere.
+function simile(a, b) {
+  const [corto, lungo] = a.size <= b.size ? [a, b] : [b, a];
+  if (corto.size === 0 || corto.size * 2 < lungo.size) return false;
+  if (![...corto].every((t) => lungo.has(t))) return false;
+  return marcatori(a) === marcatori(b);
+}
 
 export function nomeCanonico(nome, candidati) {
   const norm = normalizzaNome(nome);
   const target = Object.hasOwn(ALIAS, norm) ? ALIAS[norm] : null;
-  if (target && candidati.includes(target)) return target;
-  // Il bersaglio dell'alias puo essere scritto in modo un po' diverso nel contesto: si cerca anche quello.
-  for (const n of target ? [nome, target] : [nome]) {
-    const nn = normalizzaNome(n);
-    const uguali = candidati.filter((c) => normalizzaNome(c) === nn);
-    if (uguali.length === 1) return uguali[0];
-    const t = token(n);
-    const simili = candidati.filter((c) => {
-      const tc = token(c);
-      return contiene(tc, t) || contiene(t, tc);
-    });
-    if (simili.length === 1) return simili[0];
+  if (target) {
+    if (candidati.includes(target)) return target;
+    // Il bersaglio dell'alias, se non e tra i candidati, conta solo con nome normalizzato uguale.
+    const uguali = candidati.filter((c) => normalizzaNome(c) === normalizzaNome(target));
+    return uguali.length === 1 ? uguali[0] : null;
   }
-  return null;
+  const uguali = candidati.filter((c) => normalizzaNome(c) === norm);
+  if (uguali.length === 1) return uguali[0];
+  if (uguali.length > 1) return null;
+  // Un nome canonico noto ma assente dai candidati non va agganciato a un'altra squadra.
+  if (NOMI_CANONICI.has(norm)) return null;
+  const t = token(nome);
+  const simili = candidati.filter((c) => simile(t, token(c)));
+  return simili.length === 1 ? simili[0] : null;
 }
