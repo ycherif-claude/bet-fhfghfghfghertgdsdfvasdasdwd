@@ -1,0 +1,49 @@
+{
+  "data": "2026-10-19",
+  "esempio": true,
+  "generataAlle": "2026-10-19T08:04:00+02:00",
+  "competizioniNonCoperte": ["Liga turca volley"],
+  "candidati": [
+    {
+      "id": "esempio-calcio-1", "sport": "calcio", "competizione": "Serie A (esempio)",
+      "partita": "Squadra Alfa - Squadra Beta", "idPartita": "esempio-p1",
+      "inizio": "2026-10-19T20:45:00+02:00", "tipo": "singola", "mercato": "1X2", "selezione": "1",
+      "prob": 0.56, "quota": 2.0, "fonteQuota": "dato di esempio", "oraQuota": "2026-10-19T08:00:00+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": ["Dato di esempio, non reale.", "La squadra di casa ha una forma migliore nelle ultime cinque partite.", "Probabilità stimata superiore a quella implicita nella quota."]
+    },
+    {
+      "id": "esempio-basket-1", "sport": "basket", "competizione": "NBA (esempio)",
+      "partita": "Città Uno - Città Due", "idPartita": "esempio-p2",
+      "inizio": "2026-10-20T02:00:00+02:00", "tipo": "singola", "mercato": "Handicap", "selezione": "Città Uno -3.5",
+      "prob": 0.60, "quota": 1.95, "fonteQuota": "dato di esempio", "oraQuota": "2026-10-19T08:00:00+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": ["Dato di esempio, non reale.", "L'avversaria gioca la seconda partita in due sere.", "Margine atteso più ampio dell'handicap proposto."]
+    },
+    {
+      "id": "esempio-tennis-1", "sport": "tennis", "competizione": "ATP 500 (esempio)",
+      "partita": "Giocatore Uno - Giocatore Due", "idPartita": "esempio-p3",
+      "inizio": "2026-10-19T15:00:00+02:00", "tipo": "singola", "mercato": "Vincente incontro", "selezione": "Giocatore Uno",
+      "prob": 0.62, "quota": null, "fonteQuota": null, "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": ["Dato di esempio, non reale.", "Quota non disponibile gratuitamente: da verificare presso il bookmaker.", "Si gioca solo se la quota reale supera la quota minima indicata."]
+    },
+    {
+      "id": "esempio-calcio-2", "sport": "calcio", "competizione": "Serie B (esempio)",
+      "partita": "Squadra Gamma - Squadra Delta", "idPartita": "esempio-p4",
+      "inizio": "2026-10-19T19:30:00+02:00", "tipo": "singola", "mercato": "Under/Over 2.5", "selezione": "Under 2.5",
+      "prob": 0.50, "quota": 2.0, "fonteQuota": "dato di esempio", "oraQuota": "2026-10-19T08:00:00+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": ["Dato di esempio, non reale.", "Probabilità stimata pari a quella implicita nella quota: nessun vantaggio."]
+    },
+    {
+      "id": "esempio-pallavolo-1", "sport": "pallavolo", "competizione": "SuperLega (esempio)",
+      "partita": "Club Uno - Club Due", "idPartita": "esempio-p5",
+      "inizio": "2026-10-19T20:30:00+02:00", "tipo": "singola", "mercato": "Vincente incontro", "selezione": "Club Uno",
+      "prob": 0.58, "quota": 1.85, "fonteQuota": "dato di esempio", "oraQuota": "2026-10-19T08:00:00+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": ["Dato di esempio, non reale.", "Squadra favorita in casa con rosa al completo."]
+    }
+  ],
+  "erroriGiro": []
+}
