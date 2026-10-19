@@ -13,8 +13,10 @@ const num = (v) => typeof v === 'number' && Number.isFinite(v);
 // Sopra/sotto una linea; con linea intera e totale uguale è un rimborso.
 function sopraSotto(selezione, totale, linea) {
   if (totale === null) return null;
-  const lato = selezione.startsWith('Over') ? 'Over' : selezione.startsWith('Under') ? 'Under' : null;
-  if (!lato) return null;
+  const sel = /^(Over|Under) (\d+(?:\.\d+)?)$/.exec(selezione);
+  // La linea della selezione deve coincidere con quella del mercato, altrimenti non si decide.
+  if (!sel || Number(sel[2]) !== linea) return null;
+  const lato = sel[1];
   if (totale === linea) return 'rimborsata';
   return (totale > linea) === (lato === 'Over') ? 'vinta' : 'persa';
 }
@@ -111,21 +113,25 @@ function leggiGiornate(dirData, adesso) {
   return { out, errori };
 }
 
-// Nomi delle competizioni con giocate ancora senza esito.
-export function competizioniInAttesa(dirData, adesso) {
-  const nomi = new Set();
+// Giocate ancora senza esito (in tutte le giornate passate).
+export function giocateInAttesa(dirData, adesso) {
+  const out = [];
   for (const { dati } of leggiGiornate(dirData, adesso).out) {
-    for (const g of dati.giocate) {
-      if (inAttesa(g, adesso)) for (const x of gambeDi(g)) nomi.add(x.competizione);
-    }
+    for (const g of dati.giocate) if (inAttesa(g, adesso)) out.push(g);
   }
-  return nomi;
+  return out;
 }
 
 const dataDi = (r) => r.data ?? dataRoma(new Date(r.inizio));
 
 // Unisce i risultati della stessa partita: gol da chiunque li abbia, angoli e cartellini da chi li ha.
+// Se due fonti sono in disaccordo sui gol (o sui gol del primo tempo) restituisce null.
+const CAMPI_GOL = ['gc', 'gt', 'gcPT', 'gtPT'];
 function unisci(trovati) {
+  for (const k of CAMPI_GOL) {
+    const valori = new Set(trovati.map((r) => r[k]).filter(num));
+    if (valori.size > 1) return null;
+  }
   const out = { ...trovati[0] };
   for (const r of trovati.slice(1)) {
     for (const [k, v] of Object.entries(r)) {
@@ -136,7 +142,7 @@ function unisci(trovati) {
 }
 
 // Risultato di una gamba, oppure null se manca o è ambiguo.
-function trova(gamba, risultati) {
+function trova(gamba, risultati, errori) {
   const i = String(gamba.partita).indexOf(' - ');
   if (i < 0) return null;
   const casa = gamba.partita.slice(0, i);
@@ -157,12 +163,18 @@ function trova(gamba, risultati) {
     const esatti = gruppo.filter((r) => r.casa === c && r.trasferta === t);
     if (esatti.length === 1) trovati.push(esatti[0]);
   }
-  return trovati.length ? unisci(trovati) : null;
+  if (!trovati.length) return null;
+  const unito = unisci(trovati);
+  if (!unito) {
+    errori.push(`Risultati discordanti per ${gamba.partita} del ${data} (${trovati.map((r) => r.fonte).join(' / ')}): esito non assegnato`);
+  }
+  return unito;
 }
 
 // Aggiorna solo il campo `esito` delle giocate di calcio finite; i file non cambiati restano intatti.
 export function aggiornaEsiti(dirData, risultati, adesso) {
   const { out: giornate, errori } = leggiGiornate(dirData, adesso);
+  const segnalati = new Set();
   let aggiornate = 0;
   const file = [];
   for (const { percorso, dati } of giornate) {
@@ -171,7 +183,9 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
       if (!inAttesa(g, adesso)) continue;
       const mappa = new Map();
       for (const x of gambeDi(g)) {
-        const r = trova(x, risultati);
+        const nuovi = [];
+        const r = trova(x, risultati, nuovi);
+        for (const m of nuovi) if (!segnalati.has(m)) { segnalati.add(m); errori.push(m); }
         if (r) mappa.set(x.idPartita, r);
       }
       const esito = esitoGiocata(g, mappa);
@@ -214,27 +228,59 @@ const giorniPrima = (data, n) => {
   return new Date(Date.UTC(y, m - 1, g - n)).toISOString().slice(0, 10);
 };
 
+const GIORNO = 86400000;
+const MAX_GIORNI_FD_ORG = 9; // football-data.org limita l'intervallo a 10 giorni
+const FINESTRA_ODDS = 3 * GIORNO;
+const SENZA_ODDS = /^(Angoli|Cartellini)|1° tempo/;
+
+// Codice stagione football-data.co.uk (da luglio in poi la nuova stagione).
+function stagioneDi(data) {
+  const [anno, mese] = data.split('-').map(Number);
+  const inizio = mese >= 7 ? anno : anno - 1;
+  const yy = (n) => String(n % 100).padStart(2, '0');
+  return `${yy(inizio)}${yy(inizio + 1)}`;
+}
+
 // Passo della CLI: scarica i risultati necessari, aggiorna i file e registra crediti ed errori nella raccolta.
 export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccolta, csv }) {
-  const attesa = competizioniInAttesa(dirData, adesso);
-  if (!attesa.size) return { aggiornate: 0, file: [], errori: [] };
+  const pendenti = giocateInAttesa(dirData, adesso);
+  if (!pendenti.length) return { aggiornate: 0, file: [], errori: [] };
   const errore = (fonte, e) => raccolta.erroriGiro.push(`${fonte} alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
   const oggi = dataRoma(adesso);
-  const da = giorniPrima(oggi, 4);
-  const risultati = risultatiDaCsv(csv ?? new Map(), da);
+  const gambe = pendenti.flatMap(gambeDi);
+  const piuVecchia = dataRoma(new Date(Math.min(...gambe.map((x) => Date.parse(x.inizio)))));
+  const da = giorniPrima(piuVecchia, 1);
+  const limite = giorniPrima(oggi, MAX_GIORNI_FD_ORG);
+  const daFdOrg = da < limite ? limite : da;
+  const attesa = new Set(gambe.map((x) => x.competizione));
+
+  // CSV: quelli già scaricati dalla raccolta, più la stagione corrente delle leghe con giocate in attesa.
+  const righeCsv = new Map(csv ?? []);
+  for (const c of COMPETIZIONI) {
+    if (!c.csv || !attesa.has(c.nome) || righeCsv.has(c.csv)) continue;
+    try {
+      righeCsv.set(c.csv, await fonti.footballDataUk.partite(c.csv, [stagioneDi(oggi)]));
+    } catch (e) {
+      errore(`football-data.co.uk ${c.csv}`, e);
+    }
+  }
+  const risultati = risultatiDaCsv(righeCsv, da);
 
   if (!chiavi.footballDataOrg) {
     errore('football-data.org', new Error('manca FOOTBALL_DATA_ORG_KEY'));
   } else {
     try {
-      risultati.push(...await fonti.footballDataOrg.risultati({ da, a: oggi }, { chiave: chiavi.footballDataOrg }));
+      risultati.push(...await fonti.footballDataOrg.risultati({ da: daFdOrg, a: oggi }, { chiave: chiavi.footballDataOrg }));
     } catch (e) {
       errore('football-data.org', e);
     }
   }
 
-  // Solo le competizioni che né il CSV né football-data.org coprono; 2 crediti l'una, dopo il budget delle quote.
-  const scoperte = COMPETIZIONI.filter((c) => attesa.has(c.nome) && c.csv === null && c.nome !== 'Champions League');
+  // Odds: solo per competizioni senza CSV né football-data.org, con una gamba recente (finestra di 3 giorni)
+  // su un mercato che Odds può chiudere; 2 crediti l'una, dopo il budget delle quote.
+  const risolvibile = (x) => !SENZA_ODDS.test(x.mercato) && Date.parse(x.inizio) >= adesso.getTime() - FINESTRA_ODDS;
+  const nomiOdds = new Set(gambe.filter(risolvibile).map((x) => x.competizione));
+  const scoperte = COMPETIZIONI.filter((c) => nomiOdds.has(c.nome) && c.csv === null && c.nome !== 'Champions League');
   for (const c of scoperte) {
     if (!chiavi.oddsApi) break;
     if (raccolta.crediti.rimasti - 2 < CONFIG.calcio.riservaCrediti * 500) break;
@@ -250,5 +296,10 @@ export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccol
 
   const out = aggiornaEsiti(dirData, risultati, adesso);
   for (const m of out.errori) errore('Esiti', new Error(m));
+  // Mai in silenzio: giocate ancora senza esito da una settimana.
+  for (const g of giocateInAttesa(dirData, adesso)) {
+    const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
+    if (giorni >= 7) errore('Esiti', new Error(`Giocata ${g.id} senza esito da ${giorni} giorni`));
+  }
   return out;
 }

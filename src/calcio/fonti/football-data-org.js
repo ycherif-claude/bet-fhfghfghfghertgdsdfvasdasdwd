@@ -1,5 +1,11 @@
 import { scarica } from './http.js';
 
+// Codici football-data.org → nome della competizione; gli altri codici si ignorano.
+const CODICI = {
+  PL: 'Premier League', SA: 'Serie A', PD: 'LaLiga', BL1: 'Bundesliga', FL1: 'Ligue 1',
+  CL: 'Champions League', DED: 'Eredivisie', PPL: 'Primeira Liga', ELC: 'Championship',
+};
+
 const numero = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 
 export const footballDataOrg = {
@@ -13,6 +19,8 @@ export const footballDataOrg = {
     const out = [];
     for (const m of dati.matches ?? []) {
       if (m.status !== 'FINISHED') continue;
+      const competizione = CODICI[m.competition?.code];
+      if (!competizione) continue;
       // Coppe con supplementari: conta il risultato dei 90 minuti (regularTime) quando c'è.
       const tempi = m.score?.regularTime ?? m.score?.fullTime;
       const gc = numero(tempi?.home);
@@ -27,6 +35,7 @@ export const footballDataOrg = {
         gcPT: numero(m.score?.halfTime?.home),
         gtPT: numero(m.score?.halfTime?.away),
         fonte: 'football-data.org',
+        competizione,
       });
     }
     return out;

@@ -133,20 +133,29 @@ test('footballDataOrg.risultati tiene solo le partite FINISHED', async () => {
   const opz = opzFixture('fdorg-matches.json');
   const r = await footballDataOrg.risultati({ da: '2026-10-17', a: '2026-10-18' }, { ...opz, chiave: 'TOK' });
   assert.equal(r.length, 1);
-  assert.deepEqual(r[0], { casa: 'FC Internazionale Milano', trasferta: 'AC Monza', inizio: '2026-10-18T18:45:00Z', gc: 2, gt: 1, gcPT: 1, gtPT: 0, fonte: 'football-data.org' });
+  assert.deepEqual(r[0], { casa: 'FC Internazionale Milano', trasferta: 'AC Monza', inizio: '2026-10-18T18:45:00Z', gc: 2, gt: 1, gcPT: 1, gtPT: 0, fonte: 'football-data.org', competizione: 'Serie A' });
   const { url, init } = opz.fetch.chiamate[0];
   assert.match(url, /dateFrom=2026-10-17&dateTo=2026-10-18/);
   assert.equal(init.headers['X-Auth-Token'], 'TOK');
 });
 
 test('footballDataOrg.risultati usa regularTime quando presente (supplementari)', async () => {
-  const corpo = JSON.stringify({ matches: [{ utcDate: '2026-10-18T18:45:00Z', status: 'FINISHED', homeTeam: { name: 'A' }, awayTeam: { name: 'B' },
+  const corpo = JSON.stringify({ matches: [{ competition: { code: 'CL' }, utcDate: '2026-10-18T18:45:00Z', status: 'FINISHED', homeTeam: { name: 'A' }, awayTeam: { name: 'B' },
     score: { fullTime: { home: 3, away: 2 }, regularTime: { home: 2, away: 2 }, extraTime: { home: 1, away: 0 }, halfTime: { home: 1, away: 1 } } }] });
   const opz = { fetch: fetchFinto([risposta(200, corpo)]), attesaMs: 0 };
   const r = await footballDataOrg.risultati({ da: '2026-10-17', a: '2026-10-18' }, { ...opz, chiave: 'T' });
   assert.equal(r[0].gc, 2);
   assert.equal(r[0].gt, 2);
   assert.equal(r[0].gcPT, 1);
+  assert.equal(r[0].competizione, 'Champions League');
+});
+
+test('footballDataOrg.risultati ignora i codici di competizione non mappati', async () => {
+  const m = (code) => ({ competition: { code }, utcDate: '2026-10-18T18:45:00Z', status: 'FINISHED', homeTeam: { name: 'A' }, awayTeam: { name: 'B' }, score: { fullTime: { home: 1, away: 0 }, halfTime: { home: 0, away: 0 } } });
+  const corpo = JSON.stringify({ matches: [m('WC'), m(undefined), m('PD')] });
+  const opz = { fetch: fetchFinto([risposta(200, corpo)]), attesaMs: 0 };
+  const r = await footballDataOrg.risultati({ da: '2026-10-17', a: '2026-10-18' }, { ...opz, chiave: 'T' });
+  assert.deepEqual(r.map((x) => x.competizione), ['LaLiga']);
 });
 
 test('scarica: il timeout interrompe la richiesta e conta come errore di rete (ripetuto)', async () => {

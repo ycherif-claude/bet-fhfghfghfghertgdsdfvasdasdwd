@@ -187,23 +187,85 @@ test('risultatiDaCsv converte angoli e cartellini e salta le partite vecchie', (
 });
 
 // --- orchestrazione (CLI) --------------------------------------------------
-function fontiFinte({ org, odds } = {}) {
-  const chiamate = { org: [], odds: [] };
+function fontiFinte({ org, odds, uk } = {}) {
+  const chiamate = { org: [], odds: [], uk: [] };
   return {
     chiamate,
+    footballDataUk: { async partite(codice, stagioni) { chiamate.uk.push(`${codice}/${stagioni.join(',')}`); if (uk instanceof Error) throw uk; return uk ?? []; } },
     footballDataOrg: { async risultati(finestra, opz) { chiamate.org.push({ finestra, opz }); if (org instanceof Error) throw org; return org ?? []; } },
     oddsApi: { async risultati(sport, opz) { chiamate.odds.push({ sport, opz }); if (odds instanceof Error) throw odds; return odds?.[sport] ?? []; } },
   };
 }
 const nuovaRaccolta = (rimasti = 300) => ({ crediti: { usati: 2, rimasti }, erroriGiro: [] });
 
-test('aggiornaEsitiGiro: finestra di 4 giorni, nessuna chiamata a Odds per Serie A coperta da fd.org', async () => {
+test('sopraSotto: linea della selezione diversa da quella del mercato → null', () => {
+  const x = r(3, 2, null, null, { angoliC: 6, angoliT: 4 });
+  assert.equal(esitoSelezione('Under/Over 2.5', 'Over 3.5', x), null);
+  assert.equal(esitoSelezione('Angoli Under/Over 9.5', 'Over 10.5', x), null);
+  assert.equal(esitoSelezione('Under/Over 2.5', 'Over 2.5', x), 'vinta');
+});
+
+test('fonti in disaccordo sui gol: esito null e segnalazione con partita e fonti', () => {
+  const dir = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [giocata('inter', 'Inter Milan - Monza')], scartate: [] } });
+  const csv = { casa: 'Inter', trasferta: 'Monza', data: '2026-10-18', inizio: '2026-10-18T12:00:00Z', gc: 3, gt: 1, gcPT: 1, gtPT: 0, fonte: 'football-data.co.uk', competizione: 'Serie A' };
+  const out = aggiornaEsiti(dir, [risInter, csv], ADESSO);
+  assert.equal(out.aggiornate, 0);
+  assert.equal(leggi(dir, '2026-10-18').giocate[0].esito, null);
+  assert.equal(out.errori.length, 1);
+  assert.match(out.errori[0], /Inter Milan - Monza/);
+  assert.match(out.errori[0], /football-data\.org/);
+  assert.match(out.errori[0], /football-data\.co\.uk/);
+});
+
+test('aggiornaEsitiGiro: lega senza partite oggi, CSV della stagione corrente scaricato e giocata chiusa', async () => {
+  const angoli = { ...giocata('ang', 'Inter Milan - Monza'), mercato: 'Angoli Under/Over 9.5', selezione: 'Over 9.5' };
+  const dir = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [angoli], scartate: [] } });
+  const riga = { data: '2026-10-18', casa: 'Inter', trasferta: 'Monza', gc: 2, gt: 1, gcPT: 1, gtPT: 0, angoliC: 7, angoliT: 5, cartC: 1, cartT: 2 };
+  const f = fontiFinte({ uk: [riga] });
+  const out = await aggiornaEsitiGiro({ dirData: dir, adesso: ADESSO, fonti: f, chiavi: { footballDataOrg: 'T' }, raccolta: nuovaRaccolta(), csv: new Map() });
+  assert.deepEqual(f.chiamate.uk, ['I1/2627']);
+  assert.equal(out.aggiornate, 1);
+  assert.equal(leggi(dir, '2026-10-18').giocate[0].esito, 'vinta');
+  // CSV già scaricato dalla raccolta: nessun nuovo download.
+  const dir2 = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [angoli], scartate: [] } });
+  const f2 = fontiFinte();
+  await aggiornaEsitiGiro({ dirData: dir2, adesso: ADESSO, fonti: f2, chiavi: { footballDataOrg: 'T' }, raccolta: nuovaRaccolta(), csv: new Map([['I1', [riga]]]) });
+  assert.equal(f2.chiamate.uk.length, 0);
+  assert.equal(leggi(dir2, '2026-10-18').giocate[0].esito, 'vinta');
+});
+
+test('aggiornaEsitiGiro: la finestra di football-data.org parte dalla giocata più vecchia, con tetto di 9 giorni', async () => {
+  const vecchia = giocata('v', 'Inter Milan - Monza', { inizio: '2026-10-05T20:45:00+02:00' });
+  const dir = cartella({ '2026-10-05': { data: '2026-10-05', giocate: [vecchia], scartate: [] } });
+  const f = fontiFinte();
+  await aggiornaEsitiGiro({ dirData: dir, adesso: ADESSO, fonti: f, chiavi: { footballDataOrg: 'T' }, raccolta: nuovaRaccolta(), csv: new Map() });
+  assert.deepEqual(f.chiamate.org[0].finestra, { da: '2026-10-11', a: '2026-10-20' });
+});
+
+test('aggiornaEsitiGiro: Odds non chiamata per angoli, per partite oltre i 3 giorni; giocata vecchia segnalata', async () => {
+  const el = { competizione: 'Europa League' };
+  const angoli = giocata('a', 'Roma - Lecce', { ...el, mercato: 'Angoli Under/Over 9.5', selezione: 'Over 9.5' });
+  const vecchia = giocata('v', 'Roma - Lecce', { ...el, inizio: '2026-10-10T20:45:00+02:00' });
+  const dir = cartella({
+    '2026-10-18': { data: '2026-10-18', giocate: [angoli], scartate: [] },
+    '2026-10-10': { data: '2026-10-10', giocate: [vecchia], scartate: [] },
+  });
+  const f = fontiFinte();
+  const raccolta = nuovaRaccolta();
+  await aggiornaEsitiGiro({ dirData: dir, adesso: ADESSO, fonti: f, chiavi: { oddsApi: 'K', footballDataOrg: 'T' }, raccolta, csv: new Map() });
+  assert.equal(f.chiamate.odds.length, 0);
+  assert.equal(raccolta.crediti.usati, 2);
+  assert.ok(raccolta.erroriGiro.some((e) => e.includes('Giocata v senza esito da 9 giorni')));
+  assert.ok(!raccolta.erroriGiro.some((e) => e.includes('Giocata a senza esito')));
+});
+
+test('aggiornaEsitiGiro: finestra di football-data.org, nessuna chiamata a Odds per Serie A coperta da fd.org', async () => {
   const dir = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [giocata('inter', 'Inter Milan - Monza')], scartate: [] } });
   const f = fontiFinte({ org: [risInter] });
   const raccolta = nuovaRaccolta();
   const out = await aggiornaEsitiGiro({ dirData: dir, adesso: ADESSO, fonti: f, chiavi: { footballDataOrg: 'TOK' }, raccolta, csv: new Map() });
   assert.equal(out.aggiornate, 1);
-  assert.deepEqual(f.chiamate.org[0].finestra, { da: '2026-10-16', a: '2026-10-20' });
+  assert.deepEqual(f.chiamate.org[0].finestra, { da: '2026-10-17', a: '2026-10-20' });
   assert.equal(f.chiamate.org[0].opz.chiave, 'TOK');
   assert.equal(f.chiamate.odds.length, 0);
   assert.deepEqual(raccolta.crediti, { usati: 2, rimasti: 300 });
