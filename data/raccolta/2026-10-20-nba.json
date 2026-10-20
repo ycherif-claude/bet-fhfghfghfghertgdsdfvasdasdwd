@@ -1,6 +1,6 @@
 {
   "data": "2026-10-20",
-  "generataAlle": "2026-10-20T17:49:37+02:00",
+  "generataAlle": "2026-10-20T18:01:15+02:00",
   "crediti": {
     "sportsgameodds": {
       "oggetti": 3
@@ -20,8 +20,8 @@
       "modello": "nba",
       "lambda": null,
       "puntiAttesi": {
-        "casa": 108.1,
-        "trasferta": 107.1
+        "casa": 112.2,
+        "trasferta": 110.4
       },
       "pesoModello": 0.25,
       "backToBack": {
@@ -29,17 +29,17 @@
         "trasferta": false
       },
       "ragionamentoBase": [
-        "Punti attesi: Detroit Pistons 108 – Boston Celtics 107 (stagione in corso e precedente)"
+        "Punti attesi: Detroit Pistons 112 – Boston Celtics 110 (stagione in corso e precedente)"
       ],
       "mercati": [
         {
           "mercato": "Vincente",
           "selezione": "Detroit Pistons",
-          "probModello": 0.5284699861999923,
+          "probModello": 0.5510375067718979,
           "probPinnacle": 0.47738338241890144,
           "quota": 2,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se Detroit Pistons vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -47,11 +47,11 @@
         {
           "mercato": "Vincente",
           "selezione": "Boston Celtics",
-          "probModello": 0.4715300138000077,
+          "probModello": 0.4489624932281021,
           "probPinnacle": 0.5226166175810986,
           "quota": 1.83,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se Boston Celtics vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -59,11 +59,11 @@
         {
           "mercato": "Handicap +1.5",
           "selezione": "casa",
-          "probModello": 0.5681581488728238,
+          "probModello": 0.5903628650076436,
           "probPinnacle": 0.5006544502617801,
           "quota": 1.91,
           "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i Detroit Pistons perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Detroit Pistons +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -71,11 +71,11 @@
         {
           "mercato": "Handicap +1.5",
           "selezione": "trasferta",
-          "probModello": 0.43184185112717627,
+          "probModello": 0.4096371349923564,
           "probPinnacle": 0.4993455497382199,
           "quota": 1.91,
           "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i Boston Celtics vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Boston Celtics -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -83,11 +83,11 @@
         {
           "mercato": "Totale punti 220.5",
           "selezione": "Over 220.5",
-          "probModello": 0.3918213589597026,
+          "probModello": 0.546071192550162,
           "probPinnacle": 0.4979057591623037,
           "quota": 1.91,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 220.5: Over vince se le due squadre segnano almeno 221 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (220.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -95,11 +95,11 @@
         {
           "mercato": "Totale punti 220.5",
           "selezione": "Under 220.5",
-          "probModello": 0.6081786410402974,
+          "probModello": 0.45392880744983793,
           "probPinnacle": 0.5020942408376963,
           "quota": 1.91,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 220.5: Under vince se le due squadre segnano al massimo 220 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (220.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -117,8 +117,8 @@
       "modello": "nba",
       "lambda": null,
       "puntiAttesi": {
-        "casa": 116.9,
-        "trasferta": 104.8
+        "casa": 115.1,
+        "trasferta": 108.4
       },
       "pesoModello": 0.25,
       "backToBack": {
@@ -126,17 +126,17 @@
         "trasferta": false
       },
       "ragionamentoBase": [
-        "Punti attesi: New York Knicks 117 – Philadelphia 76ers 105 (stagione in corso e precedente)"
+        "Punti attesi: New York Knicks 115 – Philadelphia 76ers 108 (stagione in corso e precedente)"
       ],
       "mercati": [
         {
           "mercato": "Vincente",
           "selezione": "New York Knicks",
-          "probModello": 0.7997999673757881,
+          "probModello": 0.6826140466891036,
           "probPinnacle": 0.617069527322183,
           "quota": 1.56,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se New York Knicks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -144,11 +144,11 @@
         {
           "mercato": "Vincente",
           "selezione": "Philadelphia 76ers",
-          "probModello": 0.20020003262421193,
+          "probModello": 0.3173859533108963,
           "probPinnacle": 0.38293047267781705,
           "quota": 2.5,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se Philadelphia 76ers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -156,11 +156,11 @@
         {
           "mercato": "Handicap -4.5",
           "selezione": "casa",
-          "probModello": 0.6964842910639288,
+          "probModello": 0.5602888597154196,
           "probPinnacle": 0.5013089005235603,
           "quota": 1.91,
           "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i New York Knicks vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su New York Knicks -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -168,11 +168,11 @@
         {
           "mercato": "Handicap -4.5",
           "selezione": "trasferta",
-          "probModello": 0.3035157089360712,
+          "probModello": 0.4397111402845804,
           "probPinnacle": 0.4986910994764398,
           "quota": 1.91,
           "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i Philadelphia 76ers perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Philadelphia 76ers +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -180,11 +180,11 @@
         {
           "mercato": "Totale punti 232.5",
           "selezione": "Over 232.5",
-          "probModello": 0.28659429311717455,
+          "probModello": 0.31503190135293835,
           "probPinnacle": 0.4918745104505916,
           "quota": 1.95,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 232.5: Over vince se le due squadre segnano almeno 233 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (232.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -192,11 +192,11 @@
         {
           "mercato": "Totale punti 232.5",
           "selezione": "Under 232.5",
-          "probModello": 0.7134057068828255,
+          "probModello": 0.6849680986470617,
           "probPinnacle": 0.5081254895494084,
           "quota": 1.87,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 232.5: Under vince se le due squadre segnano al massimo 232 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (232.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -214,8 +214,8 @@
       "modello": "nba",
       "lambda": null,
       "puntiAttesi": {
-        "casa": 114.4,
-        "trasferta": 111.1
+        "casa": 115.8,
+        "trasferta": 113.6
       },
       "pesoModello": 0.25,
       "backToBack": {
@@ -223,17 +223,17 @@
         "trasferta": false
       },
       "ragionamentoBase": [
-        "Punti attesi: San Antonio Spurs 114 – Oklahoma City Thunder 111 (stagione in corso e precedente)"
+        "Punti attesi: San Antonio Spurs 116 – Oklahoma City Thunder 114 (stagione in corso e precedente)"
       ],
       "mercati": [
         {
           "mercato": "Vincente",
           "selezione": "San Antonio Spurs",
-          "probModello": 0.5907968834919943,
+          "probModello": 0.5625620917567156,
           "probPinnacle": 0.5096048230305256,
           "quota": 1.87,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se San Antonio Spurs vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -241,11 +241,11 @@
         {
           "mercato": "Vincente",
           "selezione": "Oklahoma City Thunder",
-          "probModello": 0.40920311650800567,
+          "probModello": 0.43743790824328443,
           "probPinnacle": 0.4903951769694743,
           "quota": 1.95,
           "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Vincente: vince se Oklahoma City Thunder vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
@@ -253,11 +253,11 @@
         {
           "mercato": "Handicap -1.5",
           "selezione": "casa",
-          "probModello": 0.5483037982506553,
-          "probPinnacle": 0.4856314846964581,
-          "quota": 1.98,
+          "probModello": 0.5197748387660548,
+          "probPinnacle": 0.48693149973343547,
+          "quota": 1.95,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i San Antonio Spurs vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su San Antonio Spurs -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -265,11 +265,11 @@
         {
           "mercato": "Handicap -1.5",
           "selezione": "trasferta",
-          "probModello": 0.4516962017493446,
-          "probPinnacle": 0.5143685153035418,
-          "quota": 1.85,
+          "probModello": 0.48022516123394526,
+          "probPinnacle": 0.5130685002665645,
+          "quota": 1.87,
           "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Handicap: vince se i Oklahoma City Thunder perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Oklahoma City Thunder +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -277,11 +277,11 @@
         {
           "mercato": "Totale punti 231.5",
           "selezione": "Over 231.5",
-          "probModello": 0.3779919327194149,
-          "probPinnacle": 0.49301919720767895,
+          "probModello": 0.45592777273770047,
+          "probPinnacle": 0.4898429319371728,
           "quota": 1.95,
           "fonteQuota": "mediana di 3 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 231.5: Over vince se le due squadre segnano almeno 232 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (231.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
@@ -289,11 +289,11 @@
         {
           "mercato": "Totale punti 231.5",
           "selezione": "Under 231.5",
-          "probModello": 0.6220080672805851,
-          "probPinnacle": 0.5069808027923212,
+          "probModello": 0.5440722272622995,
+          "probPinnacle": 0.5101570680628272,
           "quota": 1.87,
           "fonteQuota": "mediana di 3 bookmaker (SportsGameOdds)",
-          "oraQuota": "2026-10-20T17:49:37+02:00",
+          "oraQuota": "2026-10-20T18:01:15+02:00",
           "frequenzaCampionato": null,
           "etichettaMercato": "Consenso bookmaker",
           "spiegazione": "Totale punti 231.5: Under vince se le due squadre segnano al massimo 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (231.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
