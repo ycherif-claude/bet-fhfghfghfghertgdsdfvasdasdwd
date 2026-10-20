@@ -2,6 +2,7 @@
 // punti attesi, linee comuni, quote mediane e consenso dei bookmaker.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { CONFIG } from '../config.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
 import { balldontlie } from './fonti/balldontlie.js';
 import { sportsgameodds } from './fonti/sportsgameodds.js';
@@ -20,18 +21,22 @@ export function stagioneNba(data) {
 const decimo = (n) => Math.round(n * 10) / 10;
 const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
 
+const puntiEsatti = (n) => (n === 1 ? '1 punto esatto' : `${n} punti esatti`);
+
+// Handicap dal punto di vista della squadra scelta, con la sua linea (con il segno).
 function spiegaHandicap(squadra, linea) {
-  if (linea === 0) return `vince se ${squadra} vince la partita, supplementari compresi`;
+  const i = `i ${squadra}`;
+  if (linea === 0) return `vince se ${i} vincono la partita, supplementari compresi`;
   const intera = Number.isInteger(linea);
   if (linea < 0) {
     const k = Math.floor(-linea) + 1;
-    return `vince se ${squadra} vince con almeno ${k} punti di scarto, supplementari compresi${intera ? ` (con ${-linea} esatti è rimborsata)` : ''}`;
+    return `vince se ${i} vincono con almeno ${k} punti di scarto, supplementari compresi${intera ? ` (con ${puntiEsatti(-linea)} di scarto è rimborsata)` : ''}`;
   }
-  const m = Math.ceil(linea) - 1;
-  const base = m === 0
-    ? `vince se ${squadra} vince la partita`
-    : `vince se ${squadra} vince o perde con al massimo ${m} punti di scarto`;
-  return `${base}, supplementari compresi${intera ? ` (con ${linea} esatti è rimborsata)` : ''}`;
+  const soglia = intera ? linea : Math.ceil(linea);
+  const base = soglia <= 1
+    ? `vince se ${i} vincono la partita`
+    : `vince se ${i} perdono con meno di ${soglia} punti di scarto o vincono`;
+  return `${base}, supplementari compresi${intera ? ` (se perdono con ${puntiEsatti(linea)} di scarto è rimborsata)` : ''}`;
 }
 
 function spiegaTotale(lato, linea) {
@@ -42,8 +47,9 @@ function spiegaTotale(lato, linea) {
 
 const CODA = 'e quota almeno la minima';
 
-// Una riga in italiano per ogni mercato (spec §5.5).
-function spiegazione(mercato, selezione, nomi, linee) {
+// Una riga in italiano per ogni mercato (spec §5.5). Per l'handicap parla della squadra scelta
+// e della sua linea: sulla scheda della trasferta la linea è quella opposta al nome del mercato.
+export function spiegazioneMercato(mercato, selezione, nomi, linee) {
   if (mercato === 'Vincente') {
     return `Vincente: vince se ${selezione} vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.`;
   }
@@ -51,7 +57,7 @@ function spiegazione(mercato, selezione, nomi, linee) {
     const h = linee.handicap;
     const sq = selezione === 'casa' ? nomi.casa : nomi.trasferta;
     const lineaSq = selezione === 'casa' ? h : -h;
-    return `${mercato}: ${spiegaHandicap(sq, lineaSq)}. Gioca solo con la stessa linea (${formattaLinea(h)}) ${CODA}: con una linea diversa il calcolo non vale.`;
+    return `Handicap: ${spiegaHandicap(sq, lineaSq)}. Gioca solo su ${sq} ${formattaLinea(lineaSq)} (stessa linea) ${CODA}: con una linea diversa il calcolo non vale.`;
   }
   const lato = selezione.split(' ')[0];
   return `${mercato}: ${spiegaTotale(lato, linee.totale)}. Gioca solo con la stessa linea (${linee.totale}) ${CODA}: con una linea diversa il calcolo non vale.`;
@@ -81,15 +87,20 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
   }
   raccolta.crediti.sportsgameodds.oggetti = eventi.length;
   const ignote = [...(eventi.nonRiconosciute ?? [])];
+  // Riga di diagnostica di SportsGameOdds: si scrive alla fine, con i mercati scartati senza consenso.
   const d = eventi.diagnostica;
+  const parti = [];
   if (d) {
-    const parti = [];
     if (d.lineaMancante?.handicap) parti.push(`${d.lineaMancante.handicap} handicap senza linea`);
     if (d.lineaMancante?.totale) parti.push(`${d.lineaMancante.totale} totali senza linea`);
     if (d.quoteNonConvertibili) parti.push(plurale(d.quoteNonConvertibili, 'quota non convertibile', 'quote non convertibili'));
     if (d.handicapAsimmetrico) parti.push(`${d.handicapAsimmetrico} handicap con linee non opposte`);
-    if (parti.length) errore('SportsGameOdds', parti.join(', '));
   }
+  let senzaConsenso = 0;
+  const diagnostica = () => {
+    if (senzaConsenso) parti.push(plurale(senzaConsenso, 'mercato senza consenso dei bookmaker', 'mercati senza consenso dei bookmaker'));
+    if (parti.length) errore('SportsGameOdds', parti.join(', '));
+  };
   const dentro = (e) => {
     if (!e.inizio) {
       errore('SportsGameOdds', `evento ${e.casa} - ${e.trasferta} senza orario d'inizio`);
@@ -108,6 +119,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
   const storico = [];
   let senzaData = 0;
   let caricate = 0;
+  let precedente = false;
   for (const s of [stagione, stagione - 1]) {
     try {
       const p = await fonti.balldontlie.partite({ stagioni: [s] }, { chiave: chiavi.balldontlie });
@@ -115,19 +127,29 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
       ignote.push(...(p.nonRiconosciute ?? []));
       senzaData += p.diagnostica?.senzaData ?? 0;
       caricate++;
+      if (s === stagione - 1) precedente = true;
     } catch (e) {
       errore(`balldontlie stagione ${s}`, e);
     }
   }
   if (senzaData) errore('balldontlie', plurale(senzaData, 'partita senza data', 'partite senza data'));
   if (ignote.length) erroriGiro.push(`Squadre NBA non riconosciute: ${[...new Set(ignote)].join(', ')}`);
-  if (!caricate || !delGiorno.length) return raccolta;
+  if (!caricate || !delGiorno.length) {
+    diagnostica();
+    return raccolta;
+  }
 
   // 3. Forze e partite.
   const forze = stimaForzeNba(storico, { oggi: data, stagioneCorrente: stagione });
   const intero = (n) => String(Math.round(n));
+  // Senza la stagione precedente, a inizio stagione le forze poggiano su troppo poche partite.
+  const poche = (sq) => (forze.partiteStagione?.get(sq) ?? 0) < CONFIG.nba.minPartiteStagione;
   for (const ev of delGiorno) {
     const nomi = { casa: ev.casa, trasferta: ev.trasferta };
+    if (!precedente && (poche(ev.casa) || poche(ev.trasferta))) {
+      erroriGiro.push(`NBA: ${ev.casa} - ${ev.trasferta} senza dati sufficienti (stagione precedente non disponibile)`);
+      continue;
+    }
     const dataUsa = dataUsaDi(new Date(ev.inizio));
     const b2b = { casa: backToBack(storico, ev.casa, dataUsa), trasferta: backToBack(storico, ev.trasferta, dataUsa) };
     const attesi = puntiAttesi(forze, ev.casa, ev.trasferta, { b2bCasa: b2b.casa, b2bTrasferta: b2b.trasferta });
@@ -153,18 +175,20 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
       }
       const q = quotaMedianaNba(ev, tipo, sel, linea);
       if (!q) continue;
+      // Senza consenso (meno di minBookmaker con entrambe le quote) il mercato non si propone.
       const consenso = consensoNba(ev, tipo, linea);
+      if (consenso?.[sel] == null) { senzaConsenso++; continue; }
       mercati.push({
         mercato: m.mercato,
         selezione: m.selezione,
         probModello: m.probModello,
-        probPinnacle: consenso?.[sel] ?? null,
+        probPinnacle: consenso[sel],
         quota: q.quota,
         fonteQuota: `mediana di ${q.n} bookmaker (SportsGameOdds)`,
         oraQuota: ora,
         frequenzaCampionato: null,
         etichettaMercato: 'Consenso bookmaker',
-        spiegazione: spiegazione(m.mercato, m.selezione, nomi, linee),
+        spiegazione: spiegazioneMercato(m.mercato, m.selezione, nomi, linee),
       });
     }
     if (!mercati.length) {
@@ -191,6 +215,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
       mercati,
     });
   }
+  diagnostica();
   return raccolta;
 }
 

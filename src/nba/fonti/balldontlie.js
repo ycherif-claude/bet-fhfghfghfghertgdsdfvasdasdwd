@@ -6,6 +6,13 @@ import { squadraNba } from '../squadre.js';
 const MAX_PAGINE = 50;
 const BASE = 'https://api.balldontlie.io/v1/games';
 const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
+// Fine dell'ultima richiesta, condivisa tra le chiamate: il limite di balldontlie vale per la chiave,
+// quindi anche la prima richiesta di una nuova chiamata aspetta attesaMs dalla precedente.
+let ultimaRichiesta = -Infinity;
+async function rispettaLimite(attesaMs) {
+  const resta = ultimaRichiesta + attesaMs - Date.now();
+  if (resta > 0) await pausa(resta);
+}
 const numero = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 
 function json(testo) {
@@ -31,15 +38,18 @@ export const balldontlie = {
     const diagnostica = { senzaData: 0 };
     const visti = new Set();
     let cursore = null;
-    let primo = true;
     do {
       if (visti.size >= MAX_PAGINE) throw new Error(`api.balldontlie.io: oltre ${MAX_PAGINE} pagine`);
       visti.add(cursore ?? '');
-      if (!primo) await pausa(attesaMs);
-      primo = false;
-      const r = await scarica(`${BASE}?${parametri(filtri, cursore)}`, {
-        fetch, attesaMs, headers: chiave ? { Authorization: chiave } : {},
-      });
+      await rispettaLimite(attesaMs);
+      let r;
+      try {
+        r = await scarica(`${BASE}?${parametri(filtri, cursore)}`, {
+          fetch, attesaMs, headers: chiave ? { Authorization: chiave } : {},
+        });
+      } finally {
+        ultimaRichiesta = Date.now();
+      }
       const corpo = json(r.testo);
       for (const g of corpo.data ?? []) {
         const casa = squadraNba(g.home_team?.full_name ?? g.home_team?.abbreviation);

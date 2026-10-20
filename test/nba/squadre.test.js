@@ -39,3 +39,11 @@ test('CONFIG.nba congelato con i valori del piano', () => {
   assert.equal(CONFIG.nba.oraSerale, '22:00');
   assert.equal(CONFIG.nba.attesaBalldontlieMs, 13000);
 });
+test('Knicks: niente alias della sola città (New York, NY)', () => {
+  assert.equal(squadraNba('New York'), null);
+  assert.equal(squadraNba('NY'), null);
+  assert.equal(squadraNba('Knicks').abbr, 'NYK');
+  assert.equal(squadraNba('NY Knicks').abbr, 'NYK');
+  assert.equal(squadraNba('NYK').abbr, 'NYK');
+  assert.equal(squadraNba('New York Knicks').abbr, 'NYK');
+});

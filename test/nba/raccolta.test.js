@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { eseguiRaccoltaNba, stagioneNba, raccoltaDiErrore, ERRORE_CHIAVI } from '../../src/nba/raccolta.js';
+import { eseguiRaccoltaNba, stagioneNba, raccoltaDiErrore, ERRORE_CHIAVI, spiegazioneMercato } from '../../src/nba/raccolta.js';
 
 const adesso = new Date('2026-10-20T05:07:00Z'); // 07:07 a Roma
 const chiavi = { balldontlie: 'B', sportsgameodds: 'S' };
@@ -93,8 +93,10 @@ test('mercati con linea comune, quota mediana, consenso e spiegazione', async ()
   assert.equal(h.frequenzaCampionato, null);
   assert.ok(h.probPinnacle > 0.4 && h.probPinnacle < 0.6);
   assert.ok(h.probModello > 0 && h.probModello < 1);
-  assert.match(h.spiegazione, /^Handicap -4\.5: vince se Boston Celtics vince con almeno 5 punti di scarto, supplementari compresi/);
-  assert.match(h.spiegazione, /Gioca solo con la stessa linea \(-4\.5\) e quota almeno la minima: con una linea diversa il calcolo non vale/);
+  assert.equal(h.spiegazione, 'Handicap: vince se i Boston Celtics vincono con almeno 5 punti di scarto, supplementari compresi. '
+    + 'Gioca solo su Boston Celtics -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.');
+  assert.equal(m[3].spiegazione, 'Handicap: vince se i New York Knicks perdono con meno di 5 punti di scarto o vincono, supplementari compresi. '
+    + 'Gioca solo su New York Knicks +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.');
   assert.match(m[4].spiegazione, /Over vince se le due squadre segnano almeno 222 punti in tutto, supplementari compresi/);
   assert.match(m[0].spiegazione, /^Vincente: vince se Boston Celtics vince la partita, supplementari compresi/);
   assert.equal(m[0].quota, 1.55);
@@ -199,4 +201,56 @@ test('avviso handicap: evento del giorno senza handicap, evento fuori giorno con
   const fuori = evento({ id: 'e9', casa: 'Miami Heat', trasferta: 'Chicago Bulls', inizio: '2026-10-22T10:00:00+02:00' });
   const r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([giorno, fuori]), chiavi });
   assert.ok(r.erroriGiro.includes('SportsGameOdds alle 07:07: nessun handicap disponibile (controllare il campo spread)'));
+});
+
+test('spiegazione Handicap: squadra scelta con la sua linea, per casa e trasferta e con linee intere', () => {
+  const nomi = { casa: 'Boston Celtics', trasferta: 'New York Knicks' };
+  const sp = (h, sel) => spiegazioneMercato(`Handicap ${h > 0 ? '+' : ''}${h}`, sel, nomi, { handicap: h, totale: null });
+  const coda = ' (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.';
+  assert.equal(sp(-5, 'casa'), `Handicap: vince se i Boston Celtics vincono con almeno 6 punti di scarto, supplementari compresi (con 5 punti esatti di scarto è rimborsata). Gioca solo su Boston Celtics -5${coda}`);
+  assert.equal(sp(-5, 'trasferta'), `Handicap: vince se i New York Knicks perdono con meno di 5 punti di scarto o vincono, supplementari compresi (se perdono con 5 punti esatti di scarto è rimborsata). Gioca solo su New York Knicks +5${coda}`);
+  assert.equal(sp(3.5, 'casa'), `Handicap: vince se i Boston Celtics perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Boston Celtics +3.5${coda}`);
+  assert.equal(sp(3.5, 'trasferta'), `Handicap: vince se i New York Knicks vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su New York Knicks -3.5${coda}`);
+  assert.equal(sp(-0.5, 'trasferta'), `Handicap: vince se i New York Knicks vincono la partita, supplementari compresi. Gioca solo su New York Knicks +0.5${coda}`);
+  assert.equal(sp(0, 'trasferta'), `Handicap: vince se i New York Knicks vincono la partita, supplementari compresi. Gioca solo su New York Knicks 0${coda}`);
+  assert.equal(sp(-1, 'trasferta'), `Handicap: vince se i New York Knicks vincono la partita, supplementari compresi (se perdono con 1 punto esatto di scarto è rimborsata). Gioca solo su New York Knicks +1${coda}`);
+  assert.equal(sp(1, 'trasferta'), `Handicap: vince se i New York Knicks vincono con almeno 2 punti di scarto, supplementari compresi (con 1 punto esatto di scarto è rimborsata). Gioca solo su New York Knicks -1${coda}`);
+});
+
+test('mercato con quota ma senza consenso (meno di 3 bookmaker con entrambe le quote): scartato e contato', async () => {
+  const c = bk('c', 1.95);
+  c.mercati.totale = { '221.5': { over: 1.9 } };
+  const meta = { diagnostica: { lineaMancante: { handicap: 2, totale: 0 }, quoteNonConvertibili: 0, handicapAsimmetrico: 0 } };
+  const r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento({ bookmaker: [bk('a'), bk('b', 1.93), c] })], meta), chiavi });
+  const m = r.partite[0].mercati;
+  assert.ok(!m.some((x) => x.mercato.startsWith('Totale punti')));
+  assert.ok(m.every((x) => x.probPinnacle !== null));
+  assert.ok(r.erroriGiro.includes('SportsGameOdds alle 07:07: 2 handicap senza linea, 1 mercato senza consenso dei bookmaker'));
+  const solo = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento({ bookmaker: [bk('a'), bk('b', 1.93), c] })]), chiavi });
+  assert.ok(solo.erroriGiro.includes('SportsGameOdds alle 07:07: 1 mercato senza consenso dei bookmaker'));
+});
+
+test('stagione precedente non disponibile e squadra con meno di 10 partite: nessun mercato e avviso', async () => {
+  const conPrecedenteGiu = (correnti) => ({
+    sportsgameodds: { eventi: async () => conMeta([evento()]) },
+    balldontlie: {
+      partite: async (f) => {
+        if (f.stagioni[0] === 2025) throw new Error('HTTP 500');
+        return conMeta(correnti);
+      },
+    },
+  });
+  const sei = storico().filter((p) => p.stagione === 2026); // 6 partite per squadra
+  const r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: conPrecedenteGiu(sei), chiavi });
+  assert.equal(r.partite.length, 0);
+  assert.ok(r.erroriGiro.includes('balldontlie stagione 2025 alle 07:07: HTTP 500'));
+  assert.ok(r.erroriGiro.includes('NBA: Boston Celtics - New York Knicks senza dati sufficienti (stagione precedente non disponibile)'));
+  // Con 12 partite a testa nella stagione in corso la partita resta.
+  const dodici = [...sei, ...sei.map((p) => ({ ...p, id: p.id + 1000 }))];
+  const r2 = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: conPrecedenteGiu(dodici), chiavi });
+  assert.equal(r2.partite.length, 1);
+  assert.ok(!r2.erroriGiro.some((e) => e.includes('senza dati sufficienti')));
+  // Con la stagione precedente caricata non serve il minimo.
+  const r3 = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento()]), chiavi });
+  assert.equal(r3.partite.length, 1);
 });

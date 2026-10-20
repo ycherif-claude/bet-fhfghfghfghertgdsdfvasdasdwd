@@ -22,7 +22,7 @@ const elenco = [
   ['MIL', 'Milwaukee Bucks', ['Milwaukee', 'Bucks']],
   ['MIN', 'Minnesota Timberwolves', ['Minnesota', 'Timberwolves', 'Wolves']],
   ['NOP', 'New Orleans Pelicans', ['New Orleans', 'Pelicans', 'NOP']],
-  ['NYK', 'New York Knicks', ['New York', 'NY Knicks', 'Knicks', 'NY']],
+  ['NYK', 'New York Knicks', ['NY Knicks', 'Knicks']],
   ['OKC', 'Oklahoma City Thunder', ['Oklahoma City', 'Oklahoma', 'Thunder']],
   ['ORL', 'Orlando Magic', ['Orlando', 'Magic']],
   ['PHI', 'Philadelphia 76ers', ['Philadelphia', 'Philly', '76ers', 'Sixers']],

@@ -185,3 +185,17 @@ test('nonRiconosciute registra entrambi i nomi; balldontlie senza date è scarta
   const sgo = eventoSgo((e) => { e.teams.home.names.long = 'Foo A'; e.teams.away.names.long = 'Foo B'; });
   assert.deepEqual((await eventiSgo(sgo)).nonRiconosciute, ['Foo A', 'Foo B']);
 });
+
+test('balldontlie: il limite vale anche tra due chiamate consecutive', async () => {
+  const una = () => fetchFinto([risposta(200, JSON.stringify({ data: [], meta: { next_cursor: null } }))]);
+  const istanti = [];
+  const conOra = (f) => async (...a) => { istanti.push(Date.now()); return f(...a); };
+  await balldontlie.partite({ date: ['2026-10-20'] }, { fetch: conOra(una()), attesaMs: 80 });
+  await balldontlie.partite({ date: ['2026-10-21'] }, { fetch: conOra(una()), attesaMs: 80 });
+  assert.equal(istanti.length, 2);
+  assert.ok(istanti[1] - istanti[0] >= 75, `solo ${istanti[1] - istanti[0]} ms tra le richieste`);
+  // Con attesaMs 0 nessuna attesa.
+  const t0 = Date.now();
+  await balldontlie.partite({}, { fetch: una(), attesaMs: 0 });
+  assert.ok(Date.now() - t0 < 50);
+});
