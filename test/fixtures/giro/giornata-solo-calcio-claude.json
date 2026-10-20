@@ -1,0 +1,223 @@
+{
+  "data": "2026-10-20",
+  "generataAlle": "2026-10-20T08:10:00+02:00",
+  "giro": "claude",
+  "notizieControllate": true,
+  "competizioniNonCoperte": [],
+  "candidati": [
+    {
+      "id": "calcio-2026-10-20-manchester-city-aek-athens-1x2-x",
+      "sport": "calcio",
+      "competizione": "Champions League",
+      "partita": "Manchester City - AEK Athens",
+      "idPartita": "calcio-2026-10-20-manchester-city-aek-athens",
+      "inizio": "2026-10-20T21:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "X",
+      "prob": 0.09651861080392515,
+      "quota": 10.5,
+      "fonteQuota": "mediana di 20 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-20T00:24:36+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 10%",
+        "Quota mediana 10,50 su 20 bookmaker alle 00:24",
+        "Notizie non controllate per questa partita"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.09651861080392515,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-20-manchester-city-aek-athens-1x2-2",
+      "sport": "calcio",
+      "competizione": "Champions League",
+      "partita": "Manchester City - AEK Athens",
+      "idPartita": "calcio-2026-10-20-manchester-city-aek-athens",
+      "inizio": "2026-10-20T21:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.04860226493273794,
+      "quota": 22,
+      "fonteQuota": "mediana di 20 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-20T00:24:36+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 5%",
+        "Quota mediana 22,00 su 20 bookmaker alle 00:24",
+        "Notizie non controllate per questa partita"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.04860226493273794,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-20-paris-saint-germain-barcelona-1x2-x",
+      "sport": "calcio",
+      "competizione": "Champions League",
+      "partita": "Paris Saint Germain - Barcelona",
+      "idPartita": "calcio-2026-10-20-paris-saint-germain-barcelona",
+      "inizio": "2026-10-20T21:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "X",
+      "prob": 0.2256317689530686,
+      "quota": 4.46,
+      "fonteQuota": "mediana di 20 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-20T00:24:36+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 23%",
+        "Quota mediana 4,46 su 20 bookmaker alle 00:24",
+        "Notizie non controllate per questa partita"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.2256317689530686,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-1x2-2",
+      "sport": "calcio",
+      "competizione": "Championship",
+      "partita": "Wolverhampton Wanderers - Portsmouth",
+      "idPartita": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth",
+      "inizio": "2026-10-20T20:45:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.20967576055088272,
+      "quota": 5.2,
+      "fonteQuota": "mediana di 20 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-20T00:24:36+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Wolverhampton Wanderers 1,8 – Portsmouth 1,1 (gol e xG, ultime 2 stagioni)",
+        "Modello 24%, Pinnacle 18%, probabilità usata 21%",
+        "Quota mediana 5,20 su 20 bookmaker alle 00:24",
+        "Notizie: assente il centravanti (BBC Sport, 08:05) → 2: modello da 23% a 24%, finale 21%"
+      ],
+      "probModello": 0.2400204544456414,
+      "probPinnacle": 0.17933106665612403,
+      "correzioneNotizie": {
+        "delta": 0.014247859176518773,
+        "motivo": "assente il centravanti",
+        "fonte": "BBC Sport"
+      }
+    },
+    {
+      "id": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-handicap-asiatico-meno-1-casa",
+      "sport": "calcio",
+      "competizione": "Championship",
+      "partita": "Wolverhampton Wanderers - Portsmouth",
+      "idPartita": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth",
+      "inizio": "2026-10-20T20:45:00+02:00",
+      "tipo": "singola",
+      "mercato": "Handicap asiatico -1",
+      "selezione": "casa",
+      "prob": 0.38584481807299326,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Wolverhampton Wanderers 1,8 – Portsmouth 1,1 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 39%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 08:05: nessuna correzione"
+      ],
+      "probModello": 0.38584481807299326,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-angoli-under-over-10-5-over-10-5",
+      "sport": "calcio",
+      "competizione": "Championship",
+      "partita": "Wolverhampton Wanderers - Portsmouth",
+      "idPartita": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth",
+      "inizio": "2026-10-20T20:45:00+02:00",
+      "tipo": "singola",
+      "mercato": "Angoli Under/Over 10.5",
+      "selezione": "Over 10.5",
+      "prob": 0.6011765431989093,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Wolverhampton Wanderers 1,8 – Portsmouth 1,1 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 60%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 08:05: nessuna correzione"
+      ],
+      "probModello": 0.6011765431989093,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    }
+  ],
+  "giocate": [
+    {
+      "id": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-handicap-asiatico-meno-1-casa",
+      "sport": "calcio",
+      "competizione": "Championship",
+      "partita": "Wolverhampton Wanderers - Portsmouth",
+      "idPartita": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth",
+      "inizio": "2026-10-20T20:45:00+02:00",
+      "tipo": "singola",
+      "mercato": "Handicap asiatico -1",
+      "selezione": "casa",
+      "prob": 0.38584481807299326,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Wolverhampton Wanderers 1,8 – Portsmouth 1,1 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 39%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 08:05: nessuna correzione"
+      ],
+      "probModello": 0.38584481807299326,
+      "probPinnacle": null,
+      "correzioneNotizie": null,
+      "value": 0.05335635333927158,
+      "quotaMinima": 2.73,
+      "puntata": {
+        "euro": 2,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null
+    }
+  ],
+  "scartate": [
+    {
+      "idCandidato": "calcio-2026-10-20-paris-saint-germain-barcelona-1x2-x",
+      "motivo": "notizia: formazioni incerte"
+    },
+    {
+      "idCandidato": "calcio-2026-10-20-manchester-city-aek-athens-1x2-x",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-10-20-manchester-city-aek-athens-1x2-2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-1x2-2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-10-20-wolverhampton-wanderers-portsmouth-angoli-under-over-10-5-over-10-5",
+      "motivo": "altra giocata sulla stessa partita"
+    }
+  ],
+  "erroriGiro": []
+}
