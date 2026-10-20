@@ -1,4 +1,4 @@
-// Giro del mattino: dalla raccolta (più le notizie di Claude) al file della giornata.
+// Giro del mattino: dalle raccolte di tutti gli sport (più le notizie di Claude) al file della giornata.
 // Uso: node src/giro/giro.js [--anteprima] [--riserva]
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,6 +10,7 @@ import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
+import { leggiRaccolte } from './raccolte.js';
 
 const PARTITE_ANTEPRIMA = 5;
 
@@ -42,21 +43,6 @@ export function puoScrivere(fileEsistente, segnature, adesso, modo) {
   const t = adesso.getTime();
   if (voci.some((v) => Date.parse(v.inizio) <= t)) return { ok: false, motivo: 'una partita è già iniziata' };
   return { ok: true };
-}
-
-function leggiRaccolta(dirData, oggi) {
-  const rel = `data/raccolta/${oggi}.json`;
-  const file = path.join(dirData, 'raccolta', `${oggi}.json`);
-  if (!fs.existsSync(file)) return { raccolta: null, errore: `Raccolta di oggi mancante: ${rel}` };
-  let r;
-  try {
-    r = JSON.parse(fs.readFileSync(file, 'utf8'));
-  } catch (e) {
-    return { raccolta: null, errore: `Raccolta di oggi illeggibile: ${rel} (${e.message})` };
-  }
-  if (!oggetto(r) || !Array.isArray(r.partite)) return { raccolta: null, errore: `Raccolta di oggi illeggibile: ${rel} (manca l'elenco delle partite)` };
-  if (r.data !== oggi) return { raccolta: null, errore: `Raccolta di oggi mancante: ${rel} (il file è del ${r.data})` };
-  return { raccolta: r, errore: null };
 }
 
 function leggiNotizie(dirData, oggi, raccolta) {
@@ -142,13 +128,16 @@ function calcolaAnteprima(raccolta, stato, adesso) {
 export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   if (modo !== 'claude' && modo !== 'riserva') throw new Error(`Modo del giro non valido: ${modo}`);
   const oggi = giornataDi(adesso);
-  const { raccolta, errore } = leggiRaccolta(dirData, oggi);
+  // Calcio e sport noti in una sola raccolta: una sola selezione, tetti comuni.
+  const { raccolta, errori, lette } = leggiRaccolte(dirData, oggi);
   const { stato, segnature, avvisi } = statoPrecedente(dirData, oggi, adesso);
 
   if (anteprima) return { scritto: false, giornata: null, anteprima: calcolaAnteprima(raccolta, stato, adesso) };
 
-  // Le notizie servono solo se c'è la raccolta di oggi; la riserva le ignora.
-  const notizie = modo === 'claude' && raccolta ? leggiNotizie(dirData, oggi, raccolta) : null;
+  // Le notizie servono se c'è la raccolta calcio di oggi (come sempre) o una raccolta di un altro
+  // sport con almeno una partita; si validano sulla raccolta unita. La riserva le ignora.
+  const servonoNotizie = raccolta !== null && (lette.calcio || lette.partiteSport > 0);
+  const notizie = modo === 'claude' && servonoNotizie ? leggiNotizie(dirData, oggi, raccolta) : null;
   const { candidati, preScartate, iniziate } = raccolta
     ? costruisciCandidati(raccolta, notizie, { adesso })
     : { candidati: [], preScartate: [], iniziate: 0 };
@@ -166,7 +155,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),
-      ...(errore ? [errore] : []),
+      ...errori,
       ...(modo === 'riserva' ? ['Giro di Claude non eseguito: notizie non controllate'] : []),
       ...(iniziate > 0 ? [iniziate === 1 ? '1 partita già iniziata esclusa' : `${iniziate} partite già iniziate escluse`] : []),
       ...avvisi,

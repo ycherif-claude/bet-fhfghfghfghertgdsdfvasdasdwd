@@ -13,23 +13,32 @@ const SINGOLA = CONFIG.quote.singola;
 const pct = (p) => `${Math.round(Number((p * 100).toFixed(6)))}%`;
 const virgola = (q) => q.toFixed(2).replace('.', ',');
 const numerico = (x) => typeof x === 'number' && Number.isFinite(x);
+const testoPieno = (x) => typeof x === 'string' && x.trim() !== '';
 const ora = (iso) => (iso && Number.isFinite(Date.parse(iso)) ? oraRoma(new Date(iso)) : null);
 
 export { idCandidato };
 
-// Probabilità usata: media pesata modello/Pinnacle, oppure quella disponibile.
-export function probUsata(probModello, probPinnacle) {
+const PESO_MODELLO_CALCIO = 1 - C.pesoPinnacle;
+
+// Probabilità usata: media pesata modello/mercato (Pinnacle, o il consenso dei bookmaker per
+// l'NBA), oppure quella disponibile. Col peso del calcio il conto è quello di sempre, cifra per cifra.
+export function probUsata(probModello, probMercato, pesoModello = PESO_MODELLO_CALCIO) {
   const pm = numerico(probModello) ? probModello : null;
-  const pp = numerico(probPinnacle) ? probPinnacle : null;
-  if (pm !== null && pp !== null) return C.pesoPinnacle * pp + (1 - C.pesoPinnacle) * pm;
+  const pp = numerico(probMercato) ? probMercato : null;
+  if (pm !== null && pp !== null) {
+    const pesoMercato = pesoModello === PESO_MODELLO_CALCIO ? C.pesoPinnacle : 1 - pesoModello;
+    return pesoMercato * pp + (1 - pesoMercato) * pm;
+  }
   return pm ?? pp;
 }
 
+// Il riferimento di mercato si chiama come dice la raccolta ("Consenso bookmaker" per l'NBA).
 function rigaProb(m, prob) {
   const pm = numerico(m.probModello);
   const pp = numerico(m.probPinnacle);
-  if (pm && pp) return `Modello ${pct(m.probModello)}, Pinnacle ${pct(m.probPinnacle)}, probabilità usata ${pct(prob)}`;
-  return `${pm ? 'Solo modello' : 'Solo Pinnacle'}, probabilità usata ${pct(prob)}`;
+  const mercato = m.etichettaMercato ?? 'Pinnacle';
+  if (pm && pp) return `Modello ${pct(m.probModello)}, ${mercato} ${pct(m.probPinnacle)}, probabilità usata ${pct(prob)}`;
+  return `${pm ? 'Solo modello' : `Solo ${mercato}`}, probabilità usata ${pct(prob)}`;
 }
 
 function rigaQuota(m) {
@@ -57,7 +66,7 @@ function creaCandidato(partita, m, prob, notizie) {
   const senzaQuota = m.quota === null;
   return {
     id: idCandidato(partita.idPartita, m.mercato, m.selezione),
-    sport: 'calcio',
+    sport: partita.sport ?? 'calcio',
     competizione: partita.competizione,
     partita: partita.partita,
     idPartita: partita.idPartita,
@@ -75,6 +84,8 @@ function creaCandidato(partita, m, prob, notizie) {
       rigaProb(m, prob),
       rigaQuota(m),
       rigaNotizie(m, prob, partita, notizie),
+      // Spiegazione del mercato (NBA, spec §5.5): ultima riga.
+      ...(testoPieno(m.spiegazione) ? [m.spiegazione] : []),
     ],
     probModello: numerico(m.probModello) ? m.probModello : null,
     probPinnacle: numerico(m.probPinnacle) ? m.probPinnacle : null,
@@ -94,7 +105,9 @@ export function valutaMercati(raccolta, notizie, { adesso = null } = {}) {
     if (adesso && Date.parse(originale.inizio) <= adesso.getTime()) { iniziate++; continue; }
     const partita = applicaCorrezioni(originale, correzioni.filter((c) => c.idPartita === originale.idPartita));
     for (const m of partita.mercati) {
-      const prob = probUsata(m.probModello, m.probPinnacle);
+      const prob = numerico(partita.pesoModello)
+        ? probUsata(m.probModello, m.probPinnacle, partita.pesoModello)
+        : probUsata(m.probModello, m.probPinnacle);
       const o = ordine++;
       if (!probValida(prob)) continue;
       const quota = numerico(m.quota) && m.quota > 1 ? m.quota : null;

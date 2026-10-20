@@ -136,3 +136,39 @@ test('1X2: una sola correzione accettata; quota proporzionale fuori 0.02–0.98 
   assert.match(errori[1], /"2"/);
   assert.match(errori[0], /0\.02/);
 });
+
+// --- NBA (Fase 4a) ---
+import { correggibile } from '../../src/giro/notizie.js';
+import { celticsKnicks, NBA1 } from './nba-prova.js';
+
+const raccoltaMista = () => ({ data: '2026-10-20', partite: [...raccolta().partite, celticsKnicks()] });
+
+test('mercati NBA correggibili: Vincente, Handicap <linea>, Totale punti <linea>', () => {
+  for (const x of ['Vincente', 'Handicap -4.5', 'Handicap +3', 'Handicap 0', 'Totale punti 221.5', 'Totale punti 220']) assert.equal(correggibile(x), true, x);
+  for (const x of ['Handicap asiatico -1', 'Handicap', 'Handicap -', 'Totale punti', 'Vincente finale']) assert.equal(correggibile(x), false, x);
+});
+
+test('correzione su Vincente: complementare automatica; su Handicap -4.5 casa → trasferta −delta', () => {
+  const corrNba = [corr(NBA1, 'Vincente', 'New York Knicks', 0.04), corr(NBA1, 'Handicap -4.5', 'casa', -0.03)];
+  assert.deepEqual(validaNotizie(notizie(corrNba), raccoltaMista()), []);
+  const c = applicaCorrezioni(celticsKnicks(), corrNba);
+  const pr = (mercato, sel) => c.mercati.find((x) => x.mercato === mercato && x.selezione === sel);
+  assert.ok(Math.abs(pr('Vincente', 'New York Knicks').probModello - 0.42) < 1e-9);
+  assert.ok(Math.abs(pr('Vincente', 'Boston Celtics').probModello - 0.58) < 1e-9);
+  assert.ok(Math.abs(pr('Vincente', 'Boston Celtics').correzioneNotizie.delta + 0.04) < 1e-9);
+  assert.ok(Math.abs(pr('Handicap -4.5', 'casa').probModello - 0.49) < 1e-9);
+  assert.ok(Math.abs(pr('Handicap -4.5', 'trasferta').probModello - 0.51) < 1e-9);
+  assert.ok(Math.abs(pr('Handicap -4.5', 'trasferta').correzioneNotizie.delta - 0.03) < 1e-9);
+  assert.equal(pr('Totale punti 221.5', 'Over 221.5').correzioneNotizie, null);
+});
+
+test('notizie NBA validate sulla raccolta unita: limiti come nel calcio', () => {
+  const r = raccoltaMista();
+  // Vincente: una sola correzione per mercato, l'altra si ricava.
+  assert.match(validaNotizie(notizie([corr(NBA1, 'Vincente', 'Boston Celtics', 0.02), corr(NBA1, 'Vincente', 'New York Knicks', -0.02)]), r)[0], /una sola correzione/);
+  assert.match(validaNotizie(notizie([corr(NBA1, 'Totale punti 221.5', 'Over 221.5', 0.09)]), r)[0], /0\.08/);
+  assert.match(validaNotizie(notizie([corr(NBA1, 'Handicap -5.5', 'casa', 0.02)]), r)[0], /inesistente/);
+  assert.deepEqual(validaNotizie(notizie([], [{ idPartita: NBA1, idCandidato: `${NBA1}-handicap-meno-4-5-trasferta`, motivo: 'Brunson fuori', fonte: 'NBA injury report' }]), r), []);
+  // Una correzione calcio e una NBA insieme.
+  assert.deepEqual(validaNotizie(notizie([corr(P1, '1X2', '1', 0.02), corr(NBA1, 'Totale punti 221.5', 'Under 221.5', -0.02)]), r), []);
+});

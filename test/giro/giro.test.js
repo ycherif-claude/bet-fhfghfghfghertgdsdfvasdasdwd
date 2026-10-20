@@ -9,6 +9,7 @@ import { eseguiGiro, puoScrivere } from '../../src/giro/giro.js';
 import { costruisciDati } from '../../src/build/costruisci-sito.js';
 import { giornataDi } from '../../src/bankroll/settimana.js';
 import { isoRoma } from '../../src/calcio/testo.js';
+import { raccoltaNba, partitaNba, mNba, NBA1 } from './nba-prova.js';
 
 const GIRO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'giro', 'giro.js');
 const P1 = 'calcio-2026-10-20-inter-lecce';
@@ -50,11 +51,14 @@ const notizie = (correzioni = [], esclusioni = []) => ({
   controllateAlle: '2026-10-20T08:15:00+02:00', partiteControllate: [P1, P2], esclusioni, correzioni,
 });
 
-function dirTemp({ racc = raccolta(), noti = notizie(), giornate = [], segnature = [] } = {}) {
+// `nba`: raccolta NBA del giorno; per default è presente ma vuota, così i test del solo calcio
+// non ricevono la riga "Raccolta NBA di oggi mancante" (`nba: null` per ometterla).
+function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), giornate = [], segnature = [] } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-giro-'));
   for (const sotto of ['raccolta', 'giornate', 'segnature']) fs.mkdirSync(path.join(d, sotto));
   if (racc) fs.writeFileSync(path.join(d, 'raccolta', `${racc.data}.json`), JSON.stringify(racc));
   if (noti) fs.writeFileSync(path.join(d, 'raccolta', '2026-10-20-notizie.json'), JSON.stringify(noti));
+  if (nba) fs.writeFileSync(path.join(d, 'raccolta', `${nba.data}-nba.json`), JSON.stringify(nba));
   for (const g of giornate) fs.writeFileSync(path.join(d, 'giornate', `${g.data}.json`), JSON.stringify(g, null, 2));
   for (const s of segnature) scriviSegnatura(d, s);
   return d;
@@ -317,4 +321,119 @@ test('riserva dopo un giro claude vuoto ma con la raccolta (nessun candidato): i
   assert.equal(testo(d), testoPrima);
   assert.equal(puoScrivere(vuota, [], ADESSO, 'riserva').ok, false);
   assert.deepEqual(puoScrivere({ ...vuota, erroriGiro: ['Raccolta di oggi mancante: data/raccolta/2026-10-20.json'] }, [], ADESSO, 'riserva'), { ok: true });
+});
+
+// --- Giro multi-sport (Fase 4a) ---
+const FIXTURE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'fixtures', 'giro');
+const RIGA_NBA = 'Raccolta NBA di oggi mancante: data/raccolta/2026-10-20-nba.json';
+
+// Istantanea presa con il giro di prima (solo calcio), sulla raccolta reale del 2026-10-20.
+function dirIstantanea(conNba) {
+  const d = dirTemp({ racc: null, noti: null, nba: conNba ? raccoltaNba([]) : null });
+  fs.copyFileSync(path.join(FIXTURE, 'raccolta-calcio-2026-10-20.json'), path.join(d, 'raccolta', '2026-10-20.json'));
+  fs.copyFileSync(path.join(FIXTURE, 'notizie-2026-10-20.json'), path.join(d, 'raccolta', '2026-10-20-notizie.json'));
+  return d;
+}
+
+test('solo calcio: giornata identica byte per byte a quella del giro di prima (raccolta NBA vuota)', () => {
+  for (const modo of ['claude', 'riserva']) {
+    const d = dirIstantanea(true);
+    eseguiGiro({ dirData: d, adesso: ADESSO, modo });
+    assert.equal(testo(d), fs.readFileSync(path.join(FIXTURE, `giornata-solo-calcio-${modo}.json`), 'utf8'), modo);
+  }
+  const d = dirIstantanea(true);
+  const a = eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude', anteprima: true });
+  assert.deepEqual(a.anteprima, JSON.parse(fs.readFileSync(path.join(FIXTURE, 'anteprima-solo-calcio.json'), 'utf8')));
+});
+
+test('solo calcio senza file NBA: identica salvo la riga "Raccolta NBA di oggi mancante"', () => {
+  for (const modo of ['claude', 'riserva']) {
+    const d = dirIstantanea(false);
+    eseguiGiro({ dirData: d, adesso: ADESSO, modo });
+    const g = leggi(d);
+    const prima = JSON.parse(fs.readFileSync(path.join(FIXTURE, `giornata-solo-calcio-${modo}.json`), 'utf8'));
+    assert.equal(g.erroriGiro.filter((x) => x === RIGA_NBA).length, 1);
+    assert.deepEqual({ ...g, erroriGiro: g.erroriGiro.filter((x) => x !== RIGA_NBA) }, prima);
+  }
+});
+
+// 6 partite di calcio e 6 NBA, ciascuna con una singola di value 0,10–0,16 alternati fra gli sport.
+function raccolteDoppie() {
+  const calcio = raccolta();
+  calcio.partite = [0, 1, 2, 3, 4, 5].map((i) => ({
+    idPartita: `calcio-2026-10-20-casa${i}-ospite${i}`, competizione: 'Serie A', partita: `Casa${i} - Ospite${i}`,
+    casa: `Casa${i}`, trasferta: `Ospite${i}`, inizio: '2026-10-20T20:45:00+02:00', modello: 'dixon-coles',
+    lambda: { casa: 1.5, trasferta: 1.0 }, ragionamentoBase: [], mercati: [m('1X2', '1', 0.56, 0.52, 2.04 + i * 0.02)],
+  }));
+  const nba = raccoltaNba([0, 1, 2, 3, 4, 5].map((i) => partitaNba(`Squadra${i}`, `Rivale${i}`,
+    [mNba('Vincente', `Squadra${i}`, 0.56, 0.52, 2.05 + i * 0.02)])));
+  const noti = { ...notizie(), partiteControllate: [...calcio.partite, ...nba.partite].map((p) => p.idPartita) };
+  return { racc: calcio, nba, noti };
+}
+
+test('calcio + nba: candidati di entrambi, una sola selezionaGiocate, tetto 10 singole comune', () => {
+  const d = dirTemp(raccolteDoppie());
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const g = leggi(d);
+  assert.equal(g.candidati.length, 12);
+  assert.deepEqual(new Set(g.candidati.map((c) => c.sport)), new Set(['calcio', 'nba']));
+  assert.ok(g.candidati.filter((c) => c.sport === 'nba').every((c) => c.competizione === 'NBA'));
+  // Un solo tetto per tutti gli sport: due selezioni separate ne avrebbero tenute 12.
+  const fuori = g.scartate.filter((s) => s.motivo === 'limite giornaliero singole').map((s) => s.idCandidato);
+  assert.deepEqual(fuori.sort(), ['calcio-2026-10-20-casa0-ospite0-1x2-1', 'nba-2026-10-20-squadra0-rivale0-vincente-squadra0'].sort());
+  // Le giocate (per value decrescente, fino al tetto giornaliero) mescolano gli sport.
+  const singole = g.giocate.filter((x) => x.tipo === 'singola');
+  assert.deepEqual(new Set(singole.map((x) => x.sport)), new Set(['calcio', 'nba']));
+  assert.equal(singole[0].id, 'nba-2026-10-20-squadra5-rivale5-vincente-squadra5');
+  assert.deepEqual(g.competizioniNonCoperte, ['Serie B: crediti insufficienti']);
+  assert.deepEqual(g.erroriGiro, ['football-data.co.uk I2 alle 07:35: HTTP 503']);
+});
+
+test('raccolta calcio mancante, nba presente: giocate NBA scritte, errore calcio in erroriGiro', () => {
+  const noti = { ...notizie(), partiteControllate: [NBA1] };
+  const d = dirTemp({ racc: null, noti, nba: raccoltaNba() });
+  const r = eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  assert.equal(r.scritto, true);
+  const g = leggi(d);
+  assert.equal(g.notizieControllate, true);
+  assert.ok(g.candidati.length > 0);
+  assert.ok(g.candidati.every((c) => c.sport === 'nba'));
+  assert.ok(g.giocate.some((x) => x.id === `${NBA1}-vincente-boston-celtics` && x.sport === 'nba'));
+  assert.deepEqual(g.erroriGiro, ['Raccolta di oggi mancante: data/raccolta/2026-10-20.json']);
+  // Con giocate NBA la riserva non sostituisce il giro di Claude.
+  assert.equal(eseguiGiro({ dirData: d, adesso: new Date('2026-10-20T07:05:00Z'), modo: 'riserva' }).scritto, false);
+});
+
+test("notizie: richieste se c'è una raccolta NBA con partite, validate su tutti gli sport", () => {
+  assert.throws(() => eseguiGiro({ dirData: dirTemp({ racc: null, noti: null, nba: raccoltaNba() }), adesso: ADESSO, modo: 'claude' }),
+    /File notizie mancante: data\/raccolta\/2026-10-20-notizie\.json/);
+  // Nessuna raccolta: giornata vuota con i due errori, senza notizie.
+  const vuota = dirTemp({ racc: null, noti: null, nba: null });
+  eseguiGiro({ dirData: vuota, adesso: ADESSO, modo: 'claude' });
+  assert.deepEqual(leggi(vuota).erroriGiro, ['Raccolta di oggi mancante: data/raccolta/2026-10-20.json', RIGA_NBA]);
+  // Correzione NBA oltre il massimo: errore, nessun file.
+  const sbagliata = dirTemp({ nba: raccoltaNba(), noti: notizie([corr(NBA1, 'Vincente', 'Boston Celtics', 0.12)]) });
+  assert.throws(() => eseguiGiro({ dirData: sbagliata, adesso: ADESSO, modo: 'claude' }), /Vincente/);
+  assert.deepEqual(fs.readdirSync(path.join(sbagliata, 'giornate')), []);
+  // Correzioni calcio e NBA insieme: applicate entrambe.
+  const buona = dirTemp({ nba: raccoltaNba(), noti: { ...notizie([corr(P1, '1X2', '1', 0.02),
+    corr(NBA1, 'Vincente', 'Boston Celtics', 0.03)]), partiteControllate: [P1, P2, NBA1] } });
+  eseguiGiro({ dirData: buona, adesso: ADESSO, modo: 'claude' });
+  const cand = leggi(buona).candidati;
+  const c = cand.find((x) => x.id === `${NBA1}-vincente-boston-celtics`);
+  assert.ok(Math.abs(c.correzioneNotizie.delta - 0.03) < 1e-9);
+  assert.ok(Math.abs(c.prob - (0.5 * 0.65 + 0.5 * 0.60)) < 1e-9);
+  assert.equal(c.ragionamento.at(-1), 'Vincente: vince se Boston Celtics vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.');
+  assert.ok(Math.abs(cand.find((x) => x.id === `${P1}-1x2-1`).correzioneNotizie.delta - 0.02) < 1e-9);
+});
+
+test('anteprima: elenca anche le partite NBA, nello stesso formato', () => {
+  const d = dirTemp({ noti: null, nba: raccoltaNba() });
+  const r = eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude', anteprima: true });
+  assert.ok(r.anteprima.partite.includes(NBA1));
+  assert.ok(r.anteprima.partite.includes(P1));
+  const riga = r.anteprima.righe.find((x) => x.idPartita === NBA1);
+  assert.equal(riga.partita, 'Boston Celtics - New York Knicks');
+  assert.equal(riga.inizio, '2026-10-21T01:30:00+02:00');
+  assert.ok(riga.mercati.includes(`${NBA1}-vincente-boston-celtics: Vincente | Boston Celtics`), riga.mercati.join(', '));
 });

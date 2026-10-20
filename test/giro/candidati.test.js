@@ -215,3 +215,53 @@ test("senza quota: conta solo lo scostamento verso l'alto (AH −1 casa sì, AH 
   ])] }, null);
   assert.deepEqual(r.candidati.map((c) => c.id), [`${P1}-handicap-asiatico-meno-1-casa`]);
 });
+
+// --- NBA (Fase 4a) ---
+import { probUsata } from '../../src/giro/candidati.js';
+import { celticsKnicks, mNba, partitaNba, NBA1 } from './nba-prova.js';
+
+test('probUsata: default 50/50 come prima, con pesoModello pesa il modello', () => {
+  assert.equal(probUsata(0.6, 0.5), 0.5 * 0.5 + 0.5 * 0.6);
+  assert.ok(Math.abs(probUsata(0.6, 0.5, 0.25) - (0.25 * 0.6 + 0.75 * 0.5)) < 1e-12);
+  assert.equal(probUsata(null, 0.5, 0.25), 0.5);
+  assert.equal(probUsata(0.6, null, 0.25), 0.6);
+});
+
+test('pesoModello 0.25: probabilità = 0.25·modello + 0.75·consenso', () => {
+  const p = partitaNba('Boston Celtics', 'New York Knicks', [mNba('Vincente', 'Boston Celtics', 0.64, 0.58, 1.95)], { pesoModello: 0.25 });
+  const c = costruisciCandidati({ data: '2026-10-20', partite: [p] }, null).candidati[0];
+  assert.ok(Math.abs(c.prob - (0.25 * 0.64 + 0.75 * 0.58)) < 1e-12);
+  assert.equal(c.ragionamento[1], 'Modello 64%, Consenso bookmaker 58%, probabilità usata 60%');
+  // pesoModello non numerico: si torna al peso del calcio (0.5).
+  const q = partitaNba('Boston Celtics', 'New York Knicks', [mNba('Vincente', 'Boston Celtics', 0.64, 0.58, 1.95)], { pesoModello: '0.25' });
+  assert.ok(Math.abs(costruisciCandidati({ data: '2026-10-20', partite: [q] }, null).candidati[0].prob - 0.61) < 1e-12);
+});
+
+test('candidato NBA: sport "nba", riga "Consenso bookmaker", spiegazione in fondo', () => {
+  const noti = { controllateAlle: '2026-10-20T08:15:00+02:00', partiteControllate: [NBA1], esclusioni: [], correzioni: [] };
+  const r = costruisciCandidati({ data: '2026-10-20', partite: [celticsKnicks()] }, noti);
+  const c = trova(r, `${NBA1}-vincente-boston-celtics`);
+  assert.deepEqual(Object.keys(c).sort(), ['competizione', 'correzioneNotizie', 'fonteQuota', 'id', 'idPartita', 'inizio', 'mercato',
+    'oraQuota', 'partita', 'prob', 'probModello', 'probPinnacle', 'quota', 'quotaDaVerificare', 'ragionamento', 'selezione', 'sport', 'tipo'].sort());
+  assert.equal(c.sport, 'nba');
+  assert.equal(c.competizione, 'NBA');
+  assert.ok(Math.abs(c.prob - 0.61) < 1e-12);
+  assert.deepEqual(c.ragionamento, [
+    'Punti attesi: Boston Celtics 114 – New York Knicks 110 (stagione in corso e precedente)',
+    'Modello 62%, Consenso bookmaker 60%, probabilità usata 61%',
+    'Quota mediana 1,80 su 7 bookmaker alle 07:40',
+    'Notizie controllate alle 08:15: nessuna correzione',
+    'Vincente: vince se Boston Celtics vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.',
+  ]);
+  assert.equal(c.ragionamento.length, 5);
+  // Solo consenso (modello assente): "Solo Consenso bookmaker".
+  const solo = costruisciCandidati({ data: '2026-10-20', partite: [partitaNba('Boston Celtics', 'New York Knicks',
+    [mNba('Vincente', 'Boston Celtics', null, 0.60, 1.80)])] }, null).candidati[0];
+  assert.equal(solo.ragionamento[1], 'Solo Consenso bookmaker, probabilità usata 60%');
+});
+
+test('NBA: stima oltre 10 punti dal consenso → pre-scarto "stima troppo lontana dal mercato"', () => {
+  const p = partitaNba('Boston Celtics', 'New York Knicks', [mNba('Totale punti 221.5', 'Over 221.5', 0.66, 0.50, 1.95)]);
+  const r = costruisciCandidati({ data: '2026-10-20', partite: [p] }, null);
+  assert.deepEqual(r.preScartate, [{ idCandidato: `${p.idPartita}-totale-punti-221-5-over-221-5`, motivo: 'stima troppo lontana dal mercato' }]);
+});
