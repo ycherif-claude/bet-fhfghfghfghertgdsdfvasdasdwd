@@ -141,6 +141,10 @@ Nel tennis molte partite iniziano di notte o all'alba (tornei in Asia e Australi
 
 Se la parte tennis fallisce, il motivo compare tra gli errori della giornata e il resto va avanti.
 
+## Revisione settimanale
+
+Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.
+
 ## Per chi sviluppa (fasi successive)
 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
