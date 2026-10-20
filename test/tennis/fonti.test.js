@@ -49,7 +49,7 @@ test('fileStagione prende l\'URL con la cartella strana da alldata.php', async (
 
 test('partite converte le righe: superfici, set, commento, quote Pinnacle', async () => {
   const righe = [
-    { ATP: 1, Date: '2026-10-19', Tournament: 'Paris Masters', Series: 'Masters 1000', Surface: 'Carpet', Round: '1st Round', 'Best of': 3,
+    { ATP: 1, Location: 'Paris', Date: '2026-10-19', Tournament: 'Paris Masters', Series: 'Masters 1000', Surface: 'Carpet', Round: '1st Round', 'Best of': 3,
       Winner: 'Sinner J.', Loser: 'Rune H.', W1: 6, L1: 4, W2: 7, L2: 6, W3: 3, L3: 0, Comment: 'Completed', PSW: 1.2, PSL: 4.5 },
     { Date: '2026-10-19', Tournament: 'X', Tier: 'WTA500', Surface: 'Clay', Round: 'Final', 'Best of': 3,
       Winner: 'A B.', Loser: 'C D.', W1: 6, L1: 3, Comment: 'Retired' },
@@ -64,7 +64,7 @@ test('partite converte le righe: superfici, set, commento, quote Pinnacle', asyn
   assert.equal(f.chiamate[1].url, 'https://www.tennis-data.co.uk/hrjk-85HytOjkhth76j_ygh4jf7/2026/2026.xlsx');
   assert.equal(p.length, 4);
   assert.deepEqual(p[0], {
-    data: '2026-10-19', torneo: 'Paris Masters', serie: 'Masters 1000', superficie: 'cemento', turno: '1st Round', bestOf: 3,
+    data: '2026-10-19', torneo: 'Paris Masters', luogo: 'Paris', serie: 'Masters 1000', superficie: 'cemento', turno: '1st Round', bestOf: 3,
     vincitore: 'Sinner J.', perdente: 'Rune H.', setW: [6, 7, 3], setL: [4, 6, 0], commento: null, psw: 1.2, psl: 4.5,
   });
   assert.equal(p[1].superficie, 'terra');

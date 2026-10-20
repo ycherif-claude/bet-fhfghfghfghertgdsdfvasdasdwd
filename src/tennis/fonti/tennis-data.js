@@ -35,6 +35,7 @@ function converti(r) {
   const p = {
     data,
     torneo: r.Tournament ?? '',
+    luogo: r.Location == null || String(r.Location).trim() === '' ? null : String(r.Location).trim(),
     serie: r.Series ?? r.Tier ?? null,
     superficie: superficie(r.Surface),
     turno: r.Round ?? null,
@@ -60,7 +61,8 @@ export const tennisData = {
       const href = m[1].trim();
       if (href.endsWith(coda)) return new URL(href, RADICE).href;
     }
-    throw new Error(`tennis-data.co.uk: file ${circuito.toUpperCase()} ${anno} non trovato nell'elenco`);
+    // status 404: come un file assente sul server (a gennaio il file dell'anno nuovo può non esserci ancora).
+    throw Object.assign(new Error(`tennis-data.co.uk: file ${circuito.toUpperCase()} ${anno} non trovato nell'elenco`), { status: 404 });
   },
 
   async partite(anno, circuito, opz = {}) {
@@ -70,3 +72,9 @@ export const tennisData = {
     return leggi(r.corpo).map(converti).filter(Boolean);
   },
 };
+
+// A gennaio il file dell'anno nuovo può non essere ancora pubblicato: un 404 sul file
+// dell'anno di `data` è previsto e non va segnalato come errore.
+export function fileNonAncoraPubblicato(e, anno, data) {
+  return e?.status === 404 && anno === Number(data.slice(0, 4)) && data.slice(5, 7) === '01';
+}

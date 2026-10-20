@@ -141,6 +141,9 @@ test('The Odds API: solo risultati completi (2 set, o 3 negli Slam ATP); fonti d
   assert.equal(risultatiDaOdds([sc(2, 1)], 'ATP French Open', 'atp').length, 0);
   assert.equal(risultatiDaOdds([sc(3, 1)], 'ATP French Open', 'atp').length, 1);
   assert.equal(risultatiDaOdds([sc(3, 1)], 'ATP Paris Masters', 'atp').length, 0);
+  // Slam riconosciuto anche solo dalla chiave; mai per la WTA.
+  assert.equal(risultatiDaOdds([sc(3, 1)], 'Grand Slam', 'atp', 'tennis_atp_aus_open_singles').length, 1);
+  assert.equal(risultatiDaOdds([sc(2, 1)], 'WTA Wimbledon', 'wta', 'tennis_wta_wimbledon').length, 1);
 
   const d = dir([{ id: 'x', ...gamba('Jannik Sinner'), esito: null }]);
   const soloOdds = risultatiDaOdds([sc(2, 0)], 'ATP Paris Masters', 'atp');
@@ -211,4 +214,22 @@ test('giro esiti: nessuna giocata in attesa → nessuna chiamata', async () => {
   const out = await aggiornaEsitiGiroTennis({ dirData: d, adesso: ADESSO, fonti: f, chiavi: {}, raccolta: raccolta(), storico: new Map(), tornei: [], budgetResiduo: 0 });
   assert.equal(out.aggiornate, 0);
   assert.deepEqual(f.chiamate, { td: [], odds: [] });
+});
+
+test("giro esiti: a gennaio il 404 sul file dell'anno nuovo non è un errore", async () => {
+  const d = dir([{ id: 'x', ...gamba('Carlos Alcaraz', { inizio: '2026-12-31T15:00:00+01:00' }), esito: null }], '2026-12-31');
+  const rc = raccolta();
+  const f = {
+    tennisData: {
+      partite: async (anno) => {
+        if (anno === 2027) throw Object.assign(new Error('non trovato'), { status: 404 });
+        return [rigaTd({ data: '2026-12-31' })];
+      },
+    },
+    oddsTennis: { risultati: async () => [] },
+  };
+  const out = await aggiornaEsitiGiroTennis({ dirData: d, adesso: new Date('2027-01-02T08:00:00Z'), fonti: f, chiavi: {}, raccolta: rc, storico: new Map(), tornei: [], budgetResiduo: 0 });
+  assert.deepEqual(rc.erroriGiro, []);
+  assert.equal(out.aggiornate, 1);
+  assert.equal(leggi(d, '2026-12-31')[0].esito, 'vinta');
 });

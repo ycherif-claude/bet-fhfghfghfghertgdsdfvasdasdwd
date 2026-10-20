@@ -3,23 +3,23 @@
 // si chiudono quando ogni sport ha scritto l'esito delle proprie gambe (come nella Fase 4a).
 // Ritiri: con almeno un set completato vince chi passa il turno; prima della fine del primo set,
 // o con walkover, la giocata è rimborsata.
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { writeFileSync } from 'node:fs';
 import { dataRoma, oraRoma } from '../calcio/testo.js';
-import { daAvvisare, segnateComeGiocate } from '../calcio/esiti.js';
+import { segnateComeGiocate } from '../calcio/esiti.js';
+import { aperta, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate } from '../esiti/comune.js';
 import { abbinaGiocatore } from './giocatori.js';
+import { slamAtp } from './tornei.js';
+import { fileNonAncoraPubblicato } from './fonti/tennis-data.js';
 
 const SEI_ORE = 6 * 3600 * 1000;
 const GIORNO = 86400000;
 const COSTO_SCORES = 2;
 const FINESTRA_SCORES = 3 * GIORNO; // /scores con daysFrom=3
-const FILE_GIORNATA = /^(\d{4}-\d{2}-\d{2})\.json$/;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 
 const WALKOVER = /walk\s*-?\s*over|\bw\/o\b/i;
 // Ritiro, squalifica, partita assegnata: stessa regola del ritiro.
 const RITIRO = /retir|\bret\b|disq|default|\bdef\b|award/i;
-const SLAM = /\b(australian open|french open|roland garros|wimbledon|us open)\b/i;
 
 const spostaGiorno = (data, n) => {
   const [y, m, g] = data.split('-').map(Number);
@@ -84,8 +84,8 @@ export function risultatiDaTennisData(storico, da) {
 // Risultati di /scores: si tengono solo le partite finite regolarmente, cioè con il vincitore
 // arrivato ai set necessari (2, o 3 negli Slam ATP). Con un ritiro i set non bastano e
 // /scores non dice chi è passato: l'esito resta a tennis-data.
-export function risultatiDaOdds(lista, titolo, circuito) {
-  const necessari = circuito === 'atp' && SLAM.test(String(titolo ?? '')) ? 3 : 2;
+export function risultatiDaOdds(lista, titolo, circuito, chiave) {
+  const necessari = slamAtp({ chiave, titolo, circuito }) ? 3 : 2;
   const out = [];
   for (const e of lista ?? []) {
     if (!num(e.set1) || !num(e.set2) || !e.inizio) continue;
@@ -103,44 +103,8 @@ export function risultatiDaOdds(lista, titolo, circuito) {
   return out;
 }
 
-const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]);
-const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
-const sportDi = (x, g) => x.sport ?? g.sport;
-// Anche le annullate: l'utente può averle giocate prima del controllo serale.
-const aperta = (g) => g.esito === null;
 // Gambe tennis senza esito, iniziate da più di 6 ore.
-const gambeDaChiudere = (g, adesso) => gambeDi(g).filter((x) => sportDi(x, g) === 'tennis' && x.esito == null
-  && Date.parse(x.inizio) + SEI_ORE < adesso.getTime());
-
-// Regola della multipla: persa se una gamba è persa; aperta se ne manca una;
-// rimborsata se sono tutte rimborsate; altrimenti vinta.
-function chiusura(g) {
-  const esiti = gambeDi(g).map((x) => x.esito ?? null);
-  if (esiti.includes('persa')) return 'persa';
-  if (esiti.includes(null)) return null;
-  if (esiti.every((e) => e === 'rimborsata')) return 'rimborsata';
-  return 'vinta';
-}
-
-function leggiGiornate(dirData, adesso) {
-  const oggi = dataRoma(adesso);
-  const out = [];
-  const errori = [];
-  let nomi = [];
-  try { nomi = readdirSync(dirData).sort(); } catch { return { out, errori }; }
-  for (const nome of nomi) {
-    const m = FILE_GIORNATA.exec(nome);
-    if (!m || m[1] >= oggi) continue;
-    const percorso = join(dirData, nome);
-    try {
-      const dati = JSON.parse(readFileSync(percorso, 'utf8'));
-      if (Array.isArray(dati?.giocate)) out.push({ percorso, dati });
-    } catch (e) {
-      errori.push(`${nome}: file non leggibile (${e.message})`);
-    }
-  }
-  return { out, errori };
-}
+const gambeDaChiudere = (g, adesso) => gambeDaChiudereSport(g, 'tennis', SEI_ORE, adesso);
 
 // Gambe tennis ancora da chiudere, di tutte le giornate passate.
 export function gambeTennisInAttesa(dirData, adesso) {
@@ -227,8 +191,8 @@ export function aggiornaEsitiTennis(dirData, risultati, adesso) {
         cambiato = true;
         aggiornate++;
       } else if (gambeDaChiudere(g, adesso).length) {
-        const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
-        if (giorni >= 7 && daAvvisare(g, segnate)) avvisi.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
+        const avviso = avvisoSettimana(g, segnate, adesso);
+        if (avviso) avvisi.push(avviso);
       }
     }
     if (cambiato) {
@@ -263,7 +227,7 @@ export async function aggiornaEsitiGiroTennis({ dirData, adesso, fonti, chiavi, 
       try {
         tutte.push(...await fonti.tennisData.partite(anno, circuito));
       } catch (e) {
-        errore(`tennis-data.co.uk ${circuito.toUpperCase()} ${anno} (esiti)`, e);
+        if (!fileNonAncoraPubblicato(e, anno, dataRoma(adesso))) errore(`tennis-data.co.uk ${circuito.toUpperCase()} ${anno} (esiti)`, e);
       }
     }
     righe.set(circuito, tutte);
@@ -294,7 +258,7 @@ export async function aggiornaEsitiGiroTennis({ dirData, adesso, fonti, chiavi, 
       residuo -= COSTO_SCORES;
       raccolta.crediti.usati += COSTO_SCORES;
       if (num(raccolta.crediti.rimasti)) raccolta.crediti.rimasti -= COSTO_SCORES;
-      daOdds.push(...risultatiDaOdds(lista, t.titolo, t.circuito));
+      daOdds.push(...risultatiDaOdds(lista, t.titolo, t.circuito, t.chiave));
     } catch (e) {
       errore(`The Odds API (esiti ${titolo})`, e);
     }

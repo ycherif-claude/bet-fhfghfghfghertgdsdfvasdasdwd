@@ -10,14 +10,14 @@ import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/te
 import { abbinaGiocatore } from './giocatori.js';
 import { calcolaElo, eloDefault, pesoModelloPartita, probVittoria } from './elo.js';
 import { oddsTennis } from './fonti/odds-tennis.js';
-import { tennisData } from './fonti/tennis-data.js';
+import { fileNonAncoraPubblicato, tennisData } from './fonti/tennis-data.js';
+import { bestOfDi, superficieNota } from './tornei.js';
 import { aggiornaEsitiGiroTennis } from './esiti.js';
 
 const T = CONFIG.tennis;
 // Riserva del 20% dei 500 crediti mensili (la stessa di budgetCrediti): mai sotto, qualunque cosa dica il calcio.
 const RISERVA_MESE = CONFIG.calcio.riservaCrediti * 500;
 const ESCLUSI = new Set(['betfair_ex_eu', 'matchbook', 'smarkets']);
-const SLAM_ATP = /^tennis_atp_.*(aus_open|french_open|wimbledon|us_open)/;
 const STAGIONI = 3;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const pct = (p) => `${Math.round(p * 100)}%`;
@@ -61,17 +61,22 @@ const parole = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').t
   .split(/[^a-z0-9]+/).filter(Boolean);
 
 // Riga tennis-data più recente dello stesso torneo: tutte le parole significative del titolo
-// di The Odds API ("ATP Paris Masters" → "paris") devono comparire nel nome del torneo.
+// di The Odds API ("ATP Paris Masters" → "paris") devono comparire nel nome del torneo (Tournament).
+// Solo se nessun nome corrisponde si prova la città (Location, "WTA Tokyo" → "Tokyo"): in una città
+// con più tornei su superfici diverse (Parigi: Roland Garros e Masters) il risultato è null.
 export function torneoTennisData(titolo, righe) {
   const cercate = parole(titolo).filter((p) => !GENERICHE.has(p));
   if (!cercate.length) return null;
-  let migliore = null;
-  for (const r of righe ?? []) {
-    const nome = new Set(parole(r.torneo));
-    if (!cercate.every((p) => nome.has(p))) continue;
-    if (!migliore || r.data > migliore.data) migliore = r;
-  }
-  return migliore;
+  const tutte = (campo) => (righe ?? []).filter((r) => {
+    const insieme = new Set(parole(r[campo]));
+    return cercate.every((p) => insieme.has(p));
+  });
+  const recente = (lista) => lista.reduce((m, r) => (!m || r.data > m.data ? r : m), null);
+  const perNome = tutte('torneo');
+  if (perNome.length) return recente(perNome);
+  const perLuogo = tutte('luogo');
+  if (new Set(perLuogo.map((r) => r.superficie)).size > 1) return null;
+  return recente(perLuogo);
 }
 
 // Crediti del calcio di oggi: { rimastiInizio, spesiCalcio } | { errore } | null (file assente).
@@ -216,7 +221,8 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
         righe.push(...await fonti.tennisData.partite(anno - i, circuito));
         caricate++;
       } catch (e) {
-        errore(`tennis-data.co.uk ${circuito.toUpperCase()} ${anno - i}`, e);
+        // A gennaio il file dell'anno nuovo può mancare: è previsto, nessun errore.
+        if (!fileNonAncoraPubblicato(e, anno - i, data)) errore(`tennis-data.co.uk ${circuito.toUpperCase()} ${anno - i}`, e);
       }
     }
     if (!caricate) continue;
@@ -232,17 +238,23 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
   for (const t of scelti) {
     const quote = quotePer.get(t.chiave);
     if (!quote) continue;
-    const stato = stati.get(t.circuito) ?? null;
-    const bestOf = SLAM_ATP.test(t.chiave) ? 5 : 3;
-    let superficie = 'cemento';
-    if (stato) {
-      const riga = torneoTennisData(t.titolo, stato.righe);
-      if (riga) superficie = riga.superficie;
-      else errore('tennis-data.co.uk', `torneo ${t.titolo} non trovato nello storico, si usa cemento al meglio dei ${bestOf} set`);
+    let stato = stati.get(t.circuito) ?? null;
+    const bestOf = bestOfDi(t);
+    // Superficie: prima la tabella dei tornei noti, poi lo storico; se resta sconosciuta
+    // niente modello (mai tirare a indovinare il cemento): solo Pinnacle.
+    let superficie = superficieNota(t) ?? (stato ? torneoTennisData(t.titolo, stato.righe)?.superficie ?? null : null);
+    let motivo = 'Storico tennis-data non disponibile: probabilità solo da Pinnacle';
+    if (!superficie) {
+      superficie = null;
+      if (stato) {
+        erroriGiro.push(`Superficie sconosciuta per ${t.titolo}: solo Pinnacle`);
+        motivo = 'Superficie del torneo sconosciuta: probabilità solo da Pinnacle';
+        stato = null;
+      }
     }
     let senzaQuota = 0;
     for (const ev of eventiPer.get(t.chiave)) {
-      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, data, ora, erroriGiro });
+      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, motivo, data, ora, erroriGiro });
       if (partita === null) continue;
       if (partita === false) { senzaQuota++; continue; }
       raccolta.partite.push(partita);
@@ -253,7 +265,7 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
 }
 
 // Partita della raccolta; null se un giocatore non si abbina (errore già scritto), false se nessun mercato ha quota.
-function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, data, ora, erroriGiro }) {
+function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, data, ora, erroriGiro }) {
   const g1 = ev.giocatore1;
   const g2 = ev.giocatore2;
   let elo = null;
@@ -284,7 +296,7 @@ function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, data, ora
       ragionamentoBase.push(`Meno di ${T.minPartite12Mesi} partite negli ultimi 12 mesi per almeno un giocatore: peso del modello ${pct(peso)}`);
     }
   } else {
-    ragionamentoBase = ['Storico tennis-data non disponibile: probabilità solo da Pinnacle'];
+    ragionamentoBase = [motivo];
   }
 
   const pin = probPinnacleTennis(evento, g1, g2);

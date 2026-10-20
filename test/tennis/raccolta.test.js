@@ -20,19 +20,21 @@ function storico(circuito, anno) {
     ? ['Sinner J.', 'Alcaraz C.', 'Zverev A.', 'Rune H.']
     : ['Swiatek I.', 'Gauff C.', 'Sabalenka A.', 'Rybakina E.'];
   const tornei = circuito === 'atp'
-    ? [{ torneo: 'Paris Masters', superficie: 'cemento' }, { torneo: 'French Open', superficie: 'terra' }]
-    : [{ torneo: 'Wuhan Open', superficie: 'cemento' }, { torneo: 'Madrid Open', superficie: 'terra' }];
+    ? [{ torneo: 'Paris Masters', luogo: 'Paris', superficie: 'cemento' }, { torneo: 'French Open', luogo: 'Paris', superficie: 'terra' },
+      { torneo: "Internazionali BNL d'Italia", luogo: 'Rome', superficie: 'terra' }]
+    : [{ torneo: 'Wuhan Open', luogo: 'Wuhan', superficie: 'cemento' }, { torneo: 'Madrid Open', luogo: 'Madrid', superficie: 'terra' },
+      { torneo: 'Toray Pan Pacific Open', luogo: 'Tokyo', superficie: 'cemento' }];
   const out = [];
   let k = 0;
   for (let giro = 0; giro < 4; giro++) {
     for (let i = 0; i < giocatori.length; i++) {
       for (let j = i + 1; j < giocatori.length; j++) {
         k++;
-        const t = tornei[k % 2];
+        const t = tornei[k % tornei.length];
         const mese = String(1 + (k % 9)).padStart(2, '0');
         const [w, l] = (k % 3 === 0) ? [giocatori[j], giocatori[i]] : [giocatori[i], giocatori[j]];
         out.push({
-          data: `${anno}-${mese}-${String(1 + (k % 27)).padStart(2, '0')}`, torneo: t.torneo, serie: null, superficie: t.superficie,
+          data: `${anno}-${mese}-${String(1 + (k % 27)).padStart(2, '0')}`, torneo: t.torneo, luogo: t.luogo, serie: null, superficie: t.superficie,
           turno: null, bestOf: 3, vincitore: w, perdente: l, setW: [6, 6], setL: [3, 4], commento: null,
         });
       }
@@ -228,21 +230,57 @@ test('una stagione tennis-data giù → errore, le altre bastano per il modello'
   assert.ok(r.partite[0].mercati.every((m) => Number.isFinite(m.probModello)));
 });
 
-test('torneo sconosciuto a tennis-data → cemento al meglio dei 3 e un errore; Slam ATP al meglio dei 5', async () => {
+test('superficie: tabella dei tornei noti, poi Tournament o Location; sconosciuta → solo Pinnacle con errore', async () => {
   const pechino = { chiave: 'tennis_atp_china_open', titolo: 'ATP China Open Beijing', circuito: 'atp' };
   const slam = { chiave: 'tennis_atp_french_open', titolo: 'ATP French Open', circuito: 'atp' };
+  const roma = { chiave: 'tennis_atp_italian_open', titolo: 'ATP Italian Open', circuito: 'atp' };
+  const tokyo = { chiave: 'tennis_wta_tokyo', titolo: 'WTA Tokyo', circuito: 'wta' };
   const f = fonti({
-    tornei: [pechino, slam],
-    eventi: { [pechino.chiave]: [SINNER_ALCARAZ], [slam.chiave]: [ev('s1', 'Alexander Zverev', 'Holger Rune', '2026-10-20T10:00:00Z')] },
+    tornei: [pechino, slam, roma, tokyo],
+    eventi: {
+      [pechino.chiave]: [SINNER_ALCARAZ],
+      [slam.chiave]: [ev('s1', 'Alexander Zverev', 'Holger Rune', '2026-10-20T10:00:00Z')],
+      [roma.chiave]: [ev('r1', 'Holger Rune', 'Jannik Sinner', '2026-10-20T11:00:00Z')],
+      [tokyo.chiave]: [ev('t1', 'Iga Swiatek', 'Coco Gauff', '2026-10-20T12:00:00Z')],
+    },
   });
-  const r = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f, chiavi, dirData: dirConCalcio({ usati: 6, rimasti: 294 }) });
-  assert.deepEqual(r.erroriGiro, ['tennis-data.co.uk alle 07:35: torneo ATP China Open Beijing non trovato nello storico, si usa cemento al meglio dei 3 set']);
-  const p1 = r.partite.find((p) => p.competizione === 'ATP China Open Beijing');
-  const p2 = r.partite.find((p) => p.competizione === 'ATP French Open');
-  assert.equal(p1.superficie, 'cemento');
+  const r = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f, chiavi, dirData: dirConCalcio({ usati: 6, rimasti: 394 }) });
+  assert.deepEqual(r.erroriGiro, ['Superficie sconosciuta per ATP China Open Beijing: solo Pinnacle']);
+  const di = (c) => r.partite.find((p) => p.competizione === c);
+  const p1 = di('ATP China Open Beijing');
+  assert.equal(p1.superficie, null);
   assert.equal(p1.bestOf, 3);
-  assert.equal(p2.superficie, 'terra');
-  assert.equal(p2.bestOf, 5);
+  assert.equal(p1.elo, null);
+  assert.equal(p1.pesoModello, null);
+  assert.ok(p1.mercati.every((m) => m.probModello === null && m.probPinnacle > 0));
+  assert.deepEqual(p1.ragionamentoBase, ['Superficie del torneo sconosciuta: probabilità solo da Pinnacle']);
+  assert.equal(di('ATP French Open').superficie, 'terra');
+  assert.equal(di('ATP French Open').bestOf, 5);
+  assert.equal(di('ATP Italian Open').superficie, 'terra');
+  assert.equal(di('ATP Italian Open').bestOf, 3);
+  const pt = di('WTA Tokyo');
+  assert.equal(pt.superficie, 'cemento');
+  assert.ok(pt.mercati.every((m) => Number.isFinite(m.probModello)));
+});
+
+test("gennaio: 404 sul file dell'anno nuovo è previsto, nessun errore; altri mesi sì", async () => {
+  const f = fonti({ eventi: { [PARIGI.chiave]: [ev('e1', 'Jannik Sinner', 'Carlos Alcaraz', '2027-01-05T10:00:00Z')] } });
+  f.tennisData.partite = async (anno, circuito) => {
+    if (anno === 2027) throw Object.assign(new Error("tennis-data.co.uk: file ATP 2027 non trovato nell'elenco"), { status: 404 });
+    return storico(circuito, anno);
+  };
+  const gennaio = new Date('2027-01-05T06:35:00Z');
+  const r = await eseguiRaccoltaTennis({ data: '2027-01-05', adesso: gennaio, fonti: f, chiavi, dirData: dirConCalcio(null) });
+  assert.deepEqual(r.erroriGiro, []);
+  assert.ok(r.partite[0].mercati.every((m) => Number.isFinite(m.probModello)));
+  // Un 404 sull'anno corrente fuori da gennaio resta un errore.
+  const f2 = fonti({ eventi: { [PARIGI.chiave]: [SINNER_ALCARAZ] } });
+  f2.tennisData.partite = async (anno, circuito) => {
+    if (anno === 2026) throw Object.assign(new Error('non trovato'), { status: 404 });
+    return storico(circuito, anno);
+  };
+  const r2 = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f2, chiavi, dirData: dirConCalcio({ usati: 6, rimasti: 294 }) });
+  assert.deepEqual(r2.erroriGiro, ['tennis-data.co.uk ATP 2026 alle 07:35: non trovato']);
 });
 
 test('mercato senza quota (meno di 3 bookmaker) saltato; nessun mercato → partita fuori con errore', async () => {
@@ -275,6 +313,16 @@ test('torneo tennis-data: titolo Odds normalizzato, riga più recente', () => {
   assert.equal(torneoTennisData('ATP Paris Masters', righe).superficie, 'cemento');
   assert.equal(torneoTennisData('ATP French Open', righe).superficie, 'terra');
   assert.equal(torneoTennisData('WTA Tokyo', righe), null);
+  const tokyo = [{ data: '2025-10-20', torneo: 'Toray Pan Pacific Open', luogo: 'Tokyo', superficie: 'cemento' }];
+  assert.equal(torneoTennisData('WTA Tokyo', tokyo), tokyo[0]);
+  // Città con due tornei su superfici diverse e nessun nome che corrisponde: null.
+  const parigi = [
+    { data: '2025-10-30', torneo: 'BNP Paribas Masters', luogo: 'Paris', superficie: 'cemento' },
+    { data: '2025-06-01', torneo: 'Roland Garros', luogo: 'Paris', superficie: 'terra' },
+  ];
+  assert.equal(torneoTennisData('ATP Paris', parigi), null);
+  assert.equal(torneoTennisData('ATP Roland Garros', parigi), parigi[1]);
+  assert.equal(torneoTennisData('ATP Italian Open', [{ data: '2025-05-10', torneo: "Internazionali BNL d'Italia", luogo: 'Rome', superficie: 'terra' }]), null);
 });
 
 test('senza ODDS_API_KEY: file con partite [] e l\'errore, uscita 0', () => {
