@@ -400,3 +400,27 @@ test('annullata segnata come giocata: esito scritto e bankroll con il profitto r
   const prima = statoBankroll([g], [sig('ann', true, '2026-10-18T12:00:00+02:00')], ADESSO);
   assert.equal(b.bankroll - prima.bankroll, 4); // 4 € a quota 2: +4
 });
+
+const AVVISO_RIMBORSATA = (id) => `Multipla ${id} con gamba rimborsata: bet365 paga una quota ridotta, controlla l'importo`;
+
+test('multipla di calcio vinta con una gamba rimborsata: esito invariato e avviso in errori', () => {
+  const multipla = (id, gambe) => ({ ...giocata(id, 'Inter Milan - Monza'), tipo: 'multipla', mercato: 'multipla', selezione: '', gambe });
+  const hc = { ...giocata('g2', 'Inter Milan - Monza'), mercato: 'Handicap asiatico -1', selezione: 'casa' };
+  const dir = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [
+    multipla('mr', [giocata('g1', 'Inter Milan - Monza'), hc]),
+    multipla('mv', [giocata('g3', 'Inter Milan - Monza'), { ...hc, mercato: 'Handicap asiatico -0.5' }]),
+  ], scartate: [] } });
+  const out = aggiornaEsiti(dir, [risInter], ADESSO);
+  assert.deepEqual(leggi(dir, '2026-10-18').giocate.map((g) => g.esito), ['vinta', 'vinta']);
+  assert.deepEqual(out.errori, [AVVISO_RIMBORSATA('mr')]);
+});
+
+test('multipla mista chiusa dal calcio, vinta con una gamba rimborsata: avviso', () => {
+  const gc = { ...giocata('g1', 'Inter Milan - Monza'), sport: 'calcio', mercato: 'Handicap asiatico -1', selezione: 'casa' };
+  const nba = { sport: 'nba', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-17T20:00:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics', esito: 'vinta' };
+  const risultati = [{ casa: 'Inter Milan', trasferta: 'Monza', inizio: '2026-10-18T18:45:00Z', data: '2026-10-18', gc: 2, gt: 1, fonte: 'x' }];
+  const d = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [{ id: 'mx', sport: 'calcio + nba', tipo: 'multipla', esito: null, gambe: [gc, nba] }], scartate: [] } });
+  const out = aggiornaEsiti(d, risultati, new Date('2026-10-20T10:00:00Z'));
+  assert.equal(leggi(d, '2026-10-18').giocate[0].esito, 'vinta');
+  assert.deepEqual(out.errori, [AVVISO_RIMBORSATA('mx')]);
+});

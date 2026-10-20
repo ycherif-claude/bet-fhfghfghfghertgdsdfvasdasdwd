@@ -233,3 +233,28 @@ test("giro esiti: a gennaio il 404 sul file dell'anno nuovo non è un errore", a
   assert.equal(out.aggiornate, 1);
   assert.equal(leggi(d, '2026-12-31')[0].esito, 'vinta');
 });
+
+const AVVISO_RIMBORSATA = (id) => `Multipla ${id} con gamba rimborsata: bet365 paga una quota ridotta, controlla l'importo`;
+
+test('aggiorna: multipla vinta con una gamba rimborsata → esito vinta e avviso', () => {
+  const calcio = { sport: 'calcio', partita: 'A - B', inizio: '2026-10-20T20:45:00+02:00', mercato: '1X2', selezione: '1', esito: 'rimborsata' };
+  const d = dir([{ id: 'm', sport: 'misto', tipo: 'multipla', esito: null, gambe: [calcio, gamba('Carlos Alcaraz')] }]);
+  const out = aggiornaEsitiTennis(d, ris([rigaTd()]), ADESSO);
+  assert.equal(leggi(d)[0].esito, 'vinta');
+  assert.deepEqual(out.errori, [AVVISO_RIMBORSATA('m')]);
+});
+
+test('giro esiti: l\'avviso della multipla chiusa al primo passaggio resta anche dopo il secondo (Odds)', async () => {
+  const calcio = { sport: 'calcio', partita: 'A - B', inizio: '2026-10-20T20:45:00+02:00', mercato: '1X2', selezione: '1', esito: 'rimborsata' };
+  const wta = gamba('Iga Swiatek', { competizione: 'WTA Wuhan Open', partita: 'Iga Swiatek - Coco Gauff', idPartita: 'tennis-2026-10-20-coco-gauff-iga-swiatek' });
+  const vecchia = { id: 'x', ...gamba('Jannik Sinner', { inizio: '2026-10-20T15:00:00+02:00' }), esito: null };
+  const sc = { giocatore1: 'Jannik Sinner', giocatore2: 'Carlos Alcaraz', inizio: '2026-10-20T13:00:00Z', set1: 2, set2: 0, vincitore: 'Jannik Sinner', fonte: 'the-odds-api' };
+  const d = dir([{ id: 'm', sport: 'misto', tipo: 'multipla', esito: null, gambe: [calcio, wta] }, vecchia]);
+  const rc = raccolta();
+  await aggiornaEsitiGiroTennis({
+    dirData: d, adesso: ADESSO, fonti: fonti({ odds: [sc] }), chiavi: { oddsApi: 'K' }, raccolta: rc,
+    storico: new Map([['atp', []], ['wta', [rigaTd({ vincitore: 'Swiatek I.', perdente: 'Gauff C.' })]]]), tornei: [PARIGI], budgetResiduo: 2,
+  });
+  assert.deepEqual(leggi(d).map((g) => g.esito), ['vinta', 'vinta']);
+  assert.deepEqual(rc.erroriGiro, [`Esiti tennis alle 10:00: ${AVVISO_RIMBORSATA('m')}`]);
+});

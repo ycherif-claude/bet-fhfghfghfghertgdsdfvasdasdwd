@@ -178,3 +178,16 @@ test('esiti: multipla mista annullata, gamba NBA chiusa comunque', () => {
   aggiornaEsitiNba(d, [finita()], adesso);
   assert.equal(leggi(d)[0].esito, 'persa');
 });
+
+const AVVISO_RIMBORSATA = (id) => `Multipla ${id} con gamba rimborsata: bet365 paga una quota ridotta, controlla l'importo`;
+
+test('esiti: multipla NBA vinta con una gamba rimborsata → esito vinta e avviso; mista chiusa dal passo NBA anche', () => {
+  const d = dir([
+    { id: 'm', sport: 'nba', tipo: 'multipla', esito: null, gambe: [gamba('Vincente', 'Boston Celtics'), gamba('Handicap -5', 'casa')] },
+    { id: 'n', sport: 'nba', tipo: 'multipla', esito: null, gambe: [gamba('Vincente', 'Boston Celtics'), gamba('Handicap -4.5', 'casa')] },
+    mista({ gambe: [gCalcio({ esito: 'rimborsata' }), gamba('Vincente', 'Boston Celtics')] }),
+  ]);
+  const out = aggiornaEsitiNba(d, [finita()], adesso);
+  assert.deepEqual(leggi(d).map((g) => g.esito), ['vinta', 'vinta', 'vinta']);
+  assert.deepEqual(out.errori, [AVVISO_RIMBORSATA('m'), AVVISO_RIMBORSATA('mx')]);
+});

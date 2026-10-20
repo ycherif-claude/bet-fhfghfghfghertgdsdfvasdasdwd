@@ -4,7 +4,9 @@
 import { writeFileSync } from 'node:fs';
 import { oraRoma } from '../calcio/testo.js';
 import { segnateComeGiocate } from '../calcio/esiti.js';
-import { aperta, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate } from '../esiti/comune.js';
+import {
+  aperta, avvisoGambaRimborsata, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate,
+} from '../esiti/comune.js';
 import { squadraNba } from './squadre.js';
 
 const QUATTRO_ORE = 4 * 3600 * 1000;
@@ -102,7 +104,11 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
       if (!aperta(g) || !gambeDaChiudere(g, adesso).length) continue;
       if (aggiorna(g, finite, adesso)) {
         cambiato = true;
-        if (g.esito !== null) aggiornate++;
+        if (g.esito !== null) {
+          aggiornate++;
+          const avviso = avvisoGambaRimborsata(g);
+          if (avviso) errori.push(avviso);
+        }
       }
       if (g.esito === null && gambeDaChiudere(g, adesso).length) {
         const avviso = avvisoSettimana(g, segnate, adesso);

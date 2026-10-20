@@ -5,7 +5,9 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataRoma } from '../calcio/testo.js';
-import { daAvvisare } from '../calcio/esiti.js';
+import { daAvvisare, avvisoGambaRimborsata } from '../calcio/esiti.js';
+
+export { avvisoGambaRimborsata };
 
 const GIORNO = 86400000;
 const FILE_GIORNATA = /^(\d{4}-\d{2}-\d{2})\.json$/;

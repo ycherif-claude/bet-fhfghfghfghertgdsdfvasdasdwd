@@ -6,7 +6,9 @@
 import { writeFileSync } from 'node:fs';
 import { dataRoma, oraRoma } from '../calcio/testo.js';
 import { segnateComeGiocate } from '../calcio/esiti.js';
-import { aperta, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate } from '../esiti/comune.js';
+import {
+  aperta, avvisoGambaRimborsata, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate,
+} from '../esiti/comune.js';
 import { abbinaGiocatore } from './giocatori.js';
 import { slamAtp } from './tornei.js';
 import { fileNonAncoraPubblicato } from './fonti/tennis-data.js';
@@ -172,6 +174,7 @@ export function aggiornaEsitiTennis(dirData, risultati, adesso) {
   const { out: giornate, errori } = leggiGiornate(dirData, adesso);
   const segnate = segnateComeGiocate(dirData);
   const avvisi = [];
+  const chiusure = [];
   const segnalati = new Set();
   let aggiornate = 0;
   const file = [];
@@ -190,6 +193,8 @@ export function aggiornaEsitiTennis(dirData, risultati, adesso) {
         g.esito = esito;
         cambiato = true;
         aggiornate++;
+        const avviso = avvisoGambaRimborsata(g);
+        if (avviso) { errori.push(avviso); chiusure.push(avviso); }
       } else if (gambeDaChiudere(g, adesso).length) {
         const avviso = avvisoSettimana(g, segnate, adesso);
         if (avviso) avvisi.push(avviso);
@@ -201,7 +206,8 @@ export function aggiornaEsitiTennis(dirData, risultati, adesso) {
     }
   }
   errori.push(...avvisi);
-  return { aggiornate, file, errori };
+  // `chiusure`: avvisi delle multiple chiuse in questo passaggio (il giro li conserva fra due passaggi).
+  return { aggiornate, file, errori, chiusure };
 }
 
 // Passo della CLI: risultati da tennis-data (lo storico della raccolta, o la stagione scaricata qui),
@@ -264,9 +270,12 @@ export async function aggiornaEsitiGiroTennis({ dirData, adesso, fonti, chiavi, 
     }
   }
   if (daOdds.length) {
+    // Le multiple chiuse al primo passaggio non si richiudono: i loro avvisi si tengono.
+    const primi = out.chiusure;
     out = aggiornaEsitiTennis(dirData, [...risultati, ...daOdds], adesso);
     aggiornate += out.aggiornate;
     for (const f of out.file) file.add(f);
+    out = { ...out, errori: [...primi, ...out.errori] };
   }
   for (const m of out.errori) errore('Esiti tennis', new Error(m));
   return { aggiornate, file: [...file], errori: out.errori };
