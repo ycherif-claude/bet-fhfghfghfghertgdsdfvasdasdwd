@@ -1,6 +1,6 @@
 # Giro del mattino: istruzioni per Claude
 
-Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
+Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio e NBA). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
@@ -10,7 +10,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 - Non modificare codice, test, configurazione o workflow. Non toccare file di giorni diversi da oggi.
 - Non inventare dati, partite, mercati, fonti o orari. Se non trovi un fatto concreto, non scrivere nulla per quella partita.
 - Se un passo fallisce e non riesci a sistemarlo nei modi indicati, fermati: non inventare niente. Lascia che lo faccia il giro di riserva (parte alle 09:45 UTC, cioè 11:45 ora legale o 10:45 ora solare) e scrivi il motivo nell'ultimo messaggio della sessione.
-- Limiti di tempo: al massimo circa 15 ricerche web in tutto. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
+- Limiti di tempo: al massimo 20 ricerche web in tutto (`ricercheMassime`), calcio e NBA insieme. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
 
 ## Passi, in ordine
 
@@ -77,11 +77,35 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 | `Gol/No gol` | `Gol`, `No gol` | sì |
 | `Angoli Under/Over 8.5` … `11.5` | `Over 9.5`… | sì |
 | `Cartellini Under/Over 3.5`, `4.5`, `5.5` | `Over 4.5`… | sì |
+| `Vincente` (NBA) | nome completo della squadra | sì |
+| `Handicap <linea>` (NBA): `Handicap -4.5`, `Handicap +3`, `Handicap 0` | `casa`, `trasferta` | sì |
+| `Totale punti <linea>` (NBA): `Totale punti 221.5` | `Over 221.5`, `Under 221.5` | sì |
 | `Doppia chance` | `1X`, `12`, `X2` | no, solo esclusione |
 | `Risultato esatto` | `2-1`… | no, solo esclusione |
 | `Handicap asiatico …` | `casa`, `trasferta` | no, solo esclusione |
 
 I mercati non correggibili si possono soltanto escludere (con `esclusioni`).
+
+## NBA
+
+Le partite NBA di oggi sono in `data/raccolta/<oggi>-nba.json` e compaiono nell'anteprima insieme a quelle di calcio. Usano lo stesso file notizie, le stesse correzioni ed esclusioni e le stesse regole (tetto ±0,08, selezione opposta automatica). Il tetto di ricerche web vale per tutto il giro: 20 in totale, non per sport.
+
+- **Che cosa cercare**: leggi il report infortuni ufficiale NBA più recente e le notizie delle squadre (titolari fuori, riposi, rientri).
+- **"Out" (fuori) di un titolare**: è un fatto. Scrivi una correzione (`delta`) oppure un'esclusione, con fonte e ora dentro `fonte`.
+- **"Questionable" (in dubbio)**: non è un fatto. Nessuna correzione e nessuna esclusione: scrivi solo una riga nel ragionamento, cioè nella `fonte` della decisione di nessuna correzione (per esempio "report infortuni NBA, 08:20: Tatum questionable, nessuna correzione").
+- **Nomi esatti dei mercati NBA** (da copiare identici da `partite[].mercati[]`; tutti e tre contano i supplementari):
+  - `Vincente`, con selezione il nome completo della squadra (per esempio `Boston Celtics`);
+  - `Handicap <linea>`, con la linea riferita alla squadra di casa e scritta con il segno (`Handicap -4.5`, `Handicap +3`, `Handicap 0`) e selezione `casa` o `trasferta`;
+  - `Totale punti <linea>` (per esempio `Totale punti 221.5`), con selezione `Over 221.5` o `Under 221.5`.
+
+  Sono tutti correggibili. `Vincente` ha due selezioni e si tratta come un mercato Under/Over: una sola correzione per mercato, l'altra squadra riceve quella contraria.
+- **Formato degli id NBA**: `idPartita` = `nba-<data>-<casa>-<trasferta>`, con la data della giornata (08:00-08:00 di Roma) e i nomi completi delle squadre in minuscolo e con i trattini. `idCandidato` = `<idPartita>-<mercato>-<selezione>` con le stesse regole del calcio. Esempi per `nba-2026-10-20-boston-celtics-new-york-knicks`:
+  - `nba-2026-10-20-boston-celtics-new-york-knicks-vincente-boston-celtics`
+  - `nba-2026-10-20-boston-celtics-new-york-knicks-handicap-meno-4-5-casa`
+  - `nba-2026-10-20-boston-celtics-new-york-knicks-handicap-piu-3-trasferta`
+  - `nba-2026-10-20-boston-celtics-new-york-knicks-totale-punti-221-5-over-221-5`
+- Le partite NBA che hai davvero controllato vanno anche in `partiteControllate`.
+- Di sera la routine "Giro serale NBA" ricontrolla le giocate NBA già decise: vedi `docs/routine/giro-serale-nba.md`.
 
 ## Piano B: il push su `main` viene rifiutato per permessi (non ancora attivo)
 

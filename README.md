@@ -67,6 +67,48 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 - **Notizie non controllate per questa partita**: il giro di Claude c'è stato, ma per quella partita non ha controllato le notizie (non è tra quelle esaminate). Vale lo stesso consiglio: verifica tu infortuni e squalifiche.
 - **Quota da verificare su bet365**: per quel mercato non c'è una quota gratuita. La giocata nasce dalla probabilità del modello: guarda la quota reale su bet365 prima di segnarla.
 
+## NBA: chiavi e giro serale
+
+Le giocate NBA (vincente, handicap e totale punti, supplementari compresi) si costruiscono ogni mattina insieme a quelle di calcio, con dati gratuiti. Servono due chiavi gratuite.
+
+### Chiavi gratuite
+
+1. **balldontlie** (partite, risultati e statistiche): registrati gratis su balldontlie.io. La chiave si copia dal tuo profilo.
+2. **SportsGameOdds** (quote): piano gratuito "Amateur" su sportsgameodds.com. La chiave si copia dal tuo profilo.
+
+### Dove incollarle
+
+Nel repository su GitHub: Settings → Secrets and variables → Actions → New repository secret. Crea due segreti:
+
+- `BALLDONTLIE_API_KEY`: la chiave di balldontlie;
+- `SPORTSGAMEODDS_API_KEY`: la chiave di SportsGameOdds.
+
+Come per il calcio, non incollare mai le chiavi in una chat né in un file del progetto: vanno solo nei segreti di GitHub.
+
+### La routine serale (`ROUTINE_SERALE_URL` e `ROUTINE_SERALE_TOKEN`)
+
+Il giro serale NBA ricontrolla infortuni e notizie delle giocate NBA prima che le partite inizino. Lo avvia una GitHub Action, che ha bisogno dell'indirizzo e del codice della routine:
+
+1. Apri claude.ai/code/routines e apri la routine **"Giro serale NBA"**.
+2. Premi **Edit** → **Add another trigger** → **API**.
+3. Copia l'URL e premi **Generate token** (il token si vede una volta sola).
+4. Nei segreti di GitHub crea `ROUTINE_SERALE_URL` (l'URL) e `ROUTINE_SERALE_TOKEN` (il token).
+
+Senza questi due segreti le quote serali vengono salvate ma la routine non parte.
+
+### Gli orari della sera
+
+- **Giro serale NBA**: di norma alle 22:00; se quel giorno c'è una partita prima delle 22:30, un'ora prima della prima partita, mai prima delle 14:00. Parte entro un'ora dall'orario previsto. Le istruzioni della routine sono in `docs/routine/giro-serale-nba.md`.
+- Se due ore dopo l'orario previsto il controllo non c'è stato, le schede NBA non iniziate mostrano l'avviso "controllo serale non eseguito".
+
+### Cosa significano le scritte sulle schede NBA
+
+- **Confermata**: il controllo serale non ha trovato novità che cambino la giocata.
+- **Modificata**: una notizia dell'ultima ora ha cambiato la probabilità. La scheda mostra la nuova quota minima e il motivo: gioca solo se trovi quella quota o una più alta.
+- **Annullata**: non giocarla più (per esempio è fuori un titolare importante). La scheda mostra il motivo.
+- Se hai già premuto "Giocata", la puntata e la quota minima restano quelle di quando l'hai fatta, anche se il controllo serale la segna Modificata o Annullata: in quel caso è solo un avviso, perché la giocata è già stata fatta.
+- **Stessa linea su bet365**: le schede di handicap e totale punti dicono "Gioca solo con la stessa linea e quota almeno ...". Se su bet365 la linea è diversa (per esempio 220.5 invece di 221.5), il calcolo non vale: non giocare.
+
 ## Per chi sviluppa (fasi successive)
 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".

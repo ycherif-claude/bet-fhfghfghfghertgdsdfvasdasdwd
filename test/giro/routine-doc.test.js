@@ -34,3 +34,15 @@ test('la routine spiega da dove copiare i nomi e cosa fare con raccolta vuota', 
   const t = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
   for (const s of ['partite[].mercati[]', 'idCandidato', 'calcio-2026-10-20-inter-roma-1x2-1', 'partiteControllate: []', 'TZ=Europe/Rome date +%F', 'git rebase --abort', 'dentro `fonte`']) assert.ok(t.includes(s), s);
 });
+
+test('le istruzioni NBA: mattino e serale contengono i passi obbligatori', () => {
+  const m = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
+  for (const s of ['Totale punti', 'Handicap -4.5', 'questionable', 'nba-2026-10-20-boston-celtics-new-york-knicks-handicap-meno-4-5-casa', '20 ricerche web', 'giro-serale-nba.md']) assert.ok(m.includes(s) || m.toLowerCase().includes(s), s);
+  const s = fs.readFileSync('docs/routine/giro-serale-nba.md', 'utf8');
+  for (const x of ['npm run serale-nba -- --applica', '-serale-nba.json', '-serale-quote.json', 'git pull', 'npm test', 'git push origin main', "TZ=Europe/Rome date -d '-8 hours' +%F", 'Giro serale NBA <data>', 'confermata', 'modificata', 'annullata', 'delta', 'git rebase --abort', '10 ricerche web']) assert.ok(s.includes(x), x);
+});
+
+test('il README spiega chiavi, routine serale, orari e stati delle schede NBA', () => {
+  const t = fs.readFileSync('README.md', 'utf8');
+  for (const s of ['BALLDONTLIE_API_KEY', 'SPORTSGAMEODDS_API_KEY', 'balldontlie.io', 'sportsgameodds.com', 'ROUTINE_SERALE_URL', 'ROUTINE_SERALE_TOKEN', 'Add another trigger', 'Generate token', 'Giro serale NBA', '22:30', '14:00', 'Confermata', 'Modificata', 'Annullata', 'stessa linea', 'Totale punti']) assert.ok(t.includes(s), s);
+});
