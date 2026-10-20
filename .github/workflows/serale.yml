@@ -1,10 +1,12 @@
-name: Giro serale NBA
+name: Giro serale
 
 # Ogni ora dalle 11:20 alle 23:20 UTC (12:20-00:20 di Roma con l'ora solare, 13:20-01:20 con l'ora legale):
 # i passaggi dopo la mezzanotte di Roma sono ancora nella stessa giornata (08:00-08:00) e servono
 # all'avviso "controllo serale non eseguito" (orario serale + 2 ore).
-# Calcola l'orario del giro serale dalla giornata di oggi e, quando manca al massimo un'ora,
-# scarica le quote fresche e avvia una sola volta al giorno la routine Claude "Giro serale NBA".
+# Un solo giro serale per NBA e tennis: l'orario è quello dell'NBA se ci sono giocate NBA, altrimenti
+# le 22:00 di Roma. Quando manca al massimo un'ora scarica le partite tennis notturne (una volta al giorno)
+# e le quote NBA fresche, poi avvia una sola volta al giorno la routine Claude del giro serale,
+# se c'è almeno una giocata NBA da controllare oppure almeno una partita tennis notturna.
 on:
   schedule:
     - cron: '20 11-23 * * *'
@@ -51,15 +53,80 @@ jobs:
               exit 1
             fi
           fi
+      - name: Orario del giro serale
+        id: orario
+        # "<orario ISO> nba" con giocate NBA, "<22:00> tennis" senza, "nessuno" senza la giornata di oggi.
+        # La raccolta tennis serve entro 60 minuti dall'orario (o dopo), se il giro non è già avviato
+        # e se la raccolta serale di oggi non è già su main: al massimo una raccolta (e una spesa di crediti) al giorno.
+        run: |
+          riga=$(npm run serale-nba -- --orario | tail -n 1)
+          read -r orario tipo <<< "$riga"
+          data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
+          tennis=no
+          if [ "$orario" != "nessuno" ] \
+            && [ ! -f data/raccolta/${data}-serale-stato.json ] \
+            && [ ! -f data/raccolta/${data}-serale-tennis.json ] \
+            && [ "$(date +%s)" -ge $(( $(date -d "$orario" +%s) - 3600 )) ]; then
+            tennis=si
+          fi
+          echo "Orario serale: $riga (raccolta tennis: $tennis)"
+          echo "tipo=${tipo:-nessuno}" >> "$GITHUB_OUTPUT"
+          echo "tennis=$tennis" >> "$GITHUB_OUTPUT"
+      - name: Raccolta serale tennis
+        if: steps.orario.outputs.tennis == 'si'
+        continue-on-error: true
+        run: npm run serale-tennis -- --raccolta
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      - name: Errori serali tennis nella giornata
+        if: steps.orario.outputs.tennis == 'si'
+        # Errori della raccolta (anche con zero partite, per esempio chiave mancante o API giù) in erroriGiro,
+        # una riga ciascuno: si salvano con gli altri dati.
+        run: npm run serale-tennis -- --errori
+      - name: Partite tennis notturne
+        id: tennis
+        run: |
+          partite=$(npm run serale-tennis -- --conta | tail -n 1)
+          echo "Partite tennis notturne: $partite"
+          echo "partite=$partite" >> "$GITHUB_OUTPUT"
       - name: Serve il giro serale?
         id: quando
+        env:
+          PARTITE_TENNIS_NOTTURNE: ${{ steps.tennis.outputs.partite }}
         run: |
           esito=$(npm run serale-nba -- --quando | tail -n 1)
           echo "Giro serale: $esito"
           echo "esito=$esito" >> "$GITHUB_OUTPUT"
+      - name: Salva la raccolta serale tennis
+        # Senza avvio (per esempio zero partite notturne e nessuna giocata NBA) la raccolta e i suoi errori
+        # si salvano lo stesso: gli errori non restano nascosti e la raccolta non si ripete al passaggio successivo.
+        if: steps.orario.outputs.tennis == 'si' && steps.quando.outputs.esito != 'avvia'
+        run: |
+          data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git commit -m "Raccolta serale tennis $data"
+            # Fino a 3 tentativi, come negli altri passi; un conflitto nel rebase si annulla e il job fallisce.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: dati non salvati"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: dati non salvati"
+              exit 1
+            fi
+          fi
       - name: Quote serali
-        if: steps.quando.outputs.esito == 'avvia'
-        # Senza quote fresche la routine usa il consenso del mattino: si va avanti comunque.
+        if: steps.quando.outputs.esito == 'avvia' && steps.orario.outputs.tipo == 'nba'
+        # Solo con giocate NBA. Senza quote fresche la routine usa il consenso del mattino: si va avanti comunque.
         continue-on-error: true
         run: npm run serale-nba -- --quote
         env:
@@ -91,8 +158,9 @@ jobs:
             echo "git push rifiutato 3 volte: dati non salvati"
             return 1
           }
-          # 1. Le quote, senza lo stato: la routine le trova già su main.
-          if ! salva "Quote serali NBA $data"; then exit 1; fi
+          # 1. Le quote NBA e la raccolta serale tennis (con i suoi errori nella giornata), senza lo stato:
+          #    la routine le trova già su main.
+          if ! salva "Quote serali NBA e tennis $data"; then exit 1; fi
           # Senza i secrets della routine lo stato resta "non avviato" e il passaggio dell'ora successiva riprova.
           if [ -z "$ROUTINE_SERALE_URL" ] || [ -z "$ROUTINE_SERALE_TOKEN" ]; then
             echo "Mancano i secrets ROUTINE_SERALE_URL o ROUTINE_SERALE_TOKEN: quote salvate, routine serale non avviata"

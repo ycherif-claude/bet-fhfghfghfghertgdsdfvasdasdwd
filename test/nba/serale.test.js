@@ -125,6 +125,29 @@ test('daAvviare: alle 21:20 per le 22:00 → true; alle 20:20 → false; già av
   assert.equal(daAvviare(giornata([giocataC()]), DATA, new Date('2026-10-20T21:20:00Z'), null), false);
 });
 
+test('tennis: nessuna giocata NBA e 3 partite tennis notturne → avvia alle 21:20 per le 22:00', () => {
+  const g = giornata([giocataC()]);
+  const t = { partiteTennisNotturne: 3 };
+  assert.equal(isoRoma(orarioSerale(g, DATA, t)), '2026-10-20T22:00:00+02:00');
+  assert.equal(daAvviare(g, DATA, new Date('2026-10-20T19:20:00Z'), null, t), true);
+  assert.equal(daAvviare(g, DATA, new Date('2026-10-20T18:20:00Z'), null, t), false);
+  assert.equal(daAvviare(g, DATA, new Date('2026-10-20T19:20:00Z'), { avviatoAlle: '2026-10-20T21:20:05+02:00' }, t), false);
+  // Nessuna delle due: si aspetta.
+  assert.equal(daAvviare(g, DATA, new Date('2026-10-20T19:20:00Z'), null, { partiteTennisNotturne: 0 }), false);
+  assert.equal(orarioSerale(g, DATA, { partiteTennisNotturne: 0 }), null);
+});
+
+test('tennis: con giocate NBA decide la regola NBA; NBA già iniziate ma tennis notturno → avvia', () => {
+  const g19 = giornata([giocata(), giocataB({ inizio: '2026-10-20T19:00:00+02:00' })]);
+  const t = { partiteTennisNotturne: 2 };
+  assert.equal(isoRoma(orarioSerale(g19, DATA, t)), '2026-10-20T18:00:00+02:00');
+  assert.equal(daAvviare(g19, DATA, new Date('2026-10-20T15:20:00Z'), null, t), true);
+  const iniziate = giornata([giocata({ inizio: '2026-10-20T19:00:00+02:00' })]);
+  const tardi = new Date('2026-10-20T19:20:00Z');
+  assert.equal(daAvviare(iniziate, DATA, tardi, null), false);
+  assert.equal(daAvviare(iniziate, DATA, tardi, null, t), true);
+});
+
 // --- quote ---
 
 test('scaricaQuoteSerali: una chiamata, solo le partite delle giocate NBA', async () => {
@@ -324,6 +347,31 @@ test('CLI --quando stampa avvia/attendi, esce con 0 e non scrive', () => {
   assert.equal(r3.stdout.trim(), 'attendi');
 });
 
+test('CLI --quando con PARTITE_TENNIS_NOTTURNE: senza NBA avvia solo con partite tennis', () => {
+  const d = dirTemp({ g: giornata([giocataC()]) });
+  const esegui = (n) => spawnSync(process.execPath, [SERALE, '--quando'], {
+    encoding: 'utf8', env: { ...process.env, SERALE_ADESSO: '2026-10-20T19:20:00Z', SERALE_DIR_DATA: d, PARTITE_TENNIS_NOTTURNE: n },
+  });
+  assert.equal(esegui('3').stdout.trim(), 'avvia');
+  assert.equal(esegui('0').stdout.trim(), 'attendi');
+  assert.equal(esegui('').stdout.trim(), 'attendi');
+  assert.equal(esegui('abc').stdout.trim(), 'attendi');
+});
+
+test('CLI --orario: orario NBA, 22:00 per il solo tennis, "nessuno" senza giornata', () => {
+  const esegui = (d) => spawnSync(process.execPath, [SERALE, '--orario'], {
+    encoding: 'utf8', env: { ...process.env, SERALE_ADESSO: '2026-10-20T10:00:00Z', SERALE_DIR_DATA: d },
+  });
+  const g19 = giornata([giocata(), giocataB({ inizio: '2026-10-20T19:00:00+02:00' })]);
+  const r1 = esegui(dirTemp({ g: g19 }));
+  assert.equal(r1.status, 0, r1.stderr);
+  assert.equal(r1.stdout, '2026-10-20T18:00:00+02:00 nba\n');
+  assert.equal(esegui(dirTemp({ g: giornata([giocataC()]) })).stdout, '2026-10-20T22:00:00+02:00 tennis\n');
+  const r3 = esegui(dirTemp({ g: null }));
+  assert.equal(r3.status, 0);
+  assert.equal(r3.stdout, 'nessuno\n');
+});
+
 // --- build ---
 
 test('la build legge la giornata dopo il giro serale senza erroriDati', () => {
@@ -337,8 +385,8 @@ test('la build legge la giornata dopo il giro serale senza erroriDati', () => {
 
 // --- workflow ---
 
-test('serale-nba.yml: orari, permessi, passi e secrets', () => {
-  const t = fs.readFileSync('.github/workflows/serale-nba.yml', 'utf8');
+test('serale.yml: orari, permessi, passi e secrets', () => {
+  const t = fs.readFileSync('.github/workflows/serale.yml', 'utf8');
   for (const s of [
     "cron: '20 11-23 * * *'", 'workflow_dispatch', 'contents: write', 'actions: write', 'group: dati', 'node-version: 24',
     'npm test', 'npm run serale-nba -- --scaduto', 'npm run serale-nba -- --quando', 'npm run serale-nba -- --quote',
@@ -358,6 +406,29 @@ test('serale-nba.yml: orari, permessi, passi e secrets', () => {
   assert.ok(!/echo[^\n]*\$ROUTINE_SERALE_(URL|TOKEN)/.test(t));
   const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   assert.equal(pkg.scripts['serale-nba'], 'node src/nba/serale.js');
+});
+
+test('serale.yml: un solo giro serale per NBA e tennis', () => {
+  assert.ok(!fs.existsSync('.github/workflows/serale-nba.yml'), 'serale-nba.yml rinominato');
+  const t = fs.readFileSync('.github/workflows/serale.yml', 'utf8');
+  assert.match(t, /^name: Giro serale\n/);
+  for (const s of [
+    'npm run serale-nba -- --orario', 'npm run serale-tennis -- --raccolta', 'npm run serale-tennis -- --errori',
+    'npm run serale-tennis -- --conta', 'PARTITE_TENNIS_NOTTURNE: ${{ steps.tennis.outputs.partite }}',
+    'ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}', '-serale-tennis.json',
+  ]) assert.ok(t.includes(s), s);
+  // La raccolta tennis non blocca l'NBA.
+  assert.match(t, /name: Raccolta serale tennis\n\s+if: [^\n]+\n\s+continue-on-error: true\n\s+run: npm run serale-tennis -- --raccolta/);
+  // Le quote NBA solo con giocate NBA.
+  assert.match(t, /name: Quote serali\n\s+if: steps\.quando\.outputs\.esito == 'avvia' && steps\.orario\.outputs\.tipo == 'nba'/);
+  // Ordine: scaduto → orario → raccolta tennis → errori → conta → quando → quote NBA → salva → /fire → stato.
+  const ordine = [
+    'npm test', 'serale-nba -- --scaduto', 'serale-nba -- --orario', 'serale-tennis -- --raccolta', 'serale-tennis -- --errori',
+    'serale-tennis -- --conta', 'serale-nba -- --quando', 'serale-nba -- --quote', 'salva "Quote serali NBA', 'curl -fsS',
+    '-serale-stato.json"',
+  ].map((x) => t.indexOf(x));
+  assert.ok(ordine.every((x, i) => x > 0 && (i === 0 || x > ordine[i - 1])), ordine.join(' < '));
+  assert.ok(!/echo[^\n]*\$(ODDS_API_KEY|SPORTSGAMEODDS_API_KEY)/.test(t));
 });
 
 // --- giocate già annullate ---

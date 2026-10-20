@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  finestraNotturna, raccoltaSeraleTennis, partiteNotturne, aggiungiSeraleTennis,
+  finestraNotturna, raccoltaSeraleTennis, partiteNotturne, aggiungiSeraleTennis, erroriSeraleTennis,
 } from '../../src/tennis/serale.js';
 import { costruisciDati } from '../../src/build/costruisci-sito.js';
 
@@ -388,4 +388,73 @@ test('CLI --aggiungi: aggiunge e stampa il riepilogo', () => {
   const r = cli(d, '--aggiungi');
   assert.equal(r.status, 0, r.stderr);
   assert.match(r.stdout, /1 giocate aggiunte/);
+});
+
+// --- errori della raccolta serale nella giornata ---
+
+const ERR_CHIAVE = 'The Odds API alle 21:50: manca ODDS_API_KEY';
+const ERR_STORICO = 'tennis-data alle 21:50: file 2026.xlsx non raggiungibile';
+
+test('errori: una riga per errore nella giornata, mai ripetuta, il resto invariato', () => {
+  const d = dir();
+  scriviGiornata(d, [giocataMattino(1, 6)], { erroriGiro: [ERR_STORICO] });
+  scriviSerale(d, [], { notizie: false, erroriGiro: [ERR_CHIAVE, ERR_STORICO, ERR_CHIAVE] });
+  const prima = leggiGiornata(d);
+  assert.deepEqual(erroriSeraleTennis({ dirData: d, adesso }), { aggiunti: 1, avvisi: [] });
+  const dopo = leggiGiornata(d);
+  assert.deepEqual(dopo.erroriGiro, [ERR_STORICO, ERR_CHIAVE]);
+  assert.deepEqual({ ...dopo, erroriGiro: prima.erroriGiro }, prima);
+  const testo = readFileSync(join(d, 'giornate', `${DATA}.json`), 'utf8');
+  assert.equal(erroriSeraleTennis({ dirData: d, adesso }).aggiunti, 0);
+  assert.equal(readFileSync(join(d, 'giornate', `${DATA}.json`), 'utf8'), testo);
+});
+
+test('errori: raccolta senza errori → nessuna scrittura; poi --aggiungi non li ripete', () => {
+  const d = dir();
+  scriviGiornata(d, []);
+  scriviSerale(d, NOTTURNE.slice(0, 1));
+  const testo = readFileSync(join(d, 'giornate', `${DATA}.json`), 'utf8');
+  assert.equal(erroriSeraleTennis({ dirData: d, adesso }).aggiunti, 0);
+  assert.equal(readFileSync(join(d, 'giornate', `${DATA}.json`), 'utf8'), testo);
+  const d2 = dir();
+  scriviGiornata(d2, []);
+  scriviSerale(d2, NOTTURNE.slice(0, 1), { erroriGiro: [ERR_STORICO] });
+  erroriSeraleTennis({ dirData: d2, adesso });
+  aggiungiSeraleTennis({ dirData: d2, adesso });
+  assert.deepEqual(leggiGiornata(d2).erroriGiro, [ERR_STORICO]);
+});
+
+test('errori: raccolta serale mancante o illeggibile → una riga con il motivo', () => {
+  const d = dir();
+  scriviGiornata(d, []);
+  assert.equal(erroriSeraleTennis({ dirData: d, adesso }).aggiunti, 1);
+  assert.deepEqual(leggiGiornata(d).erroriGiro, [`Tennis serale alle 22:10: raccolta serale mancante (data/raccolta/${DATA}-serale-tennis.json)`]);
+  const d2 = dir();
+  scriviGiornata(d2, []);
+  writeFileSync(join(d2, 'raccolta', `${DATA}-serale-tennis.json`), '{rotto');
+  erroriSeraleTennis({ dirData: d2, adesso });
+  const [riga, ...altre] = leggiGiornata(d2).erroriGiro;
+  assert.equal(altre.length, 0);
+  assert.match(riga, new RegExp(`^Tennis serale alle 22:10: Raccolta serale tennis illeggibile: data/raccolta/${DATA}-serale-tennis.json`));
+});
+
+test('errori: giornata di oggi mancante → avviso, nessun file scritto, nessuna eccezione', () => {
+  const d = dir();
+  scriviSerale(d, [], { notizie: false, erroriGiro: [ERR_CHIAVE] });
+  const r = erroriSeraleTennis({ dirData: d, adesso });
+  assert.equal(r.aggiunti, 0);
+  assert.match(r.avvisi.join(' '), /Giornata di oggi mancante/);
+  assert.equal(existsSync(join(d, 'giornate', `${DATA}.json`)), false);
+});
+
+test('CLI --errori: aggiunge gli errori della raccolta serale e stampa il riepilogo, uscita 0', () => {
+  const d = dir();
+  scriviGiornata(d, []);
+  scriviSerale(d, [], { notizie: false, erroriGiro: [ERR_CHIAVE] });
+  const r = cli(d, '--errori');
+  assert.equal(r.status, 0, r.stderr);
+  assert.match(r.stdout, /1 errori aggiunti/);
+  assert.deepEqual(leggiGiornata(d).erroriGiro, [ERR_CHIAVE]);
+  const r2 = cli(dir(), '--errori');
+  assert.equal(r2.status, 0, r2.stderr);
 });

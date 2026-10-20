@@ -1,6 +1,6 @@
 // Giro della sera prima, tennis (spec §3.1): le partite notturne (dall'orario serale alle 08:00 di Roma)
 // si aggiungono alla giornata di oggi senza mai cambiare le giocate già proposte.
-// Uso: node src/tennis/serale.js --raccolta | --conta | --aggiungi
+// Uso: node src/tennis/serale.js --raccolta | --conta | --errori | --aggiungi
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -85,6 +85,35 @@ export function partiteNotturne(dirData, data) {
   } catch {
     return 0;
   }
+}
+
+// Errori della raccolta serale nella giornata di oggi (una riga ciascuno, mai ripetuta), anche con
+// zero partite notturne: il workflow li salva subito, prima e indipendentemente dall'avvio della routine.
+// Raccolta mancante o illeggibile: una riga con il motivo. Non lancia mai: l'NBA va avanti.
+export function erroriSeraleTennis({ dirData, adesso }) {
+  const data = giornataDi(adesso);
+  const f = percorsi(dirData, data);
+  let giornata;
+  try {
+    giornata = leggi(f.giornata, 'Giornata di oggi');
+  } catch (e) {
+    return { aggiunti: 0, avvisi: [`${e.message}: errori serali tennis non salvati`] };
+  }
+  if (!giornata) return { aggiunti: 0, avvisi: [`Giornata di oggi mancante: ${f.giornata[1]}, errori serali tennis non salvati`] };
+  const fonte = `Tennis serale alle ${oraRoma(adesso)}`;
+  let righe;
+  try {
+    const serale = leggi(f.serale, 'Raccolta serale tennis');
+    righe = serale
+      ? elenco(serale.erroriGiro).filter((e) => typeof e === 'string')
+      : [`${fonte}: raccolta serale mancante (${f.serale[1]})`];
+  } catch (e) {
+    righe = [`${fonte}: ${e.message}`];
+  }
+  const erroriGiro = elenco(giornata.erroriGiro);
+  const nuovi = [...new Set(righe.filter((e) => !erroriGiro.includes(e)))];
+  if (nuovi.length) scriviJson(f.giornata[0], { ...giornata, erroriGiro: [...erroriGiro, ...nuovi] });
+  return { aggiunti: nuovi.length, avvisi: [] };
 }
 
 // Stato del bankroll su tutte le giornate, compresa quella di oggi (le segnate di oggi contano),
@@ -218,11 +247,11 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
 
 // --- riga di comando ---
 
-const USO = 'Uso: node src/tennis/serale.js --raccolta | --conta | --aggiungi';
+const USO = 'Uso: node src/tennis/serale.js --raccolta | --conta | --errori | --aggiungi';
 
 async function principale() {
   const argomenti = process.argv.slice(2);
-  if (argomenti.length !== 1 || !['--raccolta', '--conta', '--aggiungi'].includes(argomenti[0])) {
+  if (argomenti.length !== 1 || !['--raccolta', '--conta', '--errori', '--aggiungi'].includes(argomenti[0])) {
     console.error(USO);
     process.exit(1);
   }
@@ -233,6 +262,12 @@ async function principale() {
   const comando = argomenti[0];
   if (comando === '--conta') {
     console.log(String(partiteNotturne(dirData, data)));
+    return;
+  }
+  if (comando === '--errori') {
+    const r = erroriSeraleTennis({ dirData, adesso });
+    for (const a of r.avvisi) console.log(a);
+    console.log(`Errori serali tennis ${data}: ${r.aggiunti} errori aggiunti alla giornata`);
     return;
   }
   if (comando === '--raccolta') {
