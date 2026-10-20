@@ -340,7 +340,7 @@ test('la build legge la giornata dopo il giro serale senza erroriDati', () => {
 test('serale-nba.yml: orari, permessi, passi e secrets', () => {
   const t = fs.readFileSync('.github/workflows/serale-nba.yml', 'utf8');
   for (const s of [
-    "cron: '20 12-21 * * *'", 'workflow_dispatch', 'contents: write', 'actions: write', 'group: dati', 'node-version: 24',
+    "cron: '20 11-23 * * *'", 'workflow_dispatch', 'contents: write', 'actions: write', 'group: dati', 'node-version: 24',
     'npm test', 'npm run serale-nba -- --scaduto', 'npm run serale-nba -- --quando', 'npm run serale-nba -- --quote',
     '-serale-stato.json', 'avviatoAlle', 'for tentativo in 1 2 3', 'git pull --rebase', 'git rebase --abort',
     'curl -fsS -X POST "$ROUTINE_SERALE_URL"', 'Authorization: Bearer $ROUTINE_SERALE_TOKEN',
@@ -349,7 +349,55 @@ test('serale-nba.yml: orari, permessi, passi e secrets', () => {
     '${{ secrets.SPORTSGAMEODDS_API_KEY }}', '${{ secrets.ROUTINE_SERALE_URL }}', '${{ secrets.ROUTINE_SERALE_TOKEN }}',
   ]) assert.ok(t.includes(s), s);
   assert.ok(!t.includes('set -x'));
+  // Ordine: quote salvate, poi /fire, poi lo stato (solo dopo l'avvio riuscito).
+  const quote = t.indexOf('salva "Quote serali NBA');
+  const fire = t.indexOf('curl -fsS');
+  const stato = t.indexOf('-serale-stato.json"');
+  assert.ok(quote > 0 && quote < fire && fire < stato, 'quote → curl → stato');
+  assert.match(t, /doppio avvio/);
   assert.ok(!/echo[^\n]*\$ROUTINE_SERALE_(URL|TOKEN)/.test(t));
   const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   assert.equal(pkg.scripts['serale-nba'], 'node src/nba/serale.js');
+});
+
+// --- giocate già annullate ---
+
+test('giocata già annullata: niente decisione richiesta, decisione rifiutata, nessuna modifica', () => {
+  const g = giornata([giocata({ stato: 'annullata', motivoStato: 'annullata a mano' }), giocataB(), giocataC()]);
+  assert.deepEqual(validaDecisioni(decisioni([decisione(ID_B, 'confermata')]), g, ADESSO), []);
+  assert.match(validaDecisioni(decisioni([decisione(ID_A, 'confermata'), decisione(ID_B, 'confermata')]), g, ADESSO).join(' | '), /già annullata/);
+  const d = dirTemp({ g, dec: decisioni([decisione(ID_B, 'confermata')]) });
+  const prima = leggiGiornata(d);
+  assert.equal(applicaSerale({ dirData: d, adesso: ADESSO }).cambiate, 1);
+  assert.deepEqual(leggiGiornata(d).giocate[0], prima.giocate[0]);
+  // Scaduto: la giocata annullata resta com'è.
+  const d2 = dirTemp({ g });
+  segnaScaduto({ dirData: d2, adesso: new Date('2026-10-20T22:00:00Z') });
+  const dopo = leggiGiornata(d2);
+  assert.deepEqual(dopo.giocate[0], prima.giocate[0]);
+  assert.equal(dopo.giocate[1].motivoStato, 'controllo serale non eseguito');
+});
+
+test('annullata dal giro serale: riapplicare le stesse decisioni non cambia il file', () => {
+  const d = dirTemp({ dec: decisioni([decisione(ID_A, 'annullata'), decisione(ID_B, 'confermata')]) });
+  applicaSerale({ dirData: d, adesso: ADESSO });
+  const una = testoGiornata(d);
+  assert.equal(applicaSerale({ dirData: d, adesso: new Date(ADESSO.getTime() + 60000) }).cambiate, 0);
+  assert.equal(testoGiornata(d), una);
+});
+
+// --- correzione del mattino + serale ---
+
+test('correzione del mattino più quella serale entro ±0,08 dal modello senza correzioni', () => {
+  // Mattino +0,05 (modello grezzo 0,57 → 0,62).
+  const mattino = { delta: 0.05, motivo: 'Brown rientra', fonte: 'Celtics PR' };
+  const g = giornata([giocata({ correzioneNotizie: mattino }), giocataB()]);
+  const err = (delta) => validaDecisioni(decisioni([decisione(ID_A, 'modificata', { delta }), decisione(ID_B, 'confermata')]), g, ADESSO).join(' | ');
+  assert.match(err(0.04), /correzione del mattino 0.05 più quella serale 0.04 = 0.09: oltre il massimo/);
+  assert.equal(err(0.03), '');
+  assert.equal(err(-0.08), '');
+  const d = dirTemp({ g, quote: quoteFresche([]), dec: decisioni([decisione(ID_A, 'modificata', { delta: -0.06 }), decisione(ID_B, 'confermata')]) });
+  applicaSerale({ dirData: d, adesso: ADESSO });
+  // Modello = 0,57 + 0,05 − 0,06 = 0,56; mercato = consenso del mattino 0,60.
+  vicino(leggiGiornata(d).giocate[0].prob, 0.5 * 0.56 + 0.5 * 0.6);
 });

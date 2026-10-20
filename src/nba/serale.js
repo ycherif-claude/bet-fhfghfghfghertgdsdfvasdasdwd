@@ -32,6 +32,11 @@ const singolaNba = (g) => oggetto(g) && !multipla(g) && g.sport === 'nba';
 const multiplaNba = (g) => oggetto(g) && multipla(g) && g.gambe.some((x) => x?.sport === 'nba');
 const giocataNba = (g) => singolaNba(g) || multiplaNba(g);
 const giocateNba = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocate.filter(giocataNba) : []);
+// Giocate già annullate prima del giro serale: escluse dal controllo.
+const annullata = (g) => g.stato === 'annullata';
+// Correzione delle notizie del mattino sulla probabilità del modello (0 se assente).
+const deltaMattino = (g) => (numerico(g.correzioneNotizie?.delta) ? g.correzioneNotizie.delta : 0);
+const motivoDi = (d) => `${d.motivo} (${d.fonte})`;
 const iniziata = (g, adesso) => !(Date.parse(g.inizio) > adesso.getTime());
 
 // Inizi delle partite NBA di una giocata (le gambe NBA, per le multiple).
@@ -153,6 +158,9 @@ export function validaDecisioni(dec, giornata, adesso = new Date()) {
     if (!g) return err('non è una giocata NBA della giornata');
     if (viste.has(d.idGiocata)) return err('più di una decisione per la stessa giocata');
     viste.add(d.idGiocata);
+    // Un annullamento già applicato da questa stessa decisione si accetta: riapplicare non cambia nulla.
+    const giaApplicata = d.stato === 'annullata' && g.motivoStato === motivoDi(d);
+    if (annullata(g) && !giaApplicata) return err('giocata già annullata: è esclusa dal controllo serale, non serve una decisione');
     if (!STATI.has(d.stato)) return err(`stato non valido: ${d.stato} (confermata, modificata o annullata)`);
     if (!testoPieno(d.motivo)) err('motivo mancante');
     if (!testoPieno(d.fonte)) err('fonte mancante');
@@ -162,6 +170,10 @@ export function validaDecisioni(dec, giornata, adesso = new Date()) {
     if (!numerico(d.delta)) return err('delta non numerico');
     if (Math.abs(d.delta) > correzioneMax + EPS) return err(`delta ${numero(d.delta)} oltre il massimo di ±${correzioneMax}`);
     if (!numerico(g.probModello)) return err('probabilità del modello assente: non si può correggere');
+    const mattino = deltaMattino(g);
+    if (Math.abs(mattino + d.delta) > correzioneMax + EPS) {
+      return err(`correzione del mattino ${numero(mattino)} più quella serale ${numero(d.delta)} = ${numero(mattino + d.delta)}: oltre il massimo di ±${correzioneMax} dal modello senza correzioni`);
+    }
     const nuova = g.probModello + d.delta;
     if (nuova < probMin - EPS || nuova > probMax + EPS) {
       err(`il modello passerebbe da ${numero(g.probModello)} a ${numero(nuova)}, fuori dall'intervallo ${probMin}–${probMax}`);
@@ -169,7 +181,7 @@ export function validaDecisioni(dec, giornata, adesso = new Date()) {
     return undefined;
   });
   for (const g of nba.values()) {
-    if (!iniziata(g, adesso) && !viste.has(g.id)) errori.push(`manca la decisione per ${g.id}`);
+    if (!annullata(g) && !iniziata(g, adesso) && !viste.has(g.id)) errori.push(`manca la decisione per ${g.id}`);
   }
   return errori;
 }
@@ -243,12 +255,14 @@ export function applicaSerale({ dirData, adesso }) {
   let cambiate = 0;
   const giocate = giornata.giocate.map((g) => {
     const d = giocataNba(g) ? perId.get(g.id) : null;
-    if (!d || iniziata(g, adesso)) return g;
-    const nuovo = { stato: d.stato, motivoStato: `${d.motivo} (${d.fonte})` };
+    if (!d || annullata(g) || iniziata(g, adesso)) return g;
+    const nuovo = { stato: d.stato, motivoStato: motivoDi(d) };
     if (d.stato === 'modificata' && !multipla(g) && !segnate.has(g.id)) {
       const { consensoFresco } = fresco(g, quote);
       const mercato = consensoFresco ?? g.probPinnacle;
-      const modello = numerico(g.probModello) ? clamp(g.probModello + (d.delta ?? 0)) : null;
+      // Modello senza correzioni + correzione del mattino + correzione serale (insieme entro ±0,08).
+      const grezzo = numerico(g.probModello) ? g.probModello - deltaMattino(g) : null;
+      const modello = grezzo === null ? null : clamp(grezzo + deltaMattino(g) + (d.delta ?? 0));
       const prob = probUsata(modello, mercato, pesoDi(g, raccoltaNba));
       if (!probValida(prob)) throw new Error(`Giocata ${g.id}: probabilità non valida dopo la modifica, nessun file scritto`);
       nuovo.prob = prob;
@@ -273,7 +287,7 @@ export function segnaScaduto({ dirData, adesso }) {
   if (adesso.getTime() < orario.getTime() + N.serale.ritardoAvvisoOre * 3600000) return { cambiate: 0 };
   let cambiate = 0;
   const giocate = giornata.giocate.map((g) => {
-    if (!giocataNba(g) || iniziata(g, adesso) || g.motivoStato === MOTIVO_SCADUTO) return g;
+    if (!giocataNba(g) || annullata(g) || iniziata(g, adesso) || g.motivoStato === MOTIVO_SCADUTO) return g;
     cambiate++;
     return { ...g, motivoStato: MOTIVO_SCADUTO };
   });

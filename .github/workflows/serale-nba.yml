@@ -1,11 +1,13 @@
 name: Giro serale NBA
 
-# Ogni ora dalle 12:20 alle 21:20 UTC (13:20-23:20 di Roma, secondo l'ora legale).
+# Ogni ora dalle 11:20 alle 23:20 UTC (12:20-00:20 di Roma con l'ora solare, 13:20-01:20 con l'ora legale):
+# i passaggi dopo la mezzanotte di Roma sono ancora nella stessa giornata (08:00-08:00) e servono
+# all'avviso "controllo serale non eseguito" (orario serale + 2 ore).
 # Calcola l'orario del giro serale dalla giornata di oggi e, quando manca al massimo un'ora,
 # scarica le quote fresche e avvia una sola volta al giorno la routine Claude "Giro serale NBA".
 on:
   schedule:
-    - cron: '20 12-21 * * *'
+    - cron: '20 11-23 * * *'
   workflow_dispatch:
 
 permissions:
@@ -69,44 +71,52 @@ jobs:
           ROUTINE_SERALE_TOKEN: ${{ secrets.ROUTINE_SERALE_TOKEN }}
         run: |
           data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
-          # Senza i secrets della routine si salvano solo le quote: lo stato resta "non avviato"
-          # e il passaggio dell'ora successiva riprova.
-          mancano=
-          if [ -z "$ROUTINE_SERALE_URL" ] || [ -z "$ROUTINE_SERALE_TOKEN" ]; then mancano=1; fi
-          if [ -z "$mancano" ]; then
-            printf '{\n  "avviatoAlle": "%s"\n}\n' "$(TZ=Europe/Rome date -Iseconds)" > "data/raccolta/${data}-serale-stato.json"
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
-          git add data/
-          if [ -n "$(git status --porcelain data/)" ]; then
-            git commit -m "Giro serale NBA $data: quote e avvio"
-            # Fino a 3 tentativi, come nella raccolta.
-            salvato=
+          # Commit e push di data/, fino a 3 tentativi come nella raccolta: un push rifiutato
+          # si riprova dopo una pausa; un conflitto nel rebase si annulla e si esce con errore.
+          salva() {
+            git add data/
+            if [ -z "$(git status --porcelain data/)" ]; then return 0; fi
+            git commit -m "$1" || return 1
             for tentativo in 1 2 3; do
               if ! git pull --rebase; then
                 git rebase --abort || true
                 echo "Conflitto durante git pull --rebase: dati non salvati"
-                exit 1
+                return 1
               fi
-              if git push; then salvato=1; break; fi
+              if git push; then return 0; fi
               if [ "$tentativo" -lt 3 ]; then sleep 10; fi
             done
-            if [ -z "$salvato" ]; then
-              echo "git push rifiutato 3 volte: dati non salvati"
-              exit 1
-            fi
-          fi
-          if [ -n "$mancano" ]; then
+            echo "git push rifiutato 3 volte: dati non salvati"
+            return 1
+          }
+          # 1. Le quote, senza lo stato: la routine le trova già su main.
+          if ! salva "Quote serali NBA $data"; then exit 1; fi
+          # Senza i secrets della routine lo stato resta "non avviato" e il passaggio dell'ora successiva riprova.
+          if [ -z "$ROUTINE_SERALE_URL" ] || [ -z "$ROUTINE_SERALE_TOKEN" ]; then
             echo "Mancano i secrets ROUTINE_SERALE_URL o ROUTINE_SERALE_TOKEN: quote salvate, routine serale non avviata"
             exit 1
           fi
-          curl -fsS -X POST "$ROUTINE_SERALE_URL" \
+          # 2. Avvio della routine. Se fallisce lo stato non si scrive: il passaggio successivo riprova.
+          if ! curl -fsS -X POST "$ROUTINE_SERALE_URL" \
             -H "Authorization: Bearer $ROUTINE_SERALE_TOKEN" \
             -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
             -H "anthropic-version: 2023-06-01" \
             -H "Content-Type: application/json" \
-            -d "{\"text\":\"Giro serale NBA $data\"}"
+            -d "{\"text\":\"Giro serale NBA $data\"}"; then
+            echo "Avvio della routine serale fallito: stato non scritto, il prossimo passaggio orario riprova"
+            exit 1
+          fi
+          # 3. Lo stato, solo dopo l'avvio riuscito.
+          printf '{\n  "avviatoAlle": "%s"\n}\n' "$(TZ=Europe/Rome date -Iseconds)" > "data/raccolta/${data}-serale-stato.json"
+          # Se questo push fallisce la routine è già partita ma su main manca avviatoAlle:
+          # il passaggio dell'ora successiva la avvierebbe una seconda volta (doppio avvio).
+          # Il job fallisce in modo visibile: va salvato a mano data/raccolta/<data>-serale-stato.json.
+          if ! salva "Giro serale NBA $data avviato"; then
+            echo "ATTENZIONE: routine serale avviata ma stato non salvato: rischio di doppio avvio al prossimo passaggio. Salvare a mano data/raccolta/${data}-serale-stato.json"
+            exit 1
+          fi
       - name: Avvia la pubblicazione del sito
         if: steps.quando.outputs.esito == 'avvia'
         run: gh workflow run pubblica.yml
