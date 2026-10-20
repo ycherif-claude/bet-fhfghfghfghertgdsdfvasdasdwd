@@ -144,8 +144,7 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
       }
     }
     if (cambiato) {
-      writeFileSync(percorso, `${JSON.stringify(dati, null, 2)}
-`);
+      writeFileSync(percorso, `${JSON.stringify(dati, null, 2)}\n`);
       file.push(percorso);
     }
   }

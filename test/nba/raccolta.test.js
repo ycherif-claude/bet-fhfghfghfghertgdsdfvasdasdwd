@@ -192,3 +192,11 @@ test('puntiAttesi nel file arrotondati a 1 decimale; avviso handicap solo sugli 
   const r2 = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento(), fuori]), chiavi });
   assert.ok(!r2.erroriGiro.some((e) => /nessun handicap/.test(e)));
 });
+
+test('avviso handicap: evento del giorno senza handicap, evento fuori giorno con handicap → avviso', async () => {
+  const senza = (c) => { const b = bk(c); delete b.mercati.handicap; return b; };
+  const giorno = evento({ bookmaker: [senza('a'), senza('b'), senza('c')] });
+  const fuori = evento({ id: 'e9', casa: 'Miami Heat', trasferta: 'Chicago Bulls', inizio: '2026-10-22T10:00:00+02:00' });
+  const r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([giorno, fuori]), chiavi });
+  assert.ok(r.erroriGiro.includes('SportsGameOdds alle 07:07: nessun handicap disponibile (controllare il campo spread)'));
+});
