@@ -69,7 +69,7 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 
 ## NBA: chiavi e giro serale
 
-Le giocate NBA (vincente, handicap e totale punti, supplementari compresi) si costruiscono ogni mattina insieme a quelle di calcio, con dati gratuiti. Servono due chiavi gratuite.
+Le giocate NBA (Vincente, Handicap e Totale punti, supplementari compresi) si costruiscono ogni mattina insieme a quelle di calcio, con dati gratuiti. Servono due chiavi gratuite.
 
 ### Chiavi gratuite
 
@@ -107,7 +107,7 @@ Senza questi due segreti le quote serali vengono salvate ma la routine non parte
 - **Modificata**: una notizia dell'ultima ora ha cambiato la probabilità. La scheda mostra la nuova quota minima e il motivo: gioca solo se trovi quella quota o una più alta.
 - **Annullata**: non giocarla più (per esempio è fuori un titolare importante). La scheda mostra il motivo.
 - Se hai già premuto "Giocata", la puntata e la quota minima restano quelle di quando l'hai fatta, anche se il controllo serale la segna Modificata o Annullata: in quel caso è solo un avviso, perché la giocata è già stata fatta.
-- **Stessa linea su bet365**: le schede di handicap e totale punti dicono "Gioca solo con la stessa linea e quota almeno ...". Se su bet365 la linea è diversa (per esempio 220.5 invece di 221.5), il calcolo non vale: non giocare.
+- **Stessa linea su bet365**: le schede di Handicap e Totale punti dicono "Gioca solo con la stessa linea e quota almeno ...". Se su bet365 la linea è diversa (per esempio 220.5 invece di 221.5), il calcolo non vale: non giocare.
 
 ## Per chi sviluppa (fasi successive)
 
