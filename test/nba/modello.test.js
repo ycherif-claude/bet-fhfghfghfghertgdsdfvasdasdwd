@@ -257,3 +257,13 @@ test('nessuna partita: forze vuote e valori iniziali', () => {
   assert.equal(f.sdMargine, CONFIG.nba.sdMargine);
   assert.equal(puntiAttesi(f, 'Boston Celtics', 'Miami Heat'), null);
 });
+
+test('i playoff della stagione scorsa non abbassano la media dei punti', () => {
+  const att = [1, 1, 1, 1];
+  const dif = [1, 1, 1, 1];
+  const regolare = campionato({ squadre: SQ4, giorni: 120, inizio: '2025-11-01', stagione: 2025, att, dif, media: 115 });
+  const playoff = campionato({ squadre: SQ4, giorni: 50, inizio: '2026-04-20', stagione: 2025, att, dif, media: 100 })
+    .map((p) => ({ ...p, id: p.id + 100000, postseason: true }));
+  const f = stimaForzeNba([...regolare, ...playoff], { oggi: '2026-10-20', stagioneCorrente: 2026 });
+  vicino(f.mediaPunti, 115, 1.5, 'mediaPunti senza playoff');
+});

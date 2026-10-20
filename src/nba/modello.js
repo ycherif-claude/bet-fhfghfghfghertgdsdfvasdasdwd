@@ -34,7 +34,8 @@ export function phi(x) {
   return x >= 0 ? 0.5 * (1 + erf) : 0.5 * (1 - erf);
 }
 
-const valida = (x) => x.finita && Number.isFinite(x.puntiCasa) && Number.isFinite(x.puntiTrasferta);
+// Solo stagione regolare: i playoff (punteggi più bassi, a fine stagione) peserebbero troppo con la mezza vita di 30 giorni.
+const valida = (x) => x.finita && !x.postseason && Number.isFinite(x.puntiCasa) && Number.isFinite(x.puntiTrasferta);
 const media = (valori) => {
   let s = 0;
   let n = 0;
