@@ -1,0 +1,114 @@
+name: Giro serale NBA
+
+# Ogni ora dalle 12:20 alle 21:20 UTC (13:20-23:20 di Roma, secondo l'ora legale).
+# Calcola l'orario del giro serale dalla giornata di oggi e, quando manca al massimo un'ora,
+# scarica le quote fresche e avvia una sola volta al giorno la routine Claude "Giro serale NBA".
+on:
+  schedule:
+    - cron: '20 12-21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: dati
+
+jobs:
+  serale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm test
+      - name: Controllo serale scaduto
+        run: |
+          npm run serale-nba -- --scaduto
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git commit -m "Controllo serale NBA non eseguito $(TZ=Europe/Rome date -d '-8 hours' +%F)"
+            # Fino a 3 tentativi: un push rifiutato (main avanzata nel frattempo) si riprova dopo una pausa.
+            # Un conflitto nel rebase non si risolve da solo: si annulla e il job fallisce.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: dati non salvati"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: dati non salvati"
+              exit 1
+            fi
+          fi
+      - name: Serve il giro serale?
+        id: quando
+        run: |
+          esito=$(npm run serale-nba -- --quando | tail -n 1)
+          echo "Giro serale: $esito"
+          echo "esito=$esito" >> "$GITHUB_OUTPUT"
+      - name: Quote serali
+        if: steps.quando.outputs.esito == 'avvia'
+        # Senza quote fresche la routine usa il consenso del mattino: si va avanti comunque.
+        continue-on-error: true
+        run: npm run serale-nba -- --quote
+        env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+      - name: Salva e avvia la routine serale
+        if: steps.quando.outputs.esito == 'avvia'
+        env:
+          ROUTINE_SERALE_URL: ${{ secrets.ROUTINE_SERALE_URL }}
+          ROUTINE_SERALE_TOKEN: ${{ secrets.ROUTINE_SERALE_TOKEN }}
+        run: |
+          data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
+          # Senza i secrets della routine si salvano solo le quote: lo stato resta "non avviato"
+          # e il passaggio dell'ora successiva riprova.
+          mancano=
+          if [ -z "$ROUTINE_SERALE_URL" ] || [ -z "$ROUTINE_SERALE_TOKEN" ]; then mancano=1; fi
+          if [ -z "$mancano" ]; then
+            printf '{\n  "avviatoAlle": "%s"\n}\n' "$(TZ=Europe/Rome date -Iseconds)" > "data/raccolta/${data}-serale-stato.json"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git commit -m "Giro serale NBA $data: quote e avvio"
+            # Fino a 3 tentativi, come nella raccolta.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: dati non salvati"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: dati non salvati"
+              exit 1
+            fi
+          fi
+          if [ -n "$mancano" ]; then
+            echo "Mancano i secrets ROUTINE_SERALE_URL o ROUTINE_SERALE_TOKEN: quote salvate, routine serale non avviata"
+            exit 1
+          fi
+          curl -fsS -X POST "$ROUTINE_SERALE_URL" \
+            -H "Authorization: Bearer $ROUTINE_SERALE_TOKEN" \
+            -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "Content-Type: application/json" \
+            -d "{\"text\":\"Giro serale NBA $data\"}"
+      - name: Avvia la pubblicazione del sito
+        if: steps.quando.outputs.esito == 'avvia'
+        run: gh workflow run pubblica.yml
+        env:
+          GH_TOKEN: ${{ github.token }}
