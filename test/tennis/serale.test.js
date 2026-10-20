@@ -458,3 +458,29 @@ test('CLI --errori: aggiunge gli errori della raccolta serale e stampa il riepil
   const r2 = cli(dir(), '--errori');
   assert.equal(r2.status, 0, r2.stderr);
 });
+
+// --- workflow serale ---
+
+test('serale.yml: --errori non blocca l\'NBA; orario validato prima dei calcoli; salvataggio senza avvio', () => {
+  const t = readFileSync(new URL('../../.github/workflows/serale.yml', import.meta.url), 'utf8');
+  assert.match(t, /name: Errori serali tennis nella giornata\n\s+if: steps\.orario\.outputs\.tennis == 'si'\n(\s+#[^\n]*\n)*\s+continue-on-error: true\n\s+run: npm run serale-tennis -- --errori/);
+  // Riga di --orario: data ISO, tipo nba o tennis, date -d riuscito; altrimenti tennis=no.
+  const passo = t.slice(t.indexOf('name: Orario del giro serale'), t.indexOf('name: Raccolta serale tennis'));
+  for (const s of ['riga=$(npm run serale-nba -- --orario | tail -n 1) || riga="errore"', '[[ "$orario" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T ]]', '[ "$tipo" = nba ] || [ "$tipo" = tennis ]', 'inizio=$(date -d "$orario" +%s 2>/dev/null)', '$(( inizio - 3600 ))']) {
+    assert.ok(passo.includes(s), s);
+  }
+  assert.ok(!passo.includes('$(date -d "$orario" +%s) - 3600'), 'nessun calcolo su un orario non validato');
+  assert.ok(passo.indexOf('=~') < passo.indexOf('date -d "$orario"'), 'validazione prima di date -d');
+  assert.ok(passo.indexOf('date -d "$orario"') < passo.indexOf('inizio - 3600'));
+  assert.match(t, /name: Salva la raccolta serale tennis\n(\s+#[^\n]*\n)*\s+if: steps\.orario\.outputs\.tennis == 'si' && steps\.quando\.outputs\.esito != 'avvia'\n/);
+});
+
+test('giro-serale.md: una parte fallita salta solo quella parte; test, commit e push sempre per quello che è riuscito', () => {
+  const t = readFileSync(new URL('../../docs/routine/giro-serale.md', import.meta.url), 'utf8');
+  for (const s of [
+    'salta solo quella parte', 'I passi 10-12 (`npm test`, commit e push, ultimo messaggio) si eseguono **sempre** per quello che è riuscito',
+    'quale parte è fallita o è stata saltata e perché', 'va cancellato prima del commit',
+  ]) assert.ok(t.includes(s), s);
+  assert.ok(!t.includes('fermati: non inventare niente'), 'la regola generale non ferma più tutto il giro');
+  assert.ok(!t.includes('fermati sulla parte tennis'));
+});

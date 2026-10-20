@@ -129,3 +129,13 @@ test('errore 401 senza la chiave nel messaggio', async () => {
     (e) => /401/.test(e.message) && !e.message.includes('SEGRETA123'),
   );
 });
+
+test('partite: righe presenti ma nessuna leggibile → errore "formato cambiato?"; file vuoto → []', async () => {
+  const f = () => fetchFinto([risposta(200, leggi('alldata.html')), risposta(200, Buffer.from([1]))]);
+  const righe = [{ Data: '2026-10-19', Vincitore: 'A', Perdente: 'B' }, { Date: 46023, Winner: 'X', Loser: 'Y' }];
+  await assert.rejects(
+    tennisData.partite(2026, 'atp', { fetch: f(), attesaMs: 0, leggi: () => righe }),
+    { message: 'tennis-data.co.uk: nessuna riga leggibile (formato cambiato?)' },
+  );
+  assert.deepEqual(await tennisData.partite(2026, 'atp', { fetch: f(), attesaMs: 0, leggi: () => [] }), []);
+});

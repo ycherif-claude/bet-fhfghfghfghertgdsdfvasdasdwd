@@ -69,7 +69,11 @@ export const tennisData = {
     const url = await this.fileStagione(anno, circuito, opz);
     const r = await scarica(url, { ...opzioni(opz), binario: true });
     const leggi = opz.leggi ?? leggiXlsx;
-    return leggi(r.corpo).map(converti).filter(Boolean);
+    const righe = leggi(r.corpo);
+    const partite = righe.map(converti).filter(Boolean);
+    // Righe presenti ma nessuna convertita: il formato del file è cambiato, non è una stagione vuota.
+    if (righe.length && !partite.length) throw new Error('tennis-data.co.uk: nessuna riga leggibile (formato cambiato?)');
+    return partite;
   },
 };
 

@@ -59,14 +59,18 @@ jobs:
         # La raccolta tennis serve entro 60 minuti dall'orario (o dopo), se il giro non è già avviato
         # e se la raccolta serale di oggi non è già su main: al massimo una raccolta (e una spesa di crediti) al giorno.
         run: |
-          riga=$(npm run serale-nba -- --orario | tail -n 1)
+          riga=$(npm run serale-nba -- --orario | tail -n 1) || riga="errore"
           read -r orario tipo <<< "$riga"
           data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
           tennis=no
-          if [ "$orario" != "nessuno" ] \
+          # Prima di ogni calcolo si controlla la riga: orario ISO, tipo nba o tennis, date -d riuscito.
+          # Una riga diversa ("nessuno", un errore, un formato inatteso) vuol dire niente raccolta tennis.
+          if [[ "$orario" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T ]] \
+            && { [ "$tipo" = nba ] || [ "$tipo" = tennis ]; } \
+            && inizio=$(date -d "$orario" +%s 2>/dev/null) \
             && [ ! -f data/raccolta/${data}-serale-stato.json ] \
             && [ ! -f data/raccolta/${data}-serale-tennis.json ] \
-            && [ "$(date +%s)" -ge $(( $(date -d "$orario" +%s) - 3600 )) ]; then
+            && [ "$(date +%s)" -ge $(( inizio - 3600 )) ]; then
             tennis=si
           fi
           echo "Orario serale: $riga (raccolta tennis: $tennis)"
@@ -81,7 +85,8 @@ jobs:
       - name: Errori serali tennis nella giornata
         if: steps.orario.outputs.tennis == 'si'
         # Errori della raccolta (anche con zero partite, per esempio chiave mancante o API giù) in erroriGiro,
-        # una riga ciascuno: si salvano con gli altri dati.
+        # una riga ciascuno: si salvano con gli altri dati. Se fallisce, l'NBA va avanti lo stesso.
+        continue-on-error: true
         run: npm run serale-tennis -- --errori
       - name: Partite tennis notturne
         id: tennis
