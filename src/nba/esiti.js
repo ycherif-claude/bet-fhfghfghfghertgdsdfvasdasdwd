@@ -52,11 +52,20 @@ export function esitoNba(mercato, selezione, r) {
 
 const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]);
 const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
-// Solo giocate con tutte le gambe NBA.
-const tuttaNba = (g) => gambeDi(g).every((x) => (x.sport ?? g.sport) === 'nba');
+const sportDi = (x, g) => x.sport ?? g.sport;
+const aperta = (g) => g.esito === null && g.stato !== 'annullata';
+// Gambe NBA ancora senza esito e finite da più di 4 ore.
+const gambeDaChiudere = (g, adesso) => gambeDi(g).filter((x) => sportDi(x, g) === 'nba' && x.esito == null
+  && Date.parse(x.inizio) + QUATTRO_ORE < adesso.getTime());
 
-function inAttesa(g, adesso) {
-  return tuttaNba(g) && g.esito === null && g.stato !== 'annullata' && inizioMs(g) + QUATTRO_ORE < adesso.getTime();
+// Regola della multipla: persa se una gamba è persa; aperta (null) se ne manca una;
+// rimborsata se sono tutte rimborsate; altrimenti vinta.
+function chiusura(g) {
+  const esiti = gambeDi(g).map((x) => x.esito ?? null);
+  if (esiti.includes('persa')) return 'persa';
+  if (esiti.includes(null)) return null;
+  if (esiti.every((e) => e === 'rimborsata')) return 'rimborsata';
+  return 'vinta';
 }
 
 function leggiGiornate(dirData, adesso) {
@@ -82,7 +91,7 @@ function leggiGiornate(dirData, adesso) {
 export function giocateNbaInAttesa(dirData, adesso) {
   const out = [];
   for (const { dati } of leggiGiornate(dirData, adesso).out) {
-    for (const g of dati.giocate) if (inAttesa(g, adesso)) out.push(g);
+    for (const g of dati.giocate) if (aperta(g) && gambeDaChiudere(g, adesso).length) out.push(g);
   }
   return out;
 }
@@ -101,18 +110,21 @@ function trova(gamba, finite) {
   return trovate.length === 1 ? trovate[0] : null;
 }
 
-function esitoGiocata(g, finite) {
-  const esiti = gambeDi(g).map((x) => {
+// Scrive l'esito di ogni gamba NBA risolvibile e chiude la giocata se tutte le gambe hanno un esito.
+function aggiorna(g, finite, adesso) {
+  let cambiato = false;
+  for (const x of gambeDaChiudere(g, adesso)) {
     const p = trova(x, finite);
-    return p ? esitoNba(x.mercato, x.selezione, p) : null;
-  });
-  if (esiti.includes('persa')) return 'persa';
-  if (esiti.includes(null)) return null;
-  if (esiti.every((e) => e === 'rimborsata')) return 'rimborsata';
-  return 'vinta';
+    const e = p ? esitoNba(x.mercato, x.selezione, p) : null;
+    if (e) { x.esito = e; cambiato = true; }
+  }
+  const esito = chiusura(g);
+  if (esito !== null && g.esito !== esito) { g.esito = esito; cambiato = true; }
+  return cambiato;
 }
 
-// Aggiorna solo `esito` delle giocate NBA finite. Avviso dopo 7 giorni senza esito.
+// Aggiorna solo `esito` (della giocata e delle sue gambe NBA). Avviso dopo 7 giorni senza esito.
+// Le multiple miste si chiudono quando ogni modulo ha scritto l'esito delle proprie gambe.
 export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
   const { out: giornate, errori } = leggiGiornate(dirData, adesso);
   const finite = partiteFinite.filter((p) => p.finita !== false);
@@ -121,19 +133,19 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
   for (const { percorso, dati } of giornate) {
     let cambiato = false;
     for (const g of dati.giocate) {
-      if (!inAttesa(g, adesso)) continue;
-      const esito = esitoGiocata(g, finite);
-      if (esito !== null) {
-        g.esito = esito;
+      if (!aperta(g) || !gambeDaChiudere(g, adesso).length) continue;
+      if (aggiorna(g, finite, adesso)) {
         cambiato = true;
-        aggiornate++;
-      } else {
+        if (g.esito !== null) aggiornate++;
+      }
+      if (g.esito === null && gambeDaChiudere(g, adesso).length) {
         const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
         if (giorni >= 7) errori.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
       }
     }
     if (cambiato) {
-      writeFileSync(percorso, `${JSON.stringify(dati, null, 2)}\n`);
+      writeFileSync(percorso, `${JSON.stringify(dati, null, 2)}
+`);
       file.push(percorso);
     }
   }
@@ -144,9 +156,8 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
 export async function aggiornaEsitiGiroNba({ dirData, adesso, fonti, chiavi, raccolta }) {
   const errore = (fonte, e) => raccolta.erroriGiro.push(`${fonte} alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
   const pendenti = giocateNbaInAttesa(dirData, adesso);
-  if (!pendenti.length) return { aggiornate: 0, file: [], errori: [] };
   const limite = dataUsaDi(new Date(adesso.getTime() - 10 * GIORNO));
-  const date = [...new Set(pendenti.flatMap(gambeDi).map((x) => dataUsaDi(new Date(x.inizio))))].filter((d) => d >= limite).sort();
+  const date = [...new Set(pendenti.flatMap((g) => gambeDaChiudere(g, adesso)).map((x) => dataUsaDi(new Date(x.inizio))))].filter((d) => d >= limite).sort();
   let partite = [];
   if (date.length) {
     try {

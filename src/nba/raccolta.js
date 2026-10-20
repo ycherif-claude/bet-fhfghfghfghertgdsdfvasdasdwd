@@ -17,6 +17,7 @@ export function stagioneNba(data) {
   return mese >= 10 ? anno : anno - 1;
 }
 
+const decimo = (n) => Math.round(n * 10) / 10;
 const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
 
 function spiegaHandicap(squadra, linea) {
@@ -98,7 +99,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
     return t >= finestra.da.getTime() && t < finestra.a.getTime();
   };
   const delGiorno = eventi.filter(dentro);
-  if (eventi.length && !eventi.some((e) => e.bookmaker.some((b) => b.mercati?.handicap))) {
+  if (delGiorno.length && !delGiorno.some((e) => e.bookmaker.some((b) => b.mercati?.handicap))) {
     errore('SportsGameOdds', 'nessun handicap disponibile (controllare il campo spread)');
   }
 
@@ -183,7 +184,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
       inizio: isoRoma(new Date(ev.inizio)),
       modello: 'nba',
       lambda: null,
-      puntiAttesi: attesi,
+      puntiAttesi: { casa: decimo(attesi.casa), trasferta: decimo(attesi.trasferta) },
       pesoModello: pesoModelloPartita(forze, ev.casa, ev.trasferta),
       backToBack: b2b,
       ragionamentoBase,
@@ -191,6 +192,14 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
     });
   }
   return raccolta;
+}
+
+// Raccolta vuota per un imprevisto: l'errore è registrato e il calcio non viene bloccato.
+export function raccoltaDiErrore(data, adesso, e) {
+  return {
+    data, generataAlle: isoRoma(adesso), crediti: { sportsgameodds: { oggetti: 0 } },
+    competizioniNonCoperte: [], erroriGiro: [`NBA alle ${oraRoma(adesso)}: ${e?.message ?? e}`], partite: [],
+  };
 }
 
 async function principale() {
@@ -208,10 +217,7 @@ async function principale() {
     raccolta = await eseguiRaccoltaNba({ data, adesso, fonti, chiavi });
   } catch (e) {
     // Qualunque imprevisto: file con partite [] e l'errore, uscita 0, così il calcio viene comunque salvato.
-    raccolta = {
-      data, generataAlle: isoRoma(adesso), crediti: { sportsgameodds: { oggetti: 0 } },
-      competizioniNonCoperte: [], erroriGiro: [`NBA alle ${oraRoma(adesso)}: ${e?.message ?? e}`], partite: [],
-    };
+    raccolta = raccoltaDiErrore(data, adesso, e);
   }
   let esiti = { aggiornate: 0 };
   if (chiavi.balldontlie) {

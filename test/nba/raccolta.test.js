@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { eseguiRaccoltaNba, stagioneNba, ERRORE_CHIAVI } from '../../src/nba/raccolta.js';
+import { eseguiRaccoltaNba, stagioneNba, raccoltaDiErrore, ERRORE_CHIAVI } from '../../src/nba/raccolta.js';
 
 const adesso = new Date('2026-10-20T05:07:00Z'); // 07:07 a Roma
 const chiavi = { balldontlie: 'B', sportsgameodds: 'S' };
@@ -175,4 +175,20 @@ test('senza chiavi: file con partite [] e errore, uscita 0', () => {
   assert.deepEqual(r.partite, []);
   assert.deepEqual(r.erroriGiro, ['Mancano le chiavi NBA (BALLDONTLIE_API_KEY, SPORTSGAMEODDS_API_KEY)']);
   assert.deepEqual(r.crediti, { sportsgameodds: { oggetti: 0 } });
+});
+
+test('imprevisto: raccolta di ripiego con partite [] e l\'errore (la CLI esce comunque con 0)', () => {
+  const r = raccoltaDiErrore('2026-10-20', adesso, new Error('boom'));
+  assert.deepEqual(r.partite, []);
+  assert.deepEqual(r.erroriGiro, ['NBA alle 07:07: boom']);
+  assert.deepEqual(r.crediti, { sportsgameodds: { oggetti: 0 } });
+});
+
+test('puntiAttesi nel file arrotondati a 1 decimale; avviso handicap solo sugli eventi del giorno', async () => {
+  const r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento()]), chiavi });
+  for (const v of Object.values(r.partite[0].puntiAttesi)) assert.equal(v, Math.round(v * 10) / 10);
+  const senza = (c) => { const b = bk(c); delete b.mercati.handicap; return b; };
+  const fuori = evento({ id: 'e9', casa: 'Miami Heat', trasferta: 'Chicago Bulls', inizio: '2026-10-22T10:00:00+02:00', bookmaker: [senza('a'), senza('b'), senza('c')] });
+  const r2 = await eseguiRaccoltaNba({ data: '2026-10-20', adesso, fonti: fonti([evento(), fuori]), chiavi });
+  assert.ok(!r2.erroriGiro.some((e) => /nessun handicap/.test(e)));
 });

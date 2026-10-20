@@ -318,3 +318,21 @@ test('aggiornaEsitiGiro: senza giocate in attesa nessuna chiamata', async () => 
   await aggiornaEsitiGiro({ dirData: dir, adesso: ADESSO, fonti: f, chiavi: { footballDataOrg: 'T' }, raccolta: nuovaRaccolta(), csv: new Map() });
   assert.equal(f.chiamate.org.length, 0);
 });
+
+test('multipla mista: il calcio scrive l\'esito delle sue gambe e chiude con la gamba NBA già vinta', () => {
+  const gc = { ...giocata('g1', 'Inter Milan - Monza'), sport: 'calcio' };
+  const nba = { sport: 'nba', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-17T20:00:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics' };
+  const mista = (e) => ({ id: 'mx', sport: 'calcio + nba', tipo: 'multipla', esito: null, gambe: [gc, { ...nba, esito: e }] });
+  const risultati = [{ casa: 'Inter Milan', trasferta: 'Monza', inizio: '2026-10-18T18:45:00Z', data: '2026-10-18', gc: 2, gt: 1, fonte: 'x' }];
+  const d1 = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [mista('vinta')], scartate: [] } });
+  const o1 = aggiornaEsiti(d1, risultati, new Date('2026-10-20T10:00:00Z'));
+  const g1 = JSON.parse(readFileSync(join(d1, '2026-10-18.json'), 'utf8')).giocate[0];
+  assert.equal(o1.aggiornate, 1);
+  assert.equal(g1.esito, 'vinta');
+  assert.equal(g1.gambe[0].esito, 'vinta');
+  const d2 = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [mista(undefined)], scartate: [] } });
+  aggiornaEsiti(d2, risultati, new Date('2026-10-20T10:00:00Z'));
+  const g2 = JSON.parse(readFileSync(join(d2, '2026-10-18.json'), 'utf8')).giocate[0];
+  assert.equal(g2.gambe[0].esito, 'vinta');
+  assert.equal(g2.esito, null);
+});

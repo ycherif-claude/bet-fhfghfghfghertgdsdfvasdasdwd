@@ -140,3 +140,11 @@ test('candidato di oggi con prob non valida: scartato con motivo "dati non valid
   assert.deepEqual(r.oggi.giornata.scartate, [
     { idCandidato: 'c2', motivo: 'dati non validi' }, { idCandidato: 'c3', motivo: 'dati non validi' }]);
 });
+
+test('multipla mista con esito nelle gambe: nessun erroriDati', () => {
+  const m = { ...giocata('mm', '2026-10-18T20:00:00+02:00', 'vinta'), sport: 'calcio + nba', tipo: 'multipla',
+    gambe: [{ sport: 'calcio', esito: 'vinta', inizio: '2026-10-18T18:00:00+02:00' }, { sport: 'nba', esito: 'vinta', inizio: '2026-10-18T20:00:00+02:00' }] };
+  const d = dirTemp([{ data: '2026-10-18', candidati: [], giocate: [m] }],
+    [{ idGiocata: 'mm', fatta: true, quotaReale: 2, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' }]);
+  assert.deepEqual(costruisciDati(d, new Date('2026-10-19T10:00:00Z')).erroriDati, []);
+});

@@ -92,6 +92,12 @@ function inAttesa(g, adesso) {
     && inizioMs(g) + TRE_ORE < adesso.getTime();
 }
 
+// Multipla mista: ha gambe di calcio e di altri sport. Le gambe hanno un proprio `esito` opzionale.
+const misto = (g) => Array.isArray(g.gambe) && g.gambe.some((x) => x.sport === 'calcio') && g.gambe.some((x) => x.sport !== 'calcio');
+const gambeCalcioDaChiudere = (g, adesso) => g.gambe.filter((x) => x.sport === 'calcio' && x.esito == null
+  && Date.parse(x.inizio) + TRE_ORE < adesso.getTime());
+const mistaInAttesa = (g, adesso) => misto(g) && g.esito === null && g.stato !== 'annullata' && gambeCalcioDaChiudere(g, adesso).length > 0;
+
 // Giornate passate leggibili: [{ percorso, dati, testo }]; i file rotti vanno in `errori`.
 function leggiGiornate(dirData, adesso) {
   const oggi = dataRoma(adesso);
@@ -117,7 +123,7 @@ function leggiGiornate(dirData, adesso) {
 export function giocateInAttesa(dirData, adesso) {
   const out = [];
   for (const { dati } of leggiGiornate(dirData, adesso).out) {
-    for (const g of dati.giocate) if (inAttesa(g, adesso)) out.push(g);
+    for (const g of dati.giocate) if (inAttesa(g, adesso) || mistaInAttesa(g, adesso)) out.push(g);
   }
   return out;
 }
@@ -180,6 +186,21 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
   for (const { percorso, dati } of giornate) {
     let cambiato = false;
     for (const g of dati.giocate) {
+      if (mistaInAttesa(g, adesso)) {
+        // Scrive l'esito delle gambe di calcio; chiude la multipla se tutte le gambe hanno un esito.
+        for (const x of gambeCalcioDaChiudere(g, adesso)) {
+          const nuovi = [];
+          const r = trova(x, risultati, nuovi);
+          for (const m of nuovi) if (!segnalati.has(m)) { segnalati.add(m); errori.push(m); }
+          const e = r ? esitoSelezione(x.mercato, x.selezione, r) : null;
+          if (e) { x.esito = e; cambiato = true; }
+        }
+        const esiti = g.gambe.map((x) => x.esito ?? null);
+        const chiusa = esiti.includes('persa') ? 'persa' : esiti.includes(null) ? null
+          : esiti.every((e) => e === 'rimborsata') ? 'rimborsata' : 'vinta';
+        if (chiusa !== null) { g.esito = chiusa; cambiato = true; aggiornate++; }
+        continue;
+      }
       if (!inAttesa(g, adesso)) continue;
       const mappa = new Map();
       for (const x of gambeDi(g)) {

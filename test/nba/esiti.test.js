@@ -102,3 +102,50 @@ test('esiti: passo della CLI scarica le date e registra gli errori della fonte',
   await aggiornaEsitiGiroNba({ dirData: d2, adesso, fonti: giu, chiavi: { balldontlie: 'B' }, raccolta });
   assert.deepEqual(raccolta.erroriGiro, ['balldontlie (esiti) alle 07:07: HTTP 429']);
 });
+
+// Multipla mista calcio + NBA: ogni modulo scrive l'esito delle proprie gambe.
+const gCalcio = (extra = {}) => ({
+  sport: 'calcio', competizione: 'Serie A', partita: 'Inter Milan - Monza', idPartita: 'calcio-x',
+  inizio: '2026-10-20T20:45:00+02:00', mercato: '1X2', selezione: '1', ...extra,
+});
+const mista = (extra = {}) => ({ id: 'mx', sport: 'calcio + nba', tipo: 'multipla', esito: null, gambe: [gCalcio(), gamba('Vincente', 'Boston Celtics')], ...extra });
+
+test('mista: gamba NBA vinta e calcio aperto → multipla aperta, esito scritto sulla gamba', () => {
+  const d = dir([mista()]);
+  const out = aggiornaEsitiNba(d, [finita()], adesso);
+  const g = leggi(d)[0];
+  assert.equal(g.gambe[1].esito, 'vinta');
+  assert.equal(g.gambe[0].esito, undefined);
+  assert.equal(g.esito, null);
+  assert.equal(out.aggiornate, 0);
+  assert.equal(out.file.length, 1);
+});
+
+test('mista: calcio già vinto → il passo NBA chiude la multipla vinta', () => {
+  const d = dir([mista({ gambe: [gCalcio({ esito: 'vinta' }), gamba('Vincente', 'Boston Celtics')] })]);
+  assert.equal(aggiornaEsitiNba(d, [finita()], adesso).aggiornate, 1);
+  assert.equal(leggi(d)[0].esito, 'vinta');
+});
+
+test('mista: gamba NBA persa → multipla persa subito, anche con il calcio aperto', () => {
+  const d = dir([mista({ gambe: [gCalcio(), gamba('Vincente', 'New York Knicks')] })]);
+  aggiornaEsitiNba(d, [finita()], adesso);
+  const g = leggi(d)[0];
+  assert.equal(g.esito, 'persa');
+  assert.equal(g.gambe[1].esito, 'persa');
+});
+
+test('mista: avviso dopo 7 giorni se la gamba NBA resta senza esito', () => {
+  const d = dir([mista()]);
+  const out = aggiornaEsitiNba(d, [], new Date('2026-10-28T05:00:00Z'));
+  assert.deepEqual(out.errori, ['Giocata mx senza esito da 7 giorni']);
+});
+
+test('passo della CLI: giornata illeggibile in erroriGiro anche senza giocate in attesa', async () => {
+  const d = mkdtempSync(join(tmpdir(), 'es-'));
+  writeFileSync(join(d, '2026-10-19.json'), '{ rotto');
+  const raccolta = { erroriGiro: [] };
+  await aggiornaEsitiGiroNba({ dirData: d, adesso, fonti: {}, chiavi: {}, raccolta });
+  assert.equal(raccolta.erroriGiro.length, 1);
+  assert.match(raccolta.erroriGiro[0], /^Esiti NBA alle 07:07: 2026-10-19\.json: file non leggibile/);
+});
