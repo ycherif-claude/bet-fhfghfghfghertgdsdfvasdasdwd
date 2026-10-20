@@ -2,6 +2,7 @@
 
 // Eccezioni di abbinamento: nome di The Odds API -> nome di tennis-data.
 // Vuoto all'inizio: da riempire al collaudo con i casi che l'abbinamento automatico non risolve.
+// Esempio (non attivo): 'Giovanni Mpetshi Perricard': 'Mpetshi G.'
 export const ALIAS = {};
 
 const pulisci = (s) => String(s ?? '')
@@ -37,16 +38,13 @@ export function abbinaGiocatore(nomeOdds, nomiTennisData) {
   if (candidati.length) return candidati.length === 1 ? candidati[0] : null;
 
   // Nessun abbinamento esatto: cognomi composti scritti in modo diverso ("Juan Martin del Potro"
-  // contro "Del Potro J.M."). Si prova ogni parte contigua propria delle parole dopo la prima,
+  // contro "Del Potro J.M."). Si provano i suffissi propri delle parole dopo la prima,
   // con la stessa iniziale; vale solo se il candidato è unico.
   const parole = pulisci(nomeOdds).split(' ').slice(1);
   if (parole.length < 2 || !n.iniziale) return null;
+  // Solo suffissi propri delle parole dopo la prima ("del potro", "potro"): mai prefissi o parti centrali.
   const parti = new Set();
-  for (let i = 0; i < parole.length; i++) {
-    for (let j = i + 1; j <= parole.length; j++) {
-      if (j - i < parole.length) parti.add(parole.slice(i, j).join(' '));
-    }
-  }
+  for (let i = 1; i < parole.length; i++) parti.add(parole.slice(i).join(' '));
   const simili = elenco.filter((c) => {
     const k = normalizzaGiocatore(c);
     return k.iniziale === n.iniziale && parti.has(k.cognome);
