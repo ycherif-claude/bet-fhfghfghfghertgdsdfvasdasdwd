@@ -98,7 +98,7 @@ Senza questi due segreti le quote serali vengono salvate ma la routine non parte
 
 ### Gli orari della sera
 
-- **Giro serale NBA** (che è anche il giro della sera prima del tennis, vedi sotto): di norma alle 22:00; se quel giorno c'è una partita prima delle 22:30, un'ora prima della prima partita, mai prima delle 14:00. Parte entro un'ora dall'orario previsto. Le istruzioni della routine sono in `docs/routine/giro-serale.md`.
+- **Giro serale** (NBA, ed è anche il giro della sera prima del tennis, vedi sotto): di norma alle 22:00; se quel giorno c'è una partita prima delle 22:30, un'ora prima della prima partita, mai prima delle 14:00. Parte entro un'ora dall'orario previsto. Le istruzioni della routine sono in `docs/routine/giro-serale.md`.
 - Se due ore dopo l'orario previsto il controllo non c'è stato, le schede NBA non iniziate mostrano l'avviso "controllo serale non eseguito".
 
 ### Cosa significano le scritte sulle schede NBA
@@ -128,14 +128,14 @@ Questa è una scelta del progetto. **Se il regolamento di bet365 è diverso, val
 
 ### I tornei coperti
 
-Slam, ATP Masters 1000, ATP 500, WTA 1000 e WTA 500, ATP Finals, Coppa Davis e Billie Jean King Cup: in pratica tutti i tornei ATP e WTA che The Odds API indica come attivi. Gli ATP 250, i Challenger e gli ITF non ci sono. Gli Slam maschili si giocano al meglio dei 5 set, tutto il resto al meglio dei 3.
+Sono i tornei ATP e WTA che The Odds API indica come attivi, di solito i principali: Slam, ATP Masters 1000, ATP 500, WTA 1000 e WTA 500, ATP Finals, Coppa Davis e Billie Jean King Cup. I tornei minori (ATP 250, Challenger, ITF) di solito non ci sono. Gli Slam maschili si giocano al meglio dei 5 set, tutto il resto al meglio dei 3.
 
 ### Il giro della sera prima
 
 Nel tennis molte partite iniziano di notte o all'alba (tornei in Asia e Australia). Per non perderle, lo stesso giro serale dell'NBA aggiunge alla giornata di oggi le partite che iniziano dopo l'orario serale e prima delle 08:00 del giorno dopo. Funziona così:
 
 - una GitHub Action scarica le quote fresche e salva le partite notturne;
-- la routine "Giro serale" controlla le notizie su quelle partite (ritiri, infortuni, partite lunghe del giorno prima) e poi le aggiunge con `npm run serale-tennis -- --aggiungi`;
+- la routine "Giro serale" controlla le notizie su quelle partite (ritiri, infortuni, partite lunghe del giorno prima) e poi le aggiunge alla giornata;
 - le giocate già proposte non cambiano mai. Le nuove sono solo singole, e il limite di 10 singole al giorno vale anche con quelle della sera;
 - se ci sono solo partite di tennis (nessuna giocata NBA), la routine parte lo stesso alle 22:00. Le istruzioni sono in `docs/routine/giro-serale.md`.
 

@@ -519,3 +519,13 @@ test('giro-serale.md: una parte fallita salta solo quella parte; test, commit e 
   assert.ok(!t.includes('fermati: non inventare niente'), 'la regola generale non ferma più tutto il giro');
   assert.ok(!t.includes('fermati sulla parte tennis'));
 });
+
+test('README: tornei come li indica The Odds API, niente comandi npm nella parte tennis, "Giro serale"', () => {
+  const r = readFileSync(new URL('../../README.md', import.meta.url), 'utf8');
+  assert.ok(r.includes('i tornei ATP e WTA che The Odds API indica come attivi, di solito i principali'));
+  const tennis = r.slice(r.indexOf('## Tennis:'), r.indexOf('\n## ', r.indexOf('## Tennis:') + 1));
+  assert.ok(tennis.length > 100);
+  assert.ok(!tennis.includes('npm run'), 'nessun comando npm nella parte tennis');
+  assert.ok(r.includes('- **Giro serale** ('));
+  assert.ok(!r.includes('**Giro serale NBA**'));
+});
