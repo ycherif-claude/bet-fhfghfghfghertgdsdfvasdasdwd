@@ -201,18 +201,53 @@ test('aggiunta: giocate, candidati e scartate esistenti identici byte per byte; 
 });
 
 test('tetto: con una giocata segnata e una solo proposta conta anche la proposta non segnata', () => {
-  // Bankroll 200 → tetto 24 €. Segnata 6 + proposta aperta 6 → restano 12 €.
-  // Nuove: multipla (2 €) + singola 6 € ci stanno, la seconda singola no. Senza le proposte aperte ne entrerebbero 2.
+  // Bankroll 200 → tetto 24 €. Segnata 6 + proposta aperta 12 → restano 6 €.
+  // Nuove: una singola da 6 € ci sta, la seconda no. Senza le proposte aperte ne entrerebbero 2.
   const d = dir();
-  const prima = scriviGiornata(d, [giocataMattino(1, 6), giocataMattino(2, 6), giocataMattino(3, 6, { stato: 'annullata' })]);
+  const prima = scriviGiornata(d, [giocataMattino(1, 6), giocataMattino(2, 12), giocataMattino(3, 6, { stato: 'annullata' })]);
   segna(d, giocataMattino(1, 6).id);
   scriviSerale(d, NOTTURNE.slice(0, 2));
   aggiungiSeraleTennis({ dirData: d, adesso });
   const dopo = leggiGiornata(d);
   const n = nuove(prima, dopo, 'giocate');
   assert.equal(n.length, 1);
-  assert.ok(n.reduce((s, g) => s + g.puntata.euro, 0) <= 12 + 1e-9);
+  assert.ok(n.reduce((s, g) => s + g.puntata.euro, 0) <= 6 + 1e-9);
   assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'tetto giornaliero'));
+});
+
+test('tetto: le multiple (sempre tolte) non consumano il tetto delle singole', () => {
+  // Restano 12 €: prima la multipla da 2 € (value più alto) lasciava posto a una sola singola da 6 €.
+  const d = dir();
+  const prima = scriviGiornata(d, [giocataMattino(1, 6), giocataMattino(2, 6)]);
+  segna(d, giocataMattino(1, 6).id);
+  scriviSerale(d, NOTTURNE.slice(0, 2));
+  const r = aggiungiSeraleTennis({ dirData: d, adesso });
+  const dopo = leggiGiornata(d);
+  const n = nuove(prima, dopo, 'giocate');
+  assert.equal(r.aggiunte, 2);
+  assert.deepEqual(n.map((g) => g.puntata.euro), [6, 6]);
+  assert.ok(n.every((g) => !Array.isArray(g.gambe)));
+  const motivi = nuove(prima, dopo, 'scartate').map((s) => s.motivo);
+  assert.ok(motivi.includes('nessuna multipla nel giro serale'));
+  assert.ok(!motivi.includes('tetto giornaliero'), motivi.join(', '));
+});
+
+test('tetto: una giocata di oggi segnata come fatta ma non valida conta con la puntata reale', () => {
+  // Probabilità non valida: il bankroll la ignora, ma la puntata reale di 18 € è in gioco → restano 6 €.
+  const d = dir();
+  const prima = scriviGiornata(d, [giocataMattino(1, 6, { prob: 2 })]);
+  segna(d, giocataMattino(1, 6).id, { puntataReale: 18 });
+  scriviSerale(d, NOTTURNE.slice(0, 2));
+  const r = aggiungiSeraleTennis({ dirData: d, adesso });
+  const dopo = leggiGiornata(d);
+  assert.equal(r.aggiunte, 1);
+  assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'tetto giornaliero'));
+  // Segnata come non fatta: nessuna puntata in gioco, entrano entrambe.
+  const d2 = dir();
+  scriviGiornata(d2, [giocataMattino(1, 6, { prob: 2 })]);
+  segna(d2, giocataMattino(1, 6).id, { fatta: false });
+  scriviSerale(d2, NOTTURNE.slice(0, 2));
+  assert.equal(aggiungiSeraleTennis({ dirData: d2, adesso }).aggiunte, 2);
 });
 
 test('tetto già pieno con le proposte non segnate → nessuna nuova giocata', () => {

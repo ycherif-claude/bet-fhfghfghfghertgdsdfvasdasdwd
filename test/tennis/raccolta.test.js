@@ -186,6 +186,8 @@ test('senza il file del calcio i crediti si leggono dalla prima chiamata gratuit
   const r = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f, chiavi, dirData: dirConCalcio(null) });
   assert.equal(r.crediti.usati, 1);
   assert.equal(r.partite.length, 1);
+  // Mai in silenzio: il budget non tiene conto di quanto ha speso il calcio.
+  assert.deepEqual(r.erroriGiro, ['Tennis alle 07:35: Crediti del calcio sconosciuti: budget tennis calcolato sui crediti rimasti']);
   // Riserva del 20%: con 101 crediti rimasti e nessun calcio non si spende niente.
   const f2 = fonti({ eventi: { [PARIGI.chiave]: [SINNER_ALCARAZ] }, rimasti: 101 });
   const r2 = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f2, chiavi, dirData: dirConCalcio(null) });
@@ -271,7 +273,8 @@ test("gennaio: 404 sul file dell'anno nuovo è previsto, nessun errore; altri me
   };
   const gennaio = new Date('2027-01-05T06:35:00Z');
   const r = await eseguiRaccoltaTennis({ data: '2027-01-05', adesso: gennaio, fonti: f, chiavi, dirData: dirConCalcio(null) });
-  assert.deepEqual(r.erroriGiro, []);
+  // Solo l'avviso dei crediti del calcio (file del calcio assente), nessun errore per il 404.
+  assert.deepEqual(r.erroriGiro, ['Tennis alle 07:35: Crediti del calcio sconosciuti: budget tennis calcolato sui crediti rimasti']);
   assert.ok(r.partite[0].mercati.every((m) => Number.isFinite(m.probModello)));
   // Un 404 sull'anno corrente fuori da gennaio resta un errore.
   const f2 = fonti({ eventi: { [PARIGI.chiave]: [SINNER_ALCARAZ] } });

@@ -144,8 +144,21 @@ function statoCorretto(dirData, giornata, adesso) {
     .filter((g) => oggetto(g) && g.stato !== 'annullata' && !segnate.has(g.id))
     // Una puntata illeggibile non si sa quanto valga: per prudenza nessuna nuova giocata.
     .reduce((s, g) => s + (Number.isFinite(g.puntata?.euro) ? g.puntata.euro : Infinity), 0));
-  const inGiocoOggi = cent(stato.inGiocoOggi + proposteAperte);
-  const distanzaStop = cent(stato.distanzaStop - proposteAperte);
+  // Giocate di oggi non valide (il bankroll le ignora) ma segnate come fatte: i soldi sono in gioco,
+  // contano con la puntata reale dell'ultima segnatura (illeggibile: per prudenza nessuna nuova giocata).
+  const ultima = new Map();
+  for (const s of segnature) {
+    const prec = ultima.get(s.idGiocata);
+    if (!prec || Date.parse(s.ora) >= Date.parse(prec.ora)) ultima.set(s.idGiocata, s);
+  }
+  const fatteNonValide = cent(giornata.giocate
+    .filter((g) => oggetto(g) && erroreGiocata(g) && ultima.get(g.id)?.fatta === true)
+    .reduce((s, g) => {
+      const reale = ultima.get(g.id).puntataReale;
+      return s + (Number.isFinite(reale) ? reale : Infinity);
+    }, 0));
+  const inGiocoOggi = cent(stato.inGiocoOggi + proposteAperte + fatteNonValide);
+  const distanzaStop = cent(stato.distanzaStop - proposteAperte - fatteNonValide);
   return {
     stato: { ...stato, inGiocoOggi, distanzaStop, stopRaggiunto: stato.stopRaggiunto || !(distanzaStop > 0) },
     proposteAperte,
@@ -217,23 +230,38 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
 
   const { stato, avvisi } = statoCorretto(dirData, giornata, adesso);
   const fuori = new Set(preNuove.map((s) => s.idCandidato));
-  const scelta = selezionaGiocate(nuovi.filter((c) => !fuori.has(c.id)), stato);
-  const scartate = [...preNuove, ...scelta.scartate];
-  // Le multiple si tolgono; le singole (e speciali) al massimo fino a 10 nella giornata, per value.
-  const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
-  const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
-  const tenute = [];
-  let singole = 0;
-  for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
-    if (multipla(g)) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_MULTIPLA }); continue; }
-    if (g.tipo !== 'builder') {
-      if (singole >= posti) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_LIMITE_SINGOLE }); continue; }
-      singole++;
+  const ammessi = nuovi.filter((c) => !fuori.has(c.id));
+  const scartate = [...preNuove];
+  let nuoveGiocate = [];
+  if (stato.stopRaggiunto) {
+    scartate.push(...selezionaGiocate(ammessi, stato).scartate);
+  } else {
+    // 1. Senza tetto e stop: value, range, una giocata per partita, limiti delle singole. Le multiple si tolgono
+    //    qui, prima dei tetti, così non consumano il tetto giornaliero delle singole.
+    const scelta = selezionaGiocate(ammessi, { ...stato, inGiocoOggi: -Infinity, distanzaStop: Infinity });
+    scartate.push(...scelta.scartate);
+    // 2. Per value decrescente, una giocata alla volta: al massimo 10 singole (e speciali) nella giornata,
+    //    poi tetto giornaliero e stop con selezionaGiocate su quella sola giocata e i residui aggiornati.
+    const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
+    const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
+    const perId = new Map(ammessi.map((c) => [c.id, c]));
+    const tenute = new Set();
+    let residuo = stato;
+    let singole = 0;
+    for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
+      if (multipla(g)) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_MULTIPLA }); continue; }
+      if (g.tipo !== 'builder' && singole >= posti) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_LIMITE_SINGOLE }); continue; }
+      const una = selezionaGiocate([perId.get(g.id)], residuo);
+      scartate.push(...una.scartate);
+      if (!una.giocate.length) continue;
+      const euro = una.giocate[0].puntata.euro;
+      residuo = { ...residuo, inGiocoOggi: cent(residuo.inGiocoOggi + euro), distanzaStop: cent(residuo.distanzaStop - euro) };
+      if (g.tipo !== 'builder') singole++;
+      tenute.add(g.id);
     }
-    tenute.push(g);
+    // L'ordine delle giocate resta quello di selezionaGiocate.
+    nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id));
   }
-  // L'ordine delle giocate resta quello di selezionaGiocate.
-  const nuoveGiocate = scelta.giocate.filter((g) => tenute.includes(g));
 
   scriviJson(f.giornata[0], {
     ...giornata,

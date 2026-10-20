@@ -128,6 +128,8 @@ function budgetMattino({ data, dirData, rimastiOra, conEventi, errore }) {
     ({ rimastiInizio, spesiCalcio } = calcio);
   } else {
     if (calcio?.errore) errore('Raccolta calcio', calcio.errore);
+    // File del calcio assente: quanto ha speso il calcio non si sa, e va detto (solo se il tennis spende).
+    else if (conEventi.length) errore('Tennis', 'Crediti del calcio sconosciuti: budget tennis calcolato sui crediti rimasti');
     rimastiInizio = rimastiOra;
     spesiCalcio = 0;
   }
