@@ -3,15 +3,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Sport con una raccolta propria. In futuro: 'tennis', 'basket', 'pallavolo'.
+// Sport con una raccolta propria. In futuro: 'basket', 'pallavolo'.
 // Si leggono solo questi nomi: `-notizie`, `-serale-*` e ogni altro suffisso restano fuori.
-export const SPORT_RACCOLTA = Object.freeze(['nba']);
-const NOME_SPORT = { nba: 'NBA' };
+export const SPORT_RACCOLTA = Object.freeze(['nba', 'tennis']);
+const NOME_SPORT = { nba: 'NBA', tennis: 'tennis' };
 
 const oggetto = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 const elenco = (x) => (Array.isArray(x) ? x : []);
 
-// Un file di raccolta. `nome` = '' per il calcio (messaggi di sempre), 'NBA' per l'NBA.
+// Un file di raccolta. `nome` = '' per il calcio (messaggi di sempre), 'NBA' per l'NBA, 'tennis' per il tennis.
 function leggiFile(dirData, oggi, suffisso, nome) {
   const base = `${oggi}${suffisso ? `-${suffisso}` : ''}.json`;
   const rel = `data/raccolta/${base}`;

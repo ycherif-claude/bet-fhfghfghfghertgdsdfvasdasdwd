@@ -7,12 +7,13 @@ const { correzioneMax, probMin, probMax } = CONFIG.calcio;
 
 // Mercati su cui Claude può dare un delta; gli altri si possono solo escludere.
 // NBA (spec §5.4): Vincente, Handicap <linea> (della casa, con segno, oppure 0) e Totale punti <linea>,
-// tutti a 2 selezioni: la complementare riceve −delta.
+// tutti a 2 selezioni: la complementare riceve −delta. Tennis: Vincente incontro, 2 selezioni (nessun pareggio).
 export function correggibile(mercato) {
   return mercato === '1X2' || mercato === 'Gol/No gol'
     || /^Under\/Over (casa |trasferta |1° tempo )?\d+\.5$/.test(mercato)
     || /^(Angoli|Cartellini) Under\/Over \d+\.5$/.test(mercato)
     || mercato === 'Vincente'
+    || mercato === 'Vincente incontro'
     || /^Handicap (0|[+-]\d+(\.\d+)?)$/.test(mercato)
     || /^Totale punti \d+(\.\d+)?$/.test(mercato);
 }

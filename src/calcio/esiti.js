@@ -115,6 +115,14 @@ export function segnateComeGiocate(dirGiornate) {
 // L'avviso dei 7 giorni vale per le giocate non annullate e per le annullate segnate come giocate.
 export const daAvvisare = (g, segnate) => g.stato !== 'annullata' || segnate.has(g.id);
 
+// Multipla vinta con almeno una gamba rimborsata: l'esito resta 'vinta', ma bet365 paga una quota
+// ridotta (la gamba rimborsata vale 1), quindi l'importo va controllato a mano. null se non serve.
+export function avvisoGambaRimborsata(g, esitiGambe = (g.gambe ?? []).map((x) => x.esito)) {
+  return Array.isArray(g.gambe) && g.esito === 'vinta' && esitiGambe.includes('rimborsata')
+    ? `Multipla ${g.id} con gamba rimborsata: bet365 paga una quota ridotta, controlla l'importo`
+    : null;
+}
+
 // Giornate passate leggibili: [{ percorso, dati, testo }]; i file rotti vanno in `errori`.
 function leggiGiornate(dirData, adesso) {
   const oggi = dataRoma(adesso);
@@ -223,7 +231,11 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
         const esiti = g.gambe.map((x) => x.esito ?? null);
         const chiusa = esiti.includes('persa') ? 'persa' : esiti.includes(null) ? null
           : esiti.every((e) => e === 'rimborsata') ? 'rimborsata' : 'vinta';
-        if (chiusa !== null) { g.esito = chiusa; cambiato = true; aggiornate++; }
+        if (chiusa !== null) {
+          g.esito = chiusa; cambiato = true; aggiornate++;
+          const avviso = avvisoGambaRimborsata(g);
+          if (avviso) errori.push(avviso);
+        }
         if (mistaInAttesa(g, adesso)) avvisa(g);
         continue;
       }
@@ -240,6 +252,12 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
         g.esito = esito;
         cambiato = true;
         aggiornate++;
+        // Le gambe di una multipla di solo calcio non hanno un proprio esito: si ricalcola qui.
+        const avviso = avvisoGambaRimborsata(g, gambeDi(g).map((x) => {
+          const r = mappa.get(x.idPartita);
+          return r ? esitoSelezione(x.mercato, x.selezione, r) : null;
+        }));
+        if (avviso) errori.push(avviso);
       } else {
         avvisa(g);
       }

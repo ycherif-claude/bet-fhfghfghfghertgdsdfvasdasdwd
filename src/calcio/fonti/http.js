@@ -12,7 +12,7 @@ function host(url) {
 }
 
 // Scarica un indirizzo riprovando su errore di rete e su status 5xx/429.
-export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, headers = {}, timeoutMs = 30000 } = {}) {
+export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, headers = {}, timeoutMs = 30000, binario = false } = {}) {
   const nome = host(url);
   const tentativi = CONFIG.calcio.ripetizioni + 1;
   let motivo = 'errore sconosciuto';
@@ -27,6 +27,7 @@ export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, 
     }
     if (r.status >= 500 || r.status === 429) { motivo = `HTTP ${r.status}`; continue; }
     if (!r.ok) throw Object.assign(new Error(`${nome}: HTTP ${r.status}`), { status: r.status });
+    if (binario) return { status: r.status, headers: r.headers, corpo: Buffer.from(await r.arrayBuffer()) };
     return { status: r.status, headers: r.headers, testo: await r.text() };
   }
   throw new Error(`${nome}: ${motivo}`);

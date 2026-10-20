@@ -1,16 +1,16 @@
 // Esiti delle giocate NBA: dal punteggio finale (supplementari compresi) a vinta / persa / rimborsata.
-// Si scrive solo il campo `esito`. Una multipla si chiude qui solo se TUTTE le sue gambe sono NBA:
-// le gambe non hanno un esito proprio, quindi le multiple miste (calcio + NBA) restano senza esito
-// (il calcio chiude solo le giocate con sport 'calcio').
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { dataRoma, oraRoma } from '../calcio/testo.js';
-import { daAvvisare, segnateComeGiocate } from '../calcio/esiti.js';
+// Si scrive solo il campo `esito`, della giocata e delle sue gambe NBA: le multiple miste si chiudono
+// quando ogni sport ha scritto l'esito delle proprie gambe (regole comuni in src/esiti/comune.js).
+import { writeFileSync } from 'node:fs';
+import { oraRoma } from '../calcio/testo.js';
+import { segnateComeGiocate } from '../calcio/esiti.js';
+import {
+  aperta, avvisoGambaRimborsata, avvisoSettimana, chiusura, gambeDaChiudere as gambeDaChiudereSport, leggiGiornate,
+} from '../esiti/comune.js';
 import { squadraNba } from './squadre.js';
 
 const QUATTRO_ORE = 4 * 3600 * 1000;
 const GIORNO = 86400000;
-const FILE_GIORNATA = /^(\d{4}-\d{2}-\d{2})\.json$/;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 
 const formatoUsa = new Intl.DateTimeFormat('en-CA', {
@@ -51,44 +51,8 @@ export function esitoNba(mercato, selezione, r) {
   return null;
 }
 
-const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]);
-const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
-const sportDi = (x, g) => x.sport ?? g.sport;
-// Anche le annullate: l'utente può averle giocate prima del controllo serale.
-const aperta = (g) => g.esito === null;
 // Gambe NBA ancora senza esito e finite da più di 4 ore.
-const gambeDaChiudere = (g, adesso) => gambeDi(g).filter((x) => sportDi(x, g) === 'nba' && x.esito == null
-  && Date.parse(x.inizio) + QUATTRO_ORE < adesso.getTime());
-
-// Regola della multipla: persa se una gamba è persa; aperta (null) se ne manca una;
-// rimborsata se sono tutte rimborsate; altrimenti vinta.
-function chiusura(g) {
-  const esiti = gambeDi(g).map((x) => x.esito ?? null);
-  if (esiti.includes('persa')) return 'persa';
-  if (esiti.includes(null)) return null;
-  if (esiti.every((e) => e === 'rimborsata')) return 'rimborsata';
-  return 'vinta';
-}
-
-function leggiGiornate(dirData, adesso) {
-  const oggi = dataRoma(adesso);
-  const out = [];
-  const errori = [];
-  let nomi = [];
-  try { nomi = readdirSync(dirData).sort(); } catch { return { out, errori }; }
-  for (const nome of nomi) {
-    const m = FILE_GIORNATA.exec(nome);
-    if (!m || m[1] >= oggi) continue;
-    const percorso = join(dirData, nome);
-    try {
-      const dati = JSON.parse(readFileSync(percorso, 'utf8'));
-      if (Array.isArray(dati?.giocate)) out.push({ percorso, dati });
-    } catch (e) {
-      errori.push(`${nome}: file non leggibile (${e.message})`);
-    }
-  }
-  return { out, errori };
-}
+const gambeDaChiudere = (g, adesso) => gambeDaChiudereSport(g, 'nba', QUATTRO_ORE, adesso);
 
 export function giocateNbaInAttesa(dirData, adesso) {
   const out = [];
@@ -140,11 +104,15 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
       if (!aperta(g) || !gambeDaChiudere(g, adesso).length) continue;
       if (aggiorna(g, finite, adesso)) {
         cambiato = true;
-        if (g.esito !== null) aggiornate++;
+        if (g.esito !== null) {
+          aggiornate++;
+          const avviso = avvisoGambaRimborsata(g);
+          if (avviso) errori.push(avviso);
+        }
       }
       if (g.esito === null && gambeDaChiudere(g, adesso).length) {
-        const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
-        if (giorni >= 7 && daAvvisare(g, segnate)) errori.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
+        const avviso = avvisoSettimana(g, segnate, adesso);
+        if (avviso) errori.push(avviso);
       }
     }
     if (cambiato) {

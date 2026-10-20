@@ -1,6 +1,6 @@
 # Giro del mattino: istruzioni per Claude
 
-Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio e NBA). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
+Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio, NBA e tennis). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
@@ -10,19 +10,19 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 - Non modificare codice, test, configurazione o workflow. Non toccare file di giorni diversi da oggi.
 - Non inventare dati, partite, mercati, fonti o orari. Se non trovi un fatto concreto, non scrivere nulla per quella partita.
 - Se un passo fallisce e non riesci a sistemarlo nei modi indicati, fermati: non inventare niente. Lascia che lo faccia il giro di riserva (parte alle 09:45 UTC, cioè 11:45 ora legale o 10:45 ora solare) e scrivi il motivo nell'ultimo messaggio della sessione.
-- Limiti di tempo: al massimo 20 ricerche web in tutto (`ricercheMassime`), calcio e NBA insieme. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
+- Limiti di tempo: al massimo 20 ricerche web in tutto (`ricercheMassime`), calcio, NBA e tennis insieme. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
 
 ## Passi, in ordine
 
 1. Node: se esiste la cartella `/opt/node24/bin`, esegui `export PATH=/opt/node24/bin:$PATH`. Poi `node --version` (serve la 24).
 2. Aggiorna il repository: `git checkout main && git pull`.
-3. Controlla quali file di raccolta esistono oggi (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`): `data/raccolta/<oggi>.json` (calcio) e `data/raccolta/<oggi>-nba.json` (NBA). Se **non esiste nessuno dei due**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
-   Se esiste almeno uno dei due, esegui `npm run giro -- --anteprima`; il file notizie serve anche se esiste solo `<oggi>-nba.json`. Stampa una riga per ogni partita in gara:
+3. Controlla quali file di raccolta esistono oggi (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`): `data/raccolta/<oggi>.json` (calcio), `data/raccolta/<oggi>-nba.json` (NBA) e `data/raccolta/<oggi>-tennis.json` (tennis). Se **non esiste nessuno dei tre**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
+   Se esiste almeno uno dei tre, esegui `npm run giro -- --anteprima`; il file notizie serve anche se esiste solo `<oggi>-nba.json` o solo `<oggi>-tennis.json`. Stampa una riga per ogni partita in gara:
    `idPartita · partita · inizio · mercati in gara`
    dove ogni mercato in gara compare come `idCandidato: mercato | selezione`, separati da virgole (per esempio `calcio-2026-10-20-inter-roma-1x2-1: 1X2 | 1`). L'`idCandidato` si copia così com'è in `esclusioni`.
-   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando mancano davvero tutti i file di raccolta di oggi (né `<oggi>.json` né `<oggi>-nba.json`).
+   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando mancano davvero tutti i file di raccolta di oggi (né `<oggi>.json` né `<oggi>-nba.json` né `<oggi>-tennis.json`).
 4. Ricerca web, **solo** per le partite elencate dall'anteprima. Per ognuna cerca: assenze e dubbi sui titolari chiave, squalifiche, cambio di allenatore recente, meteo estremo, motivazioni anomale (per esempio una squadra già salva o già retrocessa). Segna per ogni fatto la fonte e l'ora.
-   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json` per il calcio e `data/raccolta/<oggi>-nba.json` per l'NBA: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
+   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json` per il calcio, `data/raccolta/<oggi>-nba.json` per l'NBA e `data/raccolta/<oggi>-tennis.json` per il tennis: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
 5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG` (`TZ=Europe/Rome date +%F`). Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora. L'ora della notizia va dentro `fonte` (per esempio "ANSA, 08:10"): non esiste un campo a parte.
 6. Esegui `git pull` e subito dopo `npm run giro` (così il giro vede anche le segnature arrivate nel frattempo). Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
 7. Esegui `npm test`. Se fallisce, non pubblicare: vedi le regole sopra.
@@ -78,6 +78,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 | `Angoli Under/Over 8.5` … `11.5` | `Over 9.5`… | sì |
 | `Cartellini Under/Over 3.5`, `4.5`, `5.5` | `Over 4.5`… | sì |
 | `Vincente` (NBA) | nome completo della squadra | sì |
+| `Vincente incontro` (tennis) | nome completo del giocatore | sì |
 | `Handicap <linea>` (NBA): `Handicap -4.5`, `Handicap +3`, `Handicap 0` | `casa`, `trasferta` | sì |
 | `Totale punti <linea>` (NBA): `Totale punti 221.5` | `Over 221.5`, `Under 221.5` | sì |
 | `Doppia chance` | `1X`, `12`, `X2` | no, solo esclusione |
@@ -105,7 +106,22 @@ Le partite NBA di oggi sono in `data/raccolta/<oggi>-nba.json` e compaiono nell'
   - `nba-2026-10-20-boston-celtics-new-york-knicks-handicap-piu-3-trasferta`
   - `nba-2026-10-20-boston-celtics-new-york-knicks-totale-punti-221-5-over-221-5`
 - Le partite NBA che hai davvero controllato vanno anche in `partiteControllate`.
-- Di sera la routine "Giro serale NBA" ricontrolla le giocate NBA già decise: vedi `docs/routine/giro-serale-nba.md`.
+- Di sera la routine "Giro serale" ricontrolla le giocate NBA già decise e aggiunge le partite di tennis notturne: vedi `docs/routine/giro-serale.md`.
+
+## Tennis
+
+Le partite di tennis di oggi sono in `data/raccolta/<oggi>-tennis.json` e compaiono nell'anteprima insieme a quelle di calcio e NBA. Usano lo stesso file notizie, le stesse correzioni ed esclusioni e le stesse regole (tetto ±0,08, selezione opposta automatica). Il tetto di 20 ricerche web vale per tutto il giro, non per sport.
+
+- **Che cosa cercare**, per ogni partita elencata dall'anteprima: ritiri o forfait annunciati, infortuni o malessere dichiarati, partite molto lunghe giocate il giorno prima (per esempio oltre le tre ore o cinque set). Preferisci i siti ufficiali dei tornei e di ATP e WTA, le agenzie e i quotidiani sportivi importanti.
+- **Ritiro annunciato** (un giocatore si è ritirato dal torneo o ha dato forfait): è un'**esclusione** della partita, con `idPartita` e senza `idCandidato`.
+- **Infortunio o malessere noto**, oppure **partita molto lunga il giorno prima**: è una **correzione** di al massimo ±0,08 su `Vincente incontro`, negativa per il giocatore penalizzato. Una sola correzione per partita: l'altro giocatore riceve in automatico quella contraria.
+- **Dubbio senza fatto** (per esempio "sembrava stanco"): non è un fatto. Nessuna correzione e nessuna esclusione.
+- **Mercato**: il tennis ha un solo mercato, `Vincente incontro`, con selezione il nome completo del giocatore come lo scrive The Odds API. I nomi esatti si copiano da `partite[].mercati[]` di `data/raccolta/<oggi>-tennis.json`. È correggibile.
+- **Formato degli id tennis**: `idPartita` = `tennis-<data>-<giocatore1>-<giocatore2>`, con i due nomi in ordine alfabetico (nel tennis non c'è casa o trasferta), in minuscolo e con i trattini. `partita` mostra invece i nomi nell'ordine della quota ("Giocatore1 - Giocatore2"). `idCandidato` = `<idPartita>-<mercato>-<selezione>` con le stesse regole del calcio. Esempio per `tennis-2026-10-20-carlos-alcaraz-jannik-sinner`:
+  - `tennis-2026-10-20-carlos-alcaraz-jannik-sinner-vincente-incontro-jannik-sinner`
+- Le partite tennis che hai davvero controllato vanno anche in `partiteControllate`.
+- Esempio di correzione: `{ "idPartita": "tennis-2026-10-20-carlos-alcaraz-jannik-sinner", "mercato": "Vincente incontro", "selezione": "Jannik Sinner", "delta": -0.05, "motivo": "ha giocato cinque set il giorno prima", "fonte": "sito ufficiale del torneo, 08:05" }`.
+- Di sera la routine "Giro serale" aggiunge le partite che iniziano di notte o all'alba: vedi `docs/routine/giro-serale.md`.
 
 ## Piano B: il push su `main` viene rifiutato per permessi (non ancora attivo)
 

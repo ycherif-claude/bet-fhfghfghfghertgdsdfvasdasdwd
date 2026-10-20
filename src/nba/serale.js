@@ -1,6 +1,6 @@
 // Giro serale NBA (spec §3.1): orario del controllo, quote fresche, decisioni di Claude
 // (confermata / modificata / annullata) e avviso se il controllo non è stato eseguito.
-// Uso: node src/nba/serale.js --quando | --quote | --applica | --scaduto
+// Uso: node src/nba/serale.js --orario | --quando | --quote | --applica | --scaduto
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -55,9 +55,10 @@ export function istanteRoma(data, hhmm) {
 }
 
 // Orario del giro serale, oppure null se non ci sono giocate NBA non annullate.
-export function orarioSerale(giornata, data) {
+// Senza giocate NBA ma con partite tennis notturne: le 22:00 di Roma (spec Fase 4b §3.1).
+export function orarioSerale(giornata, data, { partiteTennisNotturne = 0 } = {}) {
   const inizi = giocateNba(giornata).filter((g) => g.stato !== 'annullata').flatMap(iniziNba);
-  if (!inizi.length) return null;
+  if (!inizi.length) return partiteTennisNotturne > 0 ? istanteRoma(data, N.oraSerale) : null;
   const prima = Math.min(...inizi);
   if (prima < istanteRoma(data, N.sogliaAnticipo).getTime()) {
     const minimo = istanteRoma(data, N.serale.oraMinima).getTime();
@@ -67,12 +68,13 @@ export function orarioSerale(giornata, data) {
 }
 
 // Vero se l'orario è entro 60 minuti (o passato), c'è ancora una giocata NBA da controllare
-// e il giro di oggi non è già stato avviato.
-export function daAvviare(giornata, data, adesso, statoSerale) {
+// oppure almeno una partita tennis notturna, e il giro di oggi non è già stato avviato.
+export function daAvviare(giornata, data, adesso, statoSerale, { partiteTennisNotturne = 0 } = {}) {
   if (statoSerale?.avviatoAlle) return false;
-  const orario = orarioSerale(giornata, data);
+  const orario = orarioSerale(giornata, data, { partiteTennisNotturne });
   if (!orario) return false;
-  if (!giocateNba(giornata).some((g) => g.stato !== 'annullata' && !iniziata(g, adesso))) return false;
+  const nba = giocateNba(giornata).some((g) => g.stato !== 'annullata' && !iniziata(g, adesso));
+  if (!nba && !(partiteTennisNotturne > 0)) return false;
   return adesso.getTime() >= orario.getTime() - 60 * 60000;
 }
 
@@ -297,11 +299,20 @@ export function segnaScaduto({ dirData, adesso }) {
 
 // --- riga di comando ---
 
-const USO = 'Uso: node src/nba/serale.js --quando | --quote | --applica | --scaduto';
+const USO = 'Uso: node src/nba/serale.js --orario | --quando | --quote | --applica | --scaduto';
+
+// Numero di partite tennis notturne passato dal workflow (0 se assente o non valido).
+function partiteTennisDa(valore) {
+  if (valore === undefined || valore === '') return 0;
+  const n = Number(valore);
+  if (Number.isInteger(n) && n >= 0) return n;
+  console.error(`Giro serale: PARTITE_TENNIS_NOTTURNE non valido (${valore}), si conta 0`);
+  return 0;
+}
 
 async function principale() {
   const argomenti = process.argv.slice(2);
-  const comandi = ['--quando', '--quote', '--applica', '--scaduto'];
+  const comandi = ['--orario', '--quando', '--quote', '--applica', '--scaduto'];
   if (argomenti.length !== 1 || !comandi.includes(argomenti[0])) {
     console.error(USO);
     process.exit(1);
@@ -313,13 +324,29 @@ async function principale() {
   const f = percorsi(dirData, data);
   const comando = argomenti[0];
 
+  if (comando === '--orario') {
+    // Solo lettura: "<orario ISO> nba" con giocate NBA, "<22:00> tennis" senza, "nessuno" senza giornata.
+    let risposta = 'nessuno';
+    try {
+      const giornata = leggi(...f.giornata, { obbligatorio: false });
+      if (giornata) {
+        const nba = orarioSerale(giornata, data);
+        risposta = nba ? `${isoRoma(nba)} nba` : `${isoRoma(orarioSerale(giornata, data, { partiteTennisNotturne: 1 }))} tennis`;
+      }
+    } catch (e) {
+      console.error(`Giro serale: ${e.message}`);
+    }
+    console.log(risposta);
+    return;
+  }
   if (comando === '--quando') {
     // Solo lettura. Un file illeggibile vale come assente: si aspetta.
     let risposta = 'attendi';
     try {
       const giornata = leggi(...f.giornata, { obbligatorio: false });
       const stato = leggi(...f.stato, { obbligatorio: false });
-      if (giornata && daAvviare(giornata, data, adesso, stato)) risposta = 'avvia';
+      const partiteTennisNotturne = partiteTennisDa(process.env.PARTITE_TENNIS_NOTTURNE);
+      if (giornata && daAvviare(giornata, data, adesso, stato, { partiteTennisNotturne })) risposta = 'avvia';
     } catch (e) {
       console.error(`Giro serale: ${e.message}`);
     }
