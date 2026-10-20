@@ -1,0 +1,374 @@
+// Raccolta tennis del mattino: tornei attivi e quote h2h da The Odds API (budget di crediti unico
+// con il calcio, che spende per primo), storico da tennis-data, Elo per superficie e mercati
+// "Vincente incontro" → data/raccolta/<data>-tennis.json.
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { CONFIG } from '../config.js';
+import { budgetCrediti } from '../calcio/raccolta.js';
+import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
+import { abbinaGiocatore } from './giocatori.js';
+import { calcolaElo, eloDefault, pesoModelloPartita, probVittoria } from './elo.js';
+import { oddsTennis } from './fonti/odds-tennis.js';
+import { tennisData } from './fonti/tennis-data.js';
+import { aggiornaEsitiGiroTennis } from './esiti.js';
+
+const T = CONFIG.tennis;
+// Riserva del 20% dei 500 crediti mensili (la stessa di budgetCrediti): mai sotto, qualunque cosa dica il calcio.
+const RISERVA_MESE = CONFIG.calcio.riservaCrediti * 500;
+const ESCLUSI = new Set(['betfair_ex_eu', 'matchbook', 'smarkets']);
+const SLAM_ATP = /^tennis_atp_.*(aus_open|french_open|wimbledon|us_open)/;
+const STAGIONI = 3;
+const num = (v) => typeof v === 'number' && Number.isFinite(v);
+const pct = (p) => `${Math.round(p * 100)}%`;
+const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
+
+export const spiegazioneTennis = (nome) => `Vincente incontro: vince se ${nome} vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata`;
+
+const quotaDi = (b, nome) => {
+  const q = b?.quote?.[nome];
+  return num(q) && q > 1 ? q : null;
+};
+
+// Mediana dei bookmaker (exchange esclusi) con la quota di `nome`, come nel calcio: almeno
+// minBookmaker, arrotondata per difetto al centesimo. Null se non bastano.
+export function quotaMedianaTennis(evento, nome) {
+  const quote = (evento?.bookmaker ?? [])
+    .filter((b) => !ESCLUSI.has(b.chiave))
+    .map((b) => quotaDi(b, nome))
+    .filter((q) => q !== null)
+    .sort((a, b) => a - b);
+  const n = quote.length;
+  if (n < T.minBookmaker) return null;
+  const meta = n >> 1;
+  const mediana = n % 2 ? quote[meta] : (quote[meta - 1] + quote[meta]) / 2;
+  return { quota: Math.floor(mediana * 100 + 1e-9) / 100, n };
+}
+
+// Probabilità di Pinnacle senza margine per i due giocatori; null se manca una quota.
+export function probPinnacleTennis(evento, g1, g2) {
+  const pin = (evento?.bookmaker ?? []).find((b) => b.chiave === 'pinnacle');
+  const q1 = quotaDi(pin, g1);
+  const q2 = quotaDi(pin, g2);
+  if (q1 === null || q2 === null) return null;
+  const somma = 1 / q1 + 1 / q2;
+  return { [g1]: 1 / q1 / somma, [g2]: 1 / q2 / somma };
+}
+
+const GENERICHE = new Set(['atp', 'wta', 'open', 'masters', 'master', 'championships', 'championship', 'cup', 'tennis',
+  'international', 'internationaux', 'classic', 'trophy', 'tournament', 'the', 'de', 'di', 'of', '1000', '500', '250']);
+const parole = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  .split(/[^a-z0-9]+/).filter(Boolean);
+
+// Riga tennis-data più recente dello stesso torneo: tutte le parole significative del titolo
+// di The Odds API ("ATP Paris Masters" → "paris") devono comparire nel nome del torneo.
+export function torneoTennisData(titolo, righe) {
+  const cercate = parole(titolo).filter((p) => !GENERICHE.has(p));
+  if (!cercate.length) return null;
+  let migliore = null;
+  for (const r of righe ?? []) {
+    const nome = new Set(parole(r.torneo));
+    if (!cercate.every((p) => nome.has(p))) continue;
+    if (!migliore || r.data > migliore.data) migliore = r;
+  }
+  return migliore;
+}
+
+// Crediti del calcio di oggi: { rimastiInizio, spesiCalcio } | { errore } | null (file assente).
+function creditiCalcio(dirData, data) {
+  const rel = `data/raccolta/${data}.json`;
+  const file = join(dirData, 'raccolta', `${data}.json`);
+  if (!existsSync(file)) return null;
+  let j;
+  try {
+    j = JSON.parse(readFileSync(file, 'utf8'));
+  } catch (e) {
+    return { errore: `file ${rel} illeggibile (${e.message}), crediti dalla prima chiamata gratuita` };
+  }
+  const c = j?.crediti;
+  if (j?.data !== data || !num(c?.rimasti) || !num(c?.usati)) {
+    return { errore: `file ${rel} senza crediti validi, crediti dalla prima chiamata gratuita` };
+  }
+  return { rimastiInizio: c.rimasti + c.usati, spesiCalcio: c.usati };
+}
+
+function nascosto(oggetto, chiave, valore) {
+  Object.defineProperty(oggetto, chiave, { value: valore, enumerable: false, writable: true, configurable: true });
+}
+
+function vuota(data, adesso) {
+  const raccolta = {
+    data, generataAlle: isoRoma(adesso), crediti: { usati: 0, rimasti: null },
+    competizioniNonCoperte: [], erroriGiro: [], partite: [],
+  };
+  // Per gli esiti, mai scritti nel JSON: storico tennis-data, tornei attivi, crediti ancora spendibili.
+  nascosto(raccolta, 'storico', new Map());
+  nascosto(raccolta, 'tornei', []);
+  nascosto(raccolta, 'budgetResiduo', 0);
+  return raccolta;
+}
+
+export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirData = 'data' }) {
+  const raccolta = vuota(data, adesso);
+  const { erroriGiro } = raccolta;
+  const errore = (fonte, e) => erroriGiro.push(`${fonte} alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
+  const ora = raccolta.generataAlle;
+  if (!chiavi?.oddsApi) {
+    errore('The Odds API', 'manca ODDS_API_KEY');
+    return raccolta;
+  }
+  const opz = { chiave: chiavi.oddsApi };
+  const finestra = finestraGiornata(data);
+  const dentro = (e) => {
+    const t = Date.parse(e.inizio);
+    return t >= finestra.da.getTime() && t < finestra.a.getTime();
+  };
+
+  // 1. Tornei attivi (gratuito) ed eventi della giornata (gratuiti, con i crediti rimasti).
+  let tornei;
+  try {
+    tornei = (await fonti.oddsTennis.torneiAttivi(opz)).filter((t) => !/_winner$/.test(t.chiave));
+  } catch (e) {
+    errore('The Odds API (tornei tennis)', e);
+    return raccolta;
+  }
+  raccolta.tornei = tornei;
+  let rimastiOra = null;
+  const eventiPer = new Map();
+  for (const t of tornei) {
+    try {
+      const r = await fonti.oddsTennis.eventi(t.chiave, finestra, opz);
+      if (rimastiOra === null && num(r.rimasti)) rimastiOra = r.rimasti;
+      let incompleti = 0;
+      const eventi = [];
+      for (const e of r.eventi ?? []) {
+        if (!e.giocatore1 || !e.giocatore2 || !Number.isFinite(Date.parse(e.inizio))) { incompleti++; continue; }
+        if (dentro(e)) eventi.push(e);
+      }
+      if (incompleti) errore(`The Odds API (${t.titolo})`, plurale(incompleti, 'evento senza giocatori o orario', 'eventi senza giocatori o orario'));
+      if (eventi.length) eventiPer.set(t.chiave, eventi);
+    } catch (e) {
+      // 404/422: torneo fermo o sconosciuto all'API → nessuna partita, non è un errore.
+      if (e?.status === 404 || e?.status === 422) continue;
+      errore(`The Odds API (${t.titolo})`, e);
+    }
+  }
+
+  // 2. Crediti: il calcio spende per primo; il tennis tiene da parte la serata per ogni torneo attivo.
+  const calcio = creditiCalcio(dirData, data);
+  let rimastiInizio;
+  let spesiCalcio;
+  if (calcio && !calcio.errore) {
+    ({ rimastiInizio, spesiCalcio } = calcio);
+  } else {
+    if (calcio?.errore) errore('Raccolta calcio', calcio.errore);
+    rimastiInizio = rimastiOra;
+    spesiCalcio = 0;
+  }
+  if (rimastiOra === null && num(rimastiInizio)) rimastiOra = rimastiInizio - spesiCalcio;
+  const conEventi = tornei.filter((t) => eventiPer.has(t.chiave));
+  let budget = 0;
+  if (!num(rimastiInizio)) {
+    if (conEventi.length) errore('The Odds API', 'crediti rimasti sconosciuti');
+  } else {
+    const sera = T.riservaSeraPerTorneo * conEventi.length;
+    budget = Math.max(0, Math.min(
+      budgetCrediti(rimastiInizio, data) - spesiCalcio - sera,
+      rimastiOra - RISERVA_MESE - sera,
+    ));
+  }
+  raccolta.crediti.rimasti = rimastiOra;
+
+  // 3. Tornei per data d'inizio più vicina, finché i crediti bastano.
+  const primoInizio = (t) => Math.min(...eventiPer.get(t.chiave).map((e) => Date.parse(e.inizio)));
+  const ordinati = conEventi.map((t, i) => ({ t, i, inizio: primoInizio(t) }))
+    .sort((a, b) => a.inizio - b.inizio || a.i - b.i).map((x) => x.t);
+  const scelti = [];
+  for (const t of ordinati) {
+    if (T.creditiPerTorneo * (scelti.length + 1) > budget) break;
+    scelti.push(t);
+  }
+  raccolta.competizioniNonCoperte.push(...ordinati.slice(scelti.length).map((t) => `${t.titolo}: crediti insufficienti`));
+
+  // 4. Quote h2h (1 credito per torneo); le chiamate fallite non si contano.
+  const quotePer = new Map();
+  for (const t of scelti) {
+    try {
+      const r = await fonti.oddsTennis.quote(t.chiave, finestra, opz);
+      quotePer.set(t.chiave, new Map((r.eventi ?? []).map((e) => [e.id, e])));
+      raccolta.crediti.usati += T.creditiPerTorneo;
+      raccolta.crediti.rimasti = num(r.rimasti) ? r.rimasti
+        : num(raccolta.crediti.rimasti) ? raccolta.crediti.rimasti - T.creditiPerTorneo : null;
+    } catch (e) {
+      errore(`The Odds API (${t.titolo})`, e);
+    }
+  }
+  raccolta.budgetResiduo = Math.max(0, budget - raccolta.crediti.usati);
+
+  // 5. Storico: tre stagioni per circuito; una stagione che manca non fa perdere le altre.
+  const anno = Number(data.slice(0, 4));
+  const stati = new Map();
+  for (const circuito of new Set(scelti.filter((t) => quotePer.has(t.chiave)).map((t) => t.circuito))) {
+    const righe = [];
+    let caricate = 0;
+    for (let i = 0; i < STAGIONI; i++) {
+      try {
+        righe.push(...await fonti.tennisData.partite(anno - i, circuito));
+        caricate++;
+      } catch (e) {
+        errore(`tennis-data.co.uk ${circuito.toUpperCase()} ${anno - i}`, e);
+      }
+    }
+    if (!caricate) continue;
+    raccolta.storico.set(circuito, righe);
+    stati.set(circuito, {
+      righe,
+      nomi: [...new Set(righe.flatMap((p) => [p.vincitore, p.perdente]))],
+      elo: calcolaElo(righe),
+    });
+  }
+
+  // 6. Partite.
+  for (const t of scelti) {
+    const quote = quotePer.get(t.chiave);
+    if (!quote) continue;
+    const stato = stati.get(t.circuito) ?? null;
+    const bestOf = SLAM_ATP.test(t.chiave) ? 5 : 3;
+    let superficie = 'cemento';
+    if (stato) {
+      const riga = torneoTennisData(t.titolo, stato.righe);
+      if (riga) superficie = riga.superficie;
+      else errore('tennis-data.co.uk', `torneo ${t.titolo} non trovato nello storico, si usa cemento al meglio dei ${bestOf} set`);
+    }
+    let senzaQuota = 0;
+    for (const ev of eventiPer.get(t.chiave)) {
+      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, data, ora, erroriGiro });
+      if (partita === null) continue;
+      if (partita === false) { senzaQuota++; continue; }
+      raccolta.partite.push(partita);
+    }
+    if (senzaQuota) errore('The Odds API', `${plurale(senzaQuota, 'partita', 'partite')} senza quota utilizzabile (${t.titolo})`);
+  }
+  return raccolta;
+}
+
+// Partita della raccolta; null se un giocatore non si abbina (errore già scritto), false se nessun mercato ha quota.
+function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, data, ora, erroriGiro }) {
+  const g1 = ev.giocatore1;
+  const g2 = ev.giocatore2;
+  let elo = null;
+  let p1 = null;
+  let peso = null;
+  let ragionamentoBase;
+  if (stato) {
+    const a = abbinaGiocatore(g1, stato.nomi);
+    const b = abbinaGiocatore(g2, stato.nomi);
+    const ignoti = [];
+    if (!a || a === b) ignoti.push(g1);
+    if (!b || a === b) ignoti.push(g2);
+    if (ignoti.length) {
+      erroriGiro.push(`Giocatori non riconosciuti: ${ignoti.join(', ')} (${t.titolo})`);
+      return null;
+    }
+    const ea = stato.elo.get(a) ?? eloDefault();
+    const eb = stato.elo.get(b) ?? eloDefault();
+    p1 = probVittoria(ea, eb, superficie, bestOf);
+    peso = pesoModelloPartita(stato.elo, a, b, data);
+    const voce = (e) => ({ tot: Math.round(e.tot), superficie: Math.round(e[superficie]) });
+    elo = { [g1]: voce(ea), [g2]: voce(eb) };
+    ragionamentoBase = [
+      `Elo complessivo e su ${superficie}: ${g1} ${elo[g1].tot}/${elo[g1].superficie} – ${g2} ${elo[g2].tot}/${elo[g2].superficie} (ultime ${STAGIONI} stagioni tennis-data)`,
+      `Al meglio dei ${bestOf} set`,
+    ];
+    if (peso === T.pesoModelloPocheDati) {
+      ragionamentoBase.push(`Meno di ${T.minPartite12Mesi} partite negli ultimi 12 mesi per almeno un giocatore: peso del modello ${pct(peso)}`);
+    }
+  } else {
+    ragionamentoBase = ['Storico tennis-data non disponibile: probabilità solo da Pinnacle'];
+  }
+
+  const pin = probPinnacleTennis(evento, g1, g2);
+  const mercati = [];
+  for (const [nome, probModello] of [[g1, p1], [g2, p1 === null ? null : 1 - p1]]) {
+    const q = quotaMedianaTennis(evento, nome);
+    if (!q) continue;
+    const probPinnacle = pin?.[nome] ?? null;
+    if (probModello === null && probPinnacle === null) continue;
+    mercati.push({
+      mercato: 'Vincente incontro',
+      selezione: nome,
+      probModello,
+      probPinnacle,
+      quota: q.quota,
+      fonteQuota: `mediana di ${q.n} bookmaker (The Odds API)`,
+      oraQuota: ora,
+      frequenzaCampionato: null,
+      spiegazione: spiegazioneTennis(nome),
+    });
+  }
+  if (!mercati.length) return false;
+  const [x, y] = [slug(g1), slug(g2)].sort();
+  return {
+    idPartita: `tennis-${data}-${x}-${y}`,
+    sport: 'tennis',
+    competizione: t.titolo,
+    partita: `${g1} - ${g2}`,
+    casa: g1,
+    trasferta: g2,
+    inizio: isoRoma(new Date(ev.inizio)),
+    modello: 'elo',
+    lambda: null,
+    elo,
+    superficie,
+    bestOf,
+    pesoModello: peso,
+    ragionamentoBase,
+    mercati,
+  };
+}
+
+// Raccolta vuota per un imprevisto: l'errore è registrato e calcio e NBA non vengono bloccati.
+export function raccoltaDiErrore(data, adesso, e) {
+  const raccolta = vuota(data, adesso);
+  raccolta.erroriGiro.push(`Tennis alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
+  return raccolta;
+}
+
+async function principale() {
+  const i = process.argv.indexOf('--data');
+  const adesso = new Date();
+  const data = i > -1 ? process.argv[i + 1] : dataRoma(adesso);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(data ?? '')) {
+    console.error('Uso: node src/tennis/raccolta.js [--data AAAA-MM-GG]');
+    process.exit(1);
+  }
+  const dirData = 'data';
+  const chiavi = { oddsApi: process.env.ODDS_API_KEY };
+  const fonti = { oddsTennis, tennisData };
+  let raccolta;
+  try {
+    raccolta = await eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirData });
+  } catch (e) {
+    // Qualunque imprevisto: file con partite [] e l'errore, uscita 0, così calcio e NBA vengono comunque salvati.
+    raccolta = raccoltaDiErrore(data, adesso, e);
+  }
+  let esiti = { aggiornate: 0 };
+  try {
+    esiti = await aggiornaEsitiGiroTennis({
+      dirData: join(dirData, 'giornate'), adesso, fonti, chiavi, raccolta,
+      storico: raccolta.storico, tornei: raccolta.tornei, budgetResiduo: raccolta.budgetResiduo,
+    });
+  } catch (e) {
+    raccolta.erroriGiro.push(`Esiti tennis alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
+  }
+  mkdirSync(join(dirData, 'raccolta'), { recursive: true });
+  writeFileSync(join(dirData, 'raccolta', `${data}-tennis.json`), `${JSON.stringify(raccolta, null, 2)}\n`);
+  console.log(`Raccolta tennis ${data}: ${raccolta.partite.length} partite, ${raccolta.erroriGiro.length} errori, crediti usati ${raccolta.crediti.usati}`);
+  console.log(`Esiti tennis aggiornati: ${esiti.aggiornate}`);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  principale().catch((e) => {
+    console.error(`Raccolta tennis fallita: ${e?.message ?? e}`);
+  });
+}
