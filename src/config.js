@@ -80,5 +80,7 @@ export const CONFIG = congela({
     minBookmaker: 3,
     creditiPerTorneo: 1,
     riservaSeraPerTorneo: 1,
+    // Partite su una superficie (del giocatore che ne ha meno) oltre le quali l'Elo di superficie pesa per intero.
+    partiteSuperficiePiena: 20,
   },
 });

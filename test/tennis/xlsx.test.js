@@ -119,7 +119,7 @@ test('CONFIG.tennis congelato', () => {
   assert.deepEqual(CONFIG.tennis, {
     eloIniziale: 1500, kBase: 250, kOffset: 5, kEsponente: 0.4,
     pesoSuperficie: 0.5, pesoModello: 0.5, pesoModelloPocheDati: 0.25,
-    minPartite12Mesi: 20, minBookmaker: 3, creditiPerTorneo: 1, riservaSeraPerTorneo: 1,
+    minPartite12Mesi: 20, minBookmaker: 3, creditiPerTorneo: 1, riservaSeraPerTorneo: 1, partiteSuperficiePiena: 20,
   });
   assert.ok(Object.isFrozen(CONFIG.tennis));
 });

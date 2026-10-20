@@ -9,7 +9,10 @@ const partita = (data, vincitore, perdente, extra = {}) => ({
   vincitore, perdente, setW: [6, 6], setL: [3, 4], commento: null, ...extra,
 });
 
-const voce = (tot, cemento = tot, terra = tot, erba = tot) => ({ tot, cemento, terra, erba, partite: [] });
+// Con 20 partite su ogni superficie il peso della superficie è pieno.
+const voce = (tot, cemento = tot, terra = tot, erba = tot, n = 20) => ({
+  tot, cemento, terra, erba, partite: [], conteggi: { tot: n, cemento: n, terra: n, erba: n },
+});
 
 test('probElo: stesso Elo 0,5 e +200 punti circa 0,76', () => {
   assert.equal(probElo(1500, 1500), 0.5);
@@ -151,4 +154,26 @@ test('pesoModelloPartita: 19 partite → 0,25, 20 partite → 0,5', () => {
   assert.equal(pesoModelloPartita(elo, 'Nessuno', 'Altro', oggi), 0.25);
   // Accetta anche una Date.
   assert.equal(pesoModelloPartita(elo, 'Venti', 'Altro', new Date('2026-10-20T08:00:00Z')), 0.5);
+});
+
+test('calcolaElo: conteggi delle partite per superficie in ogni voce', () => {
+  const elo = calcolaElo([
+    partita('2026-01-05', 'A A.', 'B B.'),
+    partita('2026-01-06', 'A A.', 'C C.'),
+    partita('2026-04-10', 'A A.', 'B B.', { superficie: 'terra' }),
+    partita('2026-04-11', 'A A.', 'B B.', { setW: [], setL: [], commento: 'Walkover' }),
+  ]);
+  assert.deepEqual(elo.get('A A.').conteggi, { tot: 3, cemento: 2, terra: 1, erba: 0 });
+  assert.deepEqual(elo.get('B B.').conteggi, { tot: 2, cemento: 1, terra: 1, erba: 0 });
+});
+
+test('probVittoria: peso della superficie × min(1, nSup/20), nSup il minimo dei due giocatori', () => {
+  const pTerra = (nA, nB) => probVittoria(voce(1700, 1600, 1900, 1600, nA), voce(1700, 1700, 1700, 1700, nB), 'terra', 3);
+  const mix = (w) => (1 - w) * probElo(1700, 1700) + w * probElo(1900, 1700);
+  assert.ok(Math.abs(pTerra(20, 40) - mix(0.5)) < 1e-12);
+  assert.ok(Math.abs(pTerra(40, 10) - mix(0.25)) < 1e-12);
+  assert.ok(Math.abs(pTerra(5, 30) - mix(0.125)) < 1e-12);
+  assert.equal(pTerra(0, 30), 0.5);
+  // Senza conteggi (giocatore mai visto, eloDefault): solo l'Elo complessivo.
+  assert.equal(probVittoria({ ...eloDefault(), terra: 1900 }, eloDefault(), 'terra', 3), 0.5);
 });

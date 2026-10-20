@@ -28,8 +28,10 @@ export function calcolaElo(partite, cfg = CONFIG.tennis) {
   const conteggi = new Map(); // nome -> { tot, cemento, terra, erba }
   const voce = (nome) => {
     if (!elo.has(nome)) {
-      elo.set(nome, eloDefault(cfg));
-      conteggi.set(nome, { tot: 0, cemento: 0, terra: 0, erba: 0 });
+      // `conteggi`: partite contate in totale e per superficie (servono al K e al peso della superficie).
+      const c = { tot: 0, cemento: 0, terra: 0, erba: 0 };
+      elo.set(nome, { ...eloDefault(cfg), conteggi: c });
+      conteggi.set(nome, c);
     }
     return elo.get(nome);
   };
@@ -71,9 +73,12 @@ function probSet(p3) {
   return (lo + hi) / 2;
 }
 
+// Il peso della superficie cresce con le partite su quella superficie del giocatore che ne ha meno:
+// pesoSuperficie · min(1, nSup / partiteSuperficiePiena). Senza conteggi (giocatore mai visto) vale 0.
 export function probVittoria(eloA, eloB, superficie, bestOf, cfg = CONFIG.tennis) {
   const s = superficieDi(superficie);
-  const w = cfg.pesoSuperficie;
+  const nSup = Math.min(eloA.conteggi?.[s] ?? 0, eloB.conteggi?.[s] ?? 0);
+  const w = cfg.pesoSuperficie * Math.min(1, nSup / cfg.partiteSuperficiePiena);
   let p = (1 - w) * probElo(eloA.tot, eloB.tot) + w * probElo(eloA[s], eloB[s]);
   if (bestOf === 5) {
     const x = probSet(p);
