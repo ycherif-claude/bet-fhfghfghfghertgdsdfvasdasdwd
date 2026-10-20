@@ -113,7 +113,53 @@ function vuota(data, adesso) {
   return raccolta;
 }
 
+// idPartita del tennis: nomi in ordine alfabetico (nel tennis non c'è casa o trasferta).
+export function idPartitaTennis(data, g1, g2) {
+  const [x, y] = [slug(g1), slug(g2)].sort();
+  return `tennis-${data}-${x}-${y}`;
+}
+
+// Budget del mattino: il calcio spende per primo; il tennis tiene da parte la serata per ogni torneo attivo.
+function budgetMattino({ data, dirData, rimastiOra, conEventi, errore }) {
+  const calcio = creditiCalcio(dirData, data);
+  let rimastiInizio;
+  let spesiCalcio;
+  if (calcio && !calcio.errore) {
+    ({ rimastiInizio, spesiCalcio } = calcio);
+  } else {
+    if (calcio?.errore) errore('Raccolta calcio', calcio.errore);
+    rimastiInizio = rimastiOra;
+    spesiCalcio = 0;
+  }
+  if (rimastiOra === null && num(rimastiInizio)) rimastiOra = rimastiInizio - spesiCalcio;
+  let budget = 0;
+  if (!num(rimastiInizio)) {
+    if (conEventi.length) errore('The Odds API', 'crediti rimasti sconosciuti');
+  } else {
+    const sera = T.riservaSeraPerTorneo * conEventi.length;
+    budget = Math.max(0, Math.min(
+      budgetCrediti(rimastiInizio, data) - spesiCalcio - sera,
+      rimastiOra - RISERVA_MESE - sera,
+    ));
+  }
+  return { budget, rimastiOra };
+}
+
+// Budget della sera prima (spec §3.2): al massimo 1 credito per torneo con partite notturne, mai sotto la riserva.
+export function budgetSerale({ rimastiOra, conEventi, errore }) {
+  if (!num(rimastiOra)) {
+    if (conEventi.length) errore('The Odds API', 'crediti rimasti sconosciuti');
+    return { budget: 0, rimastiOra };
+  }
+  return { budget: Math.max(0, Math.min(T.creditiPerTorneo * conEventi.length, rimastiOra - RISERVA_MESE)), rimastiOra };
+}
+
 export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirData = 'data' }) {
+  return raccogliTennis({ data, adesso, fonti, chiavi, dirData, finestra: finestraGiornata(data), calcolaBudget: budgetMattino });
+}
+
+// Raccolta tennis nella finestra data: eventi di `escludi` (idPartita) saltati, crediti da `calcolaBudget`.
+export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'data', finestra, calcolaBudget, escludi = new Set() }) {
   const raccolta = vuota(data, adesso);
   const { erroriGiro } = raccolta;
   const errore = (fonte, e) => erroriGiro.push(`${fonte} alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
@@ -123,7 +169,6 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
     return raccolta;
   }
   const opz = { chiave: chiavi.oddsApi };
-  const finestra = finestraGiornata(data);
   const dentro = (e) => {
     const t = Date.parse(e.inizio);
     return t >= finestra.da.getTime() && t < finestra.a.getTime();
@@ -148,7 +193,7 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
       const eventi = [];
       for (const e of r.eventi ?? []) {
         if (!e.giocatore1 || !e.giocatore2 || !Number.isFinite(Date.parse(e.inizio))) { incompleti++; continue; }
-        if (dentro(e)) eventi.push(e);
+        if (dentro(e) && !escludi.has(idPartitaTennis(data, e.giocatore1, e.giocatore2))) eventi.push(e);
       }
       if (incompleti) errore(`The Odds API (${t.titolo})`, plurale(incompleti, 'evento senza giocatori o orario', 'eventi senza giocatori o orario'));
       if (eventi.length) eventiPer.set(t.chiave, eventi);
@@ -159,29 +204,10 @@ export async function eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirDat
     }
   }
 
-  // 2. Crediti: il calcio spende per primo; il tennis tiene da parte la serata per ogni torneo attivo.
-  const calcio = creditiCalcio(dirData, data);
-  let rimastiInizio;
-  let spesiCalcio;
-  if (calcio && !calcio.errore) {
-    ({ rimastiInizio, spesiCalcio } = calcio);
-  } else {
-    if (calcio?.errore) errore('Raccolta calcio', calcio.errore);
-    rimastiInizio = rimastiOra;
-    spesiCalcio = 0;
-  }
-  if (rimastiOra === null && num(rimastiInizio)) rimastiOra = rimastiInizio - spesiCalcio;
+  // 2. Crediti.
   const conEventi = tornei.filter((t) => eventiPer.has(t.chiave));
-  let budget = 0;
-  if (!num(rimastiInizio)) {
-    if (conEventi.length) errore('The Odds API', 'crediti rimasti sconosciuti');
-  } else {
-    const sera = T.riservaSeraPerTorneo * conEventi.length;
-    budget = Math.max(0, Math.min(
-      budgetCrediti(rimastiInizio, data) - spesiCalcio - sera,
-      rimastiOra - RISERVA_MESE - sera,
-    ));
-  }
+  let budget;
+  ({ budget, rimastiOra } = calcolaBudget({ data, dirData, rimastiOra, conEventi, errore }));
   raccolta.crediti.rimasti = rimastiOra;
 
   // 3. Tornei per data d'inizio più vicina, finché i crediti bastano.
@@ -319,9 +345,8 @@ function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, d
     });
   }
   if (!mercati.length) return false;
-  const [x, y] = [slug(g1), slug(g2)].sort();
   return {
-    idPartita: `tennis-${data}-${x}-${y}`,
+    idPartita: idPartitaTennis(data, g1, g2),
     sport: 'tennis',
     competizione: t.titolo,
     partita: `${g1} - ${g2}`,
