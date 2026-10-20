@@ -106,3 +106,14 @@ test('valoriCampi: consigliati finché non si scrive, poi restano quelli scritti
   assert.deepEqual(valoriCampi(g, { quota: '1', puntata: '7' }), { quota: '1', puntata: '7' });
   assert.deepEqual(valoriCampi(g, { quota: '', puntata: '' }), { quota: '', puntata: '' });
 });
+
+test('etichetta stato: il motivo compare per ogni stato', () => {
+  const m = 'controllo serale non eseguito';
+  assert.equal(etichettaStato({ stato: 'in_attesa', motivoStato: m }).testo, `In attesa formazioni: ${m}`);
+  assert.equal(etichettaStato({ stato: 'confermata', motivoStato: m }).testo, `Confermata: ${m}`);
+  assert.equal(etichettaStato({ stato: 'in_revisione', motivoStato: m }).testo, `In revisione: ${m}`);
+  assert.equal(etichettaStato({ stato: 'modificata', motivoStato: m }).testo, `Modificata: ${m}`);
+  assert.equal(etichettaStato({ stato: 'annullata', motivoStato: m }).testo, `Annullata: ${m}`);
+  assert.equal(etichettaStato({ stato: 'confermata', motivoStato: null }).testo, 'Confermata');
+  assert.equal(etichettaStato({ stato: 'confermata', motivoStato: '' }).testo, 'Confermata');
+});

@@ -5,6 +5,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataRoma, oraRoma } from '../calcio/testo.js';
+import { daAvvisare, segnateComeGiocate } from '../calcio/esiti.js';
 import { squadraNba } from './squadre.js';
 
 const QUATTRO_ORE = 4 * 3600 * 1000;
@@ -53,7 +54,8 @@ export function esitoNba(mercato, selezione, r) {
 const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]);
 const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
 const sportDi = (x, g) => x.sport ?? g.sport;
-const aperta = (g) => g.esito === null && g.stato !== 'annullata';
+// Anche le annullate: l'utente può averle giocate prima del controllo serale.
+const aperta = (g) => g.esito === null;
 // Gambe NBA ancora senza esito e finite da più di 4 ore.
 const gambeDaChiudere = (g, adesso) => gambeDi(g).filter((x) => sportDi(x, g) === 'nba' && x.esito == null
   && Date.parse(x.inizio) + QUATTRO_ORE < adesso.getTime());
@@ -123,10 +125,12 @@ function aggiorna(g, finite, adesso) {
   return cambiato;
 }
 
-// Aggiorna solo `esito` (della giocata e delle sue gambe NBA). Avviso dopo 7 giorni senza esito.
+// Aggiorna solo `esito` (della giocata e delle sue gambe NBA). Avviso dopo 7 giorni senza esito
+// (per le annullate solo se segnate come giocate).
 // Le multiple miste si chiudono quando ogni modulo ha scritto l'esito delle proprie gambe.
 export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
   const { out: giornate, errori } = leggiGiornate(dirData, adesso);
+  const segnate = segnateComeGiocate(dirData);
   const finite = partiteFinite.filter((p) => p.finita !== false);
   let aggiornate = 0;
   const file = [];
@@ -140,7 +144,7 @@ export function aggiornaEsitiNba(dirData, partiteFinite, adesso) {
       }
       if (g.esito === null && gambeDaChiudere(g, adesso).length) {
         const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
-        if (giorni >= 7) errori.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
+        if (giorni >= 7 && daAvvisare(g, segnate)) errori.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
       }
     }
     if (cambiato) {

@@ -401,3 +401,27 @@ test('correzione del mattino più quella serale entro ±0,08 dal modello senza c
   // Modello = 0,57 + 0,05 − 0,06 = 0,56; mercato = consenso del mattino 0,60.
   vicino(leggiGiornata(d).giocate[0].prob, 0.5 * 0.56 + 0.5 * 0.6);
 });
+
+test('annullata dal serale dopo una segnatura "giocata": l\'esito si scrive e il bankroll conta il risultato', async () => {
+  const { aggiornaEsitiNba } = await import('../../src/nba/esiti.js');
+  const { statoBankroll } = await import('../../src/bankroll/bankroll.js');
+  const { CONFIG } = await import('../../src/config.js');
+  const segnatura = { idGiocata: ID_A, fatta: true, quotaReale: 1.8, puntataReale: 4, ora: '2026-10-20T10:00:00+02:00' };
+  const d = dirTemp({ dec: decisioni([decisione(ID_A, 'annullata'), decisione(ID_B, 'confermata')]), segnature: [segnatura] });
+  applicaSerale({ dirData: d, adesso: ADESSO });
+  assert.equal(leggiGiornata(d).giocate[0].stato, 'annullata');
+  const dopo = new Date('2026-10-22T05:07:00Z');
+  const finita = {
+    id: 1, dataUsa: '2026-10-20', inizio: '2026-10-21T01:30:00+02:00', casa: 'Boston Celtics', trasferta: 'New York Knicks',
+    puntiCasa: 110, puntiTrasferta: 105, finita: true, stagione: 2026, postseason: false,
+  };
+  const out = aggiornaEsitiNba(path.join(d, 'giornate'), [finita], dopo);
+  assert.equal(out.aggiornate, 1);
+  const a = leggiGiornata(d).giocate[0];
+  assert.equal(a.stato, 'annullata');
+  assert.equal(a.esito, 'vinta');
+  const b = statoBankroll(leggiGiornata(d).giocate, [segnatura], dopo);
+  vicino(b.bankroll, CONFIG.bankrollIniziale + 3.2);
+  vicino(b.risultatoSettimana, 3.2);
+  assert.equal(b.inGiocoOggi, 0);
+});

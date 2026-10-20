@@ -30,8 +30,9 @@ export function filtraPerSport(giocate, sport) {
 
 export function etichettaStato(giocata) {
   const base = STATI[giocata.stato] ?? { testo: String(giocata.stato ?? ''), classe: 'stato-attesa' };
-  const conMotivo = (giocata.stato === 'annullata' || giocata.stato === 'modificata') && giocata.motivoStato;
-  return { testo: conMotivo ? `${base.testo}: ${giocata.motivoStato}` : base.testo, classe: base.classe };
+  // Il motivo (es. "controllo serale non eseguito") si mostra con qualunque stato.
+  const motivo = giocata.motivoStato;
+  return { testo: motivo ? `${base.testo}: ${motivo}` : base.testo, classe: base.classe };
 }
 
 // Oltre questa età i dati della pagina si considerano forse non aggiornati

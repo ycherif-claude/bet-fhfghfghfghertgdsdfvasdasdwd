@@ -1,12 +1,14 @@
 // Esiti delle giocate di calcio: dal risultato della partita a vinta / persa / rimborsata.
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { CONFIG } from '../config.js';
+import { erroreSegnatura, leggiJson } from '../build/costruisci-sito.js';
 import { COMPETIZIONI } from './competizioni.js';
 import { abbinaSquadra } from './squadre.js';
 import { dataRoma, oraRoma } from './testo.js';
 
 const TRE_ORE = 3 * 3600 * 1000;
+const GIORNO = 86400000;
 const FILE_GIORNATA = /^(\d{4}-\d{2}-\d{2})\.json$/;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 
@@ -86,17 +88,32 @@ export function esitoGiocata(giocata, risultatiPerPartita) {
 const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]);
 const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
 
-// In attesa di esito: calcio, esito null, non annullata, finita da più di 3 ore.
+// In attesa di esito: calcio, esito null, finita da più di 3 ore. Anche le annullate: l'utente
+// può averle giocate prima del controllo, e senza esito bankroll e stop resterebbero sbagliati.
 function inAttesa(g, adesso) {
-  return g.sport === 'calcio' && g.esito === null && g.stato !== 'annullata'
-    && inizioMs(g) + TRE_ORE < adesso.getTime();
+  return g.sport === 'calcio' && g.esito === null && inizioMs(g) + TRE_ORE < adesso.getTime();
 }
 
 // Multipla mista: ha gambe di calcio e di altri sport. Le gambe hanno un proprio `esito` opzionale.
 const misto = (g) => Array.isArray(g.gambe) && g.gambe.some((x) => x.sport === 'calcio') && g.gambe.some((x) => x.sport !== 'calcio');
 const gambeCalcioDaChiudere = (g, adesso) => g.gambe.filter((x) => x.sport === 'calcio' && x.esito == null
   && Date.parse(x.inizio) + TRE_ORE < adesso.getTime());
-const mistaInAttesa = (g, adesso) => misto(g) && g.esito === null && g.stato !== 'annullata' && gambeCalcioDaChiudere(g, adesso).length > 0;
+const mistaInAttesa = (g, adesso) => misto(g) && g.esito === null && gambeCalcioDaChiudere(g, adesso).length > 0;
+
+// Id delle giocate la cui ultima segnatura valida è "giocata" (fatta: true).
+// Le segnature stanno accanto alle giornate: <dati>/segnature.
+export function segnateComeGiocate(dirGiornate) {
+  const ultima = new Map();
+  for (const { contenuto: s } of leggiJson(dirname(dirGiornate), 'segnature', [])) {
+    if (erroreSegnatura(s)) continue;
+    const prec = ultima.get(s.idGiocata);
+    if (!prec || Date.parse(s.ora) >= Date.parse(prec.ora)) ultima.set(s.idGiocata, s);
+  }
+  return new Set([...ultima.values()].filter((s) => s.fatta === true).map((s) => s.idGiocata));
+}
+
+// L'avviso dei 7 giorni vale per le giocate non annullate e per le annullate segnate come giocate.
+export const daAvvisare = (g, segnate) => g.stato !== 'annullata' || segnate.has(g.id);
 
 // Giornate passate leggibili: [{ percorso, dati, testo }]; i file rotti vanno in `errori`.
 function leggiGiornate(dirData, adesso) {
@@ -178,8 +195,16 @@ function trova(gamba, risultati, errori) {
 }
 
 // Aggiorna solo il campo `esito` delle giocate di calcio finite; i file non cambiati restano intatti.
+// Mai in silenzio: le giocate ancora senza esito da una settimana finiscono in coda a `errori`
+// (singole, multiple di calcio e multiple miste con gambe di calcio aperte).
 export function aggiornaEsiti(dirData, risultati, adesso) {
   const { out: giornate, errori } = leggiGiornate(dirData, adesso);
+  const segnate = segnateComeGiocate(dirData);
+  const avvisi = [];
+  const avvisa = (g) => {
+    const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
+    if (giorni >= 7 && daAvvisare(g, segnate)) avvisi.push(`Giocata ${g.id} senza esito da ${giorni} giorni`);
+  };
   const segnalati = new Set();
   let aggiornate = 0;
   const file = [];
@@ -199,6 +224,7 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
         const chiusa = esiti.includes('persa') ? 'persa' : esiti.includes(null) ? null
           : esiti.every((e) => e === 'rimborsata') ? 'rimborsata' : 'vinta';
         if (chiusa !== null) { g.esito = chiusa; cambiato = true; aggiornate++; }
+        if (mistaInAttesa(g, adesso)) avvisa(g);
         continue;
       }
       if (!inAttesa(g, adesso)) continue;
@@ -214,6 +240,8 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
         g.esito = esito;
         cambiato = true;
         aggiornate++;
+      } else {
+        avvisa(g);
       }
     }
     if (cambiato) {
@@ -221,6 +249,7 @@ export function aggiornaEsiti(dirData, risultati, adesso) {
       file.push(percorso);
     }
   }
+  errori.push(...avvisi);
   return { aggiornate, file, errori };
 }
 
@@ -249,7 +278,6 @@ const giorniPrima = (data, n) => {
   return new Date(Date.UTC(y, m - 1, g - n)).toISOString().slice(0, 10);
 };
 
-const GIORNO = 86400000;
 const MAX_GIORNI_FD_ORG = 9; // football-data.org limita l'intervallo a 10 giorni
 const FINESTRA_ODDS = 3 * GIORNO;
 const SENZA_ODDS = /^(Angoli|Cartellini)|1° tempo/;
@@ -316,11 +344,7 @@ export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccol
   }
 
   const out = aggiornaEsiti(dirData, risultati, adesso);
+  // Comprende gli avvisi delle giocate senza esito da una settimana.
   for (const m of out.errori) errore('Esiti', new Error(m));
-  // Mai in silenzio: giocate ancora senza esito da una settimana.
-  for (const g of giocateInAttesa(dirData, adesso)) {
-    const giorni = Math.floor((adesso.getTime() - inizioMs(g)) / GIORNO);
-    if (giorni >= 7) errore('Esiti', new Error(`Giocata ${g.id} senza esito da ${giorni} giorni`));
-  }
   return out;
 }

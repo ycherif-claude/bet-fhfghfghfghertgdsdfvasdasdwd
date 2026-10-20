@@ -97,7 +97,7 @@ function cartella(giornate) {
 const leggi = (dir, data) => JSON.parse(readFileSync(join(dir, `${data}.json`), 'utf8'));
 const risInter = { casa: 'FC Internazionale Milano', trasferta: 'AC Monza', inizio: '2026-10-18T18:45:00Z', gc: 2, gt: 1, gcPT: 1, gtPT: 0, fonte: 'football-data.org' };
 
-test('aggiornaEsiti cambia solo il campo esito e non tocca le giocate annullate', () => {
+test('aggiornaEsiti cambia solo il campo esito, anche sulle giocate annullate', () => {
   const originale = {
     data: '2026-10-18', generataAlle: '2026-10-18T08:00:00+02:00', note: { a: [1, 2] }, candidati: [],
     giocate: [
@@ -110,10 +110,11 @@ test('aggiornaEsiti cambia solo il campo esito e non tocca le giocate annullate'
   };
   const dir = cartella({ '2026-10-18': originale });
   const out = aggiornaEsiti(dir, [risInter], ADESSO);
-  assert.equal(out.aggiornate, 1);
+  assert.equal(out.aggiornate, 2);
   assert.deepEqual(out.file.map((f) => f.replace(/\\/g, '/').split('/').pop()), ['2026-10-18.json']);
   const atteso = structuredClone(originale);
   atteso.giocate[0].esito = 'vinta';
+  atteso.giocate[1].esito = 'vinta';
   assert.deepEqual(leggi(dir, '2026-10-18'), atteso);
   assert.equal(readFileSync(join(dir, '2026-10-18.json'), 'utf8'), `${JSON.stringify(atteso, null, 2)}\n`);
 });
@@ -335,4 +336,67 @@ test('multipla mista: il calcio scrive l\'esito delle sue gambe e chiude con la 
   const g2 = JSON.parse(readFileSync(join(d2, '2026-10-18.json'), 'utf8')).giocate[0];
   assert.equal(g2.gambe[0].esito, 'vinta');
   assert.equal(g2.esito, null);
+});
+
+// Cartella dati completa (giornate + segnature).
+function dati(giornate, segnature = []) {
+  const root = mkdtempSync(join(tmpdir(), 'esiti-dati-'));
+  mkdirSync(join(root, 'giornate'));
+  mkdirSync(join(root, 'segnature'));
+  for (const [data, contenuto] of Object.entries(giornate)) writeFileSync(join(root, 'giornate', `${data}.json`), JSON.stringify(contenuto, null, 2));
+  for (const s of segnature) writeFileSync(join(root, 'segnature', `${s.idGiocata}.json`), JSON.stringify(s));
+  return join(root, 'giornate');
+}
+const sig = (idGiocata, fatta, ora = '2026-10-10T18:00:00+02:00') => ({ idGiocata, fatta, quotaReale: 2, puntataReale: 4, ora });
+
+test('multipla mista annullata: il calcio scrive comunque l\'esito delle sue gambe e la chiude', () => {
+  const gc = { ...giocata('g1', 'Inter Milan - Monza'), sport: 'calcio' };
+  const nba = { sport: 'nba', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-17T20:00:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics', esito: 'vinta' };
+  const mx = { id: 'mx', sport: 'calcio + nba', tipo: 'multipla', stato: 'annullata', esito: null, gambe: [gc, nba] };
+  const risultati = [{ casa: 'Inter Milan', trasferta: 'Monza', inizio: '2026-10-18T18:45:00Z', data: '2026-10-18', gc: 2, gt: 1, fonte: 'x' }];
+  const d = cartella({ '2026-10-18': { data: '2026-10-18', giocate: [mx], scartate: [] } });
+  assert.equal(aggiornaEsiti(d, risultati, new Date('2026-10-20T10:00:00Z')).aggiornate, 1);
+  assert.equal(leggi(d, '2026-10-18').giocate[0].esito, 'vinta');
+});
+
+test('aggiornaEsitiGiro: avviso dei 7 giorni sulle annullate solo se segnate come giocate', async () => {
+  const el = { competizione: 'Europa League', inizio: '2026-10-10T20:45:00+02:00' };
+  const giocate = [
+    giocata('normale', 'Roma - Lecce', el),
+    giocata('libera', 'Roma - Lecce', { ...el, stato: 'annullata' }),
+    giocata('giocata', 'Roma - Lecce', { ...el, stato: 'annullata' }),
+    giocata('saltata', 'Roma - Lecce', { ...el, stato: 'annullata' }),
+  ];
+  const d = dati({ '2026-10-10': { data: '2026-10-10', giocate, scartate: [] } }, [sig('giocata', true), sig('saltata', false)]);
+  const raccolta = nuovaRaccolta();
+  await aggiornaEsitiGiro({ dirData: d, adesso: ADESSO, fonti: fontiFinte(), chiavi: { footballDataOrg: 'T' }, raccolta, csv: new Map() });
+  const avvisi = raccolta.erroriGiro.filter((e) => e.includes('senza esito'));
+  assert.deepEqual(avvisi, [
+    'Esiti alle 08:00: Giocata normale senza esito da 9 giorni',
+    'Esiti alle 08:00: Giocata giocata senza esito da 9 giorni',
+  ]);
+});
+
+test('aggiornaEsitiGiro: multipla mista senza esito da 7 giorni → avviso, una sola volta', async () => {
+  const gc = { ...giocata('g1', 'Roma - Lecce', { competizione: 'Europa League', inizio: '2026-10-10T20:45:00+02:00' }), sport: 'calcio' };
+  const nba = { sport: 'nba', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-10T02:00:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics' };
+  const mx = { id: 'mx', sport: 'calcio + nba', tipo: 'multipla', stato: 'confermata', esito: null, gambe: [gc, nba] };
+  const mxAnn = { ...structuredClone(mx), id: 'mx-ann', stato: 'annullata' };
+  const d = dati({ '2026-10-10': { data: '2026-10-10', giocate: [mx, mxAnn], scartate: [] } });
+  const raccolta = nuovaRaccolta();
+  const out = await aggiornaEsitiGiro({ dirData: d, adesso: ADESSO, fonti: fontiFinte(), chiavi: { footballDataOrg: 'T' }, raccolta, csv: new Map() });
+  assert.deepEqual(raccolta.erroriGiro.filter((e) => e.includes('senza esito')), ['Esiti alle 08:00: Giocata mx senza esito da 9 giorni']);
+  assert.deepEqual(out.errori.filter((e) => e.includes('senza esito')), ['Giocata mx senza esito da 9 giorni']);
+});
+
+test('annullata segnata come giocata: esito scritto e bankroll con il profitto reale', async () => {
+  const { statoBankroll } = await import('../../src/bankroll/bankroll.js');
+  const g = giocata('ann', 'Inter Milan - Monza', { stato: 'annullata', motivoStato: 'out Lautaro' });
+  const d = dati({ '2026-10-18': { data: '2026-10-18', giocate: [g], scartate: [] } });
+  aggiornaEsiti(d, [risInter], ADESSO);
+  const dopo = leggi(d, '2026-10-18').giocate;
+  assert.equal(dopo[0].esito, 'vinta');
+  const b = statoBankroll(dopo, [sig('ann', true, '2026-10-18T12:00:00+02:00')], ADESSO);
+  const prima = statoBankroll([g], [sig('ann', true, '2026-10-18T12:00:00+02:00')], ADESSO);
+  assert.equal(b.bankroll - prima.bankroll, 4); // 4 € a quota 2: +4
 });

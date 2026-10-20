@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { esitoNba, aggiornaEsitiNba, aggiornaEsitiGiroNba } from '../../src/nba/esiti.js';
@@ -55,7 +55,7 @@ test('esiti: abbinamento con il giorno di New York, non quello di Roma', () => {
   assert.equal(out.file.length, 1);
 });
 
-test('esiti: salta annullate, chiuse, calcio, multipla mista e partite da meno di 4 ore; cambia solo esito', () => {
+test('esiti: chiude anche le annullate; salta chiuse, calcio, multipla mista e partite da meno di 4 ore; cambia solo esito', () => {
   const calcio = { id: 'c', sport: 'calcio', partita: 'A - B', inizio: '2026-10-19T20:00:00+02:00', mercato: '1X2', selezione: '1', esito: null };
   const fresca = { id: 'f', ...gamba('Vincente', 'Boston Celtics', { inizio: '2026-10-21T22:00:00Z' }), esito: null };
   const giocate = [
@@ -68,9 +68,10 @@ test('esiti: salta annullate, chiuse, calcio, multipla mista e partite da meno d
   ];
   const d = dir(giocate);
   const out = aggiornaEsitiNba(d, [finita()], new Date('2026-10-22T00:00:00Z'));
-  assert.equal(out.aggiornate, 1);
+  assert.equal(out.aggiornate, 2);
   const dopo = leggi(d);
-  assert.deepEqual(dopo.map((g) => g.esito), [null, 'persa', null, null, null, 'vinta']);
+  assert.deepEqual(dopo.map((g) => g.esito), ['vinta', 'persa', null, null, null, 'vinta']);
+  assert.equal(dopo[0].stato, 'annullata');
   assert.equal(dopo[5].extra, 7);
 });
 
@@ -148,4 +149,32 @@ test('passo della CLI: giornata illeggibile in erroriGiro anche senza giocate in
   await aggiornaEsitiGiroNba({ dirData: d, adesso, fonti: {}, chiavi: {}, raccolta });
   assert.equal(raccolta.erroriGiro.length, 1);
   assert.match(raccolta.erroriGiro[0], /^Esiti NBA alle 07:07: 2026-10-19\.json: file non leggibile/);
+});
+
+// Cartella dati completa (giornate + segnature) per l'avviso sulle annullate.
+function dati(giocate, segnature = []) {
+  const root = mkdtempSync(join(tmpdir(), 'es-dati-'));
+  mkdirSync(join(root, 'giornate'));
+  mkdirSync(join(root, 'segnature'));
+  writeFileSync(join(root, 'giornate', '2026-10-20.json'), JSON.stringify({ data: '2026-10-20', giocate }, null, 2));
+  for (const s of segnature) writeFileSync(join(root, 'segnature', `${s.idGiocata}.json`), JSON.stringify(s));
+  return join(root, 'giornate');
+}
+const sig = (idGiocata, fatta, ora = '2026-10-20T18:00:00+02:00') => ({ idGiocata, fatta, quotaReale: 1.8, puntataReale: 4, ora });
+
+test('esiti: avviso dei 7 giorni sulle annullate solo se segnate come giocate (ultima segnatura)', () => {
+  const a = (id) => ({ id, ...gamba('Vincente', 'Boston Celtics'), esito: null, stato: 'annullata' });
+  const d = dati([a('libera'), a('giocata'), a('saltata'), a('ripensata')], [
+    sig('giocata', true),
+    sig('saltata', false),
+    sig('ripensata', true, '2026-10-20T18:00:00+02:00'), sig('ripensata', false, '2026-10-20T19:00:00+02:00'),
+  ]);
+  const out = aggiornaEsitiNba(d, [], new Date('2026-10-28T05:00:00Z'));
+  assert.deepEqual(out.errori, ['Giocata giocata senza esito da 7 giorni']);
+});
+
+test('esiti: multipla mista annullata, gamba NBA chiusa comunque', () => {
+  const d = dir([mista({ stato: 'annullata', gambe: [gCalcio(), gamba('Vincente', 'New York Knicks')] })]);
+  aggiornaEsitiNba(d, [finita()], adesso);
+  assert.equal(leggi(d)[0].esito, 'persa');
 });

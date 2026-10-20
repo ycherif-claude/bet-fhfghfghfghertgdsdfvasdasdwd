@@ -36,3 +36,15 @@ test('giocata con inizio non valido o senza puntata: scheda d\'errore, nessuna e
     assert.equal(s.testo, 'Scheda non leggibile: rotta');
   }
 });
+
+const tutti = (n) => [n, ...(n.figli ?? []).flatMap((f) => (f && typeof f === 'object' ? tutti(f) : []))];
+
+test('scheda annullata: i bottoni Giocata e Saltata restano disponibili', () => {
+  const s = renderScheda(giocata({ stato: 'annullata', motivoStato: 'controllo serale: quota scesa' }), null);
+  assert.equal(s.className, 'scheda annullata');
+  const bottoni = tutti(s).filter((n) => n.tag === 'button');
+  const testi = bottoni.map((b) => b.testo);
+  assert.ok(testi.includes('Giocata'));
+  assert.ok(testi.includes('Saltata'));
+  for (const b of bottoni) assert.equal(b.attrs.disabled, undefined);
+});
