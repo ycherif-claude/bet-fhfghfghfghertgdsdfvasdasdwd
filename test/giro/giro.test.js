@@ -10,6 +10,7 @@ import { costruisciDati } from '../../src/build/costruisci-sito.js';
 import { giornataDi } from '../../src/bankroll/settimana.js';
 import { isoRoma } from '../../src/calcio/testo.js';
 import { raccoltaNba, partitaNba, mNba, NBA1 } from './nba-prova.js';
+import { raccoltaTennis, partitaTennis, mTennis, TENNIS1 } from './tennis-prova.js';
 
 const GIRO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'giro', 'giro.js');
 const P1 = 'calcio-2026-10-20-inter-lecce';
@@ -53,13 +54,14 @@ const notizie = (correzioni = [], esclusioni = []) => ({
 
 // `nba`: raccolta NBA del giorno; per default è presente ma vuota, così i test del solo calcio
 // non ricevono la riga "Raccolta NBA di oggi mancante" (`nba: null` per ometterla).
-function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), giornate = [], segnature = [] } = {}) {
+function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), tennis = raccoltaTennis([]), giornate = [], segnature = [] } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-giro-'));
   for (const sotto of ['raccolta', 'giornate', 'segnature']) fs.mkdirSync(path.join(d, sotto));
   if (racc) fs.writeFileSync(path.join(d, 'raccolta', `${racc.data}.json`), JSON.stringify(racc));
   if (noti) fs.writeFileSync(path.join(d, 'raccolta', '2026-10-20-notizie.json'), JSON.stringify(noti));
   if (nba) fs.writeFileSync(path.join(d, 'raccolta', `${nba.data}-nba.json`), JSON.stringify(nba));
   for (const g of giornate) fs.writeFileSync(path.join(d, 'giornate', `${g.data}.json`), JSON.stringify(g, null, 2));
+  if (tennis) fs.writeFileSync(path.join(d, 'raccolta', `${tennis.data}-tennis.json`), JSON.stringify(tennis));
   for (const s of segnature) scriviSegnatura(d, s);
   return d;
 }
@@ -437,3 +439,76 @@ test('anteprima: elenca anche le partite NBA, nello stesso formato', () => {
   assert.equal(riga.inizio, '2026-10-21T01:30:00+02:00');
   assert.ok(riga.mercati.includes(`${NBA1}-vincente-boston-celtics: Vincente | Boston Celtics`), riga.mercati.join(', '));
 });
+
+// --- Tennis (Fase 4b) ---
+const RIGA_TENNIS = 'Raccolta tennis di oggi mancante: data/raccolta/2026-10-20-tennis.json';
+
+test('calcio + nba + tennis: una sola selezionaGiocate, tetto 10 singole comune', () => {
+  const doppie = raccolteDoppie();
+  const tennis = raccoltaTennis([0, 1, 2, 3].map((i) => partitaTennis(`Giocatore${i}`, `Avversario${i}`,
+    [mTennis(`Giocatore${i}`, 0.56, 0.52, 2.20 + i * 0.02)])));
+  const noti = { ...doppie.noti, partiteControllate: [...doppie.noti.partiteControllate, ...tennis.partite.map((p) => p.idPartita)] };
+  const d = dirTemp({ ...doppie, noti, tennis });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const g = leggi(d);
+  assert.equal(g.candidati.length, 16);
+  assert.deepEqual(new Set(g.candidati.map((c) => c.sport)), new Set(['calcio', 'nba', 'tennis']));
+  const t = g.candidati.find((c) => c.sport === 'tennis');
+  assert.equal(t.competizione, 'ATP Masters 1000 Parigi');
+  assert.equal(t.mercato, 'Vincente incontro');
+  assert.match(t.ragionamento.at(-1), /^Vincente incontro: vince se /);
+  assert.equal(g.scartate.filter((s) => s.motivo === 'limite giornaliero singole').length, 6);
+  const singole = g.giocate.filter((x) => x.tipo === 'singola');
+  assert.ok(singole.length <= 10);
+  assert.ok(singole.some((x) => x.sport === 'tennis'));
+});
+
+test('tennis: correzione su Vincente incontro con complementare automatica', () => {
+  const tennis = raccoltaTennis([alcarazSinnerProva()]);
+  const noti = { ...notizie([corr(TENNIS1, 'Vincente incontro', 'Carlos Alcaraz', 0.03)]), partiteControllate: [P1, P2, TENNIS1] };
+  const d = dirTemp({ tennis, noti });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const cand = leggi(d).candidati;
+  const alc = cand.find((x) => x.id === `${TENNIS1}-vincente-incontro-carlos-alcaraz`);
+  const sin = cand.find((x) => x.id === `${TENNIS1}-vincente-incontro-jannik-sinner`);
+  assert.ok(Math.abs(alc.correzioneNotizie.delta - 0.03) < 1e-9);
+  assert.ok(Math.abs(alc.prob - (0.5 * 0.51 + 0.5 * 0.48)) < 1e-9);
+  assert.ok(Math.abs(sin.correzioneNotizie.delta + 0.03) < 1e-9);
+  assert.equal(alc.sport, 'tennis');
+});
+
+test('tennis: correzione oltre il massimo → errore, nessun file', () => {
+  const noti = { ...notizie([corr(TENNIS1, 'Vincente incontro', 'Carlos Alcaraz', 0.12)]), partiteControllate: [P1, P2, TENNIS1] };
+  const d = dirTemp({ tennis: raccoltaTennis([alcarazSinnerProva()]), noti });
+  assert.throws(() => eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' }), /Vincente incontro/);
+  assert.deepEqual(fs.readdirSync(path.join(d, 'giornate')), []);
+});
+
+test('raccolta tennis mancante: errore in erroriGiro, calcio invariato', () => {
+  const d = dirTemp({ tennis: null });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const g = leggi(d);
+  assert.equal(g.erroriGiro.filter((x) => x === RIGA_TENNIS).length, 1);
+  assert.ok(g.candidati.length > 0);
+  assert.ok(g.candidati.every((c) => c.sport === 'calcio'));
+  const d2 = dirTemp({});
+  eseguiGiro({ dirData: d2, adesso: ADESSO, modo: 'claude' });
+  assert.deepEqual({ ...g, erroriGiro: g.erroriGiro.filter((x) => x !== RIGA_TENNIS) }, leggi(d2));
+});
+
+test('tennis solo Pinnacle (pesoModello e probModello nulli): probabilità = Pinnacle, nessun errore', () => {
+  const p = partitaTennis('Jannik Sinner', 'Carlos Alcaraz', [
+    mTennis('Jannik Sinner', null, 0.52, 2.05), mTennis('Carlos Alcaraz', null, 0.48, 1.85)],
+  { pesoModello: null, elo: null, superficie: null, bestOf: null, ragionamentoBase: ['Elo non disponibile: solo Pinnacle'] });
+  const noti = { ...notizie(), partiteControllate: [P1, P2, p.idPartita] };
+  const d = dirTemp({ tennis: raccoltaTennis([p]), noti });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const c = leggi(d).candidati.find((x) => x.id === `${p.idPartita}-vincente-incontro-jannik-sinner`);
+  assert.ok(Math.abs(c.prob - 0.52) < 1e-12);
+  assert.equal(c.ragionamento[1], 'Solo Pinnacle, probabilità usata 52%');
+});
+
+function alcarazSinnerProva() {
+  return partitaTennis('Jannik Sinner', 'Carlos Alcaraz', [
+    mTennis('Jannik Sinner', 0.52, 0.52, 2.05), mTennis('Carlos Alcaraz', 0.48, 0.48, 2.10)]);
+}

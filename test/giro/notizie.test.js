@@ -172,3 +172,21 @@ test('notizie NBA validate sulla raccolta unita: limiti come nel calcio', () => 
   // Una correzione calcio e una NBA insieme.
   assert.deepEqual(validaNotizie(notizie([corr(P1, '1X2', '1', 0.02), corr(NBA1, 'Totale punti 221.5', 'Under 221.5', -0.02)]), r), []);
 });
+
+// --- Tennis (Fase 4b) ---
+import { alcarazSinner, TENNIS1 } from './tennis-prova.js';
+
+test('Vincente incontro correggibile; complementare −delta; limiti come per gli altri mercati', () => {
+  assert.equal(correggibile('Vincente incontro'), true);
+  assert.equal(correggibile('Vincente incontro finale'), false);
+  const r = { data: '2026-10-20', partite: [...raccolta().partite, alcarazSinner()] };
+  const c = [corr(TENNIS1, 'Vincente incontro', 'Carlos Alcaraz', 0.04)];
+  assert.deepEqual(validaNotizie(notizie(c), r), []);
+  const p = applicaCorrezioni(alcarazSinner(), c);
+  const pr = (s) => p.mercati.find((x) => x.selezione === s);
+  assert.ok(Math.abs(pr('Carlos Alcaraz').probModello - 0.48) < 1e-9);
+  assert.ok(Math.abs(pr('Jannik Sinner').probModello - 0.52) < 1e-9);
+  assert.ok(Math.abs(pr('Jannik Sinner').correzioneNotizie.delta + 0.04) < 1e-9);
+  assert.match(validaNotizie(notizie([corr(TENNIS1, 'Vincente incontro', 'Carlos Alcaraz', 0.09)]), r)[0], /0\.08/);
+  assert.match(validaNotizie(notizie([corr(TENNIS1, 'Vincente incontro', 'Carlos Alcaraz', 0.02), corr(TENNIS1, 'Vincente incontro', 'Jannik Sinner', -0.02)]), r)[0], /una sola correzione/);
+});
