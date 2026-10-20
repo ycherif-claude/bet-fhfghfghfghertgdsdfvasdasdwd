@@ -37,7 +37,7 @@ test('la routine spiega da dove copiare i nomi e cosa fare con raccolta vuota', 
 
 test('le istruzioni NBA: mattino e serale contengono i passi obbligatori', () => {
   const m = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
-  for (const s of ['Totale punti', 'Handicap -4.5', 'questionable', 'nba-2026-10-20-boston-celtics-new-york-knicks-handicap-meno-4-5-casa', '20 ricerche web', 'giro-serale-nba.md']) assert.ok(m.includes(s) || m.toLowerCase().includes(s), s);
+  for (const s of ['Totale punti', 'Handicap -4.5', '"Questionable"', 'ultimo messaggio della sessione', '<oggi>-nba.json', 'né `<oggi>.json` né `<oggi>-nba.json`', 'nba-2026-10-20-boston-celtics-new-york-knicks-handicap-meno-4-5-casa', '20 ricerche web', 'giro-serale-nba.md']) assert.ok(m.includes(s), s);
   const s = fs.readFileSync('docs/routine/giro-serale-nba.md', 'utf8');
   for (const x of ['npm run serale-nba -- --applica', '-serale-nba.json', '-serale-quote.json', 'git pull', 'npm test', 'git push origin main', "TZ=Europe/Rome date -d '-8 hours' +%F", 'Giro serale NBA <data>', 'confermata', 'modificata', 'annullata', 'delta', 'git rebase --abort', '10 ricerche web']) assert.ok(s.includes(x), x);
 });

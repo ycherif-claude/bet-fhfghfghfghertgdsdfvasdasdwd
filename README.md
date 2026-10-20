@@ -107,7 +107,7 @@ Senza questi due segreti le quote serali vengono salvate ma la routine non parte
 - **Modificata**: una notizia dell'ultima ora ha cambiato la probabilità. La scheda mostra la nuova quota minima e il motivo: gioca solo se trovi quella quota o una più alta.
 - **Annullata**: non giocarla più (per esempio è fuori un titolare importante). La scheda mostra il motivo.
 - Se hai già premuto "Giocata", la puntata e la quota minima restano quelle di quando l'hai fatta, anche se il controllo serale la segna Modificata o Annullata: in quel caso è solo un avviso, perché la giocata è già stata fatta.
-- **Stessa linea su bet365**: le schede di Handicap e Totale punti dicono "Gioca solo con la stessa linea e quota almeno ...". Se su bet365 la linea è diversa (per esempio 220.5 invece di 221.5), il calcolo non vale: non giocare.
+- **Stessa linea su bet365**: le schede di Handicap e Totale punti dicono, in sostanza, "Gioca solo con la stessa linea e quota almeno la minima; con una linea diversa il calcolo non vale". Se su bet365 la linea è diversa (per esempio 220.5 invece di 221.5), il calcolo non vale: non giocare.
 
 ## Per chi sviluppa (fasi successive)
 

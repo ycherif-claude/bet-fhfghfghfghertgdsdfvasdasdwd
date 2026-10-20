@@ -16,13 +16,13 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 
 1. Node: se esiste la cartella `/opt/node24/bin`, esegui `export PATH=/opt/node24/bin:$PATH`. Poi `node --version` (serve la 24).
 2. Aggiorna il repository: `git checkout main && git pull`.
-3. Controlla che esista `data/raccolta/<oggi>.json` (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`). Se il file **non esiste**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
-   Poi esegui `npm run giro -- --anteprima`. Stampa una riga per ogni partita in gara:
+3. Controlla quali file di raccolta esistono oggi (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`): `data/raccolta/<oggi>.json` (calcio) e `data/raccolta/<oggi>-nba.json` (NBA). Se **non esiste nessuno dei due**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
+   Se esiste almeno uno dei due, esegui `npm run giro -- --anteprima`; il file notizie serve anche se esiste solo `<oggi>-nba.json`. Stampa una riga per ogni partita in gara:
    `idPartita · partita · inizio · mercati in gara`
    dove ogni mercato in gara compare come `idCandidato: mercato | selezione`, separati da virgole (per esempio `calcio-2026-10-20-inter-roma-1x2-1: 1X2 | 1`). L'`idCandidato` si copia così com'è in `esclusioni`.
-   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando il file della raccolta manca davvero.
+   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando mancano davvero tutti i file di raccolta di oggi (né `<oggi>.json` né `<oggi>-nba.json`).
 4. Ricerca web, **solo** per le partite elencate dall'anteprima. Per ognuna cerca: assenze e dubbi sui titolari chiave, squalifiche, cambio di allenatore recente, meteo estremo, motivazioni anomale (per esempio una squadra già salva o già retrocessa). Segna per ogni fatto la fonte e l'ora.
-   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json`: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
+   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json` per il calcio e `data/raccolta/<oggi>-nba.json` per l'NBA: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
 5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG` (`TZ=Europe/Rome date +%F`). Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora. L'ora della notizia va dentro `fonte` (per esempio "ANSA, 08:10"): non esiste un campo a parte.
 6. Esegui `git pull` e subito dopo `npm run giro` (così il giro vede anche le segnature arrivate nel frattempo). Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
 7. Esegui `npm test`. Se fallisce, non pubblicare: vedi le regole sopra.
@@ -92,7 +92,7 @@ Le partite NBA di oggi sono in `data/raccolta/<oggi>-nba.json` e compaiono nell'
 
 - **Che cosa cercare**: leggi il report infortuni ufficiale NBA più recente e le notizie delle squadre (titolari fuori, riposi, rientri).
 - **"Out" (fuori) di un titolare**: è un fatto. Scrivi una correzione (`delta`) oppure un'esclusione, con fonte e ora dentro `fonte`.
-- **"Questionable" (in dubbio)**: non è un fatto. Nessuna correzione e nessuna esclusione: scrivi solo una riga nel ragionamento, cioè nella `fonte` della decisione di nessuna correzione (per esempio "report infortuni NBA, 08:20: Tatum questionable, nessuna correzione").
+- **"Questionable" (in dubbio)**: non è un fatto. Nessuna correzione e nessuna esclusione, e non va scritto nel file notizie (non ha un campo per questo: non inventarne e non usare correzioni con `delta` 0). Elenca i giocatori "questionable" nell'ultimo messaggio della sessione, con fonte e ora (per esempio "Tatum questionable, report infortuni NBA, 08:20").
 - **Nomi esatti dei mercati NBA** (da copiare identici da `partite[].mercati[]`; tutti e tre contano i supplementari):
   - `Vincente`, con selezione il nome completo della squadra (per esempio `Boston Celtics`);
   - `Handicap <linea>`, con la linea riferita alla squadra di casa e scritta con il segno (`Handicap -4.5`, `Handicap +3`, `Handicap 0`) e selezione `casa` o `trasferta`;
