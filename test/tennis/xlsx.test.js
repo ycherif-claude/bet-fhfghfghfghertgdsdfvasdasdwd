@@ -24,7 +24,7 @@ function zip(files) {
   const locali = [];
   const centrali = [];
   let offset = 0;
-  for (const { nome, dati, metodo } of files) {
+  for (const { nome, dati, metodo, descrittore } of files) {
     const raw = Buffer.from(dati);
     const comp = metodo === 8 ? zlib.deflateRawSync(raw) : raw;
     const nomeB = Buffer.from(nome);
@@ -32,9 +32,11 @@ function zip(files) {
     loc.writeUInt32LE(0x04034b50, 0);
     loc.writeUInt16LE(20, 4);
     loc.writeUInt16LE(metodo, 8);
-    loc.writeUInt32LE(crc32(raw), 14);
-    loc.writeUInt32LE(comp.length, 18);
-    loc.writeUInt32LE(raw.length, 22);
+    if (!descrittore) {
+      loc.writeUInt32LE(crc32(raw), 14);
+      loc.writeUInt32LE(comp.length, 18);
+      loc.writeUInt32LE(raw.length, 22);
+    } else loc.writeUInt16LE(8, 6);
     loc.writeUInt16LE(nomeB.length, 26);
     const cen = Buffer.alloc(46);
     cen.writeUInt32LE(0x02014b50, 0);
@@ -92,6 +94,20 @@ test('xlsx: primo foglio dalla workbook, anche senza sharedStrings', () => {
     { nome: 'xl/worksheets/dati.xml', dati: foglio, metodo: 8 },
   ]);
   assert.deepEqual(leggiXlsx(buf), [{ Date: '2025-01-01', N: 3 }]);
+});
+
+test('xlsx: tipi str/b/e/d, cella vuota, <t .../> con attributi, data descriptor', () => {
+  const foglio = '<worksheet><sheetData>'
+    + '<row r="1"><c r="A1" t="inlineStr"><is><t>S</t></is></c><c r="B1" t="inlineStr"><is><t>B</t></is></c><c r="C1" t="inlineStr"><is><t>E</t></is></c><c r="D1" t="inlineStr"><is><t>Data</t></is></c><c r="E1" t="inlineStr"><is><t>V</t></is></c><c r="F1" t="inlineStr"><is><t>T</t></is></c></row>'
+    + '<row r="2"><c r="A2" t="str"><f>x</f><v>ciao</v></c><c r="B2" t="b"><v>1</v></c><c r="C2" t="e"><v>#N/A</v></c><c r="D2" t="d"><v>2026-03-05T00:00:00</v></c><c r="E2"/><c r="F2" t="inlineStr"><is><t xml:space="preserve"> a </t><t x="1"/><t>b</t></is></c></row>'
+    + '<row r="3"><c r="A3" t="b"><v>0</v></c><c r="B3"/></row>'
+    + '</sheetData></worksheet>';
+  const attese2 = [
+    { S: 'ciao', B: true, Data: '2026-03-05', T: ' a b' },
+    { S: false },
+  ];
+  assert.deepEqual(leggiXlsx(zip([{ nome: 'xl/worksheets/sheet1.xml', dati: foglio, metodo: 8, descrittore: true }])), attese2);
+  assert.deepEqual(leggiXlsx(zip([{ nome: 'xl/worksheets/sheet1.xml', dati: foglio, metodo: 0 }])), attese2);
 });
 
 test('xlsx non valido → errore chiaro', () => {

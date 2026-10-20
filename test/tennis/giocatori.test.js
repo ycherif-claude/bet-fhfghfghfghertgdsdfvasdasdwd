@@ -40,3 +40,17 @@ test('ALIAS ha la precedenza', () => {
     delete ALIAS['Pippo Rossi'];
   }
 });
+
+test('Yibing Wu ↔ Wu Y. (iniziali solo con il punto)', () => {
+  assert.equal(abbinaGiocatore('Yibing Wu', ['Wu Y.', 'Sinner J.']), 'Wu Y.');
+  assert.deepEqual(normalizzaGiocatore('Del Potro J.M.'), { cognome: 'del potro', iniziale: 'j' });
+});
+
+test('cognomi composti con parte diversa: sottosequenze uniche con la stessa iniziale', () => {
+  assert.equal(abbinaGiocatore('Juan Martin del Potro', ['Del Potro J.M.', 'Potro A.']), 'Del Potro J.M.');
+  assert.equal(abbinaGiocatore('Juan Pablo Varillas', ['Varillas J.P.', 'Varillas M.']), 'Varillas J.P.');
+  assert.equal(abbinaGiocatore('Giovanni Mpetshi Perricard', ['Mpetshi Perricard G.']), 'Mpetshi Perricard G.');
+  assert.equal(abbinaGiocatore('Giovanni Mpetshi Perricard', ['Mpetshi G.', 'Rune H.']), 'Mpetshi G.');
+  assert.equal(abbinaGiocatore('Juan Martin del Potro', ['Del Potro J.', 'Potro J.M.']), null);
+  assert.equal(abbinaGiocatore('Juan Martin del Potro', ['Del Potro A.']), null);
+});

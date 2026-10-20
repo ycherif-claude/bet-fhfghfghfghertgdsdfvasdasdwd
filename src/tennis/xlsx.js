@@ -48,7 +48,7 @@ function decodifica(s) {
 }
 
 // Testo di un frammento (<si> o <is>): concatena tutti i <t> (anche le sequenze di testo formattato).
-const testo = (frammento) => [...frammento.matchAll(/<t(?:\s[^>]*)?>([\s\S]*?)<\/t>|<t\s*\/>/g)]
+const testo = (frammento) => [...frammento.matchAll(/<t(?:\s[^>]*)?\/>|<t(?:\s[^>]*[^\/>])?>([\s\S]*?)<\/t>/g)]
   .map((m) => decodifica(m[1] ?? '')).join('');
 
 function stringheCondivise(xml) {
@@ -112,6 +112,7 @@ export function leggiXlsx(buffer) {
         const grezzo = decodifica(v[1]);
         if (tipo === 's') valore = stringhe[Number(grezzo)];
         else if (tipo === 'str') valore = grezzo;
+        else if (tipo === 'd') valore = grezzo.slice(0, 10);
         else if (tipo === 'b') valore = grezzo === '1';
         else if (tipo === 'e') continue;
         else valore = Number(grezzo);
