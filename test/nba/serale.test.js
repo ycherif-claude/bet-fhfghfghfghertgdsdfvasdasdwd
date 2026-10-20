@@ -393,7 +393,7 @@ test('serale.yml: orari, permessi, passi e secrets', () => {
     '-serale-stato.json', 'avviatoAlle', 'for tentativo in 1 2 3', 'git pull --rebase', 'git rebase --abort',
     'curl -fsS -X POST "$ROUTINE_SERALE_URL"', 'Authorization: Bearer $ROUTINE_SERALE_TOKEN',
     'anthropic-beta: experimental-cc-routine-2026-04-01', 'anthropic-version: 2023-06-01', 'Content-Type: application/json',
-    'Giro serale NBA', 'gh workflow run pubblica.yml',
+    'Giro serale $data', 'Giro serale avviato $data', 'gh workflow run pubblica.yml',
     '${{ secrets.SPORTSGAMEODDS_API_KEY }}', '${{ secrets.ROUTINE_SERALE_URL }}', '${{ secrets.ROUTINE_SERALE_TOKEN }}',
   ]) assert.ok(t.includes(s), s);
   assert.ok(!t.includes('set -x'));

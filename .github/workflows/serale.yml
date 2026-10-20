@@ -172,7 +172,7 @@ jobs:
             -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
             -H "anthropic-version: 2023-06-01" \
             -H "Content-Type: application/json" \
-            -d "{\"text\":\"Giro serale NBA $data\"}"; then
+            -d "{\"text\":\"Giro serale $data\"}"; then
             echo "Avvio della routine serale fallito: stato non scritto, il prossimo passaggio orario riprova"
             exit 1
           fi
@@ -181,7 +181,7 @@ jobs:
           # Se questo push fallisce la routine è già partita ma su main manca avviatoAlle:
           # il passaggio dell'ora successiva la avvierebbe una seconda volta (doppio avvio).
           # Il job fallisce in modo visibile: va salvato a mano data/raccolta/<data>-serale-stato.json.
-          if ! salva "Giro serale NBA $data avviato"; then
+          if ! salva "Giro serale avviato $data"; then
             echo "ATTENZIONE: routine serale avviata ma stato non salvato: rischio di doppio avvio al prossimo passaggio. Salvare a mano data/raccolta/${data}-serale-stato.json"
             exit 1
           fi
