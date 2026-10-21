@@ -14,6 +14,8 @@ import { conStoricoLocale, fileNonAncoraPubblicato, tennisData } from './fonti/t
 import { bestOfDi, superficieNota } from './tornei.js';
 import { aggiornaEsitiGiroTennis } from './esiti.js';
 
+// Giorni oltre i quali lo storico della stagione in corso si segnala come fermo.
+const GIORNI_STORICO_FERMO = 3;
 const T = CONFIG.tennis;
 // Riserva del 20% dei 500 crediti mensili (la stessa di budgetCrediti): mai sotto, qualunque cosa dica il calcio.
 const RISERVA_MESE = CONFIG.calcio.riservaCrediti * 500;
@@ -254,6 +256,11 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
       }
     }
     if (!caricate) continue;
+    // Stagione in corso ferma da più di 3 giorni: di solito il file caricato a mano è vecchio.
+    const ultima = righe.map((p) => p.data).filter((d) => d.startsWith(`${anno}-`)).sort().at(-1);
+    if (ultima && Date.parse(`${data}T00:00:00Z`) - Date.parse(`${ultima}T00:00:00Z`) > GIORNI_STORICO_FERMO * 86400000) {
+      erroriGiro.push(`Storico tennis ${circuito.toUpperCase()} fermo al ${ultima.slice(8, 10)}/${ultima.slice(5, 7)}/${ultima.slice(0, 4)}: ricarica il file in data/storico-tennis/${circuito}/${anno}.xlsx`);
+    }
     raccolta.storico.set(circuito, righe);
     stati.set(circuito, {
       righe,

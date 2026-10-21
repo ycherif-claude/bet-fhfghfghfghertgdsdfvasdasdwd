@@ -121,7 +121,7 @@ C'è un solo mercato: **Vincente incontro**, cioè chi vince la partita. La sche
 
 tennis-data.co.uk è protetto da Cloudflare, che blocca le richieste dai server: la raccolta automatica (GitHub Actions e routine) riceve `HTTP 403`. Senza storico il modello Elo non si calcola e le partite restano "solo Pinnacle", cioè senza giocate.
 
-Per questo i file dello storico si caricano a mano, da browser, nella cartella `data/storico-tennis/`. Se un file c'è, la raccolta usa quello e non prova a scaricarlo; se manca, prova a scaricarlo e, se riceve 403, l'errore della giornata dice quale file caricare.
+Per questo i file dello storico si caricano a mano, da browser, nella cartella `data/storico-tennis/`. Per gli anni passati, se il file c'è la raccolta usa quello e non prova a scaricarlo. Per l'anno in corso prova prima a scaricarlo (il file caricato a mano invecchia) e usa il file locale solo se il download fallisce. Se il file manca e il download riceve 403, l'errore della giornata dice quale file caricare.
 
 | File | Dove si trova su tennis-data.co.uk (pagina "All data") |
 |---|---|
@@ -132,7 +132,7 @@ Per questo i file dello storico si caricano a mano, da browser, nella cartella `
 | `data/storico-tennis/wta/2025.xlsx` | donne, 2025 |
 | `data/storico-tennis/wta/2024.xlsx` | donne, 2024 |
 
-Il nome resta quello del sito (`2026.xlsx`): conta solo la cartella, `atp` o `wta`. I file del 2024 e del 2025 si caricano una volta sola; quelli del 2026 vanno ricaricati più o meno **una volta a settimana**, così l'Elo include le partite recenti. Gli esiti delle giocate non dipendono da questi file: se lo storico è vecchio, si prendono dai risultati di The Odds API, se i crediti lo permettono.
+Il nome resta quello del sito (`2026.xlsx`): conta solo la cartella, `atp` o `wta`. I file del 2024 e del 2025 si caricano una volta sola; quelli del 2026 vanno ricaricati più o meno **una volta a settimana**, così l'Elo include le partite recenti. Se l'ultima partita dello storico dell'anno in corso ha più di 3 giorni, fra gli errori della giornata compare "Storico tennis ATP fermo al <data>: ricarica il file in data/storico-tennis/atp/2026.xlsx" (e arriva su Telegram). Gli esiti delle giocate non dipendono da questi file: se lo storico è vecchio, si prendono dai risultati di The Odds API, se i crediti lo permettono.
 
 Dal telefono: apri tennis-data.co.uk, scarica i file, poi su github.com apri il repository (in "versione desktop" se serve), entra in `data/storico-tennis/wta` (o `atp`), tocca **Add file → Upload files**, scegli il file e conferma con **Commit changes** su `main`. Se esiste già un file con lo stesso nome, viene sostituito.
 

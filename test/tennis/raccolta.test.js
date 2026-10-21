@@ -40,6 +40,8 @@ function storico(circuito, anno) {
       }
     }
   }
+  // Stagione in corso aggiornata: l'ultima partita è di ieri (altrimenti l'avviso "storico fermo").
+  if (anno === 2026) out.at(-1).data = '2026-10-19';
   return out;
 }
 
@@ -350,4 +352,16 @@ test('imprevisto: raccolta di ripiego con partite [] e l\'errore', () => {
   assert.deepEqual(r.erroriGiro, ['Tennis alle 07:35: boom']);
   assert.deepEqual(r.crediti, { usati: 0, rimasti: null });
   assert.deepEqual(r.competizioniNonCoperte, []);
+});
+
+test('storico della stagione in corso fermo da più di 3 giorni: una riga fra gli errori', async () => {
+  const f = fonti({ eventi: { [PARIGI.chiave]: [SINNER_ALCARAZ] } });
+  f.tennisData.partite = async (anno, circuito) => storico(circuito, anno).map((p) => (p.data === '2026-10-19' ? { ...p, data: '2026-10-16' } : p));
+  const r = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f, chiavi, dirData: dirConCalcio({ usati: 6, rimasti: 294 }) });
+  assert.ok(r.erroriGiro.includes('Storico tennis ATP fermo al 16/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx'), r.erroriGiro.join('\n'));
+  // Fermo da 3 giorni: ancora niente avviso.
+  const f2 = fonti({ eventi: { [PARIGI.chiave]: [SINNER_ALCARAZ] } });
+  f2.tennisData.partite = async (anno, circuito) => storico(circuito, anno).map((p) => (p.data === '2026-10-19' ? { ...p, data: '2026-10-17' } : p));
+  const r2 = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: f2, chiavi, dirData: dirConCalcio({ usati: 6, rimasti: 294 }) });
+  assert.ok(!r2.erroriGiro.some((e) => /Storico tennis/.test(e)), r2.erroriGiro.join('\n'));
 });

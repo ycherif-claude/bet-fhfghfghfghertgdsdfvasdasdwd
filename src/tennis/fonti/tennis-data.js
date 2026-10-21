@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { scarica } from '../../calcio/fonti/http.js';
 import { leggiXlsx } from '../xlsx.js';
+import { dataRoma } from '../../calcio/testo.js';
 
 const AGENTE = 'analisi-giocate (progetto personale)';
 const PAGINA = 'http://www.tennis-data.co.uk/alldata.php';
@@ -83,17 +84,21 @@ function partiteDaFile(corpo, leggi = leggiXlsx) {
 }
 
 // Cloudflare blocca tennis-data.co.uk dai server (GitHub Actions e sessioni cloud): i file
-// scaricati a mano dal browser stanno in <cartella>/<circuito>/<anno>.xlsx e hanno la precedenza.
-// Se il file manca si prova a scaricarlo; se anche questo fallisce l'errore dice dove caricarlo.
-export function conStoricoLocale(fonte, cartella, { leggi = leggiXlsx } = {}) {
+// scaricati a mano dal browser stanno in <cartella>/<circuito>/<anno>.xlsx.
+// Anni passati: il file locale ha la precedenza (non cambiano più). Anno in corso: prima si prova
+// a scaricarlo (il file locale invecchia), e il file locale serve solo se il download fallisce.
+// Se manca anche il file locale, l'errore dice dove caricarlo.
+export function conStoricoLocale(fonte, cartella, { leggi = leggiXlsx, annoCorrente = Number(dataRoma(new Date()).slice(0, 4)) } = {}) {
   return {
     ...fonte,
     async partite(anno, circuito, opz = {}) {
       const file = join(cartella, circuito, `${anno}.xlsx`);
-      if (existsSync(file)) return partiteDaFile(readFileSync(file), leggi);
+      const locale = existsSync(file);
+      if (locale && anno !== annoCorrente) return partiteDaFile(readFileSync(file), leggi);
       try {
         return await fonte.partite(anno, circuito, opz);
       } catch (e) {
+        if (locale) return partiteDaFile(readFileSync(file), leggi);
         if (e?.status === 403) e.message += ` (carica il file a mano in ${file})`;
         throw e;
       }

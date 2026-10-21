@@ -150,7 +150,8 @@ test('conStoricoLocale: il file caricato a mano ha la precedenza, senza scaricar
   const leggiFinto = (b) => { ricevuto = b; return [{ Date: '2026-10-19', Winner: 'Paolini J.', Loser: 'Jovic I.', Surface: 'Hard' }]; };
   let chiamate = 0;
   const remota = { partite: async () => { chiamate++; return []; } };
-  const p = await conStoricoLocale(remota, cartella, { leggi: leggiFinto }).partite(2026, 'wta');
+  // Anno passato (l'anno in corso è il 2027): il file locale ha la precedenza.
+  const p = await conStoricoLocale(remota, cartella, { leggi: leggiFinto, annoCorrente: 2027 }).partite(2026, 'wta');
   assert.deepEqual(ricevuto, Buffer.from([7, 7]));
   assert.equal(p.length, 1);
   assert.equal(p[0].vincitore, 'Paolini J.');
@@ -174,4 +175,20 @@ test('conStoricoLocale: senza file scarica; un 403 dice dove caricare il file', 
     partite: async () => { throw Object.assign(new Error('non trovato'), { status: 404 }); },
   }, cartella);
   await assert.rejects(assente.partite(2026, 'atp'), { message: 'non trovato', status: 404 });
+});
+
+test('conStoricoLocale: per l\'anno in corso prima si scarica, il file locale solo se il download fallisce', async () => {
+  const cartella = mkdtempSync(join(tmpdir(), 'storico-tennis-'));
+  mkdirSync(join(cartella, 'atp'));
+  writeFileSync(join(cartella, 'atp', '2026.xlsx'), Buffer.from([1]));
+  const leggi = () => [{ Date: '2026-10-01', Winner: 'Locale A.', Loser: 'Locale B.', Surface: 'Hard' }];
+  let chiamate = 0;
+  const fresca = conStoricoLocale({ partite: async () => { chiamate++; return [{ vincitore: 'Remoto' }]; } }, cartella, { leggi, annoCorrente: 2026 });
+  assert.deepEqual(await fresca.partite(2026, 'atp'), [{ vincitore: 'Remoto' }]);
+  assert.equal(chiamate, 1);
+  const bloccata = conStoricoLocale({
+    partite: async () => { throw Object.assign(new Error('www.tennis-data.co.uk: HTTP 403'), { status: 403 }); },
+  }, cartella, { leggi, annoCorrente: 2026 });
+  const p = await bloccata.partite(2026, 'atp');
+  assert.equal(p[0].vincitore, 'Locale A.');
 });
