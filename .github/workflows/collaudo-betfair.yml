@@ -1,0 +1,47 @@
+name: Collaudo Betfair
+
+# Prova dell'API di Betfair Exchange (conto italiano): login, copertura e qualche quota.
+# Si avvia a mano o quando cambia lo script di prova. Salva solo dati pubblici in data/collaudo/betfair.json:
+# chiave, utente, password e token non vengono mai stampati né scritti.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/collaudo-betfair.mjs
+      - .github/workflows/collaudo-betfair.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dati
+  cancel-in-progress: false
+
+jobs:
+  collaudo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Prova di Betfair
+        run: node scripts/collaudo-betfair.mjs
+        env:
+          BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
+          BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
+          BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
+      - name: Salva il risultato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/collaudo/betfair.json
+          if [ -z "$(git status --porcelain data/collaudo/)" ]; then exit 0; fi
+          git commit -m "Collaudo Betfair"
+          for tentativo in 1 2 3; do
+            git pull --rebase || { git rebase --abort || true; exit 1; }
+            if git push; then exit 0; fi
+            sleep 10
+          done
+          exit 1
