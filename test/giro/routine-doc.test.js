@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 test('le istruzioni della routine contengono i passi obbligatori', () => {
   const t = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
@@ -102,4 +106,44 @@ test('controlli prima delle partite: routine, README e workflow', () => {
   assert.ok(w.includes("jq -cn --arg testo"));
   assert.ok(!w.includes('{\\"text\\"'));
   assert.ok(fs.readFileSync('.github/workflows/notifiche.yml', 'utf8').includes("'Controlli prima delle partite'"));
+});
+
+// Script `run: |` di uno step del workflow (righe indentate sotto "run: |").
+function scriptStep(workflow, nome) {
+  const righe = fs.readFileSync(workflow, 'utf8').split(/\r?\n/);
+  const i = righe.findIndex((r) => r.trim() === `- name: ${nome}`);
+  const j = righe.findIndex((r, k) => k > i && /^\s+run: \|$/.test(r));
+  const rientro = righe[j + 1].match(/^\s*/)[0].length;
+  const out = [];
+  for (const r of righe.slice(j + 1)) {
+    if (r.trim() !== '' && r.match(/^\s*/)[0].length < rientro) break;
+    out.push(r.slice(rientro));
+  }
+  return out.join('\n');
+}
+const bash = spawnSync('bash', ['-c', 'echo ok'], { encoding: 'utf8' });
+const senzaBash = bash.status !== 0 || bash.stdout.trim() !== 'ok';
+
+test('controlli.yml: lo step Controlli eseguito con bash -eo pipefail', { skip: senzaBash && 'bash non disponibile' }, () => {
+  const script = scriptStep('.github/workflows/controlli.yml', 'Controlli');
+  const prova = (npm) => {
+    const d = mkdtempSync(join(tmpdir(), 'bet-step-'));
+    const uscita = join(d, 'output').replaceAll('\\', '/');
+    const r = spawnSync('bash', ['-eo', 'pipefail', '-c', `npm() { ${npm}; }\n${script}`], { cwd: d, encoding: 'utf8', env: { ...process.env, GITHUB_OUTPUT: uscita } });
+    return { ...r, output: fs.existsSync(join(d, 'output')) ? fs.readFileSync(join(d, 'output'), 'utf8') : '' };
+  };
+  // Nessuna giocata da mandare a Claude: lo step finisce bene, con l'uscita vuota.
+  const vuoto = prova("printf 'Controlli: 0 giocate aggiornate\\n'");
+  assert.equal(vuoto.status, 0, vuoto.stderr);
+  assert.equal(vuoto.output.trim(), 'claude=');
+  const due = prova("printf 'AVVIA_CLAUDE a,b\\n'");
+  assert.equal(due.status, 0, due.stderr);
+  assert.equal(due.output.trim(), 'claude=a,b');
+  // npm run controlli fallito: lo step fallisce anche con il tee.
+  assert.notEqual(prova("echo rotto; return 1").status, 0);
+});
+
+test('workflow: il salvataggio dei dati gira anche se un passo prima è fallito', () => {
+  const w = fs.readFileSync('.github/workflows/controlli.yml', 'utf8');
+  assert.match(w, /- name: Salva\r?\n\s+if: always\(\)/);
 });

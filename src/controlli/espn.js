@@ -64,23 +64,25 @@ export function stessaSquadra(a, b, sport = null) {
 // Parole di un nome di giocatore, senza accenti e senza Jr./Sr./II/III.
 const SUFFISSI = new Set(['jr', 'sr', 'ii', 'iii', 'iv']);
 const pezzi = (nome) => slug(nome).split('-').filter((p) => p && !SUFFISSI.has(p));
-// Stesso giocatore: nome uguale, oppure stesso cognome e stessa iniziale del nome ("T. Hernandez").
-function stessoGiocatore(a, b) {
-  const x = pezzi(a);
-  const y = pezzi(b);
-  if (x.length < 2 || y.length < 2) return x.join('-') === y.join('-');
-  if (x.join('-') === y.join('-')) return true;
-  return x.at(-1) === y.at(-1) && x[0][0] === y[0][0] && (x[0].length === 1 || y[0].length === 1);
-}
-// Vero se `nome` (scritto dal giro del mattino) è nell'elenco: nome completo, o iniziale e cognome.
-// Se il mattino ha scritto solo il cognome, vale solo se nell'elenco c'è un solo giocatore con quel cognome.
+const stesseParole = (x, y) => [...x].sort().join('-') === [...y].sort().join('-');
+
+// Vero se `nome` (scritto dal giro del mattino) è nell'elenco di quella squadra:
+// - stesse parole, in qualunque ordine ("Heung-min Son" e "Son Heung-Min");
+// - stesso cognome e stessa iniziale del nome ("Nico González" e "Nicolás González", "T. Hernandez");
+// - cognome presente in un solo giocatore dell'elenco, purché l'iniziale del nome non lo smentisca
+//   (con Nico Williams in campo e Iñaki in panchina, "Iñaki Williams" non c'è).
+// Se il mattino ha scritto solo il cognome, vale solo se nell'elenco un solo giocatore lo ha.
 export function inElenco(nome, elenco) {
   const p = pezzi(nome);
-  if (p.length === 1) {
-    if (p[0].length < 3) return false;
-    return elenco.filter((x) => pezzi(x).at(-1) === p[0]).length === 1;
-  }
-  return elenco.some((x) => stessoGiocatore(nome, x));
+  if (!p.length) return false;
+  const lista = elenco.map(pezzi).filter((x) => x.length);
+  if (lista.some((x) => stesseParole(p, x))) return true;
+  const cognome = p.at(-1);
+  const conCognome = lista.filter((x) => x.includes(cognome));
+  if (p.length === 1) return cognome.length >= 3 && conCognome.length === 1;
+  const iniziale = p[0][0];
+  if (lista.some((x) => x.length >= 2 && x.at(-1) === cognome && x[0][0] === iniziale)) return true;
+  return conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && t[0] === iniziale);
 }
 
 export const espn = {

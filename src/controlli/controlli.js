@@ -26,6 +26,7 @@ const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const oggetto = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 const virgola = (q) => q.toFixed(2).replace('.', ',');
 const testoPieno = (x) => typeof x === 'string' && x.trim() !== '';
+const MOTIVO_TARDI = "controllo non eseguito prima dell'inizio";
 export const MOTIVO_NON_ESEGUITO = 'controllo prima della partita non eseguito: valutata sui dati del mattino';
 
 const percorsi = (dirData, data) => ({
@@ -180,6 +181,11 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
       const r = reg.voci[v.id];
       const m = momento(v, adesso);
       // Revisione senza decisione a ridosso dell'inizio: regole fisse (una volta sola).
+      // A partita già iniziata no: lo stato resta, con la nota (una volta sola).
+      if (r?.esito === 'revisione' && !r.regola && Date.parse(v.inizio) <= adesso.getTime()) {
+        reg.voci[v.id] = { ...r, motivo: `${r.motivo} (${MOTIVO_TARDI})`, alle: ora, regola: true, tardi: true };
+        continue;
+      }
       if (r?.esito === 'revisione' && !r.regola && Date.parse(v.inizio) - adesso.getTime() < K.minutiRegoleFisse * MIN) {
         const x = regolaFissa(r.problemi);
         reg.voci[v.id] = { ...r, esito: x.esito, motivo: x.motivo, alle: ora, regola: true };
@@ -268,13 +274,24 @@ export function applicaDecisioni({ dirData, adesso }) {
   const errori = [];
   // Decisioni arrivate a partita iniziata (la prima gamba, per le multiple): rifiutate, scritte fra gli errori.
   const rifiutate = [];
+  // Decisioni per giocate non più in revisione (già decise dalle regole fisse): saltate, scritte fra gli errori.
+  const saltate = [];
+  const righe = [];
   const ora = isoRoma(adesso);
   for (const [i, d] of dec.decisioni.entries()) {
     const err = (m) => errori.push(`Decisione ${i + 1} (${d?.idGiocata}): ${m}`);
     const g = perId.get(d?.idGiocata);
     if (!g) { err('giocata inesistente nella giornata'); continue; }
-    if (Math.min(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime()) { rifiutate.push(g.id); continue; }
-    if (g.stato !== 'in_revisione') { err(`la giocata non è in revisione (stato ${g.stato})`); continue; }
+    if (Math.min(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime()) {
+      rifiutate.push(g.id);
+      righe.push(`Decisione di Claude per ${g.id} arrivata dopo l'inizio della partita (${ora.slice(11, 16)}): non applicata`);
+      continue;
+    }
+    if (g.stato !== 'in_revisione') {
+      saltate.push(g.id);
+      righe.push(`Decisione di Claude per ${g.id} non applicata: la giocata non è in revisione (stato ${g.stato})`);
+      continue;
+    }
     if (!['confermata', 'modificata', 'annullata'].includes(d.stato)) err(`stato non valido: ${d.stato}`);
     if (!testoPieno(d.motivo)) err('motivo mancante');
     if (!testoPieno(d.fonte)) err('fonte mancante');
@@ -284,8 +301,7 @@ export function applicaDecisioni({ dirData, adesso }) {
   if (errori.length) throw new Error(`Decisioni non valide, nessun file scritto:\n${errori.map((x) => `- ${x}`).join('\n')}`);
   const reg = leggi(f.stato, { data, voci: {}, claude: { avvii: 0, richieste: [] } });
   const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
-  const decisioni = new Map(dec.decisioni.filter((d) => !rifiutate.includes(d.idGiocata)).map((d) => [d.idGiocata, d]));
-  const righe = rifiutate.map((id) => `Decisione di Claude per ${id} arrivata dopo l'inizio della partita (${ora.slice(11, 16)}): non applicata`);
+  const decisioni = new Map(dec.decisioni.filter((d) => !rifiutate.includes(d.idGiocata) && !saltate.includes(d.idGiocata)).map((d) => [d.idGiocata, d]));
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
   const giocate = giornata.giocate.map((g) => {
     const d = decisioni.get(g?.id);
@@ -297,13 +313,22 @@ export function applicaDecisioni({ dirData, adesso }) {
   });
   scrivi(f.giornata, { ...giornata, giocate, erroriGiro: [...erroriGiro, ...righe.filter((r) => !erroriGiro.includes(r))] });
   scrivi(f.stato, reg);
-  return { applicate: decisioni.size, rifiutate };
+  return { applicate: decisioni.size, rifiutate, saltate };
 }
 
-// Righe nuove in fondo a erroriGiro della giornata di oggi (le uguali una volta sola), se la giornata c'è.
+// Righe nuove in fondo a erroriGiro della giornata di oggi (le uguali una volta sola); se oggi non c'è
+// ancora (prima del giro del mattino), nell'ultima giornata salvata.
 function aggiungiErroriGiro(dirData, adesso, righe) {
   if (!righe.length) return;
-  const file = percorsi(dirData, giornataDi(adesso)).giornata;
+  let file = percorsi(dirData, giornataDi(adesso)).giornata;
+  if (!fs.existsSync(file)) {
+    const oggi = giornataDi(adesso);
+    let nomi = [];
+    try { nomi = fs.readdirSync(path.join(dirData, 'giornate')); } catch { return; }
+    const ultima = nomi.filter((n) => /^\d{4}-\d{2}-\d{2}\.json$/.test(n) && n.slice(0, 10) <= oggi).sort().at(-1);
+    if (!ultima) return;
+    file = path.join(dirData, 'giornate', ultima);
+  }
   const giornata = leggi(file, null);
   if (!oggetto(giornata)) return;
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
@@ -332,6 +357,7 @@ async function principale() {
     const r = applicaDecisioni({ dirData: 'data', adesso });
     console.log(`Decisioni del controllo applicate: ${r.applicate}`);
     if (r.rifiutate.length) console.log(`Decisioni rifiutate perché arrivate dopo l'inizio: ${r.rifiutate.join(', ')}`);
+    if (r.saltate.length) console.log(`Decisioni saltate perché la giocata non è più in revisione: ${r.saltate.join(', ')}`);
     return;
   }
   const chiavi = {

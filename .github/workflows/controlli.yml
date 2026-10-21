@@ -35,10 +35,13 @@ jobs:
         run: |
           set -o pipefail
           npm run controlli | tee controlli.log
-          ids=$(grep '^AVVIA_CLAUDE ' controlli.log | tail -n 1 | cut -d' ' -f2)
+          # grep senza righe esce con 1: con pipefail fermerebbe lo step, quindi || true.
+          ids=$( { grep '^AVVIA_CLAUDE ' controlli.log || true; } | tail -n 1 | cut -d' ' -f2)
           echo "claude=$ids" >> "$GITHUB_OUTPUT"
           rm controlli.log
+      # Anche se i controlli falliscono a metà: quello che hanno già scritto si salva.
       - name: Salva
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898799+github-actions[bot]@users.noreply.github.com"

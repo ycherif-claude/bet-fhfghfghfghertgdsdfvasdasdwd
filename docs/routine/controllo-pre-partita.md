@@ -37,7 +37,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 
    - `stato`: `confermata`, `modificata` o `annullata`. Con `modificata` serve la nuova `quotaMinima` (numero con il punto, maggiore di 1).
    - `motivo` e `fonte` (con l'ora) sono obbligatori.
-6. Esegui `git pull` e poi `npm run controlli -- --applica`. Se fallisce con un elenco di decisioni non valide, ogni riga dice quale e perché: sistema il file e riprova. Se dice che la giocata non è in revisione, è già stata decisa dalle regole fisse: togli quella decisione.
+6. Esegui `git pull` e poi `npm run controlli -- --applica`. Se fallisce con un elenco di decisioni non valide, ogni riga dice quale e perché: sistema il file e riprova. Una decisione per una giocata che non è più in revisione (già decisa dalle regole fisse) o già iniziata non si applica: lo script la salta, lo scrive fra gli errori della giornata e applica le altre.
 7. Esegui `npm test`. Se fallisce, non pubblicare e spiega il motivo nell'ultimo messaggio.
 8. Salva e pubblica: `git add data/ && git commit -m "Controllo pre-partita <data>" && git push origin main`. Se il push viene rifiutato: `git pull --rebase` e di nuovo `git push origin main`. Se il `git pull --rebase` dà un conflitto: `git rebase --abort` e spiega il motivo nell'ultimo messaggio. Al massimo 3 tentativi.
 9. Nell'ultimo messaggio riassumi in poche righe: per ogni giocata la decisione e il motivo.

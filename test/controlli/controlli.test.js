@@ -228,7 +228,12 @@ test('controllo con Claude: in revisione, un solo avvio, decisione applicata; se
   assert.equal(g.stato, 'modificata');
   assert.equal(g.quotaMinima, 1.75);
   assert.match(g.motivoStato, /^Claude: la quota scende/);
-  assert.throws(() => applicaDecisioni({ dirData: d, adesso: ore('20:21') }), /non è in revisione/);
+  // Di nuovo la stessa decisione: la giocata non è più in revisione, si salta e si scrive fra gli errori.
+  const ancora = applicaDecisioni({ dirData: d, adesso: ore('20:21') });
+  assert.equal(ancora.applicate, 0);
+  assert.deepEqual(ancora.saltate, ['calcio-2026-10-22-inter-roma-1x2-1']);
+  assert.equal(leggi(d).giocate[0].stato, 'modificata');
+  assert.ok(leggi(d).erroriGiro.some((e) => /calcio-2026-10-22-inter-roma-1x2-1 non applicata: la giocata non è in revisione \(stato modificata\)/.test(e)));
 
   // Senza decisione, le regole fisse al primo passaggio a meno di 45 minuti (il cron può saltare il resto).
   const d2 = cartella();
@@ -281,4 +286,36 @@ test('esiti rapidi dentro i controlli: gli errori vanno fra gli errori della gio
   assert.deepEqual(leggi(d).erroriGiro, ['Esiti rapidi: Levante - Athletic Bilbao: site.api.espn.com: HTTP 500']);
   await esitiRapidiNelGiro({ dirData: d, adesso: ore('22:20'), esegui: async () => { throw new Error('disco pieno'); } });
   assert.equal(leggi(d).erroriGiro.at(-1), 'Esiti rapidi non riusciti: disco pieno');
+});
+
+test('giocatori chiave: stesso cognome e iniziale, ordine diverso, cognome unico nella squadra', () => {
+  assert.ok(inElenco('Nico González', ['Nicolás González', 'Riserva 1']));
+  assert.ok(inElenco('Matt Turner', ['Matthew Turner']));
+  assert.ok(inElenco('Heung-min Son', ['Son Heung-Min', 'Richarlison']));
+  assert.ok(inElenco('Son Heung-Min', ['Heung-min Son']));
+  // Due Williams nella stessa squadra: ognuno solo con sé stesso.
+  assert.ok(inElenco('Nico Williams', ['Iñaki Williams', 'Nico Williams']));
+  assert.ok(!inElenco('Iñaki Williams', ['Nico Williams', 'Oihan Sancet']));
+  assert.ok(!inElenco('Nico Williams', ['Iñaki Williams', 'Oihan Sancet']));
+});
+
+test('revisione ancora aperta a partita iniziata: niente regole fisse, resta in revisione con la nota', async () => {
+  const d = cartella();
+  await eseguiControlli({ dirData: d, adesso: ore('19:30'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  await eseguiControlli({ dirData: d, adesso: ore('20:50'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'in_revisione');
+  assert.match(g.motivoStato, /controllo non eseguito prima dell'inizio/);
+  // Una volta sola: il passaggio dopo non cambia niente.
+  const prima = readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8');
+  await eseguiControlli({ dirData: d, adesso: ore('21:30'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  assert.equal(readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8'), prima);
+});
+
+test('esiti rapidi senza la giornata di oggi: gli errori vanno nell\'ultima giornata salvata', async () => {
+  const d = cartella();
+  // Le 06:00 del 23/10 a Roma: la giornata di oggi è ancora il 22 (fino alle 08:00), poi il 23 che non c'è.
+  const esegui = async () => ({ aggiornate: 0, errori: ['Inter - Roma: HTTP 500'] });
+  await esitiRapidiNelGiro({ dirData: d, adesso: new Date('2026-10-23T08:30:00+02:00'), esegui });
+  assert.deepEqual(leggi(d).erroriGiro, ['Esiti rapidi: Inter - Roma: HTTP 500']);
 });

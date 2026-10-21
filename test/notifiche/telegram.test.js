@@ -241,3 +241,16 @@ test('eseguiNotifiche: l\'esito provvisorio parte una volta e il definitivo del 
   assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
   assert.match(testi.at(-1), /^✅ <b>VINTA<\/b>/);
 });
+
+test('troncamento: mai dentro un\'entità o un tag HTML, tag aperti richiusi', () => {
+  const max = 20;
+  for (const riga of ['<b>abcdefghijklmnopqrstuvwxyz</b>', 'abcdefghijklmnop &amp; resto della riga', 'abcdefghijklmnopq<b>x</b>']) {
+    const [t] = dividi(riga, max);
+    assert.ok(t.length < max + 10, t);
+    assert.ok(!/&[a-z]*…|&[a-z]*$/.test(t.replace(/&amp;/g, '')), t);
+    assert.ok(!/<[^>]*$/.test(t), t);
+    const aperti = (t.match(/<b>/g) ?? []).length;
+    const chiusi = (t.match(/<\/b>/g) ?? []).length;
+    assert.equal(aperti, chiusi, t);
+  }
+});

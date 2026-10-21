@@ -225,11 +225,37 @@ export function scriviInviate(file, inviate, oggi) {
 // Telegram rifiuta i messaggi sopra i 4096 caratteri: si divide sulle righe, sotto i 4000;
 // una riga da sola troppo lunga si tronca.
 const MAX_TESTO = 4000;
+
+// Tag HTML rimasti aperti in un pezzo di testo, da richiudere ("</b></i>").
+function chiusure(testo) {
+  const aperti = [];
+  for (const [, chiuso, nome] of testo.matchAll(/<(\/?)([a-z-]+)[^>]*>/gi)) {
+    if (!chiuso) aperti.push(nome.toLowerCase());
+    else if (aperti.at(-1) === nome.toLowerCase()) aperti.pop();
+  }
+  return aperti.reverse().map((n) => `</${n}>`).join('');
+}
+
+// Riga troncata sotto `max` caratteri: mai dentro un'entità (&amp;) o un tag (<b>), tag aperti richiusi.
+function tronca(riga, max) {
+  let limite = max - 2;
+  for (;;) {
+    let pezzo = riga.slice(0, limite);
+    const amp = pezzo.lastIndexOf('&');
+    if (amp > pezzo.lastIndexOf(';')) pezzo = pezzo.slice(0, amp);
+    const tag = pezzo.lastIndexOf('<');
+    if (tag > pezzo.lastIndexOf('>')) pezzo = pezzo.slice(0, tag);
+    const coda = `…${chiusure(pezzo)}`;
+    if (pezzo.length + coda.length < max || limite <= 1) return pezzo + coda;
+    limite -= coda.length;
+  }
+}
+
 export function dividi(testo, max = MAX_TESTO) {
   const pezzi = [];
   let corrente = null;
   for (let riga of String(testo).split('\n')) {
-    if (riga.length >= max) riga = `${riga.slice(0, max - 2)}…`;
+    if (riga.length >= max) riga = tronca(riga, max);
     if (corrente !== null && corrente.length + 1 + riga.length < max) { corrente += `\n${riga}`; continue; }
     if (corrente !== null) pezzi.push(corrente);
     corrente = riga;
