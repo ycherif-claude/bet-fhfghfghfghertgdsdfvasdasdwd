@@ -1,5 +1,6 @@
 // Collaudo di OddsPapi per la pallavolo (Fase 4d §7): stampa copertura, mercati e conteggio delle richieste.
-// Usa circa 5 richieste del piano gratuito. La chiave non viene mai stampata.
+// Usa circa 5 richieste del piano gratuito. Non stampa mai la chiave né i dati del conto
+// (email e altro): il repository è pubblico e i log delle Actions lo sono anche loro.
 const BASE = 'https://api.oddspapi.io/v4';
 const chiave = process.env.ODDSPAPI_API_KEY;
 if (!chiave) { console.log('Manca ODDSPAPI_API_KEY'); process.exit(1); }
@@ -16,8 +17,9 @@ async function chiama(percorso, parametri = {}) {
 }
 const breve = (x, n = 1500) => pulisci(JSON.stringify(x)).slice(0, n);
 
-const account = await chiama('account');
-console.log(breve(account));
+// Del conto si stampano solo i contatori delle richieste.
+const contatori = (j) => JSON.stringify(j ?? {}).match(/"request_(limit|count)":\d+/g) ?? 'contatori non trovati';
+console.log('Richieste:', contatori(await chiama('account')));
 const sport = await chiama('sports');
 const voll = (sport ?? []).filter((s) => /volley/i.test(JSON.stringify(s)));
 console.log('Sport pallavolo:', breve(voll));
@@ -53,4 +55,4 @@ if (scelta) {
     }
   }
 }
-console.log('\nFine:', breve(await chiama('account')));
+console.log('\nFine, richieste:', contatori(await chiama('account')));

@@ -7,27 +7,29 @@ import { fileURLToPath } from 'node:url';
 import { leggiRaccolte, SPORT_RACCOLTA } from '../../src/giro/raccolte.js';
 import { raccoltaTennis, alcarazSinner } from './tennis-prova.js';
 import { raccoltaBasket, madridBarcellona } from './basket-prova.js';
+import { raccoltaPallavolo } from './pallavolo-prova.js';
 import { raccoltaNba, celticsKnicks, partitaNba, mNba } from './nba-prova.js';
 
 const OGGI = '2026-10-20';
 const CALCIO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'fixtures', 'giro', 'raccolta-calcio-2026-10-20.json');
 const calcio = () => JSON.parse(fs.readFileSync(CALCIO, 'utf8'));
 
-// Per default ci sono anche le raccolte tennis e basket vuote, così i test degli altri sport non ricevono
+// Per default ci sono anche le raccolte tennis, basket e pallavolo vuote, così i test degli altri sport non ricevono
 // le righe "Raccolta tennis/basket di oggi mancante" (`tennis: false`, `basket: false` per ometterle).
-function dir(file = {}, { tennis = true, basket = true } = {}) {
+function dir(file = {}, { tennis = true, basket = true, pallavolo = true } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-raccolte-'));
   fs.mkdirSync(path.join(d, 'raccolta'));
   if (tennis && !(`${OGGI}-tennis.json` in file)) file = { ...file, [`${OGGI}-tennis.json`]: raccoltaTennis([]) };
   if (basket && !(`${OGGI}-basket.json` in file)) file = { ...file, [`${OGGI}-basket.json`]: raccoltaBasket([]) };
+  if (pallavolo && !(`${OGGI}-pallavolo.json` in file)) file = { ...file, [`${OGGI}-pallavolo.json`]: raccoltaPallavolo([]) };
   for (const [nome, contenuto] of Object.entries(file)) {
     fs.writeFileSync(path.join(d, 'raccolta', nome), typeof contenuto === 'string' ? contenuto : JSON.stringify(contenuto));
   }
   return d;
 }
 
-test('sport noti: NBA, tennis e basket', () => {
-  assert.deepEqual(SPORT_RACCOLTA, ['nba', 'tennis', 'basket']);
+test('sport noti: NBA, tennis, basket e pallavolo', () => {
+  assert.deepEqual(SPORT_RACCOLTA, ['nba', 'tennis', 'basket', 'pallavolo']);
 });
 
 test('solo calcio: raccolta unita identica a quella letta prima (deepEqual)', () => {
@@ -65,13 +67,14 @@ test('raccolta calcio mancante, nba presente: partite NBA ed errore del calcio',
 });
 
 test('nessuna raccolta: raccolta null e un errore per ciascuna', () => {
-  const r = leggiRaccolte(dir({}, { tennis: false, basket: false }), OGGI);
+  const r = leggiRaccolte(dir({}, { tennis: false, basket: false, pallavolo: false }), OGGI);
   assert.equal(r.raccolta, null);
   assert.deepEqual(r.errori, [
     'Raccolta di oggi mancante: data/raccolta/2026-10-20.json',
     'Raccolta NBA di oggi mancante: data/raccolta/2026-10-20-nba.json',
     'Raccolta tennis di oggi mancante: data/raccolta/2026-10-20-tennis.json',
     'Raccolta basket di oggi mancante: data/raccolta/2026-10-20-basket.json',
+    'Raccolta pallavolo di oggi mancante: data/raccolta/2026-10-20-pallavolo.json',
   ]);
 });
 
@@ -95,7 +98,7 @@ test('file -notizie, -serale-nba e suffissi sconosciuti non letti come raccolte'
     [`${OGGI}-notizie.json`]: estranea,
     [`${OGGI}-serale-nba.json`]: estranea,
     [`${OGGI}-tennis-prova.json`]: estranea,
-    [`${OGGI}-pallavolo.json`]: estranea,
+    [`${OGGI}-curling.json`]: estranea,
   }), OGGI);
   assert.deepEqual(r.errori, []);
   assert.deepEqual(r.raccolta.partite, [...calcio().partite, celticsKnicks()]);

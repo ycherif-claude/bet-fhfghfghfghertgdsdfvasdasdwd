@@ -42,6 +42,11 @@ jobs:
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      - name: Raccolta pallavolo
+        run: npm run raccolta-pallavolo
+        continue-on-error: true
+        env:
+          ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
       - name: Salva i dati
         run: |
           git config user.name "github-actions[bot]"

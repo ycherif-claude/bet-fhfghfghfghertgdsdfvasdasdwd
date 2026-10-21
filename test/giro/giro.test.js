@@ -10,6 +10,7 @@ import { costruisciDati } from '../../src/build/costruisci-sito.js';
 import { giornataDi } from '../../src/bankroll/settimana.js';
 import { isoRoma } from '../../src/calcio/testo.js';
 import { raccoltaNba, partitaNba, mNba, NBA1 } from './nba-prova.js';
+import { raccoltaPallavolo } from './pallavolo-prova.js';
 import { raccoltaBasket, madridBarcellona, BASKET1 } from './basket-prova.js';
 import { raccoltaTennis, partitaTennis, mTennis, TENNIS1 } from './tennis-prova.js';
 
@@ -55,7 +56,7 @@ const notizie = (correzioni = [], esclusioni = []) => ({
 
 // `nba`: raccolta NBA del giorno; per default è presente ma vuota, così i test del solo calcio
 // non ricevono la riga "Raccolta NBA di oggi mancante" (`nba: null` per ometterla).
-function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), tennis = raccoltaTennis([]), basket = raccoltaBasket([]), giornate = [], segnature = [] } = {}) {
+function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), tennis = raccoltaTennis([]), basket = raccoltaBasket([]), pallavolo = raccoltaPallavolo([]), giornate = [], segnature = [] } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-giro-'));
   for (const sotto of ['raccolta', 'giornate', 'segnature']) fs.mkdirSync(path.join(d, sotto));
   if (racc) fs.writeFileSync(path.join(d, 'raccolta', `${racc.data}.json`), JSON.stringify(racc));
@@ -64,6 +65,7 @@ function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), t
   for (const g of giornate) fs.writeFileSync(path.join(d, 'giornate', `${g.data}.json`), JSON.stringify(g, null, 2));
   if (tennis) fs.writeFileSync(path.join(d, 'raccolta', `${tennis.data}-tennis.json`), JSON.stringify(tennis));
   if (basket) fs.writeFileSync(path.join(d, 'raccolta', `${basket.data}-basket.json`), JSON.stringify(basket));
+  if (pallavolo) fs.writeFileSync(path.join(d, 'raccolta', `${pallavolo.data}-pallavolo.json`), JSON.stringify(pallavolo));
   for (const s of segnature) scriviSegnatura(d, s);
   return d;
 }

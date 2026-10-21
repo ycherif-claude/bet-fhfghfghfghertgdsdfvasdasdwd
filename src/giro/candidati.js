@@ -46,7 +46,11 @@ function rigaQuota(m) {
   const n = /mediana di (\d+) bookmaker/.exec(m.fonteQuota ?? '')?.[1];
   const alle = ora(m.oraQuota);
   const quando = alle ? ` alle ${alle}` : '';
-  return n ? `Quota mediana ${virgola(m.quota)} su ${n} bookmaker${quando}` : `Quota ${virgola(m.quota)} (${m.fonteQuota ?? 'fonte non indicata'})${quando}`;
+  const riga = n ? `Quota mediana ${virgola(m.quota)} su ${n} bookmaker${quando}` : `Quota ${virgola(m.quota)} (${m.fonteQuota ?? 'fonte non indicata'})${quando}`;
+  // Pallavolo (Fase 4d): la quota bet365, quando la fonte la dà, accanto alla mediana.
+  if (!numerico(m.quotaBet365)) return riga;
+  const alle365 = ora(m.oraQuotaBet365);
+  return `${riga}; quota bet365 ${virgola(m.quotaBet365)}${alle365 ? ` alle ${alle365}` : ''}`;
 }
 
 function rigaNotizie(m, prob, partita, notizie) {
@@ -90,6 +94,8 @@ function creaCandidato(partita, m, prob, notizie) {
     probModello: numerico(m.probModello) ? m.probModello : null,
     probPinnacle: numerico(m.probPinnacle) ? m.probPinnacle : null,
     correzioneNotizie: m.correzioneNotizie ?? null,
+    // Campi opzionali, solo quando ci sono (oggi solo la pallavolo).
+    ...(numerico(m.quotaBet365) && !senzaQuota ? { quotaBet365: m.quotaBet365, oraQuotaBet365: m.oraQuotaBet365 ?? null } : {}),
   };
 }
 

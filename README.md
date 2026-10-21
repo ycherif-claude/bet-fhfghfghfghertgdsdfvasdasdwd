@@ -185,6 +185,30 @@ Se una squadra ha meno di 8 partite salvate (per esempio una squadra nuova), la 
 
 Le partite NBL iniziano di solito tra le 08:00 e le 11:00 italiane, ma alcune iniziano di notte. La raccolta del mattino prende tutte le partite fino alle 08:00 del giorno dopo, quindi anche quelle notturne entrano nella giornata del giorno prima. Una partita fra le 00:00 e le 08:00 del giorno stesso è già iniziata quando parte il giro e resta scoperta.
 
+## Pallavolo
+
+Le giocate di pallavolo si costruiscono ogni mattina insieme agli altri sport.
+
+### La chiave OddsPapi
+
+Le quote vengono da **OddsPapi**, piano gratuito: 250 richieste al mese. La chiave (`ODDSPAPI_API_KEY`) va tra i secrets del repository, come le altre (Settings → Secrets and variables → Actions). Un solo account: aprirne altri per avere più richieste è vietato dai termini d'uso.
+
+Ogni mattina si spende 1 richiesta per l'elenco delle partite (tutti i campionati insieme) e 1 per le quote di ogni partita, fino al budget del giorno: (richieste rimaste − 20% di riserva) diviso i giorni che restano nel mese, circa 6-8 al giorno. Le partite si scelgono per priorità del campionato e poi per orario; quelle rimaste fuori compaiono nella pagina come "richieste OddsPapi finite". Il conteggio del mese si legge dal conto OddsPapi e si tiene anche in `data/stato/oddspapi.json`.
+
+Per ricontrollare a mano cosa copre OddsPapi (circa 5 richieste) c'è l'Action "Collaudo OddsPapi pallavolo".
+
+### Campionati
+
+In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie A1 femminile, PlusLiga, Efeler Ligi (Turchia), Bundesliga. Lo storico gratuito viene da TheSportsDB e si salva in `data/storico/pallavolo-<campionato>.json`. Un campionato senza storico gratuito della stagione in corso resta fuori, perché gli esiti non si chiuderebbero: per ora la Champions League (TheSportsDB non la ha) e la Serie A1 femminile (TheSportsDB non ha ancora la stagione 2026-27; entrerà da sola quando ci sarà).
+
+### Mercati
+
+- **Vincente**;
+- **Handicap set -1,5 / +1,5** (riferito alla squadra di casa): la squadra a −1,5 deve vincere 3-0 o 3-1;
+- **Totale set 3,5**: Over se si gioca il quarto set, Under se finisce 3-0 o 0-3.
+
+Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2), con le due ultime stagioni. Sulla scheda, accanto alla quota mediana, c'è la **quota bet365** quando OddsPapi la dà. Il value si calcola sempre sulla mediana. Una squadra con meno di 8 partite salvate non ha il modello: la partita usa solo il mercato.
+
 ## Revisione settimanale
 
 Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.
@@ -194,6 +218,7 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- Pallavolo (Fase 4d): progetto in `docs/superpowers/specs/2026-10-21-fase-4d-pallavolo-design.md`, codice in `src/pallavolo/`.
 - Basket (Fase 4c): progetto in `docs/superpowers/specs/2026-10-21-fase-4c-basket-design.md`, codice in `src/basket/`.
 - Calcio (Fase 2): progetto in `docs/superpowers/specs/2026-10-19-fase-2-calcio-design.md`, piano in `docs/superpowers/plans/2026-10-19-fase-2-calcio.md`, istruzioni della routine in `docs/routine/giro-del-mattino.md`.
 - Modello dati completo: `docs/superpowers/plans/2026-10-19-fase-1-fondamenta.md`, sezione "Modello dati".

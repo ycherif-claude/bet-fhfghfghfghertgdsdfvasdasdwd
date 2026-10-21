@@ -79,7 +79,7 @@ test('TheSportsDB: finite con punteggio, in programma senza; postseason oltre il
   const r = leggiRound(testo, 2026, 5);
   assert.equal(r.scartate, 1);
   assert.deepEqual(r.partite[0], {
-    id: '1', stagione: 2026, giornata: 5, inizio: '2026-10-18T06:00:00.000Z', casa: 'Melbourne United', trasferta: 'Illawarra Hawks',
+    id: '1', stagione: 2026, giornata: 5, idCasa: null, idTrasferta: null, inizio: '2026-10-18T06:00:00.000Z', casa: 'Melbourne United', trasferta: 'Illawarra Hawks',
     puntiCasa: 89, puntiTrasferta: 91, finita: true, postseason: false,
   });
   assert.equal(r.partite[1].finita, false);

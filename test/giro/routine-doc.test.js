@@ -65,3 +65,14 @@ test('le istruzioni basket: mattino e README', () => {
   const w = fs.readFileSync('.github/workflows/raccolta.yml', 'utf8');
   assert.ok(w.includes('npm run raccolta-basket'));
 });
+
+test('le istruzioni pallavolo: mattino, README e workflow', () => {
+  const m = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
+  for (const s of ['<oggi>-pallavolo.json', 'né `<oggi>-basket.json` né `<oggi>-pallavolo.json`', 'Handicap set -1.5', 'Totale set 3.5', 'pallavolo-2026-10-21-itas-trentino-rana-verona-handicap-set-meno-1-5-casa']) assert.ok(m.includes(s), s);
+  const r = fs.readFileSync('README.md', 'utf8');
+  for (const s of ['ODDSPAPI_API_KEY', '250 richieste', 'quota bet365', 'data/stato/oddspapi.json', 'Collaudo OddsPapi pallavolo']) assert.ok(r.includes(s), s);
+  const w = fs.readFileSync('.github/workflows/raccolta.yml', 'utf8');
+  for (const s of ['npm run raccolta-pallavolo', 'ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}']) assert.ok(w.includes(s), s);
+  // Il collaudo non stampa i dati del conto (il repository è pubblico).
+  assert.ok(!/console\.log\(breve\(account\)\)/.test(fs.readFileSync('scripts/collaudo-oddspapi.mjs', 'utf8')));
+});

@@ -26,7 +26,8 @@ export function leggiStorico(dirData, campionato) {
 }
 
 // `scarica(stagione, giornata)` → { partite, scartate }. Errori in `errore(fonte, e)`: lo storico salvato resta.
-export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, adesso, scarica, errore, pausaMs = 1000 }) {
+// `maxRichieste`: tetto di richieste per esecuzione (le giornate mancanti si scaricano i giorni dopo).
+export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, adesso, scarica, errore, pausaMs = 1000, maxRichieste = Infinity }) {
   let salvato;
   try {
     salvato = leggiStorico(dirData, campionato);
@@ -46,7 +47,7 @@ export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, ad
     const giornate = [...perId.values()].filter((p) => p.stagione === stagione).map((p) => p.giornata);
     let giornata = giornate.length ? Math.max(...giornate) : 1;
     let finita = false;
-    for (let n = 0; n < MAX_GIORNATE; n++, giornata++) {
+    for (let n = 0; n < MAX_GIORNATE && richieste < maxRichieste; n++, giornata++) {
       if (richieste++) await pausa(pausaMs);
       let r;
       try {

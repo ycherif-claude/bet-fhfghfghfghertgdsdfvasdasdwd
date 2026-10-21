@@ -104,4 +104,24 @@ export const CONFIG = congela({
     // h2h, spreads e totals in una regione: 3 crediti per campionato.
     creditiPerCampionato: 3,
   },
+  // Fase 4d (pallavolo): Elo per campionato con il margine in set, quote da OddsPapi (piano gratuito).
+  pallavolo: {
+    eloIniziale: 1500,
+    k: 32,
+    vantaggioCasa: 30,
+    regressioneStagione: 1 / 3,
+    // Partite salvate sotto le quali una squadra non ha modello (solo mercato); sotto il pieno, peso ridotto.
+    minPartiteModello: 8,
+    minPartitePienoPeso: 15,
+    pesoModello: 0.5,
+    pesoModelloInizio: 0.25,
+    minBookmaker: 3,
+    richiesteMese: 250,
+    riservaRichieste: 0.20,
+    // OddsPapi: 2 s di pausa obbligatoria su /fixtures, 0,5 s su /odds.
+    pausaOddsPapiMs: 2100,
+    // TheSportsDB: circa 10 richieste al minuto, al massimo 12 giornate per campionato a ogni raccolta.
+    pausaTheSportsDbMs: 6500,
+    maxGiornateGiorno: 12,
+  },
 });

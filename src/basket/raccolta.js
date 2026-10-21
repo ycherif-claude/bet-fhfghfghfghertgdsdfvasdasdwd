@@ -29,7 +29,7 @@ const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
 // In ordine di priorità per i crediti.
 export const CAMPIONATI = Object.freeze([
   Object.freeze({ id: 'eurolega', chiave: 'basketball_euroleague', competizione: 'Eurolega', fonte: 'API Eurolega', pausaMs: 1000 }),
-  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 3000 }),
+  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 6500 }),
 ]);
 
 // Crediti di un file di raccolta di oggi: { rimasti, usati, file } | { errore } | null (file assente).

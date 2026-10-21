@@ -93,3 +93,20 @@ L'utente non apre più account per aggirare i limiti: è vietato dai termini d'u
 - Struttura dei moduli (`src/pallavolo/`), riusando il più possibile (Elo con bisezione dal tennis, quote mediana e consenso dall'NBA).
 - Nomi delle squadre: tabella per campionato, con gli alias delle fonti.
 - Formato esatto delle risposte di OddsPapi e TheSportsDB, preso dalla loro documentazione.
+
+## 10. Modifiche durante la costruzione (21 ottobre 2026) [scelta di Claude]
+
+Collaudo con la chiave vera (§7), 5 richieste:
+- **Copertura:** OddsPapi copre tutti i campionati previsti (id: SuperLega 517, Champions League 586 e 587, Serie A1 femminile 567, PlusLiga 831, Efeler Ligi 967, Bundesliga 501). Mercati: vincente (231), handicap set −1,5 (2323) e +1,5 (2335) riferiti alla casa, totale set 3,5 (2313). bet365 non dà sempre tutti i mercati.
+- **Palinsesto:** `/fixtures` con `sportId` e una finestra sotto le 48 ore dà tutte le partite di tutti i campionati con **una sola** richiesta, non una per campionato. TheSportsDB non serve per sapere quali campionati giocano.
+- **Richieste:** ogni chiamata conta 1, `/account` è gratuito e dice le richieste del mese. Il budget si legge da lì; il contatore locale `data/stato/oddspapi.json` resta come riserva.
+- **Bookmaker:** circa 200, molti con domini diversi della stessa società (bet365, bet365.de…): nella mediana ciascuno conta una volta. Exchange esclusi.
+
+Storico:
+- **TheSportsDB** dà le giornate intere (`eventsround`) con i set vinti e gli id fissi delle squadre, anche per la stagione scorsa: lo storico si scarica per giornata come per il basket e il modello parte subito. Le squadre si riconoscono per id, perché TheSportsDB a volte usa nomi diversi per lo stesso club.
+- **Limite di TheSportsDB** (circa 10 richieste al minuto): 6,5 secondi fra una richiesta e l'altra e al massimo 12 giornate per campionato a ogni raccolta; lo storico completo arriva in pochi giorni.
+- **Campionati senza storico gratuito della stagione in corso** (Champions League, che TheSportsDB non ha, e Serie A1 femminile, di cui non ha ancora la stagione 2026-27): restano fuori finché non c'è, perché gli esiti non si chiuderebbero. Si vede nella pagina come "senza storico gratuito della stagione in corso".
+- **Nomi:** le squadre di OddsPapi si abbinano a quelle di TheSportsDB per parole distintive comuni, più una piccola tabella di alias (città e sponsor). Una squadra non riconosciuta non costa richieste: la partita si salta e il nome va in `erroriGiro`.
+
+Pagina:
+- La quota bet365 compare nella riga della quota del ragionamento ("quota bet365 1,29 alle 07:40") ed è salvata nei campi `quotaBet365` e `oraQuotaBet365`. Non serve cambiare la pagina.

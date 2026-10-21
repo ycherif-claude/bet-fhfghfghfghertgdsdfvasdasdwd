@@ -1,6 +1,6 @@
 # Giro del mattino: istruzioni per Claude
 
-Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio, NBA, tennis e basket). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
+Sei la routine "Giro del mattino" del progetto Analisi giocate (calcio, NBA, tennis, basket e pallavolo). Ogni mattina, alle 07:07 UTC (08:07 ora solare, 09:07 ora legale), controlli le notizie sulle partite di oggi, scrivi un file di correzioni ed esclusioni e fai girare lo script che costruisce le giocate del giorno. I calcoli li fa lo script: tu porti solo fatti concreti, con fonte e ora.
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
@@ -10,19 +10,19 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 - Non modificare codice, test, configurazione o workflow. Non toccare file di giorni diversi da oggi.
 - Non inventare dati, partite, mercati, fonti o orari. Se non trovi un fatto concreto, non scrivere nulla per quella partita.
 - Se un passo fallisce e non riesci a sistemarlo nei modi indicati, fermati: non inventare niente. Lascia che lo faccia il giro di riserva (parte alle 09:45 UTC, cioè 11:45 ora legale o 10:45 ora solare) e scrivi il motivo nell'ultimo messaggio della sessione.
-- Limiti di tempo: al massimo 20 ricerche web in tutto (`ricercheMassime`), calcio, NBA, tennis e basket insieme. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
+- Limiti di tempo: al massimo 20 ricerche web in tutto (`ricercheMassime`), calcio, NBA, tennis, basket e pallavolo insieme. Preferisci siti ufficiali dei club, agenzie (ANSA, Reuters) e quotidiani sportivi importanti. Per ogni notizia segna la fonte e l'ora della notizia.
 
 ## Passi, in ordine
 
 1. Node: se esiste la cartella `/opt/node24/bin`, esegui `export PATH=/opt/node24/bin:$PATH`. Poi `node --version` (serve la 24).
 2. Aggiorna il repository: `git checkout main && git pull`.
-3. Controlla quali file di raccolta esistono oggi (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`): `data/raccolta/<oggi>.json` (calcio), `data/raccolta/<oggi>-nba.json` (NBA), `data/raccolta/<oggi>-tennis.json` (tennis) e `data/raccolta/<oggi>-basket.json` (basket: Eurolega e NBL). Se **non esiste nessuno dei quattro**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
-   Se esiste almeno uno dei quattro, esegui `npm run giro -- --anteprima`; il file notizie serve anche se esiste solo `<oggi>-nba.json`, solo `<oggi>-tennis.json` o solo `<oggi>-basket.json`. Stampa una riga per ogni partita in gara:
+3. Controlla quali file di raccolta esistono oggi (la data di Roma si ottiene con `TZ=Europe/Rome date +%F`): `data/raccolta/<oggi>.json` (calcio), `data/raccolta/<oggi>-nba.json` (NBA), `data/raccolta/<oggi>-tennis.json` (tennis) `data/raccolta/<oggi>-basket.json` (basket: Eurolega e NBL) e `data/raccolta/<oggi>-pallavolo.json` (pallavolo). Se **non esiste nessuno dei cinque**, scrivi il motivo da riportare nell'ultimo messaggio e vai al passo 6: il giro scrive una giornata vuota con l'errore.
+   Se esiste almeno uno dei cinque, esegui `npm run giro -- --anteprima`; il file notizie serve anche se esiste solo il file di uno degli altri sport (`<oggi>-nba.json`, `<oggi>-tennis.json`, `<oggi>-basket.json` o `<oggi>-pallavolo.json`). Stampa una riga per ogni partita in gara:
    `idPartita · partita · inizio · mercati in gara`
    dove ogni mercato in gara compare come `idCandidato: mercato | selezione`, separati da virgole (per esempio `calcio-2026-10-20-inter-roma-1x2-1: 1X2 | 1`). L'`idCandidato` si copia così com'è in `esclusioni`.
-   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando mancano davvero tutti i file di raccolta di oggi (né `<oggi>.json` né `<oggi>-nba.json` né `<oggi>-tennis.json` né `<oggi>-basket.json`).
+   Se il file esiste ma non ha partite, o l'anteprima non elenca nulla, **non fermarti**: scrivi comunque il file notizie del passo 5 con `partiteControllate: []`, `esclusioni: []`, `correzioni: []` ed esegui `npm run giro`. Ci si ferma e si lascia la mano alla riserva solo quando mancano davvero tutti i file di raccolta di oggi (né `<oggi>.json` né `<oggi>-nba.json` né `<oggi>-tennis.json` né `<oggi>-basket.json` né `<oggi>-pallavolo.json`).
 4. Ricerca web, **solo** per le partite elencate dall'anteprima. Per ognuna cerca: assenze e dubbi sui titolari chiave, squalifiche, cambio di allenatore recente, meteo estremo, motivazioni anomale (per esempio una squadra già salva o già retrocessa). Segna per ogni fatto la fonte e l'ora.
-   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json` per il calcio, `data/raccolta/<oggi>-nba.json` per l'NBA, `data/raccolta/<oggi>-tennis.json` per il tennis e `data/raccolta/<oggi>-basket.json` per il basket: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
+   Per scrivere correzioni ed esclusioni apri `data/raccolta/<oggi>.json` per il calcio, `data/raccolta/<oggi>-nba.json` per l'NBA, `data/raccolta/<oggi>-tennis.json` per il tennis `data/raccolta/<oggi>-basket.json` per il basket e `data/raccolta/<oggi>-pallavolo.json` per la pallavolo: in `partite[].mercati[]` trovi i nomi esatti di `mercato` e `selezione`, da copiare identici. Lì ci sono anche i mercati sotto soglia, che si possono correggere come gli altri.
 5. Scrivi `data/raccolta/<oggi>-notizie.json` (formato sotto). `<oggi>` è la data di Roma di oggi, `AAAA-MM-GG` (`TZ=Europe/Rome date +%F`). Scrivi una correzione o un'esclusione **solo** per un fatto concreto con fonte e ora. L'ora della notizia va dentro `fonte` (per esempio "ANSA, 08:10"): non esiste un campo a parte.
 6. Esegui `git pull` e subito dopo `npm run giro` (così il giro vede anche le segnature arrivate nel frattempo). Applica correzioni ed esclusioni, ricalcola le probabilità e scrive `data/giornate/<oggi>.json`. Se fallisce con un messaggio sulle correzioni non valide, il messaggio dice quale voce e perché: sistema il file notizie e riprova. Se il motivo è un altro, vedi le regole sopra.
 7. Esegui `npm test`. Se fallisce, non pubblicare: vedi le regole sopra.
@@ -82,6 +82,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 | `Handicap <linea>` (NBA): `Handicap -4.5`, `Handicap +3`, `Handicap 0` | `casa`, `trasferta` | sì |
 | `Totale punti <linea>` (NBA): `Totale punti 221.5` | `Over 221.5`, `Under 221.5` | sì |
 | `Vincente`, `Handicap <linea>`, `Totale punti <linea>` (basket) | come l'NBA | sì, ma non nelle partite "solo mercato" |
+| `Vincente`, `Handicap set -1.5`, `Handicap set +1.5`, `Totale set 3.5` (pallavolo) | squadra, `casa`/`trasferta`, `Over 3.5`/`Under 3.5` | sì, ma non nelle partite "solo mercato" |
 | `Doppia chance` | `1X`, `12`, `X2` | no, solo esclusione |
 | `Risultato esatto` | `2-1`… | no, solo esclusione |
 | `Handicap asiatico …` | `casa`, `trasferta` | no, solo esclusione |
@@ -136,6 +137,18 @@ Le partite di Eurolega e di NBL australiana di oggi sono in `data/raccolta/<oggi
 - **Formato degli id basket**: `idPartita` = `basket-<data>-<casa>-<trasferta>`, con i nomi delle squadre come li scrive The Odds API, in minuscolo e con i trattini. Esempio: `basket-2026-10-21-real-madrid-fc-barcelona` e il candidato `basket-2026-10-21-real-madrid-fc-barcelona-vincente-real-madrid`.
 - Le partite basket che hai davvero controllato vanno anche in `partiteControllate`.
 - Le partite NBL che iniziano di notte o all'alba (prima delle 08:00 del giorno dopo) sono già nella raccolta del mattino: controllale insieme alle altre.
+
+## Pallavolo
+
+Le partite di pallavolo di oggi sono in `data/raccolta/<oggi>-pallavolo.json` (SuperLega, PlusLiga, Efeler Ligi turca, Bundesliga) e compaiono nell'anteprima insieme agli altri sport. Usano lo stesso file notizie e le stesse regole (tetto ±0,08, selezione opposta automatica). Il tetto di 20 ricerche web vale per tutto il giro.
+
+- **Che cosa cercare**: assenze confermate di un titolare chiave (opposto, schiacciatore principale, palleggiatore) e turnover annunciato, dai siti ufficiali dei club e delle leghe (legavolley.it, plusliga.pl) o dai quotidiani sportivi importanti.
+- **Assenza confermata di un titolare chiave**: correzione (`delta`) oppure esclusione, con fonte e ora dentro `fonte`. **Turnover annunciato**: correzione.
+- **"In dubbio"**: nessuna correzione; elencalo nell'ultimo messaggio della sessione, con fonte e ora.
+- **Mercati**, da copiare identici da `partite[].mercati[]`: `Vincente` (selezione il nome della squadra come lo scrive OddsPapi), `Handicap set -1.5` e `Handicap set +1.5` (riferiti alla squadra di casa, selezione `casa` o `trasferta`), `Totale set 3.5` (`Over 3.5` = si gioca il quarto set; `Under 3.5` = finisce 3-0 o 0-3).
+- **Partite "solo mercato"** (`"modello": "solo-pinnacle"`): non si possono correggere, solo escludere.
+- **Formato degli id**: `idPartita` = `pallavolo-<data>-<casa>-<trasferta>`, con i nomi di OddsPapi in minuscolo e con i trattini. Esempio: `pallavolo-2026-10-21-itas-trentino-rana-verona` e il candidato `pallavolo-2026-10-21-itas-trentino-rana-verona-handicap-set-meno-1-5-casa`.
+- Le partite di pallavolo che hai davvero controllato vanno anche in `partiteControllate`.
 
 ## Piano B: il push su `main` viene rifiutato per permessi (non ancora attivo)
 
