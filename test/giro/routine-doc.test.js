@@ -76,3 +76,10 @@ test('le istruzioni pallavolo: mattino, README e workflow', () => {
   // Il collaudo non stampa i dati del conto (il repository è pubblico).
   assert.ok(!/console\.log\(breve\(account\)\)/.test(fs.readFileSync('scripts/collaudo-oddspapi.mjs', 'utf8')));
 });
+
+test('notifiche Telegram: README e workflow', () => {
+  const r = fs.readFileSync('README.md', 'utf8');
+  for (const s of ['Notifiche Telegram', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID', '@BotFather', 'getUpdates', 'data/stato/telegram.json']) assert.ok(r.includes(s), s);
+  const w = fs.readFileSync('.github/workflows/notifiche.yml', 'utf8');
+  for (const s of ['npm run notifiche', 'workflow_run', "'Raccolta dati calcio'", "'Giro serale'", 'group: dati', 'for tentativo in 1 2 3', 'git rebase --abort']) assert.ok(w.includes(s), s);
+});

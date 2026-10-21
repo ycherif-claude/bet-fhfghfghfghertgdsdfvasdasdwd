@@ -209,6 +209,25 @@ In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie 
 
 Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2), con le due ultime stagioni. Sulla scheda, accanto alla quota mediana, c'è la **quota bet365** quando OddsPapi la dà. Il value si calcola sempre sulla mediana. Una squadra con meno di 8 partite salvate non ha il modello: la partita usa solo il mercato.
 
+## Notifiche Telegram
+
+Un bot Telegram ti scrive:
+
+- **le giocate del giorno**, dopo il giro del mattino (o una riga se non ce ne sono), e le giocate nuove aggiunte più tardi (per esempio il tennis della sera);
+- **i cambi del giro serale**: giocata confermata, modificata (con la quota nuova) o annullata, con il motivo;
+- **gli errori del sistema**: righe nuove fra gli errori della giornata, un'Action fallita, la giornata non scritta entro le 12:00.
+
+Gli esiti restano sul sito. Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`). Le righe solo informative ("partite già iniziate", i 429 di TheSportsDB mentre lo storico si completa) non si notificano.
+
+### Come attivarle
+
+1. Su Telegram apri **@BotFather**, scrivi `/newbot` e scegli un nome: ti dà un **token**.
+2. Apri la chat col tuo bot e scrivigli un messaggio qualunque.
+3. Nel browser apri `https://api.telegram.org/bot<TOKEN>/getUpdates` (con il tuo token): il numero dopo `"chat":{"id":` è il tuo **chat id**.
+4. Su GitHub, Settings → Secrets and variables → Actions: aggiungi `TELEGRAM_BOT_TOKEN` (il token) e `TELEGRAM_CHAT_ID` (il numero).
+
+Senza i due secrets le notifiche restano spente e nulla si blocca. L'Action "Notifiche Telegram" parte dopo ogni aggiornamento dei dati e dopo le altre Action; si può anche avviare a mano.
+
 ## Revisione settimanale
 
 Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.

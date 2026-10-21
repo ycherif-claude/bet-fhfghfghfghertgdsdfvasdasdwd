@@ -14,6 +14,7 @@
     "raccolta-basket": "node src/basket/raccolta.js",
     "raccolta-pallavolo": "node src/pallavolo/raccolta.js",
     "giro": "node src/giro/giro.js",
+    "notifiche": "node src/notifiche/telegram.js",
     "build": "node src/build/costruisci-sito.js",
     "serve": "node scripts/serve.js"
   }

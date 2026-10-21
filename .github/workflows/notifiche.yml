@@ -1,0 +1,62 @@
+name: Notifiche Telegram
+
+# Giocate del giorno, cambi del giro serale ed errori: dopo ogni aggiornamento dei dati su main
+# (routine di Claude), alla fine delle altre Action (raccolta, riserva, serale, pubblicazione oraria)
+# e a mano. Ogni messaggio parte una volta sola: lo stato è in data/stato/telegram.json.
+on:
+  push:
+    branches: [main]
+    paths: ['data/giornate/**', 'data/raccolta/**']
+  workflow_run:
+    workflows: ['Raccolta dati calcio', 'Giro di riserva', 'Giro serale', 'Pubblica sito']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dati
+
+jobs:
+  notifiche:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Manda le notifiche
+        run: npm run notifiche
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_CONCLUSIONE: ${{ github.event.workflow_run.conclusion }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_NOME: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+      - name: Salva lo stato delle notifiche
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/stato/telegram.json 2>/dev/null || true
+          if [ -n "$(git status --porcelain data/stato/)" ]; then
+            git commit -m "Notifiche Telegram $(TZ=Europe/Rome date +%F)"
+            # Fino a 3 tentativi; un conflitto nel rebase si annulla e il job fallisce.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: stato delle notifiche non salvato"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: stato delle notifiche non salvato"
+              exit 1
+            fi
+          fi
