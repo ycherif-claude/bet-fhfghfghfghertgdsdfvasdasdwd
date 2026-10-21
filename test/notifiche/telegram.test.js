@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { dividi, eseguiNotifiche, manda, rigaChat, runDaSegnalare, messaggi, messaggiEsiti, messaggiProvvisori, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
+import { dividi, eseguiNotifiche, manda, rigaChat, runDaSegnalare, messaggi, testoGiocata, messaggiEsiti, messaggiProvvisori, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
 
 const OGGI = '2026-10-22';
 const mattina = new Date('2026-10-22T07:30:00Z'); // 09:30 a Roma
@@ -22,7 +22,7 @@ test('giocate del giorno: un solo messaggio, poi solo le giocate nuove', () => {
   assert.equal(m.chiave, `${OGGI}|giornata`);
   assert.match(m.testo, /Giocate di oggi, 22\/10/);
   assert.match(m.testo, /⚽ <b>Inter - Roma<\/b> · 20:45/);
-  assert.match(m.testo, /quota 1,95 · minima 1,85 · puntata 4 € \(2%\)/);
+  assert.match(m.testo, /quota 1,95 · minima 1,85 · puntata 4,00 € \(2%\)/);
   assert.match(m.testo, /🏐 <b>Itas Trentino &lt;B&gt; - Rana Verona<\/b>/);
   assert.match(m.testo, /quota da verificare su bet365/);
   assert.match(m.testo, /https:\/\/x\.github\.io\/y\/$/);
@@ -277,4 +277,13 @@ test('errori scritti prima del giro del mattino nella giornata di ieri: partono 
   inviati.length = 0;
   await eseguiNotifiche({ dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
   assert.ok(!inviati.some((t) => t.includes('Inter - Roma: HTTP 500') || t.includes('errore vecchio')));
+});
+
+test('puntata con due decimali e, se ridotta, da quanto e per quale limite', () => {
+  const ridotta = giocata('r', { puntata: { euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } } });
+  const stop = giocata('s', { idPartita: 'q', puntata: { euro: 1, percentuale: 0.5, ridotta: { da: 6, motivo: 'stop settimanale' } } });
+  const [m] = messaggi({ giornata: giornata([ridotta, stop]), oggi: OGGI, adesso: mattina, inviate: new Set() });
+  assert.match(m.testo, /puntata 2,40 € \(1,2%, ridotta da 5,00 €, tetto giornaliero\)/);
+  assert.match(m.testo, /puntata 1,00 € \(0,5%, ridotta da 6,00 €, stop settimanale\)/);
+  assert.equal(testoGiocata(giocata('x'), 1).includes('ridotta'), false);
 });
