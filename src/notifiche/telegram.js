@@ -199,6 +199,13 @@ async function principale() {
     ? { id: process.env.RUN_ID, nome: process.env.RUN_NOME, url: process.env.RUN_URL } : null;
   const [proprietario, nome] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
   const sito = proprietario && nome ? `https://${proprietario.toLowerCase()}.github.io/${nome}/` : null;
+  // Nel log il tipo di chat dei secrets (privata o gruppo, con il nome del gruppo), mai il numero.
+  try {
+    const c = await (await fetch(`https://api.telegram.org/bot${token}/getChat?chat_id=${encodeURIComponent(chat)}`, { signal: AbortSignal.timeout(30000) })).json();
+    console.log(c?.ok ? `Chat di TELEGRAM_CHAT_ID: ${c.result.type}${c.result.title ? ` «${c.result.title}»` : ''}` : `Chat di TELEGRAM_CHAT_ID non trovata (${c?.description ?? 'errore'})`);
+  } catch {
+    console.log('Chat di TELEGRAM_CHAT_ID: tipo non verificato');
+  }
   const r = await eseguiConRipiego({ dirData: 'data', adesso: new Date(), token, chat, run, sito });
   console.log(`Notifiche Telegram: ${r.mandati} messaggi${r.chiavi.length ? ` (${r.chiavi.join(', ')})` : ''}`);
 }
