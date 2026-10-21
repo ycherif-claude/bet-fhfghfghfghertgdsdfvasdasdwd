@@ -31,7 +31,7 @@ L'utente non apre più account per aggirare i limiti: è vietato dai termini d'u
   - `Totale set 3.5` (`Over 3.5` = la partita va al quarto o al quinto set; `Under 3.5` = finisce 3-0).
 
   Le quote vere servono per tutti e tre. Un mercato senza quota gratuita non si propone.
-- **Quote bet365:** OddsPapi le dà. Si mostrano sulla scheda accanto alla mediana, come "quota bet365 alle HH:MM", tramite due campi opzionali nuovi del candidato e della giocata, `quotaBet365` e `oraQuotaBet365`, che gli altri sport non usano. La pagina li mostra quando ci sono: è una piccola modifica alla pagina. Il value si calcola sulla **mediana** dei bookmaker, come per gli altri sport, così la regola resta uguale.
+- **Quote bet365:** OddsPapi le dà. Si mostrano sulla scheda accanto alla mediana, come "quota bet365 alle HH:MM", tramite due campi opzionali nuovi del candidato e della giocata, `quotaBet365` e `oraQuotaBet365`, che gli altri sport non usano. La pagina li mostra quando ci sono: è una piccola modifica alla pagina. Il value si calcola sulla **mediana** dei bookmaker, come per gli altri sport, così la regola resta uguale. *Cambiato il 21/10/2026 **[utente]**: quando c'è la quota bet365, value e puntata si calcolano sulla più bassa fra mediana e bet365 (una giocata negativa al prezzo di bet365 non nasce); la `fonteQuota` lo dice.*
 
 **Non-obiettivi**
 - Totale punti, risultato esatto in set, mercati per set: si valuteranno dopo.
@@ -100,6 +100,7 @@ Collaudo con la chiave vera (§7), 5 richieste:
 - **Copertura:** OddsPapi copre tutti i campionati previsti (id: SuperLega 517, Champions League 586 e 587, Serie A1 femminile 567, PlusLiga 831, Efeler Ligi 967, Bundesliga 501). Mercati: vincente (231), handicap set −1,5 (2323) e +1,5 (2335) riferiti alla casa, totale set 3,5 (2313). bet365 non dà sempre tutti i mercati.
 - **Palinsesto:** `/fixtures` con `sportId` e una finestra sotto le 48 ore dà tutte le partite di tutti i campionati con **una sola** richiesta, non una per campionato. TheSportsDB non serve per sapere quali campionati giocano.
 - **Richieste:** ogni chiamata conta 1, `/account` è gratuito e dice le richieste del mese. Il budget si legge da lì; il contatore locale `data/stato/oddspapi.json` resta come riserva.
+- **Esiti:** solo con un risultato in set valido (massimo 3, minimo al più 2); altrimenti nessun esito e una riga fra gli errori. **Richieste:** anche le richieste fallite contano nel budget; dopo 2 errori di fila sulle quote si smette per la giornata; le partite rinviate o annullate (`statusName` di OddsPapi) si saltano.
 - **Bookmaker:** circa 200, molti con domini diversi della stessa società (bet365, bet365.de…): nella mediana ciascuno conta una volta. Exchange esclusi.
 
 Storico:
@@ -112,6 +113,6 @@ Pagina:
 - La quota bet365 compare nella riga della quota del ragionamento ("quota bet365 1,29 alle 07:40") ed è salvata nei campi `quotaBet365` e `oraQuotaBet365`. Non serve cambiare la pagina.
 
 Dopo la prima raccolta vera (21/10/2026, 6 partite di PlusLiga e Bundesliga, 320 partite nello storico):
-- **Set indipendenti (§4):** il modello prevede l'Over 3.5 al 72% circa, mentre nella realtà è stato il 53% (chi domina un set tende a dominare anche il successivo). Il difetto non dipende dalla taratura dell'Elo. **Handicap set e totale set usano solo il mercato** (`mercatiSetDalModello: false`) finché il modello dei set non sarà tarato sui dati; il vincente usa il modello.
+- **Set indipendenti (§4):** il modello prevede l'Over 3.5 al 72% circa, mentre nella realtà è stato il 53% (chi domina un set tende a dominare anche il successivo). Il difetto non dipende dalla taratura dell'Elo. **Handicap set e totale set usano solo il mercato** (`mercatiSetDalModello: false`) finché il modello dei set non sarà tarato sui dati. Dal 21/10/2026 **[utente]** anche il **vincente** usa solo il mercato (`vincenteDalModello: false`): l'Elo non è ancora stato confrontato con i risultati e tende a spingere verso le sfavorite. L'Elo resta sulla scheda come informazione.
 - **Elo:** K 60 e vantaggio campo 60 punti (invece di 32 e 30), scelti sulle 320 partite.
 - **Partite minime:** il modello si accende con almeno **20** partite salvate per entrambe le squadre (invece di 8) e ha peso pieno da 30 (invece di 15). Con meno partite l'Elo resta schiacciato verso il 50% e favorirebbe le sfavorite. Si accende da solo quando lo storico della stagione scorsa è completo.

@@ -118,6 +118,9 @@ export const CONFIG = congela({
     // Handicap set e totale set dal modello a set indipendenti: spenti finché non è tarato
     // (prevede l'Over 3.5 al 72%, nella realtà 53% su 320 partite). Per ora solo mercato.
     mercatiSetDalModello: false,
+    // Vincente dal modello: spento finché l'Elo non è tarato (non ancora confrontato con i risultati,
+    // tende a spingere verso le sfavorite). Per ora il vincente usa solo il mercato [utente, 21/10/2026].
+    vincenteDalModello: false,
     pesoModello: 0.5,
     pesoModelloInizio: 0.25,
     minBookmaker: 3,

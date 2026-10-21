@@ -82,7 +82,7 @@ export const oddspapi = {
     }), resto);
     return json(r.testo).map((f) => ({
       id: f.fixtureId, torneo: f.tournamentId, casa: f.participant1Name, trasferta: f.participant2Name,
-      inizio: f.startTime, stato: f.statusId,
+      inizio: f.startTime, stato: f.statusId, statoNome: f.statusName ?? null,
     }));
   },
 

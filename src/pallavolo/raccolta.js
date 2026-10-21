@@ -17,6 +17,11 @@ import { calcolaEloPallavolo, mercatiPallavolo, pesoModelloPallavolo, probPartit
 import { aggiornaEsitiPallavolo } from './esiti.js';
 
 const P = CONFIG.pallavolo;
+const virgola = (q) => q.toFixed(2).replace('.', ',');
+// Stati di OddsPapi (statusName) delle partite che non si giocano all'orario previsto.
+const NON_IN_PROGRAMMA = /postpon|cancel|abandon|suspend|interrupt|delay/i;
+// Errori di fila sulle quote dopo i quali si smette di chiedere (ogni tentativo conta come richiesta).
+const MAX_ERRORI_QUOTE = 2;
 const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
@@ -96,15 +101,18 @@ export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta }) {
     const rif = riferimento(evento, v.tipo, v.linea);
     if (rif?.prob?.[v.sel] == null) { conta.senzaRiferimento++; continue; }
     const b365 = quotaBet365(bookmaker, v);
+    // Il value non deve nascere solo sulla mediana: se bet365 paga meno, si usa la quota di bet365 [utente].
+    const sotto = b365 !== null && b365 < q.quota;
+    const dalModello = v.tipo === 'vincente' ? P.vincenteDalModello : P.mercatiSetDalModello;
     mercati.push({
       mercato: v.mercato,
       selezione: v.selezione,
-      // Handicap e totale set dal modello solo se attivati (vedi CONFIG.pallavolo.mercatiSetDalModello).
-      probModello: v.tipo !== 'vincente' && !P.mercatiSetDalModello ? null
+      // Dal modello solo se attivati (CONFIG.pallavolo.vincenteDalModello e mercatiSetDalModello).
+      probModello: !dalModello ? null
         : modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
       probPinnacle: rif.prob[v.sel],
-      quota: q.quota,
-      fonteQuota: `mediana di ${q.n} bookmaker (OddsPapi)`,
+      quota: sotto ? b365 : q.quota,
+      fonteQuota: sotto ? `bet365 via OddsPapi, più bassa della mediana ${virgola(q.quota)} su ${q.n} bookmaker` : `mediana di ${q.n} bookmaker (OddsPapi)`,
       oraQuota: ora,
       ...(b365 === null ? {} : { quotaBet365: b365, oraQuotaBet365: ora }),
       frequenzaCampionato: null,
@@ -172,14 +180,15 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
   // 3. Palinsesto (1 richiesta per tutti i campionati).
   const finestra = finestraGiornata(data);
   let elenco = [];
+  // Anche una richiesta fallita conta nel budget (OddsPapi può contarla lo stesso).
+  spendi();
   try {
     elenco = await fonti.oddspapi.partite(finestra, opz);
-    spendi();
   } catch (e) {
     errore('OddsPapi (partite)', e);
   }
   const perTorneo = new Map(CAMPIONATI_PALLAVOLO.map((c) => [c.oddspapi, c]));
-  const daGiocare = elenco.filter((f) => perTorneo.has(f.torneo) && f.casa && f.trasferta
+  const daGiocare = elenco.filter((f) => perTorneo.has(f.torneo) && f.casa && f.trasferta && !NON_IN_PROGRAMMA.test(f.statoNome ?? '')
     && Date.parse(f.inizio) >= Math.max(finestra.da.getTime(), adesso.getTime()) && Date.parse(f.inizio) < finestra.a.getTime());
   const senzaStorico = new Set();
   const candidate = [];
@@ -206,18 +215,21 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
   const modelli = new Map();
   const conta = { senzaRiferimento: 0, senzaQuota: 0 };
   const scoperte = new Map();
+  let erroriDiFila = 0;
   for (const x of candidate) {
-    if (spese >= budget) {
+    if (spese >= budget || erroriDiFila >= MAX_ERRORI_QUOTE) {
       scoperte.set(x.c.competizione, (scoperte.get(x.c.competizione) ?? 0) + 1);
       continue;
     }
     await pausa(pausaMs ?? P.pausaOddsPapiMs);
     let bookmaker;
+    spendi();
     try {
       bookmaker = await fonti.oddspapi.quote(x.f.id, opz);
-      spendi();
+      erroriDiFila = 0;
     } catch (e) {
       errore(`OddsPapi (${x.f.casa} - ${x.f.trasferta})`, e);
+      if (++erroriDiFila === MAX_ERRORI_QUOTE) errore('OddsPapi', `${MAX_ERRORI_QUOTE} errori di fila sulle quote: niente altre richieste oggi`);
       continue;
     }
     if (!modelli.has(x.c.id)) modelli.set(x.c.id, calcolaEloPallavolo(righePallavolo(storici.get(x.c.id))));
@@ -242,7 +254,7 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
       pesoModello: poche ? null : pesoModelloPallavolo(giocate, x.idCasa, x.idTrasferta),
       ragionamentoBase: poche
         ? [`Meno di ${P.minPartiteModello} partite salvate per almeno una squadra: probabilità solo dal mercato`]
-        : [`Elo: ${x.f.casa} ${Math.round(elo.get(x.idCasa))} – ${x.f.trasferta} ${Math.round(elo.get(x.idTrasferta))}, vantaggio campo compreso: vittoria della casa ${pct(probCasa)} (ultime 2 stagioni TheSportsDB)`],
+        : [`Elo: ${x.f.casa} ${Math.round(elo.get(x.idCasa))} – ${x.f.trasferta} ${Math.round(elo.get(x.idTrasferta))}, vantaggio campo compreso: vittoria della casa ${pct(probCasa)} (ultime 2 stagioni TheSportsDB)${P.vincenteDalModello ? '' : '; solo informativo: il vincente usa il mercato finché il modello non è tarato'}`],
       mercati,
     });
   }

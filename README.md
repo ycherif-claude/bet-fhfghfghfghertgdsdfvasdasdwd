@@ -207,7 +207,7 @@ In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie 
 - **Handicap set -1,5 / +1,5** (riferito alla squadra di casa): la squadra a −1,5 deve vincere 3-0 o 3-1;
 - **Totale set 3,5**: Over se si gioca il quarto set, Under se finisce 3-0 o 0-3.
 
-Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2), con le due ultime stagioni. Sulla scheda, accanto alla quota mediana, c'è la **quota bet365** quando OddsPapi la dà. Il value si calcola sempre sulla mediana. Una squadra con meno di 8 partite salvate non ha il modello: la partita usa solo il mercato.
+Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2), con le due ultime stagioni. Sulla scheda, accanto alla quota mediana, c'è la **quota bet365** quando OddsPapi la dà. Il value si calcola sulla quota più bassa fra la mediana e bet365, così una giocata non nasce solo perché la mediana è più alta di quello che paga bet365. Per ora tutti i mercati, vincente compreso, usano solo il mercato (Pinnacle o il consenso): l'Elo compare sulla scheda solo come informazione finché non sarà tarato sui risultati. Una squadra con meno di 20 partite salvate non ha nemmeno l'Elo. Gli esiti si assegnano solo con un risultato in set valido (3-0, 3-1, 3-2).
 
 ## Controlli prima delle partite
 

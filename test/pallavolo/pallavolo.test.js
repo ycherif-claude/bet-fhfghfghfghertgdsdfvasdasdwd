@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { calcolaEloPallavolo, mercatiPallavolo, pesoModelloPallavolo, probPartita, setDaVittoria, vittoriaDaSet } from '../../src/pallavolo/modello.js';
 import { abbinaSquadra, squadreStorico } from '../../src/pallavolo/squadre.js';
 import { leggiQuote } from '../../src/pallavolo/fonti/oddspapi.js';
-import { budgetRichieste, eseguiRaccoltaPallavolo, righePallavolo } from '../../src/pallavolo/raccolta.js';
+import { budgetRichieste, costruisciMercati, eseguiRaccoltaPallavolo, righePallavolo } from '../../src/pallavolo/raccolta.js';
+import { valutaMercati } from '../../src/giro/candidati.js';
 import { aggiornaEsitiPallavolo, esitoPallavolo } from '../../src/pallavolo/esiti.js';
 import { correggibile } from '../../src/giro/notizie.js';
 
@@ -183,10 +184,15 @@ test('raccolta: SuperLega con modello e quota bet365; campionati senza storico e
     'Handicap set +1.5 | casa', 'Handicap set +1.5 | trasferta', 'Totale set 3.5 | Over 3.5', 'Totale set 3.5 | Under 3.5',
   ]);
   const v = p.mercati[0];
-  assert.equal(v.quota, 1.3);
+  // bet365 (1,29) sotto la mediana (1,30): il value si calcola sulla quota più bassa.
+  assert.equal(v.quota, 1.29);
   assert.equal(v.quotaBet365, 1.29);
-  assert.equal(v.fonteQuota, 'mediana di 4 bookmaker (OddsPapi)');
-  assert.ok(v.probModello > 0.5);
+  assert.equal(v.fonteQuota, 'bet365 via OddsPapi, più bassa della mediana 1,30 su 4 bookmaker');
+  assert.equal(p.mercati[1].quota, 3.5);
+  assert.equal(p.mercati[1].fonteQuota, 'mediana di 4 bookmaker (OddsPapi)');
+  // Vincente solo dal mercato finché l'Elo non è tarato: il modello resta solo informativo.
+  assert.equal(v.probModello, null);
+  assert.match(p.ragionamentoBase[0], /solo informativo/);
   assert.match(v.spiegazione, /^Vincente: vince se Itas Trentino/);
   // Handicap e totale set: solo mercato finché il modello a set non è tarato.
   assert.ok(p.mercati.filter((m) => m.mercato !== 'Vincente').every((m) => m.probModello === null));
@@ -234,4 +240,47 @@ test('esiti: vincente, handicap set e totale set dal risultato in set dello stor
   const out = aggiornaEsitiPallavolo({ dirData: dir, adesso, storici, raccolta: { erroriGiro: [] } });
   assert.equal(out.aggiornate, 2);
   assert.deepEqual(JSON.parse(readFileSync(join(dir, '2026-10-20.json'), 'utf8')).giocate.map((g) => g.esito), ['vinta', 'persa']);
+});
+
+test('value pallavolo: sulla quota più bassa fra mediana e bet365; negativo a bet365 → nessun candidato', () => {
+  const libro = (v) => ({ bookmakerIsActive: true, markets: { 231: { outcomes: { 231: esito(v[0]), 232: esito(v[1]) } } } });
+  const bookmaker = leggiQuote({ bookmakerOdds: { pinnacle: libro([1.9, 1.9]), a: libro([2.2, 1.7]), b: libro([2.2, 1.7]), bet365: libro([1.95, 1.85]) } });
+  const mercati = costruisciMercati({ bookmaker, probCasa: null, nomi: { casa: 'A', trasferta: 'B' }, ora: '2026-10-21T07:40:00+02:00', conta: { senzaRiferimento: 0 } });
+  const casa = mercati.find((m) => m.selezione === 'A');
+  // Mediana 2,07 (value +3,5% con Pinnacle al 50%), bet365 1,95 (value −2,5%).
+  assert.equal(casa.quota, 1.95);
+  const { voci } = valutaMercati({ partite: [{ idPartita: 'p', sport: 'pallavolo', partita: 'A - B', inizio: '2026-10-21T20:00:00+02:00', mercati }] }, null);
+  assert.ok(voci.find((x) => x.m.selezione === 'A').value < 0);
+});
+
+test('esiti pallavolo: solo risultati in set validi, altrimenti niente esito e una riga di errore', () => {
+  assert.equal(esitoPallavolo('Vincente', 'A', { casa: 'A', trasferta: 'B', setCasa: 2, setTrasferta: 1 }), null);
+  assert.equal(esitoPallavolo('Totale set 3.5', 'Over 3.5', { casa: 'A', trasferta: 'B', setCasa: 4, setTrasferta: 1 }), null);
+  const dir = temp();
+  writeFileSync(join(dir, '2026-10-20.json'), JSON.stringify({ data: '2026-10-20', giocate: [{
+    id: 'a', sport: 'pallavolo', competizione: 'SuperLega', partita: 'Itas Trentino - Rana Verona', idPartita: 'x',
+    inizio: '2026-10-20T20:30:00+02:00', tipo: 'singola', mercato: 'Vincente', selezione: 'Itas Trentino', quota: 1.9, esito: null,
+  }] }));
+  const storici = new Map([['superlega', [
+    { id: '9', stagione: 2026, giornata: 3, idCasa: '136630', idTrasferta: '137441', casa: 'Trentino Volley', trasferta: 'Verona Volley', inizio: '2026-10-20T18:30:00.000Z', puntiCasa: 2, puntiTrasferta: 1, finita: true },
+  ]]]);
+  const raccolta = { erroriGiro: [] };
+  const out = aggiornaEsitiPallavolo({ dirData: dir, adesso, storici, raccolta });
+  assert.equal(out.aggiornate, 0);
+  assert.equal(JSON.parse(readFileSync(join(dir, '2026-10-20.json'), 'utf8')).giocate[0].esito, null);
+  assert.ok(raccolta.erroriGiro.some((e) => /Itas Trentino - Rana Verona.*risultato in set non valido \(2-1\)/.test(e)), raccolta.erroriGiro.join('\n'));
+});
+
+test('raccolta: le quote fallite contano nel budget, dopo 2 errori di fila si smette; partite rinviate saltate', async () => {
+  const fonti = fontiFinte({ partite: [
+    fixture('f1', 517, 'Itas Trentino', 'Rana Verona'),
+    { ...fixture('f0', 517, 'Sir Susa Perugia', 'Cucine Lube Civitanova', '2026-10-21T17:00:00.000Z'), statoNome: 'Postponed' },
+    fixture('f2', 517, 'Sir Susa Perugia', 'Cucine Lube Civitanova', '2026-10-21T19:00:00.000Z'),
+    fixture('f3', 517, 'Rana Verona', 'Itas Trentino', '2026-10-21T20:00:00.000Z'),
+  ] });
+  fonti.oddspapi.quote = async (id) => { fonti.chiamate.push(`quote ${id}`); throw new Error('HTTP 500'); };
+  const r = await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti, chiavi: { oddspapi: 'K' }, dirData: temp(), pausaMs: 0 });
+  assert.deepEqual(fonti.chiamate, ['partite', 'quote f1', 'quote f2']);
+  assert.equal(r.crediti.oddspapi.usate, 3);
+  assert.ok(r.erroriGiro.some((e) => /2 errori di fila/.test(e)), r.erroriGiro.join('\n'));
 });

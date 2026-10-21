@@ -14,10 +14,14 @@ const QUATTRO_ORE = 4 * 3600 * 1000;
 const GIORNO_MS = 86400000;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 
+// Risultato in set possibile al meglio dei 5: 3-0, 3-1, 3-2 (o al contrario).
+export const setValidi = (sc, st) => num(sc) && num(st) && Math.max(sc, st) === 3 && Math.min(sc, st) <= 2;
+
 // 'vinta' | 'persa' | 'rimborsata' | null dal risultato in set { casa, trasferta, setCasa, setTrasferta }.
+// Un risultato non valido (2-1, 4-1...) non chiude niente.
 export function esitoPallavolo(mercato, selezione, r) {
   const { setCasa: sc, setTrasferta: st } = r ?? {};
-  if (!num(sc) || !num(st) || sc === st) return null;
+  if (!setValidi(sc, st)) return null;
   const vinta = (b) => (b ? 'vinta' : 'persa');
   let m;
   if (mercato === 'Vincente') {
@@ -61,6 +65,9 @@ function trova(gamba, perCompetizione) {
     && num(p.puntiCasa) && num(p.puntiTrasferta)
     && Math.abs(Date.parse(`${dataRoma(new Date(p.inizio))}T00:00:00Z`) - giorno) <= GIORNO_MS);
   if (trovate.length !== 1) return null;
+  if (!setValidi(trovate[0].puntiCasa, trovate[0].puntiTrasferta)) {
+    return { nonValido: `${gamba.partita}: risultato in set non valido (${trovate[0].puntiCasa}-${trovate[0].puntiTrasferta}) nello storico, esito non assegnato` };
+  }
   return { casa: nomi.casa, trasferta: nomi.trasferta, setCasa: trovate[0].puntiCasa, setTrasferta: trovate[0].puntiTrasferta };
 }
 
@@ -77,6 +84,7 @@ export function aggiornaEsitiPallavolo({ dirData, adesso, storici, raccolta }) {
       let toccata = false;
       for (const x of gambeDaChiudere(g, adesso)) {
         const r = trova(x, storici);
+        if (r?.nonValido) { if (!errori.includes(r.nonValido)) errori.push(r.nonValido); continue; }
         const e = r ? esitoPallavolo(x.mercato, x.selezione, r) : null;
         if (e) { x.esito = e; toccata = true; }
       }
