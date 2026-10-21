@@ -69,22 +69,54 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiun
   const multiple = costruisciMultiple(singole, bankroll);
   const tutte = [...singole, ...builder.slice(0, maxB), ...multiple].sort(perValue);
 
-  // Puntata minima, tetto giornaliero e stop settimanale, per value decrescente.
+  // Puntata minima, tetto giornaliero e stop settimanale.
   // Le puntate proposte contano come perse: la loro somma non supera mai
-  // né il tetto residuo di oggi né la distanza dallo stop.
-  const giocate = [];
+  // né il tetto residuo di oggi né la distanza dallo stop. Se la superano,
+  // tutte le puntate si riducono nella stessa proporzione (vedi riduciAlLimite).
   const residuoTetto = CONFIG.tettoGiornaliero * bankroll - inGiocoOggi;
   // Valore non numerico (dato corrotto): per prudenza nessuna nuova puntata.
   const residuoStop = typeof distanzaStop === 'number' && !Number.isNaN(distanzaStop) ? distanzaStop : 0;
   const limite = Math.min(residuoTetto, residuoStop);
   const motivoLimite = residuoStop < residuoTetto ? 'stop settimanale' : 'tetto giornaliero';
-  let proposto = 0;
+  const daPuntare = [];
   for (const g of tutte) {
     if (g.puntata.euro <= 0) { scarta(g.id, 'puntata troppo bassa'); continue; }
-    const totale = proposto + g.puntata.euro;
-    if (totale > limite + EPS) { scarta(g.id, motivoLimite); continue; }
-    proposto = totale;
-    giocate.push(g);
+    daPuntare.push(g);
   }
+  const giocate = riduciAlLimite(daPuntare, { limite, motivo: motivoLimite, bankroll, scarta });
   return { giocate, scartate };
+}
+
+const centesimi = (euro) => Math.round(euro * 100);
+
+// Somma delle puntate oltre il limite: ogni puntata × (limite / somma), arrotondata per difetto
+// a CONFIG.arrotondamentoRidotte. Se qualcuna scende sotto CONFIG.puntataMinima esce, tra quelle,
+// la giocata col value più basso e si ricalcola sulle restanti. Conti in centesimi interi:
+// la somma finale non supera mai il limite. `giocate` è già per value decrescente.
+function riduciAlLimite(giocate, { limite, motivo, bankroll, scarta }) {
+  const limiteCent = Math.floor(limite * 100 + EPS);
+  const passo = centesimi(CONFIG.arrotondamentoRidotte);
+  const minimo = centesimi(CONFIG.puntataMinima);
+  let restanti = giocate;
+  for (;;) {
+    const sommaCent = restanti.reduce((a, g) => a + centesimi(g.puntata.euro), 0);
+    // Sotto il limite (o limite non numerico, come prima): puntate invariate.
+    if (!(sommaCent > limiteCent)) return restanti;
+    const ridotte = restanti.map((g) => {
+      const quota = Math.floor((centesimi(g.puntata.euro) * Math.max(0, limiteCent)) / sommaCent);
+      return { g, cent: Math.floor(quota / passo) * passo };
+    });
+    const sotto = ridotte.filter((r) => r.cent < minimo);
+    if (!sotto.length) {
+      return ridotte.map(({ g, cent }) => {
+        const euro = cent / 100;
+        const percentuale = Math.round((euro / bankroll) * 10000) / 100;
+        return { ...g, puntata: { ...g.puntata, euro, percentuale, ridotta: { da: g.puntata.euro, motivo } } };
+      });
+    }
+    // A parità di value esce quella che viene dopo nell'ordine.
+    const peggiore = sotto.reduce((a, b) => (b.g.value <= a.g.value ? b : a)).g;
+    scarta(peggiore.id, `puntata ridotta sotto il minimo (${motivo})`);
+    restanti = restanti.filter((g) => g !== peggiore);
+  }
 }

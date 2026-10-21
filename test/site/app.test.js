@@ -117,3 +117,16 @@ test('etichetta stato: il motivo compare per ogni stato', () => {
   assert.equal(etichettaStato({ stato: 'confermata', motivoStato: null }).testo, 'Confermata');
   assert.equal(etichettaStato({ stato: 'confermata', motivoStato: '' }).testo, 'Confermata');
 });
+
+import { testoRidotta, euro } from '../../site/app.js';
+
+test('testoRidotta: riga "ridotta da …" per tetto giornaliero e stop settimanale, null se non ridotta', () => {
+  assert.equal(testoRidotta({ euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } }),
+    `ridotta da ${euro(5)} per il tetto giornaliero`);
+  assert.match(testoRidotta({ euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } }), /^ridotta da 5,00\s€ per il tetto giornaliero$/);
+  assert.equal(testoRidotta({ euro: 1, percentuale: 0.5, ridotta: { da: 6, motivo: 'stop settimanale' } }),
+    `ridotta da ${euro(6)} per lo stop settimanale`);
+  assert.equal(testoRidotta({ euro: 5, percentuale: 2.5 }), null);
+  assert.equal(testoRidotta(undefined), null);
+  assert.equal(testoRidotta({ euro: 2, ridotta: { da: 'x', motivo: 'tetto giornaliero' } }), null);
+});

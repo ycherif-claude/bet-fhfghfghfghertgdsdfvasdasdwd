@@ -10,6 +10,7 @@ Il repository e il sito sono **pubblici**: nessuna password, per scelta. Il sito
 - A ogni push su `main`, a mano e ogni ora (al minuto 15) una GitHub Action esegue i test, costruisce `site/dati.json` e pubblica la cartella `site/` su GitHub Pages. La ricostruzione oraria serve ad aggiornare "oggi" e i promemoria.
 - Nella pagina del giorno, "Giocata" (o "Saltata") scrive un file in `data/segnature/` tramite l'API di GitHub; "Annulla segnatura" lo cancella. Il bankroll si aggiorna dopo la ripubblicazione (1-2 minuti).
 - Con "Giocata" scegli anche il bookmaker (bet365, Sportium, Betfair, Snai, Goldbet, DAZN Bet; proposto bet365). Gioca dove la quota è più alta, purché non sotto la quota minima della scheda. Per Betfair scrivi la quota al netto della commissione. Lo storico ha la tabella "Per bookmaker".
+- Ogni giorno si mette in gioco al massimo il 12% del bankroll (tetto giornaliero), e mai più di quanto manca allo stop settimanale. Se le giocate valide del giorno chiedono di più, nessuna viene tolta: **tutte le puntate si riducono nella stessa proporzione**, arrotondate per difetto a 0,10 €. Una puntata ridotta sotto 1 € non si gioca: esce la giocata con il value più basso e le altre si ricalcolano. Sulla scheda compare "ridotta da 5,00 € per il tetto giornaliero" (o "per lo stop settimanale").
 
 ## Token per segnare le giocate
 

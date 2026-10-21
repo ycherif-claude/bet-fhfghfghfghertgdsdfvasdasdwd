@@ -48,3 +48,13 @@ test('scheda annullata: i bottoni Giocata e Saltata restano disponibili', () => 
   assert.ok(testi.includes('Saltata'));
   for (const b of bottoni) assert.equal(b.attrs.disabled, undefined);
 });
+
+test('scheda con puntata ridotta: riga "ridotta da …" dopo la puntata; senza riduzione nessuna riga', () => {
+  const testi = (s) => tutti(s).map((n) => n.testo ?? '');
+  const ridotta = renderScheda(giocata({ puntata: { euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } } }), null);
+  const riga = tutti(ridotta).find((n) => n.tag === 'p' && n.className === 'ridotta');
+  assert.ok(riga, 'riga ridotta assente');
+  assert.match(riga.testo, /^ridotta da 5,00\s€ per il tetto giornaliero$/);
+  const normale = renderScheda(giocata(), null);
+  assert.ok(!testi(normale).some((t) => t.startsWith('ridotta da')));
+});

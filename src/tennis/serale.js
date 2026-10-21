@@ -241,11 +241,13 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
     const scelta = selezionaGiocate(ammessi, { ...stato, inGiocoOggi: -Infinity, distanzaStop: Infinity });
     scartate.push(...scelta.scartate);
     // 2. Per value decrescente, una giocata alla volta: al massimo 10 singole (e speciali) nella giornata,
-    //    poi tetto giornaliero e stop con selezionaGiocate su quella sola giocata e i residui aggiornati.
+    //    poi tetto giornaliero e stop con selezionaGiocate su quella sola giocata e i residui aggiornati:
+    //    se non entra intera viene ridotta a quanto resta (scartata solo se sotto la puntata minima).
     const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
     const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
     const perId = new Map(ammessi.map((c) => [c.id, c]));
-    const tenute = new Set();
+    // Giocata tenuta con la puntata decisa dal secondo passaggio (ridotta se non entra intera nei residui).
+    const tenute = new Map();
     let residuo = stato;
     let singole = 0;
     for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
@@ -257,10 +259,10 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
       const euro = una.giocate[0].puntata.euro;
       residuo = { ...residuo, inGiocoOggi: cent(residuo.inGiocoOggi + euro), distanzaStop: cent(residuo.distanzaStop - euro) };
       if (g.tipo !== 'builder') singole++;
-      tenute.add(g.id);
+      tenute.set(g.id, una.giocate[0]);
     }
     // L'ordine delle giocate resta quello di selezionaGiocate.
-    nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id));
+    nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id)).map((g) => tenute.get(g.id));
   }
 
   scriviJson(f.giornata[0], {

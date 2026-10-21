@@ -115,6 +115,15 @@ export function el(tag, attrs = {}, ...figli) {
   return nodo;
 }
 
+// Puntata ridotta in proporzione dal tetto giornaliero o dallo stop settimanale:
+// "ridotta da 5,00 € per il tetto giornaliero". null se non ridotta o dato non leggibile.
+const LIMITE_RIDOTTA = { 'tetto giornaliero': 'per il tetto giornaliero', 'stop settimanale': 'per lo stop settimanale' };
+export function testoRidotta(puntata) {
+  const r = puntata?.ridotta;
+  if (!r || !Number.isFinite(r.da) || !LIMITE_RIDOTTA[r.motivo]) return null;
+  return `ridotta da ${euro(r.da)} ${LIMITE_RIDOTTA[r.motivo]}`;
+}
+
 export const NOME_TIPO = { singola: 'Singola', speciale: 'Singola speciale', multipla: 'Multipla', builder: 'Bet builder' };
 
 function rigaQuota(g) {
@@ -250,6 +259,7 @@ export function renderScheda(g, segnatura) {
     el('p', {}, `Quota minima da accettare: ${fmtQuota.format(g.quotaMinima)}`),
     el('p', {}, `Probabilità stimata ${percento(g.prob)} · value ${segno(g.value)}${percento(g.value)}`),
     el('p', {}, el('strong', {}, `Puntata ${euro(g.puntata.euro)}`), ` (${fmtPerc1.format(g.puntata.percentuale)}% del bankroll)`),
+    testoRidotta(g.puntata) ? el('p', { class: 'ridotta' }, testoRidotta(g.puntata)) : null,
     renderPiedeScheda(g, segnatura),
     dettagli,
   );

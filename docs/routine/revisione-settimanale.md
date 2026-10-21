@@ -19,7 +19,8 @@ Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte 
 1. **Risultati:**
    - numero di giocate, vinte, perse, rimborsate, profitto in euro e ROI;
    - bankroll a inizio e fine settimana;
-   - distanza minima dallo stop raggiunta.
+   - distanza minima dallo stop raggiunta;
+   - giocate con puntata ridotta dal tetto giornaliero o dallo stop (campo `puntata.ridotta` nelle giornate: `da` è la puntata piena, `motivo` il limite) e giocate scartate con motivo "puntata ridotta sotto il minimo": quante sono e come rendono rispetto alle altre.
 2. **Per sport, tipo di giocata (singola, speciale, multipla) e mercato:** dove si guadagna e dove si perde. Con meno di 20 giocate in un gruppo, scrivi chiaramente che il campione è troppo piccolo per concludere qualcosa.
 3. **Calibrazione delle probabilità:**
    - raggruppa le proposte chiuse per fasce di probabilità stimata (per esempio 40-50%, 50-60%, 60-70%) e confronta la percentuale di vincita reale con quella stimata;

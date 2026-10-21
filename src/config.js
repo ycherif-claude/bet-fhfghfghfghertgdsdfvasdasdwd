@@ -28,6 +28,10 @@ export const CONFIG = congela({
   kelly: 0.25,
   arrotondamentoEuro: 0.50,
   tettoGiornaliero: 0.12,
+  // Giocate del giorno oltre il tetto (o la distanza dallo stop): tutte ridotte in proporzione,
+  // arrotondate per difetto a 0,10 €; sotto la puntata minima (€) esce la giocata col value più basso.
+  puntataMinima: 1.00,
+  arrotondamentoRidotte: 0.10,
   massimiGiornalieri: { singole: 10, multiple: 2, builder: 2 },
   oreScadenzaSegnatura: 24,
   // Fase 2 (calcio): soglie del modello e della raccolta dati.

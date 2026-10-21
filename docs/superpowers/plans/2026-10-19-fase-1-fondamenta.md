@@ -143,7 +143,7 @@ test('speciali e builder usano × 1.10', () =>
   - `classificaTipo(candidato): "singola"|"speciale"|"builder"|null` (`null` = quota fuori range).
   - `puntataConsigliata({ tipo, prob, quota, bankroll }): { euro: number, percentuale: number }`.
   - `costruisciMultiple(singole: Giocata[], bankroll: number): Giocata[]`.
-  - `selezionaGiocate(candidati: Candidato[], stato: { bankroll, inGiocoOggi, stopRaggiunto, distanzaStop }): { giocate: Giocata[], scartate: {idCandidato, motivo}[] }`. La somma delle puntate proposte non supera mai `min(tetto giornaliero − inGiocoOggi, distanzaStop)`; la giocata bloccata dallo stop ha motivo "stop settimanale", quella bloccata dal tetto "tetto giornaliero". `distanzaStop` assente = nessun limite dallo stop.
+  - `selezionaGiocate(candidati: Candidato[], stato: { bankroll, inGiocoOggi, stopRaggiunto, distanzaStop }): { giocate: Giocata[], scartate: {idCandidato, motivo}[] }`. La somma delle puntate proposte non supera mai `min(tetto giornaliero − inGiocoOggi, distanzaStop)`; la giocata bloccata dallo stop ha motivo "stop settimanale", quella bloccata dal tetto "tetto giornaliero". **[Aggiornato il 21/10/2026: oltre il limite le puntate si riducono tutte in proporzione, a 0,10 € per difetto; esce solo la giocata col value più basso fra quelle ridotte sotto 1 €, con motivo "puntata ridotta sotto il minimo (tetto giornaliero)" o "(stop settimanale)". Vedi documento di progetto §8.]** `distanzaStop` assente = nessun limite dallo stop.
 
 - [ ] **Step 1: Scrivi i test che falliscono**
 
@@ -181,7 +181,7 @@ Ogni `...` è un test con candidati costruiti da un helper `candidato(overrides)
 
 - [ ] **Step 3: Implementa `puntataConsigliata`.** Kelly: `f = (prob*quota − 1)/(quota − 1)`, `percentuale = clamp(0.25*f*100, min, max)` del tipo, arrotondata a 2 decimali (per speciale e builder è fissa), `euro = floor(bankroll*percentuale/100 / 0.5)*0.5`.
 
-- [ ] **Step 4: Implementa `selezionaGiocate`** in questo ordine: stop → classificazione e range → soglia di value → una singola per partita → tetto 10 singole / 2 builder → multiple da `costruisciMultiple` → puntate → tetto giornaliero (si aggiungono le giocate per value decrescente finché `inGiocoOggi + somma ≤ 12% bankroll`). Ogni candidato escluso finisce in `scartate` con un motivo in italiano.
+- [ ] **Step 4: Implementa `selezionaGiocate`** in questo ordine: stop → classificazione e range → soglia di value → una singola per partita → tetto 10 singole / 2 builder → multiple da `costruisciMultiple` → puntate → tetto giornaliero (si aggiungono le giocate per value decrescente finché `inGiocoOggi + somma ≤ 12% bankroll`). **[Aggiornato il 21/10/2026: ora riduzione in proporzione, vedi sopra.]** Ogni candidato escluso finisce in `scartate` con un motivo in italiano.
 
 - [ ] **Step 5: Implementa `costruisciMultiple`.** Si generano tutte le combinazioni di 2–4 singole selezionate su partite diverse (al massimo 10 singole, quindi poche combinazioni), si filtrano con le regole e si tengono le 2 con value più alto che non condividono gambe tra loro.
 

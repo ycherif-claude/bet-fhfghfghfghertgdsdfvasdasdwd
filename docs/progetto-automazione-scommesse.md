@@ -171,8 +171,11 @@ Nessun numero fisso: decide la soglia di value. Nelle giornate normali ci si asp
   - multiple: 0,5-1%;
   - bet builder: 0,5%.
 - **Tetto giornaliero [scelta di Claude]**: al massimo il 10-12% del bankroll in gioco nello stesso giorno.
+- **Puntate ridotte in proporzione [decisione dell'utente]**: se le giocate valide del giorno chiedono più del limite (il residuo del tetto giornaliero o, se più piccola, la distanza dallo stop settimanale), non si scarta nessuna giocata: tutte le puntate si riducono nella stessa proporzione (limite / somma delle puntate), arrotondate per difetto a 0,10 €, e la percentuale si ricalcola. Così si giocano più partite e si raccolgono più dati con lo stesso rischio massimo. La somma non supera mai il limite.
+  - Puntata minima **1 €**: se dopo la riduzione qualche puntata è sotto 1 €, esce la giocata con il value più basso tra quelle sotto il minimo (motivo "puntata ridotta sotto il minimo (tetto giornaliero)" o "(stop settimanale)") e si ricalcola sulle restanti.
+  - La scheda dice "ridotta da X € per il tetto giornaliero" (o "per lo stop settimanale"). Vale anche per le giocate aggiunte la sera (tennis), con i residui di quel momento: la giocata che non entra intera viene ridotta, non scartata, se resta almeno 1 €.
 - Le puntate si ricalcolano ogni giorno sul bankroll aggiornato.
-- Gli importi si arrotondano a 0,50 €. **[scelta di Claude]**
+- Gli importi si arrotondano a 0,50 € (le puntate ridotte dal tetto o dallo stop a 0,10 €). **[scelta di Claude]**
 
 Per sapere il bankroll reale servono le giocate effettivamente fatte: vedi §9.3. Una giocata proposta ma non segnata come giocata **non** conta nel bankroll. Conta però nello storico "proposte", che misura il metodo. **[scelta di Claude]**
 

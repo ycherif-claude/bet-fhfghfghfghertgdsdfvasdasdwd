@@ -212,7 +212,7 @@ test('tetto: con una giocata segnata e una solo proposta conta anche la proposta
   const n = nuove(prima, dopo, 'giocate');
   assert.equal(n.length, 1);
   assert.ok(n.reduce((s, g) => s + g.puntata.euro, 0) <= 6 + 1e-9);
-  assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'tetto giornaliero'));
+  assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'puntata ridotta sotto il minimo (tetto giornaliero)'));
 });
 
 test('tetto: le multiple (sempre tolte) non consumano il tetto delle singole', () => {
@@ -229,7 +229,8 @@ test('tetto: le multiple (sempre tolte) non consumano il tetto delle singole', (
   assert.ok(n.every((g) => !Array.isArray(g.gambe)));
   const motivi = nuove(prima, dopo, 'scartate').map((s) => s.motivo);
   assert.ok(motivi.includes('nessuna multipla nel giro serale'));
-  assert.ok(!motivi.includes('tetto giornaliero'), motivi.join(', '));
+  assert.ok(!motivi.some((m) => m.includes('tetto giornaliero')), motivi.join(', '));
+  assert.ok(n.every((g) => g.puntata.ridotta === undefined));
 });
 
 test('tetto: una giocata di oggi segnata come fatta ma non valida conta con la puntata reale', () => {
@@ -241,7 +242,7 @@ test('tetto: una giocata di oggi segnata come fatta ma non valida conta con la p
   const r = aggiungiSeraleTennis({ dirData: d, adesso });
   const dopo = leggiGiornata(d);
   assert.equal(r.aggiunte, 1);
-  assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'tetto giornaliero'));
+  assert.ok(nuove(prima, dopo, 'scartate').some((s) => s.motivo === 'puntata ridotta sotto il minimo (tetto giornaliero)'));
   // Segnata come non fatta: nessuna puntata in gioco, entrano entrambe.
   const d2 = dir();
   scriviGiornata(d2, [giocataMattino(1, 6, { prob: 2 })]);
@@ -259,7 +260,21 @@ test('tetto già pieno con le proposte non segnate → nessuna nuova giocata', (
   assert.equal(r.aggiunte, 0);
   assert.equal(nuove(prima, dopo, 'giocate').length, 0);
   assert.equal(nuove(prima, dopo, 'candidati').length, 1);
-  assert.deepEqual(nuove(prima, dopo, 'scartate').map((s) => s.motivo), ['tetto giornaliero']);
+  assert.deepEqual(nuove(prima, dopo, 'scartate').map((s) => s.motivo), ['puntata ridotta sotto il minimo (tetto giornaliero)']);
+});
+
+test('tetto quasi pieno: la giocata serale che non entra intera viene ridotta, non scartata', () => {
+  // Bankroll 200 → tetto 24 €. Proposte aperte 6 + 14 → restano 4 €: la nuova da 6 € scende a 4 €.
+  const d = dir();
+  const prima = scriviGiornata(d, [giocataMattino(1, 6), giocataMattino(2, 14)]);
+  scriviSerale(d, NOTTURNE.slice(0, 1));
+  const r = aggiungiSeraleTennis({ dirData: d, adesso });
+  const dopo = leggiGiornata(d);
+  const n = nuove(prima, dopo, 'giocate');
+  assert.equal(r.aggiunte, 1);
+  assert.equal(n[0].puntata.euro, 4);
+  assert.deepEqual(n[0].puntata.ridotta, { da: 6, motivo: 'tetto giornaliero' });
+  assert.deepEqual(nuove(prima, dopo, 'scartate'), []);
 });
 
 test('stop settimanale raggiunto contando le proposte aperte → nessuna nuova giocata', () => {

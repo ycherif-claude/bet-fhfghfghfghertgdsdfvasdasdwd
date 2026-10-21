@@ -57,13 +57,16 @@ test('massimo 10 singole: restano le 10 con value più alto', () => {
   assert.deepEqual(singole.map((g) => g.id).sort(), attesi);
   assert.equal(motivi(r)[cs[0].id], 'limite giornaliero singole');
 });
-test('tetto 12%: con bankroll 200 e inGiocoOggi 20, una puntata da 6 € viene scartata con motivo "tetto giornaliero"', () => {
+test('tetto 12%: con bankroll 200 e inGiocoOggi 20, una puntata da 6 € viene ridotta a 4 € (tetto giornaliero)', () => {
   const c = candidato({ prob: 0.61, quota: 1.85 });
   const r = selezionaGiocate([c], stato({ bankroll: 200, inGiocoOggi: 20 }));
-  assert.equal(r.giocate.length, 0);
-  assert.equal(motivi(r)[c.id], 'tetto giornaliero');
+  assert.equal(r.scartate.length, 0);
+  assert.equal(r.giocate[0].puntata.euro, 4);
+  assert.equal(r.giocate[0].puntata.percentuale, 2);
+  assert.deepEqual(r.giocate[0].puntata.ridotta, { da: 6, motivo: 'tetto giornaliero' });
   const ok = selezionaGiocate([c], stato({ bankroll: 200, inGiocoOggi: 18 }));
-  assert.equal(ok.giocate.length, 1);
+  assert.equal(ok.giocate[0].puntata.euro, 6);
+  assert.equal(ok.giocate[0].puntata.ridotta, undefined);
 });
 test('stopRaggiunto: nessuna giocata, tutte scartate con motivo "stop settimanale"', () => {
   const cs = [candidato(), candidato()];
@@ -112,11 +115,16 @@ test('stop esattamente a −50: stopRaggiunto true e nessuna giocata proposta', 
   assert.equal(r.giocate.length, 0);
   assert.ok(r.scartate.every((x) => x.motivo === 'stop settimanale'));
 });
-test('distanzaStop minore di una puntata: giocata scartata con motivo "stop settimanale"', () => {
+test('distanzaStop minore di una puntata: giocata ridotta alla distanza, motivo "stop settimanale"', () => {
   const c = candidato({ prob: 0.61, quota: 1.85 }); // 6 € con bankroll 200
   const r = selezionaGiocate([c], stato({ bankroll: 200, distanzaStop: 5 }));
-  assert.equal(r.giocate.length, 0);
-  assert.equal(motivi(r)[c.id], 'stop settimanale');
+  assert.equal(r.scartate.length, 0);
+  assert.equal(r.giocate[0].puntata.euro, 5);
+  assert.deepEqual(r.giocate[0].puntata.ridotta, { da: 6, motivo: 'stop settimanale' });
+  // Distanza sotto la puntata minima: scartata.
+  const fuori = selezionaGiocate([c], stato({ bankroll: 200, distanzaStop: 0.9 }));
+  assert.equal(fuori.giocate.length, 0);
+  assert.equal(motivi(fuori)[c.id], 'puntata ridotta sotto il minimo (stop settimanale)');
 });
 test('distanzaStop 5 con più candidati: somma delle puntate proposte ≤ 5 €', () => {
   const cs = Array.from({ length: 6 }, (_, i) => candidato({ prob: 0.56 + i * 0.01, quota: 1.92 }));
@@ -124,10 +132,87 @@ test('distanzaStop 5 con più candidati: somma delle puntate proposte ≤ 5 €'
   const somma = r.giocate.reduce((a, g) => a + g.puntata.euro, 0);
   assert.ok(r.giocate.length > 0);
   assert.ok(somma <= 5 + 1e-9, `somma ${somma}`);
-  assert.ok(r.scartate.some((x) => x.motivo === 'stop settimanale'));
+  assert.ok(r.giocate.every((g) => g.puntata.euro >= 1 && g.puntata.ridotta.motivo === 'stop settimanale'));
+  assert.ok(r.scartate.some((x) => x.motivo === 'puntata ridotta sotto il minimo (stop settimanale)'));
 });
 test('tetto giornaliero più stretto della distanza dallo stop: motivo resta "tetto giornaliero"', () => {
   const c = candidato({ prob: 0.61, quota: 1.85 });
   const r = selezionaGiocate([c], stato({ bankroll: 200, inGiocoOggi: 20, distanzaStop: 30 }));
-  assert.equal(motivi(r)[c.id], 'tetto giornaliero');
+  assert.deepEqual(r.giocate[0].puntata.ridotta, { da: 6, motivo: 'tetto giornaliero' });
+});
+
+// --- Puntate ridotte in proporzione (tetto giornaliero e stop settimanale) ---
+
+// 10 singole da 5 € con bankroll 200 (Kelly 2,5-2,7%), value crescente con l'indice.
+// Quota 2,50: due gambe fanno 6,25, oltre il massimo della multipla, quindi nessuna multipla.
+const dieciDa5 = () => Array.from({ length: 10 }, (_, i) => candidato({ prob: 0.46 + i * 0.0005, quota: 2.5 }));
+const somma = (r) => r.giocate.reduce((a, g) => a + Math.round(g.puntata.euro * 100), 0) / 100;
+
+test('somma delle puntate sotto il limite: puntate invariate, nessun "ridotta"', () => {
+  const cs = dieciDa5().slice(0, 4);
+  const r = selezionaGiocate(cs, stato({ bankroll: 200 }));
+  assert.equal(r.giocate.length, 4);
+  assert.ok(r.giocate.every((g) => g.puntata.euro === 5 && !('ridotta' in g.puntata)));
+  assert.equal(r.scartate.length, 0);
+});
+test('10 giocate da 5 € con limite 24: tutte presenti, ognuna 2,40 €, motivo tetto giornaliero', () => {
+  const cs = dieciDa5();
+  const r = selezionaGiocate(cs, stato({ bankroll: 200 }));
+  assert.equal(r.giocate.length, 10);
+  assert.equal(r.scartate.length, 0);
+  for (const g of r.giocate) {
+    assert.equal(g.puntata.euro, 2.4);
+    assert.equal(g.puntata.percentuale, 1.2);
+    assert.deepEqual(g.puntata.ridotta, { da: 5, motivo: 'tetto giornaliero' });
+  }
+  assert.ok(somma(r) <= 24, `somma ${somma(r)}`);
+});
+test('riduzione sotto 1 €: esce la giocata col value più basso, le altre ricalcolate', () => {
+  // Limite 9 €: 10 × 5 € → 0,90 € ciascuna, sotto il minimo; tolta la peggiore, 9 × 1,00 €.
+  const cs = dieciDa5();
+  const r = selezionaGiocate(cs, stato({ bankroll: 200, inGiocoOggi: 15 }));
+  assert.equal(r.giocate.length, 9);
+  assert.deepEqual(r.scartate, [{ idCandidato: cs[0].id, motivo: 'puntata ridotta sotto il minimo (tetto giornaliero)' }]);
+  assert.ok(r.giocate.every((g) => g.puntata.euro === 1 && g.puntata.ridotta.da === 5));
+  assert.ok(somma(r) <= 9, `somma ${somma(r)}`);
+});
+test('limite dato dallo stop (distanzaStop 10 < tetto): motivo "stop settimanale"', () => {
+  const r = selezionaGiocate(dieciDa5(), stato({ bankroll: 200, distanzaStop: 10 }));
+  assert.equal(r.giocate.length, 10);
+  assert.ok(r.giocate.every((g) => g.puntata.euro === 1));
+  assert.ok(r.giocate.every((g) => g.puntata.ridotta.motivo === 'stop settimanale'));
+  assert.ok(somma(r) <= 10);
+});
+test('residuo del tetto 1,50 € e due giocate: resta solo quella col value più alto', () => {
+  const [a, b] = dieciDa5().slice(0, 2);
+  const r = selezionaGiocate([a, b], stato({ bankroll: 200, inGiocoOggi: 22.5 }));
+  assert.deepEqual(r.giocate.map((g) => g.id), [b.id]);
+  assert.equal(r.giocate[0].puntata.euro, 1.5);
+  assert.equal(r.giocate[0].puntata.percentuale, 0.75);
+  assert.deepEqual(r.giocate[0].puntata.ridotta, { da: 5, motivo: 'tetto giornaliero' });
+  assert.deepEqual(r.scartate, [{ idCandidato: a.id, motivo: 'puntata ridotta sotto il minimo (tetto giornaliero)' }]);
+});
+test('residuo sotto 1 €: nessuna giocata, scartate tutte per puntata ridotta sotto il minimo', () => {
+  const cs = dieciDa5().slice(0, 3);
+  const r = selezionaGiocate(cs, stato({ bankroll: 200, inGiocoOggi: 23.5 }));
+  assert.equal(r.giocate.length, 0);
+  assert.equal(r.scartate.length, 3);
+  assert.ok(r.scartate.every((s) => s.motivo === 'puntata ridotta sotto il minimo (tetto giornaliero)'));
+});
+test('arrotondamento ai 10 centesimi per difetto: la somma non supera mai il limite', () => {
+  // Limite 7 €, tre giocate da 5 €: 7/15 × 5 = 2,333 → 2,30 € ciascuna, somma 6,90.
+  const cs = dieciDa5().slice(0, 3);
+  const r = selezionaGiocate(cs, stato({ bankroll: 200, inGiocoOggi: 17 }));
+  assert.deepEqual(r.giocate.map((g) => g.puntata.euro), [2.3, 2.3, 2.3]);
+  assert.ok(somma(r) <= 7);
+});
+test('riduzione anche per multiple e speciali: tutte con "ridotta", somma ≤ limite', () => {
+  // Quote 1,90: si formano due multiple da 2 €; una speciale da 2 €; 4 singole da 6 €. Limite 20 € su 30.
+  const cs = [...Array.from({ length: 4 }, (_, i) => candidato({ prob: 0.60 + i * 0.005, quota: 1.90 })),
+    candidato({ prob: 0.33, quota: 3.5 })];
+  const r = selezionaGiocate(cs, stato({ bankroll: 200, inGiocoOggi: 4 }));
+  assert.ok(r.giocate.some((g) => g.tipo === 'multipla'));
+  assert.ok(r.giocate.some((g) => g.tipo === 'speciale'));
+  assert.ok(r.giocate.every((g) => g.puntata.ridotta?.motivo === 'tetto giornaliero' && g.puntata.euro >= 1));
+  assert.ok(somma(r) <= 20, `somma ${somma(r)}`);
 });
