@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { scarica } from '../../calcio/fonti/http.js';
 import { leggiXlsx } from '../xlsx.js';
 
@@ -68,14 +70,36 @@ export const tennisData = {
   async partite(anno, circuito, opz = {}) {
     const url = await this.fileStagione(anno, circuito, opz);
     const r = await scarica(url, { ...opzioni(opz), binario: true });
-    const leggi = opz.leggi ?? leggiXlsx;
-    const righe = leggi(r.corpo);
-    const partite = righe.map(converti).filter(Boolean);
-    // Righe presenti ma nessuna convertita: il formato del file è cambiato, non è una stagione vuota.
-    if (righe.length && !partite.length) throw new Error('tennis-data.co.uk: nessuna riga leggibile (formato cambiato?)');
-    return partite;
+    return partiteDaFile(r.corpo, opz.leggi);
   },
 };
+
+function partiteDaFile(corpo, leggi = leggiXlsx) {
+  const righe = leggi(corpo);
+  const partite = righe.map(converti).filter(Boolean);
+  // Righe presenti ma nessuna convertita: il formato del file è cambiato, non è una stagione vuota.
+  if (righe.length && !partite.length) throw new Error('tennis-data.co.uk: nessuna riga leggibile (formato cambiato?)');
+  return partite;
+}
+
+// Cloudflare blocca tennis-data.co.uk dai server (GitHub Actions e sessioni cloud): i file
+// scaricati a mano dal browser stanno in <cartella>/<circuito>/<anno>.xlsx e hanno la precedenza.
+// Se il file manca si prova a scaricarlo; se anche questo fallisce l'errore dice dove caricarlo.
+export function conStoricoLocale(fonte, cartella, { leggi = leggiXlsx } = {}) {
+  return {
+    ...fonte,
+    async partite(anno, circuito, opz = {}) {
+      const file = join(cartella, circuito, `${anno}.xlsx`);
+      if (existsSync(file)) return partiteDaFile(readFileSync(file), leggi);
+      try {
+        return await fonte.partite(anno, circuito, opz);
+      } catch (e) {
+        if (e?.status === 403) e.message += ` (carica il file a mano in ${file})`;
+        throw e;
+      }
+    },
+  };
+}
 
 // A gennaio il file dell'anno nuovo può non essere ancora pubblicato: un 404 sul file
 // dell'anno di `data` è previsto e non va segnalato come errore.

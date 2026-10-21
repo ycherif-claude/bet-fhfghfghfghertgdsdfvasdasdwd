@@ -10,7 +10,7 @@ import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/te
 import { abbinaGiocatore } from './giocatori.js';
 import { calcolaElo, eloDefault, pesoModelloPartita, probVittoria } from './elo.js';
 import { oddsTennis } from './fonti/odds-tennis.js';
-import { fileNonAncoraPubblicato, tennisData } from './fonti/tennis-data.js';
+import { conStoricoLocale, fileNonAncoraPubblicato, tennisData } from './fonti/tennis-data.js';
 import { bestOfDi, superficieNota } from './tornei.js';
 import { aggiornaEsitiGiroTennis } from './esiti.js';
 
@@ -383,7 +383,7 @@ async function principale() {
   }
   const dirData = 'data';
   const chiavi = { oddsApi: process.env.ODDS_API_KEY };
-  const fonti = { oddsTennis, tennisData };
+  const fonti = { oddsTennis, tennisData: conStoricoLocale(tennisData, join(dirData, 'storico-tennis')) };
   let raccolta;
   try {
     raccolta = await eseguiRaccoltaTennis({ data, adesso, fonti, chiavi, dirData });

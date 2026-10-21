@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { scarica } from '../../src/calcio/fonti/http.js';
-import { tennisData } from '../../src/tennis/fonti/tennis-data.js';
+import { conStoricoLocale, tennisData } from '../../src/tennis/fonti/tennis-data.js';
 import { oddsTennis } from '../../src/tennis/fonti/odds-tennis.js';
 
 const leggi = (nome) => readFileSync(new URL(`../fixtures/tennis/${nome}`, import.meta.url), 'utf8');
@@ -138,4 +140,38 @@ test('partite: righe presenti ma nessuna leggibile → errore "formato cambiato?
     { message: 'tennis-data.co.uk: nessuna riga leggibile (formato cambiato?)' },
   );
   assert.deepEqual(await tennisData.partite(2026, 'atp', { fetch: f(), attesaMs: 0, leggi: () => [] }), []);
+});
+
+test('conStoricoLocale: il file caricato a mano ha la precedenza, senza scaricare nulla', async () => {
+  const cartella = mkdtempSync(join(tmpdir(), 'storico-tennis-'));
+  mkdirSync(join(cartella, 'wta'));
+  writeFileSync(join(cartella, 'wta', '2026.xlsx'), Buffer.from([7, 7]));
+  let ricevuto = null;
+  const leggiFinto = (b) => { ricevuto = b; return [{ Date: '2026-10-19', Winner: 'Paolini J.', Loser: 'Jovic I.', Surface: 'Hard' }]; };
+  let chiamate = 0;
+  const remota = { partite: async () => { chiamate++; return []; } };
+  const p = await conStoricoLocale(remota, cartella, { leggi: leggiFinto }).partite(2026, 'wta');
+  assert.deepEqual(ricevuto, Buffer.from([7, 7]));
+  assert.equal(p.length, 1);
+  assert.equal(p[0].vincitore, 'Paolini J.');
+  assert.equal(chiamate, 0);
+});
+
+test('conStoricoLocale: senza file scarica; un 403 dice dove caricare il file', async () => {
+  const cartella = mkdtempSync(join(tmpdir(), 'storico-tennis-'));
+  const ok = conStoricoLocale({ partite: async (anno, circuito) => [{ anno, circuito }] }, cartella);
+  assert.deepEqual(await ok.partite(2025, 'atp'), [{ anno: 2025, circuito: 'atp' }]);
+  const bloccata = conStoricoLocale({
+    partite: async () => { throw Object.assign(new Error('www.tennis-data.co.uk: HTTP 403'), { status: 403 }); },
+  }, cartella);
+  await assert.rejects(bloccata.partite(2026, 'wta'), (e) => {
+    assert.equal(e.status, 403);
+    assert.equal(e.message, `www.tennis-data.co.uk: HTTP 403 (carica il file a mano in ${join(cartella, 'wta', '2026.xlsx')})`);
+    return true;
+  });
+  // Un 404 (file dell'anno nuovo non ancora pubblicato) resta com'è, così fileNonAncoraPubblicato lo riconosce.
+  const assente = conStoricoLocale({
+    partite: async () => { throw Object.assign(new Error('non trovato'), { status: 404 }); },
+  }, cartella);
+  await assert.rejects(assente.partite(2026, 'atp'), { message: 'non trovato', status: 404 });
 });

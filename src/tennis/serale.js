@@ -15,7 +15,7 @@ import { costruisciCandidati } from '../giro/candidati.js';
 import { istanteRoma, orarioSerale } from '../nba/serale.js';
 import { budgetSerale, raccogliTennis, raccoltaDiErrore } from './raccolta.js';
 import { oddsTennis } from './fonti/odds-tennis.js';
-import { tennisData } from './fonti/tennis-data.js';
+import { conStoricoLocale, tennisData } from './fonti/tennis-data.js';
 
 export const MOTIVO_MULTIPLA = 'nessuna multipla nel giro serale';
 export const MOTIVO_LIMITE_SINGOLE = 'limite giornaliero singole';
@@ -300,7 +300,7 @@ async function principale() {
   }
   if (comando === '--raccolta') {
     const r = await raccoltaSeraleTennis({
-      data, adesso, fonti: { oddsTennis, tennisData }, chiavi: { oddsApi: process.env.ODDS_API_KEY }, dirData,
+      data, adesso, fonti: { oddsTennis, tennisData: conStoricoLocale(tennisData, path.join(dirData, 'storico-tennis')) }, chiavi: { oddsApi: process.env.ODDS_API_KEY }, dirData,
     });
     console.log(`Raccolta serale tennis ${data}: ${r.partite.length} partite notturne, ${r.erroriGiro.length} errori, crediti usati ${r.crediti.usati}`);
     for (const e of r.erroriGiro) console.log(`- ${e}`);

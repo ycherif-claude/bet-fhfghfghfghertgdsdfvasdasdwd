@@ -111,11 +111,30 @@ Senza questi due segreti le quote serali vengono salvate ma la routine non parte
 
 ## Tennis: mercato, ritiri e giro della sera prima
 
-Le giocate di tennis si costruiscono ogni mattina insieme a quelle di calcio e NBA, con dati gratuiti. **Non servono chiavi nuove**: il tennis usa la stessa chiave di The Odds API del calcio (`ODDS_API_KEY`), e lo storico delle partite viene da tennis-data.co.uk, che è gratuito e senza chiave. Se i crediti giornalieri di The Odds API non bastano per un torneo, quel torneo resta scoperto e la pagina lo dice.
+Le giocate di tennis si costruiscono ogni mattina insieme a quelle di calcio e NBA, con dati gratuiti. **Non servono chiavi nuove**: il tennis usa la stessa chiave di The Odds API del calcio (`ODDS_API_KEY`), e lo storico delle partite viene da tennis-data.co.uk, che è gratuito e senza chiave ma va caricato a mano (vedi "Lo storico caricato a mano"). Se i crediti giornalieri di The Odds API non bastano per un torneo, quel torneo resta scoperto e la pagina lo dice.
 
 ### Il mercato
 
 C'è un solo mercato: **Vincente incontro**, cioè chi vince la partita. La scheda spiega in parole semplici come si gioca. Game, set, handicap e risultato esatto non ci sono: non esistono quote gratuite affidabili.
+
+### Lo storico caricato a mano
+
+tennis-data.co.uk è protetto da Cloudflare, che blocca le richieste dai server: la raccolta automatica (GitHub Actions e routine) riceve `HTTP 403`. Senza storico il modello Elo non si calcola e le partite restano "solo Pinnacle", cioè senza giocate.
+
+Per questo i file dello storico si caricano a mano, da browser, nella cartella `data/storico-tennis/`. Se un file c'è, la raccolta usa quello e non prova a scaricarlo; se manca, prova a scaricarlo e, se riceve 403, l'errore della giornata dice quale file caricare.
+
+| File | Dove si trova su tennis-data.co.uk (pagina "All data") |
+|---|---|
+| `data/storico-tennis/atp/2026.xlsx` | uomini, 2026 |
+| `data/storico-tennis/atp/2025.xlsx` | uomini, 2025 |
+| `data/storico-tennis/atp/2024.xlsx` | uomini, 2024 |
+| `data/storico-tennis/wta/2026.xlsx` | donne, 2026 |
+| `data/storico-tennis/wta/2025.xlsx` | donne, 2025 |
+| `data/storico-tennis/wta/2024.xlsx` | donne, 2024 |
+
+Il nome resta quello del sito (`2026.xlsx`): conta solo la cartella, `atp` o `wta`. I file del 2024 e del 2025 si caricano una volta sola; quelli del 2026 vanno ricaricati più o meno **una volta a settimana**, così l'Elo include le partite recenti. Gli esiti delle giocate non dipendono da questi file: se lo storico è vecchio, si prendono dai risultati di The Odds API, se i crediti lo permettono.
+
+Dal telefono: apri tennis-data.co.uk, scarica i file, poi su github.com apri il repository (in "versione desktop" se serve), entra in `data/storico-tennis/wta` (o `atp`), tocca **Add file → Upload files**, scegli il file e conferma con **Commit changes** su `main`. Se esiste già un file con lo stesso nome, viene sostituito.
 
 ### I ritiri
 
