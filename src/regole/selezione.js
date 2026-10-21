@@ -79,7 +79,7 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPie
     if (!datiOk) { scarta(g.id, MOTIVO_DATI_BANKROLL); continue; }
     daPuntare.push(g);
   }
-  if (giornataPiena) return { giocate: daPuntare.map((g) => conPuntataFissa(g, bankroll)), scartate };
+  if (giornataPiena === true) return { giocate: daPuntare.map((g) => conPuntataFissa(g, bankroll)), scartate };
   const giocate = applicaTetto(daPuntare, { limite: CONFIG.tettoGiornaliero * bankroll - inGiocoOggi, bankroll });
   return { giocate, scartate };
 }
