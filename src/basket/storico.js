@@ -1,6 +1,6 @@
 // Storico di Eurolega e NBL salvato in data/storico/<campionato>.json e aggiornato ogni mattina.
-// Si scaricano per giornata (round) solo le partite finite: la stagione precedente una volta sola,
-// quella in corso dall'ultima giornata già salvata in avanti, fino alla prima giornata senza partite finite.
+// Si scaricano per giornata (round) solo le partite finite: quella in corso dall'ultima giornata già salvata
+// in avanti, fino alla prima giornata senza partite finite; la stagione precedente una volta sola.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dataRoma, isoRoma } from '../calcio/testo.js';
@@ -40,7 +40,8 @@ export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, ad
   let richieste = 0;
   let scartate = 0;
   let cambiato = false;
-  for (const stagione of [corrente - 1, corrente]) {
+  // Prima la stagione in corso (modello di oggi ed esiti): se la fonte limita le richieste, la precedente aspetta domani.
+  for (const stagione of [corrente, corrente - 1]) {
     if (complete.has(stagione)) continue;
     const giornate = [...perId.values()].filter((p) => p.stagione === stagione).map((p) => p.giornata);
     let giornata = giornate.length ? Math.max(...giornate) : 1;

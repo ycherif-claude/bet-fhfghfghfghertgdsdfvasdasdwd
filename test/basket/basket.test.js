@@ -110,7 +110,7 @@ test('storico: stagione precedente una volta sola, quella in corso dall\'ultima 
   const giornate = { 2025: { 1: [partita(2025, 1, 1)], 2: [partita(2025, 2, 1)] }, 2026: { 1: [partita(2026, 1, 1)], 2: [partita(2026, 2, 1)] } };
   const a = fonteFinta(giornate);
   const r = await aggiornaStorico({ campionato: 'eurolega', nomeFonte: 'API Eurolega', dirData: dir, data: '2026-10-21', adesso, scarica: a.scarica, errore, pausaMs: 0 });
-  assert.deepEqual(a.chiamate, ['2025/1', '2025/2', '2025/3', '2026/1', '2026/2', '2026/3']);
+  assert.deepEqual(a.chiamate, ['2026/1', '2026/2', '2026/3', '2025/1', '2025/2', '2025/3']);
   assert.equal(r.partite.length, 4);
   const salvato = JSON.parse(readFileSync(join(dir, 'storico', 'eurolega.json'), 'utf8'));
   assert.deepEqual(salvato.stagioniComplete, [2025]);
