@@ -10,7 +10,7 @@ Prima delle "idee per dopo" del documento di progetto (§10).
 - Cambi del giro serale: confermata, modificata, annullata.
 - Errori del sistema.
 
-Gli esiti **no**: restano sul sito.
+Esiti (aggiunti il 21/10/2026 **[utente]**): vinta, persa, rimborsata, **solo delle giocate segnate come fatte** (ultima segnatura con `fatta: true`), con quota e puntata reali, guadagno o perdita e bankroll aggiornato con le regole del sito. Si guardano le giornate degli ultimi 13 giorni.
 
 ## Come [scelta di Claude]
 

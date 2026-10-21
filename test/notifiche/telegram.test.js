@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { eseguiConRipiego, eseguiNotifiche, messaggi, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
+import { eseguiConRipiego, eseguiNotifiche, messaggi, messaggiEsiti, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
 
 const OGGI = '2026-10-22';
 const mattina = new Date('2026-10-22T07:30:00Z'); // 09:30 a Roma
@@ -118,4 +118,27 @@ test('chat id sbagliato: si usa la chat privata dei messaggi al bot e si dice il
   assert.equal(r.mandati, 1);
   assert.match(inviati[0], /chat id giusto è <b>987654321<\/b>/);
   assert.match(inviati[1], /Giocate di oggi/);
+});
+
+test('esiti: solo le giocate segnate come fatte, con quota e puntata reali e il bankroll; una volta sola', () => {
+  const ieri = { data: '2026-10-21', giocate: [
+    giocata('v', { esito: 'vinta', inizio: '2026-10-21T20:45:00+02:00' }),
+    giocata('p', { esito: 'persa', inizio: '2026-10-21T18:00:00+02:00', partita: 'Milan - Juventus' }),
+    giocata('s', { esito: 'vinta', inizio: '2026-10-21T18:00:00+02:00', partita: 'Saltata - Mai' }),
+    giocata('n', { esito: null, inizio: '2026-10-21T18:00:00+02:00' }),
+  ] };
+  const segnature = [
+    { idGiocata: 'v', fatta: true, quotaReale: 2.65, puntataReale: 2, ora: '2026-10-21T10:00:00Z' },
+    { idGiocata: 'p', fatta: true, quotaReale: 1.9, puntataReale: 4, ora: '2026-10-21T10:00:00Z' },
+    { idGiocata: 's', fatta: false, quotaReale: null, puntataReale: null, ora: '2026-10-21T10:00:00Z' },
+    { idGiocata: 'n', fatta: true, quotaReale: 2, puntataReale: 2, ora: '2026-10-21T10:00:00Z' },
+  ];
+  const ms = messaggiEsiti({ giornate: [ieri], segnature, inviate: new Set(), adesso: mattina });
+  assert.equal(ms.length, 2);
+  assert.match(ms[0].testo, /^✅ <b>VINTA<\/b> · ⚽ <b>Inter - Roma<\/b>\n1X2 → 1\nquota 2,65 · puntata 2 € → <b>\+3,30 €<\/b>$/);
+  assert.match(ms[1].testo, /^❌ <b>PERSA<\/b> · ⚽ <b>Milan - Juventus<\/b>/);
+  assert.match(ms[1].testo, /→ <b>−4,00 €<\/b>\n\nBankroll: <b>199,30 €<\/b>/);
+  assert.ok(!ms.some((m) => m.testo.includes('Saltata')));
+  const inviate = new Set(ms.map((m) => m.chiave));
+  assert.deepEqual(messaggiEsiti({ giornate: [ieri], segnature, inviate, adesso: mattina }), []);
 });

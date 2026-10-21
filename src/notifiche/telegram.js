@@ -1,11 +1,15 @@
-// Notifiche Telegram: giocate del giorno, cambi di stato (giro serale e controlli prima delle partite) ed errori.
+// Notifiche Telegram: giocate del giorno, cambi di stato (giro serale e controlli prima delle partite),
+// esiti delle giocate fatte ed errori.
 // Si confronta la giornata di oggi con quello che è già stato mandato (data/stato/telegram.json):
-// ogni messaggio ha una chiave e parte una volta sola. Gli esiti restano sul sito (scelta dell'utente).
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+// ogni messaggio ha una chiave e parte una volta sola. Gli esiti si mandano solo per le giocate
+// segnate come fatte sul sito, con quota e puntata reali [utente].
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { giornataDi, partiRoma } from '../bankroll/settimana.js';
 import { oraRoma } from '../calcio/testo.js';
+import { leggiJson, erroreSegnatura } from '../build/costruisci-sito.js';
+import { statoBankroll } from '../bankroll/bankroll.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -107,6 +111,64 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   return out;
 }
 
+const ESITO = { vinta: '✅ <b>VINTA</b>', persa: '❌ <b>PERSA</b>', rimborsata: '↩️ <b>RIMBORSATA</b>' };
+const euro = (n) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toFixed(2).replace('.', ',')} €`;
+
+// Esiti delle giocate fatte (ultima segnatura con fatta: true), una volta per giocata ed esito.
+// `giornate`: [{ data, giocate }] degli ultimi giorni; `segnature`: tutte, anche le annullate dopo.
+// `tutteGiornate`: tutte le giornate salvate, per il bankroll (che conta tutto lo storico).
+export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiornate = giornate }) {
+  const ultima = new Map();
+  for (const sg of segnature) {
+    const prec = ultima.get(sg.idGiocata);
+    if (!prec || Date.parse(sg.ora) >= Date.parse(prec.ora)) ultima.set(sg.idGiocata, sg);
+  }
+  const tutte = tutteGiornate.flatMap((x) => valide(x));
+  const out = [];
+  for (const x of giornate) {
+    for (const g of valide(x)) {
+      const sg = ultima.get(g.id);
+      if (!ESITO[g.esito] || !sg?.fatta) continue;
+      const chiave = `${x.data}|esito|${g.id}|${g.esito}`;
+      if (inviate.has(chiave)) continue;
+      const profitto = g.esito === 'vinta' ? sg.puntataReale * (sg.quotaReale - 1) : g.esito === 'persa' ? -sg.puntataReale : 0;
+      const gambaRimborsata = g.esito === 'vinta' && Array.isArray(g.gambe) && g.gambe.some((y) => y.esito === 'rimborsata');
+      const titolo = Array.isArray(g.gambe) && g.gambe.length
+        ? `<b>${g.tipo === 'builder' ? 'Builder' : 'Multipla'} (${g.gambe.length} gambe)</b>: ${g.gambe.map((y) => html(y.partita)).join(' + ')}`
+        : `${SIMBOLO[g.sport] ?? '•'} <b>${html(g.partita)}</b>\n${html(g.mercato)} → ${html(g.selezione)}`;
+      out.push({ chiave, giocata: g, testo: [
+        `${ESITO[g.esito]} · ${titolo}`,
+        `quota ${virgola(sg.quotaReale)} · puntata ${String(sg.puntataReale).replace('.', ',')} € → <b>${euro(profitto)}</b>${gambaRimborsata ? ' (una gamba rimborsata: l\'importo reale è più basso, controllalo)' : ''}`,
+      ].join('\n') });
+    }
+  }
+  if (out.length) {
+    // Bankroll dopo questi esiti, con le stesse regole del sito.
+    const b = statoBankroll(tutte, segnature, adesso);
+    out.at(-1).testo += `\n\nBankroll: <b>${b.bankroll.toFixed(2).replace('.', ',')} €</b> · settimana ${euro(b.risultatoSettimana)}`;
+  }
+  return out;
+}
+
+// Giornate degli ultimi `giorni` giorni (file data/giornate/AAAA-MM-GG.json), le illeggibili saltate.
+function leggiGiornateRecenti(dirData, oggi, giorni) {
+  const limite = new Date(Date.parse(`${oggi}T00:00:00Z`) - giorni * 86400000).toISOString().slice(0, 10);
+  const cartella = join(dirData, 'giornate');
+  if (!existsSync(cartella)) return [];
+  const out = [];
+  for (const nome of readdirSync(cartella).sort()) {
+    const m = /^(\d{4}-\d{2}-\d{2})\.json$/.exec(nome);
+    if (!m || m[1] < limite || m[1] > oggi) continue;
+    try {
+      const j = JSON.parse(readFileSync(join(cartella, nome), 'utf8'));
+      out.push({ ...j, data: j.data ?? m[1] });
+    } catch {
+      // Un file rotto lo segnala già la pagina.
+    }
+  }
+  return out;
+}
+
 // Stato: chiavi già mandate degli ultimi 14 giorni.
 export function leggiInviate(file) {
   try {
@@ -149,6 +211,11 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
     }
   }
   const lista = messaggi({ giornata, oggi, adesso, inviate, run, sito });
+  // Esiti: le giornate fino a 13 giorni fa (le chiavi restano 14 giorni, niente doppioni).
+  const segnature = leggiJson(dirData, 'segnature', []).map((x) => x.contenuto).filter((x) => x && !erroreSegnatura(x));
+  lista.push(...messaggiEsiti({
+    giornate: leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1), tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
+  }));
   let mandati = 0;
   try {
     for (const m of lista) {

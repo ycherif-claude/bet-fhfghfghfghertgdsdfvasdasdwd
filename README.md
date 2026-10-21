@@ -244,7 +244,9 @@ Un bot Telegram ti scrive:
 - **i cambi del giro serale**: giocata confermata, modificata (con la quota nuova) o annullata, con il motivo;
 - **gli errori del sistema**: righe nuove fra gli errori della giornata, un'Action fallita, la giornata non scritta entro le 12:00.
 
-Gli esiti restano sul sito. Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`). Le righe solo informative ("partite già iniziate", i 429 di TheSportsDB mentre lo storico si completa) non si notificano.
+- **gli esiti** (vinta, persa, rimborsata) **solo delle giocate segnate come fatte** sul sito, con la quota e la puntata reali, il guadagno o la perdita e il bankroll aggiornato. Le giocate saltate o non segnate non mandano niente.
+
+Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`). Le righe solo informative ("partite già iniziate", i 429 di TheSportsDB mentre lo storico si completa) non si notificano.
 
 ### Come attivarle
 
