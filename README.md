@@ -9,6 +9,7 @@ Il repository e il sito sono **pubblici**: nessuna password, per scelta. Il sito
 - I dati stanno in `data/` (giornate in `data/giornate/`, segnature in `data/segnature/`).
 - A ogni push su `main`, a mano e ogni ora (al minuto 15) una GitHub Action esegue i test, costruisce `site/dati.json` e pubblica la cartella `site/` su GitHub Pages. La ricostruzione oraria serve ad aggiornare "oggi" e i promemoria.
 - Nella pagina del giorno, "Giocata" (o "Saltata") scrive un file in `data/segnature/` tramite l'API di GitHub; "Annulla segnatura" lo cancella. Il bankroll si aggiorna dopo la ripubblicazione (1-2 minuti).
+- Con "Giocata" scegli anche il bookmaker (bet365, Sportium, Betfair, Snai, Goldbet, DAZN Bet; proposto bet365). Gioca dove la quota è più alta, purché non sotto la quota minima della scheda. Per Betfair scrivi la quota al netto della commissione. Lo storico ha la tabella "Per bookmaker".
 
 ## Token per segnare le giocate
 

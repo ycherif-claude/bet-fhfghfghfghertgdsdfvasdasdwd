@@ -1,4 +1,4 @@
-import { costruisciSegnatura, salvaSegnatura, cancellaSegnatura, leggiImpostazioni, salvaImpostazioni, cancellaToken } from './giocata.js';
+import { BOOKMAKER, costruisciSegnatura, salvaSegnatura, cancellaSegnatura, leggiImpostazioni, salvaImpostazioni, cancellaToken } from './giocata.js';
 
 // Pagina del giorno. Modulo ES usato sia dal browser sia dai test in Node:
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
@@ -132,18 +132,19 @@ const leggiNumero = (testo) => (String(testo).trim() === '' ? NaN : Number(Strin
 
 const virgola = (n) => String(n).replace('.', ',');
 
-// Testo dei campi quota/puntata: quanto scritto dall'utente (`digitati`) se c'è,
+// Testo dei campi quota/puntata/bookmaker: quanto scritto dall'utente (`digitati`) se c'è,
 // altrimenti i valori consigliati. Così un errore non rimette i consigliati.
 export function valoriCampi(giocata, digitati) {
   return {
     quota: digitati?.quota ?? (giocata.quota ? virgola(giocata.quota) : ''),
     puntata: digitati?.puntata ?? virgola(giocata.puntata.euro),
+    bookmaker: digitati?.bookmaker ?? BOOKMAKER[0],
   };
 }
 
 function testoSegnatura(s) {
   return s.fatta
-    ? `Segnata come giocata: quota ${fmtQuota.format(s.quotaReale)}, puntata ${euro(s.puntataReale)}`
+    ? `Segnata come giocata: quota ${fmtQuota.format(s.quotaReale)}, puntata ${euro(s.puntataReale)}${s.bookmaker ? ` su ${s.bookmaker}` : ''}`
     : 'Segnata come saltata';
 }
 
@@ -154,7 +155,7 @@ function renderSegnatura(giocata, iniziale) {
   let corrente = iniziale;
   let messaggio = null; // { testo, errore }
   let occupato = false;
-  let digitati = null; // { quota, puntata } scritti dall'utente; azzerati solo dopo un salvataggio riuscito
+  let digitati = null; // { quota, puntata, bookmaker } scritti dall'utente; azzerati solo dopo un salvataggio riuscito
 
   const esegui = async (azione, riuscita) => {
     occupato = true;
@@ -183,16 +184,18 @@ function renderSegnatura(giocata, iniziale) {
       const valori = valoriCampi(giocata, digitati);
       const quota = el('input', { id: `${id}-quota`, type: 'text', inputmode: 'decimal', size: '5', value: valori.quota });
       const puntata = el('input', { id: `${id}-puntata`, type: 'text', inputmode: 'decimal', size: '5', value: valori.puntata });
-      const ricorda = () => { digitati = { quota: quota.value, puntata: puntata.value }; };
+      const bookmaker = el('select', { id: `${id}-bookmaker` }, ...BOOKMAKER.map((b) => el('option', { value: b, selected: b === valori.bookmaker ? '' : null }, b)));
+      const ricorda = () => { digitati = { quota: quota.value, puntata: puntata.value, bookmaker: bookmaker.value }; };
       quota.addEventListener('input', ricorda);
       puntata.addEventListener('input', ricorda);
+      bookmaker.addEventListener('change', ricorda);
       const bottone = (testo, classe, fatta) => {
         const b = el('button', { type: 'button', class: classe, disabled: occupato ? '' : null }, testo);
         b.addEventListener('click', () => {
           ricorda();
           let segnatura;
           try {
-            segnatura = costruisciSegnatura({ idGiocata: giocata.id, fatta, quotaReale: leggiNumero(quota.value), puntataReale: leggiNumero(puntata.value) }, new Date());
+            segnatura = costruisciSegnatura({ idGiocata: giocata.id, fatta, quotaReale: leggiNumero(quota.value), puntataReale: leggiNumero(puntata.value), bookmaker: bookmaker.value }, new Date());
           } catch (e) {
             messaggio = { testo: e.message, errore: true };
             disegna();
@@ -206,7 +209,9 @@ function renderSegnatura(giocata, iniziale) {
         el('div', { class: 'campi' },
           el('label', { for: `${id}-quota` }, 'Quota reale', quota),
           el('label', { for: `${id}-puntata` }, 'Puntata reale (€)', puntata),
+          el('label', { for: `${id}-bookmaker` }, 'Bookmaker', bookmaker),
         ),
+        el('p', { class: 'nota' }, 'Betfair: scrivi la quota al netto della commissione.'),
         el('div', { class: 'azioni' }, bottone('Giocata', 'primario', true), bottone('Saltata', 'secondario', false)),
       );
     }

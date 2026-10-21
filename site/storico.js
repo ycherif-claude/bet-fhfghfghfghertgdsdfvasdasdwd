@@ -94,6 +94,8 @@ const TABELLE = [
   { chiave: 'tipo', titolo: 'Per tipo di giocata' },
   { chiave: 'mercato', titolo: 'Per mercato' },
   { chiave: 'quotaDaVerificare', titolo: 'Quota verificata o da verificare' },
+  // Il bookmaker si conosce solo per le giocate fatte davvero.
+  { chiave: 'bookmaker', titolo: 'Per bookmaker', soloFatte: true },
 ];
 
 function renderTabella({ chiave, titolo }, righe) {
@@ -140,7 +142,7 @@ function avvia(dati) {
   const elenco = document.getElementById('elenco');
   const disegna = () => {
     const r = dati.storico.riepiloghi[vista];
-    riepiloghi.replaceChildren(...TABELLE.map((t) => renderTabella(t, r[t.chiave] ?? [])));
+    riepiloghi.replaceChildren(...TABELLE.filter((t) => !t.soloFatte || vista === 'fatte').map((t) => renderTabella(t, r[t.chiave] ?? [])));
     const righe = righeVista(dati.storico.righe ?? [], vista);
     elenco.replaceChildren(...(righe.length ? righe.map((r) => schedaSicura(r.giocata?.id, () => renderRiga(r))) : [el('p', { class: 'vuoto' }, 'Ancora nessuna giocata chiusa')]));
     for (const b of interruttore.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.vista === vista));

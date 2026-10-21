@@ -26,7 +26,7 @@ Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte 
    - indica se il modello è troppo ottimista o troppo prudente.
 4. **"Quota da verificare su bet365":** come vanno rispetto alle giocate con quota gratuita.
 5. **Correzioni dalle notizie:** le giocate con `correzioneNotizie` rendono meglio o peggio di quelle senza?
-6. **Quote prese davvero:** dalle segnature, confronta `quotaReale` con la quota mostrata e con la quota minima. Sono spesso sotto la minima, cioè la giocata non andava fatta?
+6. **Quote prese davvero:** dalle segnature, confronta `quotaReale` con la quota mostrata e con la quota minima. Sono spesso sotto la minima, cioè la giocata non andava fatta? Con il campo `bookmaker` delle segnature (assente in quelle vecchie: "non indicato"): su quali bookmaker gioca l'utente, con che risultati, e quanto ha guadagnato in quota rispetto alla quota mostrata (bet365 o fonte gratuita). Per Betfair la quota è già al netto della commissione.
 7. **Salute del sistema:**
    - giorni senza giro di Claude (giornate con `giro: "riserva"`);
    - errori ricorrenti in `erroriGiro` delle giornate (raggruppati per tipo, con quante volte compaiono): squadre o giocatori non riconosciuti, fonti giù, crediti insufficienti, competizioni scoperte;

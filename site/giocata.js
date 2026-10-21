@@ -9,16 +9,21 @@ export function percorsoSegnatura(idGiocata) {
   return `data/segnature/${String(idGiocata).replace(/[^A-Za-z0-9._-]/g, '_')}.json`;
 }
 
-export function costruisciSegnatura({ idGiocata, fatta, quotaReale, puntataReale }, adesso) {
+// I bookmaker su cui l'utente ha un conto; il primo è quello proposto.
+export const BOOKMAKER = ['bet365', 'Sportium', 'Betfair', 'Snai', 'Goldbet', 'DAZN Bet'];
+
+export function costruisciSegnatura({ idGiocata, fatta, quotaReale, puntataReale, bookmaker = BOOKMAKER[0] }, adesso) {
   if (fatta) {
     if (!Number.isFinite(quotaReale) || quotaReale <= 1) throw new Error('Quota reale non valida');
     if (!Number.isFinite(puntataReale) || puntataReale <= 0) throw new Error('Puntata reale non valida');
+    if (!BOOKMAKER.includes(bookmaker)) throw new Error('Bookmaker non valido');
   }
   return {
     idGiocata,
     fatta: Boolean(fatta),
     quotaReale: fatta ? quotaReale : null,
     puntataReale: fatta ? puntataReale : null,
+    bookmaker: fatta ? bookmaker : null,
     ora: adesso.toISOString(),
   };
 }

@@ -24,7 +24,8 @@ export function riepiloga(righe, chiave, vista) {
   for (const riga of righe) {
     const v = valuta(riga, vista);
     if (!v) continue;
-    const gruppo = riga.giocata[chiave];
+    // Il bookmaker sta nella segnatura; quelle precedenti al campo non lo hanno.
+    const gruppo = chiave === 'bookmaker' ? (riga.segnatura?.bookmaker ?? 'non indicato') : riga.giocata[chiave];
     const g = gruppi.get(gruppo) ?? { gruppo, n: 0, vinte: 0, profitto: 0, puntate: 0 };
     g.n += 1;
     if (riga.giocata.esito === 'vinta') g.vinte += 1;

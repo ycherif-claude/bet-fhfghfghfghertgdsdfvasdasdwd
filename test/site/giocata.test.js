@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura, cancellaToken, leggiImpostazioni, salvaImpostazioni, normalizzaRepo } from '../../site/giocata.js';
+import { BOOKMAKER, costruisciSegnatura, percorsoSegnatura, salvaSegnatura, cancellaSegnatura, cancellaToken, leggiImpostazioni, salvaImpostazioni, normalizzaRepo } from '../../site/giocata.js';
 
 test('normalizzaRepo accetta forma breve e indirizzo GitHub completo', () => {
   assert.equal(normalizzaRepo('utente/nome'), 'utente/nome');
@@ -34,9 +34,16 @@ test('percorso sicuro per id di multipla', () =>
 test('percorso sostituisce ogni carattere non sicuro', () =>
   assert.equal(percorsoSegnatura('x/y z.é-1_2'), 'data/segnature/x_y_z._-1_2.json'));
 
-test('costruisciSegnatura: giocata fatta', () => {
+test('costruisciSegnatura: giocata fatta, bet365 se il bookmaker non è indicato', () => {
   assert.deepEqual(costruisciSegnatura({ idGiocata: 'a', fatta: true, quotaReale: 1.9, puntataReale: 4 }, adesso),
-    { idGiocata: 'a', fatta: true, quotaReale: 1.9, puntataReale: 4, ora: '2026-10-19T10:00:00.000Z' });
+    { idGiocata: 'a', fatta: true, quotaReale: 1.9, puntataReale: 4, bookmaker: 'bet365', ora: '2026-10-19T10:00:00.000Z' });
+});
+
+test('costruisciSegnatura: bookmaker scelto fra quelli dell\'utente', () => {
+  assert.deepEqual(BOOKMAKER, ['bet365', 'Sportium', 'Betfair', 'Snai', 'Goldbet', 'DAZN Bet']);
+  assert.equal(costruisciSegnatura({ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 4, bookmaker: 'Snai' }, adesso).bookmaker, 'Snai');
+  assert.throws(() => costruisciSegnatura({ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 4, bookmaker: 'Eurobet' }, adesso), /Bookmaker non valido/);
+  assert.equal(costruisciSegnatura({ idGiocata: 'a', fatta: false, bookmaker: 'Snai' }, adesso).bookmaker, null);
 });
 
 test('costruisciSegnatura: saltata ha quota e puntata null', () => {

@@ -144,6 +144,8 @@ export function costruisciDati(dirData, adesso) {
     tipo: riepiloga(righe, 'tipo', vista),
     mercato: riepiloga(righe, 'mercato', vista),
     quotaDaVerificare: riepiloga(righe, 'quotaDaVerificare', vista),
+    // Il bookmaker esiste solo per le giocate fatte davvero.
+    ...(vista === 'fatte' ? { bookmaker: riepiloga(righe, 'bookmaker', vista) } : {}),
   });
 
   return {

@@ -46,3 +46,14 @@ test('annullate e senza esito escluse dai riepiloghi', () => {
   assert.equal(riepiloga(righe, 'sport', 'fatte')[0].n, 1);
   assert.deepEqual(riepiloga([], 'sport', 'fatte'), []);
 });
+
+test('riepilogo per bookmaker dalle segnature; quelle vecchie senza bookmaker sono "non indicato"', () => {
+  const righe = [
+    riga('a', { esito: 'vinta' }, fatta('a', { bookmaker: 'Snai' })),
+    riga('b', { esito: 'persa' }, fatta('b', { bookmaker: 'Snai' })),
+    riga('c', { esito: 'vinta' }, fatta('c')),
+  ];
+  const r = Object.fromEntries(riepiloga(righe, 'bookmaker', 'fatte').map((x) => [x.gruppo, x]));
+  assert.deepEqual(r.Snai, { gruppo: 'Snai', n: 2, vinte: 1, profitto: 0, roi: 0 });
+  assert.equal(r['non indicato'].n, 1);
+});
