@@ -82,7 +82,7 @@ async function risultatoNba(gamba, fonti) {
       const c = e.competitions?.[0];
       const di = (h) => c?.competitors?.find((x) => x.homeAway === h);
       return { casa: di('home')?.team?.displayName, trasferta: di('away')?.team?.displayName, inizio: e.date,
-        puntiCasa: intero(di('home')?.score), puntiTrasferta: intero(di('away')?.score), finita: c?.status?.type?.completed === true };
+        puntiCasa: intero(di('home')?.score), puntiTrasferta: intero(di('away')?.score), finita: c?.status?.type?.completed === true && c.status.type.name === 'STATUS_FINAL' };
     });
     const e = trovaEvento(gamba, eventi);
     if (e) return e.finita ? { ...e, ...squadreDi(gamba.partita) } : null;

@@ -211,21 +211,21 @@ Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2)
 
 ## Controlli prima delle partite
 
-Ogni 10 minuti l'Action "Controlli prima delle partite" guarda le giocate di oggi che stanno per iniziare, una per una:
+L'Action "Controlli prima delle partite" (pianificata ogni 10 minuti, ma GitHub la fa partire in pratica ogni 30-43 minuti) guarda le giocate di oggi che stanno per iniziare, una per una:
 
 | Sport | Primo tentativo | Ultimo tentativo |
 |---|---|---|
-| Calcio | 50 minuti prima | 15 minuti prima |
-| Tennis, pallavolo | 45 minuti prima | 15 minuti prima |
-| NBA, basket | 35 minuti prima | 10 minuti prima |
+| Calcio | 90 minuti prima | da 45 minuti prima |
+| Tennis, pallavolo | 90 minuti prima | da 45 minuti prima |
+| NBA, basket | 75 minuti prima | da 45 minuti prima |
 
 Cosa controlla:
 
 - **Formazioni** (calcio) e **infortuni** (NBA) da ESPN, gratis: i giocatori chiave indicati dal giro del mattino devono essere titolari (calcio) o non "Out" (NBA). Se le formazioni non sono ancora uscite si riprova; all'ultimo tentativo si decide con i dati del mattino e la scheda lo dice.
-- **Ritiri** nel tennis: la partita sparisce dal palinsesto → giocata annullata.
+- **Ritiri e rinvii**: se la partita non si trova più nella fonte delle quote la giocata va **In revisione** (può essere un ritiro, un rinvio o solo un nome scritto in modo diverso): non si annulla mai da sola, controlla tu su bet365.
 - **Quote**: una richiesta per competizione (dentro la riserva di crediti già tenuta da parte). Quota sotto la minima, o Pinnacle mosso contro di più di 5 punti → revisione.
 
-Se non cambia niente la giocata diventa **Confermata**, con cosa si è controllato. Se cambia qualcosa va **In revisione** e, al massimo 2 volte al giorno, parte la routine Claude "Controllo pre-partita", che rianalizza solo quella partita (istruzioni in `docs/routine/controllo-pre-partita.md`). Senza Claude, o se non decide entro 5 minuti dall'inizio, valgono le regole fisse: giocatore chiave fuori o quota sotto la minima → **Annullata**; il solo movimento di Pinnacle → Confermata con l'avviso. Ogni cambio di stato arriva anche su Telegram.
+Se non cambia niente la giocata diventa **Confermata**, con cosa si è controllato. Se cambia qualcosa va **In revisione** e, al massimo 2 volte al giorno, parte la routine Claude "Controllo pre-partita", che rianalizza solo quella partita (istruzioni in `docs/routine/controllo-pre-partita.md`). Senza Claude, o se la giocata è ancora in revisione al primo passaggio a meno di 45 minuti dall'inizio (con il cron irregolare può essere l'ultimo), valgono le regole fisse: giocatore chiave fuori o quota sotto la minima → **Annullata**; partita non trovata nelle quote → resta **In revisione**; il solo movimento di Pinnacle → Confermata con l'avviso. Una decisione di Claude arrivata a partita iniziata non si applica e finisce fra gli errori della giornata. Ogni cambio di stato arriva anche su Telegram.
 
 ### La routine "Controllo pre-partita" (`ROUTINE_CONTROLLI_URL` e `ROUTINE_CONTROLLI_TOKEN`)
 

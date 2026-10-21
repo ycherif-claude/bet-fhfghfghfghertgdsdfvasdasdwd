@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { applicaDecisioni, eseguiControlli, momento, regolaFissa, valuta, vociDi, MOTIVO_NON_ESEGUITO } from '../../src/controlli/controlli.js';
+import { applicaDecisioni, eseguiControlli, esitiRapidiNelGiro, momento, regolaFissa, valuta, vociDi, MOTIVO_NON_ESEGUITO } from '../../src/controlli/controlli.js';
 import { quotaCalcio, quotaFormatoNba, trovaEvento } from '../../src/controlli/quote.js';
-import { inElenco, stessaSquadra } from '../../src/controlli/espn.js';
+import { espn, inElenco, stessaSquadra } from '../../src/controlli/espn.js';
 
 const OGGI = '2026-10-22';
 const INIZIO = '2026-10-22T20:45:00+02:00';
@@ -51,9 +51,14 @@ function fonti({ formazioni = { casa: titolari(['Lautaro Martínez']), trasferta
 
 test('finestre: presto, tentativo, ultimo, iniziata', () => {
   const v = vociDi(giocata())[0];
-  assert.equal(momento(v, ore('19:50')), 'presto');
-  assert.equal(momento(v, ore('20:00')), 'tentativo');
-  assert.equal(momento(v, ore('20:31')), 'ultimo');
+  // Il cron di GitHub parte ogni 30-43 minuti: primo tentativo 90 minuti prima, ultimo da 45.
+  assert.equal(momento(v, ore('19:10')), 'presto');
+  assert.equal(momento(v, ore('19:20')), 'tentativo');
+  assert.equal(momento(v, ore('19:59')), 'tentativo');
+  assert.equal(momento(v, ore('20:01')), 'ultimo');
+  const nba = vociDi(giocata({ sport: 'nba' }))[0];
+  assert.equal(momento(nba, ore('19:25')), 'presto');
+  assert.equal(momento(nba, ore('19:35')), 'tentativo');
   assert.equal(momento(v, ore('20:45')), 'iniziata');
   const m = vociDi(giocata({ gambe: [giocata({ sport: 'nba' }), giocata()], quotaMinima: 3 }));
   assert.equal(m.length, 2);
@@ -66,9 +71,26 @@ test('nomi: squadre e giocatori fra fonti diverse', () => {
   assert.ok(stessaSquadra('Athletic Bilbao', 'Athletic Club'));
   assert.ok(stessaSquadra('AS Roma', 'Roma'));
   assert.ok(!stessaSquadra('Real Madrid', 'Real Sociedad'));
+  assert.ok(stessaSquadra('Inter Milan', 'Internazionale'));
+  // Una parola in comune non basta.
+  assert.ok(!stessaSquadra('New York Knicks', 'New Orleans Pelicans'));
+  assert.ok(!stessaSquadra('New York Knicks', 'New Orleans Pelicans', 'nba'));
+  assert.ok(stessaSquadra('LA Clippers', 'Los Angeles Clippers', 'nba'));
+  assert.ok(stessaSquadra('Knicks', 'New York Knicks', 'nba'));
+  assert.ok(!stessaSquadra('Maccabi Tel Aviv', 'Hapoel Tel Aviv'));
+  assert.ok(!stessaSquadra('Maccabi Tel Aviv', 'Hapoel Tel Aviv', 'basket'));
+  assert.ok(stessaSquadra('Maccabi Playtika Tel Aviv', 'Maccabi Tel Aviv', 'basket'));
+  assert.ok(!stessaSquadra('Manchester United', 'Manchester City'));
+  assert.ok(!stessaSquadra('AC Milan', 'Inter Milan'));
   assert.ok(inElenco('Lautaro Martínez', ['Lautaro Martinez']));
   assert.ok(inElenco('Budimir', ['Ante Budimir']));
   assert.ok(!inElenco('Paulo Dybala', ['Matías Soulé']));
+  // Stesso cognome, nome diverso: non è lui. Iniziale e cognome bastano.
+  assert.ok(!inElenco('Theo Hernández', ['Lucas Hernández']));
+  assert.ok(inElenco('Theo Hernández', ['T. Hernandez']));
+  assert.ok(inElenco('Jaren Jackson Jr.', ['Jaren Jackson Jr.']));
+  // Solo il cognome: vale se nell'elenco ce n'è uno solo.
+  assert.ok(!inElenco('Hernández', ['Theo Hernández', 'Lucas Hernández']));
 });
 
 test('quote: calcio 1X2 e Under/Over con Pinnacle senza margine; formato NBA con la stessa linea', () => {
@@ -88,6 +110,31 @@ test('quote: calcio 1X2 e Under/Over con Pinnacle senza margine; formato NBA con
   const una = [{ casa: 'Internazionale Milano', trasferta: 'Roma', inizio: '2026-10-22T18:45:00Z' }];
   assert.equal(trovaEvento({ partita: 'Inter - AS Roma', inizio: INIZIO }, una), una[0]);
   assert.equal(trovaEvento({ partita: 'Torino - AS Roma', inizio: INIZIO }, [...una, { casa: 'Lazio', trasferta: 'Roma', inizio: '2026-10-22T18:45:00Z' }]), null);
+  // Knicks e Pelicans non si confondono più ("new" in comune).
+  const pelicans = [{ casa: 'New Orleans Pelicans', trasferta: 'Boston Celtics', inizio: '2026-10-23T00:00:00Z' }];
+  assert.equal(trovaEvento({ sport: 'nba', partita: 'New York Knicks - Miami Heat', inizio: '2026-10-23T00:00:00Z' }, pelicans), null);
+  const telAviv = [{ casa: 'Hapoel Tel Aviv', trasferta: 'Real Madrid', inizio: '2026-10-22T18:00:00Z' }];
+  assert.equal(trovaEvento({ sport: 'basket', partita: 'Maccabi Tel Aviv - Olympiacos', inizio: '2026-10-22T18:00:00Z' }, telAviv), null);
+  // Lato della selezione: deve essere uno solo.
+  const libri = ['pinnacle', 'a', 'b'].map((chiave) => ({ chiave, mercati: { vincente: { casa: 1.8, trasferta: 2.05 } } }));
+  assert.equal(quotaFormatoNba({ bookmaker: libri }, { sport: 'nba', partita: 'New York Knicks - New Orleans Pelicans', mercato: 'Vincente', selezione: 'New Orleans Pelicans' }).quota, 2.05);
+  assert.equal(quotaFormatoNba({ bookmaker: libri }, { sport: 'nba', partita: 'New York Knicks - New Orleans Pelicans', mercato: 'Vincente', selezione: 'New York' }), null);
+});
+
+test('ESPN infortuni: gli Out vanno alla squadra giusta (per id della squadra), mai tutti da una parte', async () => {
+  const summary = {
+    header: { competitions: [{ competitors: [
+      { homeAway: 'home', team: { id: '18', displayName: 'New York Knicks' } },
+      { homeAway: 'away', team: { id: '3', displayName: 'New Orleans Pelicans' } },
+    ] }] },
+    injuries: [
+      { team: { id: '3', displayName: 'New Orleans Pelicans' }, injuries: [{ status: 'Out', athlete: { displayName: 'Zion Williamson' } }] },
+      { team: { id: '18', displayName: 'New York Knicks' }, injuries: [{ status: 'Out', athlete: { displayName: 'Jalen Brunson' } }, { status: 'Day-To-Day', athlete: { displayName: 'Josh Hart' } }] },
+    ],
+  };
+  const fetch = async () => ({ ok: true, status: 200, text: async () => JSON.stringify(summary) });
+  const r = await espn.infortuni('basketball/nba', '1', { casa: 'New York Knicks', trasferta: 'New Orleans Pelicans' }, { fetch });
+  assert.deepEqual(r, { casa: ['Jalen Brunson'], trasferta: ['Zion Williamson'] });
 });
 
 test('valuta e regole fisse [utente]: chiave fuori e quota sotto la minima annullano, il solo mercato no', () => {
@@ -100,13 +147,33 @@ test('valuta e regole fisse [utente]: chiave fuori e quota sotto la minima annul
   const mercato = valuta(v, null, { quota: 1.9, prob: 0.48 });
   assert.equal(regolaFissa(mercato.problemi).esito, 'confermata');
   assert.match(regolaFissa(mercato.problemi).motivo, /confermata con l'avviso/);
-  assert.equal(valuta(v, null, { assente: true }).esito, 'annullata');
+  // Partita non trovata nella fonte delle quote: in revisione, mai annullata in automatico.
+  const assente = valuta(v, null, { assente: true });
+  assert.equal(assente.esito, 'revisione');
+  assert.deepEqual(assente.problemi.map((p) => p.tipo), ['assente']);
+  assert.equal(regolaFissa(assente.problemi).esito, 'revisione');
+});
+
+test('controllo: partita assente dalle quote → in revisione, e resta tale anche con le regole fisse (giocata già fatta)', async () => {
+  const d = cartella();
+  writeFileSync(join(d, 'segnature', 'a.json'), JSON.stringify({ idGiocata: 'calcio-2026-10-22-inter-roma-1x2-1', fatta: true, quotaReale: 1.95, puntataReale: 4, ora: '2026-10-22T10:00:00Z' }));
+  const f = fonti();
+  f.oddsApi.eventi = async () => ({ eventi: [], rimasti: 200 });
+  await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: f, chiavi: { oddsApi: 'K' } });
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'in_revisione');
+  assert.match(g.motivoStato, /non trovata nella fonte delle quote/);
+  // I passaggi dopo non la annullano e non riscrivono niente.
+  const prima = readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8');
+  await eseguiControlli({ dirData: d, adesso: ore('20:40'), fonti: f, chiavi: { oddsApi: 'K' } });
+  assert.equal(leggi(d).giocate[0].stato, 'in_revisione');
+  assert.equal(readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8'), prima);
 });
 
 test('controllo: aspetta le formazioni, poi conferma con quote e formazioni; una richiesta per competizione', async () => {
   const d = cartella();
   const prima = fonti({ formazioni: { casa: { titolari: [], pronta: false }, trasferta: { titolari: [], pronta: false } } });
-  let r = await eseguiControlli({ dirData: d, adesso: ore('20:00'), fonti: prima, chiavi: { oddsApi: 'K' } });
+  let r = await eseguiControlli({ dirData: d, adesso: ore('19:30'), fonti: prima, chiavi: { oddsApi: 'K' } });
   assert.equal(r.cambiate, 0);
   assert.ok(!prima.chiamate.includes('odds quote'));
   // In attesa delle formazioni non si scrive nessun file.
@@ -149,7 +216,7 @@ test('controllo: chiave fuori senza Claude → annullata con la regola fissa; cr
 
 test('controllo con Claude: in revisione, un solo avvio, decisione applicata; senza decisione regole fisse a 5 minuti', async () => {
   const d = cartella();
-  const r = await eseguiControlli({ dirData: d, adesso: ore('20:05'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  const r = await eseguiControlli({ dirData: d, adesso: ore('19:30'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
   assert.deepEqual(r.daMandareAClaude, ['calcio-2026-10-22-inter-roma-1x2-1']);
   assert.equal(leggi(d).giocate[0].stato, 'in_revisione');
   assert.equal(registro(d).claude.avvii, 1);
@@ -163,9 +230,12 @@ test('controllo con Claude: in revisione, un solo avvio, decisione applicata; se
   assert.match(g.motivoStato, /^Claude: la quota scende/);
   assert.throws(() => applicaDecisioni({ dirData: d, adesso: ore('20:21') }), /non è in revisione/);
 
+  // Senza decisione, le regole fisse al primo passaggio a meno di 45 minuti (il cron può saltare il resto).
   const d2 = cartella();
-  await eseguiControlli({ dirData: d2, adesso: ore('20:05'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
-  await eseguiControlli({ dirData: d2, adesso: ore('20:41'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  await eseguiControlli({ dirData: d2, adesso: ore('19:30'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  await eseguiControlli({ dirData: d2, adesso: ore('19:58'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  assert.equal(leggi(d2).giocate[0].stato, 'in_revisione');
+  await eseguiControlli({ dirData: d2, adesso: ore('20:05'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
   const g2 = leggi(d2).giocate[0];
   assert.equal(g2.stato, 'annullata');
   assert.match(g2.motivoStato, /regola automatica.*quota 1,80 sotto la minima 1,85/);
@@ -174,7 +244,7 @@ test('controllo con Claude: in revisione, un solo avvio, decisione applicata; se
 test('controllo: tetto di 2 avvii di Claude al giorno, poi regole fisse', async () => {
   const d = cartella();
   writeFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), JSON.stringify({ data: OGGI, voci: {}, claude: { avvii: 2, richieste: ['a', 'b'] } }));
-  const r = await eseguiControlli({ dirData: d, adesso: ore('20:05'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  const r = await eseguiControlli({ dirData: d, adesso: ore('19:30'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
   assert.deepEqual(r.daMandareAClaude, []);
   assert.equal(leggi(d).giocate[0].stato, 'annullata');
 });
@@ -185,4 +255,30 @@ test('controllo non eseguito: partita iniziata senza controllo, una riga sulla s
   const g = leggi(d).giocate[0];
   assert.equal(g.stato, 'in_attesa');
   assert.equal(g.motivoStato, MOTIVO_NON_ESEGUITO);
+});
+
+test('decisioni di Claude arrivate dopo l\'inizio: rifiutate e scritte fra gli errori, le altre applicate', async () => {
+  const altra = giocata({ id: 'calcio-2026-10-22-milan-lazio-1x2-1', partita: 'Milan - Lazio', idPartita: 'calcio-2026-10-22-milan-lazio', inizio: '2026-10-22T21:30:00+02:00' });
+  const d = cartella({ giocate: [giocata({ stato: 'in_revisione' }), { ...altra, stato: 'in_revisione' }] });
+  writeFileSync(join(d, 'raccolta', `${OGGI}-controlli-decisioni.json`), JSON.stringify({ decisioni: [
+    { idGiocata: 'calcio-2026-10-22-inter-roma-1x2-1', stato: 'confermata', motivo: 'nessuna notizia', fonte: 'ESPN, 20:40' },
+    { idGiocata: 'calcio-2026-10-22-milan-lazio-1x2-1', stato: 'annullata', motivo: 'fuori Leão', fonte: 'sito del Milan, 20:40' },
+  ] }));
+  const r = applicaDecisioni({ dirData: d, adesso: ore('20:50') });
+  assert.equal(r.applicate, 1);
+  assert.deepEqual(r.rifiutate, ['calcio-2026-10-22-inter-roma-1x2-1']);
+  const j = leggi(d);
+  assert.equal(j.giocate[0].stato, 'in_revisione');
+  assert.equal(j.giocate[1].stato, 'annullata');
+  assert.ok(j.erroriGiro.some((e) => /Decisione di Claude per calcio-2026-10-22-inter-roma-1x2-1 arrivata dopo l'inizio/.test(e)));
+});
+
+test('esiti rapidi dentro i controlli: gli errori vanno fra gli errori della giornata, una volta sola', async () => {
+  const d = cartella();
+  const esegui = async () => ({ aggiornate: 0, errori: ['Levante - Athletic Bilbao: site.api.espn.com: HTTP 500'] });
+  await esitiRapidiNelGiro({ dirData: d, adesso: ore('22:00'), esegui });
+  await esitiRapidiNelGiro({ dirData: d, adesso: ore('22:10'), esegui });
+  assert.deepEqual(leggi(d).erroriGiro, ['Esiti rapidi: Levante - Athletic Bilbao: site.api.espn.com: HTTP 500']);
+  await esitiRapidiNelGiro({ dirData: d, adesso: ore('22:20'), esegui: async () => { throw new Error('disco pieno'); } });
+  assert.equal(leggi(d).erroriGiro.at(-1), 'Esiti rapidi non riusciti: disco pieno');
 });

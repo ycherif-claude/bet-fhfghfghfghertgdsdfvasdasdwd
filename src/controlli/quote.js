@@ -21,14 +21,14 @@ export const squadreDi = (partita) => {
 
 // Evento della fonte con le stesse squadre (o gli stessi giocatori) e un orario vicino; null se manca o è ambiguo.
 // Prima entrambe le squadre; altrimenti basta una, se è l'unica partita così in quell'orario
-// (i nomi cambiano fra le fonti: "Inter" e "Internazionale").
+// (i nomi cambiano fra le fonti). I nomi si confrontano interi o con gli alias dello sport (stessaSquadra).
 export function trovaEvento(voce, eventi, { casa = 'casa', trasferta = 'trasferta' } = {}) {
   const sq = squadreDi(voce.partita);
   if (!sq) return null;
   const t = Date.parse(voce.inizio);
   const vicini = eventi.filter((e) => Math.abs(Date.parse(e.inizio) - t) <= K.toleranzaOre * ORA_MS);
-  const c = (e) => stessaSquadra(e[casa] ?? '', sq.casa);
-  const tr = (e) => stessaSquadra(e[trasferta] ?? '', sq.trasferta);
+  const c = (e) => stessaSquadra(e[casa] ?? '', sq.casa, voce.sport);
+  const tr = (e) => stessaSquadra(e[trasferta] ?? '', sq.trasferta, voce.sport);
   const entrambe = vicini.filter((e) => c(e) && tr(e));
   if (entrambe.length) return entrambe.length === 1 ? entrambe[0] : null;
   const una = vicini.filter((e) => c(e) || tr(e));
@@ -81,7 +81,10 @@ export function quotaFormatoNba(evento, voce) {
   let tipo; let sel; let linea = null; let m;
   if (voce.mercato === 'Vincente') {
     tipo = 'vincente';
-    sel = stessaSquadra(voce.selezione, sq?.casa ?? '') ? 'casa' : stessaSquadra(voce.selezione, sq?.trasferta ?? '') ? 'trasferta' : null;
+    // Il lato deve essere uno solo: se la selezione somiglia a entrambe le squadre (o a nessuna), niente quota.
+    const c = stessaSquadra(voce.selezione, sq?.casa ?? '', voce.sport);
+    const t = stessaSquadra(voce.selezione, sq?.trasferta ?? '', voce.sport);
+    sel = c && !t ? 'casa' : t && !c ? 'trasferta' : null;
   } else if ((m = /^Handicap (?:set )?([+-]?\d+(?:\.\d+)?)$/.exec(voce.mercato))) {
     tipo = 'handicap'; sel = voce.selezione; linea = Number(m[1]);
   } else if ((m = /^Totale (?:punti|set) (\d+(?:\.\d+)?)$/.exec(voce.mercato))) {

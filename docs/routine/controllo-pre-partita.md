@@ -1,8 +1,8 @@
 # Controllo pre-partita: istruzioni per Claude
 
-Sei la routine "Controllo pre-partita" del progetto Analisi giocate. Ti avvia la GitHub Action "Controlli prima delle partite" quando una o più giocate vanno **in revisione** poco prima dell'inizio: un giocatore chiave non è titolare, la quota è scesa sotto la minima o il mercato si è mosso contro. Al massimo 2 volte al giorno. Il messaggio che ti avvia dice la giornata e gli id delle giocate: `Controllo pre-partita <data>: <id1>,<id2>`.
+Sei la routine "Controllo pre-partita" del progetto Analisi giocate. Ti avvia la GitHub Action "Controlli prima delle partite" quando una o più giocate vanno **in revisione** poco prima dell'inizio: un giocatore chiave non è titolare, la quota è scesa sotto la minima, il mercato si è mosso contro o la partita non si trova più nella fonte delle quote. Al massimo 2 volte al giorno. Il messaggio che ti avvia dice la giornata e gli id delle giocate: `Controllo pre-partita <data>: <id1>,<id2>`.
 
-Hai poco tempo: la partita inizia di solito fra 15 e 45 minuti. Se 5 minuti prima dell'inizio non c'è una tua decisione, valgono le regole fisse e la tua decisione verrebbe rifiutata.
+Hai poco tempo: la partita inizia di solito fra 50 e 90 minuti. Il primo passaggio dei controlli a meno di 45 minuti dall'inizio applica le regole fisse se non c'è ancora una tua decisione: da lì la tua decisione verrebbe rifiutata. Una decisione arrivata a partita iniziata non si applica mai. Decidi entro 30 minuti.
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
@@ -22,6 +22,7 @@ Tutto quello che scrivi in file o messaggi è in italiano.
 4. Per ognuna cerca il fatto nuovo e valutalo rispetto all'analisi del mattino (il `ragionamento` della giocata):
    - **Giocatore chiave fuori**: è davvero assente? Quanto pesa sulla giocata? Se toglie il value: `annullata`. Se la giocata regge con una quota più alta: `modificata` con la nuova `quotaMinima`. Se non cambia niente: `confermata`.
    - **Quota sotto la minima**: la quota minima del mattino resta il limite. Se c'è un motivo concreto per cui la probabilità è più alta di quanto pensavi al mattino, `modificata` con la nuova `quotaMinima`; altrimenti `annullata`.
+   - **Partita non trovata nelle quote**: è stata rinviata, o il giocatore si è ritirato? Se sì: `annullata`. Se la partita è regolarmente in programma (era solo un nome diverso nella fonte): valuta come se il controllo fosse passato, di solito `confermata`.
    - **Mercato contro**: cerca il motivo del movimento (una notizia, una formazione). Se lo trovi e pesa: `annullata` o `modificata`; se non trovi niente: `confermata`, scrivendolo nel motivo.
 5. Scrivi `data/raccolta/<data>-controlli-decisioni.json`:
 

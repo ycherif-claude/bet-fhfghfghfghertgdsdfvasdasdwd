@@ -1,4 +1,5 @@
-// Fase 3: controllo prima di ogni partita con una giocata. Ogni 10 minuti (Action controlli.yml):
+// Fase 3: controllo prima di ogni partita con una giocata. Action controlli.yml, ogni 10 minuti sulla carta
+// (in pratica ogni 30-43, per questo le finestre di CONFIG.controlli.finestre sono larghe):
 // formazioni (ESPN), ritiri e quote dell'ultimo momento; se non cambia niente la giocata è Confermata,
 // se cambia qualcosa va In revisione e, nei limiti (2 al giorno), si avvia Claude; senza Claude valgono
 // le regole fisse. Le decisioni di Claude si applicano con `--applica`.
@@ -110,7 +111,9 @@ export function valuta(voce, formazioni, quote) {
     dettagli.push(formazioni.nota);
     if (formazioni.fuori.length) problemi.push({ tipo: 'chiave', testo: `giocatore chiave fuori: ${formazioni.fuori.join(', ')}` });
   }
-  if (quote?.assente) return { esito: 'annullata', problemi: [{ tipo: 'assente', testo: 'partita non più in programma (ritiro o rinvio)' }], dettagli };
+  // Partita non trovata nella fonte delle quote: può essere un ritiro o un rinvio, ma anche un nome
+  // scritto in modo diverso. Non si annulla mai da soli: va in revisione [utente].
+  if (quote?.assente) problemi.push({ tipo: 'assente', testo: 'partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso)' });
   if (quote && num(quote.quota)) {
     if (num(voce.quotaMinima) && quote.quota < voce.quotaMinima) {
       problemi.push({ tipo: 'quota', testo: `quota ${virgola(quote.quota)} sotto la minima ${virgola(voce.quotaMinima)}` });
@@ -127,12 +130,14 @@ export function valuta(voce, formazioni, quote) {
 }
 
 // Regole fisse senza Claude [utente]: giocatore chiave fuori o quota sotto la minima → annullata;
+// partita non trovata nelle quote → resta in revisione (da controllare a mano, mai annullata da sola);
 // il solo movimento del mercato non annulla (confermata con l'avviso).
 export function regolaFissa(problemi) {
-  const annulla = problemi.filter((p) => p.tipo === 'chiave' || p.tipo === 'quota' || p.tipo === 'assente');
-  return annulla.length
-    ? { esito: 'annullata', motivo: `regola automatica (Claude non disponibile): ${annulla.map((p) => p.testo).join('; ')}` }
-    : { esito: 'confermata', motivo: `regola automatica (Claude non disponibile): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
+  const annulla = problemi.filter((p) => p.tipo === 'chiave' || p.tipo === 'quota');
+  if (annulla.length) return { esito: 'annullata', motivo: `regola automatica (Claude non disponibile): ${annulla.map((p) => p.testo).join('; ')}` };
+  const assente = problemi.filter((p) => p.tipo === 'assente');
+  if (assente.length) return { esito: 'revisione', motivo: `regola automatica (Claude non disponibile): ${assente.map((p) => p.testo).join('; ')}: resta in revisione, controlla su bet365 prima di giocarla` };
+  return { esito: 'confermata', motivo: `regola automatica (Claude non disponibile): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
 }
 
 // Stato della giocata dagli esiti delle sue voci (le gambe di una multipla).
@@ -174,8 +179,8 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
     for (const v of vociDi(g)) {
       const r = reg.voci[v.id];
       const m = momento(v, adesso);
-      // Revisione senza decisione a ridosso dell'inizio: regole fisse.
-      if (r?.esito === 'revisione' && Date.parse(v.inizio) - adesso.getTime() <= K.minutiDecisioneClaude * MIN) {
+      // Revisione senza decisione a ridosso dell'inizio: regole fisse (una volta sola).
+      if (r?.esito === 'revisione' && !r.regola && Date.parse(v.inizio) - adesso.getTime() < K.minutiRegoleFisse * MIN) {
         const x = regolaFissa(r.problemi);
         reg.voci[v.id] = { ...r, esito: x.esito, motivo: x.motivo, alle: ora, regola: true };
         continue;
@@ -206,7 +211,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   for (const { v, form } of pronte) {
     const r = valuta(v, form, quote.get(v.id));
     if (r.esito === 'revisione') {
-      const tempo = Date.parse(v.inizio) - adesso.getTime() > (K.minutiDecisioneClaude + 5) * MIN;
+      const tempo = Date.parse(v.inizio) - adesso.getTime() > (K.minutiRegoleFisse + 5) * MIN;
       if (claudeDisponibile && tempo && (reg.claude.avvii < K.maxClaude || reg.claude.richieste.includes(v.idGiocata) || nuoveRevisioni.includes(v.idGiocata))) {
         reg.voci[v.id] = { esito: 'revisione', motivo: `in revisione: ${r.problemi.map((p) => p.testo).join('; ')}`, problemi: r.problemi, dettagli: r.dettagli, alle: ora };
         if (!nuoveRevisioni.includes(v.idGiocata) && !reg.claude.richieste.includes(v.idGiocata)) nuoveRevisioni.push(v.idGiocata);
@@ -261,10 +266,14 @@ export function applicaDecisioni({ dirData, adesso }) {
   if (!oggetto(dec) || !Array.isArray(dec.decisioni)) throw new Error(`Decisioni mancanti o illeggibili: data/raccolta/${data}-controlli-decisioni.json`);
   const perId = new Map(giornata.giocate.filter(oggetto).map((g) => [g.id, g]));
   const errori = [];
+  // Decisioni arrivate a partita iniziata (la prima gamba, per le multiple): rifiutate, scritte fra gli errori.
+  const rifiutate = [];
+  const ora = isoRoma(adesso);
   for (const [i, d] of dec.decisioni.entries()) {
     const err = (m) => errori.push(`Decisione ${i + 1} (${d?.idGiocata}): ${m}`);
     const g = perId.get(d?.idGiocata);
     if (!g) { err('giocata inesistente nella giornata'); continue; }
+    if (Math.min(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime()) { rifiutate.push(g.id); continue; }
     if (g.stato !== 'in_revisione') { err(`la giocata non è in revisione (stato ${g.stato})`); continue; }
     if (!['confermata', 'modificata', 'annullata'].includes(d.stato)) err(`stato non valido: ${d.stato}`);
     if (!testoPieno(d.motivo)) err('motivo mancante');
@@ -274,9 +283,10 @@ export function applicaDecisioni({ dirData, adesso }) {
   }
   if (errori.length) throw new Error(`Decisioni non valide, nessun file scritto:\n${errori.map((x) => `- ${x}`).join('\n')}`);
   const reg = leggi(f.stato, { data, voci: {}, claude: { avvii: 0, richieste: [] } });
-  const ora = isoRoma(adesso);
   const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
-  const decisioni = new Map(dec.decisioni.map((d) => [d.idGiocata, d]));
+  const decisioni = new Map(dec.decisioni.filter((d) => !rifiutate.includes(d.idGiocata)).map((d) => [d.idGiocata, d]));
+  const righe = rifiutate.map((id) => `Decisione di Claude per ${id} arrivata dopo l'inizio della partita (${ora.slice(11, 16)}): non applicata`);
+  const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
   const giocate = giornata.giocate.map((g) => {
     const d = decisioni.get(g?.id);
     if (!d) return g;
@@ -285,9 +295,35 @@ export function applicaDecisioni({ dirData, adesso }) {
     for (const v of vociDi(g)) if (reg.voci[v.id]?.esito === 'revisione') reg.voci[v.id] = { ...reg.voci[v.id], esito: d.stato, motivo, alle: ora, claude: true };
     return { ...g, stato: d.stato, motivoStato: motivo, oraUltimoControllo: ora, ...(d.stato === 'modificata' ? { quotaMinima: d.quotaMinima } : {}) };
   });
-  scrivi(f.giornata, { ...giornata, giocate });
+  scrivi(f.giornata, { ...giornata, giocate, erroriGiro: [...erroriGiro, ...righe.filter((r) => !erroriGiro.includes(r))] });
   scrivi(f.stato, reg);
-  return { applicate: decisioni.size };
+  return { applicate: decisioni.size, rifiutate };
+}
+
+// Righe nuove in fondo a erroriGiro della giornata di oggi (le uguali una volta sola), se la giornata c'è.
+function aggiungiErroriGiro(dirData, adesso, righe) {
+  if (!righe.length) return;
+  const file = percorsi(dirData, giornataDi(adesso)).giornata;
+  const giornata = leggi(file, null);
+  if (!oggetto(giornata)) return;
+  const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
+  const nuove = [...new Set(righe)].filter((r) => !erroriGiro.includes(r));
+  if (nuove.length) scrivi(file, { ...giornata, erroriGiro: [...erroriGiro, ...nuove] });
+}
+
+// Esiti rapidi delle giocate fatte appena finite, dentro i controlli: gli errori vanno fra gli errori
+// della giornata (pagina e Telegram), non solo nel log.
+export async function esitiRapidiNelGiro({ dirData, adesso, esegui = eseguiEsitiRapidi }) {
+  let righe;
+  try {
+    const e = await esegui({ dirData, adesso });
+    righe = e.errori.map((x) => `Esiti rapidi: ${x}`);
+    console.log(`Esiti rapidi: ${e.aggiornate} giocate chiuse`);
+  } catch (err) {
+    righe = [`Esiti rapidi non riusciti: ${err?.message ?? err}`];
+  }
+  for (const r of righe) console.log(`- ${r}`);
+  aggiungiErroriGiro(dirData, adesso, righe);
 }
 
 async function principale() {
@@ -295,6 +331,7 @@ async function principale() {
   if (process.argv.includes('--applica')) {
     const r = applicaDecisioni({ dirData: 'data', adesso });
     console.log(`Decisioni del controllo applicate: ${r.applicate}`);
+    if (r.rifiutate.length) console.log(`Decisioni rifiutate perché arrivate dopo l'inizio: ${r.rifiutate.join(', ')}`);
     return;
   }
   const chiavi = {
@@ -305,13 +342,7 @@ async function principale() {
   for (const e of r.errori) console.log(`- ${e}`);
   console.log(`Controlli: ${r.cambiate} giocate aggiornate`);
   // Esiti rapidi delle giocate fatte appena finite (il mattino dopo resta la rete di sicurezza).
-  try {
-    const e = await eseguiEsitiRapidi({ dirData: 'data', adesso });
-    for (const x of e.errori) console.log(`- Esiti rapidi: ${x}`);
-    console.log(`Esiti rapidi: ${e.aggiornate} giocate chiuse`);
-  } catch (err) {
-    console.log(`- Esiti rapidi non riusciti: ${err?.message ?? err}`);
-  }
+  await esitiRapidiNelGiro({ dirData: 'data', adesso });
   // Riga letta dal workflow per avviare la routine Claude.
   if (r.daMandareAClaude.length) console.log(`AVVIA_CLAUDE ${r.daMandareAClaude.join(',')}`);
 }

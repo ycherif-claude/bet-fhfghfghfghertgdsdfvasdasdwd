@@ -166,3 +166,18 @@ test('esiti rapidi: multipla chiusa solo quando tutte le gambe hanno un esito', 
   assert.equal(g.esito, null);
   assert.deepEqual(g.gambe.map((x) => x.esito ?? null), ['vinta', null]);
 });
+
+test('esiti rapidi NBA: solo con lo stato STATUS_FINAL, non basta "completed"', async () => {
+  const partita = { sport: 'nba', competizione: 'NBA', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-21T19:30:00Z', mercato: 'Vincente', selezione: 'Boston Celtics' };
+  const tabellone = (nome) => ({ events: [{ date: '2026-10-21T19:30Z', competitions: [{ status: { type: { name: nome, completed: true } }, competitors: [
+    { homeAway: 'away', score: '99', team: { displayName: 'New York Knicks' } },
+    { homeAway: 'home', score: '110', team: { displayName: 'Boston Celtics' } },
+  ] }] }] });
+  for (const [nome, atteso] of [['STATUS_POSTPONED', null], ['STATUS_FINAL', 'vinta']]) {
+    const d = cartella([giocata('n', partita)], ['n']);
+    const f = fonti();
+    f.opz = { fetch: async () => ({ ok: true, status: 200, text: async () => JSON.stringify(tabellone(nome)) }) };
+    await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T22:30:00Z'), fonti: f });
+    assert.equal(leggi(d)[0].esito, atteso, nome);
+  }
+});

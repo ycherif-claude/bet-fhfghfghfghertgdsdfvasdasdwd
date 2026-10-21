@@ -131,17 +131,21 @@ export const CONFIG = congela({
   },
   // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
   controlli: {
+    // Il cron "ogni 10 minuti" di GitHub parte in realtà ogni 30-43 minuti: la finestra è larga
+    // abbastanza da contenere sempre un passaggio, e "ultimo" (si decide con quello che c'è)
+    // comincia 45 minuti prima, così l'ultimo passaggio prima dell'inizio decide sempre.
     finestre: {
-      calcio: { primo: 50, ultimo: 15 },
-      tennis: { primo: 45, ultimo: 15 },
-      pallavolo: { primo: 45, ultimo: 15 },
-      nba: { primo: 35, ultimo: 10 },
-      basket: { primo: 35, ultimo: 10 },
+      calcio: { primo: 90, ultimo: 45 },
+      tennis: { primo: 90, ultimo: 45 },
+      pallavolo: { primo: 90, ultimo: 45 },
+      nba: { primo: 75, ultimo: 45 },
+      basket: { primo: 75, ultimo: 45 },
     },
     // Avvii al giorno della routine Claude "Controllo pre-partita" [utente: 2].
     maxClaude: 2,
-    // Senza una decisione di Claude entro questi minuti dall'inizio valgono le regole fisse.
-    minutiDecisioneClaude: 5,
+    // Una giocata ancora in revisione a meno di questi minuti dall'inizio passa alle regole fisse:
+    // con il cron irregolare quel passaggio può essere l'ultimo prima della partita.
+    minutiRegoleFisse: 45,
     // Pinnacle (o il consenso) contro di più di questi punti di probabilità → revisione.
     scartoMercato: 0.05,
     // Crediti di The Odds API e richieste OddsPapi da non toccare mai per i controlli.

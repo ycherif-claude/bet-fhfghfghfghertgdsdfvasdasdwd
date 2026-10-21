@@ -24,13 +24,16 @@ jobs:
           node-version: 24
       - name: Controlli
         id: controlli
+        shell: bash
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
           ROUTINE_CONTROLLI_URL: ${{ secrets.ROUTINE_CONTROLLI_URL }}
           ROUTINE_CONTROLLI_TOKEN: ${{ secrets.ROUTINE_CONTROLLI_TOKEN }}
+        # pipefail: se npm run controlli fallisce, lo step fallisce anche con il tee.
         run: |
+          set -o pipefail
           npm run controlli | tee controlli.log
           ids=$(grep '^AVVIA_CLAUDE ' controlli.log | tail -n 1 | cut -d' ' -f2)
           echo "claude=$ids" >> "$GITHUB_OUTPUT"
@@ -64,7 +67,7 @@ jobs:
           ROUTINE_CONTROLLI_URL: ${{ secrets.ROUTINE_CONTROLLI_URL }}
           ROUTINE_CONTROLLI_TOKEN: ${{ secrets.ROUTINE_CONTROLLI_TOKEN }}
           GIOCATE: ${{ steps.controlli.outputs.claude }}
-        # Se l'avvio fallisce, le giocate restano in revisione e 5 minuti prima dell'inizio valgono le regole fisse.
+        # Se l'avvio fallisce, le giocate restano in revisione e a meno di 45 minuti dall'inizio valgono le regole fisse.
         run: |
           data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
           # Corpo JSON costruito da jq, mai concatenando le stringhe: niente può rompere il JSON.

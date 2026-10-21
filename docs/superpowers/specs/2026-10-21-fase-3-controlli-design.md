@@ -28,18 +28,18 @@ Una Action `controlli.yml` gira **ogni 10 minuti** (repository pubblico: minuti 
 
 | Sport | Primo tentativo | Ultimo tentativo |
 |---|---|---|
-| Calcio | 50 min prima (formazioni a ~60 min) | 15 min prima |
-| Tennis, pallavolo | 45 min prima | 15 min prima |
-| NBA, basket | 35 min prima | 10 min prima |
+| Calcio | 90 min prima (formazioni a ~60 min) | da 45 min prima |
+| Tennis, pallavolo | 90 min prima | da 45 min prima |
+| NBA, basket | 75 min prima | da 45 min prima |
 
-Le Action pianificate di GitHub possono partire con qualche minuto di ritardo: per questo la finestra è larga. Se le formazioni non sono ancora uscite, si riprova al passaggio successivo; all'ultimo tentativo si decide con quello che c'è e la scheda scrive "formazioni non uscite: valutata sui dati del mattino" (§6.2 del progetto).
+Le Action pianificate di GitHub partono in pratica ogni 30-43 minuti, non ogni 10 (rilevato il 21/10/2026): per questo la finestra è larga 45 minuti o più (contiene sempre un passaggio) e l'ultimo tentativo comincia 45 minuti prima, così l'ultimo passaggio prima dell'inizio decide sempre (finestre allargate il 21/10/2026 **[utente]**). Se le formazioni non sono ancora uscite, si riprova al passaggio successivo; all'ultimo tentativo si decide con quello che c'è e la scheda scrive "formazioni non uscite: valutata sui dati del mattino" (§6.2 del progetto).
 
 ## 3. Cosa controlla il programma leggero
 
 **Formazioni e assenze** (gratis):
 - **Calcio e NBA: ESPN** (`site.api.espn.com`, senza chiave; verificato il 21/10/2026: formazioni titolari della Liga). API non ufficiale: se non risponde, il controllo usa solo le quote e lo scrive.
 - **Giocatori chiave:** il giro del mattino li scrive per ogni partita con giocate nel file notizie (campo nuovo, facoltativo, `giocatoriChiave`: per `idPartita`, i nomi dei titolari da cui dipende la giocata). Un giocatore chiave **non titolare** → la partita va in revisione.
-- **Tennis:** la partita sparisce dagli eventi di The Odds API (gratuito) o risulta un ritiro → giocata annullata ("ritiro o partita non in programma").
+- **Partita non trovata nella fonte delle quote** (tennis: sparita dagli eventi di The Odds API; anche gli altri sport): **in revisione**, mai annullata in automatico, perché può essere anche solo un nome scritto in modo diverso (cambiato il 21/10/2026 **[utente]**).
 - **Basket europeo e pallavolo:** niente formazioni gratuite affidabili: solo quote.
 
 **Quote** (una richiesta per competizione, non per giocata):
@@ -52,11 +52,12 @@ Le Action pianificate di GitHub possono partire con qualche minuto di ritardo: p
 ## 4. Claude per le partite in revisione
 
 - La giocata passa a **"In revisione"** con il motivo.
-- L'Action avvia una routine Claude "Controllo pre-partita" (stesso meccanismo `/fire` del giro serale, con i suoi secrets), che rifà l'analisi **solo di quella partita** con il fatto nuovo e scrive una decisione: confermata, modificata (nuova quota minima o nuova puntata) o annullata, con motivo e fonte. Le decisioni si applicano con lo stesso codice del giro serale.
+- L'Action avvia una routine Claude "Controllo pre-partita" (stesso meccanismo `/fire` del giro serale, con i suoi secrets), che rifà l'analisi **solo di quella partita** con il fatto nuovo e scrive una decisione: confermata, modificata (nuova quota minima o nuova puntata) o annullata, con motivo e fonte. Le decisioni si applicano con lo stesso codice del giro serale; una decisione arrivata a partita iniziata viene rifiutata e scritta fra gli errori della giornata.
 - **Tetto: al massimo 2 avvii di Claude al giorno** (`CONFIG.controlli.maxClaude`) **[utente]**, oltre alle routine del mattino, della sera e della revisione settimanale.
-- **Se Claude non è disponibile** (tetto raggiunto, routine non partita, nessuna decisione entro 5 minuti dall'inizio), valgono le regole fisse, dichiarate sulla scheda ("regola automatica: Claude non disponibile"):
+- **Se Claude non è disponibile** (tetto raggiunto, routine non partita, giocata ancora in revisione al primo passaggio a meno di 45 minuti dall'inizio, `CONFIG.controlli.minutiRegoleFisse`), valgono le regole fisse, dichiarate sulla scheda ("regola automatica: Claude non disponibile"):
   - giocatore chiave fuori → **Annullata**;
   - quota sotto la minima → **Annullata**;
+  - partita non trovata nella fonte delle quote → resta **In revisione**, da controllare a mano;
   - Pinnacle contro di più di 5 punti → **Confermata con l'avviso** (il movimento da solo non annulla) **[utente]**;
   - fonte delle formazioni giù → resta la valutazione del mattino, **Confermata** con l'avviso.
 

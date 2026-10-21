@@ -95,6 +95,9 @@ test('controlli prima delle partite: routine, README e workflow', () => {
   for (const s of ['Controlli prima delle partite', 'ROUTINE_CONTROLLI_URL', 'ROUTINE_CONTROLLI_TOKEN', 'regole fisse']) assert.ok(r.includes(s), s);
   const w = fs.readFileSync('.github/workflows/controlli.yml', 'utf8');
   for (const s of ["cron: '*/10 * * * *'", 'npm run controlli', 'AVVIA_CLAUDE', 'group: dati', 'for tentativo in 1 2 3', 'Controllo pre-partita']) assert.ok(w.includes(s), s);
+  // Se npm run controlli fallisce, fallisce lo step (tee non nasconde l'errore).
+  assert.match(w, /name: Controlli\r?\n\s+id: controlli\r?\n\s+shell: bash/);
+  assert.ok(w.includes('set -o pipefail'));
   // Il corpo per la routine si costruisce con jq, non concatenando stringhe.
   assert.ok(w.includes("jq -cn --arg testo"));
   assert.ok(!w.includes('{\\"text\\"'));
