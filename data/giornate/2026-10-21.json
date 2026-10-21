@@ -1,0 +1,407 @@
+{
+  "data": "2026-10-21",
+  "generataAlle": "2026-10-21T09:09:33+02:00",
+  "giro": "claude",
+  "notizieControllate": true,
+  "competizioniNonCoperte": [],
+  "candidati": [
+    {
+      "id": "calcio-2026-10-21-levante-athletic-bilbao-1x2-1",
+      "sport": "calcio",
+      "competizione": "LaLiga",
+      "partita": "Levante - Athletic Bilbao",
+      "idPartita": "calcio-2026-10-21-levante-athletic-bilbao",
+      "inizio": "2026-10-21T20:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "1",
+      "prob": 0.3358624355779624,
+      "quota": 3.5,
+      "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-21T08:04:04+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Levante 1,5 – Athletic Bilbao 1,3 (gol e xG, ultime 2 stagioni)",
+        "Modello 41%, Pinnacle 26%, probabilità usata 34%",
+        "Quota mediana 3,50 su 19 bookmaker alle 08:04",
+        "Notizie controllate alle 09:09: nessuna correzione"
+      ],
+      "probModello": 0.4074988960266644,
+      "probPinnacle": 0.26422597512926044,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-21-levante-athletic-bilbao-cartellini-under-over-3-5-under-3-5",
+      "sport": "calcio",
+      "competizione": "LaLiga",
+      "partita": "Levante - Athletic Bilbao",
+      "idPartita": "calcio-2026-10-21-levante-athletic-bilbao",
+      "inizio": "2026-10-21T20:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Cartellini Under/Over 3.5",
+      "selezione": "Under 3.5",
+      "prob": 0.44724617039259495,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Levante 1,5 – Athletic Bilbao 1,3 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 45%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 09:09: nessuna correzione"
+      ],
+      "probModello": 0.44724617039259495,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-10-21-levante-athletic-bilbao-cartellini-under-over-4-5-under-4-5",
+      "sport": "calcio",
+      "competizione": "LaLiga",
+      "partita": "Levante - Athletic Bilbao",
+      "idPartita": "calcio-2026-10-21-levante-athletic-bilbao",
+      "inizio": "2026-10-21T20:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Cartellini Under/Over 4.5",
+      "selezione": "Under 4.5",
+      "prob": 0.6218844171025087,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Levante 1,5 – Athletic Bilbao 1,3 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 62%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 09:09: nessuna correzione"
+      ],
+      "probModello": 0.6218844171025087,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-washington-wizards-milwaukee-bucks-vincente-milwaukee-bucks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Milwaukee Bucks",
+      "idPartita": "nba-2026-10-21-washington-wizards-milwaukee-bucks",
+      "inizio": "2026-10-22T01:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Milwaukee Bucks",
+      "prob": 0.41200167254628495,
+      "quota": 2.5,
+      "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 117 – Milwaukee Bucks 117 (stagione in corso e precedente)",
+        "Modello 51%, Consenso bookmaker 38%, probabilità usata 41%",
+        "Quota mediana 2,50 su 9 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Vincente: vince se Milwaukee Bucks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.5078593555092147,
+      "probPinnacle": 0.38004911155864174,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-washington-wizards-milwaukee-bucks-handicap-meno-4-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Milwaukee Bucks",
+      "idPartita": "nba-2026-10-21-washington-wizards-milwaukee-bucks",
+      "inizio": "2026-10-22T01:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Handicap -4.5",
+      "selezione": "trasferta",
+      "prob": 0.5321077557527829,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 117 – Milwaukee Bucks 117 (stagione in corso e precedente)",
+        "Modello 63%, Consenso bookmaker 50%, probabilità usata 53%",
+        "Quota mediana 1,91 su 8 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Handicap: vince se i Milwaukee Bucks perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Milwaukee Bucks +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6294126984038018,
+      "probPinnacle": 0.49967277486910994,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-washington-wizards-milwaukee-bucks-totale-punti-239-5-under-239-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Milwaukee Bucks",
+      "idPartita": "nba-2026-10-21-washington-wizards-milwaukee-bucks",
+      "inizio": "2026-10-22T01:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 239.5",
+      "selezione": "Under 239.5",
+      "prob": 0.529423929228003,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 4 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 117 – Milwaukee Bucks 117 (stagione in corso e precedente)",
+        "Modello 61%, Consenso bookmaker 50%, probabilità usata 53%",
+        "Quota mediana 1,90 su 4 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Totale punti 239.5: Under vince se le due squadre segnano al massimo 239 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (239.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6068586389551334,
+      "probPinnacle": 0.5036123593189594,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-orlando-magic-atlanta-hawks-vincente-atlanta-hawks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Orlando Magic - Atlanta Hawks",
+      "idPartita": "nba-2026-10-21-orlando-magic-atlanta-hawks",
+      "inizio": "2026-10-22T01:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Atlanta Hawks",
+      "prob": 0.4502513986445624,
+      "quota": 2.23,
+      "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Orlando Magic 116 – Atlanta Hawks 116 (stagione in corso e precedente)",
+        "Modello 51%, Consenso bookmaker 43%, probabilità usata 45%",
+        "Quota mediana 2,23 su 9 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Vincente: vince se Atlanta Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.5076995474672392,
+      "probPinnacle": 0.43110201570367007,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-brooklyn-nets-charlotte-hornets-vincente-charlotte-hornets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Brooklyn Nets - Charlotte Hornets",
+      "idPartita": "nba-2026-10-21-brooklyn-nets-charlotte-hornets",
+      "inizio": "2026-10-22T01:30:00+02:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Charlotte Hornets",
+      "prob": 0.5453713632823332,
+      "quota": 2.05,
+      "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Brooklyn Nets 104 – Charlotte Hornets 116 (stagione in corso e precedente)",
+        "Modello 79%, Consenso bookmaker 46%, probabilità usata 55%",
+        "Quota mediana 2,05 su 9 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Vincente: vince se Charlotte Hornets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.7947494703132417,
+      "probPinnacle": 0.46224532760536363,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers-vincente-new-orleans-pelicans",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Indiana Pacers",
+      "idPartita": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers",
+      "inizio": "2026-10-22T02:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "New Orleans Pelicans",
+      "prob": 0.46661330481587204,
+      "quota": 2.3,
+      "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 122 – Indiana Pacers 118 (stagione in corso e precedente)",
+        "Modello 63%, Consenso bookmaker 41%, probabilità usata 47%",
+        "Quota mediana 2,30 su 9 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Vincente: vince se New Orleans Pelicans vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.6272072055118468,
+      "probPinnacle": 0.4130820045838804,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers-handicap-piu-3-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Indiana Pacers",
+      "idPartita": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers",
+      "inizio": "2026-10-22T02:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Handicap +3.5",
+      "selezione": "casa",
+      "prob": 0.55140811749401,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 122 – Indiana Pacers 118 (stagione in corso e precedente)",
+        "Modello 71%, Consenso bookmaker 50%, probabilità usata 55%",
+        "Quota mediana 1,91 su 8 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Handicap: vince se i New Orleans Pelicans perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su New Orleans Pelicans +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.711522522332061,
+      "probPinnacle": 0.4980366492146596,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-portland-trail-blazers-phoenix-suns-totale-punti-231-5-under-231-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Portland Trail Blazers - Phoenix Suns",
+      "idPartita": "nba-2026-10-21-portland-trail-blazers-phoenix-suns",
+      "inizio": "2026-10-22T04:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 231.5",
+      "selezione": "Under 231.5",
+      "prob": 0.5539975476876369,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 6 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Portland Trail Blazers 112 – Phoenix Suns 109 (stagione in corso e precedente)",
+        "Modello 71%, Consenso bookmaker 50%, probabilità usata 55%",
+        "Quota mediana 1,91 su 6 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Totale punti 231.5: Under vince se le due squadre segnano al massimo 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (231.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7133723897034268,
+      "probPinnacle": 0.5008726003490401,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-la-clippers-sacramento-kings-handicap-meno-5-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "LA Clippers - Sacramento Kings",
+      "idPartita": "nba-2026-10-21-la-clippers-sacramento-kings",
+      "inizio": "2026-10-22T04:30:00+02:00",
+      "tipo": "singola",
+      "mercato": "Handicap -5.5",
+      "selezione": "casa",
+      "prob": 0.5188483467806817,
+      "quota": 1.94,
+      "fonteQuota": "mediana di 6 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T08:04:12+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: LA Clippers 120 – Sacramento Kings 111 (stagione in corso e precedente)",
+        "Modello 60%, Consenso bookmaker 49%, probabilità usata 52%",
+        "Quota mediana 1,94 su 6 bookmaker alle 08:04",
+        "Notizie non controllate per questa partita",
+        "Handicap: vince se i LA Clippers vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su LA Clippers -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6028290356948973,
+      "probPinnacle": 0.49085478380927644,
+      "correzioneNotizie": null
+    }
+  ],
+  "giocate": [
+    {
+      "id": "calcio-2026-10-21-levante-athletic-bilbao-cartellini-under-over-3-5-under-3-5",
+      "sport": "calcio",
+      "competizione": "LaLiga",
+      "partita": "Levante - Athletic Bilbao",
+      "idPartita": "calcio-2026-10-21-levante-athletic-bilbao",
+      "inizio": "2026-10-21T20:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Cartellini Under/Over 3.5",
+      "selezione": "Under 3.5",
+      "prob": 0.44724617039259495,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Levante 1,5 – Athletic Bilbao 1,3 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 45%",
+        "Quota da verificare su bet365",
+        "Notizie controllate alle 09:09: nessuna correzione"
+      ],
+      "probModello": 0.44724617039259495,
+      "probPinnacle": null,
+      "correzioneNotizie": null,
+      "value": 0.0510285004225981,
+      "quotaMinima": 2.35,
+      "puntata": {
+        "euro": 2,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null
+    }
+  ],
+  "scartate": [
+    {
+      "idCandidato": "calcio-2026-10-21-levante-athletic-bilbao-1x2-1",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-washington-wizards-milwaukee-bucks-vincente-milwaukee-bucks",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-washington-wizards-milwaukee-bucks-handicap-meno-4-5-trasferta",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-washington-wizards-milwaukee-bucks-totale-punti-239-5-under-239-5",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-brooklyn-nets-charlotte-hornets-vincente-charlotte-hornets",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers-vincente-new-orleans-pelicans",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-new-orleans-pelicans-indiana-pacers-handicap-piu-3-5-casa",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-portland-trail-blazers-phoenix-suns-totale-punti-231-5-under-231-5",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-la-clippers-sacramento-kings-handicap-meno-5-5-casa",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "nba-2026-10-21-orlando-magic-atlanta-hawks-vincente-atlanta-hawks",
+      "motivo": "value insufficiente"
+    },
+    {
+      "idCandidato": "calcio-2026-10-21-levante-athletic-bilbao-cartellini-under-over-4-5-under-4-5",
+      "motivo": "altra giocata sulla stessa partita"
+    }
+  ],
+  "erroriGiro": [
+    "tennis-data.co.uk WTA 2026 alle 08:09: www.tennis-data.co.uk: HTTP 403",
+    "tennis-data.co.uk WTA 2025 alle 08:09: www.tennis-data.co.uk: HTTP 403",
+    "tennis-data.co.uk WTA 2024 alle 08:09: www.tennis-data.co.uk: HTTP 403",
+    "1 partita già iniziata esclusa"
+  ]
+}
