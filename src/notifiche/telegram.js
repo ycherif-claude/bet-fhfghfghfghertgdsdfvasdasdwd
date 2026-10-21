@@ -30,14 +30,18 @@ function hash(testo) {
 
 // "2,40 €": due decimali con la virgola, come il bankroll.
 const importo = (n) => `${virgola(n)} €`;
-// Puntata ridotta dal tetto giornaliero o dallo stop settimanale: ", ridotta da 5,00 €, tetto giornaliero".
+// Puntata ridotta dal tetto giornaliero: ", ridotta da 5,00 €, tetto giornaliero".
 const ridotta = (p) => (p.ridotta && num(p.ridotta.da) && typeof p.ridotta.motivo === 'string'
   ? `, ridotta da ${importo(p.ridotta.da)}, ${html(p.ridotta.motivo)}` : '');
+// "puntata 1,00 € (puntata fissa, giornata piena)" quando il tetto è tolto per oggi; altrimenti con la percentuale.
+const testoPuntata = (p) => (p.fissa && typeof p.fissa === 'object'
+  ? `puntata ${importo(p.euro)} (puntata fissa, giornata piena)`
+  : `puntata ${importo(p.euro)} (${String(p.percentuale).replace('.', ',')}%${ridotta(p)})`);
 
 function rigaQuota(g) {
   const minima = num(g.quotaMinima) ? `minima ${virgola(g.quotaMinima)}` : null;
   const quota = num(g.quota) ? `quota ${virgola(g.quota)}` : 'quota da verificare su bet365';
-  const puntata = g.puntata && num(g.puntata.euro) ? `puntata ${importo(g.puntata.euro)} (${String(g.puntata.percentuale).replace('.', ',')}%${ridotta(g.puntata)})` : null;
+  const puntata = g.puntata && num(g.puntata.euro) ? testoPuntata(g.puntata) : null;
   return [quota, minima, puntata].filter(Boolean).join(' · ');
 }
 

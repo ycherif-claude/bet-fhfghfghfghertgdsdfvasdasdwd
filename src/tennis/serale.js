@@ -158,9 +158,10 @@ function statoCorretto(dirData, giornata, adesso) {
       return s + (Number.isFinite(reale) ? reale : Infinity);
     }, 0));
   const inGiocoOggi = cent(stato.inGiocoOggi + proposteAperte + fatteNonValide);
-  const distanzaStop = cent(stato.distanzaStop - proposteAperte - fatteNonValide);
+  // Oggi già in caso C (qualche giocata con puntata fissa): le aggiunte della sera a 1 € fisso, senza tetto.
+  const giornataPiena = giornata.giocate.some((g) => oggetto(g) && oggetto(g.puntata) && oggetto(g.puntata.fissa));
   return {
-    stato: { ...stato, inGiocoOggi, distanzaStop, stopRaggiunto: stato.stopRaggiunto || !(distanzaStop > 0) },
+    stato: { bankroll: stato.bankroll, inGiocoOggi, giornataPiena },
     proposteAperte,
     avvisi,
   };
@@ -232,38 +233,33 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
   const fuori = new Set(preNuove.map((s) => s.idCandidato));
   const ammessi = nuovi.filter((c) => !fuori.has(c.id));
   const scartate = [...preNuove];
-  let nuoveGiocate = [];
-  if (stato.stopRaggiunto) {
-    scartate.push(...selezionaGiocate(ammessi, stato).scartate);
-  } else {
-    // 1. Senza tetto e stop: value, range, una giocata per partita, limiti delle singole. Le multiple si tolgono
-    //    qui, prima dei tetti, così non consumano il tetto giornaliero delle singole.
-    const scelta = selezionaGiocate(ammessi, { ...stato, inGiocoOggi: -Infinity, distanzaStop: Infinity });
-    scartate.push(...scelta.scartate);
-    // 2. Per value decrescente, una giocata alla volta: al massimo 10 singole (e speciali) nella giornata,
-    //    poi tetto giornaliero e stop con selezionaGiocate su quella sola giocata e i residui aggiornati:
-    //    se non entra intera viene ridotta a quanto resta (scartata solo se sotto la puntata minima).
-    const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
-    const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
-    const perId = new Map(ammessi.map((c) => [c.id, c]));
-    // Giocata tenuta con la puntata decisa dal secondo passaggio (ridotta se non entra intera nei residui).
-    const tenute = new Map();
-    let residuo = stato;
-    let singole = 0;
-    for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
-      if (multipla(g)) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_MULTIPLA }); continue; }
-      if (g.tipo !== 'builder' && singole >= posti) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_LIMITE_SINGOLE }); continue; }
-      const una = selezionaGiocate([perId.get(g.id)], residuo);
-      scartate.push(...una.scartate);
-      if (!una.giocate.length) continue;
-      const euro = una.giocate[0].puntata.euro;
-      residuo = { ...residuo, inGiocoOggi: cent(residuo.inGiocoOggi + euro), distanzaStop: cent(residuo.distanzaStop - euro) };
-      if (g.tipo !== 'builder') singole++;
-      tenute.set(g.id, una.giocate[0]);
-    }
-    // L'ordine delle giocate resta quello di selezionaGiocate.
-    nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id)).map((g) => tenute.get(g.id));
+  // 1. Senza tetto: value, range, una giocata per partita, limiti delle singole. Le multiple si tolgono
+  //    qui, prima del tetto, così non consumano il tetto giornaliero delle singole.
+  const scelta = selezionaGiocate(ammessi, { bankroll: stato.bankroll, inGiocoOggi: -Infinity });
+  scartate.push(...scelta.scartate);
+  // 2. Per value decrescente, una giocata alla volta: al massimo 10 singole (e speciali) nella giornata,
+  //    poi il tetto giornaliero con selezionaGiocate su quella sola giocata e il residuo aggiornato:
+  //    se non entra intera viene ridotta a quanto resta; se ridotta scenderebbe sotto 1 €, 1,00 € fissa
+  //    (mai scartata). Giornata già piena: 1,00 € fissa senza tetto. Dati non numerici: nessuna puntata.
+  const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
+  const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
+  const perId = new Map(ammessi.map((c) => [c.id, c]));
+  // Giocata tenuta con la puntata decisa dal secondo passaggio (ridotta o fissa se non entra intera nel residuo).
+  const tenute = new Map();
+  let residuo = stato;
+  let singole = 0;
+  for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
+    if (multipla(g)) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_MULTIPLA }); continue; }
+    if (g.tipo !== 'builder' && singole >= posti) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_LIMITE_SINGOLE }); continue; }
+    const una = selezionaGiocate([perId.get(g.id)], residuo);
+    scartate.push(...una.scartate);
+    if (!una.giocate.length) continue;
+    residuo = { ...residuo, inGiocoOggi: cent(residuo.inGiocoOggi + una.giocate[0].puntata.euro) };
+    if (g.tipo !== 'builder') singole++;
+    tenute.set(g.id, una.giocate[0]);
   }
+  // L'ordine delle giocate resta quello di selezionaGiocate.
+  const nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id)).map((g) => tenute.get(g.id));
 
   scriviJson(f.giornata[0], {
     ...giornata,

@@ -89,7 +89,7 @@ const gambeDi = (g) => (Array.isArray(g.gambe) && g.gambe.length ? g.gambe : [g]
 const inizioMs = (g) => Math.max(...gambeDi(g).map((x) => Date.parse(x.inizio)));
 
 // In attesa di esito: calcio, esito null, finita da più di 3 ore. Anche le annullate: l'utente
-// può averle giocate prima del controllo, e senza esito bankroll e stop resterebbero sbagliati.
+// può averle giocate prima del controllo, e senza esito bankroll e tetto resterebbero sbagliati.
 function inAttesa(g, adesso) {
   return g.sport === 'calcio' && g.esito === null && inizioMs(g) + TRE_ORE < adesso.getTime();
 }

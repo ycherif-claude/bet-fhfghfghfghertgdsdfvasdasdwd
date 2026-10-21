@@ -20,12 +20,12 @@ test('giocata non segnata non conta nel bankroll', () => {
   const r = statoBankroll([g('a', '2026-10-20T18:00:00+02:00', { esito: 'vinta' })], [], ADESSO);
   assert.equal(r.bankroll, 200);
 });
-test('in corso conta come persa per risultatoSettimana e stop', () => {
+test('risultatoSettimana solo con le giocate chiuse: le in corso non si sottraggono (contano in inGiocoOggi)', () => {
   const gs = [g('a', '2026-10-20T18:00:00+02:00', { esito: 'persa' }),
     g('b', '2026-10-21T10:00:00+02:00')];
   const r = statoBankroll(gs, [s('a', { puntataReale: 45 }), s('b', { puntataReale: 6 })], ADESSO);
-  assert.equal(r.risultatoSettimana, -51);
-  assert.equal(r.stopRaggiunto, true);
+  assert.equal(r.risultatoSettimana, -45);
+  assert.equal(r.inGiocoOggi, 6);
   assert.equal(r.bankroll, 155); // le puntate in corso non scalano dal bankroll
 });
 test('inGiocoOggi = somma puntate reali delle giocate fatte di oggi non ancora chiuse', () => {
@@ -67,14 +67,19 @@ test('fatta:true conta anche se la giocata è annullata', () => {
   const r = statoBankroll([g('a', '2026-10-20T18:00:00+02:00', { stato: 'annullata', esito: 'persa' })], [s('a')], ADESSO);
   assert.equal(r.bankroll, 190);
 });
-test('distanzaStop = 50 + risultatoSettimana', () => {
-  const r = statoBankroll([g('a', '2026-10-20T18:00:00+02:00', { esito: 'persa' })], [s('a', { puntataReale: 20 })], ADESSO);
-  assert.equal(r.risultatoSettimana, -20);
-  assert.equal(r.distanzaStop, 30);
-  assert.equal(r.stopRaggiunto, false);
+test('stop settimanale tolto: nessun campo stopRaggiunto né distanzaStop, anche con la settimana a −90', () => {
+  const r = statoBankroll([g('a', '2026-10-20T18:00:00+02:00', { esito: 'persa' })], [s('a', { puntataReale: 90 })], ADESSO);
+  assert.equal(r.risultatoSettimana, -90);
+  assert.deepEqual(Object.keys(r).sort(), ['bankroll', 'daSegnare', 'inGiocoOggi', 'risultatoSettimana']);
 });
 test('profitti di settimane precedenti contano nel bankroll ma non nella settimana', () => {
   const r = statoBankroll([g('a', '2026-10-14T18:00:00+02:00', { esito: 'vinta' })], [s('a')], ADESSO);
   assert.equal(r.bankroll, 210);
   assert.equal(r.risultatoSettimana, 0);
+});
+
+import { CONFIG } from '../../src/config.js';
+
+test('CONFIG senza stopSettimanale (stop tolto dall\'utente il 21/10/2026)', () => {
+  assert.equal('stopSettimanale' in CONFIG, false);
 });

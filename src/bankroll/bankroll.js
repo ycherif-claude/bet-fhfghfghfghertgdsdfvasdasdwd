@@ -43,20 +43,16 @@ export function statoBankroll(giocate, segnature, adesso) {
       const p = profitto(sig, g.esito);
       bankroll += p;
       if (inSettimana) risultatoSettimana += p;
-    } else {
-      if (inSettimana) risultatoSettimana -= sig.puntataReale;
-      if (giornataDi(new Date(inizio)) === oggi) inGiocoOggi += sig.puntataReale;
+    } else if (giornataDi(new Date(inizio)) === oggi) {
+      // In corso: conta per il tetto giornaliero, non per il risultato della settimana (solo chiuse).
+      inGiocoOggi += sig.puntataReale;
     }
   }
 
-  bankroll = cent(bankroll);
-  risultatoSettimana = cent(risultatoSettimana);
   return {
-    bankroll,
-    risultatoSettimana,
+    bankroll: cent(bankroll),
+    risultatoSettimana: cent(risultatoSettimana),
     inGiocoOggi: cent(inGiocoOggi),
-    stopRaggiunto: risultatoSettimana <= CONFIG.stopSettimanale,
-    distanzaStop: cent(risultatoSettimana - CONFIG.stopSettimanale),
     daSegnare,
   };
 }

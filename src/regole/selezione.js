@@ -27,16 +27,16 @@ function creaGiocata(candidato, tipo, bankroll) {
   };
 }
 
-// distanzaStop: euro che mancano allo stop settimanale (puntate in corso già contate come perse).
-// Assente (chiamanti vecchi) = nessun limite dallo stop.
-export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiunto, distanzaStop = Infinity }) {
+export const MOTIVO_TETTO = 'tetto giornaliero';
+export const MOTIVO_FISSA = 'giornata piena';
+export const MOTIVO_DATI_BANKROLL = 'dati del bankroll non numerici';
+
+// inGiocoOggi: euro già in gioco oggi (segnati e proposti); -Infinity = nessun tetto (primo passaggio del serale).
+// giornataPiena: oggi è già in caso C (giro serale) → tutte le nuove giocate a puntata fissa, senza tetto.
+// Lo stop settimanale non esiste più [utente, 21/10/2026]: eventuali campi dello stop si ignorano.
+export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPiena = false }) {
   const scartate = [];
   const scarta = (id, motivo) => scartate.push({ idCandidato: id, motivo });
-
-  if (stopRaggiunto) {
-    candidati.forEach((c) => scarta(c.id, 'stop settimanale'));
-    return { giocate: [], scartate };
-  }
 
   // Classificazione, range e soglia di value.
   const valide = [];
@@ -69,57 +69,47 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiun
   const multiple = costruisciMultiple(singole, bankroll);
   const tutte = [...singole, ...builder.slice(0, maxB), ...multiple].sort(perValue);
 
-  // Puntata minima, tetto giornaliero e stop settimanale.
-  // Le puntate proposte contano come perse: la loro somma non supera mai
-  // né il tetto residuo di oggi né la distanza dallo stop. Se la superano,
-  // tutte le puntate si riducono nella stessa proporzione (vedi riduciAlLimite).
-  const tettoCalcolato = CONFIG.tettoGiornaliero * bankroll - inGiocoOggi;
-  // Bankroll o soldi in gioco non numerici (dato corrotto): per prudenza nessuna nuova puntata, come per lo stop.
-  // Infinity resta valido: il giro serale lo usa per un primo passaggio senza tetto.
-  const residuoTetto = Number.isNaN(tettoCalcolato) ? 0 : tettoCalcolato;
-  // Valore non numerico (dato corrotto): per prudenza nessuna nuova puntata.
-  const residuoStop = typeof distanzaStop === 'number' && !Number.isNaN(distanzaStop) ? distanzaStop : 0;
-  const limite = Math.min(residuoTetto, residuoStop);
-  const motivoLimite = residuoStop < residuoTetto ? 'stop settimanale' : 'tetto giornaliero';
+  // Bankroll o soldi in gioco non numerici (dato corrotto, anche +Infinity da una puntata illeggibile):
+  // per prudenza nessuna nuova puntata, nemmeno fissa. -Infinity resta valido: nessun tetto.
+  const datiOk = Number.isFinite(bankroll)
+    && typeof inGiocoOggi === 'number' && (Number.isFinite(inGiocoOggi) || inGiocoOggi === -Infinity);
   const daPuntare = [];
   for (const g of tutte) {
     if (!(g.puntata.euro > 0)) { scarta(g.id, 'puntata troppo bassa'); continue; }
+    if (!datiOk) { scarta(g.id, MOTIVO_DATI_BANKROLL); continue; }
     daPuntare.push(g);
   }
-  const giocate = riduciAlLimite(daPuntare, { limite, motivo: motivoLimite, bankroll, scarta });
+  if (giornataPiena) return { giocate: daPuntare.map((g) => conPuntataFissa(g, bankroll)), scartate };
+  const giocate = applicaTetto(daPuntare, { limite: CONFIG.tettoGiornaliero * bankroll - inGiocoOggi, bankroll });
   return { giocate, scartate };
 }
 
 const centesimi = (euro) => Math.round(euro * 100);
+const percentualeDi = (euro, bankroll) => Math.round((euro / bankroll) * 10000) / 100;
 
-// Somma delle puntate oltre il limite: ogni puntata × (limite / somma), arrotondata per difetto
-// a CONFIG.arrotondamentoRidotte. Se qualcuna scende sotto CONFIG.puntataMinima esce, tra quelle,
-// la giocata col value più basso e si ricalcola sulle restanti. Conti in centesimi interi:
-// la somma finale non supera mai il limite. `giocate` è già per value decrescente.
-function riduciAlLimite(giocate, { limite, motivo, bankroll, scarta }) {
+// Caso C: puntata fissa CONFIG.puntataMinima (1 €), `fissa.da` = la puntata Kelly originale.
+function conPuntataFissa(g, bankroll) {
+  const euro = CONFIG.puntataMinima;
+  return { ...g, puntata: { ...g.puntata, euro, percentuale: percentualeDi(euro, bankroll), fissa: { da: g.puntata.euro, motivo: MOTIVO_FISSA } } };
+}
+
+// Tetto giornaliero a tre casi [utente, 21/10/2026]. `limite` = residuo del tetto (euro).
+// A. Somma ≤ limite: puntate invariate.
+// B. Somma oltre: ogni puntata × (limite / somma), arrotondata per difetto a CONFIG.arrotondamentoRidotte
+//    (conti in centesimi interi, la somma non supera mai il limite), se così TUTTE restano ≥ CONFIG.puntataMinima.
+// C. Altrimenti per oggi il tetto non si applica: TUTTE a puntata fissa da CONFIG.puntataMinima. Nessuna scartata.
+function applicaTetto(giocate, { limite, bankroll }) {
   const limiteCent = Math.floor(limite * 100 + EPS);
+  const sommaCent = giocate.reduce((a, g) => a + centesimi(g.puntata.euro), 0);
+  if (!(sommaCent > limiteCent)) return giocate;
   const passo = centesimi(CONFIG.arrotondamentoRidotte);
-  const minimo = centesimi(CONFIG.puntataMinima);
-  let restanti = giocate;
-  for (;;) {
-    const sommaCent = restanti.reduce((a, g) => a + centesimi(g.puntata.euro), 0);
-    // Sotto il limite: puntate invariate.
-    if (!(sommaCent > limiteCent)) return restanti;
-    const ridotte = restanti.map((g) => {
-      const quota = Math.floor((centesimi(g.puntata.euro) * Math.max(0, limiteCent)) / sommaCent);
-      return { g, cent: Math.floor(quota / passo) * passo };
-    });
-    const sotto = ridotte.filter((r) => r.cent < minimo);
-    if (!sotto.length) {
-      return ridotte.map(({ g, cent }) => {
-        const euro = cent / 100;
-        const percentuale = Math.round((euro / bankroll) * 10000) / 100;
-        return { ...g, puntata: { ...g.puntata, euro, percentuale, ridotta: { da: g.puntata.euro, motivo } } };
-      });
-    }
-    // A parità di value esce quella che viene dopo nell'ordine.
-    const peggiore = sotto.reduce((a, b) => (b.g.value <= a.g.value ? b : a)).g;
-    scarta(peggiore.id, `puntata ridotta sotto il minimo (${motivo})`);
-    restanti = restanti.filter((g) => g !== peggiore);
-  }
+  const ridotte = giocate.map((g) => {
+    const quota = Math.floor((centesimi(g.puntata.euro) * Math.max(0, limiteCent)) / sommaCent);
+    return { g, cent: Math.floor(quota / passo) * passo };
+  });
+  if (ridotte.some((r) => r.cent < centesimi(CONFIG.puntataMinima))) return giocate.map((g) => conPuntataFissa(g, bankroll));
+  return ridotte.map(({ g, cent }) => {
+    const euro = cent / 100;
+    return { ...g, puntata: { ...g.puntata, euro, percentuale: percentualeDi(euro, bankroll), ridotta: { da: g.puntata.euro, motivo: MOTIVO_TETTO } } };
+  });
 }

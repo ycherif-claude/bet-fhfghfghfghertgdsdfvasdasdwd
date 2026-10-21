@@ -36,7 +36,7 @@ Vuole un sistema automatico che ogni giorno:
 
 **Anti-obiettivi (anche se funziona, è un fallimento se...)**
 - Propone giocate "per riempire la giornata" senza value reale.
-- Ignora lo stop settimanale o il tetto giornaliero.
+- Ignora il tetto giornaliero (regola a tre casi del §8).
 - Mostra quote o formazioni vecchie come se fossero aggiornate, senza dire da dove vengono e di quando sono.
 - Non permette di capire, dopo qualche settimana, se si sta guadagnando o perdendo e perché.
 
@@ -105,7 +105,7 @@ Statistiche, xG, infortuni, cambi di dirigenza o allenatore, obiettivi stagional
 2. Prima scrematura con i dati più economici (quote, classifica, forma): si scelgono le partite più promettenti.
 3. Analisi approfondita di quelle partite con i fattori del §5.
 4. Si generano le giocate secondo le regole del §7 e si pubblicano sulla pagina con stato **"In attesa formazioni"**.
-5. Si calcola il bankroll aggiornato e si verificano lo stop settimanale e il tetto giornaliero.
+5. Si calcola il bankroll aggiornato e si applica il tetto giornaliero (regola a tre casi del §8).
 
 ### 6.2 Controllo prima di ogni partita
 Ogni partita con almeno una giocata proposta ha **un suo controllo** (niente raggruppamenti, decisione dell'utente). Orari indicativi:
@@ -164,31 +164,34 @@ Nessun numero fisso: decide la soglia di value. Nelle giornate normali ci si asp
 ## 8. Bankroll e rischio
 
 - **Bankroll iniziale: 200 €** (decisione dell'utente).
-- **Stop settimanale: −50 €** (decisione dell'utente). La settimana va da lunedì a domenica. Raggiunto lo stop, non si propongono altre giocate fino al lunedì dopo e la pagina lo segnala chiaramente.
+- **Stop settimanale: tolto dall'utente il 21/10/2026.** Prima era −50 € a settimana; ora nessuna giocata viene scartata o ridotta per il risultato della settimana, e la pagina e Telegram non ne parlano più. Il risultato della settimana (lunedì-domenica, solo giocate chiuse) resta come informazione nel riquadro.
 - **Puntate [scelta di Claude]**, calcolate con una versione prudente (frazionaria) del criterio di Kelly, entro questi limiti:
   - singole: 1-3% del bankroll (2-6 € all'inizio);
   - singole speciali: 1%;
   - multiple: 0,5-1%;
   - bet builder: 0,5%.
 - **Tetto giornaliero [scelta di Claude]**: al massimo il 10-12% del bankroll in gioco nello stesso giorno.
-- **Puntate ridotte in proporzione [decisione dell'utente]**: se le giocate valide del giorno chiedono più del limite (il residuo del tetto giornaliero o, se più piccola, la distanza dallo stop settimanale), non si scarta nessuna giocata: tutte le puntate si riducono nella stessa proporzione (limite / somma delle puntate), arrotondate per difetto a 0,10 €, e la percentuale si ricalcola. Così si giocano più partite e si raccolgono più dati con lo stesso rischio massimo. La somma non supera mai il limite.
-  - Puntata minima **1 €**: se dopo la riduzione qualche puntata è sotto 1 €, esce la giocata con il value più basso tra quelle sotto il minimo (motivo "puntata ridotta sotto il minimo (tetto giornaliero)" o "(stop settimanale)") e si ricalcola sulle restanti.
-  - La scheda dice "ridotta da X € per il tetto giornaliero" (o "per lo stop settimanale"). Vale anche per le giocate aggiunte la sera (tennis), con i residui di quel momento: la giocata che non entra intera viene ridotta, non scartata, se resta almeno 1 €.
+- **Tetto giornaliero a tre casi [decisione dell'utente, 21/10/2026]**: il residuo del tetto è il 12% del bankroll meno quanto è già in gioco oggi. Calcolate le puntate Kelly di tutte le giocate valide del giorno (singole, speciali, multiple, builder, già con i limiti 10/2/2):
+  - **Caso A** – la somma sta nel residuo: puntate invariate.
+  - **Caso B** – la somma supera il residuo, ma riducendo tutte le puntate nella stessa proporzione (residuo / somma, arrotondate per difetto a 0,10 €, percentuale ricalcolata) restano **tutte almeno 1 €**: si riducono. La scheda dice "ridotta da X € per il tetto giornaliero". La somma non supera mai il residuo. Nessuna giocata scartata.
+  - **Caso C** – la riduzione porterebbe anche una sola puntata sotto 1 €: per quel giorno il tetto **non si applica** e **tutte** le giocate valide hanno **puntata fissa da 1,00 €** (percentuale ricalcolata; nel file `puntata.fissa = { da: <puntata Kelly>, motivo: "giornata piena" }`). Nessuna giocata scartata, anche se la somma supera il residuo. La scheda dice "puntata fissa 1,00 € (giornata piena: tetto giornaliero tolto per oggi)", Telegram "1,00 € (puntata fissa, giornata piena)", il riquadro in alto "tetto tolto oggi (puntate fisse da 1 €)".
+  - Le giocate con puntata Kelly 0 restano scartate ("puntata troppo bassa"). Se bankroll o soldi in gioco non sono numeri leggibili, per prudenza nessuna nuova puntata (motivo "dati del bankroll non numerici").
+  - Giro serale del tennis: se oggi è già in caso C, le giocate aggiunte la sera vanno a 1,00 € fissi senza tetto. Altrimenti si aggiungono una alla volta sul residuo di quel momento: intera se ci sta, ridotta se resta almeno 1 €, altrimenti 1,00 € fissa (mai scartata).
 - Le puntate si ricalcolano ogni giorno sul bankroll aggiornato.
-- Gli importi si arrotondano a 0,50 € (le puntate ridotte dal tetto o dallo stop a 0,10 €). **[scelta di Claude]**
+- Gli importi si arrotondano a 0,50 € (le puntate ridotte dal tetto a 0,10 €). **[scelta di Claude]**
 
 Per sapere il bankroll reale servono le giocate effettivamente fatte: vedi §9.3. Una giocata proposta ma non segnata come giocata **non** conta nel bankroll. Conta però nello storico "proposte", che misura il metodo. **[scelta di Claude]**
 
-**Come si calcolano stop e tetto [scelta di Claude]**
-- Stop settimanale e tetto giornaliero si basano sulle **giocate segnate come fatte**.
-- Per prudenza, le puntate **ancora in corso** contano come se fossero già perse, sia per lo stop sia per il tetto. Così non si supera mai il limite nemmeno nel caso peggiore.
+**Come si calcolano tetto e risultato della settimana [scelta di Claude]**
+- Il tetto giornaliero si basa sulle **giocate segnate come fatte** di oggi ancora in corso (più, nel giro serale, le proposte di oggi non ancora segnate).
+- Il risultato della settimana conta solo le giocate **chiuse**: le puntate in corso non si sottraggono più (servivano solo allo stop, tolto il 21/10/2026).
 - Se ci sono giocate passate non segnate né come fatte né come saltate, la pagina mostra un promemoria in alto. Le giocate non segnate dopo 24 ore vengono considerate saltate.
 
 ## 9. Pagina web
 
 ### 9.1 Pagina del giorno – layout "A, schede per sport" (scelta dell'utente)
 - In alto i filtri per sport: Calcio, Tennis, NBA, Basket, Pallavolo.
-- Un riquadro con bankroll attuale, risultato della settimana, distanza dallo stop e somma già in gioco oggi rispetto al tetto. **[scelta di Claude]**
+- Un riquadro con bankroll attuale, risultato della settimana e somma già in gioco oggi rispetto al tetto (a giornata piena: "tetto tolto oggi (puntate fisse da 1 €)"). **[scelta di Claude]**
 - Una scheda per ogni giocata con:
   - partita, orario, competizione;
   - tipo (singola, multipla, bet builder) e mercato;

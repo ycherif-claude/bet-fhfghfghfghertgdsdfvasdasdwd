@@ -19,8 +19,10 @@ Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte 
 1. **Risultati:**
    - numero di giocate, vinte, perse, rimborsate, profitto in euro e ROI;
    - bankroll a inizio e fine settimana;
-   - distanza minima dallo stop raggiunta;
-   - giocate con puntata ridotta dal tetto giornaliero o dallo stop (campo `puntata.ridotta` nelle giornate: `da` è la puntata piena, `motivo` il limite) e giocate scartate con motivo "puntata ridotta sotto il minimo": quante sono e come rendono rispetto alle altre.
+   - tetto giornaliero (regola a tre casi, documento di progetto §8; lo stop settimanale è stato tolto dall'utente il 21/10/2026):
+     - giocate con puntata ridotta dal tetto (caso B, campo `puntata.ridotta` nelle giornate: `da` è la puntata piena): quante sono e come rendono rispetto alle altre;
+     - **giornate piene** (caso C: giornate con almeno una giocata con `puntata.fissa`) e **puntate fisse da 1 €** (campo `puntata.fissa`, `da` è la puntata Kelly che sarebbe servita): quante giornate e quante puntate, quanto si è messo in gioco in quei giorni rispetto al tetto (12% del bankroll) e come rendono;
+     - nelle settimane prima del 21/10/2026 possono esserci ancora motivi "stop settimanale" o "puntata ridotta sotto il minimo": contali a parte, non valgono più.
 2. **Per sport, tipo di giocata (singola, speciale, multipla) e mercato:** dove si guadagna e dove si perde. Con meno di 20 giocate in un gruppo, scrivi chiaramente che il campione è troppo piccolo per concludere qualcosa.
 3. **Calibrazione delle probabilità:**
    - raggruppa le proposte chiuse per fasce di probabilità stimata (per esempio 40-50%, 50-60%, 60-70%) e confronta la percentuale di vincita reale con quella stimata;
@@ -44,7 +46,7 @@ Alla fine scrivi **al massimo 5 proposte**, in ordine di importanza. Ognuna dice
 
 Esempi del tipo di proposte attese: togliere o ridurre un mercato che perde con costanza su un campione sufficiente (documento di progetto §7.3, dopo circa un mese); correggere un nome non riconosciuto che si ripete; rivedere una soglia; ridurre un campionato che consuma troppi crediti.
 
-**Non proporre** di alzare le puntate, di superare i limiti di bankroll o di stop, o di aggiungere giocate per "riempire".
+**Non proporre** di alzare le puntate, di superare i limiti di bankroll o il tetto giornaliero, o di aggiungere giocate per "riempire".
 
 Ricorda sempre: nessun modello garantisce vincite, e su poche settimane la fortuna pesa più del metodo.
 

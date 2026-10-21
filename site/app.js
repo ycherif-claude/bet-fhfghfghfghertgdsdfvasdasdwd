@@ -59,7 +59,6 @@ export function testoAvvisi(dati, adesso = new Date()) {
   if (!oggi.disponibile) avvisi.push('Analisi di oggi non disponibile');
   else if ((giornata?.giocate ?? []).length === 0) avvisi.push('Oggi nessuna giocata con value');
   if (giornata?.esempio) avvisi.push('Dati di esempio, non sono giocate reali');
-  if (b.stopRaggiunto) avvisi.push('Stop settimanale raggiunto: nessuna nuova giocata fino a lunedì');
   const n = (b.daSegnare ?? []).length;
   if (n > 0) avvisi.push(n === 1 ? 'Hai 1 giocata da segnare' : `Hai ${n} giocate da segnare`);
   const nonCoperte = giornata?.competizioniNonCoperte ?? [];
@@ -68,8 +67,9 @@ export function testoAvvisi(dati, adesso = new Date()) {
   return avvisi;
 }
 
-// Oltre lo stop la distanza è 0 (l'avviso di stop spiega il resto).
-export const distanzaDaMostrare = (b) => Math.max(0, b.distanzaStop ?? 0);
+// Oggi in caso C: qualche giocata con puntata fissa da 1 € (tetto giornaliero tolto per oggi).
+export const giornataPiena = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocate : [])
+  .some((g) => g?.puntata?.fissa != null && typeof g.puntata.fissa === 'object');
 
 // Segnatura più recente (per `ora`) di ogni giocata.
 export function ultimeSegnature(segnature) {
@@ -115,13 +115,19 @@ export function el(tag, attrs = {}, ...figli) {
   return nodo;
 }
 
-// Puntata ridotta in proporzione dal tetto giornaliero o dallo stop settimanale:
+// Puntata ridotta in proporzione dal tetto giornaliero (caso B):
 // "ridotta da 5,00 € per il tetto giornaliero". null se non ridotta o dato non leggibile.
-const LIMITE_RIDOTTA = { 'tetto giornaliero': 'per il tetto giornaliero', 'stop settimanale': 'per lo stop settimanale' };
+const LIMITE_RIDOTTA = { 'tetto giornaliero': 'per il tetto giornaliero' };
 export function testoRidotta(puntata) {
   const r = puntata?.ridotta;
   if (!r || !Number.isFinite(r.da) || !LIMITE_RIDOTTA[r.motivo]) return null;
   return `ridotta da ${euro(r.da)} ${LIMITE_RIDOTTA[r.motivo]}`;
+}
+
+// Puntata fissa da 1 € a giornata piena (caso C): null se non fissa o dato non leggibile.
+export function testoFissa(puntata) {
+  if (!puntata?.fissa || typeof puntata.fissa !== 'object' || !Number.isFinite(puntata.euro)) return null;
+  return `puntata fissa ${euro(puntata.euro)} (giornata piena: tetto giornaliero tolto per oggi)`;
 }
 
 export const NOME_TIPO = { singola: 'Singola', speciale: 'Singola speciale', multipla: 'Multipla', builder: 'Bet builder' };
@@ -260,6 +266,7 @@ export function renderScheda(g, segnatura) {
     el('p', {}, `Probabilità stimata ${percento(g.prob)} · value ${segno(g.value)}${percento(g.value)}`),
     el('p', {}, el('strong', {}, `Puntata ${euro(g.puntata.euro)}`), ` (${fmtPerc1.format(g.puntata.percentuale)}% del bankroll)`),
     testoRidotta(g.puntata) ? el('p', { class: 'ridotta' }, testoRidotta(g.puntata)) : null,
+    testoFissa(g.puntata) ? el('p', { class: 'fissa' }, testoFissa(g.puntata)) : null,
     renderPiedeScheda(g, segnatura),
     dettagli,
   );
@@ -275,15 +282,19 @@ export function schedaSicura(id, crea) {
   }
 }
 
-function renderRiquadro(b) {
-  const tetto = TETTO_GIORNALIERO * b.bankroll;
-  const voce = (etichetta, valore) => el('div', { class: 'voce' }, el('span', { class: 'etichetta' }, etichetta), el('span', { class: 'valore' }, valore));
-  return el('section', { class: 'riquadro', 'aria-label': 'Situazione bankroll' },
-    voce('Bankroll', euro(b.bankroll)),
-    voce('Risultato settimana', `${segno(b.risultatoSettimana)}${euro(b.risultatoSettimana)}`),
-    voce('Distanza dallo stop', euro(distanzaDaMostrare(b))),
-    voce('In gioco oggi / tetto', `${euro(b.inGiocoOggi)} / ${euro(tetto)}`),
-  );
+// Voci del riquadro in alto: [etichetta, valore]. Lo stop settimanale non c'è più [utente, 21/10/2026].
+export function vociRiquadro(b, giornata) {
+  const tetto = `${euro(b.inGiocoOggi)} / ${euro(TETTO_GIORNALIERO * b.bankroll)}`;
+  return [
+    ['Bankroll', euro(b.bankroll)],
+    ['Risultato settimana', `${segno(b.risultatoSettimana)}${euro(b.risultatoSettimana)}`],
+    ['In gioco oggi / tetto', giornataPiena(giornata) ? `${tetto} · tetto tolto oggi (puntate fisse da 1 €)` : tetto],
+  ];
+}
+
+function renderRiquadro(b, giornata) {
+  const voce = ([etichetta, valore]) => el('div', { class: 'voce' }, el('span', { class: 'etichetta' }, etichetta), el('span', { class: 'valore' }, valore));
+  return el('section', { class: 'riquadro', 'aria-label': 'Situazione bankroll' }, ...vociRiquadro(b, giornata).map(voce));
 }
 
 function avviaImpostazioni() {
@@ -322,7 +333,7 @@ function avvia(dati) {
   const avvisi = document.getElementById('avvisi');
   const lista = document.getElementById('giocate');
 
-  riquadro.replaceChildren(renderRiquadro(dati.bankroll));
+  riquadro.replaceChildren(renderRiquadro(dati.bankroll, dati.oggi?.giornata));
   avvisi.replaceChildren(...testoAvvisi(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   const sottotitolo = document.getElementById('data-giornata');
   if (sottotitolo) sottotitolo.textContent = dati.oggi.data;

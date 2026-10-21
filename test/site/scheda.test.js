@@ -58,3 +58,12 @@ test('scheda con puntata ridotta: riga "ridotta da …" dopo la puntata; senza r
   const normale = renderScheda(giocata(), null);
   assert.ok(!testi(normale).some((t) => t.startsWith('ridotta da')));
 });
+
+test('scheda con puntata fissa: riga "puntata fissa 1,00 € (giornata piena: …)", nessuna riga "ridotta da"', () => {
+  const s = renderScheda(giocata({ puntata: { euro: 1, percentuale: 0.5, fissa: { da: 5, motivo: 'giornata piena' } } }), null);
+  const riga = tutti(s).find((n) => n.tag === 'p' && n.className === 'fissa');
+  assert.ok(riga, 'riga fissa assente');
+  assert.match(riga.testo, /^puntata fissa 1,00\s€ \(giornata piena: tetto giornaliero tolto per oggi\)$/);
+  assert.ok(!tutti(s).some((n) => (n.testo ?? '').startsWith('ridotta da')));
+  assert.ok(!tutti(renderScheda(giocata(), null)).some((n) => n.className === 'fissa'));
+});

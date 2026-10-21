@@ -1,6 +1,6 @@
 # Analisi giocate
 
-Sito personale che mostra ogni giorno le giocate consigliate (singole, multiple, builder), tiene il bankroll e lo storico. Il bankroll iniziale è 200 €, con stop settimanale a −50 €.
+Sito personale che mostra ogni giorno le giocate consigliate (singole, multiple, builder), tiene il bankroll e lo storico. Il bankroll iniziale è 200 €. Lo stop settimanale (−50 €) è stato tolto dall'utente il 21/10/2026.
 
 Il repository e il sito sono **pubblici**: nessuna password, per scelta. Il sito non è indicizzato dai motori di ricerca (`noindex` e `robots.txt`), ma chi conosce l'indirizzo può vederlo. Per questo il nome del repository è poco prevedibile.
 
@@ -10,7 +10,7 @@ Il repository e il sito sono **pubblici**: nessuna password, per scelta. Il sito
 - A ogni push su `main`, a mano e ogni ora (al minuto 15) una GitHub Action esegue i test, costruisce `site/dati.json` e pubblica la cartella `site/` su GitHub Pages. La ricostruzione oraria serve ad aggiornare "oggi" e i promemoria.
 - Nella pagina del giorno, "Giocata" (o "Saltata") scrive un file in `data/segnature/` tramite l'API di GitHub; "Annulla segnatura" lo cancella. Il bankroll si aggiorna dopo la ripubblicazione (1-2 minuti).
 - Con "Giocata" scegli anche il bookmaker (bet365, Sportium, Betfair, Snai, Goldbet, DAZN Bet; proposto bet365). Gioca dove la quota è più alta, purché non sotto la quota minima della scheda. Per Betfair scrivi la quota al netto della commissione. Lo storico ha la tabella "Per bookmaker".
-- Ogni giorno si mette in gioco al massimo il 12% del bankroll (tetto giornaliero), e mai più di quanto manca allo stop settimanale. Se le giocate valide del giorno chiedono di più, nessuna viene tolta: **tutte le puntate si riducono nella stessa proporzione**, arrotondate per difetto a 0,10 €. Una puntata ridotta sotto 1 € non si gioca: esce la giocata con il value più basso e le altre si ricalcolano. Sulla scheda compare "ridotta da 5,00 € per il tetto giornaliero" (o "per lo stop settimanale").
+- Tetto giornaliero: 12% del bankroll meno quanto è già in gioco oggi, con tre casi e nessuna giocata mai scartata per il tetto. **A**: se le giocate valide del giorno ci stanno, puntate invariate. **B**: se chiedono di più, **tutte le puntate si riducono nella stessa proporzione**, arrotondate per difetto a 0,10 €, purché restino tutte almeno 1 € (sulla scheda "ridotta da 5,00 € per il tetto giornaliero"). **C**: se anche una sola scenderebbe sotto 1 €, per quel giorno il tetto non vale e tutte le giocate hanno **puntata fissa da 1,00 €** (sulla scheda "puntata fissa 1,00 € (giornata piena: tetto giornaliero tolto per oggi)"). Il giro serale del tennis segue la stessa regola: a giornata già piena le aggiunte sono da 1,00 € fissi. Nessuno stop settimanale.
 
 ## Token per segnare le giocate
 
@@ -269,7 +269,7 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
-- `esito` di giocate e gambe lo scrivono solo gli esiti (giro del mattino ed esiti rapidi). Per cartellini e angoli del calcio gli esiti rapidi scrivono solo `esitoProvvisorio: { esito, dettaglio }` (numeri di ESPN, da confermare): non conta per bankroll e stop, serve solo alla notifica Telegram.
+- `esito` di giocate e gambe lo scrivono solo gli esiti (giro del mattino ed esiti rapidi). Per cartellini e angoli del calcio gli esiti rapidi scrivono solo `esitoProvvisorio: { esito, dettaglio }` (numeri di ESPN, da confermare): non conta per bankroll e tetto, serve solo alla notifica Telegram.
 - Controlli prima delle partite (Fase 3): progetto in `docs/superpowers/specs/2026-10-21-fase-3-controlli-design.md`, codice in `src/controlli/`.
 - Pallavolo (Fase 4d): progetto in `docs/superpowers/specs/2026-10-21-fase-4d-pallavolo-design.md`, codice in `src/pallavolo/`.
 - Basket (Fase 4c): progetto in `docs/superpowers/specs/2026-10-21-fase-4c-basket-design.md`, codice in `src/basket/`.
@@ -278,4 +278,4 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 
 ## Avvertenza
 
-Nulla garantisce vincite. Gioca con responsabilità, solo entro il bankroll di 200 € e rispettando lo stop settimanale di −50 €.
+Nulla garantisce vincite. Gioca con responsabilità, solo entro il bankroll di 200 € e rispettando il tetto giornaliero.

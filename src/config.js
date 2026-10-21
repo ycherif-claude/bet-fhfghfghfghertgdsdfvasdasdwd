@@ -7,7 +7,7 @@ const congela = (o) => {
 export const CONFIG = congela({
   fusoOrario: 'Europe/Rome',
   bankrollIniziale: 200,
-  stopSettimanale: -50,
+  // Stop settimanale (−50 €) tolto dall'utente il 21/10/2026: nessun limite settimanale.
   sogliaValue: 0.05,
   sogliaValueSpeciali: 0.10,
   // Estremi inclusi, tranne il minimo della speciale: 3.00 esatto è una singola,
@@ -28,8 +28,9 @@ export const CONFIG = congela({
   kelly: 0.25,
   arrotondamentoEuro: 0.50,
   tettoGiornaliero: 0.12,
-  // Giocate del giorno oltre il tetto (o la distanza dallo stop): tutte ridotte in proporzione,
-  // arrotondate per difetto a 0,10 €; sotto la puntata minima (€) esce la giocata col value più basso.
+  // Giocate del giorno oltre il tetto: tutte ridotte in proporzione, arrotondate per difetto a 0,10 €;
+  // se anche una sola scenderebbe sotto la puntata minima (€), per oggi il tetto non vale e tutte
+  // le giocate vanno a puntata fissa di questo importo ("giornata piena") [utente, 21/10/2026].
   puntataMinima: 1.00,
   arrotondamentoRidotte: 0.10,
   massimiGiornalieri: { singole: 10, multiple: 2, builder: 2 },

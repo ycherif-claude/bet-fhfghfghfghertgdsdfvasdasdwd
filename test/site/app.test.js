@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filtraPerSport, etichettaStato, testoAvvisi, distanzaDaMostrare, avvisiDati, testoAggiornamento, valoriCampi } from '../../site/app.js';
+import { filtraPerSport, etichettaStato, testoAvvisi, vociRiquadro, giornataPiena, avvisiDati, testoAggiornamento, valoriCampi } from '../../site/app.js';
 
-const bankrollOk = { bankroll: 200, risultatoSettimana: 0, inGiocoOggi: 0, stopRaggiunto: false, distanzaStop: 50, daSegnare: [] };
+const bankrollOk = { bankroll: 200, risultatoSettimana: 0, inGiocoOggi: 0, daSegnare: [] };
 const giornata = (extra = {}) => ({ data: '2026-10-19', giocate: [{ id: 'a' }], competizioniNonCoperte: [], erroriGiro: [], ...extra });
 const dati = (extra = {}, bankroll = {}) => ({
   oggi: { data: '2026-10-19', disponibile: true, giornata: giornata(extra) },
@@ -39,10 +39,9 @@ test('etichetta stato', () => {
 test('avviso se oggi non disponibile', () =>
   assert.ok(testoAvvisi({ oggi: { disponibile: false }, bankroll: bankrollOk }).includes('Analisi di oggi non disponibile')));
 
-test('avviso stop settimanale raggiunto', () => {
-  const a = testoAvvisi(dati({}, { stopRaggiunto: true }));
-  assert.ok(a.includes('Stop settimanale raggiunto: nessuna nuova giocata fino a lunedì'));
-  assert.ok(!testoAvvisi(dati()).some((x) => x.startsWith('Stop')));
+test('stop settimanale tolto: nessun avviso di stop, nemmeno con la settimana molto negativa o dati vecchi', () => {
+  const a = testoAvvisi(dati({}, { risultatoSettimana: -90, stopRaggiunto: true }));
+  assert.ok(!a.some((x) => /stop/i.test(x)), a.join(' | '));
 });
 
 test('avviso giocate da segnare', () => {
@@ -67,10 +66,26 @@ test('dati di esempio', () => {
   assert.ok(testoAvvisi(dati({ esempio: true })).includes('Dati di esempio, non sono giocate reali'));
 });
 
-test('distanza dallo stop: 0 oltre lo stop, altrimenti il valore', () => {
-  assert.equal(distanzaDaMostrare({ distanzaStop: -3.5 }), 0);
-  assert.equal(distanzaDaMostrare({ distanzaStop: 0 }), 0);
-  assert.equal(distanzaDaMostrare({ distanzaStop: 12.5 }), 12.5);
+const fissa = { euro: 1, percentuale: 0.5, fissa: { da: 5, motivo: 'giornata piena' } };
+
+test('giornataPiena: vero se una giocata di oggi ha la puntata fissa', () => {
+  assert.equal(giornataPiena({ giocate: [{ puntata: { euro: 5 } }, { puntata: fissa }] }), true);
+  assert.equal(giornataPiena({ giocate: [{ puntata: { euro: 5 } }, { puntata: { euro: 2.4, ridotta: { da: 5, motivo: 'tetto giornaliero' } } }] }), false);
+  assert.equal(giornataPiena(null), false);
+  assert.equal(giornataPiena({ giocate: [null, {}] }), false);
+});
+
+test('riquadro: niente "Distanza dallo stop"; in gioco oggi / tetto, e "tetto tolto oggi" a giornata piena', () => {
+  const b = { ...bankrollOk, risultatoSettimana: -12.5, inGiocoOggi: 7 };
+  const voci = vociRiquadro(b, { giocate: [{ puntata: { euro: 5 } }] });
+  const etichette = voci.map(([e]) => e);
+  assert.deepEqual(etichette, ['Bankroll', 'Risultato settimana', 'In gioco oggi / tetto']);
+  assert.ok(!voci.some(([e, v]) => /stop/i.test(e) || /stop/i.test(v)));
+  const tetto = voci.find(([e]) => e === 'In gioco oggi / tetto')[1];
+  assert.match(tetto, /^7,00\s€ \/ 24,00\s€$/);
+  assert.match(voci.find(([e]) => e === 'Risultato settimana')[1], /12,50\s€$/);
+  const piena = vociRiquadro(b, { giocate: [{ puntata: fissa }] }).find(([e]) => e === 'In gioco oggi / tetto')[1];
+  assert.match(piena, /^7,00\s€ \/ 24,00\s€ · tetto tolto oggi \(puntate fisse da 1 €\)$/);
 });
 
 test('erroriDati: un avviso "Dati non validi in <file>: <errore>" per ciascuno', () => {
@@ -118,15 +133,23 @@ test('etichetta stato: il motivo compare per ogni stato', () => {
   assert.equal(etichettaStato({ stato: 'confermata', motivoStato: '' }).testo, 'Confermata');
 });
 
-import { testoRidotta, euro } from '../../site/app.js';
+import { testoRidotta, testoFissa, euro } from '../../site/app.js';
 
-test('testoRidotta: riga "ridotta da …" per tetto giornaliero e stop settimanale, null se non ridotta', () => {
+test('testoRidotta: riga "ridotta da …" per il tetto giornaliero, null se non ridotta (lo stop non esiste più)', () => {
   assert.equal(testoRidotta({ euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } }),
     `ridotta da ${euro(5)} per il tetto giornaliero`);
   assert.match(testoRidotta({ euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } }), /^ridotta da 5,00\s€ per il tetto giornaliero$/);
-  assert.equal(testoRidotta({ euro: 1, percentuale: 0.5, ridotta: { da: 6, motivo: 'stop settimanale' } }),
-    `ridotta da ${euro(6)} per lo stop settimanale`);
+  assert.equal(testoRidotta({ euro: 1, percentuale: 0.5, ridotta: { da: 6, motivo: 'stop settimanale' } }), null);
   assert.equal(testoRidotta({ euro: 5, percentuale: 2.5 }), null);
   assert.equal(testoRidotta(undefined), null);
   assert.equal(testoRidotta({ euro: 2, ridotta: { da: 'x', motivo: 'tetto giornaliero' } }), null);
+});
+
+test('testoFissa: riga della puntata fissa da 1 € a giornata piena, null altrimenti', () => {
+  assert.match(testoFissa({ euro: 1, percentuale: 0.5, fissa: { da: 5, motivo: 'giornata piena' } }),
+    /^puntata fissa 1,00\s€ \(giornata piena: tetto giornaliero tolto per oggi\)$/);
+  assert.equal(testoFissa({ euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } }), null);
+  assert.equal(testoFissa({ euro: 5, percentuale: 2.5 }), null);
+  assert.equal(testoFissa(undefined), null);
+  assert.equal(testoFissa({ euro: 'x', fissa: { da: 5, motivo: 'giornata piena' } }), null);
 });

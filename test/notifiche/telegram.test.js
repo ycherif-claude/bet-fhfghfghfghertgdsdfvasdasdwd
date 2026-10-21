@@ -279,11 +279,13 @@ test('errori scritti prima del giro del mattino nella giornata di ieri: partono 
   assert.ok(!inviati.some((t) => t.includes('Inter - Roma: HTTP 500') || t.includes('errore vecchio')));
 });
 
-test('puntata con due decimali e, se ridotta, da quanto e per quale limite', () => {
+test('puntata con due decimali e, se ridotta, da quanto e per quale limite; fissa a giornata piena', () => {
   const ridotta = giocata('r', { puntata: { euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } } });
-  const stop = giocata('s', { idPartita: 'q', puntata: { euro: 1, percentuale: 0.5, ridotta: { da: 6, motivo: 'stop settimanale' } } });
-  const [m] = messaggi({ giornata: giornata([ridotta, stop]), oggi: OGGI, adesso: mattina, inviate: new Set() });
+  const fissa = giocata('f', { idPartita: 'q', puntata: { euro: 1, percentuale: 0.5, fissa: { da: 6, motivo: 'giornata piena' } } });
+  const [m] = messaggi({ giornata: giornata([ridotta, fissa]), oggi: OGGI, adesso: mattina, inviate: new Set() });
   assert.match(m.testo, /puntata 2,40 € \(1,2%, ridotta da 5,00 €, tetto giornaliero\)/);
-  assert.match(m.testo, /puntata 1,00 € \(0,5%, ridotta da 6,00 €, stop settimanale\)/);
+  assert.match(m.testo, /puntata 1,00 € \(puntata fissa, giornata piena\)/);
+  assert.ok(!/stop/i.test(m.testo));
   assert.equal(testoGiocata(giocata('x'), 1).includes('ridotta'), false);
+  assert.equal(testoGiocata(giocata('x'), 1).includes('fissa'), false);
 });

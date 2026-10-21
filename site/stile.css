@@ -66,7 +66,7 @@ nav a { color: var(--accento); }
 .scheda h3 { margin: 0 0 2px; font-size: 1.05rem; }
 .scheda p { margin: 6px 0; }
 .meta { color: var(--testo-tenue); }
-.ridotta { color: var(--testo-tenue); font-size: 0.9em; }
+.ridotta, .fissa { color: var(--testo-tenue); font-size: 0.9em; }
 .da-verificare { color: var(--attesa); font-weight: 600; }
 .scheda.annullata h3, .scheda.annullata p:not(.meta) { text-decoration: line-through; }
 .scheda-errore {
