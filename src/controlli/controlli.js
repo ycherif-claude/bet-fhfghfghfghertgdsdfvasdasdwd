@@ -27,6 +27,12 @@ const oggetto = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 const virgola = (q) => q.toFixed(2).replace('.', ',');
 const testoPieno = (x) => typeof x === 'string' && x.trim() !== '';
 const MOTIVO_TARDI = "controllo non eseguito prima dell'inizio";
+export const MOTIVO_IN_CORSO = 'multipla già in corso: controlli delle altre gambe non più utili';
+
+// Multipla segnata come giocata con la prima gamba già iniziata [utente]: le altre gambe non si
+// controllano più (niente regole fisse, niente Claude, mai annullata): la giocata è già in corso.
+const multiplaInCorso = (g, segnate, adesso) => Array.isArray(g.gambe) && g.gambe.length > 0 && segnate.has(g.id)
+  && Math.min(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime();
 export const MOTIVO_NON_ESEGUITO = 'controllo prima della partita non eseguito: valutata sui dati del mattino';
 
 const percorsi = (dirData, data) => ({
@@ -74,7 +80,8 @@ function chiaviDi(notizie, idPartita) {
   return { casa: Array.isArray(x?.casa) ? x.casa : [], trasferta: Array.isArray(x?.trasferta) ? x.trasferta : [] };
 }
 
-// Formazioni e assenze di una voce (calcio e NBA): { pronta, fuori: [nomi], nota } oppure null (sport senza formazioni).
+// Formazioni e assenze di una voce (calcio e NBA): { pronta, fuori: [nomi], incerti: [nomi], nota } oppure null
+// (sport senza formazioni). `incerti`: giocatori chiave non riconoscibili fra due omonimi della stessa squadra.
 async function formazioniVoce(voce, notizie, fonti, adesso) {
   const campionato = voce.sport === 'nba' ? CAMPIONATI_ESPN.NBA : voce.sport === 'calcio' ? CAMPIONATI_ESPN[voce.competizione] : null;
   if (!campionato) return null;
@@ -92,16 +99,19 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
   const sq = squadreDi(voce.partita);
   if (voce.sport === 'nba') {
     const inf = await fonti.espn.infortuni(campionato, evento.id, sq);
-    const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l])));
-    return { pronta: true, fuori, nota: tutte.length ? `report infortuni: ${fuori.length ? `fuori ${fuori.join(', ')}` : 'giocatori chiave disponibili'}` : 'giocatori chiave non indicati dal giro del mattino' };
+    const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === true));
+    const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === null));
+    return { pronta: true, fuori, incerti, nota: tutte.length ? `report infortuni: ${fuori.length ? `fuori ${fuori.join(', ')}` : incerti.length ? `non riconoscibili fra omonimi ${incerti.join(', ')}` : 'giocatori chiave disponibili'}` : 'giocatori chiave non indicati dal giro del mattino' };
   }
   const f = await fonti.espn.formazioni(campionato, evento.id);
   const pronta = Boolean(f.casa?.pronta && f.trasferta?.pronta);
   if (!pronta) return { pronta: false, fuori: [], nota: 'formazioni non uscite: valutata sui dati del mattino' };
-  const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => !inElenco(n, f[l].titolari)));
+  const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, f[l].titolari) === false));
+  const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, f[l].titolari) === null));
   const nota = !tutte.length ? 'formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)'
-    : fuori.length ? `formazioni ufficiali: non titolari ${fuori.join(', ')}` : 'formazioni ufficiali: tutti i giocatori chiave titolari';
-  return { pronta: true, fuori, nota };
+    : fuori.length ? `formazioni ufficiali: non titolari ${fuori.join(', ')}`
+      : incerti.length ? `formazioni ufficiali: non riconoscibili fra omonimi ${incerti.join(', ')}` : 'formazioni ufficiali: tutti i giocatori chiave titolari';
+  return { pronta: true, fuori, incerti, nota };
 }
 
 // Esito di una voce dai controlli: { esito, problemi, dettagli }.
@@ -111,6 +121,8 @@ export function valuta(voce, formazioni, quote) {
   if (formazioni) {
     dettagli.push(formazioni.nota);
     if (formazioni.fuori.length) problemi.push({ tipo: 'chiave', testo: `giocatore chiave fuori: ${formazioni.fuori.join(', ')}` });
+    // Omonimi nella stessa squadra (stesso cognome e iniziale): non si sa se gioca, va in revisione.
+    if (formazioni.incerti?.length) problemi.push({ tipo: 'incerto', testo: `giocatore chiave non riconoscibile fra omonimi della squadra: ${formazioni.incerti.join(', ')}` });
   }
   // Partita non trovata nella fonte delle quote: può essere un ritiro o un rinvio, ma anche un nome
   // scritto in modo diverso. Non si annulla mai da soli: va in revisione [utente].
@@ -131,12 +143,13 @@ export function valuta(voce, formazioni, quote) {
 }
 
 // Regole fisse senza Claude [utente]: giocatore chiave fuori o quota sotto la minima → annullata;
-// partita non trovata nelle quote → resta in revisione (da controllare a mano, mai annullata da sola);
+// partita non trovata nelle quote o giocatore chiave non riconoscibile fra omonimi → resta in revisione
+// (da controllare a mano, mai annullata né confermata da sola);
 // il solo movimento del mercato non annulla (confermata con l'avviso).
 export function regolaFissa(problemi) {
   const annulla = problemi.filter((p) => p.tipo === 'chiave' || p.tipo === 'quota');
   if (annulla.length) return { esito: 'annullata', motivo: `regola automatica (Claude non disponibile): ${annulla.map((p) => p.testo).join('; ')}` };
-  const assente = problemi.filter((p) => p.tipo === 'assente');
+  const assente = problemi.filter((p) => p.tipo === 'assente' || p.tipo === 'incerto');
   if (assente.length) return { esito: 'revisione', motivo: `regola automatica (Claude non disponibile): ${assente.map((p) => p.testo).join('; ')}: resta in revisione, controlla su bet365 prima di giocarla` };
   return { esito: 'confermata', motivo: `regola automatica (Claude non disponibile): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
 }
@@ -172,11 +185,17 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   const reg = leggi(f.stato, { data, voci: {}, claude: { avvii: 0, richieste: [] } });
   const regPrima = JSON.stringify(reg);
   const ora = isoRoma(adesso);
+  const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
 
   // 1. Voci nella finestra, non ancora decise.
   const daFare = [];
   for (const g of giornata.giocate) {
     if (!oggetto(g) || g.stato === 'annullata') continue;
+    if (multiplaInCorso(g, segnate, adesso)) {
+      // Una nota sola nel registro (e sulla scheda), poi la multipla non si tocca più.
+      if (!reg.inCorso?.[g.id]) reg.inCorso = { ...reg.inCorso, [g.id]: { motivo: MOTIVO_IN_CORSO, alle: ora } };
+      continue;
+    }
     for (const v of vociDi(g)) {
       const r = reg.voci[v.id];
       const m = momento(v, adesso);
@@ -237,10 +256,15 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   }
 
   // 4. Stati delle giocate.
-  const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
   let cambiate = 0;
   const giocate = giornata.giocate.map((g) => {
     if (!oggetto(g) || g.stato === 'annullata') return g;
+    if (multiplaInCorso(g, segnate, adesso)) {
+      // Multipla giocata e in corso: lo stato resta quello che è, si aggiunge solo la nota (una volta).
+      if (String(g.motivoStato ?? '').includes(MOTIVO_IN_CORSO)) return g;
+      cambiate++;
+      return { ...g, motivoStato: g.motivoStato ? `${g.motivoStato} · ${MOTIVO_IN_CORSO}` : MOTIVO_IN_CORSO };
+    }
     const voci = vociDi(g);
     if (voci.every((v) => reg.voci[v.id]?.esito === 'non-eseguito')) {
       if (g.motivoStato === MOTIVO_NON_ESEGUITO || g.stato !== 'in_attesa') return g;
@@ -272,7 +296,10 @@ export function applicaDecisioni({ dirData, adesso }) {
   if (!oggetto(dec) || !Array.isArray(dec.decisioni)) throw new Error(`Decisioni mancanti o illeggibili: data/raccolta/${data}-controlli-decisioni.json`);
   const perId = new Map(giornata.giocate.filter(oggetto).map((g) => [g.id, g]));
   const errori = [];
-  // Decisioni arrivate a partita iniziata (la prima gamba, per le multiple): rifiutate, scritte fra gli errori.
+  const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
+  // Decisioni arrivate a partita iniziata: rifiutate, scritte fra gli errori. Per le multiple vale come
+  // nei controlli: giocata e con la prima gamba iniziata è già in corso; non giocata, si applica finché
+  // almeno una gamba non è iniziata.
   const rifiutate = [];
   // Decisioni per giocate non più in revisione (già decise dalle regole fisse): saltate, scritte fra gli errori.
   const saltate = [];
@@ -282,7 +309,12 @@ export function applicaDecisioni({ dirData, adesso }) {
     const err = (m) => errori.push(`Decisione ${i + 1} (${d?.idGiocata}): ${m}`);
     const g = perId.get(d?.idGiocata);
     if (!g) { err('giocata inesistente nella giornata'); continue; }
-    if (Math.min(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime()) {
+    if (multiplaInCorso(g, segnate, adesso)) {
+      rifiutate.push(g.id);
+      righe.push(`Decisione di Claude per ${g.id} non applicata: ${MOTIVO_IN_CORSO} (${ora.slice(11, 16)})`);
+      continue;
+    }
+    if (Math.max(...vociDi(g).map((v) => Date.parse(v.inizio))) <= adesso.getTime()) {
       rifiutate.push(g.id);
       righe.push(`Decisione di Claude per ${g.id} arrivata dopo l'inizio della partita (${ora.slice(11, 16)}): non applicata`);
       continue;
@@ -300,7 +332,6 @@ export function applicaDecisioni({ dirData, adesso }) {
   }
   if (errori.length) throw new Error(`Decisioni non valide, nessun file scritto:\n${errori.map((x) => `- ${x}`).join('\n')}`);
   const reg = leggi(f.stato, { data, voci: {}, claude: { avvii: 0, richieste: [] } });
-  const segnate = segnateComeGiocate(path.join(dirData, 'giornate'));
   const decisioni = new Map(dec.decisioni.filter((d) => !rifiutate.includes(d.idGiocata) && !saltate.includes(d.idGiocata)).map((d) => [d.idGiocata, d]));
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
   const giocate = giornata.giocate.map((g) => {

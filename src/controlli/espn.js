@@ -72,6 +72,8 @@ const stesseParole = (x, y) => [...x].sort().join('-') === [...y].sort().join('-
 // - cognome presente in un solo giocatore dell'elenco, purché l'iniziale del nome non lo smentisca
 //   (con Nico Williams in campo e Iñaki in panchina, "Iñaki Williams" non c'è).
 // Se il mattino ha scritto solo il cognome, vale solo se nell'elenco un solo giocatore lo ha.
+// Due giocatori con stesso cognome e stessa iniziale ("Lautaro" e "Lisandro Martínez"): decide il nome
+// intero; se non basta restituisce null (non determinabile: la giocata va in revisione, mai confermata).
 export function inElenco(nome, elenco) {
   const p = pezzi(nome);
   if (!p.length) return false;
@@ -81,7 +83,9 @@ export function inElenco(nome, elenco) {
   const conCognome = lista.filter((x) => x.includes(cognome));
   if (p.length === 1) return cognome.length >= 3 && conCognome.length === 1;
   const iniziale = p[0][0];
-  if (lista.some((x) => x.length >= 2 && x.at(-1) === cognome && x[0][0] === iniziale)) return true;
+  const conIniziale = lista.filter((x) => x.length >= 2 && x.at(-1) === cognome && x[0][0] === iniziale);
+  if (conIniziale.length === 1) return true;
+  if (conIniziale.length > 1) return conIniziale.filter((x) => x[0] === p[0]).length === 1 ? true : null;
   return conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && t[0] === iniziale);
 }
 

@@ -319,3 +319,112 @@ test('esiti rapidi senza la giornata di oggi: gli errori vanno nell\'ultima gior
   await esitiRapidiNelGiro({ dirData: d, adesso: new Date('2026-10-23T08:30:00+02:00'), esegui });
   assert.deepEqual(leggi(d).erroriGiro, ['Esiti rapidi: Inter - Roma: HTTP 500']);
 });
+
+// Multipla di due gambe: Inter - Roma alle 20:45 e Milan - Lazio alle 21:30.
+const ID_MULTIPLA = 'multipla-2026-10-22-1';
+const multipla = (extra = {}) => ({
+  id: ID_MULTIPLA, tipo: 'multipla', quota: 3.5, quotaMinima: 3.2, puntata: { euro: 2, percentuale: 1 },
+  stato: 'in_attesa', motivoStato: null, oraUltimoControllo: null, esito: null,
+  gambe: [
+    { sport: 'calcio', competizione: 'Serie A', partita: 'Inter - Roma', idPartita: 'calcio-2026-10-22-inter-roma', inizio: INIZIO, mercato: '1X2', selezione: '1', quota: 1.95 },
+    { sport: 'calcio', competizione: 'Serie A', partita: 'Milan - Lazio', idPartita: 'calcio-2026-10-22-milan-lazio', inizio: '2026-10-22T21:30:00+02:00', mercato: '1X2', selezione: '1', quota: 1.8 },
+  ],
+  ...extra,
+});
+// Fonti per Milan - Lazio: Leão (giocatore chiave) non è fra i titolari.
+function fontiMilan() {
+  const chiamate = [];
+  const evento = { id: 'e2', casa: 'AC Milan', trasferta: 'Lazio', inizio: '2026-10-22T19:30:00Z' };
+  return {
+    chiamate,
+    espn: {
+      partite: async () => { chiamate.push('espn partite'); return [{ id: 'x2', casa: 'AC Milan', trasferta: 'Lazio', inizio: '2026-10-22T19:30Z' }]; },
+      formazioni: async () => { chiamate.push('espn formazioni'); return { casa: titolari([]), trasferta: titolari([]) }; },
+      infortuni: async () => ({ casa: [], trasferta: [] }),
+    },
+    oddsApi: {
+      eventi: async () => { chiamate.push('odds eventi'); return { eventi: [evento], rimasti: 200 }; },
+      quote: async () => { chiamate.push('odds quote'); return { eventi: [{ ...evento, bookmaker: [bk('pinnacle', [1.8, 3.6, 4.6]), bk('a', [1.8, 3.6, 4.4])] }] }; },
+    },
+  };
+}
+const chiaviMultipla = { 'calcio-2026-10-22-milan-lazio': { casa: ['Rafael Leão'], trasferta: [] } };
+const segnaFatta = (d, id) => writeFileSync(join(d, 'segnature', 's.json'), JSON.stringify({ idGiocata: id, fatta: true, quotaReale: 3.5, puntataReale: 2, ora: '2026-10-22T10:00:00Z' }));
+
+test('multipla giocata e già in corso: le altre gambe non si controllano più, una nota una volta sola', async () => {
+  const d = cartella({ giocate: [multipla()], chiavi: chiaviMultipla });
+  segnaFatta(d, ID_MULTIPLA);
+  const f = fontiMilan();
+  // 20:50: la prima gamba è iniziata, la seconda inizia fra 40 minuti (dentro le regole fisse).
+  await eseguiControlli({ dirData: d, adesso: ore('20:50'), fonti: f, chiavi: { oddsApi: 'K' } });
+  assert.deepEqual(f.chiamate, []);
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'in_attesa');
+  assert.match(g.motivoStato, /multipla già in corso: controlli delle altre gambe non più utili/);
+  // Una volta sola: il passaggio dopo non riscrive niente.
+  const prima = [readFileSync(join(d, 'giornate', `${OGGI}.json`), 'utf8'), readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8')];
+  await eseguiControlli({ dirData: d, adesso: ore('21:05'), fonti: f, chiavi: { oddsApi: 'K' } });
+  assert.deepEqual([readFileSync(join(d, 'giornate', `${OGGI}.json`), 'utf8'), readFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), 'utf8')], prima);
+});
+
+test('multipla non giocata con la prima gamba iniziata: la seconda gamba si controlla e le regole fisse valgono', async () => {
+  const d = cartella({ giocate: [multipla()], chiavi: chiaviMultipla });
+  const f = fontiMilan();
+  await eseguiControlli({ dirData: d, adesso: ore('20:50'), fonti: f, chiavi: { oddsApi: 'K' } });
+  assert.ok(f.chiamate.includes('espn formazioni'));
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'annullata');
+  assert.match(g.motivoStato, /regola automatica.*giocatore chiave fuori: Rafael Leão/);
+});
+
+test('multipla in revisione: giocata e in corso niente regole fisse e decisione rifiutata; non giocata decisione applicata', async () => {
+  const revisione = { esito: 'revisione', motivo: 'in revisione: giocatore chiave fuori: Rafael Leão', problemi: [{ tipo: 'chiave', testo: 'giocatore chiave fuori: Rafael Leão' }], dettagli: [], alle: '2026-10-22T19:50:00+02:00' };
+  const prepara = () => {
+    const d = cartella({ giocate: [multipla({ stato: 'in_revisione', motivoStato: revisione.motivo })], chiavi: chiaviMultipla });
+    writeFileSync(join(d, 'raccolta', `${OGGI}-controlli.json`), JSON.stringify({ data: OGGI, voci: { [`${ID_MULTIPLA}#0`]: { esito: 'confermata', motivo: 'ok', alle: '2026-10-22T20:10:00+02:00' }, [`${ID_MULTIPLA}#1`]: revisione }, claude: { avvii: 1, richieste: [ID_MULTIPLA] } }));
+    writeFileSync(join(d, 'raccolta', `${OGGI}-controlli-decisioni.json`), JSON.stringify({ decisioni: [
+      { idGiocata: ID_MULTIPLA, stato: 'annullata', motivo: 'fuori Leão', fonte: 'sito del Milan, 20:40' },
+    ] }));
+    return d;
+  };
+  // Giocata: a 40 minuti dalla seconda gamba niente regole fisse, la decisione arrivata dopo si rifiuta.
+  const d = prepara();
+  segnaFatta(d, ID_MULTIPLA);
+  await eseguiControlli({ dirData: d, adesso: ore('20:50'), fonti: fontiMilan(), chiavi: { oddsApi: 'K' } });
+  assert.equal(leggi(d).giocate[0].stato, 'in_revisione');
+  assert.match(leggi(d).giocate[0].motivoStato, /multipla già in corso/);
+  const r = applicaDecisioni({ dirData: d, adesso: ore('20:52') });
+  assert.equal(r.applicate, 0);
+  assert.deepEqual(r.rifiutate, [ID_MULTIPLA]);
+  assert.equal(leggi(d).giocate[0].stato, 'in_revisione');
+  assert.ok(leggi(d).erroriGiro.some((e) => e.includes(ID_MULTIPLA) && /multipla già in corso/.test(e)));
+  // Non giocata: la seconda gamba non è iniziata, la decisione si applica.
+  const d2 = prepara();
+  const r2 = applicaDecisioni({ dirData: d2, adesso: ore('20:52') });
+  assert.equal(r2.applicate, 1);
+  assert.equal(leggi(d2).giocate[0].stato, 'annullata');
+  // Tutte le gambe iniziate: rifiutata anche se non giocata.
+  const d3 = prepara();
+  assert.deepEqual(applicaDecisioni({ dirData: d3, adesso: ore('21:35') }).rifiutate, [ID_MULTIPLA]);
+});
+
+test('giocatori chiave omonimi nella stessa squadra: stesso cognome e stessa iniziale', () => {
+  // Il nome intero decide fra i due Martínez; se non basta, non si sa (null).
+  assert.equal(inElenco('Lautaro Martínez', ['Lisandro Martínez', 'Lautaro Javier Martínez']), true);
+  assert.equal(inElenco('Lisandro Martinez', ['Lautaro Martínez', 'Lisandro Martínez']), true);
+  assert.equal(inElenco('L. Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
+  assert.equal(inElenco('Lauti Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
+  // I casi di sempre restano.
+  assert.equal(inElenco('Nico González', ['Nicolás González', 'Riserva 1']), true);
+  assert.equal(inElenco('Matt Turner', ['Matthew Turner']), true);
+  assert.equal(inElenco('Heung-min Son', ['Son Heung-Min', 'Richarlison']), true);
+  assert.equal(inElenco('Nico Williams', ['Iñaki Williams', 'Oihan Sancet']), false);
+});
+
+test('controllo: giocatore chiave non riconoscibile fra due omonimi → in revisione, mai confermata né annullata da sola', async () => {
+  const d = cartella({ chiavi: { 'calcio-2026-10-22-inter-roma': { casa: ['L. Martínez'], trasferta: [] } } });
+  await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: fonti({ formazioni: { casa: titolari(['Lautaro Martínez', 'Lisandro Martínez']), trasferta: titolari([]) } }), chiavi: { oddsApi: 'K' } });
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'in_revisione');
+  assert.match(g.motivoStato, /non riconoscibile.*L\. Martínez/);
+});

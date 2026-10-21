@@ -1,6 +1,6 @@
 // Notifiche Telegram: giocate del giorno, cambi di stato (giro serale e controlli prima delle partite),
 // esiti delle giocate fatte ed errori.
-// Si confronta la giornata di oggi con quello che è già stato mandato (data/stato/telegram.json):
+// Si confronta la giornata di oggi (e gli errori nuovi di quella prima) con quello che è già stato mandato (data/stato/telegram.json):
 // ogni messaggio ha una chiave e parte una volta sola. Gli esiti si mandano solo per le giocate
 // segnate come fatte sul sito, con quota e puntata reali [utente].
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -101,17 +101,29 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   }
 
   // 3. Errori del sistema: le righe nuove di erroriGiro, senza quelle solo informative.
-  const errori = (Array.isArray(delGiorno.erroriGiro) ? delGiorno.erroriGiro : [])
-    .filter((e) => typeof e === 'string' && !INFORMATIVI.some((r) => r.test(e)))
-    .filter((e) => !inviate.has(`${oggi}|errore|${hash(e)}`));
-  if (errori.length) {
-    out.push({
-      chiave: `${oggi}|errori|${hash(errori.join('\n'))}`,
-      testo: [`⚠️ <b>${errori.length === 1 ? 'Errore' : 'Errori'} della giornata ${giornoMese(oggi)}</b>`, ...errori.map((e) => `• ${html(e)}`)].join('\n'),
-      segna: errori.map((e) => `${oggi}|errore|${hash(e)}`),
-    });
-  }
+  out.push(...messaggioErrori(delGiorno, oggi, inviate));
   return out;
+}
+
+// Righe nuove di erroriGiro di una giornata (chiavi `<data>|errore|<hash>`), in un messaggio solo.
+function messaggioErrori(giornata, data, inviate) {
+  const errori = (Array.isArray(giornata?.erroriGiro) ? giornata.erroriGiro : [])
+    .filter((e) => typeof e === 'string' && !INFORMATIVI.some((r) => r.test(e)))
+    .filter((e) => !inviate.has(`${data}|errore|${hash(e)}`));
+  if (!errori.length) return [];
+  return [{
+    chiave: `${data}|errori|${hash(errori.join('\n'))}`,
+    testo: [`⚠️ <b>${errori.length === 1 ? 'Errore' : 'Errori'} della giornata ${giornoMese(data)}</b>`, ...errori.map((e) => `• ${html(e)}`)].join('\n'),
+    segna: errori.map((e) => `${data}|errore|${hash(e)}`),
+  }];
+}
+
+// Errori scritti nella giornata precedente dopo il suo ultimo invio: i controlli e gli esiti rapidi,
+// prima del giro del mattino, scrivono nell'ultima giornata salvata. Ogni riga parte una volta sola
+// (stesse chiavi di quando quella giornata era "oggi": le già mandate non si ripetono).
+export function messaggiErroriPrecedenti({ giornate, oggi, inviate }) {
+  const precedente = giornate.filter((x) => typeof x?.data === 'string' && x.data < oggi).sort((a, b) => a.data.localeCompare(b.data)).at(-1);
+  return precedente ? messaggioErrori(precedente, precedente.data, inviate) : [];
 }
 
 const ESITO = { vinta: '✅ <b>VINTA</b>', persa: '❌ <b>PERSA</b>', rimborsata: '↩️ <b>RIMBORSATA</b>' };
@@ -313,6 +325,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   // Esiti: le giornate fino a 13 giorni fa (le chiavi restano 14 giorni, niente doppioni).
   const segnature = leggiJson(dirData, 'segnature', []).map((x) => x.contenuto).filter((x) => x && !erroreSegnatura(x));
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
+  lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,

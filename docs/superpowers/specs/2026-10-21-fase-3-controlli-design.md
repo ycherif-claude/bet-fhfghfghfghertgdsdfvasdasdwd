@@ -53,11 +53,13 @@ Le Action pianificate di GitHub partono in pratica ogni 30-43 minuti, non ogni 1
 
 - La giocata passa a **"In revisione"** con il motivo.
 - L'Action avvia una routine Claude "Controllo pre-partita" (stesso meccanismo `/fire` del giro serale, con i suoi secrets), che rifà l'analisi **solo di quella partita** con il fatto nuovo e scrive una decisione: confermata, modificata (nuova quota minima o nuova puntata) o annullata, con motivo e fonte. Le decisioni si applicano con lo stesso codice del giro serale; una decisione arrivata a partita iniziata, o per una giocata non più in revisione, viene saltata e scritta fra gli errori della giornata (le altre si applicano). A partita già iniziata le regole fisse non si applicano: la giocata resta in revisione con la nota "controllo non eseguito prima dell'inizio".
+- **Multiple [utente]:** se la multipla è segnata come giocata (ultima segnatura con `fatta: true`) e la prima gamba è iniziata, le altre gambe non si controllano più: niente cambio di stato, niente regole fisse, niente Claude, mai annullata; resta una nota sulla scheda ("multipla già in corso: controlli delle altre gambe non più utili") e una decisione di Claude arrivata dopo si rifiuta. Se non è segnata come giocata, le gambe dopo si controllano come sempre (le regole fisse possono ancora annullarla) e una decisione si applica finché almeno una gamba non è iniziata.
 - **Tetto: al massimo 2 avvii di Claude al giorno** (`CONFIG.controlli.maxClaude`) **[utente]**, oltre alle routine del mattino, della sera e della revisione settimanale.
 - **Se Claude non è disponibile** (tetto raggiunto, routine non partita, giocata ancora in revisione al primo passaggio a meno di 45 minuti dall'inizio, `CONFIG.controlli.minutiRegoleFisse`), valgono le regole fisse, dichiarate sulla scheda ("regola automatica: Claude non disponibile"):
   - giocatore chiave fuori → **Annullata**;
   - quota sotto la minima → **Annullata**;
   - partita non trovata nella fonte delle quote → resta **In revisione**, da controllare a mano;
+  - giocatore chiave non riconoscibile fra due omonimi della stessa squadra (stesso cognome e iniziale, il nome intero non basta) → resta **In revisione**, mai confermata né annullata da sola;
   - Pinnacle contro di più di 5 punti → **Confermata con l'avviso** (il movimento da solo non annulla) **[utente]**;
   - fonte delle formazioni giù → resta la valutazione del mattino, **Confermata** con l'avviso.
 

@@ -254,3 +254,27 @@ test('troncamento: mai dentro un\'entità o un tag HTML, tag aperti richiusi', (
     assert.equal(aperti, chiusi, t);
   }
 });
+
+test('errori scritti prima del giro del mattino nella giornata di ieri: partono una volta sola, i vecchi no', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'bet-notifiche-'));
+  mkdirSync(join(dir, 'giornate'));
+  const file = join(dir, 'giornate', `${OGGI}.json`);
+  writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio'])));
+  const inviati = [];
+  const fetch = async (url, init) => { inviati.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
+  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  assert.ok(inviati.some((t) => t.includes('errore vecchio')));
+  // Il 23 alle 08:30, prima del giro del mattino: gli esiti rapidi scrivono nella giornata del 22.
+  writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio', 'Esiti rapidi: Inter - Roma: HTTP 500'])));
+  inviati.length = 0;
+  const domani = new Date('2026-10-23T06:30:00Z');
+  const r = await eseguiNotifiche({ dirData: dir, adesso: domani, token: 'T', chat: '42', fetch });
+  assert.equal(r.mandati, 1);
+  assert.equal(inviati[0], '⚠️ <b>Errore della giornata 22/10</b>\n• Esiti rapidi: Inter - Roma: HTTP 500');
+  // Non si ripete, nemmeno quando c'è la giornata del 23.
+  assert.equal((await eseguiNotifiche({ dirData: dir, adesso: domani, token: 'T', chat: '42', fetch })).mandati, 0);
+  writeFileSync(join(dir, 'giornate', '2026-10-23.json'), JSON.stringify({ data: '2026-10-23', giocate: [], erroriGiro: [] }));
+  inviati.length = 0;
+  await eseguiNotifiche({ dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
+  assert.ok(!inviati.some((t) => t.includes('Inter - Roma: HTTP 500') || t.includes('errore vecchio')));
+});
