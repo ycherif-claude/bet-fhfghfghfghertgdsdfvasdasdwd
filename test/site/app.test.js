@@ -100,8 +100,8 @@ test('testoAggiornamento: "Dati aggiornati alle HH:MM" in ora di Roma', () => {
 
 test('valoriCampi: consigliati finché non si scrive, poi restano quelli scritti', () => {
   const g = { quota: 2.1, puntata: { euro: 4.5 } };
-  assert.deepEqual(valoriCampi(g, null), { quota: '2,1', puntata: '4,5', bookmaker: 'bet365' });
-  assert.deepEqual(valoriCampi({ quota: null, puntata: { euro: 3 } }, null), { quota: '', puntata: '3', bookmaker: 'bet365' });
+  assert.deepEqual(valoriCampi(g, null), { quota: '2,1', puntata: '4,50', bookmaker: 'bet365' });
+  assert.deepEqual(valoriCampi({ quota: null, puntata: { euro: 3 } }, null), { quota: '', puntata: '3,00', bookmaker: 'bet365' });
   // dopo "Quota reale non valida" o un errore di rete il ridisegno mostra ancora il testo scritto
   assert.deepEqual(valoriCampi(g, { quota: '1', puntata: '7', bookmaker: 'Snai' }), { quota: '1', puntata: '7', bookmaker: 'Snai' });
   assert.deepEqual(valoriCampi(g, { quota: '', puntata: '' }), { quota: '', puntata: '', bookmaker: 'bet365' });

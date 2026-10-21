@@ -146,7 +146,7 @@ const virgola = (n) => String(n).replace('.', ',');
 export function valoriCampi(giocata, digitati) {
   return {
     quota: digitati?.quota ?? (giocata.quota ? virgola(giocata.quota) : ''),
-    puntata: digitati?.puntata ?? virgola(giocata.puntata.euro),
+    puntata: digitati?.puntata ?? giocata.puntata.euro.toFixed(2).replace('.', ','),
     bookmaker: digitati?.bookmaker ?? BOOKMAKER[0],
   };
 }

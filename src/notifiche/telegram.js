@@ -159,7 +159,7 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
         : `${SIMBOLO[g.sport] ?? '•'} <b>${html(g.partita)}</b>\n${html(g.mercato)} → ${html(g.selezione)}`;
       out.push({ chiave, giocata: g, testo: [
         `${ESITO[g.esito]} · ${titolo}`,
-        `quota ${virgola(sg.quotaReale)} · puntata ${String(sg.puntataReale).replace('.', ',')} € → <b>${euro(profitto)}</b>${gambaRimborsata ? ' (una gamba rimborsata: l\'importo reale è più basso, controllalo)' : ''}`,
+        `quota ${virgola(sg.quotaReale)} · puntata ${importo(sg.puntataReale)} → <b>${euro(profitto)}</b>${gambaRimborsata ? ' (una gamba rimborsata: l\'importo reale è più basso, controllalo)' : ''}`,
       ].join('\n') });
     }
   }

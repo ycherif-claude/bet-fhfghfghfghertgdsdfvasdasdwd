@@ -73,14 +73,17 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, stopRaggiun
   // Le puntate proposte contano come perse: la loro somma non supera mai
   // né il tetto residuo di oggi né la distanza dallo stop. Se la superano,
   // tutte le puntate si riducono nella stessa proporzione (vedi riduciAlLimite).
-  const residuoTetto = CONFIG.tettoGiornaliero * bankroll - inGiocoOggi;
+  const tettoCalcolato = CONFIG.tettoGiornaliero * bankroll - inGiocoOggi;
+  // Bankroll o soldi in gioco non numerici (dato corrotto): per prudenza nessuna nuova puntata, come per lo stop.
+  // Infinity resta valido: il giro serale lo usa per un primo passaggio senza tetto.
+  const residuoTetto = Number.isNaN(tettoCalcolato) ? 0 : tettoCalcolato;
   // Valore non numerico (dato corrotto): per prudenza nessuna nuova puntata.
   const residuoStop = typeof distanzaStop === 'number' && !Number.isNaN(distanzaStop) ? distanzaStop : 0;
   const limite = Math.min(residuoTetto, residuoStop);
   const motivoLimite = residuoStop < residuoTetto ? 'stop settimanale' : 'tetto giornaliero';
   const daPuntare = [];
   for (const g of tutte) {
-    if (g.puntata.euro <= 0) { scarta(g.id, 'puntata troppo bassa'); continue; }
+    if (!(g.puntata.euro > 0)) { scarta(g.id, 'puntata troppo bassa'); continue; }
     daPuntare.push(g);
   }
   const giocate = riduciAlLimite(daPuntare, { limite, motivo: motivoLimite, bankroll, scarta });
@@ -100,7 +103,7 @@ function riduciAlLimite(giocate, { limite, motivo, bankroll, scarta }) {
   let restanti = giocate;
   for (;;) {
     const sommaCent = restanti.reduce((a, g) => a + centesimi(g.puntata.euro), 0);
-    // Sotto il limite (o limite non numerico, come prima): puntate invariate.
+    // Sotto il limite: puntate invariate.
     if (!(sommaCent > limiteCent)) return restanti;
     const ridotte = restanti.map((g) => {
       const quota = Math.floor((centesimi(g.puntata.euro) * Math.max(0, limiteCent)) / sommaCent);

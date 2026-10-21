@@ -190,7 +190,7 @@ test('esiti: solo le giocate segnate come fatte, con quota e puntata reali e il 
   ];
   const ms = messaggiEsiti({ giornate: [ieri], segnature, inviate: new Set(), adesso: mattina });
   assert.equal(ms.length, 2);
-  assert.match(ms[0].testo, /^✅ <b>VINTA<\/b> · ⚽ <b>Inter - Roma<\/b>\n1X2 → 1\nquota 2,65 · puntata 2 € → <b>\+3,30 €<\/b>$/);
+  assert.match(ms[0].testo, /^✅ <b>VINTA<\/b> · ⚽ <b>Inter - Roma<\/b>\n1X2 → 1\nquota 2,65 · puntata 2,00 € → <b>\+3,30 €<\/b>$/);
   assert.match(ms[1].testo, /^❌ <b>PERSA<\/b> · ⚽ <b>Milan - Juventus<\/b>/);
   assert.match(ms[1].testo, /→ <b>−4,00 €<\/b>\n\nBankroll: <b>199,30 €<\/b>/);
   assert.ok(!ms.some((m) => m.testo.includes('Saltata')));

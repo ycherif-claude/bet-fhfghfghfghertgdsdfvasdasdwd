@@ -216,3 +216,10 @@ test('riduzione anche per multiple e speciali: tutte con "ridotta", somma ≤ li
   assert.ok(r.giocate.every((g) => g.puntata.ridotta?.motivo === 'tetto giornaliero' && g.puntata.euro >= 1));
   assert.ok(somma(r) <= 20, `somma ${somma(r)}`);
 });
+
+test('bankroll o inGiocoOggi non numerici: per prudenza nessuna nuova puntata', () => {
+  for (const s of [{ inGiocoOggi: NaN }, { inGiocoOggi: undefined }, { bankroll: NaN }]) {
+    const r = selezionaGiocate([candidato({ id: 'x', prob: 0.6, quota: 2 })], stato(s));
+    assert.equal(r.giocate.length, 0, JSON.stringify(s));
+  }
+});
