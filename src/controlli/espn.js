@@ -66,16 +66,17 @@ const SUFFISSI = new Set(['jr', 'sr', 'ii', 'iii', 'iv']);
 const pezzi = (nome) => slug(nome).split('-').filter((p) => p && !SUFFISSI.has(p));
 const stesseParole = (x, y) => [...x].sort().join('-') === [...y].sort().join('-');
 
-// Vero se `nome` (scritto dal giro del mattino) è nell'elenco di quella squadra:
+// `nome` (scritto dal giro del mattino) nell'elenco di quella squadra: true, false o null (non si sa).
+// true:
 // - stesse parole, in qualunque ordine ("Heung-min Son" e "Son Heung-Min");
 // - stesso cognome e nome compatibile: uguale, l'uno prefisso dell'altro ("Nico González" e
-//   "Nicolás González", "Matt" e "Matthew") o un'iniziale ("T. Hernandez"); due nomi interi diversi con
-//   la stessa iniziale non coincidono mai ("Lautaro" e "Lisandro Martínez");
-// - cognome presente in un solo giocatore dell'elenco, purché il nome non lo smentisca
-//   (con Nico Williams in campo e Iñaki in panchina, "Iñaki Williams" non c'è).
+//   "Nicolás González", "Matt" e "Matthew") o un'iniziale ("T. Hernandez"); con più nomi compatibili
+//   decide il nome intero.
+// null (la giocata va in revisione, mai confermata né annullata da sola): cognome in elenco ma nessun nome
+// compatibile ("Lautaro" con il solo Lisandro Martínez, "Kike" ed "Enrique García"), oppure più omonimi
+// compatibili senza il nome intero ("L. Martínez" con Lautaro e Lisandro).
+// false: nessun giocatore dell'elenco ha quel cognome.
 // Se il mattino ha scritto solo il cognome, vale solo se nell'elenco un solo giocatore lo ha.
-// Due giocatori con stesso cognome e stessa iniziale ("Lautaro" e "Lisandro Martínez"): decide il nome
-// intero; se non basta restituisce null (non determinabile: la giocata va in revisione, mai confermata).
 export function inElenco(nome, elenco) {
   const p = pezzi(nome);
   if (!p.length) return false;
@@ -88,7 +89,10 @@ export function inElenco(nome, elenco) {
   const conIniziale = lista.filter((x) => x.length >= 2 && x.at(-1) === cognome && compatibile(x[0]));
   if (conIniziale.length === 1) return true;
   if (conIniziale.length > 1) return conIniziale.filter((x) => x[0] === p[0]).length === 1 ? true : null;
-  return conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && compatibile(t));
+  if (conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && compatibile(t))) return true;
+  // Cognome in elenco ma nessun nome compatibile ("Lautaro" con il solo Lisandro Martínez, "Kike" ed
+  // "Enrique García"): non si sa, va in revisione. Fuori solo se nessuno ha quel cognome.
+  return conCognome.length ? null : false;
 }
 
 export const espn = {
