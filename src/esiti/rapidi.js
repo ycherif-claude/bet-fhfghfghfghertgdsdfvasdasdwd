@@ -43,17 +43,13 @@ async function risultatoCalcio(gamba, fonti) {
   // Solo i 90 minuti: supplementari e rigori li decide il mattino (STATUS_FINAL_AET / _PEN).
   if (c?.status?.type?.name !== 'STATUS_FULL_TIME') return null;
   const lato = (h) => c.competitors?.find((x) => x.homeAway === h);
-  const stat = (h, nome) => {
-    const t = (d.boxscore?.teams ?? []).find((x) => x.homeAway === h) ?? (d.boxscore?.teams ?? [])[h === 'home' ? 0 : 1];
-    return intero(t?.statistics?.find((s) => s.name === nome)?.displayValue);
-  };
-  const somma = (a, b) => (num(a) && num(b) ? a + b : undefined);
   const pt = (h) => intero(lato(h)?.linescores?.[0]?.displayValue);
+  // Angoli e cartellini non si chiudono da ESPN: conta i cartellini in modo diverso da
+  // football-data/bet365 (doppio giallo = 2 gialli + 1 rosso) e un esito scritto qui è definitivo.
+  // Li decide il giro del mattino.
   return {
     gc: intero(lato('home')?.score), gt: intero(lato('away')?.score),
     gcPT: pt('home'), gtPT: pt('away'),
-    angoliC: stat('home', 'wonCorners') ?? undefined, angoliT: stat('away', 'wonCorners') ?? undefined,
-    cartC: somma(stat('home', 'yellowCards'), stat('home', 'redCards')), cartT: somma(stat('away', 'yellowCards'), stat('away', 'redCards')),
   };
 }
 

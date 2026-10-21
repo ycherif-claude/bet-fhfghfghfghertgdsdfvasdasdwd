@@ -69,6 +69,35 @@ test('esiti rapidi: pallavolo dal risultato in set di TheSportsDB, squadre per i
   assert.equal(leggi(d)[0].esito, 'vinta');
 });
 
+test('esiti rapidi: cartellini e angoli restano al giro del mattino, i gol si chiudono subito', async () => {
+  const levante = { sport: 'calcio', competizione: 'LaLiga', partita: 'Levante - Athletic Bilbao', inizio: '2026-10-21T20:00:00+02:00' };
+  const d = cartella([
+    giocata('cart', { ...levante, mercato: 'Cartellini Under/Over 3.5', selezione: 'Under 3.5' }),
+    giocata('ang', { ...levante, mercato: 'Angoli Under/Over 9.5', selezione: 'Under 9.5' }),
+    giocata('gol', { ...levante, mercato: 'Under/Over 2.5', selezione: 'Under 2.5' }),
+  ], ['cart', 'ang', 'gol']);
+  // ESPN: 2 gialli + doppio giallo (gialli 3, rosso 1) = 5 per ESPN, 3 per bet365/football-data.
+  const squadra = (homeAway, gialli, rossi) => ({ homeAway, statistics: [
+    { name: 'yellowCards', displayValue: String(gialli) }, { name: 'redCards', displayValue: String(rossi) },
+    { name: 'wonCorners', displayValue: '4' },
+  ] });
+  const summary = {
+    header: { competitions: [{ status: { type: { name: 'STATUS_FULL_TIME' } }, competitors: [
+      { homeAway: 'home', score: '1', linescores: [{ displayValue: '0' }] },
+      { homeAway: 'away', score: '0', linescores: [{ displayValue: '0' }] },
+    ] }] },
+    boxscore: { teams: [squadra('home', 3, 1), squadra('away', 1, 0)] },
+  };
+  const f = fonti();
+  f.espn = { partite: async () => [{ id: '77', casa: 'Levante', trasferta: 'Athletic Club', inizio: '2026-10-21T18:00:00Z' }] };
+  f.opz = { fetch: async () => ({ ok: true, status: 200, text: async () => JSON.stringify(summary) }) };
+  await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T20:30:00Z'), fonti: f });
+  const per = Object.fromEntries(leggi(d).map((g) => [g.id, g.esito]));
+  assert.equal(per.gol, 'vinta');
+  assert.equal(per.cart, null);
+  assert.equal(per.ang, null);
+});
+
 test('esiti rapidi: multipla chiusa solo quando tutte le gambe hanno un esito', async () => {
   const gambe = [
     { sport: 'basket', competizione: 'Eurolega', partita: 'Real Madrid - FC Barcelona', inizio: '2026-10-21T20:45:00+02:00', mercato: 'Vincente', selezione: 'Real Madrid' },
