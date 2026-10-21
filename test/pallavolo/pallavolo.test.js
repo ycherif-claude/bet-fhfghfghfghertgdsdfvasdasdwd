@@ -54,8 +54,8 @@ test('Elo: il 3-0 pesa più del 3-2, regressione a inizio stagione, partite cont
   // Risultati non da pallavolo (2-2, 4-1, senza punteggio) restano fuori.
   assert.equal(righePallavolo([partita('x', '2026-10-10', 'A', 'B', 2, 2), partita('y', '2026-10-10', 'A', 'B', 4, 1), partita('z', '2026-10-10', 'A', 'B', null, null)]).length, 0);
   assert.ok(probPartita(1500, 1500) > 0.5);
-  assert.equal(pesoModelloPallavolo(new Map([['A', 20], ['B', 14]]), 'A', 'B'), 0.25);
-  assert.equal(pesoModelloPallavolo(new Map([['A', 20], ['B', 15]]), 'A', 'B'), 0.5);
+  assert.equal(pesoModelloPallavolo(new Map([['A', 40], ['B', 29]]), 'A', 'B'), 0.25);
+  assert.equal(pesoModelloPallavolo(new Map([['A', 40], ['B', 30]]), 'A', 'B'), 0.5);
 });
 
 test('squadre: nomi di OddsPapi → id di TheSportsDB, alias, mai a caso', () => {
@@ -188,6 +188,8 @@ test('raccolta: SuperLega con modello e quota bet365; campionati senza storico e
   assert.equal(v.fonteQuota, 'mediana di 4 bookmaker (OddsPapi)');
   assert.ok(v.probModello > 0.5);
   assert.match(v.spiegazione, /^Vincente: vince se Itas Trentino/);
+  // Handicap e totale set: solo mercato finché il modello a set non è tarato.
+  assert.ok(p.mercati.filter((m) => m.mercato !== 'Vincente').every((m) => m.probModello === null));
   assert.equal(JSON.parse(readFileSync(join(dir, 'stato', 'oddspapi.json'), 'utf8')).richieste, 12);
 });
 

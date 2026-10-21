@@ -107,12 +107,17 @@ export const CONFIG = congela({
   // Fase 4d (pallavolo): Elo per campionato con il margine in set, quote da OddsPapi (piano gratuito).
   pallavolo: {
     eloIniziale: 1500,
-    k: 32,
-    vantaggioCasa: 30,
+    // K e vantaggio campo scelti sulle 320 partite salvate il 21/10/2026 (errore di previsione minimo).
+    k: 60,
+    vantaggioCasa: 60,
     regressioneStagione: 1 / 3,
     // Partite salvate sotto le quali una squadra non ha modello (solo mercato); sotto il pieno, peso ridotto.
-    minPartiteModello: 8,
-    minPartitePienoPeso: 15,
+    // 20 e non 8: con meno partite l'Elo resta schiacciato verso il 50% e favorirebbe le sfavorite.
+    minPartiteModello: 20,
+    minPartitePienoPeso: 30,
+    // Handicap set e totale set dal modello a set indipendenti: spenti finché non è tarato
+    // (prevede l'Over 3.5 al 72%, nella realtà 53% su 320 partite). Per ora solo mercato.
+    mercatiSetDalModello: false,
     pesoModello: 0.5,
     pesoModelloInizio: 0.25,
     minBookmaker: 3,

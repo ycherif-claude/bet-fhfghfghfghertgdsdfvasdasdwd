@@ -99,7 +99,9 @@ export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta }) {
     mercati.push({
       mercato: v.mercato,
       selezione: v.selezione,
-      probModello: modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
+      // Handicap e totale set dal modello solo se attivati (vedi CONFIG.pallavolo.mercatiSetDalModello).
+      probModello: v.tipo !== 'vincente' && !P.mercatiSetDalModello ? null
+        : modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
       probPinnacle: rif.prob[v.sel],
       quota: q.quota,
       fonteQuota: `mediana di ${q.n} bookmaker (OddsPapi)`,

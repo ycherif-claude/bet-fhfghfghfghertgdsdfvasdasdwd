@@ -110,3 +110,8 @@ Storico:
 
 Pagina:
 - La quota bet365 compare nella riga della quota del ragionamento ("quota bet365 1,29 alle 07:40") ed è salvata nei campi `quotaBet365` e `oraQuotaBet365`. Non serve cambiare la pagina.
+
+Dopo la prima raccolta vera (21/10/2026, 6 partite di PlusLiga e Bundesliga, 320 partite nello storico):
+- **Set indipendenti (§4):** il modello prevede l'Over 3.5 al 72% circa, mentre nella realtà è stato il 53% (chi domina un set tende a dominare anche il successivo). Il difetto non dipende dalla taratura dell'Elo. **Handicap set e totale set usano solo il mercato** (`mercatiSetDalModello: false`) finché il modello dei set non sarà tarato sui dati; il vincente usa il modello.
+- **Elo:** K 60 e vantaggio campo 60 punti (invece di 32 e 30), scelti sulle 320 partite.
+- **Partite minime:** il modello si accende con almeno **20** partite salvate per entrambe le squadre (invece di 8) e ha peso pieno da 30 (invece di 15). Con meno partite l'Elo resta schiacciato verso il 50% e favorirebbe le sfavorite. Si accende da solo quando lo storico della stagione scorsa è completo.
