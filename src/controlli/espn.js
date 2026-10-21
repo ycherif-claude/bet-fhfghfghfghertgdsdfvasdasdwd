@@ -68,8 +68,10 @@ const stesseParole = (x, y) => [...x].sort().join('-') === [...y].sort().join('-
 
 // Vero se `nome` (scritto dal giro del mattino) è nell'elenco di quella squadra:
 // - stesse parole, in qualunque ordine ("Heung-min Son" e "Son Heung-Min");
-// - stesso cognome e stessa iniziale del nome ("Nico González" e "Nicolás González", "T. Hernandez");
-// - cognome presente in un solo giocatore dell'elenco, purché l'iniziale del nome non lo smentisca
+// - stesso cognome e nome compatibile: uguale, l'uno prefisso dell'altro ("Nico González" e
+//   "Nicolás González", "Matt" e "Matthew") o un'iniziale ("T. Hernandez"); due nomi interi diversi con
+//   la stessa iniziale non coincidono mai ("Lautaro" e "Lisandro Martínez");
+// - cognome presente in un solo giocatore dell'elenco, purché il nome non lo smentisca
 //   (con Nico Williams in campo e Iñaki in panchina, "Iñaki Williams" non c'è).
 // Se il mattino ha scritto solo il cognome, vale solo se nell'elenco un solo giocatore lo ha.
 // Due giocatori con stesso cognome e stessa iniziale ("Lautaro" e "Lisandro Martínez"): decide il nome
@@ -82,11 +84,11 @@ export function inElenco(nome, elenco) {
   const cognome = p.at(-1);
   const conCognome = lista.filter((x) => x.includes(cognome));
   if (p.length === 1) return cognome.length >= 3 && conCognome.length === 1;
-  const iniziale = p[0][0];
-  const conIniziale = lista.filter((x) => x.length >= 2 && x.at(-1) === cognome && x[0][0] === iniziale);
+  const compatibile = (t) => t.startsWith(p[0]) || p[0].startsWith(t);
+  const conIniziale = lista.filter((x) => x.length >= 2 && x.at(-1) === cognome && compatibile(x[0]));
   if (conIniziale.length === 1) return true;
   if (conIniziale.length > 1) return conIniziale.filter((x) => x[0] === p[0]).length === 1 ? true : null;
-  return conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && t[0] === iniziale);
+  return conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && compatibile(t));
 }
 
 export const espn = {

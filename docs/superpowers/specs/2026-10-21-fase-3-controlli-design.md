@@ -59,7 +59,7 @@ Le Action pianificate di GitHub partono in pratica ogni 30-43 minuti, non ogni 1
   - giocatore chiave fuori → **Annullata**;
   - quota sotto la minima → **Annullata**;
   - partita non trovata nella fonte delle quote → resta **In revisione**, da controllare a mano;
-  - giocatore chiave non riconoscibile fra due omonimi della stessa squadra (stesso cognome e iniziale, il nome intero non basta) → resta **In revisione**, mai confermata né annullata da sola;
+  - giocatore chiave non identificabile con certezza nella formazione (due omonimi della stessa squadra e il nome intero non basta) → resta **In revisione**, mai confermata né annullata da sola. Due nomi interi coincidono solo se uguali o l'uno prefisso dell'altro ("Nico"/"Nicolás", "Matt"/"Matthew"); un'iniziale ("L.") vale per ogni nome che comincia così; "Lautaro" e "Lisandro Martínez" non coincidono mai;
   - Pinnacle contro di più di 5 punti → **Confermata con l'avviso** (il movimento da solo non annulla) **[utente]**;
   - fonte delle formazioni giù → resta la valutazione del mattino, **Confermata** con l'avviso.
 

@@ -81,7 +81,7 @@ function chiaviDi(notizie, idPartita) {
 }
 
 // Formazioni e assenze di una voce (calcio e NBA): { pronta, fuori: [nomi], incerti: [nomi], nota } oppure null
-// (sport senza formazioni). `incerti`: giocatori chiave non riconoscibili fra due omonimi della stessa squadra.
+// (sport senza formazioni). `incerti`: giocatori chiave non identificabili con certezza (omonimi nella stessa squadra).
 async function formazioniVoce(voce, notizie, fonti, adesso) {
   const campionato = voce.sport === 'nba' ? CAMPIONATI_ESPN.NBA : voce.sport === 'calcio' ? CAMPIONATI_ESPN[voce.competizione] : null;
   if (!campionato) return null;
@@ -101,7 +101,7 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
     const inf = await fonti.espn.infortuni(campionato, evento.id, sq);
     const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === true));
     const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === null));
-    return { pronta: true, fuori, incerti, nota: tutte.length ? `report infortuni: ${fuori.length ? `fuori ${fuori.join(', ')}` : incerti.length ? `non riconoscibili fra omonimi ${incerti.join(', ')}` : 'giocatori chiave disponibili'}` : 'giocatori chiave non indicati dal giro del mattino' };
+    return { pronta: true, fuori, incerti, nota: tutte.length ? `report infortuni: ${fuori.length ? `fuori ${fuori.join(', ')}` : incerti.length ? `non identificabili con certezza ${incerti.join(', ')}` : 'giocatori chiave disponibili'}` : 'giocatori chiave non indicati dal giro del mattino' };
   }
   const f = await fonti.espn.formazioni(campionato, evento.id);
   const pronta = Boolean(f.casa?.pronta && f.trasferta?.pronta);
@@ -110,7 +110,7 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
   const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, f[l].titolari) === null));
   const nota = !tutte.length ? 'formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)'
     : fuori.length ? `formazioni ufficiali: non titolari ${fuori.join(', ')}`
-      : incerti.length ? `formazioni ufficiali: non riconoscibili fra omonimi ${incerti.join(', ')}` : 'formazioni ufficiali: tutti i giocatori chiave titolari';
+      : incerti.length ? `formazioni ufficiali: non identificabili con certezza ${incerti.join(', ')}` : 'formazioni ufficiali: tutti i giocatori chiave titolari';
   return { pronta: true, fuori, incerti, nota };
 }
 
@@ -122,7 +122,7 @@ export function valuta(voce, formazioni, quote) {
     dettagli.push(formazioni.nota);
     if (formazioni.fuori.length) problemi.push({ tipo: 'chiave', testo: `giocatore chiave fuori: ${formazioni.fuori.join(', ')}` });
     // Omonimi nella stessa squadra (stesso cognome e iniziale): non si sa se gioca, va in revisione.
-    if (formazioni.incerti?.length) problemi.push({ tipo: 'incerto', testo: `giocatore chiave non riconoscibile fra omonimi della squadra: ${formazioni.incerti.join(', ')}` });
+    if (formazioni.incerti?.length) problemi.push({ tipo: 'incerto', testo: `giocatore chiave non identificabile con certezza nella formazione: ${formazioni.incerti.join(', ')}` });
   }
   // Partita non trovata nella fonte delle quote: può essere un ritiro o un rinvio, ma anche un nome
   // scritto in modo diverso. Non si annulla mai da soli: va in revisione [utente].
@@ -143,14 +143,20 @@ export function valuta(voce, formazioni, quote) {
 }
 
 // Regole fisse senza Claude [utente]: giocatore chiave fuori o quota sotto la minima → annullata;
-// partita non trovata nelle quote o giocatore chiave non riconoscibile fra omonimi → resta in revisione
+// partita non trovata nelle quote o giocatore chiave non identificabile con certezza (omonimi) → resta in revisione
 // (da controllare a mano, mai annullata né confermata da sola);
 // il solo movimento del mercato non annulla (confermata con l'avviso).
 export function regolaFissa(problemi) {
   const annulla = problemi.filter((p) => p.tipo === 'chiave' || p.tipo === 'quota');
   if (annulla.length) return { esito: 'annullata', motivo: `regola automatica (Claude non disponibile): ${annulla.map((p) => p.testo).join('; ')}` };
-  const assente = problemi.filter((p) => p.tipo === 'assente' || p.tipo === 'incerto');
-  if (assente.length) return { esito: 'revisione', motivo: `regola automatica (Claude non disponibile): ${assente.map((p) => p.testo).join('; ')}: resta in revisione, controlla su bet365 prima di giocarla` };
+  const assente = problemi.filter((p) => p.tipo === 'assente');
+  const incerto = problemi.filter((p) => p.tipo === 'incerto');
+  if (assente.length || incerto.length) {
+    const parti = [];
+    if (assente.length) parti.push(`${assente.map((p) => p.testo).join('; ')}: resta in revisione, controlla su bet365 prima di giocarla`);
+    if (incerto.length) parti.push(`${incerto.map((p) => p.testo).join('; ')}: controlla su bet365 prima di giocarla`);
+    return { esito: 'revisione', motivo: `regola automatica (Claude non disponibile): ${parti.join('; ')}` };
+  }
   return { esito: 'confermata', motivo: `regola automatica (Claude non disponibile): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
 }
 

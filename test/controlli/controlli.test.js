@@ -413,7 +413,10 @@ test('giocatori chiave omonimi nella stessa squadra: stesso cognome e stessa ini
   assert.equal(inElenco('Lautaro Martínez', ['Lisandro Martínez', 'Lautaro Javier Martínez']), true);
   assert.equal(inElenco('Lisandro Martinez', ['Lautaro Martínez', 'Lisandro Martínez']), true);
   assert.equal(inElenco('L. Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
-  assert.equal(inElenco('Lauti Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
+  // "Lauti" non è né uguale né prefisso di Lautaro o Lisandro: nessuno dei due.
+  assert.equal(inElenco('Lauti Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), false);
+  // "Lau" è prefisso di Lautaro e non di Lisandro: un solo nome compatibile.
+  assert.equal(inElenco('Lau Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), true);
   // I casi di sempre restano.
   assert.equal(inElenco('Nico González', ['Nicolás González', 'Riserva 1']), true);
   assert.equal(inElenco('Matt Turner', ['Matthew Turner']), true);
@@ -426,5 +429,30 @@ test('controllo: giocatore chiave non riconoscibile fra due omonimi → in revis
   await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: fonti({ formazioni: { casa: titolari(['Lautaro Martínez', 'Lisandro Martínez']), trasferta: titolari([]) } }), chiavi: { oddsApi: 'K' } });
   const g = leggi(d).giocate[0];
   assert.equal(g.stato, 'in_revisione');
-  assert.match(g.motivoStato, /non riconoscibile.*L\. Martínez/);
+  assert.match(g.motivoStato, /non identificabile con certezza nella formazione: L\. Martínez/);
+});
+
+test('nomi diversi con la stessa iniziale non coincidono, anche con un solo omonimo in elenco', () => {
+  // Lautaro in panchina, Lisandro titolare: Lautaro non è in campo.
+  assert.equal(inElenco('Lautaro Martínez', ['Lisandro Martínez', 'Nicolò Barella']), false);
+  assert.equal(inElenco('Lautaro Martínez', ['Martínez Lisandro']), false);
+  // L'iniziale resta compatibile con ogni nome che comincia così; i prefissi pure.
+  assert.equal(inElenco('L. Martínez', ['Lisandro Martínez']), true);
+  assert.equal(inElenco('Lautaro Martínez', ['L. Martínez']), true);
+  assert.equal(inElenco('Nico González', ['Nicolás González']), true);
+  assert.equal(inElenco('Matt Turner', ['Matthew Turner']), true);
+  assert.equal(inElenco('Heung-min Son', ['Son Heung-Min']), true);
+  assert.equal(inElenco('Theo Hernández', ['T. Hernandez']), true);
+  assert.equal(inElenco('Theo Hernández', ['Lucas Hernández']), false);
+  assert.equal(inElenco('Iñaki Williams', ['Nico Williams', 'Oihan Sancet']), false);
+});
+
+test('regola fissa per il giocatore chiave non identificabile: testo suo, resta in revisione', () => {
+  const v = vociDi(giocata())[0];
+  const r = valuta(v, { pronta: true, fuori: [], incerti: ['L. Martínez'], nota: 'x' }, null);
+  assert.deepEqual(r.problemi.map((p) => p.tipo), ['incerto']);
+  const x = regolaFissa(r.problemi);
+  assert.equal(x.esito, 'revisione');
+  assert.match(x.motivo, /giocatore chiave non identificabile con certezza nella formazione: L\. Martínez: controlla su bet365 prima di giocarla/);
+  assert.doesNotMatch(x.motivo, /non trovata/);
 });
