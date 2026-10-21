@@ -17,6 +17,7 @@ import { sportsgameodds } from '../nba/fonti/sportsgameodds.js';
 import { oddspapi } from '../pallavolo/fonti/oddspapi.js';
 import { CAMPIONATI_ESPN, espn, inElenco } from './espn.js';
 import { quoteFresche, squadreDi, trovaEvento } from './quote.js';
+import { eseguiEsitiRapidi } from '../esiti/rapidi.js';
 
 const K = CONFIG.controlli;
 const MIN = 60000;
@@ -303,6 +304,14 @@ async function principale() {
   const r = await eseguiControlli({ dirData: 'data', adesso, chiavi, claudeDisponibile });
   for (const e of r.errori) console.log(`- ${e}`);
   console.log(`Controlli: ${r.cambiate} giocate aggiornate`);
+  // Esiti rapidi delle giocate fatte appena finite (il mattino dopo resta la rete di sicurezza).
+  try {
+    const e = await eseguiEsitiRapidi({ dirData: 'data', adesso });
+    for (const x of e.errori) console.log(`- Esiti rapidi: ${x}`);
+    console.log(`Esiti rapidi: ${e.aggiornate} giocate chiuse`);
+  } catch (err) {
+    console.log(`- Esiti rapidi non riusciti: ${err?.message ?? err}`);
+  }
   // Riga letta dal workflow per avviare la routine Claude.
   if (r.daMandareAClaude.length) console.log(`AVVIA_CLAUDE ${r.daMandareAClaude.join(',')}`);
 }

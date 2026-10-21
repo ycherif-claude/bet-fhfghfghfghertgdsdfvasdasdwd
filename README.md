@@ -245,6 +245,7 @@ Un bot Telegram ti scrive:
 - **gli errori del sistema**: righe nuove fra gli errori della giornata, un'Action fallita, la giornata non scritta entro le 12:00.
 
 - **gli esiti** (vinta, persa, rimborsata) **solo delle giocate segnate come fatte** sul sito, con la quota e la puntata reali, il guadagno o la perdita e il bankroll aggiornato. Le giocate saltate o non segnate non mandano niente.
+  Gli esiti arrivano **10-20 minuti dopo la fine della partita**: ogni 10 minuti l'Action dei controlli cerca il risultato delle giocate fatte già finite su fonti gratuite (ESPN per calcio, NBA e tennis, compresi angoli e cartellini; API Eurolega; TheSportsDB per NBL e pallavolo). Se una fonte non ha ancora il risultato, l'esito arriva la mattina dopo con la raccolta delle 07:35, come prima. Per angoli e cartellini i numeri di ESPN possono differire di poco da quelli del bookmaker: in quel caso vale il regolamento di bet365.
 
 Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`). Le righe solo informative ("partite già iniziate", i 429 di TheSportsDB mentre lo storico si completa) non si notificano.
 
