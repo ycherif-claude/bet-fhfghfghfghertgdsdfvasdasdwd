@@ -1,6 +1,6 @@
 {
   "data": "2026-10-21",
-  "generataAlle": "2026-10-21T10:04:21+02:00",
+  "generataAlle": "2026-10-21T10:42:53+02:00",
   "giro": "claude",
   "notizieControllate": true,
   "competizioniNonCoperte": [],
@@ -18,12 +18,12 @@
       "prob": 0.3333375908253477,
       "quota": 3.52,
       "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
-      "oraQuota": "2026-10-21T09:57:19+02:00",
+      "oraQuota": "2026-10-21T10:32:17+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Gol attesi: Levante 1,5 – Athletic Bilbao 1,3 (gol e xG, ultime 2 stagioni)",
         "Modello 41%, Pinnacle 26%, probabilità usata 33%",
-        "Quota mediana 3,52 su 19 bookmaker alle 09:57",
+        "Quota mediana 3,52 su 19 bookmaker alle 10:32",
         "Notizie controllate alle 10:04: nessuna correzione"
       ],
       "probModello": 0.4074988960266644,
@@ -81,6 +81,31 @@
       "correzioneNotizie": null
     },
     {
+      "id": "calcio-2026-10-21-aston-villa-viking-fk-1x2-2",
+      "sport": "calcio",
+      "competizione": "Champions League",
+      "partita": "Aston Villa - Viking FK",
+      "idPartita": "calcio-2026-10-21-aston-villa-viking-fk",
+      "inizio": "2026-10-21T21:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.08733916683440704,
+      "quota": 11.46,
+      "fonteQuota": "mediana di 20 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-21T10:32:17+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 9%",
+        "Quota mediana 11,46 su 20 bookmaker alle 10:32",
+        "Notizie non controllate per questa partita"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.08733916683440704,
+      "correzioneNotizie": null
+    },
+    {
       "id": "nba-2026-10-21-washington-wizards-milwaukee-bucks-vincente-milwaukee-bucks",
       "sport": "nba",
       "competizione": "NBA",
@@ -93,12 +118,12 @@
       "prob": 0.4113698919240252,
       "quota": 2.5,
       "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Washington Wizards 117 – Milwaukee Bucks 117 (stagione in corso e precedente)",
         "Modello 51%, Consenso bookmaker 38%, probabilità usata 41%",
-        "Quota mediana 2,50 su 9 bookmaker alle 09:57",
+        "Quota mediana 2,50 su 9 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Vincente: vince se Milwaukee Bucks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
       ],
@@ -119,12 +144,12 @@
       "prob": 0.5331946106518106,
       "quota": 1.91,
       "fonteQuota": "mediana di 7 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Washington Wizards 117 – Milwaukee Bucks 117 (stagione in corso e precedente)",
         "Modello 63%, Consenso bookmaker 50%, probabilità usata 53%",
-        "Quota mediana 1,91 su 7 bookmaker alle 09:57",
+        "Quota mediana 1,91 su 7 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Handicap: vince se i Milwaukee Bucks perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Milwaukee Bucks +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
       ],
@@ -145,12 +170,12 @@
       "prob": 0.45046301171354414,
       "quota": 2.22,
       "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Orlando Magic 116 – Atlanta Hawks 116 (stagione in corso e precedente)",
         "Modello 51%, Consenso bookmaker 43%, probabilità usata 45%",
-        "Quota mediana 2,22 su 9 bookmaker alle 09:57",
+        "Quota mediana 2,22 su 9 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Vincente: vince se Atlanta Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
       ],
@@ -168,20 +193,20 @@
       "tipo": "singola",
       "mercato": "Vincente",
       "selezione": "Charlotte Hornets",
-      "prob": 0.5413084613212338,
+      "prob": 0.5421646547361739,
       "quota": 2.1,
       "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Brooklyn Nets 104 – Charlotte Hornets 116 (stagione in corso e precedente)",
         "Modello 79%, Consenso bookmaker 46%, probabilità usata 54%",
-        "Quota mediana 2,10 su 9 bookmaker alle 09:57",
+        "Quota mediana 2,10 su 9 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Vincente: vince se Charlotte Hornets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
       ],
       "probModello": 0.7947494703132417,
-      "probPinnacle": 0.45682812499056447,
+      "probPinnacle": 0.4579697162104846,
       "correzioneNotizie": null
     },
     {
@@ -194,20 +219,20 @@
       "tipo": "singola",
       "mercato": "Handicap -2.5",
       "selezione": "trasferta",
-      "prob": 0.5930757251808823,
+      "prob": 0.589744692960741,
       "quota": 1.87,
-      "fonteQuota": "mediana di 5 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "fonteQuota": "mediana di 3 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Brooklyn Nets 104 – Charlotte Hornets 116 (stagione in corso e precedente)",
         "Modello 84%, Consenso bookmaker 51%, probabilità usata 59%",
-        "Quota mediana 1,87 su 5 bookmaker alle 09:57",
+        "Quota mediana 1,87 su 3 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Handicap: vince se i Charlotte Hornets perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su Charlotte Hornets +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
       ],
       "probModello": 0.8354185624188801,
-      "probPinnacle": 0.512294779434883,
+      "probPinnacle": 0.5078534031413612,
       "correzioneNotizie": null
     },
     {
@@ -223,12 +248,12 @@
       "prob": 0.47020278887501543,
       "quota": 2.3,
       "fonteQuota": "mediana di 9 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: New Orleans Pelicans 122 – Indiana Pacers 118 (stagione in corso e precedente)",
         "Modello 63%, Consenso bookmaker 42%, probabilità usata 47%",
-        "Quota mediana 2,30 su 9 bookmaker alle 09:57",
+        "Quota mediana 2,30 su 9 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Vincente: vince se New Orleans Pelicans vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
       ],
@@ -246,20 +271,20 @@
       "tipo": "singola",
       "mercato": "Handicap +3.5",
       "selezione": "casa",
-      "prob": 0.5523897928866801,
+      "prob": 0.5511977584812949,
       "quota": 1.91,
-      "fonteQuota": "mediana di 8 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "fonteQuota": "mediana di 7 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: New Orleans Pelicans 122 – Indiana Pacers 118 (stagione in corso e precedente)",
         "Modello 71%, Consenso bookmaker 50%, probabilità usata 55%",
-        "Quota mediana 1,91 su 8 bookmaker alle 09:57",
+        "Quota mediana 1,91 su 7 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Handicap: vince se i New Orleans Pelicans perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su New Orleans Pelicans +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
       ],
       "probModello": 0.711522522332061,
-      "probPinnacle": 0.4993455497382198,
+      "probPinnacle": 0.49775617053103954,
       "correzioneNotizie": null
     },
     {
@@ -275,17 +300,43 @@
       "prob": 0.5539975476876369,
       "quota": 1.91,
       "fonteQuota": "mediana di 6 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: Portland Trail Blazers 112 – Phoenix Suns 109 (stagione in corso e precedente)",
         "Modello 71%, Consenso bookmaker 50%, probabilità usata 55%",
-        "Quota mediana 1,91 su 6 bookmaker alle 09:57",
+        "Quota mediana 1,91 su 6 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Totale punti 231.5: Under vince se le due squadre segnano al massimo 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (231.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
       ],
       "probModello": 0.7133723897034268,
       "probPinnacle": 0.5008726003490401,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-10-21-los-angeles-lakers-golden-state-warriors-totale-punti-234-5-under-234-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Golden State Warriors",
+      "idPartita": "nba-2026-10-21-los-angeles-lakers-golden-state-warriors",
+      "inizio": "2026-10-22T04:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 234.5",
+      "selezione": "Under 234.5",
+      "prob": 0.5341218915412023,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 3 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Los Angeles Lakers 118 – Golden State Warriors 111 (stagione in corso e precedente)",
+        "Modello 63%, Consenso bookmaker 50%, probabilità usata 53%",
+        "Quota mediana 1,91 su 3 bookmaker alle 10:32",
+        "Notizie non controllate per questa partita",
+        "Totale punti 234.5: Under vince se le due squadre segnano al massimo 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (234.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6312519640705683,
+      "probPinnacle": 0.5017452006980803,
       "correzioneNotizie": null
     },
     {
@@ -298,20 +349,20 @@
       "tipo": "singola",
       "mercato": "Handicap -5.5",
       "selezione": "casa",
-      "prob": 0.517450347284518,
-      "quota": 1.95,
-      "fonteQuota": "mediana di 7 bookmaker (SportsGameOdds)",
-      "oraQuota": "2026-10-21T09:57:26+02:00",
+      "prob": 0.5188483467806817,
+      "quota": 1.94,
+      "fonteQuota": "mediana di 6 bookmaker (SportsGameOdds)",
+      "oraQuota": "2026-10-21T10:32:22+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Punti attesi: LA Clippers 120 – Sacramento Kings 111 (stagione in corso e precedente)",
         "Modello 60%, Consenso bookmaker 49%, probabilità usata 52%",
-        "Quota mediana 1,95 su 7 bookmaker alle 09:57",
+        "Quota mediana 1,94 su 6 bookmaker alle 10:32",
         "Notizie non controllate per questa partita",
         "Handicap: vince se i LA Clippers vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su LA Clippers -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
       ],
       "probModello": 0.6028290356948973,
-      "probPinnacle": 0.48899078448105826,
+      "probPinnacle": 0.49085478380927644,
       "correzioneNotizie": null
     },
     {
@@ -324,21 +375,48 @@
       "tipo": "singola",
       "mercato": "Vincente incontro",
       "selezione": "Marta Kostyuk",
-      "prob": 0.615665084255592,
+      "prob": 0.6192213564822933,
       "quota": 1.65,
       "fonteQuota": "mediana di 17 bookmaker (The Odds API)",
-      "oraQuota": "2026-10-21T10:03:13+02:00",
+      "oraQuota": "2026-10-21T10:38:06+02:00",
       "quotaDaVerificare": false,
       "ragionamento": [
         "Elo complessivo e su cemento: Ekaterina Alexandrova 1723/1702 – Marta Kostyuk 1888/1767 (ultime 3 stagioni tennis-data)",
         "Al meglio dei 3 set",
-        "Modello 66%, Pinnacle 57%, probabilità usata 62%",
-        "Quota mediana 1,65 su 17 bookmaker alle 10:03",
+        "Modello 66%, Pinnacle 58%, probabilità usata 62%",
+        "Quota mediana 1,65 su 17 bookmaker alle 10:38",
         "Notizie controllate alle 10:04: nessuna correzione",
         "Vincente incontro: vince se Marta Kostyuk vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
       ],
       "probModello": 0.657395331418452,
-      "probPinnacle": 0.5739348370927319,
+      "probPinnacle": 0.5810473815461347,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "basket-2026-10-21-hapoel-tel-aviv-virtus-segafredo-bologna-totale-punti-175-5-under-175-5",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Hapoel Tel Aviv - Virtus Segafredo Bologna",
+      "idPartita": "basket-2026-10-21-hapoel-tel-aviv-virtus-segafredo-bologna",
+      "inizio": "2026-10-21T18:00:00+02:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 175.5",
+      "selezione": "Under 175.5",
+      "prob": 0.5261860414256085,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-21T10:38:07+02:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Hapoel Tel Aviv 91 – Virtus Segafredo Bologna 81 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%",
+        "Modello 59%, Pinnacle 50%, probabilità usata 53%",
+        "Quota mediana 1,91 su 11 bookmaker alle 10:38",
+        "Notizie non controllate per questa partita",
+        "Totale punti 175.5: Under vince se le due squadre segnano al massimo 175 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5930558540141229,
+      "probPinnacle": 0.5038961038961038,
       "correzioneNotizie": null
     }
   ],
@@ -413,8 +491,16 @@
       "motivo": "stima troppo lontana dal mercato"
     },
     {
+      "idCandidato": "nba-2026-10-21-los-angeles-lakers-golden-state-warriors-totale-punti-234-5-under-234-5",
+      "motivo": "stima troppo lontana dal mercato"
+    },
+    {
       "idCandidato": "nba-2026-10-21-la-clippers-sacramento-kings-handicap-meno-5-5-casa",
       "motivo": "stima troppo lontana dal mercato"
+    },
+    {
+      "idCandidato": "calcio-2026-10-21-aston-villa-viking-fk-1x2-2",
+      "motivo": "quota fuori range"
     },
     {
       "idCandidato": "nba-2026-10-21-orlando-magic-atlanta-hawks-vincente-atlanta-hawks",
@@ -425,11 +511,16 @@
       "motivo": "value insufficiente"
     },
     {
+      "idCandidato": "basket-2026-10-21-hapoel-tel-aviv-virtus-segafredo-bologna-totale-punti-175-5-under-175-5",
+      "motivo": "value insufficiente"
+    },
+    {
       "idCandidato": "calcio-2026-10-21-levante-athletic-bilbao-cartellini-under-over-4-5-under-4-5",
       "motivo": "altra giocata sulla stessa partita"
     }
   ],
   "erroriGiro": [
-    "1 partita già iniziata esclusa"
+    "TheSportsDB stagione 2025 giornata 11 alle 10:38: www.thesportsdb.com: HTTP 429",
+    "2 partite già iniziate escluse"
   ]
 }
