@@ -54,7 +54,7 @@ test('giro serale: confermata, modificata con la quota nuova, annullata; una vol
   ]);
   const ms = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: base });
   assert.equal(ms.length, 3);
-  assert.match(ms[0].testo, /🏀 <b>Inter - Roma<\/b>\n1X2 → 1: <b>CONFERMATA<\/b>$/);
+  assert.match(ms[0].testo, /^🔎 🏀 <b>Inter - Roma<\/b>\n1X2 → 1: <b>CONFERMATA<\/b>$/);
   assert.match(ms[1].testo, /MODIFICATA<\/b>\nassente il titolare\nquota 2,10/);
   assert.match(ms[2].testo, /ANNULLATA<\/b>\nquota scesa sotto la minima/);
   const dopo = new Set([...base, ...ms.map((m) => m.chiave)]);

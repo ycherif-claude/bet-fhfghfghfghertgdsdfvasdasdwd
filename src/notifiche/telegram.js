@@ -1,4 +1,4 @@
-// Notifiche Telegram: giocate del giorno, cambi del giro serale ed errori del sistema.
+// Notifiche Telegram: giocate del giorno, cambi di stato (giro serale e controlli prima delle partite) ed errori.
 // Si confronta la giornata di oggi con quello che è già stato mandato (data/stato/telegram.json):
 // ogni messaggio ha una chiave e parte una volta sola. Gli esiti restano sul sito (scelta dell'utente).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -9,7 +9,7 @@ import { oraRoma } from '../calcio/testo.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
-const STATO_SERALE = { confermata: 'CONFERMATA', modificata: 'MODIFICATA', annullata: 'ANNULLATA' };
+const STATO_SERALE = { in_revisione: 'IN REVISIONE', confermata: 'CONFERMATA', modificata: 'MODIFICATA', annullata: 'ANNULLATA' };
 // Righe informative di erroriGiro che non sono guasti: non si notificano.
 const INFORMATIVI = [/già iniziat/, /TheSportsDB.*HTTP 429/];
 
@@ -83,14 +83,14 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
     }
   }
 
-  // 2. Cambi del giro serale: confermata, modificata o annullata (una volta per stato e controllo).
+  // 2. Cambi di stato (giro serale e controlli prima delle partite), una volta per stato e controllo.
   for (const g of giocate) {
     const etichetta = STATO_SERALE[g.stato];
     if (!etichetta) continue;
     const motivo = g.motivoStato ? `\n${html(g.motivoStato)}` : '';
     const nuovaQuota = g.stato === 'modificata' ? `\n${rigaQuota(g)}` : '';
     aggiungi(`${oggi}|stato|${g.id}|${g.stato}|${g.oraUltimoControllo ?? ''}`,
-      `🌙 Giro serale: ${SIMBOLO[g.sport] ?? '•'} <b>${html(g.partita)}</b>\n${html(g.mercato)} → ${html(g.selezione)}: <b>${etichetta}</b>${motivo}${nuovaQuota}`);
+      `🔎 ${SIMBOLO[g.sport] ?? '•'} <b>${html(g.partita)}</b>\n${html(g.mercato)} → ${html(g.selezione)}: <b>${etichetta}</b>${motivo}${nuovaQuota}`);
   }
 
   // 3. Errori del sistema: le righe nuove di erroriGiro, senza quelle solo informative.

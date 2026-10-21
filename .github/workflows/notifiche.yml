@@ -1,14 +1,14 @@
 name: Notifiche Telegram
 
 # Giocate del giorno, cambi del giro serale ed errori: dopo ogni aggiornamento dei dati su main
-# (routine di Claude), alla fine delle altre Action (raccolta, riserva, serale, pubblicazione oraria)
+# (routine di Claude), alla fine delle altre Action (raccolta, riserva, serale, controlli, pubblicazione oraria)
 # e a mano. Ogni messaggio parte una volta sola: lo stato è in data/stato/telegram.json.
 on:
   push:
     branches: [main]
     paths: ['data/giornate/**', 'data/raccolta/**']
   workflow_run:
-    workflows: ['Raccolta dati calcio', 'Giro di riserva', 'Giro serale', 'Pubblica sito']
+    workflows: ['Raccolta dati calcio', 'Giro di riserva', 'Giro serale', 'Controlli prima delle partite', 'Pubblica sito']
     types: [completed]
   workflow_dispatch:
 

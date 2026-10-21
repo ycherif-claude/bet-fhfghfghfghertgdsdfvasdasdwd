@@ -129,4 +129,25 @@ export const CONFIG = congela({
     pausaTheSportsDbMs: 6500,
     maxGiornateGiorno: 12,
   },
+  // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
+  controlli: {
+    finestre: {
+      calcio: { primo: 50, ultimo: 15 },
+      tennis: { primo: 45, ultimo: 15 },
+      pallavolo: { primo: 45, ultimo: 15 },
+      nba: { primo: 35, ultimo: 10 },
+      basket: { primo: 35, ultimo: 10 },
+    },
+    // Avvii al giorno della routine Claude "Controllo pre-partita" [utente: 2].
+    maxClaude: 2,
+    // Senza una decisione di Claude entro questi minuti dall'inizio valgono le regole fisse.
+    minutiDecisioneClaude: 5,
+    // Pinnacle (o il consenso) contro di più di questi punti di probabilità → revisione.
+    scartoMercato: 0.05,
+    // Crediti di The Odds API e richieste OddsPapi da non toccare mai per i controlli.
+    minCreditiOdds: 25,
+    minRichiesteOddsPapi: 25,
+    // Partita riconosciuta sulle fonti se l'orario differisce al massimo di tante ore.
+    toleranzaOre: 3,
+  },
 });

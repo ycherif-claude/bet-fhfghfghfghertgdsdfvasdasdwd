@@ -15,6 +15,7 @@
     "raccolta-pallavolo": "node src/pallavolo/raccolta.js",
     "giro": "node src/giro/giro.js",
     "notifiche": "node src/notifiche/telegram.js",
+    "controlli": "node src/controlli/controlli.js",
     "build": "node src/build/costruisci-sito.js",
     "serve": "node scripts/serve.js"
   }

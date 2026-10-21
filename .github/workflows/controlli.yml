@@ -1,0 +1,75 @@
+name: Controlli prima delle partite
+
+# Fase 3: ogni 10 minuti controlla le giocate di oggi nella loro finestra (formazioni ESPN, ritiri,
+# quote dell'ultimo momento) e aggiorna lo stato. Se una giocata va in revisione e c'è posto
+# (al massimo 2 al giorno), avvia la routine Claude "Controllo pre-partita".
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dati
+
+jobs:
+  controlli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Controlli
+        id: controlli
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+          ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
+          ROUTINE_CONTROLLI_URL: ${{ secrets.ROUTINE_CONTROLLI_URL }}
+          ROUTINE_CONTROLLI_TOKEN: ${{ secrets.ROUTINE_CONTROLLI_TOKEN }}
+        run: |
+          npm run controlli | tee controlli.log
+          ids=$(grep '^AVVIA_CLAUDE ' controlli.log | tail -n 1 | cut -d' ' -f2)
+          echo "claude=$ids" >> "$GITHUB_OUTPUT"
+          rm controlli.log
+      - name: Salva
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git commit -m "Controlli prima delle partite $(TZ=Europe/Rome date +%F' '%H:%M)"
+            # Fino a 3 tentativi; un conflitto nel rebase si annulla e il job fallisce.
+            salvato=
+            for tentativo in 1 2 3; do
+              if ! git pull --rebase; then
+                git rebase --abort || true
+                echo "Conflitto durante git pull --rebase: controlli non salvati"
+                exit 1
+              fi
+              if git push; then salvato=1; break; fi
+              if [ "$tentativo" -lt 3 ]; then sleep 10; fi
+            done
+            if [ -z "$salvato" ]; then
+              echo "git push rifiutato 3 volte: controlli non salvati"
+              exit 1
+            fi
+          fi
+      - name: Avvia Claude per le giocate in revisione
+        if: steps.controlli.outputs.claude != ''
+        env:
+          ROUTINE_CONTROLLI_URL: ${{ secrets.ROUTINE_CONTROLLI_URL }}
+          ROUTINE_CONTROLLI_TOKEN: ${{ secrets.ROUTINE_CONTROLLI_TOKEN }}
+          GIOCATE: ${{ steps.controlli.outputs.claude }}
+        # Se l'avvio fallisce, le giocate restano in revisione e 5 minuti prima dell'inizio valgono le regole fisse.
+        run: |
+          data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
+          curl -fsS -X POST "$ROUTINE_CONTROLLI_URL" \
+            -H "Authorization: Bearer $ROUTINE_CONTROLLI_TOKEN" \
+            -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "Content-Type: application/json" \
+            -d "{\"text\":\"Controllo pre-partita $data: $GIOCATE\"}"

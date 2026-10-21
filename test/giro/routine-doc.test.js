@@ -83,3 +83,15 @@ test('notifiche Telegram: README e workflow', () => {
   const w = fs.readFileSync('.github/workflows/notifiche.yml', 'utf8');
   for (const s of ['npm run notifiche', 'workflow_run', "'Raccolta dati calcio'", "'Giro serale'", 'group: dati', 'for tentativo in 1 2 3', 'git rebase --abort']) assert.ok(w.includes(s), s);
 });
+
+test('controlli prima delle partite: routine, README e workflow', () => {
+  const c = fs.readFileSync('docs/routine/controllo-pre-partita.md', 'utf8');
+  for (const s of ['npm run controlli -- --applica', '-controlli-decisioni.json', 'in_revisione', 'quotaMinima', 'git rebase --abort', '5 ricerche web']) assert.ok(c.includes(s), s);
+  const m = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
+  assert.ok(m.includes('giocatoriChiave'));
+  const r = fs.readFileSync('README.md', 'utf8');
+  for (const s of ['Controlli prima delle partite', 'ROUTINE_CONTROLLI_URL', 'ROUTINE_CONTROLLI_TOKEN', 'regole fisse']) assert.ok(r.includes(s), s);
+  const w = fs.readFileSync('.github/workflows/controlli.yml', 'utf8');
+  for (const s of ["cron: '*/10 * * * *'", 'npm run controlli', 'AVVIA_CLAUDE', 'group: dati', 'for tentativo in 1 2 3', 'Controllo pre-partita']) assert.ok(w.includes(s), s);
+  assert.ok(fs.readFileSync('.github/workflows/notifiche.yml', 'utf8').includes("'Controlli prima delle partite'"));
+});

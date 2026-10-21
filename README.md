@@ -209,6 +209,33 @@ In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie 
 
 Il modello è un Elo per campionato con il margine in set (3-0 pesa più di 3-2), con le due ultime stagioni. Sulla scheda, accanto alla quota mediana, c'è la **quota bet365** quando OddsPapi la dà. Il value si calcola sempre sulla mediana. Una squadra con meno di 8 partite salvate non ha il modello: la partita usa solo il mercato.
 
+## Controlli prima delle partite
+
+Ogni 10 minuti l'Action "Controlli prima delle partite" guarda le giocate di oggi che stanno per iniziare, una per una:
+
+| Sport | Primo tentativo | Ultimo tentativo |
+|---|---|---|
+| Calcio | 50 minuti prima | 15 minuti prima |
+| Tennis, pallavolo | 45 minuti prima | 15 minuti prima |
+| NBA, basket | 35 minuti prima | 10 minuti prima |
+
+Cosa controlla:
+
+- **Formazioni** (calcio) e **infortuni** (NBA) da ESPN, gratis: i giocatori chiave indicati dal giro del mattino devono essere titolari (calcio) o non "Out" (NBA). Se le formazioni non sono ancora uscite si riprova; all'ultimo tentativo si decide con i dati del mattino e la scheda lo dice.
+- **Ritiri** nel tennis: la partita sparisce dal palinsesto → giocata annullata.
+- **Quote**: una richiesta per competizione (dentro la riserva di crediti già tenuta da parte). Quota sotto la minima, o Pinnacle mosso contro di più di 5 punti → revisione.
+
+Se non cambia niente la giocata diventa **Confermata**, con cosa si è controllato. Se cambia qualcosa va **In revisione** e, al massimo 2 volte al giorno, parte la routine Claude "Controllo pre-partita", che rianalizza solo quella partita (istruzioni in `docs/routine/controllo-pre-partita.md`). Senza Claude, o se non decide entro 5 minuti dall'inizio, valgono le regole fisse: giocatore chiave fuori o quota sotto la minima → **Annullata**; il solo movimento di Pinnacle → Confermata con l'avviso. Ogni cambio di stato arriva anche su Telegram.
+
+### La routine "Controllo pre-partita" (`ROUTINE_CONTROLLI_URL` e `ROUTINE_CONTROLLI_TOKEN`)
+
+1. Apri claude.ai/code/routines e apri la routine **"Controllo pre-partita"**.
+2. Premi **Edit** → **Add another trigger** → **API**.
+3. Copia l'URL e premi **Generate token** (il token si vede una volta sola).
+4. Nei segreti di GitHub crea `ROUTINE_CONTROLLI_URL` (l'URL) e `ROUTINE_CONTROLLI_TOKEN` (il token).
+
+Senza questi due segreti i controlli funzionano lo stesso, solo con le regole fisse.
+
 ## Notifiche Telegram
 
 Un bot Telegram ti scrive:
@@ -237,6 +264,7 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- Controlli prima delle partite (Fase 3): progetto in `docs/superpowers/specs/2026-10-21-fase-3-controlli-design.md`, codice in `src/controlli/`.
 - Pallavolo (Fase 4d): progetto in `docs/superpowers/specs/2026-10-21-fase-4d-pallavolo-design.md`, codice in `src/pallavolo/`.
 - Basket (Fase 4c): progetto in `docs/superpowers/specs/2026-10-21-fase-4c-basket-design.md`, codice in `src/basket/`.
 - Calcio (Fase 2): progetto in `docs/superpowers/specs/2026-10-19-fase-2-calcio-design.md`, piano in `docs/superpowers/plans/2026-10-19-fase-2-calcio.md`, istruzioni della routine in `docs/routine/giro-del-mattino.md`.
