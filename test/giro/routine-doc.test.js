@@ -56,3 +56,12 @@ test('le istruzioni tennis: mattino, serale e README', () => {
   const r = fs.readFileSync('README.md', 'utf8');
   for (const x of ['Tennis: mercato', 'Vincente incontro', 'rimborsata', 'bet365', 'sera prima', 'Slam', 'Masters 1000']) assert.ok(r.includes(x), x);
 });
+
+test('le istruzioni basket: mattino e README', () => {
+  const m = fs.readFileSync('docs/routine/giro-del-mattino.md', 'utf8');
+  for (const s of ['<oggi>-basket.json', 'né `<oggi>-tennis.json` né `<oggi>-basket.json`', 'basket-2026-10-21-real-madrid-fc-barcelona-vincente-real-madrid', 'solo-pinnacle', '"In dubbio"']) assert.ok(m.includes(s), s);
+  const r = fs.readFileSync('README.md', 'utf8');
+  for (const s of ['Basket: Eurolega e NBL', 'data/storico/eurolega.json', 'TheSportsDB', '3 crediti', 'solo mercato']) assert.ok(r.includes(s), s);
+  const w = fs.readFileSync('.github/workflows/raccolta.yml', 'utf8');
+  assert.ok(w.includes('npm run raccolta-basket'));
+});

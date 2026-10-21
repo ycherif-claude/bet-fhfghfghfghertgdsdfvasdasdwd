@@ -10,6 +10,7 @@ import { costruisciDati } from '../../src/build/costruisci-sito.js';
 import { giornataDi } from '../../src/bankroll/settimana.js';
 import { isoRoma } from '../../src/calcio/testo.js';
 import { raccoltaNba, partitaNba, mNba, NBA1 } from './nba-prova.js';
+import { raccoltaBasket, madridBarcellona, BASKET1 } from './basket-prova.js';
 import { raccoltaTennis, partitaTennis, mTennis, TENNIS1 } from './tennis-prova.js';
 
 const GIRO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'giro', 'giro.js');
@@ -54,7 +55,7 @@ const notizie = (correzioni = [], esclusioni = []) => ({
 
 // `nba`: raccolta NBA del giorno; per default è presente ma vuota, così i test del solo calcio
 // non ricevono la riga "Raccolta NBA di oggi mancante" (`nba: null` per ometterla).
-function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), tennis = raccoltaTennis([]), giornate = [], segnature = [] } = {}) {
+function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), tennis = raccoltaTennis([]), basket = raccoltaBasket([]), giornate = [], segnature = [] } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-giro-'));
   for (const sotto of ['raccolta', 'giornate', 'segnature']) fs.mkdirSync(path.join(d, sotto));
   if (racc) fs.writeFileSync(path.join(d, 'raccolta', `${racc.data}.json`), JSON.stringify(racc));
@@ -62,6 +63,7 @@ function dirTemp({ racc = raccolta(), noti = notizie(), nba = raccoltaNba([]), t
   if (nba) fs.writeFileSync(path.join(d, 'raccolta', `${nba.data}-nba.json`), JSON.stringify(nba));
   for (const g of giornate) fs.writeFileSync(path.join(d, 'giornate', `${g.data}.json`), JSON.stringify(g, null, 2));
   if (tennis) fs.writeFileSync(path.join(d, 'raccolta', `${tennis.data}-tennis.json`), JSON.stringify(tennis));
+  if (basket) fs.writeFileSync(path.join(d, 'raccolta', `${basket.data}-basket.json`), JSON.stringify(basket));
   for (const s of segnature) scriviSegnatura(d, s);
   return d;
 }
@@ -512,3 +514,32 @@ function alcarazSinnerProva() {
   return partitaTennis('Jannik Sinner', 'Carlos Alcaraz', [
     mTennis('Jannik Sinner', 0.52, 0.52, 2.05), mTennis('Carlos Alcaraz', 0.48, 0.48, 2.10)]);
 }
+
+// --- Basket (Fase 4c) ---
+test('basket: candidati con sport "basket", correzione su Vincente con complementare automatica', () => {
+  const basket = raccoltaBasket();
+  const noti = { ...notizie([corr(BASKET1, 'Vincente', 'Real Madrid', -0.04)]), partiteControllate: [P1, P2, BASKET1] };
+  const d = dirTemp({ basket, noti });
+  eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' });
+  const g = leggi(d);
+  const c = g.candidati.filter((x) => x.sport === 'basket');
+  assert.ok(c.length > 0);
+  assert.equal(c[0].competizione, 'Eurolega');
+  const madrid = c.find((x) => x.selezione === 'Real Madrid');
+  assert.ok(Math.abs(madrid.probModello - 0.64) < 1e-9);
+  const barca = c.find((x) => x.selezione === 'FC Barcelona');
+  if (barca) assert.ok(Math.abs(barca.probModello - 0.36) < 1e-9);
+});
+
+test('basket solo mercato: non si corregge, si può escludere', () => {
+  const p = madridBarcellona({ modello: 'solo-pinnacle', pesoModello: null });
+  p.mercati = p.mercati.map((m) => ({ ...m, probModello: null }));
+  const basket = raccoltaBasket([p]);
+  const noti = { ...notizie([corr(BASKET1, 'Vincente', 'Real Madrid', -0.04)]), partiteControllate: [P1, P2, BASKET1] };
+  const d = dirTemp({ basket, noti });
+  assert.throws(() => eseguiGiro({ dirData: d, adesso: ADESSO, modo: 'claude' }), /solo Pinnacle/);
+  const escl = { ...notizie([], [{ idPartita: BASKET1, motivo: 'titolare fuori', fonte: 'sito del club, 08:10' }]), partiteControllate: [P1, P2, BASKET1] };
+  const d2 = dirTemp({ basket, noti: escl });
+  eseguiGiro({ dirData: d2, adesso: ADESSO, modo: 'claude' });
+  assert.ok(!leggi(d2).giocate.some((x) => x.sport === 'basket'));
+});

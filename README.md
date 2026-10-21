@@ -160,6 +160,31 @@ Nel tennis molte partite iniziano di notte o all'alba (tornei in Asia e Australi
 
 Se la parte tennis fallisce, il motivo compare tra gli errori della giornata e il resto va avanti.
 
+## Basket: Eurolega e NBL
+
+Le giocate di basket europeo e australiano si costruiscono ogni mattina insieme agli altri sport. **Non servono chiavi nuove**: le quote vengono da The Odds API con la stessa `ODDS_API_KEY` del calcio, e lo storico dalle fonti gratuite:
+
+- **Eurolega**: l'API pubblica dei risultati della Eurolega (senza chiave);
+- **NBL**: TheSportsDB, piano gratuito (senza chiave).
+
+Lo storico si salva in `data/storico/eurolega.json` e `data/storico/nbl.json`: la stagione precedente si scarica una volta sola, quella in corso si aggiorna ogni mattina dall'ultima giornata salvata. Se una fonte non risponde, lo storico già salvato resta e l'errore compare nella pagina.
+
+### Mercati
+
+Gli stessi dell'NBA: **Vincente**, **Handicap** e **Totale punti**, supplementari compresi e con la stessa linea indicata sulla scheda (con una linea diversa il calcolo non vale). Il riferimento di mercato è Pinnacle sulla stessa linea; se Pinnacle ha un'altra linea, la media senza margine di almeno 3 bookmaker su quella linea.
+
+### Crediti
+
+Ogni campionato con partite costa 3 crediti di The Odds API al giorno. Il basket spende dopo calcio e tennis e lascia da parte la serata del tennis: nei giorni pieni un campionato può restare scoperto, e la pagina lo dice ("crediti insufficienti"). Prima l'Eurolega, poi l'NBL.
+
+### Le partite "solo mercato"
+
+Se una squadra ha meno di 8 partite salvate (per esempio una squadra nuova), la partita non ha il modello e usa solo il mercato: una giocata nasce solo se la quota mediana batte di almeno il 5% la quota giusta, cosa rara.
+
+### Le partite NBL dell'alba
+
+Le partite NBL iniziano di solito tra le 08:00 e le 11:00 italiane, ma alcune iniziano di notte. La raccolta del mattino prende tutte le partite fino alle 08:00 del giorno dopo, quindi anche quelle notturne entrano nella giornata del giorno prima. Una partita fra le 00:00 e le 08:00 del giorno stesso è già iniziata quando parte il giro e resta scoperta.
+
 ## Revisione settimanale
 
 Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.
@@ -169,6 +194,7 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- Basket (Fase 4c): progetto in `docs/superpowers/specs/2026-10-21-fase-4c-basket-design.md`, codice in `src/basket/`.
 - Calcio (Fase 2): progetto in `docs/superpowers/specs/2026-10-19-fase-2-calcio-design.md`, piano in `docs/superpowers/plans/2026-10-19-fase-2-calcio.md`, istruzioni della routine in `docs/routine/giro-del-mattino.md`.
 - Modello dati completo: `docs/superpowers/plans/2026-10-19-fase-1-fondamenta.md`, sezione "Modello dati".
 

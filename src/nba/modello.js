@@ -45,7 +45,7 @@ const media = (valori) => {
 
 // Maher moltiplicativo sui punti: λ_casa = media·att_c·dif_t·casa, λ_trasf = media·att_t·dif_c;
 // att e dif normalizzati a media 1. Righe: { c, t, yc, yt, w }.
-function adatta(righe) {
+function adatta(righe, mediaIniziale = MEDIA_PUNTI_INIZIALE) {
   const squadre = [...new Set(righe.flatMap((r) => [r.c, r.t]))];
   const att = new Map(squadre.map((s) => [s, 1]));
   const dif = new Map(squadre.map((s) => [s, 1]));
@@ -55,9 +55,9 @@ function adatta(righe) {
     peso.set(r.t, peso.get(r.t) + r.w);
   }
   let casa = 1;
-  let mediaPunti = MEDIA_PUNTI_INIZIALE;
+  let mediaPunti = mediaIniziale;
   const sommaW = righe.reduce((a, r) => a + r.w, 0);
-  if (sommaW > 0) mediaPunti = righe.reduce((a, r) => a + r.w * (r.yc + r.yt), 0) / (2 * sommaW) || MEDIA_PUNTI_INIZIALE;
+  if (sommaW > 0) mediaPunti = righe.reduce((a, r) => a + r.w * (r.yc + r.yt), 0) / (2 * sommaW) || mediaIniziale;
 
   for (let it = 0; it < ITERAZIONI && righe.length; it++) {
     const num = new Map(squadre.map((s) => [s, 0]));
@@ -107,8 +107,9 @@ function deviazione(valori) {
   return Math.sqrt(valori.reduce((a, v) => a + (v - m) ** 2, 0) / (n - 1));
 }
 
-export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
-  const cfg = CONFIG.nba;
+// `cfg` = costanti del campionato (CONFIG.nba, o CONFIG.basket per Eurolega e NBL).
+export function stimaForzeNba(partite, { oggi, stagioneCorrente, cfg = CONFIG.nba } = {}) {
+  const mediaIniziale = cfg.mediaPuntiIniziale ?? MEDIA_PUNTI_INIZIALE;
   const finite = partite.filter(valida);
   const stagione = stagioneCorrente ?? finite.reduce((a, x) => Math.max(a, x.stagione), -Infinity);
   const correnti = finite.filter((x) => x.stagione === stagione);
@@ -116,9 +117,9 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
   const rif = oggi ?? ultimaData(finite);
 
   // Stagione precedente: pesi rispetto al suo ultimo giorno, poi valori riportati verso 1.
-  const prec = adatta(righe(precedenti, ultimaData(precedenti), cfg.mezzaVitaGiorni));
+  const prec = adatta(righe(precedenti, ultimaData(precedenti), cfg.mezzaVitaGiorni), mediaIniziale);
   const riporta = (v) => 1 + (v - 1) * (1 - cfg.regressioneStagione);
-  const corr = adatta(righe(correnti, rif, cfg.mezzaVitaGiorni));
+  const corr = adatta(righe(correnti, rif, cfg.mezzaVitaGiorni), mediaIniziale);
 
   const squadre = [...new Set([...prec.squadre, ...corr.squadre])];
   const partiteStagione = new Map(squadre.map((s) => [s, 0]));
@@ -142,7 +143,7 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
 
   // Fattore campo e media punti: stagione corrente con la precedente come pseudo-partite.
   const lega = (chiave) => {
-    if (!correnti.length && !precedenti.length) return chiave === 'casa' ? 1 : MEDIA_PUNTI_INIZIALE;
+    if (!correnti.length && !precedenti.length) return chiave === 'casa' ? 1 : mediaIniziale;
     if (!precedenti.length) return corr[chiave];
     if (!correnti.length) return prec[chiave];
     return (corr.sommaW * corr[chiave] + PARTITE_FITTIZIE_LEGA * prec[chiave]) / (corr.sommaW + PARTITE_FITTIZIE_LEGA);
@@ -153,7 +154,7 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
   // Deviazioni standard dai residui: stagione precedente contro il suo modello, corrente contro le forze finali.
   let sdMargine = cfg.sdMargine;
   let sdTotale = cfg.sdTotale;
-  if (correnti.length + precedenti.length >= MIN_PARTITE_SD) {
+  if (correnti.length + precedenti.length >= (cfg.minPartiteSd ?? MIN_PARTITE_SD)) {
     const resM = [];
     const resT = [];
     const aggiungi = (x, lc, lt) => {
@@ -176,12 +177,12 @@ export function stimaForzeNba(partite, { oggi, stagioneCorrente } = {}) {
 }
 
 // Punti attesi; il back-to-back sposta |backToBack|/2 punti dalla squadra stanca all'altra.
-export function puntiAttesi(forze, casa, trasferta, { b2bCasa = false, b2bTrasferta = false } = {}) {
+export function puntiAttesi(forze, casa, trasferta, { b2bCasa = false, b2bTrasferta = false, cfg = CONFIG.nba } = {}) {
   const { attacco, difesa } = forze;
   if (!attacco.has(casa) || !attacco.has(trasferta)) return null;
   let c = forze.mediaPunti * attacco.get(casa) * difesa.get(trasferta) * forze.casa;
   let t = forze.mediaPunti * attacco.get(trasferta) * difesa.get(casa);
-  const delta = Math.abs(CONFIG.nba.backToBack) / 2;
+  const delta = Math.abs(cfg.backToBack) / 2;
   if (b2bCasa) { c -= delta; t += delta; }
   if (b2bTrasferta) { t -= delta; c += delta; }
   return { casa: c, trasferta: t };
@@ -247,8 +248,7 @@ export function mercatiNba(attesi, linee, forze, nomi) {
 }
 
 // Peso del modello nella media con il mercato: ridotto se una delle due ha poche partite in stagione.
-export function pesoModelloPartita(forze, casa, trasferta) {
-  const cfg = CONFIG.nba;
+export function pesoModelloPartita(forze, casa, trasferta, cfg = CONFIG.nba) {
   const n = (s) => forze.partiteStagione.get(s) ?? 0;
   return n(casa) < cfg.minPartiteStagione || n(trasferta) < cfg.minPartiteStagione ? cfg.pesoModelloInizio : cfg.pesoModello;
 }

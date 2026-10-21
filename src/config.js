@@ -83,4 +83,25 @@ export const CONFIG = congela({
     // Partite su una superficie (del giocatore che ne ha meno) oltre le quali l'Elo di superficie pesa per intero.
     partiteSuperficiePiena: 20,
   },
+  // Fase 4c (basket: Eurolega e NBL): modello NBA con costanti proprie, quote da The Odds API.
+  basket: {
+    // Circa due partite a settimana: la mezza vita copre più partite che nell'NBA.
+    mezzaVitaGiorni: 60,
+    regressioneStagione: 1 / 3,
+    minPartiteStagione: 8,
+    pesoModello: 0.5,
+    pesoModelloInizio: 0.25,
+    // Doppio turno (seconda partita in 3 giorni): −1 punto di margine alla squadra stanca.
+    backToBack: -1,
+    giorniDoppioTurno: 2,
+    sdMargine: 11,
+    sdTotale: 15,
+    mediaPuntiIniziale: 82,
+    minPartiteSd: 60,
+    // Partite salvate (tutte le stagioni) sotto le quali una squadra non ha modello: solo mercato.
+    minPartiteModello: 8,
+    minBookmaker: 3,
+    // h2h, spreads e totals in una regione: 3 crediti per campionato.
+    creditiPerCampionato: 3,
+  },
 });

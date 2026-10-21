@@ -37,6 +37,11 @@ jobs:
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      - name: Raccolta basket
+        run: npm run raccolta-basket
+        continue-on-error: true
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       - name: Salva i dati
         run: |
           git config user.name "github-actions[bot]"

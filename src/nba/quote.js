@@ -44,17 +44,17 @@ export function lineaComune(evento, mercato) {
   return candidate[0];
 }
 
-export function quotaMedianaNba(evento, mercato, selezione, linea) {
+export function quotaMedianaNba(evento, mercato, selezione, linea, minBookmaker = CONFIG.nba.minBookmaker) {
   const quote = evento.bookmaker
     .map((b) => quotaDi(b, mercato, selezione, linea))
     .filter((q) => q !== null)
     .sort((a, b) => a - b);
   const n = quote.length;
-  if (n < CONFIG.nba.minBookmaker) return null;
+  if (n < minBookmaker) return null;
   return { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n };
 }
 
-export function consensoNba(evento, mercato, linea) {
+export function consensoNba(evento, mercato, linea, minBookmaker = CONFIG.nba.minBookmaker) {
   const selezioni = SELEZIONI[mercato];
   const prob = [];
   for (const b of evento.bookmaker) {
@@ -63,6 +63,6 @@ export function consensoNba(evento, mercato, linea) {
     const somma = quote.reduce((t, q) => t + 1 / q, 0);
     prob.push(quote.map((q) => 1 / q / somma));
   }
-  if (prob.length < CONFIG.nba.minBookmaker) return null;
+  if (prob.length < minBookmaker) return null;
   return Object.fromEntries(selezioni.map((s, i) => [s, prob.reduce((t, p) => t + p[i], 0) / prob.length]));
 }

@@ -6,26 +6,28 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { leggiRaccolte, SPORT_RACCOLTA } from '../../src/giro/raccolte.js';
 import { raccoltaTennis, alcarazSinner } from './tennis-prova.js';
+import { raccoltaBasket, madridBarcellona } from './basket-prova.js';
 import { raccoltaNba, celticsKnicks, partitaNba, mNba } from './nba-prova.js';
 
 const OGGI = '2026-10-20';
 const CALCIO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'fixtures', 'giro', 'raccolta-calcio-2026-10-20.json');
 const calcio = () => JSON.parse(fs.readFileSync(CALCIO, 'utf8'));
 
-// Per default c'è anche una raccolta tennis vuota, così i test degli altri sport non ricevono la riga
-// "Raccolta tennis di oggi mancante" (`tennis: false` per ometterla).
-function dir(file = {}, { tennis = true } = {}) {
+// Per default ci sono anche le raccolte tennis e basket vuote, così i test degli altri sport non ricevono
+// le righe "Raccolta tennis/basket di oggi mancante" (`tennis: false`, `basket: false` per ometterle).
+function dir(file = {}, { tennis = true, basket = true } = {}) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'bet-raccolte-'));
   fs.mkdirSync(path.join(d, 'raccolta'));
   if (tennis && !(`${OGGI}-tennis.json` in file)) file = { ...file, [`${OGGI}-tennis.json`]: raccoltaTennis([]) };
+  if (basket && !(`${OGGI}-basket.json` in file)) file = { ...file, [`${OGGI}-basket.json`]: raccoltaBasket([]) };
   for (const [nome, contenuto] of Object.entries(file)) {
     fs.writeFileSync(path.join(d, 'raccolta', nome), typeof contenuto === 'string' ? contenuto : JSON.stringify(contenuto));
   }
   return d;
 }
 
-test('sport noti: per ora solo l\'NBA', () => {
-  assert.deepEqual(SPORT_RACCOLTA, ['nba', 'tennis']);
+test('sport noti: NBA, tennis e basket', () => {
+  assert.deepEqual(SPORT_RACCOLTA, ['nba', 'tennis', 'basket']);
 });
 
 test('solo calcio: raccolta unita identica a quella letta prima (deepEqual)', () => {
@@ -63,12 +65,13 @@ test('raccolta calcio mancante, nba presente: partite NBA ed errore del calcio',
 });
 
 test('nessuna raccolta: raccolta null e un errore per ciascuna', () => {
-  const r = leggiRaccolte(dir({}, { tennis: false }), OGGI);
+  const r = leggiRaccolte(dir({}, { tennis: false, basket: false }), OGGI);
   assert.equal(r.raccolta, null);
   assert.deepEqual(r.errori, [
     'Raccolta di oggi mancante: data/raccolta/2026-10-20.json',
     'Raccolta NBA di oggi mancante: data/raccolta/2026-10-20-nba.json',
     'Raccolta tennis di oggi mancante: data/raccolta/2026-10-20-tennis.json',
+    'Raccolta basket di oggi mancante: data/raccolta/2026-10-20-basket.json',
   ]);
 });
 
@@ -120,4 +123,18 @@ test('raccolta tennis mancante, illeggibile o di ieri: errore tennis, il resto i
   const ieri = leggiRaccolte(dir({ ...base, [`${OGGI}-tennis.json`]: raccoltaTennis(undefined, '2026-10-19') }), OGGI);
   assert.deepEqual(ieri.errori, ['Raccolta tennis di oggi mancante: data/raccolta/2026-10-20-tennis.json (il file è del 2026-10-19)']);
   assert.deepEqual(ieri.raccolta, calcio());
+});
+
+test('calcio + nba + tennis + basket: il basket in coda; file mancante → errore basket, il resto invariato', () => {
+  const b = raccoltaBasket();
+  b.competizioniNonCoperte = ['NBL (Australia): crediti insufficienti'];
+  b.erroriGiro = ['API Eurolega stagione 2026 giornata 7 alle 07:40: HTTP 500'];
+  const r = leggiRaccolte(dir({ [`${OGGI}.json`]: calcio(), [`${OGGI}-nba.json`]: raccoltaNba(), [`${OGGI}-tennis.json`]: raccoltaTennis(), [`${OGGI}-basket.json`]: b }), OGGI);
+  assert.deepEqual(r.errori, []);
+  assert.deepEqual(r.raccolta.partite.at(-1), madridBarcellona());
+  assert.deepEqual(r.raccolta.competizioniNonCoperte.at(-1), 'NBL (Australia): crediti insufficienti');
+  assert.deepEqual(r.raccolta.erroriGiro.at(-1), 'API Eurolega stagione 2026 giornata 7 alle 07:40: HTTP 500');
+  const senza = leggiRaccolte(dir({ [`${OGGI}.json`]: calcio(), [`${OGGI}-nba.json`]: raccoltaNba([]) }, { basket: false }), OGGI);
+  assert.deepEqual(senza.errori, ['Raccolta basket di oggi mancante: data/raccolta/2026-10-20-basket.json']);
+  assert.deepEqual(senza.raccolta, calcio());
 });

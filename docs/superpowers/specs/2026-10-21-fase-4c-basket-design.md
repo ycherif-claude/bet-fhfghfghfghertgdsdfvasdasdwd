@@ -1,6 +1,6 @@
 # Fase 4c – Basket europeo e australiano: Eurolega e NBL
 
-*Data: 21 ottobre 2026 · Stato: bozza da approvare*
+*Data: 21 ottobre 2026 · Stato: approvato dall'utente il 21 ottobre 2026*
 
 Estende le Fasi 2, 4a (NBA) e 4b (tennis). Valgono le loro regole salvo dove questo documento dice altro: probabilità, correzioni dalle notizie (±8 punti), scrittura protetta della giornata, riserva, esiti, `selezionaGiocate` unica per tutti gli sport, giro della sera prima.
 
@@ -77,3 +77,10 @@ La giornata del sito comprende anche Eurolega e NBL australiana, con giocate di 
 - Come generalizzare il giro della sera prima (oggi solo tennis) per l'NBL, senza cambiare il tennis.
 - Struttura dei moduli (`src/basket/`), riusando `src/nba/modello.js` e `src/nba/quote.js` dove è possibile.
 - Parser XML minimo per l'API della Eurolega.
+
+## 9. Modifiche durante la costruzione (21 ottobre 2026) [scelta di Claude]
+
+- **TheSportsDB:** la chiave gratuita `3` indicata al §4 è stata disattivata. Con la nuova chiave pubblica `123`, `eventspastleague` dà solo l'ultima partita, mentre `eventsround.php?id=4434&r=<giornata>&s=<stagione>` dà tutte le partite di una giornata, anche delle stagioni passate. Lo storico NBL si scarica quindi per giornata, come quello dell'Eurolega: la stagione precedente una volta sola (22 giornate di stagione regolare), quella in corso ogni mattina dall'ultima giornata salvata. Il modello NBL parte subito, senza aspettare settimane.
+- **Partite salvate minime (8):** si contano su tutte le stagioni salvate, non solo su quella in corso. Con la stagione precedente scaricata, il "solo mercato" resta per le squadre nuove.
+- **Giro della sera prima:** non serve. La raccolta del mattino copre già la giornata intera fino alle 08:00 del giorno dopo (come per il tennis), quindi le partite NBL notturne entrano nella giornata del giorno prima con le quote del mattino. Niente raccolta serale del basket, niente riserva di 3 crediti per la sera e nessun cambio al workflow serale. Se servirà ricontrollare quote e notizie la sera, sarà una fase a parte.
+- **Mezza vita:** 60 giorni (circa due partite a settimana), invece dei 30 dell'NBA.

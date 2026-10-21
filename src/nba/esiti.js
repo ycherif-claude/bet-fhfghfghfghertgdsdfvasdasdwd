@@ -20,18 +20,19 @@ const formatoUsa = new Intl.DateTimeFormat('en-CA', {
 // Giorno di New York (AAAA-MM-GG) di un istante.
 export const dataUsaDi = (istante) => formatoUsa.format(istante);
 
-// 'vinta' | 'persa' | 'rimborsata' | null. Per "Vincente" servono r.casa e r.trasferta (nomi).
-export function esitoNba(mercato, selezione, r) {
+// 'vinta' | 'persa' | 'rimborsata' | null. Per "Vincente" servono r.casa e r.trasferta (nomi);
+// `chi` riconosce una squadra dal nome (il basket europeo passa la sua tabella).
+export function esitoNba(mercato, selezione, r, chi = (nome) => squadraNba(nome)?.nome) {
   const { puntiCasa: pc, puntiTrasferta: pt } = r ?? {};
   if (!num(pc) || !num(pt)) return null;
   const vinta = (b) => (b ? 'vinta' : 'persa');
   let m;
   if (mercato === 'Vincente') {
     if (pc === pt) return null;
-    const s = squadraNba(selezione)?.nome;
+    const s = chi(selezione);
     if (!s) return null;
-    if (s === squadraNba(r.casa)?.nome) return vinta(pc > pt);
-    if (s === squadraNba(r.trasferta)?.nome) return vinta(pt > pc);
+    if (s === chi(r.casa)) return vinta(pc > pt);
+    if (s === chi(r.trasferta)) return vinta(pt > pc);
     return null;
   }
   if ((m = /^Handicap ([+-]?\d+(?:\.\d+)?)$/.exec(mercato))) {
