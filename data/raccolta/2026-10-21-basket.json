@@ -1,14 +1,12 @@
 {
   "data": "2026-10-21",
-  "generataAlle": "2026-10-21T10:38:07+02:00",
+  "generataAlle": "2026-10-21T13:27:06+02:00",
   "crediti": {
-    "usati": 6,
-    "rimasti": 462
+    "usati": 3,
+    "rimasti": 454
   },
   "competizioniNonCoperte": [],
-  "erroriGiro": [
-    "TheSportsDB stagione 2025 giornata 11 alle 10:38: www.thesportsdb.com: HTTP 429"
-  ],
+  "erroriGiro": [],
   "partite": [
     {
       "idPartita": "basket-2026-10-21-hapoel-tel-aviv-virtus-segafredo-bologna",
@@ -34,10 +32,10 @@
           "mercato": "Vincente",
           "selezione": "Hapoel Tel Aviv",
           "probModello": 0.8173236767464205,
-          "probPinnacle": 0.7460629921259841,
+          "probPinnacle": 0.7455621301775148,
           "quota": 1.29,
           "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
           "spiegazione": "Vincente: vince se Hapoel Tel Aviv vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
         },
@@ -45,10 +43,10 @@
           "mercato": "Vincente",
           "selezione": "Virtus Segafredo Bologna",
           "probModello": 0.18267632325357958,
-          "probPinnacle": 0.25393700787401574,
+          "probPinnacle": 0.2544378698224853,
           "quota": 3.55,
           "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
           "spiegazione": "Vincente: vince se Virtus Segafredo Bologna vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
         },
@@ -56,10 +54,10 @@
           "mercato": "Handicap -7.5",
           "selezione": "casa",
           "probModello": 0.5738468904312239,
-          "probPinnacle": 0.4973958333333334,
+          "probPinnacle": 0.49610389610389616,
           "quota": 1.89,
-          "fonteQuota": "mediana di 13 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "fonteQuota": "mediana di 14 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
           "spiegazione": "Handicap: vince se i Hapoel Tel Aviv vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su Hapoel Tel Aviv -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
         },
@@ -67,78 +65,36 @@
           "mercato": "Handicap -7.5",
           "selezione": "trasferta",
           "probModello": 0.426153109568776,
-          "probPinnacle": 0.5026041666666667,
+          "probPinnacle": 0.5038961038961038,
           "quota": 1.91,
-          "fonteQuota": "mediana di 13 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "fonteQuota": "mediana di 14 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
           "spiegazione": "Handicap: vince se i Virtus Segafredo Bologna perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su Virtus Segafredo Bologna +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
         },
         {
-          "mercato": "Totale punti 175.5",
-          "selezione": "Over 175.5",
-          "probModello": 0.40694414598587714,
-          "probPinnacle": 0.49610389610389616,
-          "quota": 1.88,
-          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "mercato": "Totale punti 176.5",
+          "selezione": "Over 176.5",
+          "probModello": 0.3832915609079316,
+          "probPinnacle": 0.4979038730671603,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
-          "spiegazione": "Totale punti 175.5: Over vince se le due squadre segnano almeno 176 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 176.5: Over vince se le due squadre segnano almeno 177 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (176.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
         },
         {
-          "mercato": "Totale punti 175.5",
-          "selezione": "Under 175.5",
-          "probModello": 0.5930558540141229,
-          "probPinnacle": 0.5038961038961038,
-          "quota": 1.91,
-          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
+          "mercato": "Totale punti 176.5",
+          "selezione": "Under 176.5",
+          "probModello": 0.6167084390920684,
+          "probPinnacle": 0.5020961269328398,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-21T13:27:06+02:00",
           "frequenzaCampionato": null,
-          "spiegazione": "Totale punti 175.5: Under vince se le due squadre segnano al massimo 175 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
-        }
-      ]
-    },
-    {
-      "idPartita": "basket-2026-10-21-tasmania-jackjumpers-brisbane-bullets",
-      "sport": "basket",
-      "competizione": "NBL (Australia)",
-      "partita": "Tasmania JackJumpers - Brisbane Bullets",
-      "casa": "Tasmania JackJumpers",
-      "trasferta": "Brisbane Bullets",
-      "inizio": "2026-10-21T10:30:00+02:00",
-      "modello": "basket",
-      "lambda": null,
-      "puntiAttesi": {
-        "casa": 95.4,
-        "trasferta": 90.4
-      },
-      "pesoModello": 0.25,
-      "ragionamentoBase": [
-        "Punti attesi: Tasmania JackJumpers 95 – Brisbane Bullets 90 (stagione in corso e precedente)",
-        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
-      ],
-      "mercati": [
-        {
-          "mercato": "Vincente",
-          "selezione": "Tasmania JackJumpers",
-          "probModello": 0.6437526682284233,
-          "probPinnacle": 0.7677902621722846,
-          "quota": 1.15,
-          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
-          "frequenzaCampionato": null,
-          "spiegazione": "Vincente: vince se Tasmania JackJumpers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
-        },
-        {
-          "mercato": "Vincente",
-          "selezione": "Brisbane Bullets",
-          "probModello": 0.35624733177157675,
-          "probPinnacle": 0.23220973782771534,
-          "quota": 4.1,
-          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
-          "oraQuota": "2026-10-21T10:38:07+02:00",
-          "frequenzaCampionato": null,
-          "spiegazione": "Vincente: vince se Brisbane Bullets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 176.5: Under vince se le due squadre segnano al massimo 176 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (176.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
         }
       ]
     }
