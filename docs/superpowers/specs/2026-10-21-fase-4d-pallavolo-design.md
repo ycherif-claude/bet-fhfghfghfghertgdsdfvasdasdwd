@@ -1,6 +1,6 @@
 # Fase 4d – Pallavolo
 
-*Data: 21 ottobre 2026 · Stato: bozza da approvare*
+*Data: 21 ottobre 2026 · Stato: approvato dall'utente il 21 ottobre 2026*
 
 Estende le Fasi 2, 4a, 4b e 4c. Valgono le loro regole salvo dove questo documento dice altro: probabilità, correzioni dalle notizie (±8 punti), scrittura protetta della giornata, riserva, esiti, `selezionaGiocate` unica per tutti gli sport.
 

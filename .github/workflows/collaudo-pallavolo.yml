@@ -1,0 +1,20 @@
+name: Collaudo OddsPapi pallavolo
+
+# Solo a mano: stampa copertura e mercati di OddsPapi per la pallavolo (Fase 4d §7). Non scrive niente.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collaudo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/collaudo-oddspapi.mjs
+        env:
+          ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
