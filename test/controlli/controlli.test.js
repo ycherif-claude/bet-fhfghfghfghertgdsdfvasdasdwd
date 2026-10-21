@@ -435,8 +435,8 @@ test('controllo: giocatore chiave non riconoscibile fra due omonimi → in revis
 test('nomi diversi con la stessa iniziale non coincidono: con lo stesso cognome in elenco si va in revisione, senza il cognome è fuori', () => {
   // Lautaro in panchina, Lisandro titolare: stesso cognome, nome diverso → non si sa (null), mai "in campo".
   assert.equal(inElenco('Lautaro Martínez', ['Lisandro Martínez', 'Nicolò Barella']), null);
-  // Il cognome conta solo come ultima parola del nome in elenco.
-  assert.equal(inElenco('Lautaro Martínez', ['Martínez Lisandro']), false);
+  // Cognome presente ma non come ultima parola: non si sa (null), mai "fuori".
+  assert.equal(inElenco('Lautaro Martínez', ['Martínez Lisandro']), null);
   // L'iniziale resta compatibile con ogni nome che comincia così; i prefissi pure.
   assert.equal(inElenco('L. Martínez', ['Lisandro Martínez']), true);
   assert.equal(inElenco('Lautaro Martínez', ['L. Martínez']), true);
@@ -473,7 +473,7 @@ test('controllo: stesso cognome con nome diverso in formazione → in revisione 
 test('omonimi: solo cognome con più giocatori → null; cognome solo come ultima parola; NBA con nome intero diverso → disponibile', () => {
   assert.equal(inElenco('Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
   assert.equal(inElenco('Budimir', ['Ante Budimir']), true);
-  assert.equal(inElenco('João Pedro', ['Pedro Neto', 'Cole Palmer']), false);
+  assert.equal(inElenco('João Pedro', ['Pedro Neto', 'Cole Palmer']), null);
   assert.equal(inElenco('Heung-min Son', ['Son Heung-Min']), true);
   // Report infortuni NBA (nomi ufficiali interi): un altro giocatore con lo stesso cognome è un altro.
   const nba = { infortuni: true };
@@ -501,4 +501,16 @@ test('controllo NBA: fuori il fratello con lo stesso cognome → il giocatore ch
   const g = leggi(d).giocate[0];
   assert.equal(g.stato, 'confermata');
   assert.match(g.motivoStato, /report infortuni: giocatori chiave disponibili/);
+});
+
+test('nome parziale nella formazione: il cognome in una parola non finale → in revisione, mai fuori', () => {
+  assert.notEqual(inElenco('Vinícius', ['Vinícius Júnior', 'Jude Bellingham']), false);
+  assert.equal(inElenco('Rodrigo Hernández', ['Rodrigo Hernández Cascante', 'Pedri']), null);
+  assert.notEqual(inElenco('Lamine Yamal', ['Lamine Yamal Nasraoui', 'Pedri']), false);
+  assert.equal(inElenco('João Pedro', ['Pedro Neto', 'Cole Palmer']), null);
+  // Fuori solo se il cognome non c'è in nessuna parola dell'elenco.
+  assert.equal(inElenco('Vinícius', ['Jude Bellingham']), false);
+  assert.equal(inElenco('João Pedro', ['Cole Palmer']), false);
+  // Il report infortuni NBA resta com'era.
+  assert.equal(inElenco('Franz Wagner', ['Moritz Wagner'], { infortuni: true }), false);
 });
