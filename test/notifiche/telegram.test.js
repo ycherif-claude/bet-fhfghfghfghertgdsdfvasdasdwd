@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { eseguiNotifiche, messaggi, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
+import { eseguiConRipiego, eseguiNotifiche, messaggi, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
 
 const OGGI = '2026-10-22';
 const mattina = new Date('2026-10-22T07:30:00Z'); // 09:30 a Roma
@@ -100,4 +100,22 @@ test('stato: si tengono solo gli ultimi 14 giorni', () => {
   const file = join(dir, 'stato', 'telegram.json');
   scriviInviate(file, new Set(['2026-10-01|giornata', '2026-10-08|giornata', '2026-10-22|giornata']), OGGI);
   assert.deepEqual(JSON.parse(readFileSync(file, 'utf8')).inviate, ['2026-10-08|giornata', '2026-10-22|giornata']);
+});
+
+test('chat id sbagliato: si usa la chat privata dei messaggi al bot e si dice il numero giusto', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'bet-notifiche-'));
+  mkdirSync(join(dir, 'giornate'));
+  writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
+  const inviati = [];
+  const fetch = async (url, init) => {
+    if (url.endsWith('/getUpdates')) return { ok: true, json: async () => ({ result: [{ message: { chat: { id: 987654321, type: 'private' } } }] }) };
+    const corpo = JSON.parse(init.body);
+    if (corpo.chat_id !== '987654321') return { ok: false, status: 400, text: async () => '{"description":"Bad Request: chat not found"}' };
+    inviati.push(corpo.text);
+    return { ok: true, status: 200, text: async () => '' };
+  };
+  const r = await eseguiConRipiego({ dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch });
+  assert.equal(r.mandati, 1);
+  assert.match(inviati[0], /chat id giusto è <b>987654321<\/b>/);
+  assert.match(inviati[1], /Giocate di oggi/);
 });

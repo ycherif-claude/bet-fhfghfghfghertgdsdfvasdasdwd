@@ -164,6 +164,30 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   return { mandati, chiavi: lista.map((m) => m.chiave) };
 }
 
+// Chat privata più recente fra i messaggi mandati al bot (getUpdates), o null.
+export async function chatDagliAggiornamenti(token, { fetch = globalThis.fetch } = {}) {
+  const r = await fetch(`https://api.telegram.org/bot${token}/getUpdates`, { signal: AbortSignal.timeout(30000) });
+  if (!r.ok) return null;
+  const j = await r.json();
+  const chat = (j?.result ?? []).map((u) => u.message?.chat ?? u.my_chat_member?.chat).filter((c) => c?.type === 'private').at(-1);
+  return chat ? String(chat.id) : null;
+}
+
+// Se il chat id dei secrets non va ("chat not found"), si usa quello dei messaggi mandati al bot
+// e il primo messaggio dice quale numero mettere in TELEGRAM_CHAT_ID. Nei log solo le ultime cifre.
+export async function eseguiConRipiego(opz) {
+  try {
+    return await eseguiNotifiche(opz);
+  } catch (e) {
+    if (!/chat not found/i.test(e.message)) throw e;
+    const chat = await chatDagliAggiornamenti(opz.token, { fetch: opz.fetch });
+    if (!chat || chat === String(opz.chat)) throw new Error(`${e.message}. Scrivi un messaggio al bot su Telegram e riprova: il chat id si ricava da lì`);
+    console.log(`TELEGRAM_CHAT_ID sbagliato: uso la chat trovata nei messaggi al bot (finisce con ${chat.slice(-3)})`);
+    await manda(`⚙️ Il chat id giusto è <b>${chat}</b>: aggiorna il secret TELEGRAM_CHAT_ID su GitHub con questo numero.`, { token: opz.token, chat, fetch: opz.fetch });
+    return eseguiNotifiche({ ...opz, chat });
+  }
+}
+
 async function principale() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chat = process.env.TELEGRAM_CHAT_ID;
@@ -175,7 +199,7 @@ async function principale() {
     ? { id: process.env.RUN_ID, nome: process.env.RUN_NOME, url: process.env.RUN_URL } : null;
   const [proprietario, nome] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
   const sito = proprietario && nome ? `https://${proprietario.toLowerCase()}.github.io/${nome}/` : null;
-  const r = await eseguiNotifiche({ dirData: 'data', adesso: new Date(), token, chat, run, sito });
+  const r = await eseguiConRipiego({ dirData: 'data', adesso: new Date(), token, chat, run, sito });
   console.log(`Notifiche Telegram: ${r.mandati} messaggi${r.chiavi.length ? ` (${r.chiavi.join(', ')})` : ''}`);
 }
 
