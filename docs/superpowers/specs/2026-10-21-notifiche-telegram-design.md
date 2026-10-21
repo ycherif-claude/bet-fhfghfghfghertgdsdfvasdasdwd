@@ -12,6 +12,8 @@ Prima delle "idee per dopo" del documento di progetto (§10).
 
 Esiti (aggiunti il 21/10/2026 **[utente]**): vinta, persa, rimborsata, **solo delle giocate segnate come fatte** (ultima segnatura con `fatta: true`), con quota e puntata reali, guadagno o perdita e bankroll aggiornato con le regole del sito. Si guardano le giornate degli ultimi 13 giorni.
 
+Esito provvisorio di cartellini e angoli (aggiunto il 21/10/2026 **[utente]**): gli esiti rapidi (`src/esiti/rapidi.js`, dentro i controlli) non chiudono questi mercati, perché ESPN conta i cartellini in modo diverso da bet365/football-data; a partita finita (STATUS_FULL_TIME) scrivono solo `esitoProvvisorio: { esito, dettaglio }` sulla giocata o sulla gamba, mai `esito`, e il bankroll non cambia. Telegram lo manda una volta per gamba (chiave `<data>|provvisorio|<id>|<gamba>`), solo per le giocate fatte e senza esito definitivo, per esempio "Levante - Athletic Bilbao, Cartellini Under 3,5: probabilmente vinta (5 cartellini secondo ESPN, conteggio da confermare)". L'esito definitivo resta quello del giro del mattino (`src/calcio/esiti.js`).
+
 ## Come [scelta di Claude]
 
 - Action `notifiche.yml`: dopo ogni push su `main` che tocca `data/giornate` o `data/raccolta` (le routine di Claude), alla fine di raccolta, riserva, giro serale e pubblicazione oraria (`workflow_run`), e a mano. Gruppo di concorrenza `dati`, come le altre Action che scrivono.

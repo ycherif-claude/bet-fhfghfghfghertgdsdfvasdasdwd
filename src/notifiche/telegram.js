@@ -150,6 +150,39 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
   return out;
 }
 
+// Esiti provvisori di cartellini e angoli (dagli esiti rapidi, numeri di ESPN): un messaggio per giocata
+// fatta, una volta per gamba; niente se la giocata ha già l'esito definitivo (lo scrive il mattino).
+export function messaggiProvvisori({ giornate, segnature, inviate }) {
+  const ultima = new Map();
+  for (const sg of segnature) {
+    const prec = ultima.get(sg.idGiocata);
+    if (!prec || Date.parse(sg.ora) >= Date.parse(prec.ora)) ultima.set(sg.idGiocata, sg);
+  }
+  const out = [];
+  for (const x of giornate) {
+    for (const g of valide(x)) {
+      if (g.esito != null || !ultima.get(g.id)?.fatta) continue;
+      const multipla = Array.isArray(g.gambe) && g.gambe.length > 0;
+      const gambe = (multipla ? g.gambe : [g])
+        .map((y, i) => ({ y, chiave: `${x.data}|provvisorio|${g.id}|${i}` }))
+        .filter(({ y, chiave }) => y && y.esito == null && y.esitoProvvisorio?.esito && !inviate.has(chiave));
+      if (!gambe.length) continue;
+      const righe = gambe.map(({ y }) => {
+        const p = y.esitoProvvisorio;
+        const tipo = String(y.mercato).split(' ')[0];
+        return `${multipla ? '   ' : ''}${SIMBOLO[y.sport ?? g.sport] ?? '•'} <b>${html(y.partita)}</b>, ${html(tipo)} ${html(String(y.selezione).replace('.', ','))}: probabilmente <b>${html(p.esito)}</b> (${html(p.dettaglio ?? '')})`;
+      });
+      const testa = multipla ? [`⏳ <b>${g.tipo === 'builder' ? 'Builder' : 'Multipla'} (${g.gambe.length} gambe)</b>, esito provvisorio:`] : [];
+      out.push({
+        chiave: gambe[0].chiave,
+        segna: gambe.slice(1).map((z) => z.chiave),
+        testo: [...testa, ...righe.map((r) => (multipla ? r : `⏳ ${r}`)), 'Esito definitivo con il giro del mattino.'].join('\n'),
+      });
+    }
+  }
+  return out;
+}
+
 // Giornate degli ultimi `giorni` giorni (file data/giornate/AAAA-MM-GG.json), le illeggibili saltate.
 function leggiGiornateRecenti(dirData, oggi, giorni) {
   const limite = new Date(Date.parse(`${oggi}T00:00:00Z`) - giorni * 86400000).toISOString().slice(0, 10);
@@ -213,8 +246,10 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   const lista = messaggi({ giornata, oggi, adesso, inviate, run, sito });
   // Esiti: le giornate fino a 13 giorni fa (le chiavi restano 14 giorni, niente doppioni).
   const segnature = leggiJson(dirData, 'segnature', []).map((x) => x.contenuto).filter((x) => x && !erroreSegnatura(x));
+  const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
+  lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
   lista.push(...messaggiEsiti({
-    giornate: leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1), tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
+    giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));
   let mandati = 0;
   try {

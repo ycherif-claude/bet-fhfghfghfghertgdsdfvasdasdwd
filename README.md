@@ -267,6 +267,7 @@ Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) 
 - Il giro del mattino **deve** scrivere in `data/giornate/AAAA-MM-GG.json` sia `giocate` sia `scartate`. Se manca `giocate`, la build rifà la selezione in memoria solo per la giornata di oggi, come ripiego per mostrare la pagina; per le giornate passate segnala l'errore "Giornata <data> senza giocate: il giro del mattino deve scriverle", e le segnature di quelle giocate compaiono come "Segnatura senza giocata".
 - Valori ammessi per `sport`: esattamente `calcio`, `tennis`, `nba`, `basket`, `pallavolo` (sono i filtri della pagina). Le partite NBA usano `nba`; `basket` è per gli altri campionati.
 - Un file con dati sbagliati non blocca la build: viene saltato e la pagina mostra "Dati non validi in <file>: <errore>". La pagina mostra anche l'ora dei dati e avvisa se hanno più di 2 ore.
+- `esito` di giocate e gambe lo scrivono solo gli esiti (giro del mattino ed esiti rapidi). Per cartellini e angoli del calcio gli esiti rapidi scrivono solo `esitoProvvisorio: { esito, dettaglio }` (numeri di ESPN, da confermare): non conta per bankroll e stop, serve solo alla notifica Telegram.
 - Controlli prima delle partite (Fase 3): progetto in `docs/superpowers/specs/2026-10-21-fase-3-controlli-design.md`, codice in `src/controlli/`.
 - Pallavolo (Fase 4d): progetto in `docs/superpowers/specs/2026-10-21-fase-4d-pallavolo-design.md`, codice in `src/pallavolo/`.
 - Basket (Fase 4c): progetto in `docs/superpowers/specs/2026-10-21-fase-4c-basket-design.md`, codice in `src/basket/`.

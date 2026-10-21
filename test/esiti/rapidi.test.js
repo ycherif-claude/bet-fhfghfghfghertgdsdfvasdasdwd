@@ -4,6 +4,8 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { eseguiEsitiRapidi } from '../../src/esiti/rapidi.js';
+import { statoBankroll } from '../../src/bankroll/bankroll.js';
+import { CONFIG } from '../../src/config.js';
 
 const OGGI = '2026-10-21';
 const giocata = (id, extra = {}) => ({
@@ -96,6 +98,59 @@ test('esiti rapidi: cartellini e angoli restano al giro del mattino, i gol si ch
   assert.equal(per.gol, 'vinta');
   assert.equal(per.cart, null);
   assert.equal(per.ang, null);
+});
+
+// Partita di calcio finita su ESPN, con cartellini e angoli nel boxscore (squadre in ordine inverso).
+function fontiLevante() {
+  const squadra = (homeAway, gialli, rossi, angoli) => ({ homeAway, statistics: [
+    { name: 'yellowCards', displayValue: String(gialli) }, { name: 'redCards', displayValue: String(rossi) },
+    { name: 'wonCorners', displayValue: String(angoli) },
+  ] });
+  const summary = {
+    header: { competitions: [{ status: { type: { name: 'STATUS_FULL_TIME' } }, competitors: [
+      { homeAway: 'home', score: '1', linescores: [{ displayValue: '0' }] },
+      { homeAway: 'away', score: '0', linescores: [{ displayValue: '0' }] },
+    ] }] },
+    boxscore: { teams: [squadra('away', 1, 0, 3), squadra('home', 3, 1, 5)] },
+  };
+  const f = fonti();
+  f.espn = { partite: async () => [{ id: '77', casa: 'Levante', trasferta: 'Athletic Club', inizio: '2026-10-21T18:00:00Z' }] };
+  f.opz = { fetch: async () => ({ ok: true, status: 200, text: async () => JSON.stringify(summary) }) };
+  return f;
+}
+const levante = { sport: 'calcio', competizione: 'LaLiga', partita: 'Levante - Athletic Bilbao', inizio: '2026-10-21T20:00:00+02:00' };
+
+test('esiti rapidi: cartellini e angoli hanno un esito provvisorio da ESPN, mai `esito`; il bankroll non cambia', async () => {
+  const d = cartella([
+    giocata('cart', { ...levante, mercato: 'Cartellini Under/Over 3.5', selezione: 'Under 3.5' }),
+    giocata('ang', { ...levante, mercato: 'Angoli Under/Over 9.5', selezione: 'Under 9.5' }),
+  ], ['cart', 'ang']);
+  const r = await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T20:30:00Z'), fonti: fontiLevante() });
+  assert.equal(r.aggiornate, 0);
+  const [cart, ang] = leggi(d);
+  assert.equal(cart.esito, null);
+  assert.equal(ang.esito, null);
+  // 3 gialli + 1 rosso + 1 giallo = 5 cartellini; 5 + 3 = 8 angoli.
+  assert.deepEqual(cart.esitoProvvisorio, { esito: 'persa', dettaglio: '5 cartellini secondo ESPN, conteggio da confermare' });
+  assert.deepEqual(ang.esitoProvvisorio, { esito: 'vinta', dettaglio: '8 angoli secondo ESPN, conteggio da confermare' });
+  const segnature = ['cart', 'ang'].map((id) => ({ idGiocata: id, fatta: true, quotaReale: 1.6, puntataReale: 2, ora: '2026-10-21T10:00:00Z' }));
+  const b = statoBankroll(leggi(d), segnature, new Date('2026-10-21T20:30:00Z'));
+  assert.equal(b.bankroll, CONFIG.bankrollIniziale);
+});
+
+test('esiti rapidi: esito provvisorio anche sulla gamba di una multipla, la multipla resta aperta', async () => {
+  const gambe = [
+    { ...levante, mercato: 'Cartellini Under/Over 5.5', selezione: 'Under 5.5' },
+    { ...levante, mercato: 'Under/Over 2.5', selezione: 'Under 2.5' },
+  ];
+  const d = cartella([giocata('m', { tipo: 'multipla', gambe })], ['m']);
+  await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T20:30:00Z'), fonti: fontiLevante() });
+  const g = leggi(d)[0];
+  assert.equal(g.esito, null);
+  assert.equal(g.gambe[0].esito ?? null, null);
+  assert.deepEqual(g.gambe[0].esitoProvvisorio, { esito: 'vinta', dettaglio: '5 cartellini secondo ESPN, conteggio da confermare' });
+  assert.equal(g.gambe[1].esito, 'vinta');
+  assert.equal(g.gambe[1].esitoProvvisorio, undefined);
 });
 
 test('esiti rapidi: multipla chiusa solo quando tutte le gambe hanno un esito', async () => {

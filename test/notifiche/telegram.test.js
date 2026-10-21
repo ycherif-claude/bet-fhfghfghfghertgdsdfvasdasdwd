@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { eseguiConRipiego, eseguiNotifiche, messaggi, messaggiEsiti, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
+import { eseguiConRipiego, eseguiNotifiche, messaggi, messaggiEsiti, messaggiProvvisori, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
 
 const OGGI = '2026-10-22';
 const mattina = new Date('2026-10-22T07:30:00Z'); // 09:30 a Roma
@@ -141,4 +141,48 @@ test('esiti: solo le giocate segnate come fatte, con quota e puntata reali e il 
   assert.ok(!ms.some((m) => m.testo.includes('Saltata')));
   const inviate = new Set(ms.map((m) => m.chiave));
   assert.deepEqual(messaggiEsiti({ giornate: [ieri], segnature, inviate, adesso: mattina }), []);
+});
+
+test('esito provvisorio di cartellini e angoli: un messaggio per giocata fatta, una volta sola', () => {
+  const prov = { esito: 'vinta', dettaglio: '3 cartellini secondo ESPN, conteggio da confermare' };
+  const oggi = { data: OGGI, giocate: [
+    giocata('c', { partita: 'Levante - Athletic Bilbao', mercato: 'Cartellini Under/Over 3.5', selezione: 'Under 3.5', esitoProvvisorio: prov }),
+    giocata('s', { partita: 'Saltata - Mai', mercato: 'Angoli Under/Over 9.5', selezione: 'Over 9.5', esitoProvvisorio: { esito: 'persa', dettaglio: 'x' } }),
+    giocata('d', { partita: 'Già - Chiusa', mercato: 'Angoli Under/Over 9.5', selezione: 'Over 9.5', esito: 'persa', esitoProvvisorio: { esito: 'persa', dettaglio: 'x' } }),
+    giocata('m', { tipo: 'multipla', gambe: [
+      { sport: 'calcio', partita: 'Levante - Athletic Bilbao', mercato: 'Angoli Under/Over 8.5', selezione: 'Over 8.5', esitoProvvisorio: { esito: 'persa', dettaglio: '8 angoli secondo ESPN, conteggio da confermare' } },
+      { sport: 'calcio', partita: 'Inter - Roma', mercato: '1X2', selezione: '1' },
+    ] }),
+  ] };
+  const segnature = ['c', 'd', 'm'].map((id) => ({ idGiocata: id, fatta: true, quotaReale: 2, puntataReale: 2, ora: '2026-10-22T10:00:00Z' }))
+    .concat({ idGiocata: 's', fatta: false, quotaReale: null, puntataReale: null, ora: '2026-10-22T10:00:00Z' });
+  const ms = messaggiProvvisori({ giornate: [oggi], segnature, inviate: new Set() });
+  assert.equal(ms.length, 2);
+  assert.match(ms[0].testo, /Levante - Athletic Bilbao<\/b>, Cartellini Under 3,5: probabilmente <b>vinta<\/b> \(3 cartellini secondo ESPN, conteggio da confermare\)/);
+  assert.match(ms[1].testo, /Multipla \(2 gambe\)/);
+  assert.match(ms[1].testo, /Angoli Over 8,5: probabilmente <b>persa<\/b> \(8 angoli secondo ESPN/);
+  const inviate = new Set(ms.flatMap((m) => [m.chiave, ...(m.segna ?? [])]));
+  assert.deepEqual(messaggiProvvisori({ giornate: [oggi], segnature, inviate }), []);
+});
+
+test('eseguiNotifiche: l\'esito provvisorio parte una volta e il definitivo del mattino resta', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'bet-notifiche-'));
+  mkdirSync(join(dir, 'giornate'));
+  mkdirSync(join(dir, 'segnature'));
+  const prov = { esito: 'persa', dettaglio: '5 cartellini secondo ESPN, conteggio da confermare' };
+  const scrivi = (extra) => writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([
+    giocata('c', { partita: 'Levante - Athletic Bilbao', mercato: 'Cartellini Under/Over 3.5', selezione: 'Under 3.5', inizio: '2026-10-22T08:00:00+02:00', esitoProvvisorio: prov, ...extra }),
+  ])));
+  scrivi({});
+  writeFileSync(join(dir, 'segnature', 'c.json'), JSON.stringify({ idGiocata: 'c', fatta: true, quotaReale: 2, puntataReale: 2, ora: '2026-10-22T05:00:00Z' }));
+  const testi = [];
+  const fetch = async (url, init) => { testi.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
+  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
+  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
+  scrivi({ esito: 'vinta' });
+  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
+  assert.match(testi.at(-1), /^✅ <b>VINTA<\/b>/);
 });

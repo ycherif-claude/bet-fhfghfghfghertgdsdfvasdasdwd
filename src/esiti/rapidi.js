@@ -2,6 +2,8 @@
 // gratuite (ESPN per calcio, NBA e tennis; API Eurolega; TheSportsDB per NBL e pallavolo).
 // Le regole sono quelle degli esiti del mattino, che restano la rete di sicurezza: se qui un risultato
 // manca o è incerto, non si scrive niente. Si scrive solo `esito` (gamba e giocata).
+// Cartellini e angoli del calcio: solo `esitoProvvisorio` ({ esito, dettaglio }) dai numeri di ESPN,
+// per la notifica; `esito` lo scrive soltanto il giro del mattino (src/calcio/esiti.js) [utente].
 import fs from 'node:fs';
 import path from 'node:path';
 import { giornataDi } from '../bankroll/settimana.js';
@@ -25,6 +27,7 @@ const MIN = 60000;
 const ATTESA = { calcio: 110, nba: 140, basket: 115, tennis: 75, pallavolo: 80 };
 const ORE_MAX = 10;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
+const somma = (a, b) => (num(a) && num(b) ? a + b : null);
 const intero = (v) => (v !== undefined && v !== null && /^\d+$/.test(String(v)) ? Number(v) : null);
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports';
 
@@ -46,11 +49,29 @@ async function risultatoCalcio(gamba, fonti) {
   const pt = (h) => intero(lato(h)?.linescores?.[0]?.displayValue);
   // Angoli e cartellini non si chiudono da ESPN: conta i cartellini in modo diverso da
   // football-data/bet365 (doppio giallo = 2 gialli + 1 rosso) e un esito scritto qui è definitivo.
-  // Li decide il giro del mattino.
+  // Li decide il giro del mattino; qui servono solo per l'esito provvisorio (`conteggi`).
+  // Statistiche della squadra scelta per homeAway, mai per posizione nell'elenco.
+  const squadra = (h) => (d.boxscore?.teams ?? []).find((x) => x.homeAway === h);
+  const stat = (h, nome) => intero(squadra(h)?.statistics?.find((x) => x.name === nome)?.displayValue);
+  const cart = (h) => somma(stat(h, 'yellowCards'), stat(h, 'redCards'));
   return {
     gc: intero(lato('home')?.score), gt: intero(lato('away')?.score),
     gcPT: pt('home'), gtPT: pt('away'),
+    conteggi: { cartC: cart('home'), cartT: cart('away'), angoliC: stat('home', 'wonCorners'), angoliT: stat('away', 'wonCorners') },
   };
+}
+
+const CONTEGGIO = /^(Cartellini|Angoli) Under\/Over \d+(?:\.\d+)?$/;
+const mercatoConteggio = (mercato) => CONTEGGIO.test(String(mercato ?? ''));
+
+// Esito provvisorio di cartellini o angoli dai numeri di ESPN, oppure null.
+function provvisorio(gamba, r) {
+  const { conteggi, ...gol } = r;
+  const e = esitoSelezione(gamba.mercato, gamba.selezione, { ...gol, ...conteggi });
+  if (!e) return null;
+  const cartellini = /^Cartellini/.test(gamba.mercato);
+  const totale = cartellini ? conteggi.cartC + conteggi.cartT : conteggi.angoliC + conteggi.angoliT;
+  return { esito: e, dettaglio: `${totale} ${cartellini ? 'cartellini' : 'angoli'} secondo ESPN, conteggio da confermare` };
 }
 
 async function risultatoNba(gamba, fonti) {
@@ -148,10 +169,27 @@ async function risultatoPallavolo(gamba, fonti, dirData) {
 
 // Esito di una gamba dal suo risultato, con le regole di ogni sport.
 export async function esitoRapido(gamba, fonti, dirData) {
+  return (await valutaGamba(gamba, fonti, dirData))?.esito ?? null;
+}
+
+// { esito } oppure, per cartellini e angoli del calcio, { esitoProvvisorio }; null se non si sa.
+async function valutaGamba(gamba, fonti, dirData) {
   if (gamba.sport === 'calcio') {
     const r = await risultatoCalcio(gamba, fonti);
-    return r ? esitoSelezione(gamba.mercato, gamba.selezione, r) : null;
+    if (!r) return null;
+    if (mercatoConteggio(gamba.mercato)) {
+      const p = provvisorio(gamba, r);
+      return p ? { esitoProvvisorio: p } : null;
+    }
+    const { conteggi, ...gol } = r;
+    const e = esitoSelezione(gamba.mercato, gamba.selezione, gol);
+    return e ? { esito: e } : null;
   }
+  const e = await esitoAltriSport(gamba, fonti, dirData);
+  return e ? { esito: e } : null;
+}
+
+async function esitoAltriSport(gamba, fonti, dirData) {
   if (gamba.sport === 'nba') {
     const r = await risultatoNba(gamba, fonti);
     return r ? esitoNba(gamba.mercato, gamba.selezione, r) : null;
@@ -192,10 +230,11 @@ export async function eseguiEsitiRapidi({ dirData, adesso, fonti = fontiDefault(
       for (const x of gambeDi(g)) {
         const sport = x.sport ?? g.sport;
         const trascorso = adesso.getTime() - Date.parse(x.inizio);
-        if (x.esito != null || trascorso < (ATTESA[sport] ?? 120) * MIN || trascorso > ORE_MAX * 60 * MIN) continue;
+        if (x.esito != null || x.esitoProvvisorio || trascorso < (ATTESA[sport] ?? 120) * MIN || trascorso > ORE_MAX * 60 * MIN) continue;
         try {
-          const e = await esitoRapido({ ...x, sport, competizione: x.competizione ?? g.competizione }, fonti, dirData);
-          if (e) { x.esito = e; cambiato = true; }
+          const v = await valutaGamba({ ...x, sport, competizione: x.competizione ?? g.competizione }, fonti, dirData);
+          if (v?.esito) { x.esito = v.esito; cambiato = true; }
+          if (v?.esitoProvvisorio) { x.esitoProvvisorio = v.esitoProvvisorio; cambiato = true; }
         } catch (err) {
           errori.push(`${x.partita}: ${err?.message ?? err}`);
         }
