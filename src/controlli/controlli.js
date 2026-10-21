@@ -99,8 +99,8 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
   const sq = squadreDi(voce.partita);
   if (voce.sport === 'nba') {
     const inf = await fonti.espn.infortuni(campionato, evento.id, sq);
-    const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === true));
-    const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l]) === null));
+    const fuori = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l], { infortuni: true }) === true));
+    const incerti = ['casa', 'trasferta'].flatMap((l) => chiavi[l].filter((n) => inElenco(n, inf[l], { infortuni: true }) === null));
     return { pronta: true, fuori, incerti, nota: tutte.length ? `report infortuni: ${fuori.length ? `fuori ${fuori.join(', ')}` : incerti.length ? `non identificabili con certezza ${incerti.join(', ')}` : 'giocatori chiave disponibili'}` : 'giocatori chiave non indicati dal giro del mattino' };
   }
   const f = await fonti.espn.formazioni(campionato, evento.id);

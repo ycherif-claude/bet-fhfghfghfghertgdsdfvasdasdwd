@@ -75,24 +75,34 @@ const stesseParole = (x, y) => [...x].sort().join('-') === [...y].sort().join('-
 // null (la giocata va in revisione, mai confermata né annullata da sola): cognome in elenco ma nessun nome
 // compatibile ("Lautaro" con il solo Lisandro Martínez, "Kike" ed "Enrique García"), oppure più omonimi
 // compatibili senza il nome intero ("L. Martínez" con Lautaro e Lisandro).
-// false: nessun giocatore dell'elenco ha quel cognome.
-// Se il mattino ha scritto solo il cognome, vale solo se nell'elenco un solo giocatore lo ha.
-export function inElenco(nome, elenco) {
+// false: nessun giocatore dell'elenco ha quel cognome (come ultima parola del nome). Con `infortuni`
+// (report NBA, nomi ufficiali interi) anche quando lo hanno solo giocatori con un nome intero incompatibile.
+// Se il mattino ha scritto solo il cognome: un giocatore con quel cognome → true, più di uno → null.
+export function inElenco(nome, elenco, { infortuni = false } = {}) {
   const p = pezzi(nome);
   if (!p.length) return false;
   const lista = elenco.map(pezzi).filter((x) => x.length);
   if (lista.some((x) => stesseParole(p, x))) return true;
   const cognome = p.at(-1);
-  const conCognome = lista.filter((x) => x.includes(cognome));
-  if (p.length === 1) return cognome.length >= 3 && conCognome.length === 1;
+  // Il cognome è l'ultima parola del nome in elenco ("João Pedro" non è "Pedro Neto"); l'ordine
+  // invertito ("Son Heung-Min") lo copre già il confronto delle parole qui sopra.
+  const conCognome = lista.filter((x) => x.at(-1) === cognome);
+  if (p.length === 1) {
+    if (cognome.length < 3) return false;
+    return conCognome.length === 1 ? true : conCognome.length > 1 ? null : false;
+  }
   const compatibile = (t) => t.startsWith(p[0]) || p[0].startsWith(t);
   const conIniziale = lista.filter((x) => x.length >= 2 && x.at(-1) === cognome && compatibile(x[0]));
   if (conIniziale.length === 1) return true;
   if (conIniziale.length > 1) return conIniziale.filter((x) => x[0] === p[0]).length === 1 ? true : null;
   if (conCognome.length === 1 && conCognome[0].some((t) => t !== cognome && compatibile(t))) return true;
-  // Cognome in elenco ma nessun nome compatibile ("Lautaro" con il solo Lisandro Martínez, "Kike" ed
-  // "Enrique García"): non si sa, va in revisione. Fuori solo se nessuno ha quel cognome.
-  return conCognome.length ? null : false;
+  if (!conCognome.length) return false;
+  // Report infortuni NBA (nomi ufficiali interi): con nomi interi incompatibili da entrambe le parti
+  // è un altro giocatore (Moritz e Franz Wagner), quindi il giocatore chiave non è nell'elenco.
+  if (infortuni && p[0].length > 1 && conCognome.every((x) => x.length >= 2 && x[0].length > 1)) return false;
+  // Formazioni: cognome in elenco ma nessun nome compatibile ("Lautaro" con il solo Lisandro Martínez,
+  // "Kike" ed "Enrique García"): non si sa, va in revisione. Fuori solo se nessuno ha quel cognome.
+  return null;
 }
 
 export const espn = {

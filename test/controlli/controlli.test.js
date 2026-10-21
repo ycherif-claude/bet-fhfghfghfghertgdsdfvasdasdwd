@@ -435,7 +435,8 @@ test('controllo: giocatore chiave non riconoscibile fra due omonimi → in revis
 test('nomi diversi con la stessa iniziale non coincidono: con lo stesso cognome in elenco si va in revisione, senza il cognome è fuori', () => {
   // Lautaro in panchina, Lisandro titolare: stesso cognome, nome diverso → non si sa (null), mai "in campo".
   assert.equal(inElenco('Lautaro Martínez', ['Lisandro Martínez', 'Nicolò Barella']), null);
-  assert.equal(inElenco('Lautaro Martínez', ['Martínez Lisandro']), null);
+  // Il cognome conta solo come ultima parola del nome in elenco.
+  assert.equal(inElenco('Lautaro Martínez', ['Martínez Lisandro']), false);
   // L'iniziale resta compatibile con ogni nome che comincia così; i prefissi pure.
   assert.equal(inElenco('L. Martínez', ['Lisandro Martínez']), true);
   assert.equal(inElenco('Lautaro Martínez', ['L. Martínez']), true);
@@ -467,4 +468,37 @@ test('controllo: stesso cognome con nome diverso in formazione → in revisione 
   const g = leggi(d).giocate[0];
   assert.equal(g.stato, 'in_revisione');
   assert.match(g.motivoStato, /non identificabile con certezza nella formazione: Lautaro Martínez: controlla su bet365 prima di giocarla/);
+});
+
+test('omonimi: solo cognome con più giocatori → null; cognome solo come ultima parola; NBA con nome intero diverso → disponibile', () => {
+  assert.equal(inElenco('Martínez', ['Lautaro Martínez', 'Lisandro Martínez']), null);
+  assert.equal(inElenco('Budimir', ['Ante Budimir']), true);
+  assert.equal(inElenco('João Pedro', ['Pedro Neto', 'Cole Palmer']), false);
+  assert.equal(inElenco('Heung-min Son', ['Son Heung-Min']), true);
+  // Report infortuni NBA (nomi ufficiali interi): un altro giocatore con lo stesso cognome è un altro.
+  const nba = { infortuni: true };
+  assert.equal(inElenco('Franz Wagner', ['Moritz Wagner'], nba), false);
+  assert.equal(inElenco('Giannis Antetokounmpo', ['Thanasis Antetokounmpo'], nba), false);
+  assert.equal(inElenco('Jalen Williams', ['Jaylin Williams'], nba), false);
+  assert.equal(inElenco('Franz Wagner', ['Franz Wagner', 'Moritz Wagner'], nba), true);
+  // Iniziale o solo cognome, o più nomi compatibili: non si sa.
+  assert.equal(inElenco('F. Wagner', ['Franz Wagner', 'Felix Wagner'], nba), null);
+  assert.equal(inElenco('Wagner', ['Franz Wagner', 'Moritz Wagner'], nba), null);
+  assert.equal(inElenco('Franz Wagner', ['Wagner'], nba), null);
+  // Formazioni del calcio: stesso cognome e nome diverso resta incerto.
+  assert.equal(inElenco('Franz Wagner', ['Moritz Wagner']), null);
+});
+
+test('controllo NBA: fuori il fratello con lo stesso cognome → il giocatore chiave resta disponibile', async () => {
+  const d = cartella({
+    giocate: [giocata({ id: 'nba-2026-10-22-orl-bos-ml-1', sport: 'nba', competizione: 'NBA', partita: 'Orlando Magic - Boston Celtics', idPartita: 'nba-2026-10-22-orl-bos', quotaMinima: null, probPinnacle: null, mercato: 'Vincente', selezione: 'Orlando Magic' })],
+    chiavi: { 'nba-2026-10-22-orl-bos': { casa: ['Franz Wagner'], trasferta: [] } },
+  });
+  const f = fonti();
+  f.espn.partite = async () => [{ id: 'n1', casa: 'Orlando Magic', trasferta: 'Boston Celtics', inizio: '2026-10-22T18:45Z' }];
+  f.espn.infortuni = async () => ({ casa: ['Moritz Wagner'], trasferta: [] });
+  await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: f, chiavi: {} });
+  const g = leggi(d).giocate[0];
+  assert.equal(g.stato, 'confermata');
+  assert.match(g.motivoStato, /report infortuni: giocatori chiave disponibili/);
 });
