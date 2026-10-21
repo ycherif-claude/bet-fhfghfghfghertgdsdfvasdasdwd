@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { eseguiConRipiego, eseguiNotifiche, messaggi, messaggiEsiti, messaggiProvvisori, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
+import { dividi, eseguiNotifiche, manda, rigaChat, runDaSegnalare, messaggi, messaggiEsiti, messaggiProvvisori, scriviInviate, leggiInviate } from '../../src/notifiche/telegram.js';
 
 const OGGI = '2026-10-22';
 const mattina = new Date('2026-10-22T07:30:00Z'); // 09:30 a Roma
@@ -102,22 +102,77 @@ test('stato: si tengono solo gli ultimi 14 giorni', () => {
   assert.deepEqual(JSON.parse(readFileSync(file, 'utf8')).inviate, ['2026-10-08|giornata', '2026-10-22|giornata']);
 });
 
-test('chat id sbagliato: si usa la chat privata dei messaggi al bot e si dice il numero giusto', async () => {
+test('chat not found: errore chiaro, nessun ripiego su getUpdates', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'bet-notifiche-'));
   mkdirSync(join(dir, 'giornate'));
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
-  const inviati = [];
-  const fetch = async (url, init) => {
-    if (url.endsWith('/getUpdates')) return { ok: true, json: async () => ({ result: [{ message: { chat: { id: 987654321, type: 'private' } } }] }) };
-    const corpo = JSON.parse(init.body);
-    if (corpo.chat_id !== '987654321') return { ok: false, status: 400, text: async () => '{"description":"Bad Request: chat not found"}' };
-    inviati.push(corpo.text);
+  const url = [];
+  const fetch = async (u) => { url.push(u); return { ok: false, status: 400, text: async () => '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}' }; };
+  await assert.rejects(eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch }), /TELEGRAM_CHAT_ID/);
+  assert.ok(url.every((u) => u.endsWith('/sendMessage')));
+  assert.equal(url.length, 1);
+});
+
+test('messaggi lunghi divisi sotto i 4000 caratteri', async () => {
+  const lunga = Array.from({ length: 300 }, (_, i) => `riga ${i} ${'x'.repeat(30)}`).join('\n');
+  const pezzi = dividi(lunga);
+  assert.ok(pezzi.length > 1);
+  assert.ok(pezzi.every((p) => p.length < 4000));
+  assert.equal(pezzi.join('\n'), lunga);
+  const [una] = dividi('y'.repeat(9000));
+  assert.ok(una.length < 4000);
+  assert.ok(una.endsWith('…'));
+  const testi = [];
+  const fetch = async (u, init) => { testi.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
+  await manda(lunga, { token: 'T', chat: '1', fetch });
+  assert.equal(testi.length, pezzi.length);
+});
+
+test('HTTP 429: aspetta retry_after (al massimo 60 s) e riprova una volta', async () => {
+  const attese = [];
+  let n = 0;
+  const fetch = async () => (++n === 1
+    ? { ok: false, status: 429, text: async () => '{"ok":false,"error_code":429,"description":"Too Many Requests: retry after 500","parameters":{"retry_after":500}}' }
+    : { ok: true, status: 200, text: async () => '' });
+  await manda('ciao', { token: 'T', chat: '1', fetch, attendi: async (ms) => { attese.push(ms); } });
+  assert.equal(n, 2);
+  assert.deepEqual(attese, [60000]);
+  // Due 429 di fila: errore.
+  n = 0;
+  const sempre429 = async () => { n++; return { ok: false, status: 429, text: async () => '{"parameters":{"retry_after":3}}' }; };
+  await assert.rejects(manda('ciao', { token: 'T', chat: '1', fetch: sempre429, attendi: async () => {} }), /429/);
+  assert.equal(n, 2);
+});
+
+test('un messaggio che fallisce non blocca gli altri; alla fine errore, gli inviati restano segnati', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'bet-notifiche-'));
+  mkdirSync(join(dir, 'giornate'));
+  writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')], ['guasto uno'])));
+  const run = { id: 9, nome: 'Raccolta dati calcio', url: 'u', conclusione: 'failure' };
+  const testi = [];
+  const fetch = async (u, init) => {
+    const t = JSON.parse(init.body).text;
+    if (/Giocate di oggi/.test(t)) return { ok: false, status: 400, text: async () => "Bad Request: can't parse entities" };
+    testi.push(t);
     return { ok: true, status: 200, text: async () => '' };
   };
-  const r = await eseguiConRipiego({ dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch });
-  assert.equal(r.mandati, 1);
-  assert.match(inviati[0], /chat id giusto è <b>987654321<\/b>/);
-  assert.match(inviati[1], /Giocate di oggi/);
+  await assert.rejects(eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', run, fetch }), /1 messaggi/);
+  assert.equal(testi.length, 2);
+  const inviate = leggiInviate(join(dir, 'stato', 'telegram.json'));
+  assert.ok(inviate.has(`${OGGI}|run|9`));
+  assert.ok(!inviate.has(`${OGGI}|giornata`));
+});
+
+test('Action annullata segnalata come la fallita; riga della chat senza nome', () => {
+  assert.equal(runDaSegnalare({ RUN_CONCLUSIONE: 'success', RUN_ID: '1' }), null);
+  assert.equal(runDaSegnalare({}), null);
+  const r = runDaSegnalare({ RUN_CONCLUSIONE: 'cancelled', RUN_ID: '5', RUN_NOME: 'Giro serale', RUN_URL: 'https://x/5' });
+  assert.deepEqual(r, { id: '5', nome: 'Giro serale', url: 'https://x/5', conclusione: 'cancelled' });
+  const [m] = messaggi({ giornata: null, oggi: OGGI, adesso: mattina, inviate: new Set(), run: r });
+  assert.equal(m.testo, "⚠️ L'Action «Giro serale» è stata annullata.\nhttps://x/5");
+  assert.equal(runDaSegnalare({ RUN_CONCLUSIONE: 'failure', RUN_ID: '6', RUN_NOME: 'n', RUN_URL: 'u' }).conclusione, 'failure');
+  assert.equal(rigaChat({ ok: true, result: { type: 'group', title: 'Segreto' } }), 'Chat di TELEGRAM_CHAT_ID: ok');
+  assert.equal(rigaChat({ ok: false, description: 'Bad Request: chat not found' }), 'Chat di TELEGRAM_CHAT_ID: non ok');
 });
 
 test('esiti: solo le giocate segnate come fatte, con quota e puntata reali e il bankroll; una volta sola', () => {

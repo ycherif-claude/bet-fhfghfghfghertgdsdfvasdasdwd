@@ -52,13 +52,16 @@ export function testoGiocata(g, i) {
 const valide = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocate.filter((g) => g && g.id) : []);
 
 // Messaggi da mandare ora: [{ chiave, testo }]. `inviate`: Set delle chiavi già mandate.
-// `run`: Action finita male da segnalare ({ id, nome, url }) oppure null. `sito`: indirizzo del sito o null.
+// `run`: Action finita male da segnalare ({ id, nome, url, conclusione }) oppure null. `sito`: indirizzo del sito o null.
 export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = null }) {
   const out = [];
   const aggiungi = (chiave, testo) => { if (!inviate.has(chiave)) out.push({ chiave, testo }); };
   const piede = sito ? `\n\n${sito}` : '';
 
-  if (run) aggiungi(`${oggi}|run|${run.id}`, `⚠️ L'Action «${html(run.nome)}» è fallita.\n${run.url}`);
+  if (run) {
+    const come = run.conclusione === 'cancelled' ? 'è stata annullata' : 'è fallita';
+    aggiungi(`${oggi}|run|${run.id}`, `⚠️ L'Action «${html(run.nome)}» ${come}.\n${run.url}`);
+  }
 
   const delGiorno = giornata && giornata.data === oggi ? giornata : null;
   if (!delGiorno) {
@@ -219,18 +222,55 @@ export function scriviInviate(file, inviate, oggi) {
   writeFileSync(file, `${JSON.stringify({ inviate: tenute }, null, 2)}\n`);
 }
 
-export async function manda(testo, { token, chat, fetch = globalThis.fetch }) {
-  const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: chat, text: testo, parse_mode: 'HTML', disable_web_page_preview: true }),
-    signal: AbortSignal.timeout(30000),
-  });
-  // Mai il token nei messaggi d'errore.
-  if (!r.ok) throw new Error(`Telegram: HTTP ${r.status} ${(await r.text()).replaceAll(token, '***').slice(0, 200)}`);
+// Telegram rifiuta i messaggi sopra i 4096 caratteri: si divide sulle righe, sotto i 4000;
+// una riga da sola troppo lunga si tronca.
+const MAX_TESTO = 4000;
+export function dividi(testo, max = MAX_TESTO) {
+  const pezzi = [];
+  let corrente = null;
+  for (let riga of String(testo).split('\n')) {
+    if (riga.length >= max) riga = `${riga.slice(0, max - 2)}…`;
+    if (corrente !== null && corrente.length + 1 + riga.length < max) { corrente += `\n${riga}`; continue; }
+    if (corrente !== null) pezzi.push(corrente);
+    corrente = riga;
+  }
+  if (corrente !== null) pezzi.push(corrente);
+  return pezzi;
 }
 
-export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch }) {
+const ATTESA_MAX_MS = 60000;
+const aspetta = (ms) => new Promise((r) => { setTimeout(r, ms); });
+
+async function mandaPezzo(testo, { token, chat, fetch, attendi }) {
+  for (let tentativo = 1; ; tentativo++) {
+    const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chat, text: testo, parse_mode: 'HTML', disable_web_page_preview: true }),
+      signal: AbortSignal.timeout(30000),
+    });
+    if (r.ok) return;
+    // Mai il token nei messaggi d'errore.
+    const corpo = (await r.text()).replaceAll(token, '***');
+    if (/chat not found/i.test(corpo)) {
+      throw new Error('Telegram risponde «chat not found»: il secret TELEGRAM_CHAT_ID è sbagliato. Mettici il numero della tua chat con il bot (dopo avergli scritto almeno un messaggio)');
+    }
+    if (r.status === 429 && tentativo === 1) {
+      let secondi = 1;
+      try { secondi = Number(JSON.parse(corpo)?.parameters?.retry_after) || 1; } catch { /* corpo non JSON */ }
+      await attendi(Math.min(secondi * 1000, ATTESA_MAX_MS));
+      continue;
+    }
+    throw new Error(`Telegram: HTTP ${r.status} ${corpo.slice(0, 200)}`);
+  }
+}
+
+// Manda un messaggio (diviso se è lungo). Su HTTP 429 aspetta retry_after (al massimo 60 s) e riprova una volta.
+export async function manda(testo, { token, chat, fetch = globalThis.fetch, attendi = aspetta }) {
+  for (const pezzo of dividi(testo)) await mandaPezzo(pezzo, { token, chat, fetch, attendi });
+}
+
+export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi }) {
   const oggi = giornataDi(adesso);
   const fileStato = join(dirData, 'stato', 'telegram.json');
   const inviate = leggiInviate(fileStato);
@@ -252,9 +292,17 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));
   let mandati = 0;
+  const falliti = [];
   try {
     for (const m of lista) {
-      await manda(m.testo, { token, chat, fetch });
+      // Un messaggio che non parte non blocca gli altri; "chat not found" invece ferma tutto.
+      try {
+        await manda(m.testo, { token, chat, fetch, attendi });
+      } catch (e) {
+        if (/chat not found/i.test(e.message)) throw e;
+        falliti.push(`${m.chiave}: ${e.message}`);
+        continue;
+      }
       inviate.add(m.chiave);
       for (const k of m.segna ?? []) inviate.add(k);
       mandati++;
@@ -263,32 +311,20 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
     // Anche se un invio fallisce, quelli già partiti restano segnati: niente doppioni la volta dopo.
     if (mandati) scriviInviate(fileStato, inviate, oggi);
   }
+  // Alla fine l'errore, perché l'Action risulti fallita: i non mandati si riprovano la volta dopo.
+  if (falliti.length) throw new Error(`${falliti.length} messaggi su ${lista.length} non mandati (${mandati} mandati): ${falliti.join(' | ')}`);
   return { mandati, chiavi: lista.map((m) => m.chiave) };
 }
 
-// Chat privata più recente fra i messaggi mandati al bot (getUpdates), o null.
-export async function chatDagliAggiornamenti(token, { fetch = globalThis.fetch } = {}) {
-  const r = await fetch(`https://api.telegram.org/bot${token}/getUpdates`, { signal: AbortSignal.timeout(30000) });
-  if (!r.ok) return null;
-  const j = await r.json();
-  const chat = (j?.result ?? []).map((u) => u.message?.chat ?? u.my_chat_member?.chat).filter((c) => c?.type === 'private').at(-1);
-  return chat ? String(chat.id) : null;
+// Action da segnalare (dal workflow_run): fallita o annullata; null altrimenti.
+export function runDaSegnalare(env) {
+  const conclusione = env.RUN_CONCLUSIONE;
+  if (conclusione !== 'failure' && conclusione !== 'cancelled') return null;
+  return { id: env.RUN_ID, nome: env.RUN_NOME, url: env.RUN_URL, conclusione };
 }
 
-// Se il chat id dei secrets non va ("chat not found"), si usa quello dei messaggi mandati al bot
-// e il primo messaggio dice quale numero mettere in TELEGRAM_CHAT_ID. Nei log solo le ultime cifre.
-export async function eseguiConRipiego(opz) {
-  try {
-    return await eseguiNotifiche(opz);
-  } catch (e) {
-    if (!/chat not found/i.test(e.message)) throw e;
-    const chat = await chatDagliAggiornamenti(opz.token, { fetch: opz.fetch });
-    if (!chat || chat === String(opz.chat)) throw new Error(`${e.message}. Scrivi un messaggio al bot su Telegram e riprova: il chat id si ricava da lì`);
-    console.log(`TELEGRAM_CHAT_ID sbagliato: uso la chat trovata nei messaggi al bot (finisce con ${chat.slice(-3)})`);
-    await manda(`⚙️ Il chat id giusto è <b>${chat}</b>: aggiorna il secret TELEGRAM_CHAT_ID su GitHub con questo numero.`, { token: opz.token, chat, fetch: opz.fetch });
-    return eseguiNotifiche({ ...opz, chat });
-  }
-}
+// Riga di log sulla chat dei secrets: solo se Telegram la trova, mai il nome né il numero.
+export const rigaChat = (risposta) => `Chat di TELEGRAM_CHAT_ID: ${risposta?.ok ? 'ok' : 'non ok'}`;
 
 async function principale() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -297,18 +333,16 @@ async function principale() {
     console.log('Notifiche Telegram spente: mancano i secrets TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID');
     return;
   }
-  const run = process.env.RUN_CONCLUSIONE === 'failure'
-    ? { id: process.env.RUN_ID, nome: process.env.RUN_NOME, url: process.env.RUN_URL } : null;
+  const run = runDaSegnalare(process.env);
   const [proprietario, nome] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
   const sito = proprietario && nome ? `https://${proprietario.toLowerCase()}.github.io/${nome}/` : null;
-  // Nel log il tipo di chat dei secrets (privata o gruppo, con il nome del gruppo), mai il numero.
   try {
     const c = await (await fetch(`https://api.telegram.org/bot${token}/getChat?chat_id=${encodeURIComponent(chat)}`, { signal: AbortSignal.timeout(30000) })).json();
-    console.log(c?.ok ? `Chat di TELEGRAM_CHAT_ID: ${c.result.type}${c.result.title ? ` «${c.result.title}»` : ''}` : `Chat di TELEGRAM_CHAT_ID non trovata (${c?.description ?? 'errore'})`);
+    console.log(rigaChat(c));
   } catch {
-    console.log('Chat di TELEGRAM_CHAT_ID: tipo non verificato');
+    console.log('Chat di TELEGRAM_CHAT_ID: non verificata');
   }
-  const r = await eseguiConRipiego({ dirData: 'data', adesso: new Date(), token, chat, run, sito });
+  const r = await eseguiNotifiche({ dirData: 'data', adesso: new Date(), token, chat, run, sito });
   console.log(`Notifiche Telegram: ${r.mandati} messaggi${r.chiavi.length ? ` (${r.chiavi.join(', ')})` : ''}`);
 }
 

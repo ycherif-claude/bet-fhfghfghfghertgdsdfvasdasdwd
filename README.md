@@ -242,10 +242,10 @@ Un bot Telegram ti scrive:
 
 - **le giocate del giorno**, dopo il giro del mattino (o una riga se non ce ne sono), e le giocate nuove aggiunte più tardi (per esempio il tennis della sera);
 - **i cambi del giro serale**: giocata confermata, modificata (con la quota nuova) o annullata, con il motivo;
-- **gli errori del sistema**: righe nuove fra gli errori della giornata, un'Action fallita, la giornata non scritta entro le 12:00.
+- **gli errori del sistema**: righe nuove fra gli errori della giornata, un'Action fallita o annullata, la giornata non scritta entro le 12:00.
 
 - **gli esiti** (vinta, persa, rimborsata) **solo delle giocate segnate come fatte** sul sito, con la quota e la puntata reali, il guadagno o la perdita e il bankroll aggiornato. Le giocate saltate o non segnate non mandano niente.
-  Gli esiti arrivano **10-20 minuti dopo la fine della partita**: ogni 10 minuti l'Action dei controlli cerca il risultato delle giocate fatte già finite su fonti gratuite (ESPN per calcio, NBA e tennis, compresi angoli e cartellini; API Eurolega; TheSportsDB per NBL e pallavolo). Se una fonte non ha ancora il risultato, l'esito arriva la mattina dopo con la raccolta delle 07:35, come prima. Per angoli e cartellini i numeri di ESPN possono differire di poco da quelli del bookmaker: in quel caso vale il regolamento di bet365.
+  Gli esiti arrivano **10-20 minuti dopo la fine della partita**: ogni 10 minuti l'Action dei controlli cerca il risultato delle giocate fatte già finite su fonti gratuite (ESPN per calcio, NBA e tennis; API Eurolega; TheSportsDB per NBL e pallavolo). Se una fonte non ha ancora il risultato, l'esito arriva la mattina dopo con la raccolta delle 07:35, come prima. **Angoli e cartellini** non si chiudono subito, perché ESPN li conta in modo diverso da bet365 (per esempio il doppio giallo): a fine partita arriva solo un esito **provvisorio** ("probabilmente vinta (5 cartellini secondo ESPN, conteggio da confermare)"), che non cambia il bankroll; l'esito vero arriva la mattina dopo.
 
 Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`). Le righe solo informative ("partite già iniziate", i 429 di TheSportsDB mentre lo storico si completa) non si notificano.
 
@@ -256,7 +256,7 @@ Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`).
 3. Nel browser apri `https://api.telegram.org/bot<TOKEN>/getUpdates` (con il tuo token): il numero dopo `"chat":{"id":` è il tuo **chat id**.
 4. Su GitHub, Settings → Secrets and variables → Actions: aggiungi `TELEGRAM_BOT_TOKEN` (il token) e `TELEGRAM_CHAT_ID` (il numero).
 
-Senza i due secrets le notifiche restano spente e nulla si blocca. L'Action "Notifiche Telegram" parte dopo ogni aggiornamento dei dati e dopo le altre Action; si può anche avviare a mano.
+Senza i due secrets le notifiche restano spente e nulla si blocca. Se il chat id è sbagliato (Telegram risponde "chat not found") l'Action "Notifiche Telegram" fallisce con un messaggio che lo dice: correggi `TELEGRAM_CHAT_ID`. L'Action "Notifiche Telegram" parte dopo ogni aggiornamento dei dati e dopo le altre Action; si può anche avviare a mano.
 
 ## Revisione settimanale
 

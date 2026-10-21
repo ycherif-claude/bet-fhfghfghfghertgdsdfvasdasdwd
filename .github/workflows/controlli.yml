@@ -67,9 +67,11 @@ jobs:
         # Se l'avvio fallisce, le giocate restano in revisione e 5 minuti prima dell'inizio valgono le regole fisse.
         run: |
           data=$(TZ=Europe/Rome date -d '-8 hours' +%F)
+          # Corpo JSON costruito da jq, mai concatenando le stringhe: niente può rompere il JSON.
+          corpo=$(jq -cn --arg testo "Controllo pre-partita $data: $GIOCATE" '{text: $testo}')
           curl -fsS -X POST "$ROUTINE_CONTROLLI_URL" \
             -H "Authorization: Bearer $ROUTINE_CONTROLLI_TOKEN" \
             -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
             -H "anthropic-version: 2023-06-01" \
             -H "Content-Type: application/json" \
-            -d "{\"text\":\"Controllo pre-partita $data: $GIOCATE\"}"
+            -d "$corpo"

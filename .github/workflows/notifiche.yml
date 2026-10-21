@@ -15,8 +15,11 @@ on:
 permissions:
   contents: write
 
+# Gruppo proprio: le notifiche non aspettano né annullano le Action che scrivono i dati
+# (lo stato si salva con pull --rebase e fino a 3 tentativi).
 concurrency:
-  group: dati
+  group: notifiche
+  cancel-in-progress: false
 
 jobs:
   notifiche:
@@ -37,7 +40,9 @@ jobs:
           RUN_ID: ${{ github.event.workflow_run.id }}
           RUN_NOME: ${{ github.event.workflow_run.name }}
           RUN_URL: ${{ github.event.workflow_run.html_url }}
+      # Anche se l'invio fallisce: i messaggi già partiti restano segnati, niente doppioni.
       - name: Salva lo stato delle notifiche
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898799+github-actions[bot]@users.noreply.github.com"

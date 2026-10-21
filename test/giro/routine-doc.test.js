@@ -81,7 +81,9 @@ test('notifiche Telegram: README e workflow', () => {
   const r = fs.readFileSync('README.md', 'utf8');
   for (const s of ['Notifiche Telegram', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID', '@BotFather', 'getUpdates', 'data/stato/telegram.json']) assert.ok(r.includes(s), s);
   const w = fs.readFileSync('.github/workflows/notifiche.yml', 'utf8');
-  for (const s of ['npm run notifiche', 'workflow_run', "'Raccolta dati calcio'", "'Giro serale'", 'group: dati', 'for tentativo in 1 2 3', 'git rebase --abort']) assert.ok(w.includes(s), s);
+  for (const s of ['npm run notifiche', 'workflow_run', "'Raccolta dati calcio'", "'Giro serale'", 'group: notifiche', 'cancel-in-progress: false', 'for tentativo in 1 2 3', 'git rebase --abort']) assert.ok(w.includes(s), s);
+  // Lo stato si salva anche quando l'invio fallisce.
+  assert.match(w, /name: Salva lo stato delle notifiche\r?\n\s+if: always\(\)/);
 });
 
 test('controlli prima delle partite: routine, README e workflow', () => {
@@ -93,5 +95,8 @@ test('controlli prima delle partite: routine, README e workflow', () => {
   for (const s of ['Controlli prima delle partite', 'ROUTINE_CONTROLLI_URL', 'ROUTINE_CONTROLLI_TOKEN', 'regole fisse']) assert.ok(r.includes(s), s);
   const w = fs.readFileSync('.github/workflows/controlli.yml', 'utf8');
   for (const s of ["cron: '*/10 * * * *'", 'npm run controlli', 'AVVIA_CLAUDE', 'group: dati', 'for tentativo in 1 2 3', 'Controllo pre-partita']) assert.ok(w.includes(s), s);
+  // Il corpo per la routine si costruisce con jq, non concatenando stringhe.
+  assert.ok(w.includes("jq -cn --arg testo"));
+  assert.ok(!w.includes('{\\"text\\"'));
   assert.ok(fs.readFileSync('.github/workflows/notifiche.yml', 'utf8').includes("'Controlli prima delle partite'"));
 });
