@@ -95,3 +95,22 @@ test('sport senza partite oggi: nessuna richiesta a odss', async () => {
   assert.equal(f.chiamate.length, 0);
   assert.deepEqual(r.eventi, []);
 });
+
+test('tennis: torneo coperto solo in parte da odss → The Odds API per le partite che mancano, mai sopra odss', async () => {
+  const fo = fonti({ fetch: fetchOdss({ 'tennis|moneyline': [RIGHE] }) });
+  const due = [{ id: 'x1', giocatore1: 'Jannik Sinner', giocatore2: 'Carlos Alcaraz', inizio: INIZIO }, { id: 'x2', giocatore1: 'Alexander Zverev', giocatore2: 'Holger Rune', inizio: INIZIO }];
+  fo.oddsTennis.eventi = async () => ({ eventi: due, rimasti: 294 });
+  fo.oddsTennis.quote = async (chiave) => {
+    fo.chiamate.quote.push(chiave);
+    const b = (k, e) => ({ chiave: k, aggiornato: 'T', quote: { [e.giocatore1]: 1.7, [e.giocatore2]: 2.2 } });
+    return { eventi: due.map((e) => ({ ...e, bookmaker: [b('pinnacle', e), b('a', e), b('b', e)] })), rimasti: 293 };
+  };
+  const dir = mkdtempSync(join(tmpdir(), 'odss-tennis-'));
+  mkdirSync(join(dir, 'raccolta'), { recursive: true });
+  const r = await eseguiRaccoltaTennis({ data: DATA, adesso, fonti: fo, chiavi: { oddsApi: 'K', odss: CHIAVE }, dirData: dir });
+  assert.deepEqual(fo.chiamate.quote, [PARIGI.chiave]);
+  const m = (g) => r.partite.flatMap((p) => p.mercati).find((x) => x.selezione === g);
+  assert.equal(m('Jannik Sinner').fonteQuota, 'mediana di 4 bookmaker (odss-api)');
+  assert.equal(m('Alexander Zverev').fonteQuota, 'mediana di 3 bookmaker (The Odds API)');
+  assert.ok(r.erroriGiro.some((e) => /ATP Paris Masters: 1 partite su 2 non trovate su odss-api, quote da The Odds API/.test(e)), r.erroriGiro.join(' | '));
+});

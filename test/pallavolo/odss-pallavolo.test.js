@@ -37,7 +37,7 @@ function storicoSuperlega() {
   }
   return out;
 }
-function fonti({ fetch } = {}) {
+function fonti({ fetch, partite = [{ id: 'f1', torneo: 517, casa: 'Itas Trentino', trasferta: 'Rana Verona', inizio: INIZIO, stato: 0 }] } = {}) {
   const st = storicoSuperlega();
   const chiamate = [];
   const b = { v: [1.3, 3.5] };
@@ -47,7 +47,7 @@ function fonti({ fetch } = {}) {
     thesportsdb: { round: async (s, g, opz, lega) => ({ partite: lega === 4544 ? st[s]?.[g] ?? [] : [], scartate: 0 }) },
     oddspapi: {
       conto: async () => ({ limite: 250, usate: 10 }),
-      partite: async () => { chiamate.push('partite'); return [{ id: 'f1', torneo: 517, casa: 'Itas Trentino', trasferta: 'Rana Verona', inizio: INIZIO, stato: 0 }]; },
+      partite: async () => { chiamate.push('partite'); return partite; },
       quote: async (id) => {
         chiamate.push(`quote ${id}`);
         const o = (x, y) => ({ players: { 0: { price: x } } , y });
@@ -78,7 +78,8 @@ test('pallavolo con odss: una richiesta, vincente e totale set da odss, niente O
   const r = await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddspapi: 'K', odss: CHIAVE }, dirData: dir, pausaMs: 0 });
   assert.equal(f.chiamate.length, 1);
   assert.equal(new URL(f.chiamate[0].url).searchParams.get('market'), 'moneyline,ou');
-  assert.deepEqual(fo.chiamate, []);
+  // Il palinsesto di OddsPapi (1 richiesta) dice che oggi c'è la partita; le quote vengono da odss.
+  assert.deepEqual(fo.chiamate, ['partite']);
   assert.equal(r.partite.length, 1);
   const p = r.partite[0];
   assert.equal(p.partita, 'Itas Trentino - Rana Verona');
@@ -96,7 +97,7 @@ test('pallavolo: odss in errore o senza partite → OddsPapi come prima, con una
   let r = await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddspapi: 'K', odss: CHIAVE }, dirData: temp(), pausaMs: 0 });
   assert.deepEqual(fo.chiamate, ['partite', 'quote f1']);
   assert.ok(r.erroriGiro.some((e) => /odss-api.*chiave rifiutata/.test(e)));
-  assert.ok(r.erroriGiro.some((e) => /pallavolo.*OddsPapi/.test(e)), r.erroriGiro.join(' | '));
+  assert.ok(r.erroriGiro.some((e) => /SuperLega: nessuna partita su odss-api, quote da OddsPapi/.test(e)), r.erroriGiro.join(' | '));
   fo = fonti({ fetch: fetchOdss({ 'volley|moneyline,ou': [[]] }) });
   r = await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddspapi: 'K', odss: CHIAVE }, dirData: temp(), pausaMs: 0 });
   assert.deepEqual(fo.chiamate, ['partite', 'quote f1']);
@@ -107,4 +108,26 @@ test('workflow: ODSS_API_KEY allo step della raccolta pallavolo', () => {
   const w = readFileSync('.github/workflows/raccolta.yml', 'utf8');
   const step = w.split('\n      - ').filter((s) => s.includes('ODSS_API_KEY')).map((s) => /run: (npm run [\w-]+)/.exec(s)?.[1]);
   assert.ok(step.includes('npm run raccolta-pallavolo'));
+});
+
+test('pallavolo: palinsesto senza partite → nessuna richiesta a odss; partita del palinsesto che odss non ha → OddsPapi solo per lei', async () => {
+  let f = fetchOdss({ 'volley|moneyline,ou': [RIGHE()] });
+  let fo = fonti({ fetch: f, partite: [] });
+  await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddspapi: 'K', odss: CHIAVE }, dirData: temp(), pausaMs: 0 });
+  assert.equal(f.chiamate.length, 0);
+  const due = [
+    { id: 'f1', torneo: 517, casa: 'Itas Trentino', trasferta: 'Rana Verona', inizio: INIZIO, stato: 0 },
+    { id: 'f2', torneo: 517, casa: 'Sir Susa Perugia', trasferta: 'Cucine Lube Civitanova', inizio: INIZIO, stato: 0 },
+  ];
+  // Un evento della SuperLega con squadre sconosciute: contato fra i non abbinati.
+  const ignoto = rigaOdss({ sport: 'volley', league: 'Superlega', event_id: 'v9', home_team: 'Squadra Ignota', away_team: 'Altra Ignota', commence_time: INIZIO, market: 'moneyline', bookmakers: [bkOdss('bwin', { HOME: 1.5, AWAY: 2.5 })] });
+  f = fetchOdss({ 'volley|moneyline,ou': [[...RIGHE(), ignoto]] });
+  fo = fonti({ fetch: f, partite: due });
+  const r = await eseguiRaccoltaPallavolo({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddspapi: 'K', odss: CHIAVE }, dirData: temp(), pausaMs: 0 });
+  assert.deepEqual(fo.chiamate, ['partite', 'quote f2']);
+  const fonte = (p) => r.partite.find((x) => x.partita === p).mercati[0].fonteQuota;
+  assert.equal(fonte('Itas Trentino - Rana Verona'), 'mediana di 4 bookmaker (odss-api)');
+  assert.equal(fonte('Sir Susa Perugia - Cucine Lube Civitanova'), 'mediana di 3 bookmaker (OddsPapi)');
+  assert.ok(r.erroriGiro.some((e) => /SuperLega: 1 partite su 2 non trovate su odss-api, quote da OddsPapi/.test(e)), r.erroriGiro.join(' | '));
+  assert.ok(r.erroriGiro.some((e) => /1 partite di odss-api nei campionati ammessi non abbinate/.test(e)), r.erroriGiro.join(' | '));
 });

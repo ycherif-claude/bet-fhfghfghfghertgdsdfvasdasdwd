@@ -221,6 +221,9 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
   // ci sono partite; i tornei senza nessuna partita su odss (o tutti, se odss non risponde) tornano a The Odds API.
   const quotePer = new Map();
   const daOdss = new Set();
+  // Tornei coperti solo in parte da odss: The Odds API riempie le partite mancanti (mai sopra odss).
+  const parziali = new Set();
+  const idOdss = new Set();
   if (chiavi && Object.hasOwn(chiavi, 'odss')) {
     const o = await eventiOdssSport({
       dirData, data, adesso, chiave: chiavi.odss, sport: 'tennis', gruppi: ['moneyline'], finestra, fetch: fonti.fetchOdss,
@@ -236,7 +239,11 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
       if (conQuote.length) {
         daOdss.add(t.chiave);
         quotePer.set(t.chiave, new Map(conQuote.map((e) => [e.id, e])));
-        if (conQuote.length < evs.length) erroriGiro.push(`Quote ${t.titolo}: ${evs.length - conQuote.length} partite su ${evs.length} non trovate su odss-api, senza quote`);
+        for (const e of conQuote) idOdss.add(e.id);
+        if (conQuote.length < evs.length) {
+          parziali.add(t.chiave);
+          erroriGiro.push(`Quote ${t.titolo}: ${evs.length - conQuote.length} partite su ${evs.length} non trovate su odss-api, quote da The Odds API`);
+        }
       } else {
         erroriGiro.push(`Quote ${t.titolo}: nessuna partita su odss-api, quote da The Odds API`);
       }
@@ -244,7 +251,7 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
   }
 
   // 2. Crediti (solo per i tornei che tornano a The Odds API).
-  const conEventi = tornei.filter((t) => eventiPer.has(t.chiave) && !daOdss.has(t.chiave));
+  const conEventi = tornei.filter((t) => eventiPer.has(t.chiave) && (!daOdss.has(t.chiave) || parziali.has(t.chiave)));
   let budget;
   ({ budget, rimastiOra } = calcolaBudget({ data, dirData, rimastiOra, conEventi, errore }));
   raccolta.crediti.rimasti = rimastiOra;
@@ -264,7 +271,8 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
   for (const t of scelti) {
     try {
       const r = await fonti.oddsTennis.quote(t.chiave, finestra, opz);
-      quotePer.set(t.chiave, new Map((r.eventi ?? []).map((e) => [e.id, e])));
+      // Le partite già con le quote di odss restano di odss.
+      quotePer.set(t.chiave, new Map([...(r.eventi ?? []).map((e) => [e.id, e]), ...(quotePer.get(t.chiave) ?? [])]));
       raccolta.crediti.usati += T.creditiPerTorneo;
       raccolta.crediti.rimasti = num(r.rimasti) ? r.rimasti
         : num(raccolta.crediti.rimasti) ? raccolta.crediti.rimasti - T.creditiPerTorneo : null;
@@ -275,7 +283,7 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
   raccolta.budgetResiduo = Math.max(0, budget - raccolta.crediti.usati);
 
   // Tornei con le quote: prima quelli di odss-api, poi quelli di The Odds API.
-  scelti.unshift(...tornei.filter((t) => daOdss.has(t.chiave)));
+  scelti.unshift(...tornei.filter((t) => daOdss.has(t.chiave) && !scelti.includes(t)));
 
   // 5. Storico: tre stagioni per circuito; una stagione che manca non fa perdere le altre.
   const anno = Number(data.slice(0, 4));
@@ -326,7 +334,7 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
     }
     let senzaQuota = 0;
     for (const ev of eventiPer.get(t.chiave)) {
-      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, motivo, data, ora, erroriGiro, fonte: daOdss.has(t.chiave) ? 'odss-api' : 'The Odds API' });
+      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, motivo, data, ora, erroriGiro, fonte: idOdss.has(ev.id) ? 'odss-api' : 'The Odds API' });
       if (partita === null) continue;
       if (partita === false) { senzaQuota++; continue; }
       raccolta.partite.push(partita);

@@ -80,3 +80,20 @@ test('workflow: ODSS_API_KEY allo step dei controlli', () => {
   const step = w.split('\n      - ').find((s) => s.includes('name: Controlli\n'));
   assert.ok(step.includes('ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}'));
 });
+
+test('controlli pallavolo: stessi filtri della raccolta (nome esatto del campionato, niente femminili, squadre dallo storico)', async () => {
+  const d = temp();
+  mkdirSync(join(d, 'storico'), { recursive: true });
+  writeFileSync(join(d, 'storico', 'pallavolo-superlega.json'), JSON.stringify({ partite: [
+    { id: '1', stagione: 2026, giornata: 1, idCasa: '136630', idTrasferta: '137441', casa: 'Trentino Volley', trasferta: 'Verona Volley', inizio: '2026-10-10T18:00:00.000Z', puntiCasa: 3, puntiTrasferta: 1, finita: true },
+  ] }));
+  const voce = { id: 'p1', sport: 'pallavolo', competizione: 'SuperLega', partita: 'Itas Trentino - Rana Verona', inizio: '2026-10-23T20:30:00+02:00', mercato: 'Vincente', selezione: 'Itas Trentino' };
+  const riga = (id, league, h) => rigaOdss({ event_id: id, sport: 'volley', league, home_team: 'Trentino Itas', away_team: 'Verona Rana', commence_time: '2026-10-23T18:30:00Z', market: 'moneyline', bookmakers: ['pinnacle', 'bwin', 'unibet'].map((k) => bkOdss(k, { HOME: h, AWAY: 3.2 })) });
+  const chiamate = [];
+  const fo = (fetch) => ({ fetchOdss: fetch, oddspapi: { conto: async () => { chiamate.push('conto'); return null; } } });
+  let out = await quoteFresche([voce], opz(fo(fetchOdss({ 'volley|moneyline,ou': [[riga('w', 'Superliga, Women', 1.1), riga('m', 'Superlega', 1.35)]] })), { dirData: d, chiavi: { odss: CHIAVE, oddspapi: 'P' } }));
+  assert.equal(out.get('p1').quota, 1.35);
+  out = await quoteFresche([voce], opz(fo(fetchOdss({ 'volley|moneyline,ou': [[riga('w', 'Superliga, Women', 1.1)]] })), { dirData: d, chiavi: { odss: CHIAVE, oddspapi: 'P' } }));
+  assert.ok(!Number.isFinite(out.get('p1')?.quota));
+  assert.ok(chiamate.includes('conto'));
+});

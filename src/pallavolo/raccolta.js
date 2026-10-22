@@ -159,121 +159,155 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
     if (p) raccolta.partite.push(p);
   };
 
-  // 1b. Quote di odss-api (fonte principale) [utente, 22/10/2026]: una richiesta (moneyline e ou della giornata) se
-  // c'è un campionato attivo. Una partita va a un campionato solo se entrambe le squadre sono nel suo storico e in
-  // nessun altro; partite femminili solo ai campionati femminili. Vincente e totale set 3.5; l'handicap no (il feed
-  // non distingue l'handicap in set da quello in punti). Se odss non risponde o non ha partite: OddsPapi.
-  if (Object.hasOwn(chiavi ?? {}, 'odss')) {
-    const finestraOdss = finestraGiornata(data);
+  const finestra = finestraGiornata(data);
+  const odssAttivo = Object.hasOwn(chiavi ?? {}, 'odss');
+
+  // 2. Palinsesto da OddsPapi (1 richiesta per tutti i campionati) [revisione, 23/10/2026]: dice quali partite ci sono
+  // oggi (senza partite nessuna richiesta a odss), con i nomi delle squadre che usano la raccolta e gli esiti.
+  // Senza chiave OddsPapi o senza richieste il palinsesto non si sa: odss da solo, per campionato e squadre.
+  let candidate = null;
+  let spese = 0;
+  let usate = 0;
+  let limite = P.richiesteMese;
+  let budget = 0;
+  const mese = data.slice(0, 7);
+  const opz = { chiave: chiavi?.oddspapi };
+  if (chiavi?.oddspapi) {
+    let conto = null;
+    try {
+      conto = await fonti.oddspapi.conto(opz);
+    } catch (e) {
+      errore('OddsPapi (conto)', e);
+    }
+    limite = conto?.limite ?? P.richiesteMese;
+    usate = conto?.usate ?? leggiStato(dirData, mese);
+    budget = budgetRichieste(limite, usate, data);
+    raccolta.crediti.oddspapi.rimaste = limite - usate;
+    // Servono almeno l'elenco delle partite e le quote di una partita.
+    if (budget < 2) {
+      raccolta.competizioniNonCoperte.push('Pallavolo: richieste OddsPapi finite per oggi');
+    } else {
+      let elenco = [];
+      // Anche una richiesta fallita conta nel budget (OddsPapi può contarla lo stesso).
+      spese++; usate++;
+      try {
+        elenco = await fonti.oddspapi.partite(finestra, opz);
+        candidate = [];
+      } catch (e) {
+        errore('OddsPapi (partite)', e);
+      }
+      const perTorneo = new Map(CAMPIONATI_PALLAVOLO.map((c) => [c.oddspapi, c]));
+      const daGiocare = elenco.filter((f) => perTorneo.has(f.torneo) && f.casa && f.trasferta && !NON_IN_PROGRAMMA.test(f.statoNome ?? '')
+        && Date.parse(f.inizio) >= Math.max(finestra.da.getTime(), adesso.getTime()) && Date.parse(f.inizio) < finestra.a.getTime());
+      const senzaStorico = new Set();
+      const ignote = new Map();
+      for (const f of daGiocare) {
+        const c = perTorneo.get(f.torneo);
+        if (!attivi.includes(c)) { senzaStorico.add(c.competizione); continue; }
+        const squadre = squadreStorico(storici.get(c.id));
+        const idCasa = abbinaSquadra(f.casa, squadre);
+        const idTrasferta = abbinaSquadra(f.trasferta, squadre);
+        if (!idCasa || !idTrasferta || idCasa === idTrasferta) {
+          // Squadra non riconosciuta: niente richiesta delle quote (né modello né esito).
+          if (!ignote.has(c.competizione)) ignote.set(c.competizione, new Set());
+          for (const [n, id] of [[f.casa, idCasa], [f.trasferta, idTrasferta]]) if (!id || idCasa === idTrasferta) ignote.get(c.competizione).add(n);
+          continue;
+        }
+        candidate?.push({ f, c, idCasa, idTrasferta, priorita: CAMPIONATI_PALLAVOLO.indexOf(c) });
+      }
+      for (const comp of senzaStorico) raccolta.competizioniNonCoperte.push(`${comp}: senza storico gratuito della stagione in corso`);
+      for (const [comp, nomi] of ignote) erroriGiro.push(`Squadre ${comp} non riconosciute: ${[...nomi].join(', ')}`);
+      candidate?.sort((a, b) => a.priorita - b.priorita || Date.parse(a.f.inizio) - Date.parse(b.f.inizio));
+    }
+  } else if (!odssAttivo) {
+    errore('OddsPapi', 'manca ODDSPAPI_API_KEY');
+    return raccolta;
+  }
+
+  // 3. Quote di odss-api (fonte principale) [utente, 22/10/2026]: una richiesta (moneyline e ou della giornata) se ci
+  // sono partite (o, senza palinsesto, un campionato attivo). Un evento va a una partita solo con il nome esatto del
+  // campionato (legheOdss), le partite femminili solo ai campionati femminili, le due squadre riconosciute nello storico
+  // del campionato e l'orario. Vincente, totale set 3.5 e handicap set (solo con esiti chiari); l'ah è in punti, mai.
+  const coperte = new Set();
+  if (odssAttivo) {
     const o = await eventiOdssSport({
-      dirData, data, adesso, chiave: chiavi.odss, sport: 'volley', budgetSport: 'pallavolo', gruppi: ['moneyline,ou'],
-      finestra: finestraOdss, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite: attivi.length ? null : 0, nome: 'pallavolo',
+      dirData, data, adesso, chiave: chiavi.odss, sport: 'volley', budgetSport: 'pallavolo', gruppi: ['moneyline,ou'], finestra,
+      fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite: candidate ? candidate.length : attivi.length ? null : 0, nome: 'pallavolo',
     });
     erroriGiro.push(...o.errori);
+    // Per ogni evento odss nel campionato ammesso: i campionati dove le due squadre si riconoscono.
     const gruppi = [];
+    let ammessiNonAbbinati = 0;
     for (const e of o.eventi ?? []) {
       const t = Date.parse(e.inizio);
-      if (!(t >= Math.max(finestraOdss.da.getTime(), adesso.getTime()) && t < finestraOdss.a.getTime())) continue;
+      if (!(t >= Math.max(finestra.da.getTime(), adesso.getTime()) && t < finestra.a.getTime())) continue;
+      const ammessi = attivi.filter((c) => legaAmmessa(e.campionato, c.legheOdss) && (!femminile(e) || /femminile/i.test(c.competizione)));
+      if (!ammessi.length) continue;
       const scelte = [];
-      for (const c of attivi) {
-        if (!legaAmmessa(e.campionato, c.legheOdss) || (femminile(e) && !/femminile/i.test(c.competizione))) continue;
+      for (const c of ammessi) {
         const squadre = squadreStorico(storici.get(c.id));
         const idCasa = abbinaSquadra(e.casa, squadre);
         const idTrasferta = abbinaSquadra(e.trasferta, squadre);
         if (idCasa && idTrasferta && idCasa !== idTrasferta) scelte.push({ c, idCasa, idTrasferta });
       }
-      if (scelte.length !== 1) continue;
-      const [s0] = scelte;
-      const g = gruppi.find((x) => x.c === s0.c && x.idCasa === s0.idCasa && x.idTrasferta === s0.idTrasferta
-        && Math.abs(Date.parse(x.eventi[0].inizio) - t) <= CONFIG.odss.toleranzaOre * 3600000);
+      const x = scelte.length === 1 ? scelte[0] : null;
+      // Con il palinsesto: l'evento deve essere una partita del palinsesto (stesse squadre, inizio vicino).
+      const partita = x && candidate ? candidate.filter((p) => p.c === x.c && p.idCasa === x.idCasa && p.idTrasferta === x.idTrasferta
+        && Math.abs(Date.parse(p.f.inizio) - t) <= CONFIG.odss.toleranzaOre * 3600000) : null;
+      if (!x || (candidate && partita.length !== 1)) { ammessiNonAbbinati++; continue; }
+      const chiaveGruppo = candidate ? partita[0] : null;
+      const g = gruppi.find((y) => (chiaveGruppo ? y.partita === chiaveGruppo : y.c === x.c && y.idCasa === x.idCasa && y.idTrasferta === x.idTrasferta
+        && Math.abs(Date.parse(y.eventi[0].inizio) - t) <= CONFIG.odss.toleranzaOre * 3600000));
       if (g) g.eventi.push(e);
-      else gruppi.push({ ...s0, eventi: [e] });
+      else gruppi.push({ ...x, partita: chiaveGruppo, eventi: [e] });
     }
-    const prima = raccolta.partite.length;
+    if (ammessiNonAbbinati) erroriGiro.push(`Quote pallavolo: ${ammessiNonAbbinati} partite di odss-api nei campionati ammessi non abbinate (squadre o orario)`);
+    const conQuote = new Map();
     for (const g of gruppi) {
-      const unito = unisciEventi(g.eventi);
-      const { bookmaker } = inFormatoNba(unito, { handicap: false, handicapSet: true, totali: (l) => l === 3.5 });
-      const f = { casa: g.eventi[0].casa, trasferta: g.eventi[0].trasferta, inizio: g.eventi[0].inizio };
-      aggiungiPartita({ f, c: g.c, idCasa: g.idCasa, idTrasferta: g.idTrasferta }, bookmaker, 'odss-api');
+      const { bookmaker } = inFormatoNba(unisciEventi(g.eventi), { handicap: false, handicapSet: true, totali: (l) => l === 3.5 });
+      if (!bookmaker.length) continue;
+      // I nomi delle squadre restano quelli del palinsesto (OddsPapi), come negli esiti; senza palinsesto, quelli di odss.
+      const x = g.partita ?? { f: { casa: g.eventi[0].casa, trasferta: g.eventi[0].trasferta, inizio: g.eventi[0].inizio }, c: g.c, idCasa: g.idCasa, idTrasferta: g.idTrasferta };
+      const prima = raccolta.partite.length;
+      aggiungiPartita(x, bookmaker, 'odss-api');
+      if (raccolta.partite.length > prima) {
+        if (g.partita) coperte.add(g.partita);
+        conQuote.set(g.c.competizione, (conQuote.get(g.c.competizione) ?? 0) + 1);
+      }
     }
     if (conta.senzaQuota) errore('odss-api', `${plurale(conta.senzaQuota, 'partita', 'partite')} di pallavolo senza quota utilizzabile`);
-    if (raccolta.partite.length > prima) return raccolta;
-    if (attivi.length) erroriGiro.push('Quote pallavolo: nessuna partita su odss-api, quote da OddsPapi');
     conta.senzaQuota = 0;
     conta.senzaRiferimento = 0;
-  }
-
-  if (!chiavi?.oddspapi) {
-    errore('OddsPapi', 'manca ODDSPAPI_API_KEY');
-    return raccolta;
-  }
-  const opz = { chiave: chiavi.oddspapi };
-  const mese = data.slice(0, 7);
-
-  // 2. Richieste disponibili oggi.
-  let conto = null;
-  try {
-    conto = await fonti.oddspapi.conto(opz);
-  } catch (e) {
-    errore('OddsPapi (conto)', e);
-  }
-  const limite = conto?.limite ?? P.richiesteMese;
-  let usate = conto?.usate ?? leggiStato(dirData, mese);
-  const budget = budgetRichieste(limite, usate, data);
-  raccolta.crediti.oddspapi.rimaste = limite - usate;
-  // Servono almeno l'elenco delle partite e le quote di una partita.
-  if (budget < 2) {
-    raccolta.competizioniNonCoperte.push('Pallavolo: richieste OddsPapi finite per oggi');
-    return raccolta;
-  }
-  let spese = 0;
-  const spendi = () => { spese++; usate++; };
-
-  // 3. Palinsesto (1 richiesta per tutti i campionati).
-  const finestra = finestraGiornata(data);
-  let elenco = [];
-  // Anche una richiesta fallita conta nel budget (OddsPapi può contarla lo stesso).
-  spendi();
-  try {
-    elenco = await fonti.oddspapi.partite(finestra, opz);
-  } catch (e) {
-    errore('OddsPapi (partite)', e);
-  }
-  const perTorneo = new Map(CAMPIONATI_PALLAVOLO.map((c) => [c.oddspapi, c]));
-  const daGiocare = elenco.filter((f) => perTorneo.has(f.torneo) && f.casa && f.trasferta && !NON_IN_PROGRAMMA.test(f.statoNome ?? '')
-    && Date.parse(f.inizio) >= Math.max(finestra.da.getTime(), adesso.getTime()) && Date.parse(f.inizio) < finestra.a.getTime());
-  const senzaStorico = new Set();
-  const candidate = [];
-  const ignote = new Map();
-  for (const f of daGiocare) {
-    const c = perTorneo.get(f.torneo);
-    if (!attivi.includes(c)) { senzaStorico.add(c.competizione); continue; }
-    const squadre = squadreStorico(storici.get(c.id));
-    const idCasa = abbinaSquadra(f.casa, squadre);
-    const idTrasferta = abbinaSquadra(f.trasferta, squadre);
-    if (!idCasa || !idTrasferta || idCasa === idTrasferta) {
-      // Squadra non riconosciuta: niente richiesta delle quote (né modello né esito).
-      if (!ignote.has(c.competizione)) ignote.set(c.competizione, new Set());
-      for (const [n, id] of [[f.casa, idCasa], [f.trasferta, idTrasferta]]) if (!id || idCasa === idTrasferta) ignote.get(c.competizione).add(n);
-      continue;
+    if (candidate) {
+      // Riserva per campionato e per partita: le partite del palinsesto senza quote odss vanno a OddsPapi.
+      const perCampionato = new Map();
+      for (const p of candidate) perCampionato.set(p.c.competizione, (perCampionato.get(p.c.competizione) ?? 0) + 1);
+      for (const [comp, n] of perCampionato) {
+        const k = conQuote.get(comp) ?? 0;
+        if (!k) erroriGiro.push(`Quote ${comp}: nessuna partita su odss-api, quote da OddsPapi`);
+        else if (k < n) erroriGiro.push(`Quote ${comp}: ${n - k} partite su ${n} non trovate su odss-api, quote da OddsPapi`);
+      }
+    } else if (!raccolta.partite.length && attivi.length) {
+      erroriGiro.push('Quote pallavolo: nessuna partita su odss-api, quote da OddsPapi');
     }
-    candidate.push({ f, c, idCasa, idTrasferta, priorita: CAMPIONATI_PALLAVOLO.indexOf(c) });
   }
-  for (const comp of senzaStorico) raccolta.competizioniNonCoperte.push(`${comp}: senza storico gratuito della stagione in corso`);
-  for (const [comp, nomi] of ignote) erroriGiro.push(`Squadre ${comp} non riconosciute: ${[...nomi].join(', ')}`);
-  candidate.sort((a, b) => a.priorita - b.priorita || Date.parse(a.f.inizio) - Date.parse(b.f.inizio));
+  if (!candidate) {
+    if (chiavi?.oddspapi && budget >= 2) scriviStato(dirData, mese, usate, adesso);
+    if (chiavi?.oddspapi) raccolta.crediti.oddspapi = { usate: spese, rimaste: limite - usate };
+    return raccolta;
+  }
 
-  // 4. Quote, una partita alla volta, finché bastano le richieste.
+  // 4. Quote OddsPapi, una partita alla volta, per le partite senza quote odss, finché bastano le richieste.
   const scoperte = new Map();
   let erroriDiFila = 0;
-  for (const x of candidate) {
+  for (const x of candidate.filter((p) => !coperte.has(p))) {
     if (spese >= budget || erroriDiFila >= MAX_ERRORI_QUOTE) {
       scoperte.set(x.c.competizione, (scoperte.get(x.c.competizione) ?? 0) + 1);
       continue;
     }
     await pausa(pausaMs ?? P.pausaOddsPapiMs);
     let bookmaker;
-    spendi();
+    spese++; usate++;
     try {
       bookmaker = await fonti.oddspapi.quote(x.f.id, opz);
       erroriDiFila = 0;

@@ -275,6 +275,10 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
   // league), squadre abbinate con le tabelle del basket, partite femminili fuori. Un campionato senza partite su odss
   // (o tutti, se odss non risponde) torna a The Odds API.
   const daOdss = new Map();
+  // Campionati coperti solo in parte da odss: The Odds API riempie le partite mancanti (mai sopra odss).
+  const parziali = new Set();
+  const stati = new Map();
+  const statoDi = (c) => { if (!stati.has(c.id)) stati.set(c.id, statoCampionato(c, storici.get(c.id), data, erroriGiro)); return stati.get(c.id); };
   if (Object.hasOwn(chiavi, 'odss')) {
     for (const c of tuttiConEventi) {
       const o = await eventiOdssSport({
@@ -295,17 +299,19 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
       if (storti) errore('odss-api', `${plurale(storti, 'handicap scartato', 'handicap scartati')}: linea della casa con il verso opposto al vincente (${c.competizione})`);
       if (conQuote.length) {
         daOdss.set(c.id, conQuote);
-        if (conQuote.length < nostri.length) erroriGiro.push(`Quote ${c.competizione}: ${nostri.length - conQuote.length} partite su ${nostri.length} non trovate su odss-api, senza quote`);
+        if (conQuote.length < nostri.length) {
+          parziali.add(c.id);
+          erroriGiro.push(`Quote ${c.competizione}: ${nostri.length - conQuote.length} partite su ${nostri.length} non trovate su odss-api, quote da The Odds API`);
+        }
       } else {
         erroriGiro.push(`Quote ${c.competizione}: nessuna partita su odss-api, quote da The Odds API`);
       }
     }
   }
   for (const c of tuttiConEventi.filter((x) => daOdss.has(x.id))) {
-    const stato = statoCampionato(c, storici.get(c.id), data, erroriGiro);
-    partiteCampionato({ c, eventi: daOdss.get(c.id), stato, data, ora, errore, raccolta, fonte: 'odss-api' });
+    partiteCampionato({ c, eventi: daOdss.get(c.id), stato: statoDi(c), data, ora, errore, raccolta, fonte: 'odss-api' });
   }
-  const conEventi = tuttiConEventi.filter((c) => !daOdss.has(c.id));
+  const conEventi = tuttiConEventi.filter((c) => !daOdss.has(c.id) || parziali.has(c.id));
   if (!conEventi.length) {
     raccolta.crediti.rimasti = rimastiOra;
     return raccolta;
@@ -334,9 +340,10 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
       errore(`The Odds API (${c.competizione})`, e);
       continue;
     }
-    const eventi = (quote.eventi ?? []).filter((e) => e.casa && e.trasferta && Number.isFinite(Date.parse(e.inizio)) && dentro(e));
-    const stato = statoCampionato(c, storici.get(c.id), data, erroriGiro);
-    partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta });
+    const giaOdss = daOdss.get(c.id) ?? [];
+    const coperta = (e) => giaOdss.some((x) => x.id === e.id || (x.casa === e.casa && x.trasferta === e.trasferta));
+    const eventi = (quote.eventi ?? []).filter((e) => e.casa && e.trasferta && Number.isFinite(Date.parse(e.inizio)) && dentro(e) && !coperta(e));
+    partiteCampionato({ c, eventi, stato: statoDi(c), data, ora, errore, raccolta });
   }
   return raccolta;
 }

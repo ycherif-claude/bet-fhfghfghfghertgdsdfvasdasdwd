@@ -160,3 +160,16 @@ test('workflow: ODSS_API_KEY agli step della raccolta NBA e basket', () => {
   assert.ok(step.includes('npm run raccolta-nba'));
   assert.ok(step.includes('npm run raccolta-basket'));
 });
+
+test('basket: campionato coperto solo in parte da odss → The Odds API per le partite che mancano, mai sopra odss', async () => {
+  const f = fetchOdss({ 'basket|moneyline,ah,ou': [righe({ casa: 'Real Madrid', trasferta: 'Barcelona', inizio: '2026-10-21T18:45:00Z', league: 'Euroleague' })] });
+  const due = { basketball_euroleague: [...EL.basketball_euroleague, { id: 'y', casa: 'Olimpia Milano', trasferta: 'Virtus Bologna', inizio: '2026-10-21T19:00:00Z' }] };
+  const fo = fontiBasket({ fetch: f, eventi: due });
+  const r = await eseguiRaccoltaBasket({ data: '2026-10-21', adesso, fonti: fo, chiavi: { oddsApi: 'K', odss: CHIAVE }, dirData: temp(), pausaMs: 0 });
+  assert.ok(fo.chiamate.includes('quote basketball_euroleague'));
+  const v = (p) => r.partite.find((x) => x.partita === p).mercati[0];
+  assert.equal(v('Real Madrid - FC Barcelona').fonteQuota, 'mediana di 4 bookmaker (odss-api)');
+  assert.equal(v('Olimpia Milano - Virtus Bologna').fonteQuota, 'mediana di 3 bookmaker (The Odds API)');
+  assert.equal(r.partite.length, 2);
+  assert.ok(r.erroriGiro.some((e) => /Eurolega: 1 partite su 2 non trovate su odss-api, quote da The Odds API/.test(e)), r.erroriGiro.join(' | '));
+});
