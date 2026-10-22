@@ -13,6 +13,7 @@ import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
+import { costruisciSchedinePronostici } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 import { leggiAvvisiFonti } from '../registro/avvisi-fonti.js';
 
@@ -218,10 +219,20 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     pronostici.sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
     giornata.pronostici = pronostici;
   }
+  // Doppie e triple di pronostici (idea 4): restano quelle già pubblicate con una partita iniziata; le altre
+  // si rifanno dai pronostici migliori delle partite non iniziate, senza le partite già usate.
+  const t = adesso.getTime();
+  const tenute = (Array.isArray(esistente?.schedinePronostici) ? esistente.schedinePronostici : [])
+    .filter((s) => oggetto(s) && Array.isArray(s.gambe) && s.gambe.some((x) => Date.parse(x?.inizio) <= t));
+  const occupate = new Set(tenute.flatMap((s) => s.gambe.map((x) => x?.idPartita)));
+  const schedinePronostici = [...tenute, ...costruisciSchedinePronostici(pronostici.filter((p) => Date.parse(p.inizio) > t), {
+    data: oggi, prova, escluse: occupate, max: CONFIG.pronostici.schedine.max - tenute.length,
+  })];
+  if ('pronostici' in giornata || schedinePronostici.length) giornata.schedinePronostici = schedinePronostici;
   fs.mkdirSync(cartella, { recursive: true });
   scriviJson(file, giornata);
   // Istantanea dei pronostici pubblicati: il registro li chiude da qui, anche senza la riga della raccolta.
-  salvaIstantanea(dirData, oggi, pronostici, adesso);
+  salvaIstantanea(dirData, oggi, pronostici, adesso, schedinePronostici);
   return { scritto: true, giornata };
 }
 

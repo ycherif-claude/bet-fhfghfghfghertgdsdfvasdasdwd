@@ -130,6 +130,44 @@ export function messaggiPronostici({ giornate, inviate, oggi }) {
   return out;
 }
 
+// ---- Doppie e triple di pronostici (idea 4) ----
+const schedinePronostici = (giornata) => (Array.isArray(giornata?.schedinePronostici)
+  ? giornata.schedinePronostici.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+const NOME_SCHEDINA = { doppia: 'Doppia', tripla: 'Tripla' };
+
+// Testo delle schedine: quota totale, probabilità combinata prudente e gambe (quota minima "da verificare").
+export function testoSchedinePronostici(lista, data, { nuove = false } = {}) {
+  const prova = lista.some((s) => s.prova === true);
+  const titolo = `${prova ? '🧪' : '🎟️'} <b>${nuove ? 'Nuove doppie' : 'Doppie'} e triple dei pronostici, ${giornoMese(data)}</b>${prova ? ' (PROVA – non giocare)' : ''}`;
+  const blocchi = lista.map((s, i) => [
+    `${i + 1}. <b>${NOME_SCHEDINA[s.tipo] ?? 'Schedina'}</b> · quota ${virgola(s.quota)} · probabilità prudente ${percentuale(s.probCombinata)}${s.prova === true ? ` · ${html(s.etichetta ?? 'PROVA – non giocare')}` : ''}`,
+    ...s.gambe.map((x) => {
+      const ora = Number.isFinite(Date.parse(x.inizio)) ? ` · ${oraRoma(new Date(x.inizio))}` : '';
+      return `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}${ora}: SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} @${virgola(x.quota)}${x.quotaDaVerificare ? ' (quota minima, da verificare su bet365)' : ''}`;
+    }),
+  ].join('\n'));
+  return [titolo, ...blocchi, 'Fuori dal bankroll: non contano finché non le giochi davvero.'].join('\n\n');
+}
+
+// Esito di ogni schedina, una volta per schedina ed esito.
+export function messaggiSchedinePronostici({ giornate, inviate }) {
+  const out = [];
+  for (const x of giornate) {
+    for (const s of schedinePronostici(x)) {
+      if (!s.esito) continue;
+      const chiave = `${x.data}|schedina-esito|${s.id}|${s.esito}`;
+      if (inviate.has(chiave)) continue;
+      const perse = s.gambe.filter((g) => g.esito === 'persa').length;
+      const rimborsate = s.gambe.filter((g) => g.esito === 'rimborsata').length;
+      const dettaglio = s.esito === 'vinta' ? `1 € → <b>${virgola(s.quotaFinale)} €</b>${rimborsate ? ` (${rimborsate === 1 ? '1 gamba rimborsata' : `${rimborsate} gambe rimborsate`}, quota ricalcolata)` : ''}`
+        : s.esito === 'persa' ? `${perse} ${perse === 1 ? 'pronostico sbagliato' : 'pronostici sbagliati'} su ${s.gambe.length}` : 'tutte le gambe rimborsate';
+      const nome = `${NOME_SCHEDINA[s.tipo] ?? 'Schedina'} di pronostici del ${giornoMese(x.data)}${s.prova === true ? ' (prova)' : ''}`;
+      out.push({ chiave, testo: `${s.prova === true ? '🧪' : '🎟️'} ${nome}: ${ESITO[s.esito] ?? s.esito}, ${dettaglio}\n${s.gambe.map((g) => `   ${g.esito === 'vinta' ? '✅' : g.esito === 'persa' ? '❌' : g.esito === 'rimborsata' ? '↩️' : '•'} ${html(g.partita)}: ${html(g.testo ?? g.selezione)}`).join('\n')}` });
+    }
+  }
+  return out;
+}
+
 const multipleBonus = (giornata) => (Array.isArray(giornata?.multipleBonus) ? giornata.multipleBonus.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
 
 // Esito delle multiple bonus, una volta per multipla.
@@ -220,6 +258,18 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       aggiungi(`${oggi}|avviso-pronostico|${p.idPartita}|${x.mercato}|${x.selezione}`,
         `⚠️ <b>Attenzione pronostico</b>: ${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>\nSÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)}: ${html(x.avviso)}${piede}`);
     }
+  }
+
+  // 1c. Doppie e triple dei pronostici (idea 4): un messaggio la prima volta, poi solo le nuove.
+  const schedine = schedinePronostici(delGiorno);
+  const nuoveSchedine = schedine.filter((s) => !inviate.has(`${oggi}|schedina|${s.id}`));
+  if (nuoveSchedine.length) {
+    const prima = !inviate.has(`${oggi}|schedine-pronostici`);
+    out.push({
+      chiave: prima ? `${oggi}|schedine-pronostici` : `${oggi}|schedine-pronostici|${hash(nuoveSchedine.map((s) => s.id).join(','))}`,
+      testo: testoSchedinePronostici(nuoveSchedine, oggi, { nuove: !prima }) + piede,
+      segna: [...(prima ? [] : [`${oggi}|schedine-pronostici`]), ...nuoveSchedine.map((s) => `${oggi}|schedina|${s.id}`)],
+    });
   }
 
   // 2. Cambi di stato (giro serale e controlli prima delle partite), una volta per stato e controllo.
@@ -463,6 +513,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
+  lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,

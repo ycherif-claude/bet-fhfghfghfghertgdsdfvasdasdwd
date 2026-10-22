@@ -346,6 +346,23 @@ export function renderMultiplaBonus(mb) {
   );
 }
 
+// Doppie e triple di pronostici (idea 4): quota totale, probabilità combinata prudente, gambe ed esito.
+// Non sono giocate: non entrano nel bankroll.
+const NOME_SCHEDINA = { doppia: 'Doppia', tripla: 'Tripla' };
+export function renderSchedinaPronostici(s) {
+  const esito = s.esito ? `${ESITO_MB[s.esito] ?? s.esito}${s.esito === 'vinta' && numero(s.quotaFinale) ? `: 1 € → ${fmtQuota.format(s.quotaFinale)} €` : ''}` : 'in attesa';
+  return el('article', { class: 'scheda' },
+    s.prova === true ? el('p', { class: 'prova' }, s.etichetta ?? 'PROVA – non giocare') : null,
+    el('h3', {}, `${NOME_SCHEDINA[s.tipo] ?? 'Schedina'} (${s.gambe.length} pronostici)`),
+    el('p', {}, el('strong', {}, `Quota ${fmtQuota.format(s.quota)}`), ` · probabilità prudente ${percento(s.probCombinata)}`),
+    el('ul', {}, s.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): SÌ ${g.testo ?? `${g.mercato}: ${g.selezione}`} @ ${fmtQuota.format(g.quota)}`,
+      g.quotaDaVerificare ? el('span', { class: 'da-verificare' }, ' (quota minima, da verificare su bet365)') : '',
+      g.esito ? ` · ${g.esito === 'vinta' ? 'giusto' : g.esito === 'persa' ? 'sbagliato' : g.esito}` : ''))),
+    el('p', {}, el('strong', {}, `Esito: ${esito}`)),
+    el('p', { class: 'meta' }, 'Fuori dal bankroll: non conta finché non la giochi davvero.'),
+  );
+}
+
 // Una giocata con dati rotti non deve bloccare le altre: al posto della scheda
 // compare un piccolo riquadro d'errore con il suo id.
 export function schedaSicura(id, crea) {
@@ -437,6 +454,9 @@ function avvia(dati) {
       ...(lp.length ? [el('h2', {}, 'Pronostici di oggi'), el('p', { class: 'meta' }, SPIEGAZIONE_PRONOSTICI), ...lp.map((x) => schedaSicura(x?.idPartita, () => renderPronostici(x)))] : []),
     );
   }
+  const sch = document.getElementById('schedine-pronostici');
+  const ls = Array.isArray(dati.oggi.giornata?.schedinePronostici) ? dati.oggi.giornata.schedinePronostici : [];
+  if (sch) sch.replaceChildren(...(ls.length ? [el('h2', {}, 'Doppie e triple'), el('p', { class: 'meta' }, 'Dai pronostici migliori di partite diverse, quota totale fra 1,50 e 2,00. Senza quota si usa la quota minima: controllala su bet365.'), ...ls.map((x) => schedaSicura(x?.id, () => renderSchedinaPronostici(x)))] : []));
   const bonus = document.getElementById('multiple-bonus');
   const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

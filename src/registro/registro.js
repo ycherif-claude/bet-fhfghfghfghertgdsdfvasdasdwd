@@ -24,6 +24,7 @@ import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
 import { leggiIstantanea, fileIstantanea, GIORNI_ESITO_PRONOSTICI } from '../regole/pronostici.js';
+import { aggiornaEsitiSchedine } from '../regole/schedine-pronostici.js';
 
 // 4 giorni: i CSV di football-data.co.uk (campionati che ESPN non copre) si aggiornano due volte a settimana.
 const GIORNI = 4;
@@ -197,7 +198,10 @@ async function chiudiPronostici({ dirData, data, adesso, f, cache, errori, espn,
       errori.push(`Pronostici del ${data}: ${partita} senza esito dopo ${GIORNI_ESITO_PRONOSTICI} giorni (partita non trovata nella fonte degli esiti)`);
     }
   }
-  if (nuovi || ist.daGiornata) {
+  // Doppie e triple (idea 4): esito dalle gambe, che sono pronostici di questa istantanea.
+  const esitiRighe = new Map(ist.pronostici.filter((r) => r.esito).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
+  const schedineCambiate = aggiornaEsitiSchedine(ist.schedine, esitiRighe);
+  if (nuovi || ist.daGiornata || schedineCambiate) {
     const { daGiornata, ...resto } = ist;
     scrivi(fileIstantanea(dirData, data), { ...resto, aggiornataAlle: isoRoma(adesso) });
   }
@@ -245,6 +249,7 @@ export function aggiornaPronostici(dirData, data, righe) {
       if (e && x.esito !== e) { x.esito = e; cambiato = true; }
     }
   }
+  if (aggiornaEsitiSchedine(g.schedinePronostici, esiti)) cambiato = true;
   if (cambiato) scrivi(file, g);
   return cambiato;
 }

@@ -178,8 +178,9 @@ export function righeIstantanea(pronosticiGiornata) {
 }
 
 // Scrive l'istantanea dei pronostici pubblicati. I pronostici delle partite già iniziate che c'erano
-// prima restano: una nuova scrittura non li cancella.
-export function salvaIstantanea(dirData, data, pronosticiGiornata, adesso) {
+// prima restano: una nuova scrittura non li cancella. `schedine` (idea 4): le doppie e triple della giornata;
+// senza, restano quelle di prima.
+export function salvaIstantanea(dirData, data, pronosticiGiornata, adesso, schedine = undefined) {
   const file = fileIstantanea(dirData, data);
   const prima = leggiFile(file);
   const nuove = righeIstantanea(pronosticiGiornata);
@@ -189,7 +190,8 @@ export function salvaIstantanea(dirData, data, pronosticiGiornata, adesso) {
   const pronostici = [...tenute, ...nuove];
   if (!pronostici.length && !prima) return false;
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, `${JSON.stringify({ data, salvataAlle: adesso.toISOString(), pronostici }, null, 2)}
+  const conSchedine = Array.isArray(schedine) ? schedine : Array.isArray(prima?.schedine) ? prima.schedine : null;
+  fs.writeFileSync(file, `${JSON.stringify({ data, salvataAlle: adesso.toISOString(), pronostici, ...(conSchedine ? { schedine: conSchedine } : {}) }, null, 2)}
 `);
   return true;
 }
@@ -201,7 +203,8 @@ export function leggiIstantanea(dirData, data) {
   if (ist && Array.isArray(ist.pronostici)) return { ...ist, data: ist.data ?? data };
   const g = leggiFile(path.join(dirData, 'giornate', `${data}.json`));
   const righe = righeIstantanea(g?.pronostici);
-  return righe.length ? { data, daGiornata: true, pronostici: righe } : null;
+  const schedine = Array.isArray(g?.schedinePronostici) ? g.schedinePronostici : null;
+  return righe.length ? { data, daGiornata: true, pronostici: righe, ...(schedine ? { schedine } : {}) } : null;
 }
 
 const GIORNO = 86400000;

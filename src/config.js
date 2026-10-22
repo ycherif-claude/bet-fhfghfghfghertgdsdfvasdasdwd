@@ -164,6 +164,9 @@ export const CONFIG = congela({
     // Pinnacle (o del consenso) è ≥ probMinima e la quota è ≥ margineQuota × quota minima. Il modello da solo
     // perde contro Pinnacle (backtest): una quota "alta" di solito vuol dire che il mercato non è d'accordo.
     margineQuota: 1.05,
+    // Doppie e triple di pronostici [utente, 22/10/2026, idea 4]: dai pronostici migliori di partite diverse,
+    // fino a `max` schedine da 2 o 3 pronostici con quota totale fra quotaMin e quotaMax.
+    schedine: { max: 3, gambeMin: 2, gambeMax: 3, quotaMin: 1.5, quotaMax: 2 },
     soglie: {
       calcio: {
         '1X2|1': 0.7,
