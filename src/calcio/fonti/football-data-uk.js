@@ -59,7 +59,16 @@ export function quoteFootballData(r) {
     pinnacleChiusuraOU: gruppo('PC>2.5', 'PC<2.5'),
     mediaOU: gruppo('Avg>2.5', 'Avg<2.5'),
     maxOU: gruppo('Max>2.5', 'Max<2.5'),
+    // Bookmaker con licenza ADM presenti in tutte le stagioni: bet365 e bwin.
+    bet3651x2: gruppo('B365H', 'B365D', 'B365A'),
+    bwin1x2: gruppo('BWH', 'BWD', 'BWA'),
+    bet365OU: gruppo('B365>2.5', 'B365<2.5'),
   };
+}
+
+// Tiri e tiri in porta (per la prova sul passato).
+export function tiriFootballData(r) {
+  return { tiriC: numero(r.HS), tiriT: numero(r.AS), tiriPortaC: numero(r.HST), tiriPortaT: numero(r.AST) };
 }
 
 export { converti as partitaFootballData };

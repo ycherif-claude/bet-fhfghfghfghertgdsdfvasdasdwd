@@ -51,3 +51,21 @@ Proposte (da approvare, non ancora applicate):
 2. Il value allora può venire solo dal prezzo: un bookmaker ADM che paga più della quota equa di Pinnacle.
    Serve salvare le quote di ogni bookmaker (oggi si usa la mediana, sempre sotto la quota equa).
 3. Il modello resta per i mercati senza Pinnacle (cartellini, angoli, primo tempo...), che il registro misura in queste settimane.
+
+## Metodo appreso (calcio, 1X2 e Under/Over 2.5)
+
+`npm run taratura-appreso -- <cartella dei CSV>`, risultati in `data/taratura/appreso.json`.
+
+Per ogni esito una regressione logistica impara dalle **ultime 2 stagioni** quanto valgono la probabilità di
+Pinnacle, il modello Dixon-Coles, la forma (tiri in porta, gol) e la quota migliore tra bet365 e bwin. Si gioca
+dove probabilità appresa × quota ADM − 1 ≥ soglia, al massimo una giocata per mercato e partita.
+Penalità e soglia scelte solo sul 2023/24; verifica una volta sola su 2024/25 e 2025/26.
+
+- Previsioni: log-loss 0,6196 contro 0,6197 di Pinnacle. Il metodo impara a stare sul mercato, non oltre.
+- Giocate di verifica (soglia 2%): **3.244 giocate, rendimento +0,9% ± 2,6%, CLV −1,9%**
+  (2024/25 +2,0%, 2025/26 −2,1%). Quasi tutte sul pareggio (2.509).
+- Senza modello (solo quota ADM contro Pinnacle equa) si perde: −6% con soglia 2%.
+
+Il metodo appreso passa da −25% (regole di oggi) a circa pari, ma un guadagno vero non c'è: il rendimento è
+dentro l'errore e il CLV è negativo. Con le sole quote del mattino e i dati dei CSV non si trova un vantaggio
+stabile su Pinnacle in questi mercati.

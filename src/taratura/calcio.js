@@ -10,7 +10,7 @@ import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { COMPETIZIONI } from '../calcio/competizioni.js';
 import { leggiCsv } from '../calcio/csv.js';
-import { partitaFootballData, quoteFootballData } from '../calcio/fonti/football-data-uk.js';
+import { partitaFootballData, quoteFootballData, tiriFootballData } from '../calcio/fonti/football-data-uk.js';
 import { lambda, matrice, stimaForze } from '../calcio/modelli/gol.js';
 import { calibrazione, confronto, media, miscela, perdita, simulaGiocate } from './metriche.js';
 
@@ -30,7 +30,7 @@ export function caricaLega(cartella, codice, stagioni) {
     const righe = [];
     for (const r of leggiCsv(readFileSync(f, 'utf8'))) {
       const p = partitaFootballData(r);
-      if (p) righe.push({ ...p, stagione: s, quote: quoteFootballData(r) });
+      if (p) righe.push({ ...p, ...tiriFootballData(r), stagione: s, quote: quoteFootballData(r) });
     }
     out.set(s, righe);
   }

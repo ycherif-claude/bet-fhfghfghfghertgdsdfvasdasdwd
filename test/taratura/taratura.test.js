@@ -63,3 +63,19 @@ test('Elo: primaDi vede i punteggi prima dell\'aggiornamento, partita per partit
   assert.ok(visti[1][0] > 1500 && visti[1][1] < 1500);
   assert.ok(elo.get('X').tot > visti[1][0]);
 });
+
+test('regressione logistica: ritrova la relazione e prevede probabilità coerenti', async () => {
+  const { addestra } = await import('../../src/taratura/regressione.js');
+  const X = [];
+  const y = [];
+  let s = 1;
+  const caso = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+  for (let i = 0; i < 4000; i++) {
+    const x = caso() * 4 - 2;
+    X.push([x]);
+    y.push(caso() < 1 / (1 + Math.exp(-(0.5 + 1.5 * x))) ? 1 : 0);
+  }
+  const m = addestra(X, y, { l2: 0.01 });
+  assert.ok(Math.abs(m.prevedi([0]) - 1 / (1 + Math.exp(-0.5))) < 0.04);
+  assert.ok(m.prevedi([2]) > 0.9 && m.prevedi([-2]) < 0.15);
+});

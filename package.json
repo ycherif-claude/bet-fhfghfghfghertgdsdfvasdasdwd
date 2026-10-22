@@ -22,6 +22,7 @@
     "build": "node src/build/costruisci-sito.js",
     "serve": "node scripts/serve.js",
     "taratura-tennis": "node src/taratura/tennis.js",
-    "taratura-calcio": "node src/taratura/calcio.js"
+    "taratura-calcio": "node src/taratura/calcio.js",
+    "taratura-appreso": "node src/taratura/appreso.js"
   }
 }
