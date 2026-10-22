@@ -82,6 +82,7 @@ nav a { color: var(--accento); }
 details { margin-top: 8px; }
 summary { cursor: pointer; color: var(--accento); }
 .vuoto { color: var(--testo-tenue); }
+.avviso-pronostico { color: var(--attesa); font-weight: 600; }
 .pronostico-migliore { font-size: 1.05em; border-left: 3px solid var(--accento); padding-left: 10px; list-style: none; }
 
 .segnatura { flex-basis: 100%; margin-top: 4px; }

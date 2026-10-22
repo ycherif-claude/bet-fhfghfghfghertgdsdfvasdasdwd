@@ -1,4 +1,5 @@
-// Fase 3: controllo prima di ogni partita con una giocata. Action controlli.yml, ogni 10 minuti sulla carta
+// Fase 3: controllo prima di ogni partita con una giocata (e, idea 3, con un pronostico migliore del calcio:
+// solo le formazioni, con un avviso sul pronostico, mai Claude). Action controlli.yml, ogni 10 minuti sulla carta
 // (in pratica ogni 30-43, per questo le finestre di CONFIG.controlli.finestre sono larghe):
 // formazioni (ESPN), ritiri e quote dell'ultimo momento; se non cambia niente la giocata è Confermata,
 // se cambia qualcosa va In revisione e, nei limiti (2 al giorno), si avvia Claude; senza Claude valgono
@@ -20,6 +21,7 @@ import { CAMPIONATI_ESPN, espn, inElenco } from './espn.js';
 import { quoteFresche, squadreDi, trovaEvento } from './quote.js';
 import { eseguiEsitiRapidi } from '../esiti/rapidi.js';
 import { raccoglitorePrePartita } from '../registro/chiusure.js';
+import { bloccoEspn } from '../calcio/fonti/http.js';
 
 const K = CONFIG.controlli;
 const MIN = 60000;
@@ -115,6 +117,89 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
   return { pronta: true, fuori, incerti, nota };
 }
 
+// ---- Pronostici (idea 3, utente 22/10/2026): formazioni delle partite con un pronostico migliore ----
+// Solo regole fisse, mai Claude, nessun cambio alle giocate: il pronostico riceve `avviso` e Telegram lo
+// manda una volta sola. Nel registro dei controlli: `pronostici[idPartita] = { esito, motivo, pronostico, alle }`
+// con esito 'avviso' | 'ok' | 'non-controllata'.
+export const FORMAZIONE_NON_CONTROLLATA = 'formazione non controllata';
+
+// Squadre su cui punta il pronostico: casa, trasferta o tutte e due (12, Over: nessuna squadra in particolare,
+// un giocatore chiave fuori in una qualunque delle due può pesare).
+export function latiPronostico(mercato, selezione) {
+  const k = `${mercato}|${selezione}`;
+  if (['1X2|1', 'Doppia chance|1X'].includes(k) || mercato === 'Under/Over casa 0.5') return ['casa'];
+  if (['1X2|2', 'Doppia chance|X2'].includes(k) || mercato === 'Under/Over trasferta 0.5') return ['trasferta'];
+  return ['casa', 'trasferta'];
+}
+
+// Esito del controllo di un pronostico dalle formazioni (già ristrette alle squadre del pronostico).
+function esitoPronostico(form) {
+  if (!form) return { esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (competizione senza formazioni su ESPN)` };
+  if (!form.pronta) return { esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (formazioni non uscite)` };
+  if (/non trovata|non disponibili/.test(form.nota ?? '')) return { esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (${form.nota})` };
+  const parti = [];
+  if (form.fuori.length) parti.push(`giocatore chiave non titolare: ${form.fuori.join(', ')}`);
+  if (form.incerti?.length) parti.push(`giocatore chiave non identificabile con certezza nella formazione: ${form.incerti.join(', ')}`);
+  if (!parti.length) return { esito: 'ok', motivo: form.nota };
+  // Solo incerti: "da verificare" (come per le giocate, mai una conclusione da soli).
+  const avviso = form.fuori.length ? parti.join('; ') : `da verificare: ${parti.join('; ')}`;
+  return { esito: 'avviso', motivo: avviso, avviso };
+}
+
+// Un passaggio sui pronostici migliori del calcio nella loro finestra. Scrive nel registro `reg` e restituisce
+// gli avvisi nuovi { idPartita → avviso }.
+async function controllaPronostici({ giornata, notizie, reg, fonti, adesso, ora, errore }) {
+  const avvisi = new Map();
+  const partite = (Array.isArray(giornata.pronostici) ? giornata.pronostici : [])
+    .filter((p) => oggetto(p) && (p.sport ?? 'calcio') === 'calcio' && Array.isArray(p.pronostici));
+  // ESPN: la stessa giornata di un campionato si chiede una volta sola per passaggio; dopo un 403 basta.
+  const cache = new Map();
+  let bloccato = false;
+  const espnMemo = {
+    ...fonti.espn,
+    partite: (campionato, d) => {
+      const k = `${campionato}|${d}`;
+      if (!cache.has(k)) cache.set(k, fonti.espn.partite(campionato, d));
+      return cache.get(k);
+    },
+  };
+  // Il registro si tocca solo quando c'è una decisione: mentre si aspetta non si riscrive niente.
+  const fatti = reg.pronostici ?? {};
+  for (const p of partite) {
+    const x = p.pronostici.find((y) => oggetto(y) && y.migliore === true);
+    if (!x || fatti[p.idPartita]) continue;
+    const pronostico = `${x.mercato}|${x.selezione}`;
+    const voce = { sport: 'calcio', competizione: p.competizione, partita: p.partita, idPartita: p.idPartita, inizio: p.inizio };
+    const m = momento(voce, adesso);
+    if (m === 'presto') continue;
+    const segna = (r) => { reg.pronostici = { ...reg.pronostici, [p.idPartita]: { esito: r.esito, motivo: r.motivo, pronostico, alle: ora } }; };
+    if (m === 'iniziata') { segna({ esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (${MOTIVO_TARDI})` }); continue; }
+    const chiavi = chiaviDi(notizie, p.idPartita);
+    const lati = latiPronostico(x.mercato, x.selezione);
+    const ristrette = Object.fromEntries(['casa', 'trasferta'].map((l) => [l, lati.includes(l) ? chiavi[l] : []]));
+    if (!ristrette.casa.length && !ristrette.trasferta.length) {
+      segna({ esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (giocatori chiave non indicati dal giro del mattino)` });
+      continue;
+    }
+    const ultimo = m === 'ultimo';
+    let form;
+    try {
+      if (bloccato) throw new Error('ESPN bloccato in questo passaggio');
+      form = await formazioniVoce(voce, { giocatoriChiave: { [p.idPartita]: ristrette } }, { espn: espnMemo }, adesso);
+    } catch (e) {
+      if (bloccoEspn(e)) bloccato = true;
+      if (!/ESPN bloccato in questo passaggio/.test(e?.message ?? '')) errore('ESPN, pronostici', e);
+      if (ultimo) segna({ esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (ESPN non raggiungibile)` });
+      continue;
+    }
+    if (form && !form.pronta && !ultimo) continue;
+    const r = esitoPronostico(form);
+    segna(r);
+    if (r.avviso) avvisi.set(p.idPartita, r.avviso);
+  }
+  return avvisi;
+}
+
 // Esito di una voce dai controlli: { esito, problemi, dettagli }.
 export function valuta(voce, formazioni, quote) {
   const problemi = [];
@@ -186,7 +271,9 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   const errori = [];
   // Senza l'ora: lo stesso errore in più passaggi finisce una volta sola fra gli errori della giornata.
   const errore = (fonte, e) => { const m = `Controlli prima delle partite (${fonte}): ${e?.message ?? e}`; if (!errori.includes(m)) errori.push(m); };
-  if (!giornata || !Array.isArray(giornata.giocate)) return { cambiate: 0, daMandareAClaude: [], errori };
+  const conPronostici = Array.isArray(giornata?.pronostici) && giornata.pronostici.length > 0;
+  if (!giornata || (!Array.isArray(giornata.giocate) && !conPronostici)) return { cambiate: 0, daMandareAClaude: [], errori };
+  const listaGiocate = Array.isArray(giornata.giocate) ? giornata.giocate : [];
   let notizie = null;
   try { notizie = leggi(f.notizie, null); } catch (e) { errore('File notizie', e); }
   const reg = leggi(f.stato, { data, voci: {}, claude: { avvii: 0, richieste: [] } });
@@ -196,7 +283,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
 
   // 1. Voci nella finestra, non ancora decise.
   const daFare = [];
-  for (const g of giornata.giocate) {
+  for (const g of listaGiocate) {
     if (!oggetto(g) || g.stato === 'annullata') continue;
     if (multiplaInCorso(g, segnate, adesso)) {
       // Una nota sola nel registro (e sulla scheda), poi la multipla non si tocca più.
@@ -272,7 +359,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
 
   // 4. Stati delle giocate.
   let cambiate = 0;
-  const giocate = giornata.giocate.map((g) => {
+  const giocate = listaGiocate.map((g) => {
     if (!oggetto(g) || g.stato === 'annullata') return g;
     if (multiplaInCorso(g, segnate, adesso)) {
       // Multipla giocata e in corso: lo stato resta quello che è, si aggiunge solo la nota (una volta).
@@ -293,12 +380,29 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
     cambiate++;
     return { ...g, ...nuovo, oraUltimoControllo: ora };
   });
+  // 5. Pronostici migliori del calcio (idea 3): solo un avviso sul pronostico, mai Claude né giocate.
+  let avvisiPronostici = new Map();
+  if (conPronostici) {
+    try {
+      avvisiPronostici = await controllaPronostici({ giornata, notizie, reg, fonti, adesso, ora, errore });
+    } catch (e) {
+      errore('Pronostici', e);
+    }
+  }
+  const pronostici = avvisiPronostici.size ? giornata.pronostici.map((p) => (!avvisiPronostici.has(p?.idPartita) ? p : {
+    ...p, pronostici: p.pronostici.map((x) => (x?.migliore === true ? { ...x, avviso: avvisiPronostici.get(p.idPartita) } : x)),
+  })) : giornata.pronostici;
+
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
   const nuoviErrori = errori.filter((e) => !erroriGiro.includes(e));
-  if (cambiate || nuoviErrori.length) scrivi(f.giornata, { ...giornata, giocate, erroriGiro: [...erroriGiro, ...nuoviErrori] });
+  if (cambiate || nuoviErrori.length || avvisiPronostici.size) {
+    scrivi(f.giornata, {
+      ...giornata, ...(Array.isArray(giornata.giocate) ? { giocate } : {}), ...(conPronostici ? { pronostici } : {}), erroriGiro: [...erroriGiro, ...nuoviErrori],
+    });
+  }
   // Solo se qualcosa è cambiato: mentre si aspettano le formazioni non si riscrive niente (niente commit a vuoto).
   if (JSON.stringify(reg) !== regPrima) scrivi(f.stato, reg);
-  return { cambiate, daMandareAClaude: nuoveRevisioni, errori };
+  return { cambiate, daMandareAClaude: nuoveRevisioni, errori, avvisiPronostici: avvisiPronostici.size };
 }
 
 // Decisioni di Claude sulle giocate in revisione: { decisioni: [{ idGiocata, stato, motivo, fonte, quotaMinima? }] }.
@@ -412,7 +516,7 @@ async function principale() {
   const claudeDisponibile = Boolean(process.env.ROUTINE_CONTROLLI_URL && process.env.ROUTINE_CONTROLLI_TOKEN);
   const r = await eseguiControlli({ dirData: 'data', adesso, chiavi, claudeDisponibile });
   for (const e of r.errori) console.log(`- ${e}`);
-  console.log(`Controlli: ${r.cambiate} giocate aggiornate`);
+  console.log(`Controlli: ${r.cambiate} giocate aggiornate, ${r.avvisiPronostici ?? 0} avvisi sui pronostici`);
   // Esiti rapidi delle giocate fatte appena finite (il mattino dopo resta la rete di sicurezza).
   await esitiRapidiNelGiro({ dirData: 'data', adesso });
   // Riga letta dal workflow per avviare la routine Claude.

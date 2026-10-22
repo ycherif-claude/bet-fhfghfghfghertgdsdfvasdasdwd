@@ -302,7 +302,9 @@ const rigaPronostico = (x) => el('li', {},
   ` · ${testoProbPronostico(x)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
   x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
   numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
-  x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '');
+  x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '',
+  // Idea 3: avviso dei controlli prima della partita (giocatore chiave non titolare o da verificare).
+  x.avviso ? el('span', { class: 'avviso-pronostico' }, ` · ⚠️ Attenzione: ${x.avviso}`) : '');
 
 // Idea 2: il migliore della partita in evidenza, gli altri (collegati) in un <details>.
 // Dati vecchi senza `migliore`: tutti in lista, come prima.

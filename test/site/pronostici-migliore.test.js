@@ -41,3 +41,10 @@ test('sito: senza altri pronostici niente details; dati vecchi senza migliore: t
   assert.ok(!tutti(vecchi).some((n) => n.tag === 'details'));
   assert.equal(tutti(vecchi).filter((n) => n.tag === 'li').length, 2);
 });
+
+test('sito (idea 3): l\'avviso dei controlli compare sul pronostico', () => {
+  const s = renderPronostici(partita([{ ...x('Vince A', true), avviso: 'giocatore chiave non titolare: Rossi' }]));
+  const span = tutti(s).find((n) => n.className === 'avviso-pronostico');
+  assert.ok(span);
+  assert.match(span.testo, /Attenzione: giocatore chiave non titolare: Rossi/);
+});

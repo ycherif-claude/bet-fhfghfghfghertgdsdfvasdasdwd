@@ -3,6 +3,8 @@ name: Controlli prima delle partite
 # Fase 3: ogni 10 minuti controlla le giocate di oggi nella loro finestra (formazioni ESPN, ritiri,
 # quote dell'ultimo momento) e aggiorna lo stato. Se una giocata va in revisione e c'è posto
 # (al massimo 2 al giorno), avvia la routine Claude "Controllo pre-partita".
+# Controlla anche le formazioni delle partite con un pronostico migliore del calcio (stesse finestre):
+# un giocatore chiave non titolare mette solo un avviso sul pronostico, mai la routine Claude.
 on:
   schedule:
     - cron: '*/10 * * * *'

@@ -213,6 +213,15 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
     }
   }
 
+  // 1b. Avvisi dei controlli sui pronostici (idea 3): giocatore chiave non titolare o da verificare, una volta sola.
+  for (const p of pronosticiDi(delGiorno)) {
+    for (const x of p.pronostici) {
+      if (!x || typeof x.avviso !== 'string' || !x.avviso) continue;
+      aggiungi(`${oggi}|avviso-pronostico|${p.idPartita}|${x.mercato}|${x.selezione}`,
+        `⚠️ <b>Attenzione pronostico</b>: ${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>\nSÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)}: ${html(x.avviso)}${piede}`);
+    }
+  }
+
   // 2. Cambi di stato (giro serale e controlli prima delle partite), una volta per stato e controllo.
   //    In prova no: con decine di giocate sarebbero decine di messaggi al giorno.
   for (const g of prova ? [] : giocate) {

@@ -6,6 +6,8 @@ Hai poco tempo: la partita inizia di solito fra 50 e 90 minuti. Il primo passagg
 
 Tutto quello che scrivi in file o messaggi è in italiano.
 
+I **pronostici** sì/no non arrivano mai a questa routine: per quelli i controlli mettono solo un avviso sul pronostico (giocatore chiave non titolare o da verificare), con regole fisse. Non toccarli.
+
 ## Regole che valgono sempre
 
 - Lavora su `main`. Non usare altri rami.
