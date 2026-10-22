@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { CONFIG } from '../config.js';
 import { selezionaGiocate } from '../regole/selezione.js';
 import { statoBankroll } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
@@ -98,10 +99,11 @@ const idPartiteGiocata = (g) => (Array.isArray(g.gambe) ? g.gambe.map((x) => x.i
 
 function calcolaAnteprima(raccolta, stato, adesso) {
   if (!raccolta) return { partite: [], righe: [] };
-  const { candidati, preScartate } = costruisciCandidati(raccolta, null, { adesso });
+  const prova = inProva(giornataDi(adesso));
+  const { candidati, preScartate } = costruisciCandidati(raccolta, null, { adesso, senzaScartoMercato: prova });
   const fuori = new Set(preScartate.map((s) => s.idCandidato));
   const inGara = candidati.filter((c) => !fuori.has(c.id));
-  const { giocate } = selezionaGiocate(inGara, stato);
+  const { giocate } = selezionaGiocate(inGara, stato, { prova });
   const partite = [];
   const aggiungi = (id) => { if (!partite.includes(id)) partite.push(id); };
   giocate.forEach((g) => idPartiteGiocata(g).forEach(aggiungi));
@@ -125,6 +127,9 @@ function calcolaAnteprima(raccolta, stato, adesso) {
   return { partite, righe };
 }
 
+// Vero se la giornata è dentro la modalità prova (CONFIG.prova.da – fino, estremi compresi).
+export const inProva = (data) => data >= CONFIG.prova.da && data <= CONFIG.prova.fino;
+
 export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   if (modo !== 'claude' && modo !== 'riserva') throw new Error(`Modo del giro non valido: ${modo}`);
   const oggi = giornataDi(adesso);
@@ -138,17 +143,20 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   // sport con almeno una partita; si validano sulla raccolta unita. La riserva le ignora.
   const servonoNotizie = raccolta !== null && (lette.calcio || lette.partiteSport > 0);
   const notizie = modo === 'claude' && servonoNotizie ? leggiNotizie(dirData, oggi, raccolta) : null;
+  const prova = inProva(oggi);
   const { candidati, preScartate, iniziate } = raccolta
-    ? costruisciCandidati(raccolta, notizie, { adesso })
+    ? costruisciCandidati(raccolta, notizie, { adesso, senzaScartoMercato: prova })
     : { candidati: [], preScartate: [], iniziate: 0 };
   const fuori = new Set(preScartate.map((s) => s.idCandidato));
-  const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato);
+  const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato, { prova });
 
   const giornata = {
     data: oggi,
     generataAlle: isoRoma(adesso),
     giro: modo,
     notizieControllate: notizie !== null,
+    // Modalità prova: giocate da non giocare, solo per il database della taratura.
+    ...(prova ? { prova: true } : {}),
     competizioniNonCoperte: Array.isArray(raccolta?.competizioniNonCoperte) ? raccolta.competizioniNonCoperte : [],
     candidati,
     giocate: scelta.giocate,

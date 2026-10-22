@@ -84,24 +84,28 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   // 1. Giocate del giorno: un messaggio la prima volta, poi solo le giocate nuove (per esempio il tennis della sera).
   const annunciate = new Set([...inviate].filter((k) => k.startsWith(`${oggi}|giocata|`)).map((k) => k.slice(`${oggi}|giocata|`.length)));
   const primo = !inviate.has(`${oggi}|giornata`);
+  // Modalità prova: le giocate non vanno giocate, servono al database della taratura.
+  const prova = delGiorno.prova === true;
+  const titolo = prova ? `🧪 <b>Giocate di PROVA, ${giornoMese(oggi)}</b>\nNon giocarle: servono a creare il database per tarare il sistema.` : `🎯 <b>Giocate di oggi, ${giornoMese(oggi)}</b>`;
   if (primo) {
     const testo = giocate.length
-      ? [`🎯 <b>Giocate di oggi, ${giornoMese(oggi)}</b>`, ...giocate.map((g, i) => testoGiocata(g, i + 1))].join('\n\n')
-      : `🎯 <b>Oggi, ${giornoMese(oggi)}, nessuna giocata</b>: nessun mercato ha value sufficiente.`;
+      ? [titolo, ...giocate.map((g, i) => testoGiocata(g, i + 1))].join('\n\n')
+      : `${prova ? '🧪' : '🎯'} <b>Oggi, ${giornoMese(oggi)}, nessuna giocata</b>: nessun mercato ha value${prova ? ' positivo' : ' sufficiente'}.`;
     out.push({ chiave: `${oggi}|giornata`, testo: testo + piede, segna: giocate.map((g) => `${oggi}|giocata|${g.id}`) });
   } else {
     const nuove = giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
     if (nuove.length) {
       out.push({
         chiave: `${oggi}|nuove|${hash(nuove.map((g) => g.id).join(','))}`,
-        testo: [`🌙 <b>${nuove.length === 1 ? 'Nuova giocata' : 'Nuove giocate'} di oggi</b>`, ...nuove.map((g, i) => testoGiocata(g, i + 1))].join('\n\n') + piede,
+        testo: [`🌙 <b>${nuove.length === 1 ? 'Nuova giocata' : 'Nuove giocate'} di ${prova ? 'PROVA ' : ''}oggi</b>`, ...nuove.map((g, i) => testoGiocata(g, i + 1))].join('\n\n') + piede,
         segna: nuove.map((g) => `${oggi}|giocata|${g.id}`),
       });
     }
   }
 
   // 2. Cambi di stato (giro serale e controlli prima delle partite), una volta per stato e controllo.
-  for (const g of giocate) {
+  //    In prova no: con decine di giocate sarebbero decine di messaggi al giorno.
+  for (const g of prova ? [] : giocate) {
     const etichetta = STATO_SERALE[g.stato];
     if (!etichetta) continue;
     const motivo = g.motivoStato ? `\n${html(g.motivoStato)}` : '';

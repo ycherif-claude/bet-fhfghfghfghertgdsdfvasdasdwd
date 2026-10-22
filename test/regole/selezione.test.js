@@ -242,3 +242,15 @@ test('giornataPiena: tetto ignorato, tutte le giocate 1,00 € fisse anche con i
   // Con dati non numerici niente puntate nemmeno a giornata piena.
   assert.equal(selezionaGiocate(cs, stato({ bankroll: 200, inGiocoOggi: NaN, giornataPiena: true })).giocate.length, 0);
 });
+
+test('modalità prova: ogni value positivo, fino a 60 singole; fuori prova soglia del 5% e 10 singole', () => {
+  // prob 0.54 × 1.90 = 1.026: value +2,6%, sotto la soglia normale.
+  const poco = Array.from({ length: 15 }, () => candidato({ prob: 0.54, quota: 1.90 }));
+  const normale = selezionaGiocate(poco, stato());
+  assert.equal(normale.giocate.filter((g) => g.tipo === 'singola').length, 0);
+  const prova = selezionaGiocate(poco, stato(), { prova: true });
+  assert.equal(prova.giocate.filter((g) => g.tipo === 'singola').length, 15);
+  // Value negativo resta fuori anche in prova.
+  const negativo = candidato({ prob: 0.50, quota: 1.90 });
+  assert.equal(selezionaGiocate([negativo], stato(), { prova: true }).giocate.length, 0);
+});

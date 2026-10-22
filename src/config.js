@@ -137,6 +137,9 @@ export const CONFIG = congela({
     pausaTheSportsDbMs: 6500,
     maxGiornateGiorno: 12,
   },
+  // Modalità prova [utente, 22/10/2026]: 3-4 settimane di giocate da non giocare, solo per creare il
+  // database della taratura. Ogni value positivo diventa una giocata di prova, senza lo scarto dal mercato.
+  prova: { da: '2026-10-22', fino: '2026-11-18', sogliaValue: 0.000001, massimiSingole: 60 },
   // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
   controlli: {
     // Il cron "ogni 10 minuti" di GitHub parte in realtà ogni 30-43 minuti: la finestra è larga

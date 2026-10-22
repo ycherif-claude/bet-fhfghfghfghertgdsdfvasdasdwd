@@ -59,6 +59,7 @@ export function testoAvvisi(dati, adesso = new Date()) {
   if (!oggi.disponibile) avvisi.push('Analisi di oggi non disponibile');
   else if ((giornata?.giocate ?? []).length === 0) avvisi.push('Oggi nessuna giocata con value');
   if (giornata?.esempio) avvisi.push('Dati di esempio, non sono giocate reali');
+  if (giornata?.prova) avvisi.push('Modalità prova: queste giocate non vanno giocate, servono a creare il database per tarare il sistema');
   const n = (b.daSegnare ?? []).length;
   if (n > 0) avvisi.push(n === 1 ? 'Hai 1 giocata da segnare' : `Hai ${n} giocate da segnare`);
   const nonCoperte = giornata?.competizioniNonCoperte ?? [];

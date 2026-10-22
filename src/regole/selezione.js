@@ -34,7 +34,8 @@ export const MOTIVO_DATI_BANKROLL = 'dati del bankroll non numerici';
 // inGiocoOggi: euro già in gioco oggi (segnati e proposti); -Infinity = nessun tetto (primo passaggio del serale).
 // giornataPiena: oggi è già in caso C (giro serale) → tutte le nuove giocate a puntata fissa, senza tetto.
 // Lo stop settimanale non esiste più [utente, 21/10/2026]: eventuali campi dello stop si ignorano.
-export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPiena = false }) {
+// `prova` (modalità prova): ogni value positivo e fino a CONFIG.prova.massimiSingole singole.
+export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPiena = false }, { prova = false } = {}) {
   const scartate = [];
   const scarta = (id, motivo) => scartate.push({ idCandidato: id, motivo });
 
@@ -45,7 +46,7 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPie
     const tipo = classificaTipo(c);
     if (!tipo) { scarta(c.id, 'quota fuori range'); continue; }
     const g = creaGiocata(c, tipo, bankroll);
-    const soglia = tipo === 'singola' ? CONFIG.sogliaValue : CONFIG.sogliaValueSpeciali;
+    const soglia = prova ? CONFIG.prova.sogliaValue : tipo === 'singola' ? CONFIG.sogliaValue : CONFIG.sogliaValueSpeciali;
     if (g.value < soglia - EPS) { scarta(c.id, 'value insufficiente'); continue; }
     valide.push(g);
   }
@@ -60,7 +61,8 @@ export function selezionaGiocate(candidati, { bankroll, inGiocoOggi, giornataPie
     singole.push(g);
   }
   // Tetti giornalieri: 10 singole, 2 builder.
-  const { singole: maxS, builder: maxB } = CONFIG.massimiGiornalieri;
+  const { builder: maxB } = CONFIG.massimiGiornalieri;
+  const maxS = prova ? CONFIG.prova.massimiSingole : CONFIG.massimiGiornalieri.singole;
   singole.slice(maxS).forEach((g) => scarta(g.id, 'limite giornaliero singole'));
   singole = singole.slice(0, maxS);
   const builder = valide.filter((x) => x.tipo === 'builder').sort(perValue);

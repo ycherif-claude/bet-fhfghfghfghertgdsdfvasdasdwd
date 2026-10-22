@@ -545,3 +545,16 @@ test('basket solo mercato: non si corregge, si può escludere', () => {
   eseguiGiro({ dirData: d2, adesso: ADESSO, modo: 'claude' });
   assert.ok(!leggi(d2).giocate.some((x) => x.sport === 'basket'));
 });
+
+test('modalità prova: lo scarto dal mercato non esclude più', async () => {
+  const { costruisciCandidati } = await import('../../src/giro/candidati.js');
+  const p = madridBarcellona({ mercati: [
+    { mercato: 'Vincente', selezione: 'Real Madrid', probModello: 0.85, probPinnacle: 0.6, quota: 1.9, fonteQuota: 'x', oraQuota: null, frequenzaCampionato: null },
+    { mercato: 'Vincente', selezione: 'FC Barcelona', probModello: 0.15, probPinnacle: 0.4, quota: 2.2, fonteQuota: 'x', oraQuota: null, frequenzaCampionato: null },
+  ] });
+  const normale = costruisciCandidati({ partite: [p] }, null);
+  assert.deepEqual(normale.preScartate.map((s) => s.motivo), ['stima troppo lontana dal mercato']);
+  const prova = costruisciCandidati({ partite: [p] }, null, { senzaScartoMercato: true });
+  assert.deepEqual(prova.preScartate, []);
+  assert.equal(prova.candidati.length, 1);
+});

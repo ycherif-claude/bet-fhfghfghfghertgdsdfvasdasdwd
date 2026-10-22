@@ -205,7 +205,9 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
     throw new Error(`Partita notturna già iniziata, nessun file scritto: ${iniziate.map((p) => `${p.partita} (${p.inizio})`).join(', ')}`);
   }
 
-  const { candidati, preScartate } = costruisciCandidati(serale, notizie, { adesso });
+  // Modalità prova della giornata (vedi giro.js): stesse regole larghe anche per il tennis della sera.
+  const prova = giornata.prova === true;
+  const { candidati, preScartate } = costruisciCandidati(serale, notizie, { adesso, senzaScartoMercato: prova });
   const esistenti = new Map(giornata.candidati.filter(oggetto).map((c) => [c.id, JSON.stringify(c)]));
   const idGiocate = new Set(giornata.giocate.filter(oggetto).flatMap((g) => [g.id, ...elenco(g.gambe).map((x) => x?.id)]));
   const nuovi = [];
@@ -235,14 +237,14 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
   const scartate = [...preNuove];
   // 1. Senza tetto: value, range, una giocata per partita, limiti delle singole. Le multiple si tolgono
   //    qui, prima del tetto, così non consumano il tetto giornaliero delle singole.
-  const scelta = selezionaGiocate(ammessi, { bankroll: stato.bankroll, inGiocoOggi: -Infinity });
+  const scelta = selezionaGiocate(ammessi, { bankroll: stato.bankroll, inGiocoOggi: -Infinity }, { prova });
   scartate.push(...scelta.scartate);
   // 2. Per value decrescente, una giocata alla volta: al massimo 10 singole (e speciali) nella giornata,
   //    poi il tetto giornaliero con selezionaGiocate su quella sola giocata e il residuo aggiornato:
   //    se non entra intera viene ridotta a quanto resta; se ridotta scenderebbe sotto 1 €, 1,00 € fissa
   //    (mai scartata). Giornata già piena: 1,00 € fissa senza tetto. Dati non numerici: nessuna puntata.
   const giaProposte = giornata.giocate.filter((g) => oggetto(g) && !multipla(g) && g.tipo !== 'builder').length;
-  const posti = Math.max(0, CONFIG.massimiGiornalieri.singole - giaProposte);
+  const posti = Math.max(0, (prova ? CONFIG.prova.massimiSingole : CONFIG.massimiGiornalieri.singole) - giaProposte);
   const perId = new Map(ammessi.map((c) => [c.id, c]));
   // Giocata tenuta con la puntata decisa dal secondo passaggio (ridotta o fissa se non entra intera nel residuo).
   const tenute = new Map();
@@ -251,7 +253,7 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
   for (const g of [...scelta.giocate].sort((a, b) => b.value - a.value)) {
     if (multipla(g)) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_MULTIPLA }); continue; }
     if (g.tipo !== 'builder' && singole >= posti) { scartate.push({ idCandidato: g.id, motivo: MOTIVO_LIMITE_SINGOLE }); continue; }
-    const una = selezionaGiocate([perId.get(g.id)], residuo);
+    const una = selezionaGiocate([perId.get(g.id)], residuo, { prova });
     scartate.push(...una.scartate);
     if (!una.giocate.length) continue;
     residuo = { ...residuo, inGiocoOggi: cent(residuo.inGiocoOggi + una.giocate[0].puntata.euro) };

@@ -124,21 +124,22 @@ export function valutaMercati(raccolta, notizie, { adesso = null } = {}) {
 }
 
 // Motivo di pre-scarto: esclusione delle notizie, poi scarto dal mercato (dopo la correzione); altrimenti null.
-function motivoPreScarto(v, esclusioni) {
+function motivoPreScarto(v, esclusioni, senzaScartoMercato) {
   const id = idCandidato(v.partita.idPartita, v.m.mercato, v.m.selezione);
   const escl = esclusioni.find((x) => x.idPartita === v.partita.idPartita && (!x.idCandidato || x.idCandidato === id));
   if (escl) return `notizia: ${escl.motivo}`;
   const { probModello: pm, probPinnacle: pp } = v.m;
-  if (numerico(pm) && numerico(pp) && Math.abs(pm - pp) > C.scartoMaxPinnacle + EPS) return 'stima troppo lontana dal mercato';
+  if (!senzaScartoMercato && numerico(pm) && numerico(pp) && Math.abs(pm - pp) > C.scartoMaxPinnacle + EPS) return 'stima troppo lontana dal mercato';
   return null;
 }
 
 // I posti (maxMercatiPartita per partita, maxSenzaQuotaGiorno al giorno) vanno solo ai mercati
 // non pre-scartati; quelli pre-scartati restano fra i candidati, fuori dai posti.
-export function costruisciCandidati(raccolta, notizie, { adesso = null } = {}) {
+// `senzaScartoMercato`: modalità prova, lo scarto da Pinnacle non esclude (le esclusioni delle notizie sì).
+export function costruisciCandidati(raccolta, notizie, { adesso = null, senzaScartoMercato = false } = {}) {
   const { voci, iniziate } = valutaMercati(raccolta, notizie, { adesso });
   const esclusioni = notizie?.esclusioni ?? [];
-  for (const v of voci) v.preScarto = motivoPreScarto(v, esclusioni);
+  for (const v of voci) v.preScarto = motivoPreScarto(v, esclusioni, senzaScartoMercato);
 
   // Con quota: value positivo; per partita i primi maxMercatiPartita fra i non pre-scartati.
   const scelte = [];
