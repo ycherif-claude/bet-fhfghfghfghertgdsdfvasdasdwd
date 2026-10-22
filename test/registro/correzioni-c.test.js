@@ -184,14 +184,14 @@ test('C4 giro rifatto dopo l\'inizio di una partita: i pronostici già pubblicat
 
 // ---------- C5: ESPN ----------
 
-test('C5 ESPN: intestazioni da browser (User-Agent e Accept) per ESPN, non per gli altri siti', async () => {
+test('C5 ESPN: intestazioni oneste (nessun finto browser), Accept JSON; gli altri siti invariati', async () => {
   const visti = [];
   const fetch = async (url, o) => { visti.push({ url, headers: o.headers }); return risposta({}); };
   await scarica('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=20261022', { fetch });
   await scarica('https://www.football-data.co.uk/fixtures.csv', { fetch, headers: { 'User-Agent': 'analisi-giocate' } });
-  assert.match(visti[0].headers['User-Agent'], /^Mozilla\/5\.0 .*Chrome\/\d+/);
+  assert.equal(visti[0].headers['User-Agent'], 'analisi-giocate (progetto personale)');
+  assert.doesNotMatch(JSON.stringify(visti[0].headers), /Mozilla|Chrome|Safari/);
   assert.match(visti[0].headers.Accept, /application\/json/);
-  assert.ok(visti[0].headers['Accept-Language']);
   assert.deepEqual(visti[1].headers, { 'User-Agent': 'analisi-giocate' });
 });
 

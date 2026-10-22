@@ -12,12 +12,12 @@ function host(url) {
 }
 
 // ESPN (API pubblica senza chiave) [correzione C5]: il 22/10/2026, dopo circa 2.000 richieste veloci,
-// rispondeva 403 al fetch di Node mentre curl passava ancora. Si mandano le intestazioni di un browser
-// normale; quelle passate da chi chiama hanno la precedenza.
+// rispondeva 403 per qualche tempo. Ci si presenta in modo onesto (niente finto browser) e si chiede poco:
+// un 403 non si riprova e chi chiama smette di usare ESPN per quel giro. Le intestazioni di chi chiama
+// hanno la precedenza.
 export const INTESTAZIONI_ESPN = Object.freeze({
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
-  Accept: 'application/json, text/plain, */*',
-  'Accept-Language': 'it-IT,it;q=0.9,en;q=0.8',
+  'User-Agent': 'analisi-giocate (progetto personale)',
+  Accept: 'application/json',
 });
 const eEspn = (nome) => /(^|\.)espn\.com$/i.test(nome);
 
