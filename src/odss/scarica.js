@@ -17,7 +17,7 @@ export async function scaricaOdss({
   let richieste = 0;
   let completi = 0;
   if (!budget.puo(gruppi.length - 1)) {
-    errore(`budget insufficiente (${budget.descrizione()})${suffissoBudget}`);
+    errore(`budget insufficiente (${budget.motivo()}; ${budget.descrizione()})${suffissoBudget}`);
     return { righe, richieste, ok: false, fermo: 'budget' };
   }
   let fermo = null;

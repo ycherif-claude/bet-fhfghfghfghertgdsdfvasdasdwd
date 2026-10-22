@@ -57,15 +57,26 @@ Nel repository su GitHub: Settings → Secrets and variables → Actions → New
 
 Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo nei segreti di GitHub.
 
-### Quote dei bookmaker italiani (odss-api)
+### Quote: odss-api è la fonte principale di tutti gli sport
 
-[odss-api.com](https://odss-api.com) dà le quote prematch di circa 200 bookmaker, fra cui quelli su cui hai un conto: bet365, Snai, Goldbet, Sportium e DAZN Bet (Betfair non c'è; bet365 di solito ha solo quote live, e allora manca senza errori). Secret `ODSS_API_KEY` (piano gratuito: 500 richieste ogni 30 giorni, 30 al minuto).
+[odss-api.com](https://odss-api.com) dà le quote prematch di circa 200 bookmaker, fra cui quelli su cui hai un conto: bet365, Snai, Goldbet, Sportium e DAZN Bet (Betfair non c'è; bet365 di solito ha solo quote live, e allora manca senza errori). Secret `ODSS_API_KEY` (piano gratuito: 500 richieste ogni 30 giorni, 30 al minuto). Dal 22/10/2026 è la **fonte principale delle quote di tutti gli sport e dei controlli**; le fonti di prima restano di **riserva** (le loro chiavi restano nei workflow).
 
-- **Cosa dà**: ogni mattina la raccolta su GitHub (`npm run raccolta-odss`, solo quello step riceve la chiave) scarica 1X2, doppia chance e under/over del calcio per la giornata (08:00→08:00 di Roma), di tutti i bookmaker, e salva in `data/raccolta/<data>-odss.json` le quote dei tuoi bookmaker e la probabilità senza margine (Pinnacle se c'è, altrimenti la mediana dei bookmaker). Per ogni partita l'API dà una riga per tempo (`period`: `full_time`, `1st_half`, `2nd_half`): si usa solo `full_time`; una partita senza nessuna riga `full_time` resta senza quote e finisce in `erroriGiro`. Le pagine si scorrono con `offset` (fino a `count`).
+| Sport | Mercati odss-api | Riserva (se odss non risponde, dà 401/403/429, il budget non basta o non ha la competizione) |
+|---|---|---|
+| Calcio (principali, seconde serie, coppe, campionati extra) | 1x2, dc, ou (linee 1.5, 2.5, 3.5) | The Odds API (solo le competizioni che ha) |
+| Tennis | moneyline (vincente incontro) | The Odds API |
+| Basket (Eurolega, NBL) | moneyline, ah (handicap, linea della casa), ou | The Odds API |
+| NBA | moneyline, ah, ou | SportsGameOdds |
+| Pallavolo | moneyline, ou 3.5 (totale set) | OddsPapi (anche per l'handicap set) |
+| Controlli pre-partita | gli stessi, una richiesta per passaggio | le fonti di prima |
+
+- **Regole comuni**: solo la riga della partita intera (`scope` "match", `period` "full_time"); esiti sospesi fuori; un bookmaker che dà un altro orario d'inizio (`start_time` diverso di più di un'ora) fuori; le quote dei tuoi bookmaker aggiornate da più di 6 ore fuori; exchange fuori da mediana e consenso. Quota = mediana dei bookmaker (almeno 3); probabilità di mercato = Pinnacle senza margine, altrimenti il consenso senza margine dei bookmaker ("Consenso bookmaker" sulla scheda). Le partite si abbinano per squadre (o giocatori, anche invertiti nel tennis) e orario; ambiguo → nessun abbinamento; partite femminili mai abbinate a quelle maschili. Più eventi del feed per la stessa partita si uniscono (un bookmaker con due quote diverse per lo stesso mercato si scarta). L'handicap del basket si scarta se il suo verso contraddice il vincente; l'handicap della pallavolo da odss non si usa (il feed non distingue set e punti).
+- **Calcio**: lo step `npm run raccolta-odss` gira **prima** della raccolta del calcio e salva `data/raccolta/<data>-odss.json`: quote dei tuoi bookmaker, probabilità senza margine e quota mediana. La raccolta del calcio (senza chiave odss) lo legge: le coppe e i campionati extra ora hanno le quote, quindi candidati e pronostici con quota (le giocate delle coppe restano bloccate dopo la prova da `CONFIG.coppe.giocateVere`). Una competizione di The Odds API senza nessuna partita su odss torna a The Odds API; se il file odss manca, tutte.
+- **Cosa dà il file del calcio**: 1X2, doppia chance e under/over del calcio per la giornata (08:00→08:00 di Roma), di tutti i bookmaker; nel file le quote dei tuoi bookmaker, la probabilità senza margine (Pinnacle se c'è, altrimenti la mediana dei bookmaker) e la quota mediana. Per ogni partita l'API dà una riga per tempo (`period`: `full_time`, `1st_half`, `2nd_half`): si usa solo `full_time`; una partita senza nessuna riga `full_time` resta senza quote e finisce in `erroriGiro`. Le pagine si scorrono con `offset` (fino a `count`).
 - **Nei pronostici**: il giro abbina le partite per squadre e orario (ambiguo → nessun abbinamento) e mostra "quota migliore 1,31 su Sportium (minima 1,24), quota delle 07:40" con ✅ (regola di sempre, con la quota migliore dei tuoi bookmaker) o "solo da tenere d'occhio". Il pronostico migliore e le doppie/triple usano quella quota (con il bookmaker per gamba). Gol casa/ospite non hanno un mercato squadra: nessuna quota.
 - **Regole di sicurezza**: il ✅ esce solo con la quota di uno dei tuoi bookmaker. Senza (file mancante, partita non abbinata, selezione senza le tue quote) resta la media di The Odds API come informazione ("quota media, non dei tuoi bookmaker", mai ✅; nelle doppie/triple "da verificare"). Il pronostico migliore sceglie prima fra quelli con la quota dei tuoi bookmaker, poi fra quelli con la media, poi con la regola senza quote. Le quote sospese (`suspended`, per esito) e quelle aggiornate da più di 6 ore (`CONFIG.odss.oreMaxQuota`) non contano; gli exchange (anche `is_exchange`) restano fuori dal consenso; una squadra femminile, giovanile o di riserve non si abbina mai alla prima squadra.
 - **Giro rifatto**: gli avvisi delle formazioni restano sul loro pronostico (i controlli sono per pronostico, `idPartita|mercato|selezione`); le doppie/triple già pubblicate restano se le gambe non cambiano, altrimenti finiscono in `schedineTolte` con il motivo (e una riga in `erroriGiro`). Una gamba senza risultato dopo 3 giorni (partita rinviata) è rimborsata; se poi arriva il risultato vero, vale quello (come nelle multiple bonus).
-- **Budget**: al massimo 6 richieste al giorno (`CONFIG.odss.richiesteGiorno`; di solito 3-4: una per mercato, più le pagine in più) e mai sotto 60 rimaste (`CONFIG.odss.riserva`); stato in `data/stato/odss.json`. Se non basta: niente quote quel giorno e una riga chiara in `erroriGiro`; i pronostici restano come prima.
+- **Budget unico** (`CONFIG.odss`, stato in `data/stato/odss.json`): giro del mattino al massimo 10 richieste al giorno fra tutti gli sport (`richiesteGiorno`; calcio al massimo 6, gli altri al massimo 2 ciascuno, `tetti`), controlli al massimo 3 al giorno (`richiesteControlli`), mai sotto 60 rimaste (`riserva`). Uno sport senza partite oggi non fa richieste (NBA solo da ottobre a giugno, pallavolo solo con un campionato attivo). Consumo atteso: calcio 3-5, tennis 1, basket 0-2, NBA 0-1, pallavolo 0-1, controlli 0-3 → di solito 6-10 al giorno, al massimo (10 + 3) × 30 = 390 in 30 giorni, sotto le 440 spendibili. Se il budget non basta, quello sport torna alla fonte di prima con una riga chiara in `erroriGiro`.
 
 ### Gli orari del mattino
 
@@ -123,7 +134,7 @@ Senza questi due segreti le quote serali vengono salvate ma la routine non parte
 
 ## Tennis: mercato, ritiri e giro della sera prima
 
-Le giocate di tennis si costruiscono ogni mattina insieme a quelle di calcio e NBA, con dati gratuiti. **Non servono chiavi nuove**: il tennis usa la stessa chiave di The Odds API del calcio (`ODDS_API_KEY`), e lo storico delle partite viene da tennis-data.co.uk, che è gratuito e senza chiave ma va caricato a mano (vedi "Lo storico caricato a mano"). Se i crediti giornalieri di The Odds API non bastano per un torneo, quel torneo resta scoperto e la pagina lo dice.
+Le giocate di tennis si costruiscono ogni mattina insieme a quelle di calcio e NBA, con dati gratuiti. **Non servono chiavi nuove**: il tennis usa la stessa chiave di The Odds API del calcio (`ODDS_API_KEY`), e lo storico delle partite viene da tennis-data.co.uk, che è gratuito e senza chiave ma va caricato a mano (vedi "Lo storico caricato a mano"). Le quote vengono da odss-api (una richiesta al giorno, vedi "Quote: odss-api è la fonte principale di tutti gli sport"); l'elenco dei tornei e delle partite resta quello di The Odds API (gratuito). Se odss non ha un torneo, quel torneo usa le quote di The Odds API e, se i crediti giornalieri non bastano, resta scoperto e la pagina lo dice.
 
 ### Il mercato
 
@@ -174,7 +185,7 @@ Se la parte tennis fallisce, il motivo compare tra gli errori della giornata e i
 
 ## Basket: Eurolega e NBL
 
-Le giocate di basket europeo e australiano si costruiscono ogni mattina insieme agli altri sport. **Non servono chiavi nuove**: le quote vengono da The Odds API con la stessa `ODDS_API_KEY` del calcio, e lo storico dalle fonti gratuite:
+Le giocate di basket europeo e australiano si costruiscono ogni mattina insieme agli altri sport. Le quote vengono da odss-api (una richiesta per campionato con partite); l'elenco delle partite e le quote di riserva da The Odds API con la stessa `ODDS_API_KEY` del calcio, e lo storico dalle fonti gratuite:
 
 - **Eurolega**: l'API pubblica dei risultati della Eurolega (senza chiave);
 - **NBL**: TheSportsDB, piano gratuito (senza chiave).
@@ -187,7 +198,7 @@ Gli stessi dell'NBA: **Vincente**, **Handicap** e **Totale punti**, supplementar
 
 ### Crediti
 
-Ogni campionato con partite costa 3 crediti di The Odds API al giorno. Il basket spende dopo calcio e tennis e lascia da parte la serata del tennis: nei giorni pieni un campionato può restare scoperto, e la pagina lo dice ("crediti insufficienti"). Prima l'Eurolega, poi l'NBL.
+Solo quando odss non ha il campionato, ogni campionato con partite costa 3 crediti di The Odds API al giorno. Il basket spende dopo calcio e tennis e lascia da parte la serata del tennis: nei giorni pieni un campionato può restare scoperto, e la pagina lo dice ("crediti insufficienti"). Prima l'Eurolega, poi l'NBL.
 
 ### Le partite "solo mercato"
 
@@ -203,7 +214,7 @@ Le giocate di pallavolo si costruiscono ogni mattina insieme agli altri sport.
 
 ### La chiave OddsPapi
 
-Le quote vengono da **OddsPapi**, piano gratuito: 250 richieste al mese. La chiave (`ODDSPAPI_API_KEY`) va tra i secrets del repository, come le altre (Settings → Secrets and variables → Actions). Un solo account: aprirne altri per avere più richieste è vietato dai termini d'uso.
+Le quote vengono da odss-api (vincente e totale set; una richiesta al giorno). **OddsPapi** resta la riserva quando odss non risponde o non ha partite (ed è l'unica fonte dell'handicap set), piano gratuito: 250 richieste al mese. La chiave (`ODDSPAPI_API_KEY`) va tra i secrets del repository, come le altre (Settings → Secrets and variables → Actions). Un solo account: aprirne altri per avere più richieste è vietato dai termini d'uso.
 
 Ogni mattina si spende 1 richiesta per l'elenco delle partite (tutti i campionati insieme) e 1 per le quote di ogni partita, fino al budget del giorno: (richieste rimaste − 20% di riserva) diviso i giorni che restano nel mese, circa 6-8 al giorno. Le partite si scelgono per priorità del campionato e poi per orario; quelle rimaste fuori compaiono nella pagina come "richieste OddsPapi finite". Il conteggio del mese si legge dal conto OddsPapi e si tiene anche in `data/stato/oddspapi.json`.
 

@@ -186,3 +186,13 @@ test('formati: NBA/basket (vincente, handicap della casa, totale), tennis per no
   const c = { id: 'c', casa: 'Juventus', trasferta: 'Inter', inizio: AGG, libri: [{ chiave: 'pinnacle', aggiornato: AGG, mercati: { '1x2': { HOME: 2, DRAW: 3.4, AWAY: 3.9 }, 'ou|2.5': { OVER: 1.9, UNDER: 1.95 }, 'ou|1.25': { OVER: 1.2, UNDER: 4 } } }] };
   assert.deepEqual(inFormatoCalcio(c).bookmaker[0].mercati, { h2h: { casa: 2, pareggio: 3.4, trasferta: 3.9 }, totals: { 2.5: { over: 1.9, under: 1.95 } } });
 });
+
+test('documentazione: fonti per sport, budget unico e riserva nel README e nelle routine', () => {
+  const r = readFileSync('README.md', 'utf8');
+  assert.match(r, /odss-api è la fonte principale di tutti gli sport/);
+  assert.match(r, /\(10 \+ 3\) × 30 = 390/);
+  for (const riserva of ['The Odds API', 'SportsGameOdds', 'OddsPapi']) assert.ok(r.includes(riserva));
+  assert.match(readFileSync('docs/routine/giro-del-mattino.md', 'utf8'), /mediana di N bookmaker \(odss-api\)/);
+  assert.match(readFileSync('docs/routine/controllo-pre-partita.md', 'utf8'), /prima odss-api/);
+  assert.match(readFileSync('docs/routine/giro-serale.md', 'utf8'), /budget di odss-api/);
+});

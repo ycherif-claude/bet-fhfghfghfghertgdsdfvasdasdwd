@@ -331,7 +331,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   let chiusure = null;
   try { chiusure = raccoglitorePrePartita({ dirData, data, adesso }); } catch (e) { errore('Registro (pre-partita)', e); }
   const quote = pronte.length ? await quoteFresche(pronte.map((x) => x.v), {
-    fonti, chiavi, finestra: finestraGiornata(data), errore,
+    fonti, chiavi, finestra: finestraGiornata(data), errore, dirData, data, adesso,
     registra: (...a) => { try { chiusure?.registra(...a); } catch (e) { errore('Registro (pre-partita)', e); } },
   }) : new Map();
   try { chiusure?.salva(); } catch (e) { errore('Registro (pre-partita)', e); }
@@ -516,6 +516,7 @@ async function principale() {
   }
   const chiavi = {
     oddsApi: process.env.ODDS_API_KEY, sportsgameodds: process.env.SPORTSGAMEODDS_API_KEY, oddspapi: process.env.ODDSPAPI_API_KEY,
+    odss: process.env.ODSS_API_KEY,
   };
   const claudeDisponibile = Boolean(process.env.ROUTINE_CONTROLLI_URL && process.env.ROUTINE_CONTROLLI_TOKEN);
   const r = await eseguiControlli({ dirData: 'data', adesso, chiavi, claudeDisponibile });

@@ -31,6 +31,8 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
+          # Quote dei controlli prima da odss-api (al massimo 3 richieste al giorno, budget unico), poi le fonti di prima.
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
           ROUTINE_CONTROLLI_URL: ${{ secrets.ROUTINE_CONTROLLI_URL }}
           ROUTINE_CONTROLLI_TOKEN: ${{ secrets.ROUTINE_CONTROLLI_TOKEN }}
         # pipefail: se npm run controlli fallisce, lo step fallisce anche con il tee.

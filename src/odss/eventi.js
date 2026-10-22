@@ -48,7 +48,7 @@ export function eventiDaRighe(righe, { adesso = null } = {}) {
     if (!r.home_team || !r.away_team || !Number.isFinite(inizio) || typeof r.market !== 'string') continue;
     const id = String(r.event_id ?? `${r.home_team}|${r.away_team}|${r.commence_time}`);
     if (!eventi.has(id)) {
-      eventi.set(id, { id, campionato: r.league ?? null, casa: r.home_team, trasferta: r.away_team, inizio: r.commence_time, libri: new Map() });
+      eventi.set(id, { id, sport: r.sport ?? null, campionato: r.league ?? null, casa: r.home_team, trasferta: r.away_team, inizio: r.commence_time, libri: new Map() });
     }
     const e = eventi.get(id);
     for (const b of Array.isArray(r.bookmakers) ? r.bookmakers : []) {

@@ -8,6 +8,7 @@ import { quotaMedianaNba } from '../nba/quote.js';
 import { quotaMedianaTennis, probPinnacleTennis } from '../tennis/raccolta.js';
 import { CAMPIONATI as CAMPIONATI_BASKET, riferimento } from '../basket/raccolta.js';
 import { stessaSquadra } from './espn.js';
+import { quoteOdssControlli } from './odss.js';
 
 const K = CONFIG.controlli;
 const ESCLUSI = /betfair|matchbook|smarkets|exchange/;
@@ -117,8 +118,19 @@ const gruppo = (voci, chiave) => {
 // `voci`: [{ id, sport, competizione, partita, inizio, mercato, selezione }]. Restituisce Map(id → risultato).
 // `registra(sport, competizione, eventi)` (facoltativo) riceve gli eventi con le quote scaricate:
 // servono al registro della taratura come quote pre-partita, senza richieste in più.
-export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {} }) {
+// Prima odss-api (fonte principale, una richiesta per passaggio, tetto dei controlli): le voci con una quota odss
+// non toccano le fonti di prima; le altre seguono il giro di sempre. `dirData`, `data` e `adesso` servono al budget.
+export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {}, dirData = null, data = null, adesso = null }) {
   const out = new Map();
+  if (Object.hasOwn(chiavi ?? {}, 'odss') && dirData && data && adesso) {
+    try {
+      const o = await quoteOdssControlli(voci, { chiave: chiavi.odss, dirData, data, adesso, fetch: fonti.fetchOdss, errore, registra, attesaMs: fonti.attesaOdssMs });
+      for (const [id, q] of o) out.set(id, q);
+    } catch (e) {
+      errore('odss-api', e);
+    }
+  }
+  voci = voci.filter((v) => !out.has(v.id));
   const salta = (lista, motivo) => { for (const v of lista) out.set(v.id, { saltata: motivo }); };
   const opzOdds = { chiave: chiavi.oddsApi };
 
