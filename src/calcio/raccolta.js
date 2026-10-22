@@ -12,6 +12,7 @@ import { mercatiConteggi } from './modelli/conteggi.js';
 import { oddsApi } from './fonti/odds-api.js';
 import { footballDataUk } from './fonti/football-data-uk.js';
 import { footballDataOrg } from './fonti/football-data-org.js';
+import { bloccoEspn } from './fonti/http.js';
 import { espn, stessaSquadra } from '../controlli/espn.js';
 import { PARAMETRI as ELO, SOLO_COPPE, lambdaCoppa } from '../coppe/elo.js';
 import { existsSync, readFileSync } from 'node:fs';
@@ -310,8 +311,12 @@ const giornoDopo = (data) => {
 // Partite dei campionati senza quote: ESPN se c'è, altrimenti il calendario di football-data.co.uk.
 async function calendarioSenzaQuote({ data, fonti, dentro, eventiPer, errore }) {
   let fixtures = null;
+  // ESPN in 403 [correzione C5]: un solo errore chiaro, poi niente più richieste a ESPN in questa raccolta.
+  let espnBloccato = false;
+  const saltati = [];
   for (const c of COMPETIZIONI.filter((x) => !x.chiave)) {
     let eventi = [];
+    if (espnBloccato && c.espn && fonti.espn) { saltati.push(c.nome); continue; }
     try {
       if (c.espn && fonti.espn) {
         const visti = new Map();
@@ -326,12 +331,16 @@ async function calendarioSenzaQuote({ data, fonti, dentro, eventiPer, errore }) 
           .map((f) => ({ id: `${c.csv}-${f.inizio}-${f.casa}`, casa: f.casa, trasferta: f.trasferta, inizio: f.inizio }));
       }
     } catch (e) {
+      if (bloccoEspn(e)) espnBloccato = true;
       errore(c.espn ? `ESPN (${c.nome})` : `Calendario football-data.co.uk (${c.nome})`, e);
       if (!c.espn) fixtures = [];
       continue;
     }
     eventi = eventi.filter(dentro);
     if (eventi.length) eventiPer.set(chiaveEventi(c), eventi);
+  }
+  if (saltati.length) {
+    errore('ESPN', new Error(`accesso negato (HTTP 403): ${saltati.length} campionati senza quote saltati (${saltati.join(', ')}), niente pronostici per loro oggi`));
   }
 }
 

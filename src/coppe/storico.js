@@ -7,7 +7,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { scarica } from '../calcio/fonti/http.js';
+import { bloccoEspn, scarica } from '../calcio/fonti/http.js';
+import { dataCalendarioRoma, segnalaAvvisiFonti } from '../registro/avvisi-fonti.js';
 
 const BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer';
 export const COPPE = {
@@ -116,25 +117,35 @@ export async function aggiornaStoricoCoppe({ dirData, adesso, fetch: f, parallel
   const nuove = new Map(vecchio.partite.map((p) => [p.id, p]));
   const errori = [];
   let i = 0;
+  // ESPN in 403 [correzione C5]: ci si ferma subito (niente raffica di richieste rifiutate), i giorni non
+  // scaricati restano in `daRiprendere` e una riga va negli avvisi del giorno (poi fra gli errori del giro).
+  let bloccato = false;
   async function lavoratore() {
-    while (i < elenco.length) {
+    while (i < elenco.length && !bloccato) {
       const [s, g] = elenco[i++];
       try {
         const r = await scarica(`${BASE}/${s}/scoreboard?dates=${g.replaceAll('-', '')}`, f ? { fetch: f } : {});
         for (const p of partiteDaScoreboard(JSON.parse(r.testo), COPPE[s])) nuove.set(p.id, p);
       } catch (e) {
+        if (bloccoEspn(e)) bloccato = true;
         errori.push(`${s} ${g}: ${e?.message ?? e}`);
         falliti.push([s, g]);
       }
     }
   }
   await Promise.all(Array.from({ length: parallele }, lavoratore));
+  if (bloccato) {
+    falliti.push(...elenco.slice(i));
+    const riga = `ESPN ha negato l'accesso (HTTP 403) allo storico delle coppe europee: scaricamento fermato, ${falliti.length} giorni restano da riprendere al prossimo giro`;
+    errori.unshift(riga);
+    segnalaAvvisiFonti(dirData, dataCalendarioRoma(adesso), [riga]);
+  }
   const partite = [...nuove.values()].sort((a, b) => (a.inizio < b.inizio ? -1 : a.inizio > b.inizio ? 1 : 0));
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, `${JSON.stringify({
     aggiornatoAlle: adesso.toISOString(), tuttiIGiorni: true, ...(falliti.length ? { daRiprendere: falliti } : {}), partite,
   })}\n`);
-  return { partite: partite.length, giocate: partite.filter((p) => p.gc !== null).length, richieste: elenco.length, errori, oggi };
+  return { partite: partite.length, giocate: partite.filter((p) => p.gc !== null).length, richieste: bloccato ? i : elenco.length, errori, oggi, bloccato };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

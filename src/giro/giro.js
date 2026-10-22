@@ -14,6 +14,7 @@ import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
+import { leggiAvvisiFonti } from '../registro/avvisi-fonti.js';
 
 const PARTITE_ANTEPRIMA = 5;
 
@@ -182,6 +183,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
       ...avvisi,
       // Pronostici dei giorni passati che il registro non è riuscito a chiudere.
       ...avvisiPronosticiSenzaEsito(dirData, oggi),
+      // Avvisi dei lavori del mattino senza giornata (registro, storico coppe): per esempio ESPN in 403.
+      ...leggiAvvisiFonti(dirData, oggi),
     ],
   };
 
@@ -204,6 +207,16 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     const errori = Array.isArray(esistente.erroriGiro) ? esistente.erroriGiro : [];
     if (!errori.includes(riga)) scriviJson(file, { ...esistente, erroriGiro: [...errori, riga] });
     return { scritto: false, giornata, motivo: verdetto.motivo };
+  }
+  // Giro rifatto dopo l'inizio di alcune partite [correzione C4]: i pronostici già pubblicati di quelle
+  // partite restano (il nuovo giro non le propone più perché sono iniziate).
+  const nuoviId = new Set(pronostici.map((p) => p.idPartita));
+  const giaIniziati = (Array.isArray(esistente?.pronostici) ? esistente.pronostici : [])
+    .filter((p) => oggetto(p) && !nuoviId.has(p.idPartita) && Date.parse(p.inizio) <= adesso.getTime());
+  if (giaIniziati.length) {
+    pronostici.push(...giaIniziati);
+    pronostici.sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
+    giornata.pronostici = pronostici;
   }
   fs.mkdirSync(cartella, { recursive: true });
   scriviJson(file, giornata);

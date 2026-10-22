@@ -23,6 +23,7 @@ import { squadreDi, trovaEvento } from '../controlli/quote.js';
 import { scarica } from '../calcio/fonti/http.js';
 import { COMPETIZIONI } from '../calcio/competizioni.js';
 import { normalizzaNome } from '../calcio/testo.js';
+import { abbinaSquadra as abbinaSquadraCalcio } from '../calcio/squadre.js';
 
 const MIN = 60000;
 // Minuti dopo l'inizio dai quali si cerca il risultato, e ore dopo le quali si lascia al mattino.
@@ -56,11 +57,48 @@ async function risultatoFootballData(gamba, fonti) {
   return { gc: p.gc, gt: p.gt, gcPT: p.gcPT ?? null, gtPT: p.gtPT ?? null, conteggi: {} };
 }
 
+// Evento ESPN della partita: prima il giorno UTC dell'inizio, poi il giorno UTC precedente [correzione C2]:
+// ESPN raggruppa le partite per giorno americano, quindi una partita serale americana (dopo la mezzanotte
+// UTC) sta nel tabellone del giorno prima.
+async function eventoEspn(gamba, campionato, fonti) {
+  const t = Date.parse(gamba.inizio);
+  for (const d of [0, -1]) {
+    const giorno = new Date(t + d * 86400000).toISOString().slice(0, 10);
+    const ev = trovaEvento(gamba, await fonti.espn.partite(campionato, giorno));
+    if (ev) return ev;
+  }
+  return null;
+}
+
+// Cartellini e angoli definitivi [correzione C4]: dal CSV di football-data.co.uk (stessa fonte del giro
+// del mattino, conteggio come bet365), quando c'è. Serve al registro per sostituire l'esito provvisorio
+// di ESPN. null se la competizione non ha CSV, la partita non c'è ancora o mancano i numeri.
+export async function esitoConteggioDefinitivo(gamba, fonti) {
+  if (!mercatoConteggio(gamba.mercato) || !fonti.footballDataUk) return null;
+  const c = COMPETIZIONI.find((x) => x.nome === gamba.competizione && x.csv && x.formato !== 'extra');
+  if (!c) return null;
+  const giorno = new Date(gamba.inizio).toISOString().slice(0, 10);
+  const [anno, mese] = giorno.split('-').map(Number);
+  const yy = (n) => String(n % 100).padStart(2, '0');
+  const inizioStagione = mese >= 7 ? anno : anno - 1;
+  const righe = await fonti.footballDataUk.partite(c.csv, [`${yy(inizioStagione)}${yy(inizioStagione + 1)}`]);
+  const vicino = (d) => Math.abs(Date.parse(`${d}T12:00:00Z`) - Date.parse(`${giorno}T12:00:00Z`)) <= 86400000;
+  const vicine = righe.filter((x) => vicino(x.data));
+  const nomi = [...new Set(vicine.flatMap((x) => [x.casa, x.trasferta]))];
+  const sq = squadreDi(gamba.partita);
+  if (!sq) return null;
+  const casa = abbinaSquadraCalcio(sq.casa, nomi);
+  const trasferta = abbinaSquadraCalcio(sq.trasferta, nomi);
+  if (!casa || !trasferta || casa === trasferta) return null;
+  const p = vicine.filter((x) => x.casa === casa && x.trasferta === trasferta);
+  if (p.length !== 1) return null;
+  return esitoSelezione(gamba.mercato, gamba.selezione, p[0]);
+}
+
 async function risultatoCalcio(gamba, fonti) {
   const campionato = CAMPIONATI_ESPN[gamba.competizione];
   if (!campionato) return risultatoFootballData(gamba, fonti);
-  const giorno = new Date(gamba.inizio).toISOString().slice(0, 10);
-  const ev = trovaEvento(gamba, await fonti.espn.partite(campionato, giorno));
+  const ev = await eventoEspn(gamba, campionato, fonti);
   if (!ev) return null;
   const d = json((await scarica(`${ESPN}/${campionato}/summary?event=${ev.id}`, fonti.opz)).testo);
   const c = d.header?.competitions?.[0];

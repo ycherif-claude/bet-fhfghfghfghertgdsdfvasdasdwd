@@ -7,9 +7,9 @@ import { costruisciMultipleBonus, esitoMultiplaBonus, gambePossibili, incremento
 import { aggiornaMultipleBonus } from '../../src/registro/registro.js';
 import { messaggi, messaggiMultipleBonus } from '../../src/notifiche/telegram.js';
 
-const voce = (i, mercato, selezione, quota, probPinnacle, extra = {}) => ({
+const voce = (i, mercato, selezione, quota, probPinnacle, extra = {}, quotaBet365 = undefined) => ({
   partita: { idPartita: `p${i}`, sport: 'calcio', competizione: 'Serie A', partita: `Casa${i} - Ospite${i}`, inizio: `2026-10-25T${String(10 + (i % 10)).padStart(2, '0')}:00:00+02:00`, ...extra },
-  m: { mercato, selezione, quota, probPinnacle },
+  m: { mercato, selezione, quota, probPinnacle, ...(quotaBet365 === undefined ? {} : { quotaBet365 }) },
 });
 
 test('incremento dalla tabella ufficiale di bet365', () => {
@@ -29,13 +29,56 @@ test('mercati ammessi: niente linee intere, cartellini, angoli, risultato esatto
   assert.equal(mercatoAmmesso('Handicap asiatico -0.5', 'casa'), true);
   assert.equal(mercatoAmmesso('Cartellini Under/Over 4.5', 'Under 4.5'), false);
   assert.equal(mercatoAmmesso('Angoli Under/Over 9.5', 'Over 9.5'), false);
-  assert.equal(mercatoAmmesso('Vincente incontro', 'Sinner J.'), true);
+  // C1: niente tennis (una partita può finire rimborsata, per esempio con il ritiro prima dell'inizio).
+  assert.equal(mercatoAmmesso('Vincente incontro', 'Sinner J.', 'tennis'), false);
+  assert.equal(mercatoAmmesso('Vincente', 'Real Madrid', 'basket'), true);
+});
+
+test('C1 gambe: niente tennis; quota mediana ≥ 1,30 oppure, se c\'è, quota bet365 ≥ 1,25; quota bet365 salvata', () => {
+  const voci = [
+    voce(1, '1X2', '1', 1.28, 0.78), // mediana sotto 1,30 e nessuna quota bet365: fuori
+    voce(2, '1X2', '1', 1.28, 0.78, {}, 1.25), // mediana sotto 1,30 ma bet365 1,25: dentro
+    voce(3, '1X2', '1', 1.35, 0.73, {}, 1.22), // mediana 1,35 ma bet365 1,22: fuori
+    voce(4, '1X2', '1', 1.32, 0.75), // mediana ≥ 1,30, senza bet365: dentro
+    voce(5, 'Vincente incontro', 'Sinner J.', 1.35, 0.74, { sport: 'tennis', partita: 'Sinner J. - Rune H.' }), // tennis: fuori
+  ];
+  const g = gambePossibili(voci);
+  assert.deepEqual(g.map((x) => x.idPartita).sort(), ['p2', 'p4']);
+  assert.equal(g.find((x) => x.idPartita === 'p2').quotaBet365, 1.25);
+  assert.equal(g.find((x) => x.idPartita === 'p4').quotaBet365, null);
+});
+
+test('C1 registro: gamba senza risultato 3 giorni dopo l\'inizio (rinviata o sospesa) → rimborsata', () => {
+  const d = mkdtempSync(join(tmpdir(), 'bet-mb-'));
+  mkdirSync(join(d, 'giornate'));
+  const mb = { id: 'MB10-x', nome: 'Multipla bonus bet365 da 10', gambe: [
+    { idPartita: 'a', mercato: '1X2', selezione: '1', quota: 1.3, inizio: '2026-10-25T13:00:00Z', esito: null },
+    { idPartita: 'b', mercato: '1X2', selezione: '2', quota: 1.4, inizio: '2026-10-25T18:00:00Z', esito: null },
+    { idPartita: 'c', mercato: '1X2', selezione: '1', quota: 1.35, inizio: '2026-10-25T18:00:00Z', esito: null },
+  ], esito: null, ritorno: null };
+  writeFileSync(join(d, 'giornate', '2026-10-25.json'), JSON.stringify({ data: '2026-10-25', giocate: [], multipleBonus: [mb] }));
+  const reg = { righe: [
+    { idPartita: 'a', mercato: '1X2', selezione: '1', esito: 'vinta', esitoProvvisorio: false },
+    { idPartita: 'c', mercato: '1X2', selezione: '1', esito: 'vinta', esitoProvvisorio: false },
+  ] };
+  // 2 giorni dopo: la gamba b resta aperta.
+  aggiornaMultipleBonus(d, '2026-10-25', reg, new Date('2026-10-27T19:00:00Z'));
+  let g = JSON.parse(readFileSync(join(d, 'giornate', '2026-10-25.json'), 'utf8'));
+  assert.equal(g.multipleBonus[0].gambe[1].esito, null);
+  assert.equal(g.multipleBonus[0].esito, null);
+  // 3 giorni dopo: rimborsata, la multipla si chiude con le altre due (incremento ricalcolato su 2).
+  aggiornaMultipleBonus(d, '2026-10-25', reg, new Date('2026-10-28T18:30:00Z'));
+  g = JSON.parse(readFileSync(join(d, 'giornate', '2026-10-25.json'), 'utf8'));
+  assert.equal(g.multipleBonus[0].gambe[1].esito, 'rimborsata');
+  assert.match(g.multipleBonus[0].gambe[1].motivoEsito, /nessun risultato dopo 3 giorni/);
+  assert.equal(g.multipleBonus[0].esito, 'vinta');
+  assert.equal(g.multipleBonus[0].ritorno, Math.round(1.3 * 1.35 * 1.025 * 100) / 100);
 });
 
 test('gambe: quota 1,25-1,50, una per partita, la più vicina alla quota equa, partite escluse fuori', () => {
   const voci = [
     voce(1, '1X2', '1', 1.30, 0.75), // resa 0,975
-    voce(1, 'Doppia chance', '1X', 1.26, 0.78), // resa 0,983: migliore per la partita 1
+    voce(1, 'Doppia chance', '1X', 1.28, 0.78, {}, 1.25), // resa 0,998: migliore per la partita 1 (bet365 1,25)
     voce(2, '1X2', '1', 1.20, 0.82), // quota troppo bassa
     voce(3, '1X2', '2', 1.45, 0.66), // resa 0,957
     voce(4, '1X2', '1', 1.40, null), // senza probabilità di mercato
@@ -171,4 +214,14 @@ test('Telegram: partite con pronostici aggiunte dopo, solo le nuove', () => {
   assert.match(m[0].testo, /B - Y/);
   assert.doesNotMatch(m[0].testo, /A - Y/);
   assert.deepEqual(m[0].segna, ['2026-10-25|pronostico|B']);
+});
+
+test('C1 Telegram: la gamba mostra anche la quota bet365 quando c\'è', async () => {
+  const { testoMultiplaBonus } = await import('../../src/notifiche/telegram.js');
+  const t = testoMultiplaBonus({ nome: 'Multipla bonus bet365 da 10', quota: 13.79, incremento: 0.35, quotaConBonus: 18.62, gambe: [
+    { sport: 'calcio', partita: 'A - B', mercato: '1X2', selezione: '1', quota: 1.32, quotaBet365: 1.27 },
+    { sport: 'calcio', partita: 'C - D', mercato: '1X2', selezione: '2', quota: 1.35, quotaBet365: null },
+  ] });
+  assert.match(t, /A - B: 1X2 → 1 @1,32 \(bet365 1,27\)/);
+  assert.match(t, /C - D: 1X2 → 2 @1,35$/m);
 });

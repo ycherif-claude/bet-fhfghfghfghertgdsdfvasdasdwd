@@ -64,7 +64,7 @@ export function testoGiocata(g, i) {
 
 // Multipla bonus bet365 (prova): titolo, quota con l'incremento e gambe.
 export function testoMultiplaBonus(mb) {
-  const gambe = mb.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}`);
+  const gambe = mb.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`);
   return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
 }
 const percentuale = (p) => `${Math.round(p * 100)}%`;

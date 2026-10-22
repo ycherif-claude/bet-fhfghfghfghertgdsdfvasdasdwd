@@ -7,7 +7,8 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { COMPETIZIONI } from '../calcio/competizioni.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
-import { scarica } from '../calcio/fonti/http.js';
+import { bloccoEspn, scarica } from '../calcio/fonti/http.js';
+import { dataCalendarioRoma, segnalaAvvisiFonti } from '../registro/avvisi-fonti.js';
 import { mercatiGol } from '../calcio/modelli/mercati-gol.js';
 import { ESITI_CALCIO } from '../taratura/calibrazione.js';
 import { aggiornaStoricoCoppe } from './storico.js';
@@ -45,14 +46,17 @@ export async function partiteNazionali(fonti, data, errori) {
   return out;
 }
 
-export async function paesiEspn(errori) {
+// `stato.bloccato`: ESPN ha risposto 403, ci si ferma subito [correzione C5].
+export async function paesiEspn(errori, { fetch: f, stato = {} } = {}) {
   const m = new Map();
   for (const [paese, slugs] of Object.entries(ESPN_PAESE)) {
     for (const s of slugs) {
+      if (stato.bloccato) return m;
       try {
-        const j = JSON.parse((await scarica(`https://site.api.espn.com/apis/site/v2/sports/soccer/${s}/teams`)).testo);
+        const j = JSON.parse((await scarica(`https://site.api.espn.com/apis/site/v2/sports/soccer/${s}/teams`, f ? { fetch: f } : {})).testo);
         for (const t of j.sports?.[0]?.leagues?.[0]?.teams ?? []) m.set(String(t.team.id), paese);
       } catch (e) {
+        if (bloccoEspn(e)) stato.bloccato = true;
         errori.push(`ESPN squadre ${s}: ${e?.message ?? e}`);
       }
     }
@@ -108,14 +112,23 @@ export function calcolaRating({ nazionali, coppe, paeseDiEspn }) {
   };
 }
 
-export async function aggiornaRating({ dirData, adesso, fonti = { footballDataUk } }) {
+export async function aggiornaRating({ dirData, adesso, fonti = { footballDataUk }, fetch: f }) {
   const errori = [];
-  const storico = await aggiornaStoricoCoppe({ dirData, adesso });
+  const storico = await aggiornaStoricoCoppe({ dirData, adesso, fetch: f });
   errori.push(...storico.errori.slice(0, 5));
   const coppe = JSON.parse(fs.readFileSync(path.join(dirData, 'storico', 'coppe-europee.json'), 'utf8')).partite;
   const data = adesso.toISOString().slice(0, 10);
   const nazionali = await partiteNazionali(fonti, data, errori);
-  const paeseDiEspn = await paesiEspn(errori);
+  const stato = { bloccato: storico.bloccato === true };
+  const paeseDiEspn = await paesiEspn(errori, { fetch: f, stato });
+  // ESPN in 403 [correzione C5]: con le squadre ESPN a metà i punteggi sarebbero peggiori di ieri, quindi
+  // elo-europeo.json resta quello di ieri e una riga va negli avvisi del giorno (poi fra gli errori del giro).
+  if (stato.bloccato || storico.bloccato) {
+    const riga = `ESPN ha negato l'accesso (HTTP 403) all'Elo europeo delle coppe: punteggi di ieri, non aggiornati oggi`;
+    errori.unshift(riga);
+    segnalaAvvisiFonti(dirData, dataCalendarioRoma(adesso), [riga]);
+    return { rating: {}, campioni: 0, nazionali: nazionali.length, coppe: coppe.length, errori, nonAggiornato: true };
+  }
   const r = calcolaRating({ nazionali, coppe, paeseDiEspn });
   const file = path.join(dirData, 'storico', 'elo-europeo.json');
   fs.writeFileSync(file, `${JSON.stringify({ aggiornatoAlle: adesso.toISOString(), ...r })}\n`);

@@ -14,9 +14,11 @@ export function incremento(n) {
 }
 
 // Mercati ammessi: niente esiti che possono finire rimborsati (handicap asiatico a linea intera,
-// linee intere) e niente cartellini o angoli (esiti da ESPN solo provvisori).
-export function mercatoAmmesso(mercato, selezione) {
+// linee intere, tennis con il ritiro prima dell'inizio [correzione C1]) e niente cartellini o angoli
+// (esiti da ESPN solo provvisori).
+export function mercatoAmmesso(mercato, selezione, sport = null) {
   if (typeof mercato !== 'string') return false;
+  if (sport === 'tennis' || mercato === 'Vincente incontro') return false;
   if (/^(Angoli|Cartellini|Risultato esatto)/.test(mercato)) return false;
   const linea = /([+-]?\d+(?:\.\d+)?)\s*$/.exec(mercato)?.[1] ?? /([+-]?\d+(?:\.\d+)?)\s*$/.exec(String(selezione))?.[1];
   if (/Handicap|Under\/Over|Totale/.test(mercato) && linea !== undefined && Number.isInteger(Number(linea))) return false;
@@ -25,17 +27,21 @@ export function mercatoAmmesso(mercato, selezione) {
 
 // Gambe possibili da `voci` (valutaMercati): quota nel range, probabilità equa del mercato nota,
 // partita non esclusa. Per partita la selezione con il margine più basso (quota × probabilità equa più alta).
+// Quota per bet365 [correzione C1]: con la quota bet365 questa deve essere ≥ quotaMinBet365; senza, la
+// mediana deve essere ≥ quotaMinMediana (bet365 di solito paga un po' meno della mediana).
+const quotaBet365Ok = (m) => (num(m.quotaBet365) ? m.quotaBet365 >= C.quotaMinBet365 - EPS : m.quota >= C.quotaMinMediana - EPS);
+
 export function gambePossibili(voci, { escluse = new Set() } = {}) {
   const migliori = new Map();
   for (const { partita, m } of voci) {
     if (escluse.has(partita.idPartita)) continue;
     if (!num(m.quota) || m.quota < C.quotaMin - EPS || m.quota > C.quotaMax + EPS) continue;
-    if (!num(m.probPinnacle) || !mercatoAmmesso(m.mercato, m.selezione)) continue;
+    if (!num(m.probPinnacle) || !mercatoAmmesso(m.mercato, m.selezione, partita.sport ?? 'calcio') || !quotaBet365Ok(m)) continue;
     const resa = m.quota * m.probPinnacle;
     const g = {
       sport: partita.sport ?? 'calcio', competizione: partita.competizione, partita: partita.partita,
       idPartita: partita.idPartita, inizio: partita.inizio, mercato: m.mercato, selezione: m.selezione,
-      quota: m.quota, probMercato: m.probPinnacle, resa, esito: null,
+      quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle, resa, esito: null,
     };
     const cur = migliori.get(partita.idPartita);
     if (!cur || resa > cur.resa + EPS || (Math.abs(resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);

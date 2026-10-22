@@ -116,7 +116,7 @@ const gruppo = (voci, chiave) => {
 
 // `voci`: [{ id, sport, competizione, partita, inizio, mercato, selezione }]. Restituisce Map(id → risultato).
 // `registra(sport, competizione, eventi)` (facoltativo) riceve gli eventi con le quote scaricate:
-// servono al registro della taratura come quote di chiusura, senza richieste in più.
+// servono al registro della taratura come quote pre-partita, senza richieste in più.
 export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {} }) {
   const out = new Map();
   const salta = (lista, motivo) => { for (const v of lista) out.set(v.id, { saltata: motivo }); };

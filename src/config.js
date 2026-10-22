@@ -181,6 +181,12 @@ export const CONFIG = congela({
   multiplaBonus: {
     quotaMin: 1.25,
     quotaMax: 1.5,
+    // Correzione C1: bet365 di solito paga meno della mediana. Senza la quota bet365 la mediana deve essere
+    // ≥ 1,30 (margine per arrivare a 1,25 su bet365); con la quota bet365 basta che quella sia ≥ 1,25.
+    quotaMinMediana: 1.3,
+    quotaMinBet365: 1.25,
+    // Gamba senza risultato dopo 3 giorni (partita rinviata o sospesa): rimborsata, come fa bet365.
+    giorniRimborso: 3,
     lunghezze: [10, 20],
     incremento: { 2: 0.025, 3: 0.05, 4: 0.075, 5: 0.1, 6: 0.125, 7: 0.18, 8: 0.25, 9: 0.3, 10: 0.35, 11: 0.4, 12: 0.45, 13: 0.5, 14: 0.55, 15: 0.6, 16: 0.65, 17: 0.7, 18: 0.8, 19: 0.9, 20: 1 },
   },

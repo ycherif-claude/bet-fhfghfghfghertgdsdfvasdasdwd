@@ -66,3 +66,17 @@ test('raccolta: campionato senza quote da ESPN, modello dal file extra, partita 
   assert.ok(p.mercati.some((m) => m.mercato === '1X2' && m.probModello > 0 && m.quota === null));
   assert.deepEqual(r.erroriGiro.filter((e) => !/The Odds API/.test(e)), []);
 });
+
+test('C5 raccolta: ESPN in 403 → una riga chiara, nessuna altra richiesta a ESPN per gli altri campionati', async () => {
+  let n = 0;
+  const fonti = {
+    oddsApi: { eventi: async () => ({ eventi: [], rimasti: 400 }), quote: async () => ({ eventi: [] }) },
+    espn: { partite: async () => { n++; throw Object.assign(new Error('site.api.espn.com: HTTP 403 (ESPN: accesso negato)'), { status: 403, espnBloccato: true }); } },
+    footballDataUk: { partite: async () => [], partiteExtra: async () => [], calendario: async () => [] },
+  };
+  const r = await eseguiRaccolta({ data: '2026-10-24', adesso: new Date('2026-10-24T05:00:00Z'), fonti, chiavi: {} });
+  assert.equal(n, 1);
+  const righe = r.erroriGiro.filter((e) => /ESPN/.test(e));
+  assert.equal(righe.length, 2, righe.join(' | '));
+  assert.ok(righe.some((e) => /403/.test(e) && /campionati senza quote saltati/.test(e)), righe.join(' | '));
+});
