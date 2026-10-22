@@ -109,9 +109,9 @@ test('Telegram: le multiple bonus nel messaggio del giorno e l\'esito una volta 
 
 test('pronostici: soglia del mercato, probabilità vera della fascia, quota minima, solo i mercati scelti', async () => {
   const { pronosticiPartita, probCalibrata, quotaMinima, testoPronostico } = await import('../../src/regole/pronostici.js');
-  const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 400, vera: 0.78 }, { da: 0.8, n: 30, vera: 0.6 }];
+  const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 400, vera: 0.82 }, { da: 0.8, n: 30, vera: 0.6 }];
   assert.equal(probCalibrata(fasce, 0.72), 0.74);
-  assert.equal(probCalibrata(fasce, 0.83), 0.78); // fascia con pochi casi: si usa quella sotto
+  assert.equal(probCalibrata(fasce, 0.83), 0.82); // fascia con pochi casi: si usa quella sotto
   assert.equal(probCalibrata(fasce, 0.6), null);
   assert.equal(quotaMinima(0.78), 1.29);
   const cal = { calcio: {
@@ -120,16 +120,15 @@ test('pronostici: soglia del mercato, probabilità vera della fascia, quota mini
   const partita = { sport: 'calcio', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
     { mercato: 'Doppia chance', selezione: '1X', probModello: 0.9, quota: null },
     { mercato: 'Under/Over 1.5', selezione: 'Over 1.5', probModello: 0.76, quota: 1.35 },
-    { mercato: '1X2', selezione: '1', probModello: 0.71, quota: 1.3 },
+    { mercato: '1X2', selezione: '1', probModello: 0.71, quota: 1.3 }, // nel passato uscito solo il 74%: sotto l'80%
     { mercato: 'Under/Over casa 0.5', selezione: 'Over 0.5', probModello: 0.74, quota: null }, // sotto la soglia 0,75
     { mercato: 'Gol/No gol', selezione: 'Gol', probModello: 0.8, quota: null }, // mercato escluso
     { mercato: 'Under/Over 3.5', selezione: 'Under 3.5', probModello: 0.95, quota: null }, // senza calibrazione
   ] };
   const p = pronosticiPartita(partita, cal);
   assert.deepEqual(p.map((x) => [x.testo, x.prob, x.quotaMinima, x.giocabile]), [
-    ['Inter non perde (1X)', 0.78, 1.29, false],
-    ['Almeno 2 gol (Over 1.5)', 0.78, 1.29, true],
-    ['Vince Inter', 0.74, 1.36, false],
+    ['Inter non perde (1X)', 0.82, 1.22, false],
+    ['Almeno 2 gol (Over 1.5)', 0.82, 1.22, true],
   ]);
   assert.equal(testoPronostico({ partita: 'Sinner J. - Alcaraz C.' }, 'Vincente incontro', 'Sinner J.'), 'Vince Sinner J.');
 });

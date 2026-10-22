@@ -153,8 +153,8 @@ export const CONFIG = congela({
     // Tutti i "sì" della partita (al massimo 10), senza tennis.
     maxPerPartita: 10,
     minCampioniFascia: 60,
-    // Un "sì" solo se nel passato quella fascia è uscita almeno il 70% delle volte (nelle coppe l'1X2 sbaglia di più).
-    probMinima: 0.7,
+    // Un "sì" solo se nel passato quella fascia è uscita almeno l'80% delle volte [utente, 22/10/2026].
+    probMinima: 0.8,
     soglie: {
       calcio: {
         '1X2|1': 0.7,
