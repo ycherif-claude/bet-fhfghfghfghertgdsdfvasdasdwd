@@ -7,7 +7,9 @@ import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { budgetCrediti } from '../calcio/raccolta.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
-import { abbinaGiocatore } from './giocatori.js';
+import { abbinaGiocatore, normalizzaGiocatore } from './giocatori.js';
+import { eventiOdssSport } from '../odss/sport.js';
+import { abbinaEventi, inFormatoTennis } from '../odss/eventi.js';
 import { calcolaElo, eloDefault, pesoModelloPartita, probVittoria } from './elo.js';
 import { oddsTennis } from './fonti/odds-tennis.js';
 import { conStoricoLocale, fileNonAncoraPubblicato, tennisData } from './fonti/tennis-data.js';
@@ -79,6 +81,13 @@ export function torneoTennisData(titolo, righe) {
   const perLuogo = tutte('luogo');
   if (new Set(perLuogo.map((r) => r.superficie)).size > 1) return null;
   return recente(perLuogo);
+}
+
+// Stesso giocatore su odss-api e su The Odds API: stesso cognome e stessa iniziale ("Sinner J." e "Jannik Sinner").
+export function stessoGiocatore(a, b) {
+  const x = normalizzaGiocatore(a);
+  const y = normalizzaGiocatore(b);
+  return Boolean(x.cognome && x.iniziale && x.cognome === y.cognome && x.iniziale === y.iniziale);
 }
 
 // Crediti del calcio di oggi: { rimastiInizio, spesiCalcio } | { errore } | null (file assente).
@@ -208,8 +217,34 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
     }
   }
 
-  // 2. Crediti.
-  const conEventi = tornei.filter((t) => eventiPer.has(t.chiave));
+  // 1b. Quote di odss-api (fonte principale) [utente, 22/10/2026]: una richiesta (moneyline della giornata) solo se
+  // ci sono partite; i tornei senza nessuna partita su odss (o tutti, se odss non risponde) tornano a The Odds API.
+  const quotePer = new Map();
+  const daOdss = new Set();
+  if (chiavi && Object.hasOwn(chiavi, 'odss')) {
+    const o = await eventiOdssSport({
+      dirData, data, adesso, chiave: chiavi.odss, sport: 'tennis', gruppi: ['moneyline'], finestra, fetch: fonti.fetchOdss,
+      attesaMs: fonti.attesaOdssMs, partite: [...eventiPer.values()].flat().length, nome: 'tennis',
+    });
+    erroriGiro.push(...o.errori);
+    for (const t of tornei.filter((x) => eventiPer.has(x.chiave))) {
+      const evs = eventiPer.get(t.chiave);
+      const abbinati = abbinaEventi(evs.map((e) => ({ id: e.id, casa: e.giocatore1, trasferta: e.giocatore2, inizio: e.inizio })), o.eventi ?? [], { stesso: stessoGiocatore, invertibile: true });
+      const conQuote = evs.filter((e) => abbinati.has(e.id))
+        .map((e) => ({ ...e, bookmaker: inFormatoTennis(abbinati.get(e.id).evento, e.giocatore1, e.giocatore2, { invertito: abbinati.get(e.id).invertito }) }))
+        .filter((e) => e.bookmaker.length);
+      if (conQuote.length) {
+        daOdss.add(t.chiave);
+        quotePer.set(t.chiave, new Map(conQuote.map((e) => [e.id, e])));
+        if (conQuote.length < evs.length) erroriGiro.push(`Quote ${t.titolo}: ${evs.length - conQuote.length} partite su ${evs.length} non trovate su odss-api, senza quote`);
+      } else {
+        erroriGiro.push(`Quote ${t.titolo}: nessuna partita su odss-api, quote da The Odds API`);
+      }
+    }
+  }
+
+  // 2. Crediti (solo per i tornei che tornano a The Odds API).
+  const conEventi = tornei.filter((t) => eventiPer.has(t.chiave) && !daOdss.has(t.chiave));
   let budget;
   ({ budget, rimastiOra } = calcolaBudget({ data, dirData, rimastiOra, conEventi, errore }));
   raccolta.crediti.rimasti = rimastiOra;
@@ -226,7 +261,6 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
   raccolta.competizioniNonCoperte.push(...ordinati.slice(scelti.length).map((t) => `${t.titolo}: crediti insufficienti`));
 
   // 4. Quote h2h (1 credito per torneo); le chiamate fallite non si contano.
-  const quotePer = new Map();
   for (const t of scelti) {
     try {
       const r = await fonti.oddsTennis.quote(t.chiave, finestra, opz);
@@ -239,6 +273,9 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
     }
   }
   raccolta.budgetResiduo = Math.max(0, budget - raccolta.crediti.usati);
+
+  // Tornei con le quote: prima quelli di odss-api, poi quelli di The Odds API.
+  scelti.unshift(...tornei.filter((t) => daOdss.has(t.chiave)));
 
   // 5. Storico: tre stagioni per circuito; una stagione che manca non fa perdere le altre.
   const anno = Number(data.slice(0, 4));
@@ -289,18 +326,18 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
     }
     let senzaQuota = 0;
     for (const ev of eventiPer.get(t.chiave)) {
-      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, motivo, data, ora, erroriGiro });
+      const partita = costruisciPartita({ t, ev, evento: quote.get(ev.id) ?? { ...ev, bookmaker: [] }, stato, superficie, bestOf, motivo, data, ora, erroriGiro, fonte: daOdss.has(t.chiave) ? 'odss-api' : 'The Odds API' });
       if (partita === null) continue;
       if (partita === false) { senzaQuota++; continue; }
       raccolta.partite.push(partita);
     }
-    if (senzaQuota) errore('The Odds API', `${plurale(senzaQuota, 'partita', 'partite')} senza quota utilizzabile (${t.titolo})`);
+    if (senzaQuota) errore(daOdss.has(t.chiave) ? 'odss-api' : 'The Odds API', `${plurale(senzaQuota, 'partita', 'partite')} senza quota utilizzabile (${t.titolo})`);
   }
   return raccolta;
 }
 
 // Partita della raccolta; null se un giocatore non si abbina (errore già scritto), false se nessun mercato ha quota.
-function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, data, ora, erroriGiro }) {
+function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, data, ora, erroriGiro, fonte = 'The Odds API' }) {
   const g1 = ev.giocatore1;
   const g2 = ev.giocatore2;
   let elo = null;
@@ -347,7 +384,7 @@ function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, d
       probModello,
       probPinnacle,
       quota: q.quota,
-      fonteQuota: `mediana di ${q.n} bookmaker (The Odds API)`,
+      fonteQuota: `mediana di ${q.n} bookmaker (${fonte})`,
       oraQuota: ora,
       frequenzaCampionato: null,
       spiegazione: spiegazioneTennis(nome),
@@ -389,7 +426,7 @@ async function principale() {
     process.exit(1);
   }
   const dirData = 'data';
-  const chiavi = { oddsApi: process.env.ODDS_API_KEY };
+  const chiavi = { oddsApi: process.env.ODDS_API_KEY, odss: process.env.ODSS_API_KEY };
   const fonti = { oddsTennis, tennisData: conStoricoLocale(tennisData, join(dirData, 'storico-tennis')) };
   let raccolta;
   try {

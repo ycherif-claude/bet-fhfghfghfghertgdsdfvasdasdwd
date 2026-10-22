@@ -400,13 +400,18 @@ test('Telegram: "quota migliore 1,31 su Sportium (minima 1,24)" con l\'orario, â
 
 // ---- Workflow, comando, documenti ----
 
-test('workflow: ODSS_API_KEY solo allo step della raccolta odss; npm run raccolta-odss; la riserva non la vede', () => {
+test('workflow: ODSS_API_KEY solo agli step che usano odss-api; npm run raccolta-odss; la riserva non la vede', () => {
   const w = readFileSync('.github/workflows/raccolta.yml', 'utf8');
   const step = w.split('\n      - ').filter((s) => s.includes('ODSS_API_KEY'));
-  assert.equal(step.length, 1);
-  assert.ok(step[0].includes('npm run raccolta-odss'));
-  assert.ok(step[0].includes('ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}'));
-  assert.ok(step[0].includes('continue-on-error: true'));
+  const comandi = step.map((s) => /run: (npm run [\w-]+)/.exec(s)?.[1]);
+  // La raccolta del calcio legge il file della raccolta odss: non ha bisogno della chiave.
+  assert.ok(!comandi.includes('npm run raccolta'));
+  assert.ok(comandi.includes('npm run raccolta-odss'));
+  assert.ok(comandi.includes('npm run raccolta-tennis'));
+  for (const s of step) {
+    assert.ok(s.includes('ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}'));
+    assert.ok(s.includes('continue-on-error: true'));
+  }
   assert.ok(!readFileSync('.github/workflows/riserva.yml', 'utf8').includes('ODSS_API_KEY'));
   assert.equal(JSON.parse(readFileSync('package.json', 'utf8')).scripts['raccolta-odss'], 'node src/calcio/raccolta-odss.js');
   assert.match(readFileSync('docs/routine/giro-del-mattino.md', 'utf8'), /<oggi>-odss\.json/);

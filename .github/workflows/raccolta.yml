@@ -47,10 +47,12 @@ jobs:
           BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
       - name: Raccolta tennis
+        # Quote da odss-api (1 richiesta, budget unico); senza odss, o per i tornei che odss non ha, The Odds API.
         run: npm run raccolta-tennis
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta basket
         run: npm run raccolta-basket
         continue-on-error: true
