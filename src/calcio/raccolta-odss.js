@@ -17,7 +17,7 @@ async function principale() {
   }
   const r = await eseguiRaccoltaOdss({ dirData: path.resolve('data'), data, adesso, chiave: process.env.ODSS_API_KEY });
   const f = r.file;
-  console.log(`Quote odss-api ${data}: ${f.eventi.length} partite, ${r.richieste} richieste, rimaste ${r.stato.rimaste ?? 'sconosciute'}, usate oggi ${r.stato.usateOggi}${r.tenuto ? ' (file di oggi già buono: non sostituito)' : ''}`);
+  console.log(`Quote odss-api ${data}: ${f.eventi.length} partite, ${r.richieste} richieste, rimaste ${r.stato.rimaste ?? 'sconosciute'}, usate in questa giornata ${r.stato.giornate?.[Object.keys(r.stato.giornate ?? {}).sort().at(-1)]?.usate ?? 0}${r.tenuto ? ' (file di oggi già buono: non sostituito)' : ''}`);
   for (const e of f.erroriGiro) console.log(`- ${e}`);
 }
 

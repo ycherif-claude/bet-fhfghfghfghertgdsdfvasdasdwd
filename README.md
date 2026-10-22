@@ -67,7 +67,7 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 | Tennis | moneyline (vincente incontro) | The Odds API |
 | Basket (Eurolega, NBL) | moneyline, ah (handicap, linea della casa), ou | The Odds API |
 | NBA | moneyline, ah, ou | SportsGameOdds |
-| Pallavolo | moneyline, ou 3.5 (totale set), other:set_handicap ±1.5 (solo con esiti HOME/AWAY) | OddsPapi |
+| Pallavolo | moneyline, ou 3.5 (totale set); l'handicap a set resta da OddsPapi | OddsPapi |
 | Controlli pre-partita | gli stessi, una richiesta per passaggio | le fonti di prima |
 
 - **Regole comuni**: solo la riga della partita intera (`scope` "match", `period` "full_time"); esiti sospesi fuori; un bookmaker che dà un altro orario d'inizio (`start_time` diverso di più di un'ora) fuori; le quote dei tuoi bookmaker aggiornate da più di 6 ore fuori; exchange fuori da mediana e consenso. Quota = mediana dei bookmaker (almeno 3); probabilità di mercato = Pinnacle senza margine, altrimenti il consenso senza margine dei bookmaker ("Consenso bookmaker" sulla scheda). Le partite si abbinano per squadre (o giocatori, anche invertiti nel tennis) e orario; ambiguo → nessun abbinamento; partite femminili mai abbinate a quelle maschili. Più eventi del feed per la stessa partita si uniscono (un bookmaker con due quote diverse per lo stesso mercato si scarta). L'handicap del basket si scarta se il suo verso contraddice il vincente; l'`ah` della pallavolo (in punti) non si usa.
