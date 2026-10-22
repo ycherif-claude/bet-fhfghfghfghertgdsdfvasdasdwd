@@ -253,6 +253,9 @@ function marcatori(nome) {
   return MARCATORI.filter((m) => testo.includes(`-${m}-`));
 }
 const stessiMarcatori = (evento, nostro) => { const n = marcatori(nostro); return marcatori(evento).every((m) => n.includes(m)); };
+// Campionato femminile ("Serie A Femminile", "Serie A (W)", "Frauen-Bundesliga"…): mai a una partita che non lo è.
+const DONNE = ['women', 'woman', 'femminile', 'femenino', 'feminin', 'feminine', 'ladies', 'frauen', 'dames', 'w'];
+const campionatoFemminile = (nome) => marcatori(nome ?? '').some((m) => DONNE.includes(m));
 
 // Map idPartita → evento odss. Solo calcio; stesse squadre (casa con casa, trasferta con trasferta) e inizio entro
 // CONFIG.odss.toleranzaOre. Prima i nomi uguali o con alias noti; solo se nessuno, i nomi simili. Più eventi
@@ -267,6 +270,7 @@ export function abbinaEventiOdss(partite, eventi) {
     const t = Date.parse(p.inizio);
     if (!sq || !Number.isFinite(t)) continue;
     const vicini = lista.filter((e) => Math.abs(Date.parse(e.inizio) - t) <= tolleranza
+      && (!campionatoFemminile(e.campionato) || marcatori(`${sq.casa} ${sq.trasferta}`).some((m) => DONNE.includes(m)))
       && stessiMarcatori(e.casa, sq.casa) && stessiMarcatori(e.trasferta, sq.trasferta));
     const esatti = vicini.filter((e) => stessaSquadra(e.casa, sq.casa) && stessaSquadra(e.trasferta, sq.trasferta));
     const candidati = esatti.length ? esatti : vicini.filter((e) => simile(e.casa, sq.casa) && simile(e.trasferta, sq.trasferta));

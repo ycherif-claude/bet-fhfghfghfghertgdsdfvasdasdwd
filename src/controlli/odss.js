@@ -5,7 +5,7 @@
 // che odss non ha, budget finito, errore) restano alle fonti di prima.
 import { creaBudgetOdss, leggiStatoOdss, scriviStatoOdss } from '../odss/budget.js';
 import { scaricaOdss } from '../odss/scarica.js';
-import { abbinaEventi, eventiDaRighe, femminile, inFormatoCalcio, inFormatoNba, inFormatoTennis } from '../odss/eventi.js';
+import { abbinaEventi, eventiDaRighe, femminile, inFormatoCalcio, inFormatoNba, inFormatoTennis, tennisSingolare } from '../odss/eventi.js';
 import { abbinaEventiOdss } from '../calcio/odss.js';
 import { stessoGiocatore } from '../tennis/raccolta.js';
 import { squadraNba } from '../nba/squadre.js';
@@ -39,7 +39,7 @@ function eventoPerVoce(v, eventi) {
     return e ? { ...inFormatoCalcio(e), casa: sq.casa, trasferta: sq.trasferta } : null;
   }
   if (v.sport === 'tennis') {
-    const m = abbinaEventi([nostra], delloSport, { stesso: stessoGiocatore, invertibile: true }).get(v.id);
+    const m = abbinaEventi([nostra], delloSport.filter(tennisSingolare), { stesso: stessoGiocatore, invertibile: true }).get(v.id);
     if (!m) return null;
     return { giocatore1: sq.casa, giocatore2: sq.trasferta, casa: sq.casa, trasferta: sq.trasferta, inizio: v.inizio, bookmaker: inFormatoTennis(m.evento, sq.casa, sq.trasferta, { invertito: m.invertito }) };
   }
@@ -47,7 +47,7 @@ function eventoPerVoce(v, eventi) {
   const candidati = v.sport === 'pallavolo' ? delloSport : delloSport.filter((e) => !femminile(e));
   const m = abbinaEventi([nostra], candidati, { stesso }).get(v.id);
   if (!m) return null;
-  const opz = v.sport === 'pallavolo' ? { handicap: false, totali: (l) => l === 3.5 } : {};
+  const opz = v.sport === 'pallavolo' ? { handicap: false, handicapSet: true, totali: (l) => l === 3.5 } : {};
   return { casa: sq.casa, trasferta: sq.trasferta, inizio: v.inizio, bookmaker: inFormatoNba(m.evento, opz).bookmaker };
 }
 

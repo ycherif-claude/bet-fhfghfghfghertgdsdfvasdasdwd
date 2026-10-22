@@ -10,7 +10,10 @@ import { backToBack, formattaLinea, mercatiNba, pesoModelloPartita, puntiAttesi,
 import { consensoNba, lineaComune, quotaMedianaNba, riferimentoMercato } from './quote.js';
 import { squadraNba } from './squadre.js';
 import { eventiOdssSport } from '../odss/sport.js';
-import { femminile, inFormatoNba, unisciEventi } from '../odss/eventi.js';
+import { femminile, inFormatoNba, legaAmmessa, unisciEventi } from '../odss/eventi.js';
+
+// Nomi esatti del campionato NBA su odss-api (il filtro league "nba" porta anche WNBA e "NBA - Fantasy Matches").
+export const LEGHE_NBA = Object.freeze(['NBA', 'USA ~ NBA', 'NBA Cup', 'NBA Cup - Fase a Gironi', 'Košarka NBA']);
 import { aggiornaEsitiGiroNba, dataUsaDi } from './esiti.js';
 
 export const ERRORE_CHIAVI = 'Mancano le chiavi NBA (BALLDONTLIE_API_KEY, SPORTSGAMEODDS_API_KEY)';
@@ -70,7 +73,7 @@ export function spiegazioneMercato(mercato, selezione, nomi, linee) {
 // (stesse squadre, inizio vicino) uniti, bookmaker nel formato NBA. { eventi, handicapScartati }.
 export function partiteNbaDaOdss(eventi) {
   const gruppi = [];
-  const ordinati = (eventi ?? []).filter((e) => !femminile(e)).sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
+  const ordinati = (eventi ?? []).filter((e) => !femminile(e) && legaAmmessa(e.campionato, LEGHE_NBA)).sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
   for (const e of ordinati) {
     const casa = squadraNba(e.casa);
     const trasferta = squadraNba(e.trasferta);

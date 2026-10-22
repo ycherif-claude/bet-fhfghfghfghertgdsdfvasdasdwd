@@ -16,7 +16,7 @@ import { abbinaSquadra, squadreStorico } from './squadre.js';
 import { calcolaEloPallavolo, mercatiPallavolo, pesoModelloPallavolo, probPartita } from './modello.js';
 import { aggiornaEsitiPallavolo } from './esiti.js';
 import { eventiOdssSport } from '../odss/sport.js';
-import { femminile, inFormatoNba, unisciEventi } from '../odss/eventi.js';
+import { femminile, inFormatoNba, legaAmmessa, unisciEventi } from '../odss/eventi.js';
 
 const P = CONFIG.pallavolo;
 const virgola = (q) => q.toFixed(2).replace('.', ',');
@@ -176,7 +176,7 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
       if (!(t >= Math.max(finestraOdss.da.getTime(), adesso.getTime()) && t < finestraOdss.a.getTime())) continue;
       const scelte = [];
       for (const c of attivi) {
-        if (femminile(e) && !/femminile/i.test(c.competizione)) continue;
+        if (!legaAmmessa(e.campionato, c.legheOdss) || (femminile(e) && !/femminile/i.test(c.competizione))) continue;
         const squadre = squadreStorico(storici.get(c.id));
         const idCasa = abbinaSquadra(e.casa, squadre);
         const idTrasferta = abbinaSquadra(e.trasferta, squadre);
@@ -192,7 +192,7 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
     const prima = raccolta.partite.length;
     for (const g of gruppi) {
       const unito = unisciEventi(g.eventi);
-      const { bookmaker } = inFormatoNba(unito, { handicap: false, totali: (l) => l === 3.5 });
+      const { bookmaker } = inFormatoNba(unito, { handicap: false, handicapSet: true, totali: (l) => l === 3.5 });
       const f = { casa: g.eventi[0].casa, trasferta: g.eventi[0].trasferta, inizio: g.eventi[0].inizio };
       aggiungiPartita({ f, c: g.c, idCasa: g.idCasa, idTrasferta: g.idTrasferta }, bookmaker, 'odss-api');
     }

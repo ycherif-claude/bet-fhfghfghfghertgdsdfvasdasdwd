@@ -122,48 +122,94 @@ export function abbinaEventi(nostri, eventi, { stesso, simile = null, tolleranza
 const FEMMINILE = /\b(w|wnbl|wnba|women|woman|ladies|femminile|feminino|femenino|feminin|feminine|donne|damer|kvinder|kobiety|frauen|dames)\b|\((f|w|k|d)\)/i;
 export const femminile = (evento) => [evento?.campionato, evento?.casa, evento?.trasferta].some((x) => FEMMINILE.test(String(x ?? '')));
 
+// Nome del campionato fra quelli ammessi (confronto esatto senza maiuscole e spazi doppi): il filtro league di odss
+// è una sottostringa e porta anche femminili e altri paesi ("NBL" → "WNBL", "New Zealand - NBL Women"…).
+const pulisciLega = (x) => String(x ?? '').normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim();
+export const legaAmmessa = (nome, elenco) => (elenco ?? []).some((x) => pulisciLega(x) === pulisciLega(nome));
+
+// Tennis: solo singolari del circuito maggiore. Doppi ("Doubles", "Doppio", "/" fra i nomi) e tornei ITF, M25, W15,
+// UTR fuori (i nostri tornei vengono da The Odds API: ATP e WTA). Campionato assente (null nel feed vero): ammesso,
+// l'abbinamento si fa con i giocatori e l'orario del torneo della nostra raccolta.
+const DOPPIO = /doubles?|doppio|dobles|doppel/i;
+const MINORI = /\b(itf|utr|[mw]\d{2,3})\b/i;
+export const tennisSingolare = (e) => !DOPPIO.test(String(e?.campionato ?? '')) && !MINORI.test(String(e?.campionato ?? ''))
+  && ![e?.casa, e?.trasferta].some((n) => String(n ?? '').includes('/') || DOPPIO.test(String(n ?? '')));
+
 const senzaExchange = (evento) => (evento?.libri ?? []).filter((l) => !l.exchange);
 const lineaDi = (k, mercato) => (k.startsWith(`${mercato}|`) ? Number(k.slice(mercato.length + 1)) : null);
 const lineaValida = (x) => Number.isFinite(x) && Number.isInteger(x * 2);
+// Prezzo credibile di una linea alternativa: sul feed vero ci sono linee con un lato solo o a 33 (NBA, Snai).
+const prezzoLinea = (q) => num(q) && q >= 1.01 && q <= 20;
+const mezzo = (v) => { const x = [...v].sort((a, b) => a - b); const m = x.length >> 1; return x.length % 2 ? x[m] : (x[m - 1] + x[m]) / 2; };
+
+// Linea principale fra quelle dei bookmaker: fra le linee con più bookmaker (almeno 3, o il massimo se nessuna ne ha
+// 3), quella con i due prezzi più vicini (mediana di |p1 − p2|); a pari, più bookmaker, poi la linea più piccola.
+function lineaPrincipale(perLibro, lati) {
+  const linee = new Map();
+  for (const coppie of perLibro) {
+    for (const [l, c] of Object.entries(coppie ?? {})) {
+      if (!linee.has(l)) linee.set(l, []);
+      linee.get(l).push(Math.abs(c[lati[0]] - c[lati[1]]));
+    }
+  }
+  if (!linee.size) return null;
+  const soglia = Math.min(3, Math.max(...[...linee.values()].map((d) => d.length)));
+  return [...linee].filter(([, d]) => d.length >= soglia)
+    .sort((a, b) => mezzo(a[1]) - mezzo(b[1]) || b[1].length - a[1].length || Math.abs(Number(a[0])) - Math.abs(Number(b[0])))[0][0];
+}
 
 // Formato dei bookmaker di NBA, basket e pallavolo: [{ chiave, aggiornato, mercati: { vincente: { casa, trasferta },
 // handicap: { 'linea della casa': { casa, trasferta } }, totale: { linea: { over, under } } } }].
-// Controllo del verso dell'handicap: se il vincente dà la casa favorita (≥ 60%) ma la linea più comune della casa è
-// positiva, o sfavorita (≤ 40%) con la linea negativa, l'handicap si scarta (`handicapScartato: true`).
-// `totali(linea)`: quali linee del totale tenere (pallavolo: solo i set).
-export function inFormatoNba(evento, { invertito = false, totali = () => true, handicap = true } = {}) {
-  const bookmaker = [];
+// - Basket: moneyline, ah e ou "full_time" non hanno pareggio e il feed ha a parte il 1x2 dei tempi regolamentari
+//   (other:1x2_tempi_reg): la partita intera comprende i supplementari, come le nostre spiegazioni.
+// - ah: linea ed esiti dal lato della casa (collaudo: Zalgiris -9.5 in casa, favorito, HOME 1.88 / AWAY 1.82).
+// - Linee alternative: per ogni linea servono entrambi i prezzi fra 1,01 e 20; di handicap e totale resta solo la
+//   linea principale (prezzi più vicini), la stessa per tutti i bookmaker.
+// - Verso dell'handicap: vincente con la casa favorita (≥ 60%) e linea principale positiva, o sfavorita (≤ 40%) con
+//   linea negativa → handicap scartato (`handicapScartato: true`).
+// - `totali(linea)`: linee del totale ammesse (pallavolo: solo 3.5, i set). `handicap: false`: niente ah (pallavolo:
+//   l'ah è in punti). `handicapSet`: handicap set da "other:set_handicap" (pallavolo), solo con esiti HOME/AWAY e
+//   linea ±1.5, tutte e due le linee.
+export function inFormatoNba(evento, { invertito = false, totali = () => true, handicap = true, handicapSet = false } = {}) {
+  const libri = [];
   for (const l of senzaExchange(evento)) {
     const m = {};
     const ml = l.mercati.moneyline;
     if (quotaValida(ml?.HOME) && quotaValida(ml?.AWAY)) m.vincente = invertito ? { casa: ml.AWAY, trasferta: ml.HOME } : { casa: ml.HOME, trasferta: ml.AWAY };
+    const coppie = { handicap: {}, totale: {}, set: {} };
     for (const [k, o] of Object.entries(l.mercati)) {
       const ah = lineaDi(k, 'ah');
-      if (handicap && lineaValida(ah) && quotaValida(o.HOME) && quotaValida(o.AWAY)) {
+      if (handicap && lineaValida(ah) && prezzoLinea(o.HOME) && prezzoLinea(o.AWAY)) {
         const [linea, casa, trasferta] = invertito ? [-ah, o.AWAY, o.HOME] : [ah, o.HOME, o.AWAY];
-        (m.handicap ??= {})[String(linea)] = { casa, trasferta };
+        coppie.handicap[String(linea)] = { casa, trasferta };
+      }
+      const sh = lineaDi(k, 'other:set_handicap');
+      if (handicapSet && Math.abs(sh) === 1.5 && Object.keys(o).sort().join(',') === 'AWAY,HOME' && prezzoLinea(o.HOME) && prezzoLinea(o.AWAY)) {
+        const [linea, casa, trasferta] = invertito ? [-sh, o.AWAY, o.HOME] : [sh, o.HOME, o.AWAY];
+        coppie.set[String(linea)] = { casa, trasferta };
       }
       const ou = lineaDi(k, 'ou');
-      if (lineaValida(ou) && totali(ou) && quotaValida(o.OVER) && quotaValida(o.UNDER)) (m.totale ??= {})[String(ou)] = { over: o.OVER, under: o.UNDER };
+      if (lineaValida(ou) && totali(ou) && prezzoLinea(o.OVER) && prezzoLinea(o.UNDER)) coppie.totale[String(ou)] = { over: o.OVER, under: o.UNDER };
     }
+    libri.push({ l, m, coppie });
+  }
+  const hPrincipale = lineaPrincipale(libri.map((x) => x.coppie.handicap), ['casa', 'trasferta']);
+  const tPrincipale = lineaPrincipale(libri.map((x) => x.coppie.totale), ['over', 'under']);
+  let handicapScartato = false;
+  if (hPrincipale !== null) {
+    const linea = Number(hPrincipale);
+    const prob = libri.filter((x) => x.m.vincente).map(({ m }) => (1 / m.vincente.casa) / (1 / m.vincente.casa + 1 / m.vincente.trasferta));
+    const pCasa = prob.length ? prob.reduce((a, p) => a + p, 0) / prob.length : null;
+    handicapScartato = pCasa !== null && ((pCasa >= 0.6 && linea > 0) || (pCasa <= 0.4 && linea < 0));
+  }
+  const bookmaker = [];
+  for (const { l, m, coppie } of libri) {
+    if (hPrincipale !== null && !handicapScartato && coppie.handicap[hPrincipale]) m.handicap = { [hPrincipale]: coppie.handicap[hPrincipale] };
+    if (Object.keys(coppie.set).length) m.handicap = { ...(m.handicap ?? {}), ...coppie.set };
+    if (tPrincipale !== null && coppie.totale[tPrincipale]) m.totale = { [tPrincipale]: coppie.totale[tPrincipale] };
     if (Object.keys(m).length) bookmaker.push({ chiave: l.chiave, aggiornato: l.aggiornato, mercati: m });
   }
-  let handicapScartato = false;
-  const conLinee = bookmaker.filter((b) => b.mercati.handicap);
-  if (conLinee.length) {
-    const conteggio = new Map();
-    for (const b of conLinee) for (const k of Object.keys(b.mercati.handicap)) conteggio.set(k, (conteggio.get(k) ?? 0) + 1);
-    const max = Math.max(...conteggio.values());
-    const comuni = [...conteggio].filter(([, n]) => n === max).map(([k]) => Number(k));
-    const prob = bookmaker.filter((b) => b.mercati.vincente)
-      .map((b) => (1 / b.mercati.vincente.casa) / (1 / b.mercati.vincente.casa + 1 / b.mercati.vincente.trasferta));
-    const pCasa = prob.length ? prob.reduce((a, p) => a + p, 0) / prob.length : null;
-    if (pCasa !== null && ((pCasa >= 0.6 && comuni.every((x) => x > 0)) || (pCasa <= 0.4 && comuni.every((x) => x < 0)))) {
-      handicapScartato = true;
-      for (const b of bookmaker) delete b.mercati.handicap;
-    }
-  }
-  return { bookmaker: bookmaker.filter((b) => Object.keys(b.mercati).length), handicapScartato };
+  return { bookmaker, handicapScartato };
 }
 
 // Formato del tennis: [{ chiave, aggiornato, quote: { [g1]: quota, [g2]: quota } }], g1 e g2 i nostri nomi

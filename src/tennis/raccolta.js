@@ -9,7 +9,7 @@ import { budgetCrediti } from '../calcio/raccolta.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
 import { abbinaGiocatore, normalizzaGiocatore } from './giocatori.js';
 import { eventiOdssSport } from '../odss/sport.js';
-import { abbinaEventi, inFormatoTennis } from '../odss/eventi.js';
+import { abbinaEventi, inFormatoTennis, tennisSingolare } from '../odss/eventi.js';
 import { calcolaElo, eloDefault, pesoModelloPartita, probVittoria } from './elo.js';
 import { oddsTennis } from './fonti/odds-tennis.js';
 import { conStoricoLocale, fileNonAncoraPubblicato, tennisData } from './fonti/tennis-data.js';
@@ -229,7 +229,7 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
     erroriGiro.push(...o.errori);
     for (const t of tornei.filter((x) => eventiPer.has(x.chiave))) {
       const evs = eventiPer.get(t.chiave);
-      const abbinati = abbinaEventi(evs.map((e) => ({ id: e.id, casa: e.giocatore1, trasferta: e.giocatore2, inizio: e.inizio })), o.eventi ?? [], { stesso: stessoGiocatore, invertibile: true });
+      const abbinati = abbinaEventi(evs.map((e) => ({ id: e.id, casa: e.giocatore1, trasferta: e.giocatore2, inizio: e.inizio })), (o.eventi ?? []).filter(tennisSingolare), { stesso: stessoGiocatore, invertibile: true });
       const conQuote = evs.filter((e) => abbinati.has(e.id))
         .map((e) => ({ ...e, bookmaker: inFormatoTennis(abbinati.get(e.id).evento, e.giocatore1, e.giocatore2, { invertito: abbinati.get(e.id).invertito }) }))
         .filter((e) => e.bookmaker.length);

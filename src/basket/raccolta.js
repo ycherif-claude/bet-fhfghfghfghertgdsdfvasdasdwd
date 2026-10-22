@@ -10,7 +10,7 @@ import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/te
 import { formattaLinea, mercatiNba, pesoModelloPartita, puntiAttesi, stimaForzeNba } from '../nba/modello.js';
 import { lineaComune, quotaMedianaNba, riferimentoMercato } from '../nba/quote.js';
 import { eventiOdssSport } from '../odss/sport.js';
-import { abbinaEventi, femminile, inFormatoNba } from '../odss/eventi.js';
+import { abbinaEventi, femminile, inFormatoNba, legaAmmessa } from '../odss/eventi.js';
 import { spiegazioneMercato } from '../nba/raccolta.js';
 import { oddsBasket } from './fonti/odds-basket.js';
 import { eurolega } from './fonti/eurolega.js';
@@ -28,11 +28,12 @@ const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const decimo = (n) => Math.round(n * 10) / 10;
 const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
 
-// In ordine di priorità per i crediti. `leagueOdss`: filtro league di odss-api (sottostringa del nome: "eurol" prende
-// Euroleague, Eurolega, Euroliga, Euroligue; le squadre femminili si tolgono dopo).
+// In ordine di priorità per i crediti. `leagueOdss`: filtro league della richiesta a odss-api (sottostringa del nome);
+// `legheOdss`: i soli nomi di campionato ammessi, esatti (collaudo del 23/10/2026: "NBL" porta anche "WNBL",
+// "New Zealand - NBL Women", "Czech Republic - NBL"; il ceco si chiama anche solo "NBL" e lo escludono le squadre).
 export const CAMPIONATI = Object.freeze([
-  Object.freeze({ id: 'eurolega', chiave: 'basketball_euroleague', competizione: 'Eurolega', fonte: 'API Eurolega', pausaMs: 1000, leagueOdss: 'eurol' }),
-  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 6500, leagueOdss: 'nbl' }),
+  Object.freeze({ id: 'eurolega', chiave: 'basketball_euroleague', competizione: 'Eurolega', fonte: 'API Eurolega', pausaMs: 1000, leagueOdss: 'eurol', legheOdss: Object.freeze(['Euroleague', 'Europe - Euroleague', 'Košarka EUROLEAGUE', 'Eurolega']) }),
+  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 6500, leagueOdss: 'nbl', legheOdss: Object.freeze(['NBL', 'Australia - NBL', 'Australia, NBL']) }),
 ]);
 
 // Crediti di un file di raccolta di oggi: { rimasti, usati, file } | { errore } | null (file assente).
@@ -284,7 +285,7 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
       const codice = (x) => codiceSquadra(c.id, x);
       const stesso = (a, b) => Boolean(codice(a)) && codice(a) === codice(b);
       const nostri = eventiPer.get(c.id);
-      const abbinati = abbinaEventi(nostri, (o.eventi ?? []).filter((e) => !femminile(e)), { stesso });
+      const abbinati = abbinaEventi(nostri, (o.eventi ?? []).filter((e) => !femminile(e) && legaAmmessa(e.campionato, c.legheOdss)), { stesso });
       let storti = 0;
       const conQuote = nostri.filter((e) => abbinati.has(e.id)).map((e) => {
         const f = inFormatoNba(abbinati.get(e.id).evento);

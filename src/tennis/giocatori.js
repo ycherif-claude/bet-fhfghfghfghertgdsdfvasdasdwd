@@ -14,6 +14,12 @@ const pulisci = (s) => String(s ?? '')
 
 export function normalizzaGiocatore(nome) {
   const originale = String(nome ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  // Formato "Cognome, Nome" (odss-api, collaudo del 23/10/2026: "Khomutsianskaya, Daria").
+  const virgola = originale.indexOf(',');
+  if (virgola > 0) {
+    const nomeProprio = pulisci(originale.slice(virgola + 1));
+    return { cognome: pulisci(originale.slice(0, virgola)), iniziale: nomeProprio[0] ?? null };
+  }
   const parole = originale.split(/\s+/).filter(Boolean);
   // Formato tennis-data: ultimo token di 1-2 iniziali con il punto ("J.", "J.L.").
   const ultimo = parole[parole.length - 1] ?? '';
