@@ -12,6 +12,7 @@ import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-s
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
+import { leggiCalibrazione, pronosticiGiornata } from '../regole/pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 
 const PARTITE_ANTEPRIMA = 5;
@@ -155,6 +156,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const multipleBonus = prova && raccolta
     ? costruisciMultipleBonus(valutaMercati(raccolta, notizie, { adesso }).voci, { data: oggi, escluse })
     : [];
+  // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare).
+  const pronostici = raccolta ? pronosticiGiornata(raccolta, leggiCalibrazione(dirData), { adesso, escluse }) : [];
 
   const giornata = {
     data: oggi,
@@ -165,6 +168,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     ...(prova ? { prova: true } : {}),
     competizioniNonCoperte: Array.isArray(raccolta?.competizioniNonCoperte) ? raccolta.competizioniNonCoperte : [],
     candidati,
+    ...(pronostici.length ? { pronostici } : {}),
     giocate: scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     scartate: [...preScartate, ...scelta.scartate],

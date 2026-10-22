@@ -103,6 +103,7 @@ export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault()
     reg.aggiornatoAlle = isoRoma(adesso);
     scrivi(fileRegistro(dirData, data), reg);
     aggiornaMultipleBonus(dirData, data, reg);
+    aggiornaPronostici(dirData, data, reg);
     riepilogo.push({ data, righe: reg.righe.length, conEsito: reg.righe.filter((r) => r.esito).length, nuovi });
   }
   return { riepilogo, errori };
@@ -123,6 +124,23 @@ export function aggiornaMultipleBonus(dirData, data, reg) {
     }
     const r = esitoMultiplaBonus(mb);
     if (r.esito !== mb.esito || r.ritorno !== mb.ritorno) { mb.esito = r.esito; mb.ritorno = r.ritorno; cambiato = true; }
+  }
+  if (cambiato) scrivi(file, g);
+  return cambiato;
+}
+
+// Esiti dei pronostici sì/no della giornata `data`, dalle righe del registro (solo esiti definitivi).
+export function aggiornaPronostici(dirData, data, reg) {
+  const file = path.join(dirData, 'giornate', `${data}.json`);
+  const g = leggi(file, null);
+  if (!g || !Array.isArray(g.pronostici) || !g.pronostici.length) return false;
+  const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
+  let cambiato = false;
+  for (const p of g.pronostici) {
+    for (const x of p.pronostici ?? []) {
+      const e = esiti.get(chiaveMercato(p.idPartita, x.mercato, x.selezione)) ?? null;
+      if (e && x.esito !== e) { x.esito = e; cambiato = true; }
+    }
   }
   if (cambiato) scrivi(file, g);
   return cambiato;

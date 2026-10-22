@@ -143,6 +143,30 @@ export const CONFIG = congela({
   // Multiple bonus bet365 (in prova dal 22/10/2026): partite a quota 1,25–1,50 con il margine più basso,
   // una selezione per partita. Incremento sulla vincita dalla tabella ufficiale di bet365 (screenshot dell'utente):
   // ogni selezione deve avere quota ≥ 1,25 e nessun mercato che possa finire rimborsato.
+  // Pronostici sì/no [utente, 22/10/2026]: nascono solo dal modello, senza quote; la quota serve dopo,
+  // per decidere se giocare (quota ≥ quota minima). "Sì" quando la probabilità del modello supera la soglia
+  // del mercato. Soglie scelte sulle stagioni passate (data/taratura/calibrazione.json): da lì in su il "sì"
+  // è uscito almeno il 70% circa delle volte in ogni stagione. Gol, No gol, Under 1.5/2.5 e Over 3.5 esclusi:
+  // il modello li sopravvaluta. La percentuale mostrata è quella vera della stessa fascia nel passato.
+  pronostici: {
+    maxPerPartita: 3,
+    minCampioniFascia: 60,
+    soglie: {
+      calcio: {
+        '1X2|1': 0.7,
+        '1X2|2': 0.7,
+        'Doppia chance|1X': 0.7,
+        'Doppia chance|X2': 0.7,
+        'Doppia chance|12': 0.75,
+        'Under/Over 1.5|Over 1.5': 0.7,
+        'Under/Over 2.5|Over 2.5': 0.8,
+        'Under/Over 3.5|Under 3.5': 0.7,
+        'Under/Over casa 0.5|Over 0.5': 0.75,
+        'Under/Over trasferta 0.5|Over 0.5': 0.75,
+      },
+      tennis: { 'Vincente incontro|*': 0.75 },
+    },
+  },
   multiplaBonus: {
     quotaMin: 1.25,
     quotaMax: 1.5,

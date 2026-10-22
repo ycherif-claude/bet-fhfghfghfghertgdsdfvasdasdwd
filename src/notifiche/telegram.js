@@ -64,6 +64,47 @@ export function testoMultiplaBonus(mb) {
   const gambe = mb.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}`);
   return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
 }
+const percentuale = (p) => `${Math.round(p * 100)}%`;
+const pronosticiDi = (giornata) => (Array.isArray(giornata?.pronostici) ? giornata.pronostici.filter((x) => x && Array.isArray(x.pronostici)) : []);
+
+// Pronostici sì/no del giorno: una riga per pronostico, con la quota minima e, se c'è, la quota di oggi.
+export function testoPronostici(giornata, oggi) {
+  const partite = pronosticiDi(giornata);
+  if (!partite.length) return `📋 <b>Pronostici del ${giornoMese(oggi)}</b>: oggi nessuna partita ha un pronostico abbastanza sicuro.`;
+  const blocchi = partite.map((p) => {
+    const ora = Number.isFinite(Date.parse(p.inizio)) ? ` · ${oraRoma(new Date(p.inizio))}` : '';
+    const righe = p.pronostici.map((x) => {
+      const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile ? ' ✅' : ''})` : '';
+      return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${percentuale(x.prob)} · min ${virgola(x.quotaMinima)}${quota}`;
+    });
+    return [`${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>${ora}`, ...righe].join('\n');
+  });
+  return [`📋 <b>Pronostici del ${giornoMese(oggi)}</b>\nGioca un pronostico solo se la quota è almeno la minima.`, ...blocchi].join('\n\n');
+}
+
+// Bilancio dei pronostici di una giornata: quando sono tutti chiusi (o dopo 3 giorni), una volta sola.
+export function messaggiPronostici({ giornate, inviate, oggi }) {
+  const out = [];
+  const limite = new Date(Date.parse(`${oggi}T00:00:00Z`) - 3 * 86400000).toISOString().slice(0, 10);
+  for (const x of giornate) {
+    if (x.data >= oggi) continue;
+    const tutti = pronosticiDi(x).flatMap((p) => p.pronostici.map((y) => ({ ...y, partita: p.partita })));
+    if (!tutti.length) continue;
+    const chiusi = tutti.filter((y) => y.esito === 'vinta' || y.esito === 'persa');
+    const aperti = tutti.filter((y) => y.esito === null || y.esito === undefined);
+    if (aperti.length && x.data > limite) continue;
+    const chiave = `${x.data}|pronostici-esito`;
+    if (inviate.has(chiave) || !chiusi.length) continue;
+    const giusti = chiusi.filter((y) => y.esito === 'vinta').length;
+    const sbagliati = chiusi.filter((y) => y.esito === 'persa').map((y) => `   ❌ ${html(y.partita)}: ${html(y.testo ?? y.selezione)}`);
+    out.push({ chiave, testo: [
+      `📋 <b>Pronostici del ${giornoMese(x.data)}</b>: ${giusti} giusti su ${chiusi.length} (${percentuale(giusti / chiusi.length)})${aperti.length ? `, ${aperti.length} senza esito` : ''}`,
+      ...sbagliati,
+    ].join('\n') });
+  }
+  return out;
+}
+
 const multipleBonus = (giornata) => (Array.isArray(giornata?.multipleBonus) ? giornata.multipleBonus.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
 
 // Esito delle multiple bonus, una volta per multipla.
@@ -116,10 +157,14 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       ? [titolo, ...giocate.map((g, i) => testoGiocata(g, i + 1))].join('\n\n')
       : `${prova ? '🧪' : '🎯'} <b>Oggi, ${giornoMese(oggi)}, nessuna giocata</b>: nessun mercato ha value${prova ? ' positivo' : ' sufficiente'}.`;
     const bonus = multipleBonus(delGiorno).map(testoMultiplaBonus);
-    const conBonus = bonus.length ? `${testo}\n\n${bonus.join('\n\n')}` : testo;
+    // In prova il messaggio del mattino sono i pronostici; le giocate di prova restano sul sito.
+    const base = prova
+      ? `${testoPronostici(delGiorno, oggi)}\n\n🧪 ${giocate.length === 1 ? '1 giocata' : `${giocate.length} giocate`} di prova sul sito: non giocarle, servono al database.`
+      : testo;
+    const conBonus = bonus.length ? `${base}\n\n${bonus.join('\n\n')}` : base;
     out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: giocate.map((g) => `${oggi}|giocata|${g.id}`) });
   } else {
-    const nuove = giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
+    const nuove = prova ? [] : giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
     if (nuove.length) {
       out.push({
         chiave: `${oggi}|nuove|${hash(nuove.map((g) => g.id).join(','))}`,
@@ -368,6 +413,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
+  lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));

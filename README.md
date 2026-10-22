@@ -269,6 +269,8 @@ Per 3-4 settimane le giocate **non vanno giocate**: servono a creare il database
 
 - le **multiple bonus bet365** (`multipleBonus` nella giornata): ogni mattina una multipla da 10 e una da 20 partite (se ce ne sono abbastanza), a quota 1,25–1,50 con il margine più basso, una selezione per partita, niente mercati che possono finire rimborsati. L'incremento è quello della tabella ufficiale di bet365 (`CONFIG.multiplaBonus`). Gli esiti li scrive il registro ogni mattina; Telegram manda la multipla con le giocate del giorno e poi l'esito. Le quote sono la media dei bookmaker: su bet365 ogni partita deve essere almeno 1,25.
 
+- i **pronostici sì/no** (`pronostici` nella giornata, in cima al sito e nel messaggio Telegram del mattino): per ogni partita fino a 3 mercati dove il modello, da solo e senza quote, supera la soglia del mercato (`CONFIG.pronostici`). La percentuale è quella vera della stessa fascia nelle stagioni passate (`data/taratura/calibrazione.json`, rifatto con `npm run taratura-calibrazione -- <cartella dei CSV>`), la quota minima è 1 / percentuale. Si gioca solo se la quota è almeno la minima. Calcio (campionati con modello) e tennis; gli esiti li scrive il registro e Telegram manda il bilancio del giorno.
+
 Le date sono in `CONFIG.prova`. Dopo il 18 novembre si torna alle regole normali, con le soglie tarate sul registro.
 
 ## Revisione settimanale

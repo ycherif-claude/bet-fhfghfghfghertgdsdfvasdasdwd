@@ -273,6 +273,19 @@ export function renderScheda(g, segnatura) {
   );
 }
 
+// Pronostici sì/no di una partita: frase, percentuale, quota minima ed eventuale quota di oggi.
+export function renderPronostici(p) {
+  return el('article', { class: 'scheda', 'data-sport': p.sport },
+    el('h3', {}, p.partita),
+    el('p', { class: 'meta' }, `${ora(p.inizio)} · ${p.competizione}`),
+    el('ul', {}, p.pronostici.map((x) => el('li', {},
+      el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
+      ` · ${percento(x.prob)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
+      x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile ? ' ✅' : ''}` : '',
+      x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '')),
+  ));
+}
+
 const ESITO_MB = { vinta: 'vinta', persa: 'persa', rimborsata: 'rimborsata' };
 
 // Multipla bonus bet365 (prova): gambe, quota con l'incremento ed esito.
@@ -370,6 +383,9 @@ function avvia(dati) {
   }));
   disegna();
 
+  const pron = document.getElementById('pronostici');
+  const lp = Array.isArray(dati.oggi.giornata?.pronostici) ? dati.oggi.giornata.pronostici : [];
+  if (pron) pron.replaceChildren(...(lp.length ? [el('h2', {}, 'Pronostici di oggi'), el('p', { class: 'meta' }, 'Gioca un pronostico solo se la quota è almeno la minima.'), ...lp.map((x) => schedaSicura(x?.idPartita, () => renderPronostici(x)))] : []));
   const bonus = document.getElementById('multiple-bonus');
   const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

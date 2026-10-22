@@ -290,11 +290,12 @@ test('puntata con due decimali e, se ridotta, da quanto e per quale limite; fiss
   assert.equal(testoGiocata(giocata('x'), 1).includes('fissa'), false);
 });
 
-test('modalità prova: titolo PROVA, niente messaggi per i cambi di stato', () => {
+test('modalità prova: pronostici al posto dell\'elenco, niente messaggi per i cambi di stato', () => {
   const g = { ...giornata([giocata('a', { stato: 'confermata', oraUltimoControllo: '20:00' })]), prova: true };
   const ms = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: new Set() });
   assert.equal(ms.length, 1);
-  assert.match(ms[0].testo, /^🧪 <b>Giocate di PROVA, 22\/10<\/b>\nNon giocarle/);
+  assert.match(ms[0].testo, /^📋 <b>Pronostici del 22\/10<\/b>: oggi nessuna partita/);
+  assert.match(ms[0].testo, /🧪 1 giocata di prova sul sito: non giocarle/);
   const dopo = new Set([ms[0].chiave, ...ms[0].segna]);
   assert.deepEqual(messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
 });

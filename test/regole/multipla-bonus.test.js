@@ -106,3 +106,44 @@ test('Telegram: le multiple bonus nel messaggio del giorno e l\'esito una volta 
   assert.match(e[0].testo, /PERSA.*1 partita persa su 1/);
   assert.equal(messaggiMultipleBonus({ giornate: [giornata], inviate: new Set([e[0].chiave]) }).length, 0);
 });
+
+test('pronostici: soglia del mercato, probabilità vera della fascia, quota minima, al massimo 3 per partita', async () => {
+  const { pronosticiPartita, probCalibrata, quotaMinima, testoPronostico } = await import('../../src/regole/pronostici.js');
+  const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 400, vera: 0.78 }, { da: 0.8, n: 30, vera: 0.6 }];
+  assert.equal(probCalibrata(fasce, 0.72), 0.74);
+  assert.equal(probCalibrata(fasce, 0.83), 0.78); // fascia con pochi casi: si usa quella sotto
+  assert.equal(probCalibrata(fasce, 0.6), null);
+  assert.equal(quotaMinima(0.78), 1.29);
+  const cal = { calcio: {
+    'Doppia chance|1X': fasce, 'Under/Over 1.5|Over 1.5': fasce, '1X2|1': fasce, 'Under/Over casa 0.5|Over 0.5': fasce, 'Gol/No gol|Gol': fasce,
+  } };
+  const partita = { sport: 'calcio', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
+    { mercato: 'Doppia chance', selezione: '1X', probModello: 0.9, quota: null },
+    { mercato: 'Under/Over 1.5', selezione: 'Over 1.5', probModello: 0.76, quota: 1.35 },
+    { mercato: '1X2', selezione: '1', probModello: 0.71, quota: 1.3 },
+    { mercato: 'Under/Over casa 0.5', selezione: 'Over 0.5', probModello: 0.74, quota: null }, // sotto la soglia 0,75
+    { mercato: 'Gol/No gol', selezione: 'Gol', probModello: 0.8, quota: null }, // mercato escluso
+    { mercato: 'Under/Over 3.5', selezione: 'Under 3.5', probModello: 0.95, quota: null }, // senza calibrazione
+  ] };
+  const p = pronosticiPartita(partita, cal);
+  assert.deepEqual(p.map((x) => [x.testo, x.prob, x.quotaMinima, x.giocabile]), [
+    ['Inter non perde (1X)', 0.78, 1.29, false],
+    ['Almeno 2 gol (Over 1.5)', 0.78, 1.29, true],
+    ['Vince Inter', 0.74, 1.36, false],
+  ]);
+  assert.equal(testoPronostico({ partita: 'Sinner J. - Alcaraz C.' }, 'Vincente incontro', 'Sinner J.'), 'Vince Sinner J.');
+});
+
+test('Telegram: bilancio dei pronostici quando sono tutti chiusi', async () => {
+  const { messaggiPronostici } = await import('../../src/notifiche/telegram.js');
+  const g = { data: '2026-10-25', pronostici: [{ partita: 'A - B', pronostici: [
+    { testo: 'Vince A', esito: 'vinta' }, { testo: 'Almeno 2 gol (Over 1.5)', esito: 'persa' },
+  ] }] };
+  const m = messaggiPronostici({ giornate: [g], inviate: new Set(), oggi: '2026-10-26' });
+  assert.equal(m.length, 1);
+  assert.match(m[0].testo, /1 giusti su 2 \(50%\)/);
+  assert.match(m[0].testo, /❌ A - B: Almeno 2 gol/);
+  g.pronostici[0].pronostici[1].esito = null;
+  assert.equal(messaggiPronostici({ giornate: [g], inviate: new Set(), oggi: '2026-10-26' }).length, 0);
+  assert.equal(messaggiPronostici({ giornate: [g], inviate: new Set(), oggi: '2026-10-29' }).length, 1);
+});
