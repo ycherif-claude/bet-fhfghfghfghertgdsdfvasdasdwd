@@ -299,6 +299,20 @@ test('tetto quasi pieno: la giocata serale che non entra intera viene ridotta, n
   assert.deepEqual(nuove(prima, dopo, 'scartate'), []);
 });
 
+test('giornata di prova: le giocate prova del mattino non occupano il tetto e le aggiunte della sera sono prova', () => {
+  // Stesse proposte del test sopra (6 + 14 €), ma in una giornata di prova: non contano, la nuova resta 6 €.
+  const d = dir();
+  const prima = scriviGiornata(d, [giocataMattino(1, 6), giocataMattino(2, 14)], { prova: true });
+  segna(d, `calcio-${DATA}-casa1-ospite1-1x2-1`, { puntataReale: 6 }); // segnata per errore: non conta
+  scriviSerale(d, NOTTURNE.slice(0, 1));
+  aggiungiSeraleTennis({ dirData: d, adesso });
+  const n = nuove(prima, leggiGiornata(d), 'giocate');
+  assert.equal(n.length, 1);
+  assert.equal(n[0].puntata.euro, 6);
+  assert.equal(n[0].puntata.ridotta, undefined);
+  assert.equal(n[0].prova, true);
+});
+
 test('stop settimanale tolto: settimana a −80 → la giocata serale entra con la sua puntata', () => {
   const d = dir();
   const persa = giocataMattino(1, 80, { inizio: '2026-10-19T18:45:00+02:00', esito: 'persa', id: 'calcio-persa', idPartita: 'calcio-p' });

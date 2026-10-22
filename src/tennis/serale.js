@@ -6,7 +6,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { selezionaGiocate } from '../regole/selezione.js';
-import { statoBankroll } from '../bankroll/bankroll.js';
+import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { finestraGiornata, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
@@ -125,7 +125,8 @@ function statoCorretto(dirData, giornata, adesso) {
   const giocate = [];
   for (const { file, contenuto } of leggiJson(dirData, 'giornate', scarti)) {
     if (!Array.isArray(contenuto.giocate)) { avvisa(file, 'giornata senza giocate'); continue; }
-    for (const g of contenuto.giocate) {
+    // Le giornate di prova contano come prova anche se scritte prima del campo per giocata.
+    for (const g of giocateConProva(contenuto)) {
       const motivo = erroreGiocata(g);
       if (motivo) avvisa(file, motivo);
       else giocate.push(g);
@@ -140,8 +141,9 @@ function statoCorretto(dirData, giornata, adesso) {
   for (const x of scarti) avvisa(x.file, x.errore);
   const stato = statoBankroll(giocate, segnature, adesso);
   const segnate = new Set(segnature.map((s) => s.idGiocata));
-  const proposteAperte = cent(giornata.giocate
-    .filter((g) => oggetto(g) && g.stato !== 'annullata' && !segnate.has(g.id))
+  // Le giocate di prova non occupano il tetto.
+  const proposteAperte = cent(giocateConProva(giornata)
+    .filter((g) => oggetto(g) && g.prova !== true && g.stato !== 'annullata' && !segnate.has(g.id))
     // Una puntata illeggibile non si sa quanto valga: per prudenza nessuna nuova giocata.
     .reduce((s, g) => s + (Number.isFinite(g.puntata?.euro) ? g.puntata.euro : Infinity), 0));
   // Giocate di oggi non valide (il bankroll le ignora) ma segnate come fatte: i soldi sono in gioco,
@@ -151,15 +153,15 @@ function statoCorretto(dirData, giornata, adesso) {
     const prec = ultima.get(s.idGiocata);
     if (!prec || Date.parse(s.ora) >= Date.parse(prec.ora)) ultima.set(s.idGiocata, s);
   }
-  const fatteNonValide = cent(giornata.giocate
-    .filter((g) => oggetto(g) && erroreGiocata(g) && ultima.get(g.id)?.fatta === true)
+  const fatteNonValide = cent(giocateConProva(giornata)
+    .filter((g) => oggetto(g) && g.prova !== true && erroreGiocata(g) && ultima.get(g.id)?.fatta === true)
     .reduce((s, g) => {
       const reale = ultima.get(g.id).puntataReale;
       return s + (Number.isFinite(reale) ? reale : Infinity);
     }, 0));
   const inGiocoOggi = cent(stato.inGiocoOggi + proposteAperte + fatteNonValide);
   // Oggi già in caso C (qualche giocata con puntata fissa): le aggiunte della sera a 1 € fisso, senza tetto.
-  const giornataPiena = giornata.giocate.some((g) => oggetto(g) && oggetto(g.puntata) && oggetto(g.puntata.fissa));
+  const giornataPiena = giocateConProva(giornata).some((g) => oggetto(g) && g.prova !== true && oggetto(g.puntata) && oggetto(g.puntata.fissa));
   return {
     stato: { bankroll: stato.bankroll, inGiocoOggi, giornataPiena },
     proposteAperte,
@@ -261,7 +263,7 @@ export function aggiungiSeraleTennis({ dirData, adesso }) {
     tenute.set(g.id, una.giocate[0]);
   }
   // L'ordine delle giocate resta quello di selezionaGiocate.
-  const nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id)).map((g) => tenute.get(g.id));
+  const nuoveGiocate = scelta.giocate.filter((g) => tenute.has(g.id)).map((g) => (prova ? { ...tenute.get(g.id), prova: true } : tenute.get(g.id)));
 
   scriviJson(f.giornata[0], {
     ...giornata,
