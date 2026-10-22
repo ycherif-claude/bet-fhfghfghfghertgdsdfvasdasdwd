@@ -63,10 +63,12 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta pallavolo
+        # Quote da odss-api (1 richiesta se c'è un campionato attivo); senza odss, o senza partite su odss, OddsPapi.
         run: npm run raccolta-pallavolo
         continue-on-error: true
         env:
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Registro della taratura
         # Esiti di tutti i mercati dei giorni passati (data/registro): dopo gli storici, che servono a basket e pallavolo.
         run: npm run registro

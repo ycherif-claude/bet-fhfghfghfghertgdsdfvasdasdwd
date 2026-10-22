@@ -15,6 +15,8 @@ import { oddspapi } from './fonti/oddspapi.js';
 import { abbinaSquadra, squadreStorico } from './squadre.js';
 import { calcolaEloPallavolo, mercatiPallavolo, pesoModelloPallavolo, probPartita } from './modello.js';
 import { aggiornaEsitiPallavolo } from './esiti.js';
+import { eventiOdssSport } from '../odss/sport.js';
+import { femminile, inFormatoNba, unisciEventi } from '../odss/eventi.js';
 
 const P = CONFIG.pallavolo;
 const virgola = (q) => q.toFixed(2).replace('.', ',');
@@ -91,7 +93,7 @@ function quotaBet365(bookmaker, v) {
   return num(c?.[v.sel]) ? c[v.sel] : null;
 }
 
-export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta }) {
+export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta, fonte = 'OddsPapi' }) {
   const evento = { bookmaker };
   const modello = probCasa === null ? [] : mercatiPallavolo(probCasa, nomi);
   const mercati = [];
@@ -112,7 +114,7 @@ export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta }) {
         : modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
       probPinnacle: rif.prob[v.sel],
       quota: sotto ? b365 : q.quota,
-      fonteQuota: sotto ? `bet365 via OddsPapi, più bassa della mediana ${virgola(q.quota)} su ${q.n} bookmaker` : `mediana di ${q.n} bookmaker (OddsPapi)`,
+      fonteQuota: sotto ? `bet365 via ${fonte}, più bassa della mediana ${virgola(q.quota)} su ${q.n} bookmaker` : `mediana di ${q.n} bookmaker (${fonte})`,
       oraQuota: ora,
       ...(b365 === null ? {} : { quotaBet365: b365, oraQuotaBet365: ora }),
       frequenzaCampionato: null,
@@ -150,6 +152,56 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
   Object.defineProperty(raccolta, 'storici', { value: storici, enumerable: false });
   // Coperti solo i campionati con partite finite nella stagione in corso: servono agli esiti.
   const attivi = CAMPIONATI_PALLAVOLO.filter((c) => (storici.get(c.id) ?? []).some((p) => p.stagione === corrente && p.finita !== false));
+  const modelli = new Map();
+  const conta = { senzaRiferimento: 0, senzaQuota: 0 };
+  const aggiungiPartita = (x, bookmaker, fonte) => {
+    const p = partitaPallavolo({ x, bookmaker, fonte, storici, modelli, data, ora, conta });
+    if (p) raccolta.partite.push(p);
+  };
+
+  // 1b. Quote di odss-api (fonte principale) [utente, 22/10/2026]: una richiesta (moneyline e ou della giornata) se
+  // c'è un campionato attivo. Una partita va a un campionato solo se entrambe le squadre sono nel suo storico e in
+  // nessun altro; partite femminili solo ai campionati femminili. Vincente e totale set 3.5; l'handicap no (il feed
+  // non distingue l'handicap in set da quello in punti). Se odss non risponde o non ha partite: OddsPapi.
+  if (Object.hasOwn(chiavi ?? {}, 'odss')) {
+    const finestraOdss = finestraGiornata(data);
+    const o = await eventiOdssSport({
+      dirData, data, adesso, chiave: chiavi.odss, sport: 'volley', budgetSport: 'pallavolo', gruppi: ['moneyline,ou'],
+      finestra: finestraOdss, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite: attivi.length ? null : 0, nome: 'pallavolo',
+    });
+    erroriGiro.push(...o.errori);
+    const gruppi = [];
+    for (const e of o.eventi ?? []) {
+      const t = Date.parse(e.inizio);
+      if (!(t >= Math.max(finestraOdss.da.getTime(), adesso.getTime()) && t < finestraOdss.a.getTime())) continue;
+      const scelte = [];
+      for (const c of attivi) {
+        if (femminile(e) && !/femminile/i.test(c.competizione)) continue;
+        const squadre = squadreStorico(storici.get(c.id));
+        const idCasa = abbinaSquadra(e.casa, squadre);
+        const idTrasferta = abbinaSquadra(e.trasferta, squadre);
+        if (idCasa && idTrasferta && idCasa !== idTrasferta) scelte.push({ c, idCasa, idTrasferta });
+      }
+      if (scelte.length !== 1) continue;
+      const [s0] = scelte;
+      const g = gruppi.find((x) => x.c === s0.c && x.idCasa === s0.idCasa && x.idTrasferta === s0.idTrasferta
+        && Math.abs(Date.parse(x.eventi[0].inizio) - t) <= CONFIG.odss.toleranzaOre * 3600000);
+      if (g) g.eventi.push(e);
+      else gruppi.push({ ...s0, eventi: [e] });
+    }
+    const prima = raccolta.partite.length;
+    for (const g of gruppi) {
+      const unito = unisciEventi(g.eventi);
+      const { bookmaker } = inFormatoNba(unito, { handicap: false, totali: (l) => l === 3.5 });
+      const f = { casa: g.eventi[0].casa, trasferta: g.eventi[0].trasferta, inizio: g.eventi[0].inizio };
+      aggiungiPartita({ f, c: g.c, idCasa: g.idCasa, idTrasferta: g.idTrasferta }, bookmaker, 'odss-api');
+    }
+    if (conta.senzaQuota) errore('odss-api', `${plurale(conta.senzaQuota, 'partita', 'partite')} di pallavolo senza quota utilizzabile`);
+    if (raccolta.partite.length > prima) return raccolta;
+    if (attivi.length) erroriGiro.push('Quote pallavolo: nessuna partita su odss-api, quote da OddsPapi');
+    conta.senzaQuota = 0;
+    conta.senzaRiferimento = 0;
+  }
 
   if (!chiavi?.oddspapi) {
     errore('OddsPapi', 'manca ODDSPAPI_API_KEY');
@@ -212,8 +264,6 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
   candidate.sort((a, b) => a.priorita - b.priorita || Date.parse(a.f.inizio) - Date.parse(b.f.inizio));
 
   // 4. Quote, una partita alla volta, finché bastano le richieste.
-  const modelli = new Map();
-  const conta = { senzaRiferimento: 0, senzaQuota: 0 };
   const scoperte = new Map();
   let erroriDiFila = 0;
   for (const x of candidate) {
@@ -232,15 +282,27 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
       if (++erroriDiFila === MAX_ERRORI_QUOTE) errore('OddsPapi', `${MAX_ERRORI_QUOTE} errori di fila sulle quote: niente altre richieste oggi`);
       continue;
     }
+    aggiungiPartita(x, bookmaker, 'OddsPapi');
+  }
+  for (const [comp, n] of scoperte) raccolta.competizioniNonCoperte.push(`${comp}: richieste OddsPapi finite (${plurale(n, 'partita', 'partite')})`);
+  if (conta.senzaQuota) errore('OddsPapi', `${plurale(conta.senzaQuota, 'partita', 'partite')} senza quota utilizzabile`);
+  if (conta.senzaRiferimento) errore('OddsPapi', `${plurale(conta.senzaRiferimento, 'mercato', 'mercati')} senza Pinnacle né consenso dei bookmaker`);
+  raccolta.crediti.oddspapi = { usate: spese, rimaste: limite - usate };
+  scriviStato(dirData, mese, usate, adesso);
+  return raccolta;
+}
+
+// Partita della raccolta (OddsPapi o odss-api): Elo del campionato, mercati e ragionamento. false se senza quote.
+function partitaPallavolo({ x, bookmaker, fonte, storici, modelli, data, ora, conta }) {
     if (!modelli.has(x.c.id)) modelli.set(x.c.id, calcolaEloPallavolo(righePallavolo(storici.get(x.c.id))));
     const { elo, giocate } = modelli.get(x.c.id);
     const nomi = { casa: x.f.casa, trasferta: x.f.trasferta };
     const poche = Math.min(giocate.get(x.idCasa) ?? 0, giocate.get(x.idTrasferta) ?? 0) < P.minPartiteModello;
     const probCasa = poche ? null : probPartita(elo.get(x.idCasa), elo.get(x.idTrasferta));
-    const mercati = costruisciMercati({ bookmaker, probCasa, nomi, ora, conta });
-    if (!mercati.length) { conta.senzaQuota++; continue; }
+    const mercati = costruisciMercati({ bookmaker, probCasa, nomi, ora, conta, fonte });
+    if (!mercati.length) { conta.senzaQuota++; return false; }
     const pct = (p) => `${Math.round(p * 100)}%`;
-    raccolta.partite.push({
+    return ({
       idPartita: `pallavolo-${data}-${slug(x.f.casa)}-${slug(x.f.trasferta)}`,
       sport: 'pallavolo',
       competizione: x.c.competizione,
@@ -257,13 +319,6 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
         : [`Elo: ${x.f.casa} ${Math.round(elo.get(x.idCasa))} – ${x.f.trasferta} ${Math.round(elo.get(x.idTrasferta))}, vantaggio campo compreso: vittoria della casa ${pct(probCasa)} (ultime 2 stagioni TheSportsDB)${P.vincenteDalModello ? '' : '; solo informativo: il vincente usa il mercato finché il modello non è tarato'}`],
       mercati,
     });
-  }
-  for (const [comp, n] of scoperte) raccolta.competizioniNonCoperte.push(`${comp}: richieste OddsPapi finite (${plurale(n, 'partita', 'partite')})`);
-  if (conta.senzaQuota) errore('OddsPapi', `${plurale(conta.senzaQuota, 'partita', 'partite')} senza quota utilizzabile`);
-  if (conta.senzaRiferimento) errore('OddsPapi', `${plurale(conta.senzaRiferimento, 'mercato', 'mercati')} senza Pinnacle né consenso dei bookmaker`);
-  raccolta.crediti.oddspapi = { usate: spese, rimaste: limite - usate };
-  scriviStato(dirData, mese, usate, adesso);
-  return raccolta;
 }
 
 // Raccolta vuota per un imprevisto: l'errore è registrato e gli altri sport non vengono bloccati.
@@ -284,7 +339,7 @@ async function principale() {
   const dirData = 'data';
   let raccolta;
   try {
-    raccolta = await eseguiRaccoltaPallavolo({ data, adesso, fonti: { oddspapi, thesportsdb }, chiavi: { oddspapi: process.env.ODDSPAPI_API_KEY }, dirData });
+    raccolta = await eseguiRaccoltaPallavolo({ data, adesso, fonti: { oddspapi, thesportsdb }, chiavi: { oddspapi: process.env.ODDSPAPI_API_KEY, odss: process.env.ODSS_API_KEY }, dirData });
   } catch (e) {
     raccolta = raccoltaDiErrore(data, adesso, e);
   }
