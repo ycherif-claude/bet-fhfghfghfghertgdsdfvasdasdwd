@@ -1,0 +1,614 @@
+{
+  "data": "2026-10-22",
+  "generataAlle": "2026-10-22T08:10:51+02:00",
+  "crediti": {
+    "usati": 6,
+    "rimasti": 444
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idPartita": "basket-2026-10-22-anadolu-efes-besiktas-j-k",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Anadolu Efes - Beşiktaş J.K.",
+      "casa": "Anadolu Efes",
+      "trasferta": "Beşiktaş J.K.",
+      "inizio": "2026-10-22T19:30:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "puntiAttesi": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 8 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Anadolu Efes",
+          "probModello": null,
+          "probPinnacle": 0.7075268817204301,
+          "quota": 1.35,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Anadolu Efes vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Beşiktaş J.K.",
+          "probModello": null,
+          "probPinnacle": 0.2924731182795699,
+          "quota": 3.1,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Beşiktaş J.K. vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.5,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 10 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Anadolu Efes vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Anadolu Efes -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 10 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Beşiktaş J.K. perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su Beşiktaş J.K. +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 172.5",
+          "selezione": "Over 172.5",
+          "probModello": null,
+          "probPinnacle": 0.5024267828960157,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 172.5: Over vince se le due squadre segnano almeno 173 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (172.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 172.5",
+          "selezione": "Under 172.5",
+          "probModello": null,
+          "probPinnacle": 0.49757321710398433,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 172.5: Under vince se le due squadre segnano al massimo 172 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (172.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-fc-bayern-munchen-dubai-basketball",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "FC Bayern München - Dubai Basketball",
+      "casa": "FC Bayern München",
+      "trasferta": "Dubai Basketball",
+      "inizio": "2026-10-22T20:00:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 87.5,
+        "trasferta": 85.8
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: FC Bayern München 88 – Dubai Basketball 86 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "FC Bayern München",
+          "probModello": 0.5660407400963258,
+          "probPinnacle": 0.4613402061855671,
+          "quota": 2.02,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se FC Bayern München vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Dubai Basketball",
+          "probModello": 0.43395925990367423,
+          "probPinnacle": 0.538659793814433,
+          "quota": 1.78,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Dubai Basketball vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "casa",
+          "probModello": 0.6173910610510511,
+          "probPinnacle": 0.4805194805194806,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i FC Bayern München perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su FC Bayern München +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.38260893894894893,
+          "probPinnacle": 0.5194805194805195,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Dubai Basketball vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Dubai Basketball -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 172.5",
+          "selezione": "Over 172.5",
+          "probModello": 0.5195963448428655,
+          "probPinnacle": 0.5,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 172.5: Over vince se le due squadre segnano almeno 173 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (172.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 172.5",
+          "selezione": "Under 172.5",
+          "probModello": 0.4804036551571344,
+          "probPinnacle": 0.5,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 172.5: Under vince se le due squadre segnano al massimo 172 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (172.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-maccabi-tel-aviv-real-madrid",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Maccabi Tel Aviv - Real Madrid",
+      "casa": "Maccabi Tel Aviv",
+      "trasferta": "Real Madrid",
+      "inizio": "2026-10-22T20:05:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 88.5,
+        "trasferta": 91.9
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Maccabi Tel Aviv 88 – Real Madrid 92 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Maccabi Tel Aviv",
+          "probModello": 0.36944643811394745,
+          "probPinnacle": 0.3695652173913044,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Maccabi Tel Aviv vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Real Madrid",
+          "probModello": 0.6305535618860525,
+          "probPinnacle": 0.6304347826086957,
+          "quota": 1.51,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Real Madrid vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "casa",
+          "probModello": 0.537104317100792,
+          "probPinnacle": 0.5038961038961038,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Maccabi Tel Aviv perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Maccabi Tel Aviv +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "trasferta",
+          "probModello": 0.462895682899208,
+          "probPinnacle": 0.49610389610389616,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Real Madrid vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Real Madrid -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 182.5",
+          "selezione": "Over 182.5",
+          "probModello": 0.44842714457423916,
+          "probPinnacle": 0.5064935064935064,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 12 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 182.5: Over vince se le due squadre segnano almeno 183 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (182.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 182.5",
+          "selezione": "Under 182.5",
+          "probModello": 0.5515728554257608,
+          "probPinnacle": 0.49350649350649356,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 12 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 182.5: Under vince se le due squadre segnano al massimo 182 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (182.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-panathinaikos-saski-baskonia",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Panathinaikos - Saski Baskonia",
+      "casa": "Panathinaikos",
+      "trasferta": "Saski Baskonia",
+      "inizio": "2026-10-22T20:15:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 95,
+        "trasferta": 78.7
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Panathinaikos 95 – Saski Baskonia 79 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Panathinaikos",
+          "probModello": 0.9384770998429154,
+          "probPinnacle": 0.8806941431670281,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 16 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Panathinaikos vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Saski Baskonia",
+          "probModello": 0.061522900157084566,
+          "probPinnacle": 0.1193058568329718,
+          "quota": 8.85,
+          "fonteQuota": "mediana di 16 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Saski Baskonia vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -15.5",
+          "selezione": "casa",
+          "probModello": 0.5292963890318914,
+          "probPinnacle": 0.5259067357512953,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 13 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Panathinaikos vincono con almeno 16 punti di scarto, supplementari compresi. Gioca solo su Panathinaikos -15.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -15.5",
+          "selezione": "trasferta",
+          "probModello": 0.4707036109681086,
+          "probPinnacle": 0.47409326424870474,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 13 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Saski Baskonia perdono con meno di 16 punti di scarto o vincono, supplementari compresi. Gioca solo su Saski Baskonia +15.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 171.5",
+          "selezione": "Over 171.5",
+          "probModello": 0.5530184142896835,
+          "probPinnacle": 0.5180193777691221,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 171.5: Over vince se le due squadre segnano almeno 172 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (171.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 171.5",
+          "selezione": "Under 171.5",
+          "probModello": 0.4469815857103166,
+          "probPinnacle": 0.4819806222308779,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 171.5: Under vince se le due squadre segnano al massimo 171 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (171.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-pallacanestro-olimpia-milano-fc-barcelona-basquet",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Pallacanestro Olimpia Milano - FC Barcelona Bàsquet",
+      "casa": "Pallacanestro Olimpia Milano",
+      "trasferta": "FC Barcelona Bàsquet",
+      "inizio": "2026-10-22T20:30:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 87.9,
+        "trasferta": 90.7
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Pallacanestro Olimpia Milano 88 – FC Barcelona Bàsquet 91 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Pallacanestro Olimpia Milano",
+          "probModello": 0.3971055159548524,
+          "probPinnacle": 0.5538461538461539,
+          "quota": 1.7,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Pallacanestro Olimpia Milano vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "FC Barcelona Bàsquet",
+          "probModello": 0.6028944840451477,
+          "probPinnacle": 0.4461538461538462,
+          "quota": 2.15,
+          "fonteQuota": "mediana di 18 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se FC Barcelona Bàsquet vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "casa",
+          "probModello": 0.31488889275497245,
+          "probPinnacle": 0.49221269064626866,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Pallacanestro Olimpia Milano vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Pallacanestro Olimpia Milano -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "trasferta",
+          "probModello": 0.6851111072450276,
+          "probPinnacle": 0.5077873093537313,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 11 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i FC Barcelona Bàsquet perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su FC Barcelona Bàsquet +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 175.5",
+          "selezione": "Over 175.5",
+          "probModello": 0.5751498781270822,
+          "probPinnacle": 0.5025606688148757,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 12 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 175.5: Over vince se le due squadre segnano almeno 176 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 175.5",
+          "selezione": "Under 175.5",
+          "probModello": 0.4248501218729178,
+          "probPinnacle": 0.49743933118512423,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 12 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 175.5: Under vince se le due squadre segnano al massimo 175 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-kk-partizan-nis-kk-crvena-zvezda",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "KK Partizan NIS - KK Crvena zvezda",
+      "casa": "KK Partizan NIS",
+      "trasferta": "KK Crvena zvezda",
+      "inizio": "2026-10-22T20:45:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 78.8,
+        "trasferta": 78.4
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: KK Partizan NIS 79 – KK Crvena zvezda 78 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "KK Partizan NIS",
+          "probModello": 0.515724102710505,
+          "probPinnacle": 0.49090909090909085,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KK Partizan NIS vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "KK Crvena zvezda",
+          "probModello": 0.48427589728949505,
+          "probPinnacle": 0.5090909090909091,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KK Crvena zvezda vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -1",
+          "selezione": "casa",
+          "probModello": 0.4776085733915149,
+          "probPinnacle": 0.4792746113989638,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 4 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i KK Partizan NIS vincono con almeno 2 punti di scarto, supplementari compresi (con 1 punto esatto di scarto è rimborsata). Gioca solo su KK Partizan NIS -1 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -1",
+          "selezione": "trasferta",
+          "probModello": 0.5223914266084851,
+          "probPinnacle": 0.5207253886010362,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 4 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i KK Crvena zvezda vincono la partita, supplementari compresi (se perdono con 1 punto esatto di scarto è rimborsata). Gioca solo su KK Crvena zvezda +1 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 163.5",
+          "selezione": "Over 163.5",
+          "probModello": 0.3485517547386492,
+          "probPinnacle": 0.5207253886010362,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 163.5: Over vince se le due squadre segnano almeno 164 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (163.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 163.5",
+          "selezione": "Under 163.5",
+          "probModello": 0.6514482452613508,
+          "probPinnacle": 0.4792746113989638,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 7 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 163.5: Under vince se le due squadre segnano al massimo 163 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (163.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-22-illawarra-hawks-sydney-kings",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Illawarra Hawks - Sydney Kings",
+      "casa": "Illawarra Hawks",
+      "trasferta": "Sydney Kings",
+      "inizio": "2026-10-22T10:36:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 95.5,
+        "trasferta": 105.5
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Illawarra Hawks 95 – Sydney Kings 105 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Illawarra Hawks",
+          "probModello": 0.2330455718549758,
+          "probPinnacle": 0.2881720430107527,
+          "quota": 3.2,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Illawarra Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Sydney Kings",
+          "probModello": 0.7669544281450242,
+          "probPinnacle": 0.7118279569892474,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Sydney Kings vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +7.5",
+          "selezione": "casa",
+          "probModello": 0.4292408893884806,
+          "probPinnacle": 0.5062300395633729,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Illawarra Hawks perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su Illawarra Hawks +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +7.5",
+          "selezione": "trasferta",
+          "probModello": 0.5707591106115194,
+          "probPinnacle": 0.4937699604366272,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-22T08:10:51+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Sydney Kings vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su Sydney Kings -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    }
+  ]
+}
