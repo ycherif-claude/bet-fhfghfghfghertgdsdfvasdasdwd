@@ -13,11 +13,12 @@ import { finestraGiornata, isoRoma, normalizzaNome, oraRoma } from './testo.js';
 import { nomeCanonico } from './squadre.js';
 import { stessaSquadra } from '../controlli/espn.js';
 import { odss } from './fonti/odss.js';
+import { creaBudgetOdss } from '../odss/budget.js';
+import { scaricaOdss } from '../odss/scarica.js';
 
 const O = CONFIG.odss;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const arrotonda = (x) => Math.round(x * 10000) / 10000;
-const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
 const oggetto = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 
 // Nomi da mostrare dei bookmaker dell'utente.
@@ -92,7 +93,9 @@ const eExchange = (b) => b.is_exchange === true || EXCHANGE.test(b.key);
 // Riga senza margine di un bookmaker: nessuna se anche un solo esito della riga è sospeso.
 const senzaMargineLibro = (b, esiti, copertura) => (esiti.some((e) => sospesi(b).has(e)) ? null : senzaMargine(b.outcomes, esiti, copertura));
 
-// Riga compatta: { miei: { bookmaker: { quote, aggiornato } }, prob: { esito: p } | null, fonteProb }.
+// Riga compatta: { miei: { bookmaker: { quote, aggiornato } }, prob: { esito: p } | null, fonteProb, mediana }.
+// mediana: { esito: { quota, n } } dei bookmaker non exchange con quell'esito non sospeso (almeno
+// CONFIG.calcio.minBookmaker), per difetto al centesimo: è la quota che usa il modello della raccolta.
 // miei: senza gli esiti sospesi e, con `adesso`, senza le quote aggiornate da più di CONFIG.odss.oreMaxQuota ore
 // (o senza orario). prob: Pinnacle senza margine se c'è; altrimenti la mediana delle probabilità senza margine di
 // almeno CONFIG.calcio.minBookmaker bookmaker (exchange fuori, anche con `is_exchange`; righe con un esito sospeso fuori).
@@ -129,7 +132,12 @@ export function riassuntoMercato(riga, { adesso = null } = {}) {
     }
   }
   if (prob) prob = Object.fromEntries(Object.entries(prob).map(([e, p]) => [e, arrotonda(p)]));
-  return { miei, prob, fonteProb };
+  const mediane = {};
+  for (const e of esiti) {
+    const quote = libri.filter((b) => !eExchange(b) && !sospesi(b).has(e) && quotaValida(b.outcomes?.[e])).map((b) => b.outcomes[e]);
+    if (quote.length >= CONFIG.calcio.minBookmaker) mediane[e] = { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n: quote.length };
+  }
+  return { miei, prob, fonteProb, mediana: mediane };
 }
 
 const chiaveMercato = (r) => (r.market === 'ou' ? `ou|${Number(r.line)}` : r.market);
@@ -141,7 +149,7 @@ export function eventiOdss(righe, { adesso = null } = {}) {
     if (!ESITI[r.market] || !r.home_team || !r.away_team || !Number.isFinite(Date.parse(r.commence_time))) continue;
     if (r.market === 'ou' && !O.lineeOu.includes(Number(r.line))) continue;
     const m = riassuntoMercato(r, { adesso });
-    if (!Object.keys(m.miei).length && !m.prob) continue;
+    if (!Object.keys(m.miei).length && !m.prob && !Object.keys(m.mediana).length) continue;
     const k = chiaveEvento(r);
     if (!eventi.has(k)) {
       eventi.set(k, { id: k, campionato: r.league ?? null, casa: r.home_team, trasferta: r.away_team, inizio: r.commence_time, mercati: {} });
@@ -153,112 +161,43 @@ export function eventiOdss(righe, { adesso = null } = {}) {
 
 // ---- Download con budget ----
 
-function statoIniziale(stato, data, adesso) {
-  const s = oggetto(stato) ? stato : {};
-  const scaduto = !vuoto(s.reset) && Number.isFinite(Date.parse(s.reset)) && Date.parse(s.reset) <= adesso.getTime();
-  return {
-    rimaste: num(s.rimaste) && !scaduto ? s.rimaste : null,
-    limite: num(s.limite) ? s.limite : null,
-    reset: scaduto ? null : s.reset ?? null,
-    usateOggi: s.giorno === data && num(s.usateOggi) ? s.usateOggi : 0,
-  };
-}
-
 // { file (contenuto di data/raccolta/<data>-odss.json), stato (data/stato/odss.json), richieste (di questo giro) }.
+// Budget unico di odss-api (src/odss/budget.js): il calcio al massimo CONFIG.odss.tetti.calcio richieste, dentro il
+// tetto del giro del mattino. file.esito: 'ok' | 'senza chiave' | 'budget' | 'chiave' | 'limite' | 'errore'
+// (la raccolta del calcio torna a The Odds API se il file non ha eventi).
 export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = globalThis.fetch, fonte = odss, attesaMs = 2000 }) {
-  const s = statoIniziale(stato, data, adesso);
+  const budget = creaBudgetOdss({ stato, data, adesso, sport: 'calcio' });
   const erroriGiro = [];
   const errore = (m) => erroriGiro.push(`odss-api alle ${oraRoma(adesso)}: ${m}`);
-  const tutte = [];
+  let tutte = [];
   let richieste = 0;
-  const risultato = () => {
-    const scelta = scegliPartitaIntera(tutte);
-    const senza = scelta.senzaIntero;
-    if (senza.length) {
-      errore(`${senza.length} ${senza.length === 1 ? 'partita' : 'partite'} senza righe a tempo intero (full_time), senza quote: ${senza.map((x) => x.partita).join(', ')}`);
-    }
-    if (scelta.doppie) errore(`${scelta.doppie} mercati con più righe full_time per la stessa partita, ignorati`);
-    const file = {
-      data, generataAlle: isoRoma(adesso), fonte: 'odss-api.com', richieste, rimaste: s.rimaste,
-      diagnostica: { righe: tutte.length, righeUsate: scelta.righe.length, senzaIntero: senza.length, doppie: scelta.doppie, periodiVisti: scelta.periodiVisti },
-      erroriGiro, eventi: eventiOdss(scelta.righe, { adesso }),
-    };
-    return { file, stato: { aggiornatoAlle: adesso.toISOString(), rimaste: s.rimaste, limite: s.limite, reset: s.reset, giorno: data, usateOggi: s.usateOggi }, richieste };
-  };
+  let esito = 'ok';
   if (!chiave) {
     errore('manca il secret ODSS_API_KEY: niente quote dei bookmaker italiani oggi');
-    return risultato();
+    esito = 'senza chiave';
+  } else {
+    const r = await scaricaOdss({
+      chiave, budget, sport: 'calcio', gruppi: O.mercati, finestra: finestraGiornata(data), fetch, fonte, attesaMs, errore,
+      suffissoBudget: ': niente quote dei bookmaker italiani oggi',
+    });
+    tutte = r.righe;
+    richieste = r.richieste;
+    if (r.fermo) esito = r.fermo;
+    else if (!r.ok) esito = 'errore';
   }
-  // Si può fare una richiesta lasciandone `dopo` per i mercati che mancano?
-  const puo = (dopo) => s.usateOggi + 1 + dopo <= O.richiesteGiorno && (s.rimaste === null || s.rimaste - 1 - dopo >= O.riserva);
-  const mercati = O.mercati;
-  if (!puo(mercati.length - 1)) {
-    errore(`budget insufficiente (oggi ${s.usateOggi} richieste su ${O.richiesteGiorno}, rimaste ${s.rimaste ?? 'sconosciute'}, riserva ${O.riserva}): niente quote dei bookmaker italiani oggi`);
-    return risultato();
+  const scelta = scegliPartitaIntera(tutte);
+  const senza = scelta.senzaIntero;
+  if (senza.length) {
+    errore(`${senza.length} ${senza.length === 1 ? 'partita' : 'partite'} senza righe a tempo intero (full_time), senza quote: ${senza.map((x) => x.partita).join(', ')}`);
   }
-  const aggiorna = (l) => {
-    if (num(l?.rimaste)) s.rimaste = l.rimaste;
-    else if (s.rimaste !== null) s.rimaste -= 1;
-    if (num(l?.limite)) s.limite = l.limite;
-    if (l?.reset) s.reset = l.reset;
+  if (scelta.doppie) errore(`${scelta.doppie} mercati con più righe full_time per la stessa partita, ignorati`);
+  const st = budget.stato();
+  const file = {
+    data, generataAlle: isoRoma(adesso), fonte: 'odss-api.com', esito, richieste, rimaste: st.rimaste,
+    diagnostica: { righe: tutte.length, righeUsate: scelta.righe.length, senzaIntero: senza.length, doppie: scelta.doppie, periodiVisti: scelta.periodiVisti },
+    erroriGiro, eventi: eventiOdss(scelta.righe, { adesso }),
   };
-  const finestra = finestraGiornata(data);
-  for (let i = 0; i < mercati.length; i++) {
-    const market = mercati[i];
-    const dopo = mercati.length - 1 - i;
-    let offset = 0;
-    let pagina = 0;
-    let fermo = false;
-    for (;;) {
-      if (!puo(pagina === 0 ? 0 : dopo)) {
-        if (pagina > 0) { errore(`${market}: quote incomplete (le altre pagine superano il budget di oggi)`); break; }
-        const motivo = s.usateOggi + 1 > O.richiesteGiorno ? `tetto di ${O.richiesteGiorno} richieste al giorno raggiunto` : `riserva di ${O.riserva} richieste raggiunta (rimaste ${s.rimaste})`;
-        errore(`${motivo}: mercati non scaricati: ${mercati.slice(i).join(', ')}`);
-        fermo = true;
-        break;
-      }
-      let r = null;
-      let err = null;
-      // Un solo nuovo tentativo, solo per errore di rete o 5xx (anche il tentativo conta nel budget).
-      for (let t = 0; t < 2; t++) {
-        if (t > 0) {
-          if (!puo(pagina === 0 ? 0 : dopo)) break;
-          await pausa(attesaMs);
-        }
-        s.usateOggi++;
-        richieste++;
-        try {
-          r = await fonte.quote({ chiave, market, finestra, offset, fetch });
-          aggiorna(r.limiti);
-          err = null;
-          break;
-        } catch (e) {
-          err = e;
-          if (e?.limiti) aggiorna(e.limiti);
-          if (!(e?.rete || e?.status >= 500)) break;
-        }
-      }
-      if (err || !r) {
-        const msg = String(err?.message ?? err ?? 'errore sconosciuto').replaceAll(chiave, '***');
-        if (err?.status === 429) {
-          errore(`${market}: ${msg} (limite di richieste raggiunto): niente altre richieste oggi`);
-          fermo = true;
-        } else if (err?.status === 401 || err?.status === 403) {
-          errore(`${market}: ${msg} (chiave rifiutata): niente quote dei bookmaker italiani oggi`);
-          fermo = true;
-        } else {
-          errore(`${market}: ${msg}${pagina > 0 ? ' (quote incomplete)' : ''}`);
-        }
-        break;
-      }
-      tutte.push(...r.righe);
-      if (r.prossimoOffset === null || r.prossimoOffset <= offset) break;
-      offset = r.prossimoOffset;
-      pagina++;
-    }
-    if (fermo) break;
-  }
-  return risultato();
+  return { file, stato: st, richieste };
 }
 
 const leggi = (file) => {
@@ -344,7 +283,7 @@ export function abbinaEventiOdss(partite, eventi) {
 const ORDINE_MIEI = (k) => { const i = O.miei.indexOf(k); return i < 0 ? O.miei.length : i; };
 
 // Mercato e selezione dei pronostici → mercato odss ed esito. Gol casa/ospite: nessun mercato squadra → null.
-function mercatoOdss(mercato, selezione) {
+export function mercatoOdss(mercato, selezione) {
   if (mercato === '1X2') {
     const esito = { 1: 'HOME', X: 'DRAW', 2: 'AWAY' }[selezione];
     return esito ? { chiave: '1x2', esito } : null;

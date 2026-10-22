@@ -17,6 +17,7 @@ import { espn, stessaSquadra } from '../controlli/espn.js';
 import { PARAMETRI as ELO, SOLO_COPPE, lambdaCoppa } from '../coppe/elo.js';
 import { existsSync, readFileSync } from 'node:fs';
 import { aggiornaEsitiGiro } from './esiti.js';
+import { abbinaEventiOdss, leggiQuoteOdss, mercatoOdss } from './odss.js';
 
 const TOTALE_MESE = 500;
 const COSTO_QUOTE = 2;
@@ -90,10 +91,35 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   // 1b. Campionati senza quote: calendario da ESPN o dai file fixtures di football-data.co.uk.
   await calendarioSenzaQuote({ data, fonti, dentro, eventiPer, errore });
 
-  // 2. Budget e scelta delle competizioni (solo quelle con le quote spendono crediti).
+  // 1c. Quote di odss-api (fonte principale, tutte le competizioni) [utente, 22/10/2026]: eventi di
+  // data/raccolta/<data>-odss.json abbinati alle partite. Le competizioni di The Odds API senza nessuna partita su
+  // odss (o tutte, se odss non c'è) tornano a The Odds API, con una riga in erroriGiro.
   const conPartite = COMPETIZIONI.filter((c) => eventiPer.has(chiaveEventi(c)));
+  const odssPer = new Map();
+  const daOdss = new Set();
+  if (fonti.odss !== undefined) {
+    const eventiOdss = Array.isArray(fonti.odss?.eventi) ? fonti.odss.eventi : [];
+    if (!eventiOdss.length) {
+      const motivo = (fonti.odss?.errori ?? []).map((x) => String(x).replace(/^odss-api alle dd:dd: /, '')).join('; ') || 'nessuna partita nel file';
+      erroriGiro.push(`odss-api non disponibile alle ${oraRoma(adesso)} (${motivo}): quote del calcio da The Odds API come prima`);
+    } else {
+      const nostre = conPartite.flatMap((c) => eventiPer.get(chiaveEventi(c)).map((e) => ({
+        idPartita: `${chiaveEventi(c)}#${e.id}`, sport: 'calcio', casa: e.casa, trasferta: e.trasferta, inizio: e.inizio,
+      })));
+      for (const [id, e] of abbinaEventiOdss(nostre, eventiOdss)) odssPer.set(id, e);
+      for (const c of conPartite) {
+        const eventi = eventiPer.get(chiaveEventi(c));
+        const trovate = eventi.filter((e) => odssPer.has(`${chiaveEventi(c)}#${e.id}`)).length;
+        if (trovate) daOdss.add(c.nome);
+        if (!trovate && c.chiave) erroriGiro.push(`Quote ${c.nome}: nessuna partita su odss-api, quote da The Odds API`);
+        else if (trovate < eventi.length) erroriGiro.push(`Quote ${c.nome}: ${eventi.length - trovate} partite su ${eventi.length} non trovate su odss-api, senza quote`);
+      }
+    }
+  }
+
+  // 2. Budget e scelta delle competizioni (solo quelle con le quote di The Odds API spendono crediti).
   const budget = budgetCrediti(rimasti, data);
-  const { scelte, scoperte } = scegliCompetizioni(conPartite.filter((c) => c.chiave), budget);
+  const { scelte, scoperte } = scegliCompetizioni(conPartite.filter((c) => c.chiave && !daOdss.has(c.nome)), budget);
   const competizioniNonCoperte = scoperte.map((c) => `${c.nome}: crediti insufficienti`);
   const crediti = { usati: 0, rimasti };
 
@@ -160,7 +186,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     for (const base of eventiPer.get(chiaveEventi(c))) {
       const evento = quote?.get(base.id) ?? { ...base, bookmaker: [] };
       const coppa = c.coppa ? eloCoppa(base, fonti) : null;
-      const partita = costruisciPartita({ c, evento, base, stato, coppa, data, ora, errore: (m) => erroriGiro.push(m) });
+      const odssEv = odssPer.get(`${chiaveEventi(c)}#${base.id}`) ?? null;
+      const partita = costruisciPartita({ c, evento, odssEv, base, stato, coppa, data, ora, errore: (m) => erroriGiro.push(m) });
       if (partita) partite.push(partita);
     }
   }
@@ -187,17 +214,31 @@ function datiLiberi(evento, mercato, selezione) {
   return { quota: med?.quota ?? null, n: med?.n ?? null, probPinnacle: pin };
 }
 
-function costruisciPartita({ c, evento, base, stato, coppa = null, data, ora, errore }) {
+// Quota (mediana dei bookmaker) e probabilità di mercato da odss-api: Pinnacle senza margine o, senza Pinnacle,
+// il consenso senza margine dei bookmaker (etichetta "Consenso bookmaker"). 1X2, doppia chance e Under/Over.
+function datiOdss(evento, mercato, selezione) {
+  const k = mercatoOdss(mercato, selezione);
+  const r = k ? evento?.mercati?.[k.chiave] : null;
+  const prob = typeof r?.prob?.[k?.esito] === 'number' ? r.prob[k.esito] : null;
+  const med = r?.mediana?.[k?.esito];
+  return {
+    quota: med?.quota ?? null, n: med?.n ?? null, probPinnacle: prob,
+    etichetta: prob !== null && r.fonteProb !== 'Pinnacle' ? 'Consenso bookmaker' : null,
+  };
+}
+
+function costruisciPartita({ c, evento, odssEv = null, base, stato, coppa = null, data, ora, errore }) {
   const casa = base.casa;
   const trasferta = base.trasferta;
   const voce = (mercato, selezione, probModello, frequenzaCampionato) => {
-    const l = datiLiberi(evento, mercato, selezione);
+    const l = odssEv ? datiOdss(odssEv, mercato, selezione) : datiLiberi(evento, mercato, selezione);
     return {
       mercato, selezione, probModello, probPinnacle: l.probPinnacle,
       quota: l.quota ?? null,
-      fonteQuota: l.quota != null ? `mediana di ${l.n} bookmaker (The Odds API)` : null,
+      fonteQuota: l.quota != null ? `mediana di ${l.n} bookmaker (${odssEv ? 'odss-api' : 'The Odds API'})` : null,
       oraQuota: l.quota != null ? ora : null,
       frequenzaCampionato,
+      ...(l.etichetta ? { etichettaMercato: l.etichetta } : {}),
     };
   };
 
@@ -267,8 +308,8 @@ function costruisciPartita({ c, evento, base, stato, coppa = null, data, ora, er
     lambda: lam,
     ragionamentoBase,
     mercati,
-    // Campionato senza quote: solo pronostici sì/no e registro, niente giocate.
-    ...(c.chiave ? {} : { soloPronostici: true }),
+    // Campionato senza quote (né The Odds API né odss-api): solo pronostici sì/no e registro, niente giocate.
+    ...(c.chiave || mercati.some((m) => m.quota !== null) ? {} : { soloPronostici: true }),
   };
 }
 
@@ -379,7 +420,10 @@ async function principale() {
     process.exit(1);
   }
   const leggi = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null);
+  // Quote di odss-api scaricate poco prima dallo step della raccolta odss (questo step non ha la chiave).
+  const q = leggiQuoteOdss('data', data);
   const fonti = {
+    odss: { eventi: q.eventi?.length ? q.eventi : null, errori: q.mancante ? [`file data/raccolta/${data}-odss.json mancante`] : q.errori },
     oddsApi, footballDataUk, footballDataOrg, espn,
     // Coppe europee: punteggi (npm run elo-europeo) e partite con gli id ESPN delle squadre.
     eloEuropeo: leggi('data/storico/elo-europeo.json'),

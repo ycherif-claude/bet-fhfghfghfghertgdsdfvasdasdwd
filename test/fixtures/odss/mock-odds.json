@@ -1,0 +1,1321 @@
+{
+ "mock": true,
+ "notice": "Dati SINTETICI a scopo di sviluppo: prezzi inventati, nessun rapporto con i listini reali dei book. Feed vero: /api/v1/* con chiave.",
+ "count": 9,
+ "offset": 0,
+ "returned": 9,
+ "limit": 500,
+ "state": "prematch",
+ "generation": "mock-2026-10-22",
+ "generated_at": "2026-10-22T00:00:00.000Z",
+ "odds": [
+  {
+   "event_id": "mock_39b522d4",
+   "event": "Juventus - Inter",
+   "sport": "calcio",
+   "league": "Serie A",
+   "home_team": "Juventus",
+   "away_team": "Inter",
+   "commence_time": "2026-10-23T18:00:00.000Z",
+   "market": "1x2",
+   "line": null,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 2.27,
+      "DRAW": 3.14,
+      "AWAY": 3.06
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 2.8,
+      "DRAW": 3.45,
+      "AWAY": 2.46
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 3.9,
+      "DRAW": 2.42
+     },
+     "suspended": [
+      "AWAY"
+     ],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 3.16,
+      "DRAW": 2.64,
+      "AWAY": 2.58
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 2.43,
+      "DRAW": 2.42,
+      "AWAY": 3.66
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "HOME": 2.36,
+      "DRAW": 2.31,
+      "AWAY": 4.49
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "HOME": 2.11,
+      "DRAW": 3.79,
+      "AWAY": 2.81
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "HOME": 1.97,
+      "DRAW": 2.87
+     },
+     "suspended": [
+      "AWAY"
+     ],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "HOME": 4.02,
+      "DRAW": 2.17,
+      "AWAY": 3.22
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "HOME": 2.89,
+      "DRAW": 3.3,
+      "AWAY": 2.44
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_39b522d4",
+   "event": "Juventus - Inter",
+   "sport": "calcio",
+   "league": "Serie A",
+   "home_team": "Juventus",
+   "away_team": "Inter",
+   "commence_time": "2026-10-23T18:00:00.000Z",
+   "market": "ou",
+   "line": 2.5,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 2.43,
+      "UNDER": 1.6
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.9,
+      "UNDER": 1.82
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.82,
+      "UNDER": 1.82
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 1.69,
+      "UNDER": 2.22
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 2.63,
+      "UNDER": 1.47
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "OVER": 1.99,
+      "UNDER": 1.74
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "OVER": 2.12,
+      "UNDER": 1.62
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "OVER": 2.56,
+      "UNDER": 1.47
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "OVER": 1.6,
+      "UNDER": 2.26
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "OVER": 2.1,
+      "UNDER": 1.68
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_39b522d4",
+   "event": "Juventus - Inter",
+   "sport": "calcio",
+   "league": "Serie A",
+   "home_team": "Juventus",
+   "away_team": "Inter",
+   "commence_time": "2026-10-23T18:00:00.000Z",
+   "market": "btts",
+   "line": null,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "YES": 2.43,
+      "NO": 1.49
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "YES": 1.67,
+      "NO": 2.19
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "YES": 2.05,
+      "NO": 1.69
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "YES": 2.23,
+      "NO": 1.69
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "YES": 1.3,
+      "NO": 3.15
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "YES": 3.65,
+      "NO": 1.33
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "YES": 2.05,
+      "NO": 1.7
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "YES": 1.56,
+      "NO": 2.38
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "YES": 1.88,
+      "NO": 1.89
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "YES": 1.6,
+      "NO": 2.3
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_9c0133e6",
+   "event": "Sinner J. - Alcaraz C.",
+   "sport": "tennis",
+   "league": "ATP Toronto",
+   "home_team": "Sinner J.",
+   "away_team": "Alcaraz C.",
+   "commence_time": "2026-10-23T16:00:00.000Z",
+   "market": "moneyline",
+   "line": null,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 2.92,
+      "AWAY": 1.4
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.8,
+      "AWAY": 1.86
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.88,
+      "AWAY": 2.05
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 2.4,
+      "AWAY": 1.53
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 1.67,
+      "AWAY": 2.11
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "HOME": 2.1,
+      "AWAY": 1.67
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "HOME": 1.47,
+      "AWAY": 2.91
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "HOME": 1.5,
+      "AWAY": 2.32
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "HOME": 2.54,
+      "AWAY": 1.51
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "HOME": 1.82,
+      "AWAY": 1.9
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_9c0133e6",
+   "event": "Sinner J. - Alcaraz C.",
+   "sport": "tennis",
+   "league": "ATP Toronto",
+   "home_team": "Sinner J.",
+   "away_team": "Alcaraz C.",
+   "commence_time": "2026-10-23T16:00:00.000Z",
+   "market": "ou",
+   "line": 22.5,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.59,
+      "UNDER": 2.49
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 2.03,
+      "UNDER": 1.87
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.88,
+      "UNDER": 1.82
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 1.54,
+      "UNDER": 2.41
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 1.83,
+      "UNDER": 2.09
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "OVER": 1.8,
+      "UNDER": 2.02
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "OVER": 2.6,
+      "UNDER": 1.45
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "OVER": 1.93,
+      "UNDER": 1.81
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "OVER": 1.52,
+      "UNDER": 2.58
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "OVER": 1.94,
+      "UNDER": 1.79
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_32e6e5c4",
+   "event": "Los Angeles Lakers - Boston Celtics",
+   "sport": "basket",
+   "league": "NBA",
+   "home_team": "Los Angeles Lakers",
+   "away_team": "Boston Celtics",
+   "commence_time": "2026-10-24T01:00:00.000Z",
+   "market": "moneyline",
+   "line": null,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.84,
+      "AWAY": 1.99
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.81,
+      "AWAY": 2.07
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.54,
+      "AWAY": 2.24
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 2.18,
+      "AWAY": 1.59
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 1.73,
+      "AWAY": 2.17
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "HOME": 1.32,
+      "AWAY": 3.27
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "HOME": 1.35,
+      "AWAY": 3.22
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "HOME": 1.65,
+      "AWAY": 2.25
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "HOME": 1.55,
+      "AWAY": 2.58
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "HOME": 1.68,
+      "AWAY": 2.05
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_32e6e5c4",
+   "event": "Los Angeles Lakers - Boston Celtics",
+   "sport": "basket",
+   "league": "NBA",
+   "home_team": "Los Angeles Lakers",
+   "away_team": "Boston Celtics",
+   "commence_time": "2026-10-24T01:00:00.000Z",
+   "market": "ou",
+   "line": 215.5,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.81,
+      "UNDER": 2.01
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.55,
+      "UNDER": 2.33
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 2.54,
+      "UNDER": 1.56
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 2.02,
+      "UNDER": 1.74
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 2.73,
+      "UNDER": 1.42
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "OVER": 1.96,
+      "UNDER": 1.78
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "OVER": 2.86,
+      "UNDER": 1.42
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "OVER": 1.67,
+      "UNDER": 2.01
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "OVER": 1.5,
+      "UNDER": 2.46
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "OVER": 1.59,
+      "UNDER": 2.34
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_8b6d6be1",
+   "event": "Olimpia Milano - Virtus Bologna",
+   "sport": "basket",
+   "league": "EuroLega",
+   "home_team": "Olimpia Milano",
+   "away_team": "Virtus Bologna",
+   "commence_time": "2026-10-24T06:00:00.000Z",
+   "market": "moneyline",
+   "line": null,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.9,
+      "AWAY": 1.91
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.76,
+      "AWAY": 1.92
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "HOME": 1.82,
+      "AWAY": 2.06
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 1.49,
+      "AWAY": 2.53
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "HOME": 1.95,
+      "AWAY": 1.79
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "HOME": 1.31,
+      "AWAY": 3.38
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "HOME": 2.4,
+      "AWAY": 1.57
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "HOME": 1.92,
+      "AWAY": 1.87
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "HOME": 1.52,
+      "AWAY": 2.47
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "HOME": 1.64,
+      "AWAY": 2.36
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  },
+  {
+   "event_id": "mock_8b6d6be1",
+   "event": "Olimpia Milano - Virtus Bologna",
+   "sport": "basket",
+   "league": "EuroLega",
+   "home_team": "Olimpia Milano",
+   "away_team": "Virtus Bologna",
+   "commence_time": "2026-10-24T06:00:00.000Z",
+   "market": "ou",
+   "line": 158.5,
+   "scope": null,
+   "period": null,
+   "state": "prematch",
+   "score": null,
+   "minute": null,
+   "bookmakers": [
+    {
+     "key": "mockbook_it_1",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 2.6,
+      "UNDER": 1.49
+     },
+     "last_update": "2026-10-21T23:59:00.000Z"
+    },
+    {
+     "key": "mockbook_it_2",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 1.79,
+      "UNDER": 1.94
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:58:23.000Z"
+    },
+    {
+     "key": "mockbook_it_3",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_a",
+     "outcomes": {
+      "OVER": 2.23,
+      "UNDER": 1.61
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:57:46.000Z"
+    },
+    {
+     "key": "mockbook_it_4",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 2.22,
+      "UNDER": 1.56
+     },
+     "last_update": "2026-10-21T23:57:09.000Z"
+    },
+    {
+     "key": "mockbook_it_5",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_b",
+     "outcomes": {
+      "OVER": 2.04,
+      "UNDER": 1.87
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:56:32.000Z"
+    },
+    {
+     "key": "mockbook_it_6",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_c",
+     "outcomes": {
+      "OVER": 2.27,
+      "UNDER": 1.62
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:55:55.000Z"
+    },
+    {
+     "key": "mockbook_it_7",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": false,
+     "family": "mockplat_d",
+     "outcomes": {
+      "OVER": 1.35,
+      "UNDER": 3.08
+     },
+     "last_update": "2026-10-21T23:55:18.000Z"
+    },
+    {
+     "key": "mockbook_uk_1",
+     "country": "UK",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_e",
+     "outcomes": {
+      "OVER": 2.62,
+      "UNDER": 1.51
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:24:41.000Z"
+    },
+    {
+     "key": "mockbook_sharp",
+     "country": "world",
+     "playable_it": false,
+     "is_exchange": false,
+     "family": "mockplat_sharp",
+     "outcomes": {
+      "OVER": 1.35,
+      "UNDER": 2.89
+     },
+     "suspended": [],
+     "last_update": "2026-10-21T23:54:04.000Z"
+    },
+    {
+     "key": "mockbook_exchange",
+     "country": "IT",
+     "playable_it": true,
+     "is_exchange": true,
+     "family": "mockplat_x",
+     "outcomes": {
+      "OVER": 1.46,
+      "UNDER": 2.63
+     },
+     "last_update": "2026-10-21T23:53:27.000Z"
+    }
+   ]
+  }
+ ]
+}

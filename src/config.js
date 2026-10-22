@@ -183,11 +183,16 @@ export const CONFIG = congela({
     },
   },
   // Idea 1 [utente, 22/10/2026]: quote dei bookmaker italiani dell'utente da odss-api.com (piano gratuito:
-  // 500 richieste ogni 30 giorni, 30 al minuto). Ogni mattina 1x2, dc e ou del calcio per la giornata
-  // (08:00→08:00 di Roma), senza filtro bookmaker: servono tutti per la probabilità di consenso.
-  // Al massimo `richiesteGiorno` richieste al giorno e mai sotto `riserva` richieste rimaste.
+  // 500 richieste ogni 30 giorni, 30 al minuto). Dal 22/10/2026 odss-api è la fonte principale delle quote di tutti
+  // gli sport (calcio, tennis, basket, NBA, pallavolo) e dei controlli; le fonti di prima restano di riserva.
+  // Budget unico (data/stato/odss.json): al massimo `richiesteGiorno` richieste nel giro del mattino fra tutti gli
+  // sport (ognuno al massimo `tetti[sport]`), `richiesteControlli` al giorno per i controlli e mai sotto `riserva`
+  // richieste rimaste. (10 + 3) × 30 = 390 richieste in 30 giorni al massimo, sotto le 440 spendibili.
+  // Uno sport senza partite oggi non fa richieste.
   odss: {
-    richiesteGiorno: 6,
+    richiesteGiorno: 10,
+    richiesteControlli: 3,
+    tetti: { calcio: 6, tennis: 2, nba: 2, basket: 2, pallavolo: 2 },
     riserva: 60,
     mercati: ['1x2', 'dc', 'ou'],
     // Righe per pagina (massimo dell'API).
@@ -200,6 +205,8 @@ export const CONFIG = congela({
     toleranzaOre: 2,
     // Quote dei bookmaker dell'utente aggiornate da più di tante ore (al momento del download): ignorate.
     oreMaxQuota: 6,
+    // Un bookmaker che dà per la partita un orario d'inizio diverso di più di tante ore (start_time): fuori.
+    toleranzaInizioOre: 1,
   },
   multiplaBonus: {
     quotaMin: 1.25,

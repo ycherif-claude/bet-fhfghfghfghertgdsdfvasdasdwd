@@ -168,14 +168,15 @@ test('download: 1x2, dc e ou con paginazione; eventi compatti; stato con rimaste
   assert.deepEqual(Object.keys(e.mercati).sort(), ['1x2', 'dc', 'ou|1.5', 'ou|2.5']);
   assert.equal(e.mercati['1x2'].fonteProb, 'Pinnacle');
   assert.equal(file.diagnostica.senzaIntero, 0);
-  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, giorno: DATA, usateOggi: 4 });
+  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, giorno: DATA, usateOggi: 4, controlliOggi: 0, perSport: { calcio: 4 } });
+  assert.equal(file.esito, 'ok');
   assert.ok(!JSON.stringify(file).includes(CHIAVE));
 });
 
-test('budget: mai sotto la riserva, al massimo richiesteGiorno; se non basta niente quote e una riga chiara', async () => {
-  const { riserva, richiesteGiorno } = CONFIG.odss;
+test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico); se non basta niente quote e una riga chiara', async () => {
+  const { riserva, tetti } = CONFIG.odss;
   assert.equal(riserva, 60);
-  assert.equal(richiesteGiorno, 6);
+  assert.equal(tetti.calcio, 6);
   // Rimaste 62: servirebbero 3 richieste e si scenderebbe sotto 60 → nessuna richiesta.
   let f = fetchFinto(pagineTipo());
   let r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f,
@@ -183,11 +184,16 @@ test('budget: mai sotto la riserva, al massimo richiesteGiorno; se non basta nie
   assert.equal(f.chiamate.length, 0);
   assert.deepEqual(r.file.eventi, []);
   assert.match(r.file.erroriGiro[0], /odss-api.*budget insufficiente.*rimaste 62.*riserva 60/);
-  // Già 4 richieste oggi: ne restano 2 sulle 6, non bastano per 3 mercati.
+  assert.equal(r.file.esito, 'budget');
+  // Già 4 richieste oggi del calcio: ne restano 2 sulle 6, non bastano per 3 mercati.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 4 } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 4, perSport: { calcio: 4 } } });
   assert.equal(f.chiamate.length, 0);
   assert.match(r.file.erroriGiro[0], /budget insufficiente/);
+  // 9 richieste oggi fra tutti gli sport: il tetto del giro del mattino (10) non basta.
+  f = fetchFinto(pagineTipo());
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 9, perSport: { tennis: 9 } } });
+  assert.equal(f.chiamate.length, 0);
   // Giorno nuovo: il conteggio di oggi riparte; un reset passato rende sconosciute le rimaste.
   f = fetchFinto(pagineTipo());
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 10, reset: '2026-10-01T00:00:00Z', giorno: '2026-10-22', usateOggi: 6 } });
@@ -196,7 +202,7 @@ test('budget: mai sotto la riserva, al massimo richiesteGiorno; se non basta nie
   // Le pagine in più si fanno solo lasciando una richiesta a ogni mercato che manca; poi riga "incomplete".
   const tante = { '1x2': [[riga()], [riga({ event_id: 'e2' })], [riga({ event_id: 'e3' })], [riga({ event_id: 'e4' })]], dc: [[riga({ market: 'dc' })]], ou: [[riga({ market: 'ou', line: 1.5 })]] };
   f = fetchFinto(tante);
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 1 } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 1, perSport: { calcio: 1 } } });
   assert.equal(f.chiamate.length, 5);
   assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', '1x2', '1x2', 'dc', 'ou']);
   assert.ok(r.file.erroriGiro.some((x) => /1x2.*incomplete/.test(x)));
@@ -238,7 +244,7 @@ test('raccolta odss: scrive data/raccolta/<data>-odss.json e data/stato/odss.jso
   assert.equal(JSON.parse(file).eventi.length, 1);
   assert.equal(stato.usateOggi, 4);
   assert.ok(!file.includes(CHIAVE));
-  // Seconda raccolta lo stesso giorno: legge lo stato e conta le richieste di oggi (4 + 4 > 6 → niente).
+  // Seconda raccolta lo stesso giorno: legge lo stato e conta le richieste di oggi del calcio (4 + 3 > 6 → niente).
   const g = fetchFinto(pagineTipo());
   await eseguiRaccoltaOdss({ dirData: d, data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: g });
   assert.equal(g.chiamate.length, 0);
