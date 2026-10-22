@@ -149,7 +149,9 @@ export const CONFIG = congela({
   // è uscito almeno il 70% circa delle volte in ogni stagione. Gol, No gol, Under 1.5/2.5 e Over 3.5 esclusi:
   // il modello li sopravvaluta. La percentuale mostrata è quella vera della stessa fascia nel passato.
   pronostici: {
-    maxPerPartita: 3,
+    // Solo i mercati scelti dall'utente [22/10/2026]: 1X2, doppia chance, Over 1.5, gol casa, gol ospite.
+    // Tutti i "sì" della partita (al massimo 10), senza tennis.
+    maxPerPartita: 10,
     minCampioniFascia: 60,
     soglie: {
       calcio: {
@@ -159,12 +161,9 @@ export const CONFIG = congela({
         'Doppia chance|X2': 0.7,
         'Doppia chance|12': 0.75,
         'Under/Over 1.5|Over 1.5': 0.7,
-        'Under/Over 2.5|Over 2.5': 0.8,
-        'Under/Over 3.5|Under 3.5': 0.7,
         'Under/Over casa 0.5|Over 0.5': 0.75,
         'Under/Over trasferta 0.5|Over 0.5': 0.75,
       },
-      tennis: { 'Vincente incontro|*': 0.75 },
     },
   },
   multiplaBonus: {

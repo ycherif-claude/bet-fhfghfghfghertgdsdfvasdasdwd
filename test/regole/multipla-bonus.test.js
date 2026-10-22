@@ -107,7 +107,7 @@ test('Telegram: le multiple bonus nel messaggio del giorno e l\'esito una volta 
   assert.equal(messaggiMultipleBonus({ giornate: [giornata], inviate: new Set([e[0].chiave]) }).length, 0);
 });
 
-test('pronostici: soglia del mercato, probabilità vera della fascia, quota minima, al massimo 3 per partita', async () => {
+test('pronostici: soglia del mercato, probabilità vera della fascia, quota minima, solo i mercati scelti', async () => {
   const { pronosticiPartita, probCalibrata, quotaMinima, testoPronostico } = await import('../../src/regole/pronostici.js');
   const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 400, vera: 0.78 }, { da: 0.8, n: 30, vera: 0.6 }];
   assert.equal(probCalibrata(fasce, 0.72), 0.74);
