@@ -30,6 +30,23 @@ async function principale() {
   esito.bookmakerItaliani = lista.filter((x) => x.playable_it || x.country === 'IT').map((x) => x.key ?? x.name);
   esito.mieiTrovati = lista.filter((x) => mio(x.key ?? x.name)).map((x) => ({ key: x.key ?? x.name, nome: x.name ?? null, italiano: x.playable_it ?? null, exchange: x.is_exchange ?? null }));
 
+  // Struttura della risposta: chiavi in cima, valori distinti di scope/period, chiavi dei bookmaker
+  // (c'è Pinnacle?), formato del reset e del cursore di paginazione.
+  const r1 = await fetch(`${BASE}/odds?${new URLSearchParams({ sport: 'calcio', league: 'Serie A', market: '1x2', state: 'prematch', limit: '40' })}`,
+    { headers: { 'x-api-key': CHIAVE, Accept: 'application/json', 'User-Agent': 'analisi-giocate (progetto personale)' }, signal: AbortSignal.timeout(30000) });
+  const j1 = await r1.json();
+  esito.richieste.push({ percorso: 'odds struttura', status: r1.status, rimaste: r1.headers.get('x-ratelimit-remaining'), reset: r1.headers.get('x-ratelimit-reset') });
+  const righe1 = Array.isArray(j1) ? j1 : j1.odds ?? [];
+  esito.struttura = {
+    chiaviRisposta: Array.isArray(j1) ? 'array' : Object.keys(j1),
+    paginazione: Array.isArray(j1) ? null : Object.fromEntries(Object.entries(j1).filter(([k]) => k !== 'odds')),
+    chiaviRiga: righe1[0] ? Object.keys(righe1[0]) : [],
+    scopePeriod: [...new Set(righe1.map((o) => `${o.scope ?? '-'}|${o.period ?? '-'}`))],
+    pinnacle: righe1.some((o) => (o.bookmakers ?? []).some((b) => /pinnacle/i.test(b.key))),
+    chiaviPinnacle: [...new Set(righe1.flatMap((o) => (o.bookmakers ?? []).map((b) => b.key)).filter((k) => /pinn/i.test(k)))],
+    esempioPartita: righe1.filter((o) => o.event === righe1[0]?.event).map((o) => ({ scope: o.scope, period: o.period, line: o.line, libri: (o.bookmakers ?? []).length, esempio: (o.bookmakers ?? [])[0]?.outcomes })),
+  };
+
   esito.quote = {};
   for (const market of ['1x2', 'dc', 'ou']) {
     const j = await chiama('odds', { sport: 'calcio', league: 'Serie A', market, state: 'prematch', playable_it: 'true', limit: '60' });
