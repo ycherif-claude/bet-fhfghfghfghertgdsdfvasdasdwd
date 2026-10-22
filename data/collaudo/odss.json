@@ -1,0 +1,552 @@
+{
+  "eseguitoAlle": "2026-10-22T17:35:57.405Z",
+  "richieste": [
+    {
+      "percorso": "bookmakers",
+      "parametri": {},
+      "status": 200,
+      "rimaste": "499",
+      "limite": "500"
+    },
+    {
+      "percorso": "odds",
+      "parametri": {
+        "sport": "calcio",
+        "league": "Serie A",
+        "market": "1x2",
+        "state": "prematch",
+        "playable_it": "true",
+        "limit": "60"
+      },
+      "status": 200,
+      "rimaste": "498",
+      "limite": "500"
+    },
+    {
+      "percorso": "odds",
+      "parametri": {
+        "sport": "calcio",
+        "league": "Serie A",
+        "market": "dc",
+        "state": "prematch",
+        "playable_it": "true",
+        "limit": "60"
+      },
+      "status": 200,
+      "rimaste": "497",
+      "limite": "500"
+    },
+    {
+      "percorso": "odds",
+      "parametri": {
+        "sport": "calcio",
+        "league": "Serie A",
+        "market": "ou",
+        "state": "prematch",
+        "playable_it": "true",
+        "limit": "60"
+      },
+      "status": 200,
+      "rimaste": "496",
+      "limite": "500"
+    }
+  ],
+  "errori": [],
+  "bookmakerTotali": 215,
+  "bookmakerItaliani": [
+    "888sport",
+    "888sport_it",
+    "admiralbet",
+    "bet365",
+    "betflag",
+    "betitaly",
+    "betpassion",
+    "betsson",
+    "betwin360",
+    "bgame",
+    "bwin",
+    "casinosanremo",
+    "codere",
+    "daznbet",
+    "domusbet",
+    "elabet",
+    "eplay24",
+    "eurobet",
+    "fastbet",
+    "gioca7",
+    "giocodigitale",
+    "goldbet",
+    "leovegas",
+    "lottomatica",
+    "marathonbet",
+    "netbet",
+    "netwin",
+    "perlaplay",
+    "planetwin365",
+    "pokerstars",
+    "quigioco",
+    "sisal",
+    "snai",
+    "sportbet",
+    "sportium",
+    "stake",
+    "stanleybet",
+    "starcasino",
+    "starvegas",
+    "staryes",
+    "sunbet",
+    "totosi",
+    "vincitu",
+    "williamhill",
+    "winamax",
+    "winbet",
+    "zonagioco"
+  ],
+  "mieiTrovati": [
+    {
+      "key": "bet365",
+      "nome": null,
+      "italiano": true,
+      "exchange": false
+    },
+    {
+      "key": "daznbet",
+      "nome": null,
+      "italiano": true,
+      "exchange": false
+    },
+    {
+      "key": "goldbet",
+      "nome": null,
+      "italiano": true,
+      "exchange": false
+    },
+    {
+      "key": "snai",
+      "nome": null,
+      "italiano": true,
+      "exchange": false
+    },
+    {
+      "key": "sportium",
+      "nome": null,
+      "italiano": true,
+      "exchange": false
+    }
+  ],
+  "quote": {
+    "1x2": {
+      "righe": 60,
+      "esempi": [
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "HOME": 2.15,
+                "DRAW": 3.25,
+                "AWAY": 3.4
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "HOME": 2.15,
+                "DRAW": 3.25,
+                "AWAY": 3.5
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "sportium",
+              "quote": {
+                "HOME": 2.17,
+                "DRAW": 3.35,
+                "AWAY": 3.4
+              },
+              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "HOME": 2.19,
+                "DRAW": 3.3,
+                "AWAY": 3.45
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 43
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "HOME": 2.7,
+                "DRAW": 2.2,
+                "AWAY": 3.75
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            }
+          ],
+          "altriBookmaker": 34
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "HOME": 2.55,
+                "DRAW": 2.4,
+                "AWAY": 3.6
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            }
+          ],
+          "altriBookmaker": 32
+        }
+      ]
+    },
+    "dc": {
+      "righe": 60,
+      "esempi": [
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "12": 1.33,
+                "1X": 1.3,
+                "X2": 1.67
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "12": 1.33,
+                "1X": 1.3,
+                "X2": 1.68
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "sportium",
+              "quote": {
+                "12": 1.32,
+                "1X": 1.31,
+                "X2": 1.65
+              },
+              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+            }
+          ],
+          "altriBookmaker": 22
+        },
+        {
+          "partita": "Como - Sassuolo",
+          "lega": "Serie A",
+          "inizio": "2026-10-24T13:00:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "12": 1.2,
+                "1X": 1.12,
+                "X2": 2.6
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "12": 1.19,
+                "1X": 1.13,
+                "X2": 2.55
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "sportium",
+              "quote": {
+                "12": 1.19,
+                "1X": 1.14,
+                "X2": 2.45
+              },
+              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+            }
+          ],
+          "altriBookmaker": 22
+        },
+        {
+          "partita": "Cagliari - Bologna",
+          "lega": "Serie A",
+          "inizio": "2026-10-24T13:00:00.000Z",
+          "linea": null,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "12": 1.33,
+                "1X": 1.52,
+                "X2": 1.4
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "12": 1.38,
+                "1X": 1.5,
+                "X2": 1.35
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "sportium",
+              "quote": {
+                "12": 1.35,
+                "1X": 1.51,
+                "X2": 1.37
+              },
+              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+            }
+          ],
+          "altriBookmaker": 22
+        }
+      ]
+    },
+    "ou": {
+      "righe": 60,
+      "esempi": [
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 1.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "UNDER": 3.25,
+                "OVER": 1.27
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "UNDER": 3.45,
+                "OVER": 1.27
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 3.35,
+                "OVER": 1.28
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 36
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 2.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "UNDER": 1.8,
+                "OVER": 1.9
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "UNDER": 1.8,
+                "OVER": 1.9
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "sportium",
+              "quote": {
+                "UNDER": 1.82,
+                "OVER": 1.88
+              },
+              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 1.81,
+                "OVER": 1.89
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 42
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 3.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "UNDER": 1.27,
+                "OVER": 3.25
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "UNDER": 1.28,
+                "OVER": 3.2
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 1.31,
+                "OVER": 3.15
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 36
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 4.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "UNDER": 1.08,
+                "OVER": 6
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "UNDER": 1.07,
+                "OVER": 6.5
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 1.1,
+                "OVER": 5.8
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 36
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 0.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "UNDER": 9,
+                "OVER": 1.03
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "goldbet",
+              "quote": {
+                "UNDER": 9,
+                "OVER": 1.02
+              },
+              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 7.75,
+                "OVER": 1.05
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 36
+        },
+        {
+          "partita": "Torino - Monza",
+          "lega": "Serie A",
+          "inizio": "2026-10-23T18:45:00.000Z",
+          "linea": 5.5,
+          "scope": "match",
+          "miei": [
+            {
+              "key": "snai",
+              "quote": {
+                "OVER": 11
+              },
+              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+            },
+            {
+              "key": "daznbet",
+              "quote": {
+                "UNDER": 1.02,
+                "OVER": 9.75
+              },
+              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+            }
+          ],
+          "altriBookmaker": 26
+        }
+      ]
+    }
+  }
+}
