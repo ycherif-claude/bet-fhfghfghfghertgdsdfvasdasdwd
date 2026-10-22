@@ -10,6 +10,7 @@ import { join } from 'node:path';
 import { eseguiGiro } from '../../src/giro/giro.js';
 import { eseguiControlli } from '../../src/controlli/controlli.js';
 import { aggiornaEsitiSchedine } from '../../src/regole/schedine-pronostici.js';
+import { scegliMigliore } from '../../src/regole/pronostici.js';
 import { CONFIG } from '../../src/config.js';
 
 const DATA = '2026-10-23';
@@ -110,8 +111,26 @@ test(`schedine: gamba senza risultato dopo ${CONFIG.pronostici.schedine.giorniRi
   assert.equal(tardi[0].gambe[1].esito, 'rimborsata');
   assert.match(tardi[0].gambe[1].motivoEsito, /nessun risultato dopo 3 giorni/);
   assert.deepEqual([tardi[0].esito, tardi[0].quotaFinale], ['vinta', 1.25]);
+  // Un risultato vero che arriva dopo il rimborso lo sostituisce (come nelle multiple bonus).
+  aggiornaEsitiSchedine(tardi, new Map([['a|1X2|1', 'vinta'], ['b|1X2|1', 'persa']]), new Date('2026-10-24T09:00:00+02:00'));
+  assert.equal(tardi[0].gambe[1].esito, 'persa');
+  assert.equal(tardi[0].gambe[1].motivoEsito, undefined);
+  assert.equal(tardi[0].esito, 'persa');
   // Senza `adesso` (chiamate vecchie): nessun rimborso.
   const senza = s();
   aggiornaEsitiSchedine(senza, esiti);
   assert.equal(senza[0].gambe[1].esito, null);
+});
+
+test('migliore: prima i pronostici con la quota dei bookmaker dell\'utente, poi quelli con la media, poi la regola senza quote', () => {
+  const pr = (selezione, limite, extra = {}) => ({ mercato: 'M', selezione, prob: limite + 0.02, limite, quotaMinima: 1.2, quota: null, ...extra });
+  const scelto = (lista) => scegliMigliore(lista).filter((x) => x.migliore).map((x) => x.selezione);
+  // La media più alta (0,85 × 1,40 = 1,19) non batte la quota dell'utente (0,84 × 1,25 = 1,05).
+  assert.deepEqual(scelto([pr('media', 0.85, { quota: 1.4, fonteQuota: 'media' }), pr('mia', 0.84, { quota: 1.25, fonteQuota: 'miei' }), pr('niente', 0.9)]), ['mia']);
+  // Fra quelli dell'utente vince il massimo di prob prudente × quota.
+  assert.deepEqual(scelto([pr('a', 0.84, { quota: 1.25, fonteQuota: 'miei' }), pr('b', 0.82, { quota: 1.35, fonteQuota: 'miei' })]), ['b']);
+  // Nessuna quota dell'utente: fra le medie (anche dati vecchi senza fonteQuota) con la stessa formula.
+  assert.deepEqual(scelto([pr('a', 0.84, { quota: 1.25, fonteQuota: 'media' }), pr('b', 0.82, { quota: 1.35 }), pr('c', 0.95)]), ['b']);
+  // Nessuna quota: la regola di sempre (prob prudente più alta con quota minima ≥ 1,20).
+  assert.deepEqual(scelto([pr('a', 0.84), pr('b', 0.86)]), ['b']);
 });

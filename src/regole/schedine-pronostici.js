@@ -137,15 +137,14 @@ export function esitoSchedina(s) {
 
 // Riporta sulle gambe gli esiti (mappa idPartita|mercato|selezione → esito) e ricalcola l'esito delle schedine.
 // Con `adesso`: una gamba ancora senza risultato S.giorniRimborso giorni dopo l'inizio (partita rinviata o sospesa)
-// è rimborsata, come nelle multiple bonus; un rimborso così non si cambia più. Vero se qualcosa è cambiato.
+// è rimborsata, come nelle multiple bonus; un risultato vero che arriva dopo lo sostituisce. Vero se qualcosa è cambiato.
 export function aggiornaEsitiSchedine(schedine, esiti, adesso = null) {
   let cambiato = false;
   for (const s of Array.isArray(schedine) ? schedine : []) {
     if (!s || !Array.isArray(s.gambe)) continue;
     for (const x of s.gambe) {
-      if (x.esito === 'rimborsata' && x.motivoEsito) continue;
       const e = esiti.get(`${x.idPartita}|${x.mercato}|${x.selezione}`) ?? null;
-      if (e && x.esito !== e) { x.esito = e; cambiato = true; }
+      if (e && x.esito !== e) { x.esito = e; delete x.motivoEsito; cambiato = true; }
       if (!e && x.esito == null && adesso && adesso.getTime() - Date.parse(x.inizio) >= S.giorniRimborso * 86400000) {
         x.esito = 'rimborsata';
         x.motivoEsito = `nessun risultato dopo ${S.giorniRimborso} giorni (partita rinviata o sospesa)`;

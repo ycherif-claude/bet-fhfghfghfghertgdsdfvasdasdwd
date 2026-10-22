@@ -98,14 +98,18 @@ export function testoPronostico(partita, mercato, selezione) {
 export const probPrudente = (x) => (num(x?.limite) ? x.limite : num(x?.prob) ? x.prob : 0);
 
 // Pronostico migliore della partita [utente, 22/10/2026, idea 2]: uno solo con `migliore: true`, gli altri false.
-// Se almeno uno ha la quota: il massimo di probabilità prudente × quota fra quelli con quota. Altrimenti la
+// Se almeno uno ha la quota di un bookmaker dell'utente: il massimo di probabilità prudente × quota fra questi; se no,
+// se almeno uno ha la quota media: lo stesso fra quelli con la media. Altrimenti la
 // probabilità prudente più alta fra quelli con quota minima ≥ 1,20 (sotto, la giocata non vale la pena); se
 // nessuno arriva a 1,20, quello con la quota minima più alta. A parità vince il primo (il più sicuro).
 export const QUOTA_MINIMA_MIGLIORE = 1.2;
 export function scegliMigliore(pronostici) {
   const lista = Array.isArray(pronostici) ? pronostici : [];
   if (!lista.length) return [];
-  const conQuota = lista.filter((x) => num(x.quota));
+  // Prima le quote dei bookmaker dell'utente (odss); solo se nessuna, le medie (anche dati vecchi senza fonteQuota)
+  // [coordinatore, 22/10/2026].
+  const conQuotaMia = lista.filter((x) => num(x.quota) && x.fonteQuota === 'miei');
+  const conQuota = conQuotaMia.length ? conQuotaMia : lista.filter((x) => num(x.quota));
   const massimo = (candidati, valore) => candidati.reduce((m, x) => (valore(x) > valore(m) + 1e-12 ? x : m));
   let scelto;
   if (conQuota.length) scelto = massimo(conQuota, (x) => probPrudente(x) * x.quota);

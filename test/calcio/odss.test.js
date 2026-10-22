@@ -317,9 +317,9 @@ test('pronostici con odss: quota = migliore dei miei bookmaker, ✅ con la regol
   const gc = p.find((x) => x.mercato === 'Under/Over casa 0.5');
   assert.deepEqual([gc.quota, gc.fonteQuota, gc.giocabile], [1.3, 'media', false]);
   assert.ok(!('quotaMigliore' in gc));
-  // Il migliore può usare anche la quota media (coordinatore): qui 1,30 media contro 1,26 di Sportium.
-  assert.equal(gc.migliore, true);
-  assert.equal(dc.migliore, false);
+  // Il migliore preferisce le quote dei bookmaker dell'utente (coordinatore): Sportium 1,26 batte la media 1,30.
+  assert.equal(dc.migliore, true);
+  assert.equal(gc.migliore, false);
   // Consenso sotto l'80% → solo da tenere d'occhio, anche con la quota alta.
   const basso = eventoCon([dcRiga([bk('pinnacle', { 12: 1.3, '1X': 1.35, X2: 1.9 })])]);
   assert.equal(pronosticiPartita(partitaRaccolta([mercato('Doppia chance', '1X')]), CAL, basso)[0].giocabile, false);
