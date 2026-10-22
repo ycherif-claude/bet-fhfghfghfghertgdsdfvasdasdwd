@@ -41,11 +41,13 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
       - name: Raccolta NBA
+        # Partite e quote da odss-api (1 richiesta, solo da ottobre a giugno); senza odss, SportsGameOdds.
         run: npm run raccolta-nba
         continue-on-error: true
         env:
           BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta tennis
         # Quote da odss-api (1 richiesta, budget unico); senza odss, o per i tornei che odss non ha, The Odds API.
         run: npm run raccolta-tennis
@@ -54,10 +56,12 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta basket
+        # Quote da odss-api (1 richiesta per campionato con partite); senza odss, The Odds API.
         run: npm run raccolta-basket
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta pallavolo
         run: npm run raccolta-pallavolo
         continue-on-error: true

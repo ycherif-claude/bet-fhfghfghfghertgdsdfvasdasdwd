@@ -7,7 +7,10 @@ import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/te
 import { balldontlie } from './fonti/balldontlie.js';
 import { sportsgameodds } from './fonti/sportsgameodds.js';
 import { backToBack, formattaLinea, mercatiNba, pesoModelloPartita, puntiAttesi, stimaForzeNba } from './modello.js';
-import { consensoNba, lineaComune, quotaMedianaNba } from './quote.js';
+import { consensoNba, lineaComune, quotaMedianaNba, riferimentoMercato } from './quote.js';
+import { squadraNba } from './squadre.js';
+import { eventiOdssSport } from '../odss/sport.js';
+import { femminile, inFormatoNba, unisciEventi } from '../odss/eventi.js';
 import { aggiornaEsitiGiroNba, dataUsaDi } from './esiti.js';
 
 export const ERRORE_CHIAVI = 'Mancano le chiavi NBA (BALLDONTLIE_API_KEY, SPORTSGAMEODDS_API_KEY)';
@@ -63,7 +66,32 @@ export function spiegazioneMercato(mercato, selezione, nomi, linee) {
   return `${mercato}: ${spiegaTotale(lato, linee.totale)}. Gioca solo con la stessa linea (${linee.totale}) ${CODA}: con una linea diversa il calcolo non vale.`;
 }
 
-export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
+// Partite NBA dagli eventi di odss-api: squadre NBA (le altre, WNBA compresa, fuori), più eventi della stessa partita
+// (stesse squadre, inizio vicino) uniti, bookmaker nel formato NBA. { eventi, handicapScartati }.
+export function partiteNbaDaOdss(eventi) {
+  const gruppi = [];
+  const ordinati = (eventi ?? []).filter((e) => !femminile(e)).sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
+  for (const e of ordinati) {
+    const casa = squadraNba(e.casa);
+    const trasferta = squadraNba(e.trasferta);
+    if (!casa || !trasferta || casa.abbr === trasferta.abbr) continue;
+    const g = gruppi.find((x) => x.casa.abbr === casa.abbr && x.trasferta.abbr === trasferta.abbr
+      && Math.abs(Date.parse(e.inizio) - Date.parse(x.eventi[0].inizio)) <= CONFIG.odss.toleranzaOre * 3600000);
+    if (g) g.eventi.push(e);
+    else gruppi.push({ casa, trasferta, eventi: [e] });
+  }
+  let handicapScartati = 0;
+  const out = [];
+  for (const g of gruppi) {
+    const unito = unisciEventi(g.eventi);
+    const f = inFormatoNba(unito);
+    if (f.handicapScartato) handicapScartati++;
+    if (f.bookmaker.length) out.push({ id: unito.id, casa: g.casa.nome, trasferta: g.trasferta.nome, inizio: g.eventi[0].inizio, bookmaker: f.bookmaker });
+  }
+  return { eventi: out, handicapScartati };
+}
+
+export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData = 'data' }) {
   const erroriGiro = [];
   const errore = (fonte, e) => erroriGiro.push(`${fonte} alle ${oraRoma(adesso)}: ${e?.message ?? e}`);
   const ora = isoRoma(adesso);
@@ -71,21 +99,46 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
     data, generataAlle: ora, crediti: { sportsgameodds: { oggetti: 0 } },
     competizioniNonCoperte: [], erroriGiro, partite: [],
   };
-  if (!chiavi?.balldontlie || !chiavi?.sportsgameodds) {
+  if (!chiavi?.balldontlie || (!chiavi?.sportsgameodds && !chiavi?.odss)) {
     erroriGiro.push(ERRORE_CHIAVI);
     return raccolta;
   }
 
-  // 1. Partite della giornata con le quote.
+  // 1. Partite della giornata con le quote: prima odss-api (fonte principale) [utente, 22/10/2026], una richiesta
+  // (league "nba") solo in stagione (ottobre-giugno); se odss non risponde o non ha partite NBA, SportsGameOdds.
   const finestra = finestraGiornata(data);
-  let eventi;
-  try {
-    eventi = await fonti.sportsgameodds.eventi(finestra, { chiave: chiavi.sportsgameodds });
-  } catch (e) {
-    errore('SportsGameOdds', e);
-    return raccolta;
+  let eventi = null;
+  let fonteQuote = 'SportsGameOdds';
+  if (Object.hasOwn(chiavi, 'odss')) {
+    const mese = Number(data.slice(5, 7));
+    const inStagione = mese >= 10 || mese <= 6;
+    const o = await eventiOdssSport({
+      dirData, data, adesso, chiave: chiavi.odss, sport: 'basket', budgetSport: 'nba', gruppi: ['moneyline,ah,ou'], league: 'nba',
+      finestra, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite: inStagione ? null : 0, nome: 'NBA',
+    });
+    erroriGiro.push(...o.errori);
+    const p = partiteNbaDaOdss(o.eventi);
+    if (p.handicapScartati) errore('odss-api', plurale(p.handicapScartati, 'handicap NBA scartato: linea della casa con il verso opposto al vincente', 'handicap NBA scartati: linea della casa con il verso opposto al vincente'));
+    if (p.eventi.length) {
+      eventi = Object.defineProperty(p.eventi, 'nonRiconosciute', { value: [], enumerable: false });
+      fonteQuote = 'odss-api';
+    } else if (inStagione) {
+      erroriGiro.push(`Quote NBA: nessuna partita NBA su odss-api, quote da SportsGameOdds`);
+    }
   }
-  raccolta.crediti.sportsgameodds.oggetti = eventi.length;
+  if (!eventi) {
+    if (!chiavi.sportsgameodds) {
+      erroriGiro.push(ERRORE_CHIAVI);
+      return raccolta;
+    }
+    try {
+      eventi = await fonti.sportsgameodds.eventi(finestra, { chiave: chiavi.sportsgameodds });
+    } catch (e) {
+      errore('SportsGameOdds', e);
+      return raccolta;
+    }
+    raccolta.crediti.sportsgameodds.oggetti = eventi.length;
+  }
   const ignote = [...(eventi.nonRiconosciute ?? [])];
   // Riga di diagnostica di SportsGameOdds: si scrive alla fine, con i mercati scartati senza consenso.
   const d = eventi.diagnostica;
@@ -99,11 +152,11 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
   let senzaConsenso = 0;
   const diagnostica = () => {
     if (senzaConsenso) parti.push(plurale(senzaConsenso, 'mercato senza consenso dei bookmaker', 'mercati senza consenso dei bookmaker'));
-    if (parti.length) errore('SportsGameOdds', parti.join(', '));
+    if (parti.length) errore(fonteQuote, parti.join(', '));
   };
   const dentro = (e) => {
     if (!e.inizio) {
-      errore('SportsGameOdds', `evento ${e.casa} - ${e.trasferta} senza orario d'inizio`);
+      errore(fonteQuote, `evento ${e.casa} - ${e.trasferta} senza orario d'inizio`);
       return false;
     }
     const t = Date.parse(e.inizio);
@@ -111,7 +164,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
   };
   const delGiorno = eventi.filter(dentro);
   if (delGiorno.length && !delGiorno.some((e) => e.bookmaker.some((b) => b.mercati?.handicap))) {
-    errore('SportsGameOdds', 'nessun handicap disponibile (controllare il campo spread)');
+    errore(fonteQuote, fonteQuote === 'odss-api' ? 'nessun handicap disponibile' : 'nessun handicap disponibile (controllare il campo spread)');
   }
 
   // 2. Storico: stagione corrente e precedente.
@@ -176,7 +229,10 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
       const q = quotaMedianaNba(ev, tipo, sel, linea);
       if (!q) continue;
       // Senza consenso (meno di minBookmaker con entrambe le quote) il mercato non si propone.
-      const consenso = consensoNba(ev, tipo, linea);
+      // odss-api: Pinnacle se c'è, altrimenti il consenso; SportsGameOdds: il consenso di tutti, come sempre.
+      const rif = fonteQuote === 'odss-api' ? riferimentoMercato(ev, tipo, linea)
+        : (() => { const c = consensoNba(ev, tipo, linea); return c ? { prob: c, etichetta: 'Consenso bookmaker' } : null; })();
+      const consenso = rif?.prob;
       if (consenso?.[sel] == null) { senzaConsenso++; continue; }
       mercati.push({
         mercato: m.mercato,
@@ -184,15 +240,15 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi }) {
         probModello: m.probModello,
         probPinnacle: consenso[sel],
         quota: q.quota,
-        fonteQuota: `mediana di ${q.n} bookmaker (SportsGameOdds)`,
+        fonteQuota: `mediana di ${q.n} bookmaker (${fonteQuote})`,
         oraQuota: ora,
         frequenzaCampionato: null,
-        etichettaMercato: 'Consenso bookmaker',
+        ...(rif.etichetta === 'Pinnacle' ? {} : { etichettaMercato: rif.etichetta }),
         spiegazione: spiegazioneMercato(m.mercato, m.selezione, nomi, linee),
       });
     }
     if (!mercati.length) {
-      errore('SportsGameOdds', `nessuna quota utilizzabile per ${ev.casa} - ${ev.trasferta}`);
+      errore(fonteQuote, `nessuna quota utilizzabile per ${ev.casa} - ${ev.trasferta}`);
       continue;
     }
     const ragionamentoBase = [`Punti attesi: ${ev.casa} ${intero(attesi.casa)} – ${ev.trasferta} ${intero(attesi.trasferta)} (stagione in corso e precedente)`];
@@ -235,7 +291,7 @@ async function principale() {
     console.error('Uso: node src/nba/raccolta.js [--data AAAA-MM-GG]');
     process.exit(1);
   }
-  const chiavi = { balldontlie: process.env.BALLDONTLIE_API_KEY, sportsgameodds: process.env.SPORTSGAMEODDS_API_KEY };
+  const chiavi = { balldontlie: process.env.BALLDONTLIE_API_KEY, sportsgameodds: process.env.SPORTSGAMEODDS_API_KEY, odss: process.env.ODSS_API_KEY };
   const fonti = { balldontlie, sportsgameodds };
   let raccolta;
   try {

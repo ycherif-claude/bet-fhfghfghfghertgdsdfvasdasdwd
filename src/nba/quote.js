@@ -54,6 +54,19 @@ export function quotaMedianaNba(evento, mercato, selezione, linea, minBookmaker 
   return { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n };
 }
 
+// Probabilità di riferimento di un mercato: Pinnacle senza margine sulla stessa linea, altrimenti il consenso
+// senza margine dei bookmaker (exchange esclusi) su quella linea; null senza nessuno dei due.
+const EXCHANGE = new Set(['betfair_ex_eu', 'matchbook', 'smarkets']);
+export function riferimentoMercato(evento, tipo, linea, minBookmaker = CONFIG.nba.minBookmaker) {
+  const pin = evento.bookmaker.find((b) => b.chiave === 'pinnacle');
+  if (pin) {
+    const p = consensoNba({ bookmaker: [pin] }, tipo, linea, 1);
+    if (p) return { prob: p, etichetta: 'Pinnacle' };
+  }
+  const c = consensoNba({ bookmaker: evento.bookmaker.filter((b) => !EXCHANGE.has(b.chiave)) }, tipo, linea, minBookmaker);
+  return c ? { prob: c, etichetta: 'Consenso bookmaker' } : null;
+}
+
 export function consensoNba(evento, mercato, linea, minBookmaker = CONFIG.nba.minBookmaker) {
   const selezioni = SELEZIONI[mercato];
   const prob = [];

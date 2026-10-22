@@ -69,7 +69,7 @@ export function eventiDaRighe(righe, { adesso = null } = {}) {
 
 // Più eventi odss della stessa partita (fonti diverse unite male dal feed): bookmaker uniti. Lo stesso bookmaker
 // con quote diverse per lo stesso mercato in due eventi: quel mercato si scarta (non si sceglie a caso).
-function unisci(eventi) {
+export function unisciEventi(eventi) {
   if (eventi.length === 1) return eventi[0];
   const libri = new Map();
   const conflitti = new Map();
@@ -113,10 +113,14 @@ export function abbinaEventi(nostri, eventi, { stesso, simile = null, tolleranza
   const out = new Map();
   for (const [id, x] of scelti) {
     if (x.eventi.some((e) => usi.get(e) > 1)) continue;
-    out.set(id, { evento: unisci(x.eventi), invertito: x.invertito });
+    out.set(id, { evento: unisciEventi(x.eventi), invertito: x.invertito });
   }
   return out;
 }
+
+// Partita femminile (campionato o squadre): "Euroleague Women", "WNBL", "A1, Femminile", "Serie A1 (F)", "Bundesliga, Donne"…
+const FEMMINILE = /\b(w|wnbl|wnba|women|woman|ladies|femminile|feminino|femenino|feminin|feminine|donne|damer|kvinder|kobiety|frauen|dames)\b|\((f|w|k|d)\)/i;
+export const femminile = (evento) => [evento?.campionato, evento?.casa, evento?.trasferta].some((x) => FEMMINILE.test(String(x ?? '')));
 
 const senzaExchange = (evento) => (evento?.libri ?? []).filter((l) => !l.exchange);
 const lineaDi = (k, mercato) => (k.startsWith(`${mercato}|`) ? Number(k.slice(mercato.length + 1)) : null);

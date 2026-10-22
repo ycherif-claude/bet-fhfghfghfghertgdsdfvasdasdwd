@@ -8,7 +8,9 @@ import { CONFIG } from '../config.js';
 import { budgetCrediti } from '../calcio/raccolta.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
 import { formattaLinea, mercatiNba, pesoModelloPartita, puntiAttesi, stimaForzeNba } from '../nba/modello.js';
-import { consensoNba, lineaComune, quotaMedianaNba } from '../nba/quote.js';
+import { lineaComune, quotaMedianaNba, riferimentoMercato } from '../nba/quote.js';
+import { eventiOdssSport } from '../odss/sport.js';
+import { abbinaEventi, femminile, inFormatoNba } from '../odss/eventi.js';
 import { spiegazioneMercato } from '../nba/raccolta.js';
 import { oddsBasket } from './fonti/odds-basket.js';
 import { eurolega } from './fonti/eurolega.js';
@@ -26,10 +28,11 @@ const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const decimo = (n) => Math.round(n * 10) / 10;
 const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
 
-// In ordine di priorità per i crediti.
+// In ordine di priorità per i crediti. `leagueOdss`: filtro league di odss-api (sottostringa del nome: "eurol" prende
+// Euroleague, Eurolega, Euroliga, Euroligue; le squadre femminili si tolgono dopo).
 export const CAMPIONATI = Object.freeze([
-  Object.freeze({ id: 'eurolega', chiave: 'basketball_euroleague', competizione: 'Eurolega', fonte: 'API Eurolega', pausaMs: 1000 }),
-  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 6500 }),
+  Object.freeze({ id: 'eurolega', chiave: 'basketball_euroleague', competizione: 'Eurolega', fonte: 'API Eurolega', pausaMs: 1000, leagueOdss: 'eurol' }),
+  Object.freeze({ id: 'nbl', chiave: 'basketball_nbl', competizione: 'NBL (Australia)', fonte: 'TheSportsDB', pausaMs: 6500, leagueOdss: 'nbl' }),
 ]);
 
 // Crediti di un file di raccolta di oggi: { rimasti, usati, file } | { errore } | null (file assente).
@@ -79,13 +82,7 @@ const senzaExchange = (ev) => ({ ...ev, bookmaker: ev.bookmaker.filter((b) => !E
 // Probabilità di riferimento di un mercato: Pinnacle senza margine sulla stessa linea,
 // altrimenti il consenso dei bookmaker su quella linea; null senza nessuno dei due.
 export function riferimento(evento, tipo, linea) {
-  const pin = evento.bookmaker.find((b) => b.chiave === 'pinnacle');
-  if (pin) {
-    const p = consensoNba({ bookmaker: [pin] }, tipo, linea, 1);
-    if (p) return { prob: p, etichetta: 'Pinnacle' };
-  }
-  const c = consensoNba(senzaExchange(evento), tipo, linea, B.minBookmaker);
-  return c ? { prob: c, etichetta: 'Consenso bookmaker' } : null;
+  return riferimentoMercato(evento, tipo, linea, B.minBookmaker);
 }
 
 // Vero se la squadra ha giocato nei `giorniDoppioTurno` giorni prima della partita (seconda partita in 3 giorni).
@@ -104,7 +101,7 @@ function vuota(data, adesso) {
 }
 
 // Mercati di una partita: probabilità del modello (o null), riferimento di mercato e quota mediana.
-function mercatiPartita({ ev, attesi, forze, nomi, ora, conta }) {
+function mercatiPartita({ ev, attesi, forze, nomi, ora, conta, fonte }) {
   const evento = senzaExchange(ev);
   const linee = { handicap: lineaComune(evento, 'handicap'), totale: lineaComune(evento, 'totale') };
   const voci = [
@@ -140,7 +137,7 @@ function mercatiPartita({ ev, attesi, forze, nomi, ora, conta }) {
       probModello: probModello(v),
       probPinnacle: rif.prob[v.sel],
       quota: q.quota,
-      fonteQuota: `mediana di ${q.n} bookmaker (The Odds API)`,
+      fonteQuota: `mediana di ${q.n} bookmaker (${fonte})`,
       oraQuota: ora,
       frequenzaCampionato: null,
       ...(rif.etichetta === 'Pinnacle' ? {} : { etichettaMercato: rif.etichetta }),
@@ -151,7 +148,7 @@ function mercatiPartita({ ev, attesi, forze, nomi, ora, conta }) {
 }
 
 // Raccolta di un campionato già scelto (quote pagate): partite con i loro mercati.
-function partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta }) {
+function partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta, fonte = 'The Odds API' }) {
   const conta = { senzaRiferimento: 0, senzaQuota: 0 };
   const ignote = new Set();
   for (const ev of eventi) {
@@ -184,7 +181,7 @@ function partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta }) {
         ragionamentoBase = [`Nessun dato storico per ${ev.casa} - ${ev.trasferta}: probabilità solo dal mercato`];
       }
     }
-    const mercati = mercatiPartita({ ev, attesi, forze: stato?.forze, nomi, ora, conta });
+    const mercati = mercatiPartita({ ev, attesi, forze: stato?.forze, nomi, ora, conta, fonte });
     if (!mercati.length) { conta.senzaQuota++; continue; }
     raccolta.partite.push({
       idPartita: `basket-${data}-${slug(ev.casa)}-${slug(ev.trasferta)}`,
@@ -203,8 +200,8 @@ function partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta }) {
     });
   }
   if (ignote.size) raccolta.erroriGiro.push(`Squadre ${c.competizione} non riconosciute: ${[...ignote].join(', ')}`);
-  if (conta.senzaQuota) errore('The Odds API', `${plurale(conta.senzaQuota, 'partita', 'partite')} senza quota utilizzabile (${c.competizione})`);
-  if (conta.senzaRiferimento) errore('The Odds API', `${plurale(conta.senzaRiferimento, 'mercato', 'mercati')} senza Pinnacle né consenso dei bookmaker (${c.competizione})`);
+  if (conta.senzaQuota) errore(fonte, `${plurale(conta.senzaQuota, 'partita', 'partite')} senza quota utilizzabile (${c.competizione})`);
+  if (conta.senzaRiferimento) errore(fonte, `${plurale(conta.senzaRiferimento, 'mercato', 'mercati')} senza Pinnacle né consenso dei bookmaker (${c.competizione})`);
 }
 
 // Storico, forze e partite salvate per squadra di un campionato; null se lo storico non c'è.
@@ -267,7 +264,47 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
       errore(`The Odds API (${c.competizione})`, e);
     }
   }
-  const conEventi = CAMPIONATI.filter((c) => eventiPer.has(c.id));
+  const tuttiConEventi = CAMPIONATI.filter((c) => eventiPer.has(c.id));
+  if (!tuttiConEventi.length) {
+    raccolta.crediti.rimasti = rimastiOra;
+    return raccolta;
+  }
+
+  // 2b. Quote di odss-api (fonte principale) [utente, 22/10/2026]: una richiesta per campionato con partite (filtro
+  // league), squadre abbinate con le tabelle del basket, partite femminili fuori. Un campionato senza partite su odss
+  // (o tutti, se odss non risponde) torna a The Odds API.
+  const daOdss = new Map();
+  if (Object.hasOwn(chiavi, 'odss')) {
+    for (const c of tuttiConEventi) {
+      const o = await eventiOdssSport({
+        dirData, data, adesso, chiave: chiavi.odss, sport: 'basket', budgetSport: 'basket', gruppi: ['moneyline,ah,ou'],
+        league: c.leagueOdss, finestra, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, nome: c.competizione,
+      });
+      erroriGiro.push(...o.errori);
+      const codice = (x) => codiceSquadra(c.id, x);
+      const stesso = (a, b) => Boolean(codice(a)) && codice(a) === codice(b);
+      const nostri = eventiPer.get(c.id);
+      const abbinati = abbinaEventi(nostri, (o.eventi ?? []).filter((e) => !femminile(e)), { stesso });
+      let storti = 0;
+      const conQuote = nostri.filter((e) => abbinati.has(e.id)).map((e) => {
+        const f = inFormatoNba(abbinati.get(e.id).evento);
+        if (f.handicapScartato) storti++;
+        return { ...e, bookmaker: f.bookmaker };
+      }).filter((e) => e.bookmaker.length);
+      if (storti) errore('odss-api', `${plurale(storti, 'handicap scartato', 'handicap scartati')}: linea della casa con il verso opposto al vincente (${c.competizione})`);
+      if (conQuote.length) {
+        daOdss.set(c.id, conQuote);
+        if (conQuote.length < nostri.length) erroriGiro.push(`Quote ${c.competizione}: ${nostri.length - conQuote.length} partite su ${nostri.length} non trovate su odss-api, senza quote`);
+      } else {
+        erroriGiro.push(`Quote ${c.competizione}: nessuna partita su odss-api, quote da The Odds API`);
+      }
+    }
+  }
+  for (const c of tuttiConEventi.filter((x) => daOdss.has(x.id))) {
+    const stato = statoCampionato(c, storici.get(c.id), data, erroriGiro);
+    partiteCampionato({ c, eventi: daOdss.get(c.id), stato, data, ora, errore, raccolta, fonte: 'odss-api' });
+  }
+  const conEventi = tuttiConEventi.filter((c) => !daOdss.has(c.id));
   if (!conEventi.length) {
     raccolta.crediti.rimasti = rimastiOra;
     return raccolta;
@@ -322,7 +359,7 @@ async function principale() {
   const fonti = { oddsBasket, eurolega, thesportsdb };
   let raccolta;
   try {
-    raccolta = await eseguiRaccoltaBasket({ data, adesso, fonti, chiavi: { oddsApi: process.env.ODDS_API_KEY }, dirData });
+    raccolta = await eseguiRaccoltaBasket({ data, adesso, fonti, chiavi: { oddsApi: process.env.ODDS_API_KEY, odss: process.env.ODSS_API_KEY }, dirData });
   } catch (e) {
     // Qualunque imprevisto: file con partite [] e l'errore, uscita 0, così gli altri sport vengono comunque salvati.
     raccolta = raccoltaDiErrore(data, adesso, e);

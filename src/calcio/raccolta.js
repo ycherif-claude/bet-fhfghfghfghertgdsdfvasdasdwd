@@ -100,7 +100,7 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   if (fonti.odss !== undefined) {
     const eventiOdss = Array.isArray(fonti.odss?.eventi) ? fonti.odss.eventi : [];
     if (!eventiOdss.length) {
-      const motivo = (fonti.odss?.errori ?? []).map((x) => String(x).replace(/^odss-api alle dd:dd: /, '')).join('; ') || 'nessuna partita nel file';
+      const motivo = (fonti.odss?.errori ?? []).map((x) => String(x).replace(/^odss-api alle \d\d:\d\d: /, '')).join('; ') || 'nessuna partita nel file';
       erroriGiro.push(`odss-api non disponibile alle ${oraRoma(adesso)} (${motivo}): quote del calcio da The Odds API come prima`);
     } else {
       const nostre = conPartite.flatMap((c) => eventiPer.get(chiaveEventi(c)).map((e) => ({
