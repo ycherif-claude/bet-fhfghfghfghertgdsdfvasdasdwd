@@ -1,12 +1,18 @@
 {
-  "eseguitoAlle": "2026-10-22T17:35:57.405Z",
+  "eseguitoAlle": "2026-10-22T17:49:27.515Z",
   "richieste": [
     {
       "percorso": "bookmakers",
       "parametri": {},
       "status": 200,
-      "rimaste": "499",
+      "rimaste": "495",
       "limite": "500"
+    },
+    {
+      "percorso": "odds struttura",
+      "status": 200,
+      "rimaste": "494",
+      "reset": "1795282558"
     },
     {
       "percorso": "odds",
@@ -19,7 +25,7 @@
         "limit": "60"
       },
       "status": 200,
-      "rimaste": "498",
+      "rimaste": "493",
       "limite": "500"
     },
     {
@@ -33,7 +39,7 @@
         "limit": "60"
       },
       "status": 200,
-      "rimaste": "497",
+      "rimaste": "492",
       "limite": "500"
     },
     {
@@ -47,7 +53,7 @@
         "limit": "60"
       },
       "status": 200,
-      "rimaste": "496",
+      "rimaste": "491",
       "limite": "500"
     }
   ],
@@ -134,6 +140,94 @@
       "exchange": false
     }
   ],
+  "struttura": {
+    "chiaviRisposta": [
+      "count",
+      "offset",
+      "returned",
+      "limit",
+      "state",
+      "generation",
+      "generated_at",
+      "odds",
+      "content",
+      "partial_sources"
+    ],
+    "paginazione": {
+      "count": 347,
+      "offset": 0,
+      "returned": 40,
+      "limit": 40,
+      "state": "prematch",
+      "generation": "58234281.p474",
+      "generated_at": "2026-10-22T17:45:31.376Z",
+      "content": "match",
+      "partial_sources": [
+        "italy:stitched"
+      ]
+    },
+    "chiaviRiga": [
+      "event_id",
+      "event",
+      "sport",
+      "league",
+      "home_team",
+      "away_team",
+      "commence_time",
+      "market",
+      "line",
+      "scope",
+      "period",
+      "state",
+      "score",
+      "minute",
+      "bookmakers"
+    ],
+    "scopePeriod": [
+      "match|full_time",
+      "match|1st_half",
+      "match|2nd_half"
+    ],
+    "pinnacle": true,
+    "chiaviPinnacle": [
+      "pinnacle"
+    ],
+    "esempioPartita": [
+      {
+        "scope": "match",
+        "period": "full_time",
+        "line": null,
+        "libri": 90,
+        "esempio": {
+          "HOME": 2.15,
+          "DRAW": 3.25,
+          "AWAY": 3.4
+        }
+      },
+      {
+        "scope": "match",
+        "period": "1st_half",
+        "line": null,
+        "libri": 56,
+        "esempio": {
+          "HOME": 2.7,
+          "DRAW": 2.2,
+          "AWAY": 3.75
+        }
+      },
+      {
+        "scope": "match",
+        "period": "2nd_half",
+        "line": null,
+        "libri": 49,
+        "esempio": {
+          "HOME": 2.55,
+          "DRAW": 2.4,
+          "AWAY": 3.6
+        }
+      }
+    ]
+  },
   "quote": {
     "1x2": {
       "righe": 60,
@@ -152,7 +246,7 @@
                 "DRAW": 3.25,
                 "AWAY": 3.4
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -161,7 +255,7 @@
                 "DRAW": 3.25,
                 "AWAY": 3.5
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             },
             {
               "key": "sportium",
@@ -170,19 +264,10 @@
                 "DRAW": 3.35,
                 "AWAY": 3.4
               },
-              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "HOME": 2.19,
-                "DRAW": 3.3,
-                "AWAY": 3.45
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:40:50.476752+00:00"
             }
           ],
-          "altriBookmaker": 43
+          "altriBookmaker": 40
         },
         {
           "partita": "Torino - Monza",
@@ -198,10 +283,10 @@
                 "DRAW": 2.2,
                 "AWAY": 3.75
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             }
           ],
-          "altriBookmaker": 34
+          "altriBookmaker": 32
         },
         {
           "partita": "Torino - Monza",
@@ -217,10 +302,10 @@
                 "DRAW": 2.4,
                 "AWAY": 3.6
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             }
           ],
-          "altriBookmaker": 32
+          "altriBookmaker": 30
         }
       ]
     },
@@ -241,7 +326,7 @@
                 "1X": 1.3,
                 "X2": 1.67
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -250,7 +335,7 @@
                 "1X": 1.3,
                 "X2": 1.68
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             },
             {
               "key": "sportium",
@@ -259,7 +344,7 @@
                 "1X": 1.31,
                 "X2": 1.65
               },
-              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+              "aggiornato": "2026-10-22T17:40:50.476752+00:00"
             }
           ],
           "altriBookmaker": 22
@@ -278,7 +363,7 @@
                 "1X": 1.12,
                 "X2": 2.6
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -287,7 +372,7 @@
                 "1X": 1.13,
                 "X2": 2.55
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             },
             {
               "key": "sportium",
@@ -296,7 +381,7 @@
                 "1X": 1.14,
                 "X2": 2.45
               },
-              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+              "aggiornato": "2026-10-22T17:40:50.476752+00:00"
             }
           ],
           "altriBookmaker": 22
@@ -315,7 +400,7 @@
                 "1X": 1.52,
                 "X2": 1.4
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -324,7 +409,7 @@
                 "1X": 1.5,
                 "X2": 1.35
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             },
             {
               "key": "sportium",
@@ -333,7 +418,7 @@
                 "1X": 1.51,
                 "X2": 1.37
               },
-              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
+              "aggiornato": "2026-10-22T17:40:50.476752+00:00"
             }
           ],
           "altriBookmaker": 22
@@ -356,7 +441,7 @@
                 "UNDER": 3.25,
                 "OVER": 1.27
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -364,18 +449,10 @@
                 "UNDER": 3.45,
                 "OVER": 1.27
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 3.35,
-                "OVER": 1.28
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             }
           ],
-          "altriBookmaker": 36
+          "altriBookmaker": 33
         },
         {
           "partita": "Torino - Monza",
@@ -390,7 +467,7 @@
                 "UNDER": 1.8,
                 "OVER": 1.9
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -398,7 +475,7 @@
                 "UNDER": 1.8,
                 "OVER": 1.9
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             },
             {
               "key": "sportium",
@@ -406,18 +483,10 @@
                 "UNDER": 1.82,
                 "OVER": 1.88
               },
-              "aggiornato": "2026-10-22T17:26:41.229313+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 1.81,
-                "OVER": 1.89
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:40:50.476752+00:00"
             }
           ],
-          "altriBookmaker": 42
+          "altriBookmaker": 39
         },
         {
           "partita": "Torino - Monza",
@@ -432,7 +501,7 @@
                 "UNDER": 1.27,
                 "OVER": 3.25
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -440,18 +509,10 @@
                 "UNDER": 1.28,
                 "OVER": 3.2
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 1.31,
-                "OVER": 3.15
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             }
           ],
-          "altriBookmaker": 36
+          "altriBookmaker": 33
         },
         {
           "partita": "Torino - Monza",
@@ -466,7 +527,7 @@
                 "UNDER": 1.08,
                 "OVER": 6
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -474,18 +535,10 @@
                 "UNDER": 1.07,
                 "OVER": 6.5
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 1.1,
-                "OVER": 5.8
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             }
           ],
-          "altriBookmaker": 36
+          "altriBookmaker": 33
         },
         {
           "partita": "Torino - Monza",
@@ -500,7 +553,7 @@
                 "UNDER": 9,
                 "OVER": 1.03
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             },
             {
               "key": "goldbet",
@@ -508,18 +561,10 @@
                 "UNDER": 9,
                 "OVER": 1.02
               },
-              "aggiornato": "2026-10-22T17:17:48.447691+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 7.75,
-                "OVER": 1.05
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:34:36.232605+00:00"
             }
           ],
-          "altriBookmaker": 36
+          "altriBookmaker": 33
         },
         {
           "partita": "Torino - Monza",
@@ -533,18 +578,10 @@
               "quote": {
                 "OVER": 11
               },
-              "aggiornato": "2026-10-22T17:22:46.040584+00:00"
-            },
-            {
-              "key": "daznbet",
-              "quote": {
-                "UNDER": 1.02,
-                "OVER": 9.75
-              },
-              "aggiornato": "2026-10-22T17:23:15.729019+00:00"
+              "aggiornato": "2026-10-22T17:38:22.569644+00:00"
             }
           ],
-          "altriBookmaker": 26
+          "altriBookmaker": 23
         }
       ]
     }
