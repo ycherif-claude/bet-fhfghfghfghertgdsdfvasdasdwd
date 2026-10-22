@@ -281,7 +281,7 @@ Le date sono in `CONFIG.prova`. Dopo il 18 novembre si torna alle regole normali
 
 ## Revisione settimanale
 
-Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.
+Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`. Per i pronostici legge i numeri già pronti da `npm run bilancio-pronostici -- <da> <a>` (JSON dal registro: pronostici ✅ usciti rispetto alla percentuale promessa, migliori e tutti, bilancio per partita, doppie e triple con il rendimento alle quote usate).
 
 ## Per chi sviluppa (fasi successive)
 

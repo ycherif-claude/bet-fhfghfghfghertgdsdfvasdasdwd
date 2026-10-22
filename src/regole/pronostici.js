@@ -171,6 +171,8 @@ export function righeIstantanea(pronosticiGiornata) {
         ...(num(x.n) ? { n: x.n, limite: x.limite ?? null } : {}), quotaMinima: x.quotaMinima, esito: x.esito ?? null,
         // Idea 2: il bilancio distingue i migliori da tutti (i dati vecchi non hanno il campo).
         ...(typeof x.migliore === 'boolean' ? { migliore: x.migliore } : {}),
+        // Idea 5: il bilancio del lunedì conta a parte i pronostici ✅ (con la quota del mattino).
+        ...(x.giocabile === true ? { giocabile: true } : {}), ...(num(x.quota) ? { quota: x.quota } : {}),
       });
     }
   }

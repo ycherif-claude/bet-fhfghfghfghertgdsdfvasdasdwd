@@ -12,6 +12,7 @@ Sei la routine "Revisione settimanale" del progetto Analisi giocate. Ogni luned�
    - la settimana analizzata va dal lunedì precedente alla domenica appena finita;
    - nel calcolo considera anche le 4 settimane precedenti, per il confronto.
 4. `npm run build`, che crea `site/dati.json` con il bankroll, lo storico (`storico.righe`), i riepiloghi (`storico.riepiloghi.fatte` e `.proposte`, per sport, tipo, mercato e quota da verificare), l'andamento ed `erroriDati`. È la fonte principale: usa i numeri calcolati lì, senza ricalcolarli a mano se non per controllo.
+5. Pronostici sì/no: `npm run bilancio-pronostici -- <lunedì> <domenica>` per la settimana e `npm run bilancio-pronostici -- 2026-10-22 <domenica>` per il totale dall'inizio. Stampano un JSON già calcolato dal registro (istantanee `data/registro/<data>-pronostici.json`): `tutti`, `migliori`, `giocabili` (i ✅), `perPartita` e `schedine` (doppie e triple, anche `perTipo` e `conQuotaDaVerificare`). Usa questi numeri, senza ricalcolarli a mano se non per controllo.
 
 ## 2. Cosa analizzare
 Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte davvero** (soldi reali) da **tutte le proposte** (qualità del metodo):
@@ -35,7 +36,12 @@ Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte 
    - errori ricorrenti in `erroriGiro` delle giornate (raggruppati per tipo, con quante volte compaiono): squadre o giocatori non riconosciuti, fonti giù, crediti insufficienti, competizioni scoperte;
    - giocate senza esito da più di 7 giorni;
    - `erroriDati` della build.
-8. **Crediti delle quote:** dai file `data/raccolta/*.json` (`crediti`), quanto si è speso a settimana per sport e quanto resta nel mese. Il ritmo è sostenibile fino a fine mese?
+8. **Pronostici sì/no** (dal JSON di `npm run bilancio-pronostici`; per ogni gruppo `percentuale` è quante volte è uscito, `promessa` la percentuale promessa in media, `promessaPrudente` la media dei limiti prudenti):
+   - **Pronostici ✅** (`giocabili`): quante volte sono usciti rispetto alla percentuale promessa. Se escono meno del limite prudente su un campione di almeno 50, scrivilo chiaramente;
+   - **Migliori e tutti** (`migliori` e `tutti`): il pronostico migliore di ogni partita esce più o meno spesso della media di tutti? Confronta le due percentuali con le loro promesse;
+   - **Per partita** (`perPartita`): quante partite con tutti i pronostici giusti e quante con qualcuno sbagliato. I pronostici della stessa partita sono collegati: quando una partita va storta sbagliano spesso insieme;
+   - **Doppie e triple** (`schedine`): vinte, perse, rimborsate e aperte, `profitto` e `rendimento` con 1 € a schedina alle quote usate (quota del mattino o quota minima "da verificare": guarda anche `conQuotaDaVerificare`), separate per doppie e triple (`perTipo`). In modalità prova non sono giocate vere: il rendimento dice solo se il metodo regge.
+9. **Crediti delle quote:** dai file `data/raccolta/*.json` (`crediti`), quanto si è speso a settimana per sport e quanto resta nel mese. Il ritmo è sostenibile fino a fine mese?
 
 ## 3. Proposte di miglioramento
 Alla fine scrivi **al massimo 5 proposte**, in ordine di importanza. Ognuna dice:
@@ -56,8 +62,9 @@ Ricorda sempre: nessun modello garantisce vincite, e su poche settimane la fortu
   1. **In breve:** 3-5 frasi con l'essenziale (come è andata, cosa preoccupa, cosa propongo).
   2. **Numeri della settimana:** una tabella semplice.
   3. **Cosa funziona e cosa no.**
-  4. **Salute del sistema.**
-  5. **Proposte.**
+  4. **Pronostici e doppie/triple:** ✅, migliori e tutti, per partita, doppie e triple (punto 8).
+  5. **Salute del sistema.**
+  6. **Proposte.**
 - Lingua: italiano semplice, frasi brevi, niente gergo tecnico. Se usi un termine come "ROI" o "calibrazione", spiegalo la prima volta.
 - Numeri con la virgola decimale italiana ed euro con il simbolo €.
 
