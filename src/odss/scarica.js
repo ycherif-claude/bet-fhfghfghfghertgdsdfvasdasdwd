@@ -8,12 +8,13 @@
 // Risultato: { righe (grezze), richieste, ok (almeno un gruppo scaricato per intero), fermo }
 // con fermo = null | 'budget' | 'chiave' | 'limite'.
 import { odss } from '../calcio/fonti/odss.js';
+import { CONFIG } from '../config.js';
 
 const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function scaricaOdss({
   chiave, budget, sport, gruppi, finestra, league = null, fetch = globalThis.fetch, fonte = odss, attesaMs = 2000,
-  errore = () => {}, suffissoBudget = '',
+  errore = () => {}, suffissoBudget = '', limite = CONFIG.odss.limite,
 }) {
   const righe = [];
   let richieste = 0;
@@ -46,7 +47,7 @@ export async function scaricaOdss({
         budget.conta();
         richieste++;
         try {
-          r = await fonte.quote({ chiave, sport: sp, market, league, finestra, offset, fetch });
+          r = await fonte.quote({ chiave, sport: sp, market, league, finestra, offset, limite, fetch });
           budget.aggiorna(r.limiti);
           err = null;
           break;

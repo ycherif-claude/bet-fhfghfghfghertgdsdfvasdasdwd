@@ -36,11 +36,11 @@ const senza = (testo, chiave) => (chiave ? String(testo).replaceAll(chiave, '***
 export const odss = {
   // Una pagina di /odds: { righe, prossimoOffset (null se è l'ultima), limiti: { rimaste, limite, reset } }.
   // Errore HTTP: Error con `status` e `limiti` (un 429 aggiorna comunque le rimaste).
-  async quote({ chiave, sport = 'calcio', market, league = null, finestra, offset = 0, fetch = globalThis.fetch, timeoutMs = 30000 }) {
+  async quote({ chiave, sport = 'calcio', market, league = null, finestra, offset = 0, limite = CONFIG.odss.limite, fetch = globalThis.fetch, timeoutMs = 30000 }) {
     const parametri = {
       sport, market, ...(league ? { league } : {}), content: 'match',
       state: 'prematch', commence_from: iso(finestra.da), commence_to: iso(finestra.a),
-      limit: String(CONFIG.odss.limite), ...(offset > 0 ? { offset: String(offset) } : {}),
+      limit: String(limite), ...(offset > 0 ? { offset: String(offset) } : {}),
     };
     const url = `${BASE_ODSS}/odds?${new URLSearchParams(parametri)}`;
     let r;

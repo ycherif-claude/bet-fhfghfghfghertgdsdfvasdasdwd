@@ -197,6 +197,9 @@ export const CONFIG = congela({
     mercati: ['1x2', 'dc', 'ou'],
     // Righe per pagina (l'API arriva a 5000; 1000 evita risposte enormi e timeout, con più pagine).
     limite: 1000,
+    // Calcio: tutte le competizioni del mondo in una giornata (decine di migliaia di righe con l'under/over). Con 1000
+    // righe il tetto di 6 richieste non basterebbe: pagine da 5000 (il massimo dell'API).
+    limiteCalcio: 5000,
     // Pinnacle aggiornato da più di tante ore: ignorato, vale il consenso dei bookmaker.
     oreMaxPinnacle: 24,
     // Linee dell'Under/Over salvate (i pronostici usano l'Over 1.5).

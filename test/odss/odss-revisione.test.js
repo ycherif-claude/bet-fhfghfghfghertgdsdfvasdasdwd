@@ -207,3 +207,11 @@ test('controlli: la linea della giocata, una riga per motivo per giornata (non a
   }
   assert.equal(errori.filter((e) => /odss-api.*tetto/.test(e)).length, 1, errori.join(' | '));
 });
+
+test('pagine: 1000 righe per gli altri sport e i controlli, 5000 per il calcio (con 1000 il tetto di 6 richieste non basterebbe)', async () => {
+  const { scaricaQuoteOdss } = await import('../../src/calcio/odss.js');
+  assert.equal(CONFIG.odss.limiteCalcio, 5000);
+  const f = fetchOdss({});
+  await scaricaQuoteOdss({ data: '2026-10-23', adesso: new Date('2026-10-23T05:36:00Z'), chiave: CHIAVE, stato: null, fetch: f, attesaMs: 0 });
+  assert.ok(f.chiamate.every((c) => new URL(c.url).searchParams.get('limit') === '5000'));
+});
