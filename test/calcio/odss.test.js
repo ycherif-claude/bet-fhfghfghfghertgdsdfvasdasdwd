@@ -26,7 +26,8 @@ function risposta(status, corpo, headers = {}) {
   const testo = typeof corpo === 'string' ? corpo : JSON.stringify(corpo);
   return { status, ok: status >= 200 && status < 300, headers: new Headers(headers), text: async () => testo };
 }
-// Risponde secondo `market` e `after` della richiesta; registra le chiamate.
+// Risponde secondo `market` e `offset` della richiesta, come la vera API (secondo collaudo, 22/10/2026):
+// { count, offset, returned, limit, …, odds }; registra le chiamate.
 function fetchFinto(pagine, { rimaste = 480, status = 200, corpo = null } = {}) {
   const chiamate = [];
   let r = rimaste;
@@ -37,9 +38,12 @@ function fetchFinto(pagine, { rimaste = 480, status = 200, corpo = null } = {}) 
     const h = { 'x-ratelimit-remaining': String(r), 'x-ratelimit-limit': '500', 'x-ratelimit-reset': String(RESET) };
     if (status !== 200) return risposta(status, corpo ?? '', h);
     const lista = pagine[u.searchParams.get('market')] ?? [[]];
-    const i = u.searchParams.get('after') ? Number(u.searchParams.get('after').slice(1)) : 0;
-    const next = i + 1 < lista.length ? `p${i + 1}` : null;
-    return risposta(200, { odds: lista[i] ?? [], next_after: next }, h);
+    const offset = Number(u.searchParams.get('offset') ?? 0);
+    const count = lista.reduce((n, p) => n + p.length, 0);
+    let i = 0;
+    for (let inizio = 0; i < lista.length && inizio < offset; i++) inizio += lista[i].length;
+    const odds = lista[i] ?? [];
+    return risposta(200, { count, offset, returned: odds.length, limit: 5000, state: 'prematch', generation: 'g', generated_at: AGG, odds, content: 'match', partial_sources: [] }, h);
   };
   f.chiamate = chiamate;
   return f;
@@ -49,7 +53,7 @@ const AGG = '2026-10-23T05:40:00+00:00';
 const bk = (key, outcomes, extra = {}) => ({ key, outcomes, last_update: AGG, ...extra });
 const riga = (o = {}) => ({
   event_id: 'e1', event: 'Torino - Monza', league: 'Serie A', home_team: 'Torino', away_team: 'Monza',
-  commence_time: '2026-10-23T18:45:00.000Z', market: '1x2', line: null, scope: 'match', period: 'ft', bookmakers: [], ...o,
+  commence_time: '2026-10-23T18:45:00.000Z', market: '1x2', line: null, scope: 'match', period: 'full_time', bookmakers: [], ...o,
 });
 const x12 = (h, d, a) => ({ HOME: h, DRAW: d, AWAY: a });
 const DATA = '2026-10-23';
@@ -62,7 +66,7 @@ test('fonte: parametri della richiesta, chiave nell\'intestazione, User-Agent on
   const finestra = { da: new Date('2026-10-23T06:00:00Z'), a: new Date('2026-10-24T06:00:00Z') };
   const p1 = await odss.quote({ chiave: CHIAVE, market: '1x2', finestra, fetch: f });
   assert.equal(p1.righe.length, 1);
-  assert.equal(p1.nextAfter, 'p1');
+  assert.equal(p1.prossimoOffset, 1);
   assert.deepEqual(p1.limiti, { rimaste: 479, limite: 500, reset: RESET_ISO });
   const u = new URL(f.chiamate[0].url);
   assert.equal(`${u.origin}${u.pathname}`, 'https://odss-api.com/api/v1/odds');
@@ -77,9 +81,12 @@ test('fonte: parametri della richiesta, chiave nell\'intestazione, User-Agent on
   assert.ok(!f.chiamate[0].url.includes(CHIAVE));
   assert.equal(f.chiamate[0].init.headers['x-api-key'], CHIAVE);
   assert.equal(f.chiamate[0].init.headers['User-Agent'], UA);
-  const p2 = await odss.quote({ chiave: CHIAVE, market: '1x2', finestra, after: p1.nextAfter, fetch: f });
-  assert.equal(new URL(f.chiamate[1].url).searchParams.get('after'), 'p1');
-  assert.equal(p2.nextAfter, null);
+  // Prima pagina senza offset; poi offset += returned finché offset + returned < count.
+  assert.equal(u.searchParams.has('offset'), false);
+  assert.equal(u.searchParams.has('after'), false);
+  const p2 = await odss.quote({ chiave: CHIAVE, market: '1x2', finestra, offset: p1.prossimoOffset, fetch: f });
+  assert.equal(new URL(f.chiamate[1].url).searchParams.get('offset'), '1');
+  assert.equal(p2.prossimoOffset, null);
 });
 
 test('fonte: errore HTTP con lo status e senza la chiave, anche se la risposta la contiene', async () => {
@@ -90,28 +97,24 @@ test('fonte: errore HTTP con lo status e senza la chiave, anche se la risposta l
 
 // ---- Solo la riga della partita intera ----
 
-test('partita intera: la riga con periodo intero; per eliminazione se le altre sono tempi; mai se non si distingue', () => {
-  const ft = riga({ period: 'ft', bookmakers: [bk('snai', x12(2.15, 3.25, 3.4))] });
-  const h1 = riga({ period: '1h', bookmakers: [bk('snai', x12(2.7, 2.2, 3.75))] });
-  const h2 = riga({ period: '2h', bookmakers: [bk('snai', x12(2.55, 2.4, 3.6))] });
+test('partita intera: solo period "full_time" (scope "match"); tempi e periodi diversi ignorati', () => {
+  const ft = riga({ bookmakers: [bk('snai', x12(2.15, 3.25, 3.4))] });
+  const h1 = riga({ period: '1st_half', bookmakers: [bk('snai', x12(2.7, 2.2, 3.75))] });
+  const h2 = riga({ period: '2nd_half', bookmakers: [bk('snai', x12(2.55, 2.4, 3.6))] });
   let r = scegliPartitaIntera([h1, ft, h2]);
   assert.deepEqual(r.righe, [ft]);
-  // Un'altra partita: periodo assente sulla riga intera, gli altri sono tempi → si sceglie per eliminazione.
-  const senza = riga({ event_id: 'e2', period: undefined });
-  r = scegliPartitaIntera([senza, riga({ event_id: 'e2', period: '1st_half' }), riga({ event_id: 'e2', period: '2nd_half' })]);
-  assert.deepEqual(r.righe, [senza]);
-  // Come nel collaudo reale: tre righe 1x2 con scope "match" e senza periodo → nessuna (non si indovina).
-  r = scegliPartitaIntera([riga({ period: undefined }), riga({ period: undefined }), riga({ period: undefined })]);
+  assert.deepEqual(r.senzaIntero, []);
+  // Niente euristiche: un periodo assente o con un altro nome non vale mai come partita intera.
+  r = scegliPartitaIntera([riga({ event_id: 'e2', period: undefined }), riga({ event_id: 'e2', period: 'ft' }), riga({ event_id: 'e2', period: '1st_half' })]);
   assert.deepEqual(r.righe, []);
-  assert.equal(r.scartate, 3);
-  assert.deepEqual(r.periodiVisti, { 'match|(assente)': 3 });
-  // Una riga sola senza periodo: potrebbe essere un tempo → scartata.
-  assert.deepEqual(scegliPartitaIntera([riga({ period: null })]).righe, []);
-  // Scope diverso da "match" (per esempio una squadra): fuori.
-  assert.deepEqual(scegliPartitaIntera([riga({ scope: 'team', period: 'ft' })]).righe, []);
+  assert.deepEqual(r.senzaIntero.map((x) => x.id), ['e2']);
+  // Scope diverso da "match": fuori.
+  assert.deepEqual(scegliPartitaIntera([riga({ scope: 'team' })]).righe, []);
+  // Due righe full_time per lo stesso evento, mercato e linea: non si sceglie.
+  assert.deepEqual(scegliPartitaIntera([ft, riga({ bookmakers: [bk('snai', x12(2, 3, 4))] })]).righe, []);
   // Linee diverse dell'Under/Over sono gruppi diversi.
-  const ou = (line, period) => riga({ market: 'ou', line, period });
-  assert.equal(scegliPartitaIntera([ou(1.5, 'ft'), ou(2.5, 'ft'), ou(1.5, '1h')]).righe.length, 2);
+  const ou = (line, period = 'full_time') => riga({ market: 'ou', line, period });
+  assert.equal(scegliPartitaIntera([ou(1.5), ou(2.5), ou(1.5, '1st_half')]).righe.length, 2);
 });
 
 // ---- Consenso senza margine e quote dell'utente ----
@@ -147,7 +150,7 @@ test('riassunto: quote dei miei bookmaker, consenso dalla mediana senza margine,
 // ---- Download con budget ----
 
 const pagineTipo = () => ({
-  '1x2': [[riga({ bookmakers: [bk('sportium', x12(2.1, 3.3, 3.5)), bk('pinnacle', x12(2.0, 3.4, 3.9))] }), riga({ period: '1h' })]],
+  '1x2': [[riga({ bookmakers: [bk('sportium', x12(2.1, 3.3, 3.5)), bk('pinnacle', x12(2.0, 3.4, 3.9))] }), riga({ period: '1st_half' })]],
   dc: [[riga({ market: 'dc', bookmakers: [bk('sportium', { 12: 1.3, '1X': 1.26, X2: 1.7 })] })]],
   ou: [[riga({ market: 'ou', line: 1.5, bookmakers: [bk('snai', { UNDER: 3.25, OVER: 1.27 })] })], [riga({ market: 'ou', line: 2.5, bookmakers: [bk('goldbet', { UNDER: 1.8, OVER: 1.9 })] })]],
 });
@@ -164,7 +167,7 @@ test('download: 1x2, dc e ou con paginazione; eventi compatti; stato con rimaste
   assert.deepEqual([e.casa, e.trasferta, e.inizio, e.campionato], ['Torino', 'Monza', '2026-10-23T18:45:00.000Z', 'Serie A']);
   assert.deepEqual(Object.keys(e.mercati).sort(), ['1x2', 'dc', 'ou|1.5', 'ou|2.5']);
   assert.equal(e.mercati['1x2'].fonteProb, 'Pinnacle');
-  assert.equal(file.diagnostica.scartate, 0);
+  assert.equal(file.diagnostica.senzaIntero, 0);
   assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, giorno: DATA, usateOggi: 4 });
   assert.ok(!JSON.stringify(file).includes(CHIAVE));
 });
@@ -216,11 +219,14 @@ test('download: 429 ferma tutto con una riga chiara; nessuna chiave → nessuna 
   assert.match(r.file.erroriGiro[0], /ODSS_API_KEY/);
 });
 
-test('download: periodo non distinguibile → riga in erroriGiro con i valori visti', async () => {
-  const f = fetchFinto({ '1x2': [[riga({ period: undefined }), riga({ period: undefined })]], dc: [[]], ou: [[]] });
-  const { file } = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
-  assert.deepEqual(file.eventi, []);
-  assert.ok(file.erroriGiro.some((x) => /2 righe scartate/.test(x) && /match\|\(assente\)/.test(x)), file.erroriGiro.join('\n'));
+test('download: i tempi si ignorano in silenzio; una partita senza nessuna riga full_time → una riga in erroriGiro', async () => {
+  let f = fetchFinto({ '1x2': [[riga(), riga({ period: '1st_half' }), riga({ period: '2nd_half' })]], dc: [[]], ou: [[]] });
+  let r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
+  assert.deepEqual(r.file.erroriGiro, []);
+  f = fetchFinto({ '1x2': [[riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '1st_half' }), riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '2nd_half' })]], dc: [[]], ou: [[]] });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
+  assert.deepEqual(r.file.eventi, []);
+  assert.ok(r.file.erroriGiro.some((x) => /1 partita senza righe a tempo intero.*Genoa - Pisa/.test(x)), r.file.erroriGiro.join(' | '));
 });
 
 test('raccolta odss: scrive data/raccolta/<data>-odss.json e data/stato/odss.json, la chiave mai', async () => {

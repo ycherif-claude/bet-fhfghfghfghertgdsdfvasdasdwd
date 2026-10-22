@@ -4,7 +4,7 @@
 //   Si salva in data/raccolta/<data>-odss.json solo il necessario: quote dei bookmaker dell'utente e probabilità
 //   di consenso senza margine (Pinnacle se c'è, altrimenti la mediana dei bookmaker).
 // - Per la stessa partita l'API dà più righe dello stesso mercato (partita intera, primo e secondo tempo):
-//   si usa solo quella della partita intera; se non si distingue, la riga si scarta (mai indovinare).
+//   si usa solo quella con period "full_time" (il resto si ignora, mai indovinare).
 // - Il giro abbina gli eventi alle partite della giornata (stesse squadre, inizio vicino; ambiguo → nessuno).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -31,51 +31,42 @@ const EXCHANGE = /betfair|matchbook|smarkets|betdaq|exchange/i;
 
 // ---- Solo la riga della partita intera ----
 
-const INTERO = new Set(['ft', 'fulltime', 'full_time', 'full-time', 'full', 'match', 'regular', 'regulartime', 'regular_time',
-  'reg', '90', '90min', 'whole', 'game', 'ordinary', 'ordinary_time', 'normal', 'normaltime']);
-const PARZIALE = /half|tempo|^ht$|^[12]$|^[12](h|st|nd|t|ht|_.*)$|^h[12]$|^p\d|^q\d|first|second|extra|^et$|overtime|^ot$|pen|min$/;
+// Valori reali (secondo collaudo, 22/10/2026): scope sempre "match", period "full_time", "1st_half" o "2nd_half".
+// Si usa solo "full_time": nessuna euristica sui nomi, il resto si ignora.
+const PERIODO_INTERO = 'full_time';
 const vuoto = (v) => v === undefined || v === null || v === '';
-
-// 'fuori' (scope non della partita), 'intero', 'parziale' o 'ignoto'.
-function classe(riga) {
-  if (!vuoto(riga.scope) && String(riga.scope).toLowerCase() !== 'match') return 'fuori';
-  if (vuoto(riga.period)) return 'ignoto';
-  const p = String(riga.period).trim().toLowerCase();
-  if (INTERO.has(p)) return 'intero';
-  if (PARZIALE.test(p)) return 'parziale';
-  return 'ignoto';
-}
+const intera = (r) => r.scope === 'match' && r.period === PERIODO_INTERO;
 
 const chiaveEvento = (r) => String(r.event_id ?? `${r.home_team}|${r.away_team}|${r.commence_time}`);
 const chiaveGruppo = (r) => `${chiaveEvento(r)}|${r.market}|${vuoto(r.line) ? '' : Number(r.line)}`;
 
-// Per ogni evento, mercato e linea, la riga della partita intera: quella con il periodo intero, oppure (per
-// eliminazione) l'unica senza periodo riconoscibile quando tutte le altre sono tempi. Altrimenti nessuna.
-// { righe, scartate (righe non distinguibili), periodiVisti: { 'scope|period': n } }.
+// Per ogni evento, mercato e linea, l'unica riga con scope "match" e period "full_time" (due o più: nessuna).
+// { righe, doppie (gruppi con più righe full_time), senzaIntero: [{ id, partita }] (eventi con righe ma nessuna
+// full_time in nessun mercato), periodiVisti: { 'scope|period': n } (diagnostica) }.
 export function scegliPartitaIntera(righe) {
   const gruppi = new Map();
   const periodiVisti = {};
+  const eventi = new Map();
   for (const r of Array.isArray(righe) ? righe : []) {
     if (!oggetto(r)) continue;
     const k = `${vuoto(r.scope) ? '(assente)' : r.scope}|${vuoto(r.period) ? '(assente)' : r.period}`;
     periodiVisti[k] = (periodiVisti[k] ?? 0) + 1;
+    const ev = chiaveEvento(r);
+    if (!eventi.has(ev)) eventi.set(ev, { id: ev, partita: r.event ?? `${r.home_team} - ${r.away_team}`, intera: false });
+    if (!intera(r)) continue;
+    eventi.get(ev).intera = true;
     const g = chiaveGruppo(r);
     if (!gruppi.has(g)) gruppi.set(g, []);
     gruppi.get(g).push(r);
   }
   const scelte = [];
-  let scartate = 0;
+  let doppie = 0;
   for (const lista of gruppi.values()) {
-    const c = lista.map(classe);
-    const di = (x) => lista.filter((_, i) => c[i] === x);
-    const interi = di('intero');
-    const ignoti = di('ignoto');
-    if (interi.length === 1) scelte.push(interi[0]);
-    else if (interi.length > 1) scartate += interi.length;
-    else if (ignoti.length === 1 && di('parziale').length > 0) scelte.push(ignoti[0]);
-    else scartate += ignoti.length;
+    if (lista.length === 1) scelte.push(lista[0]);
+    else doppie++;
   }
-  return { righe: scelte, scartate, periodiVisti };
+  const senzaIntero = [...eventi.values()].filter((x) => !x.intera).map(({ id, partita }) => ({ id, partita }));
+  return { righe: scelte, doppie, senzaIntero, periodiVisti };
 }
 
 // ---- Quote dei miei bookmaker e probabilità di consenso ----
@@ -169,13 +160,14 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
   let richieste = 0;
   const risultato = () => {
     const scelta = scegliPartitaIntera(tutte);
-    if (scelta.scartate) {
-      const visti = Object.entries(scelta.periodiVisti).map(([k, n]) => `${k} ${n}`).join(', ');
-      errore(`${scelta.scartate} righe scartate perché non si distingue la partita intera dai tempi (scope|period visti: ${visti})`);
+    const senza = scelta.senzaIntero;
+    if (senza.length) {
+      errore(`${senza.length} ${senza.length === 1 ? 'partita' : 'partite'} senza righe a tempo intero (full_time), senza quote: ${senza.map((x) => x.partita).join(', ')}`);
     }
+    if (scelta.doppie) errore(`${scelta.doppie} mercati con più righe full_time per la stessa partita, ignorati`);
     const file = {
       data, generataAlle: isoRoma(adesso), fonte: 'odss-api.com', richieste, rimaste: s.rimaste,
-      diagnostica: { righe: tutte.length, righeUsate: scelta.righe.length, scartate: scelta.scartate, periodiVisti: scelta.periodiVisti },
+      diagnostica: { righe: tutte.length, righeUsate: scelta.righe.length, senzaIntero: senza.length, doppie: scelta.doppie, periodiVisti: scelta.periodiVisti },
       erroriGiro, eventi: eventiOdss(scelta.righe),
     };
     return { file, stato: { aggiornatoAlle: adesso.toISOString(), rimaste: s.rimaste, limite: s.limite, reset: s.reset, giorno: data, usateOggi: s.usateOggi }, richieste };
@@ -201,7 +193,7 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
   for (let i = 0; i < mercati.length; i++) {
     const market = mercati[i];
     const dopo = mercati.length - 1 - i;
-    let after = null;
+    let offset = 0;
     let pagina = 0;
     let fermo = false;
     for (;;) {
@@ -223,7 +215,7 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
         s.usateOggi++;
         richieste++;
         try {
-          r = await fonte.quote({ chiave, market, finestra, after, fetch });
+          r = await fonte.quote({ chiave, market, finestra, offset, fetch });
           aggiorna(r.limiti);
           err = null;
           break;
@@ -247,8 +239,8 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
         break;
       }
       tutte.push(...r.righe);
-      if (!r.nextAfter || !r.righe.length || r.nextAfter === after) break;
-      after = r.nextAfter;
+      if (r.prossimoOffset === null || r.prossimoOffset <= offset) break;
+      offset = r.prossimoOffset;
       pagina++;
     }
     if (fermo) break;
