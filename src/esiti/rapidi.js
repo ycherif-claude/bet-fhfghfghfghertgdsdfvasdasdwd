@@ -64,10 +64,20 @@ async function risultatoCalcio(gamba, fonti) {
   if (!ev) return null;
   const d = json((await scarica(`${ESPN}/${campionato}/summary?event=${ev.id}`, fonti.opz)).testo);
   const c = d.header?.competitions?.[0];
-  // Solo i 90 minuti: supplementari e rigori li decide il mattino (STATUS_FINAL_AET / _PEN).
-  if (c?.status?.type?.name !== 'STATUS_FULL_TIME') return null;
-  const lato = (h) => c.competitors?.find((x) => x.homeAway === h);
+  const stato = c?.status?.type?.name;
+  const lato = (h) => c?.competitors?.find((x) => x.homeAway === h);
   const pt = (h) => intero(lato(h)?.linescores?.[0]?.displayValue);
+  // Finita ai supplementari o ai rigori (coppe) [correzione B3]: i mercati sono dei 90 minuti, quindi
+  // conta la somma dei primi due tempi di ESPN. Cartellini e angoli dei supplementari non si separano:
+  // nessun conteggio. Senza i due tempi, nessun risultato.
+  if (stato === 'STATUS_FINAL_AET' || stato === 'STATUS_FINAL_PEN') {
+    const nei90 = (h) => somma(pt(h), intero(lato(h)?.linescores?.[1]?.displayValue));
+    const gc = nei90('home');
+    const gt = nei90('away');
+    if (gc === null || gt === null) return null;
+    return { gc, gt, gcPT: pt('home'), gtPT: pt('away'), conteggi: { cartC: null, cartT: null, angoliC: null, angoliT: null } };
+  }
+  if (stato !== 'STATUS_FULL_TIME') return null;
   // Angoli e cartellini non si chiudono da ESPN: conta i cartellini in modo diverso da
   // football-data/bet365 (doppio giallo = 2 gialli + 1 rosso) e un esito scritto qui è definitivo.
   // Li decide il giro del mattino; qui servono solo per l'esito provvisorio (`conteggi`).

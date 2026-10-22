@@ -140,6 +140,9 @@ export const CONFIG = congela({
   // Modalità prova [utente, 22/10/2026]: 3-4 settimane di giocate da non giocare, solo per creare il
   // database della taratura. Ogni value positivo diventa una giocata di prova, senza lo scarto dal mercato.
   prova: { da: '2026-10-22', fino: '2026-11-18', sogliaValue: 0.000001, massimiSingole: 60 },
+  // Coppe europee (modello Elo europeo) [correzione B3]: le giocate del modello coppe restano solo in modalità
+  // prova. Dopo la prova non diventano giocate vere finché l'utente non mette giocateVere: true.
+  coppe: { giocateVere: false },
   // Multiple bonus bet365 (in prova dal 22/10/2026): partite a quota 1,25–1,50 con il margine più basso,
   // una selezione per partita. Incremento sulla vincita dalla tabella ufficiale di bet365 (screenshot dell'utente):
   // ogni selezione deve avere quota ≥ 1,25 e nessun mercato che possa finire rimborsato.
@@ -153,7 +156,9 @@ export const CONFIG = congela({
     // Tutti i "sì" della partita (al massimo 10), senza tennis.
     maxPerPartita: 10,
     minCampioniFascia: 60,
-    // Un "sì" solo se nel passato quella fascia è uscita almeno l'80% delle volte [utente, 22/10/2026].
+    // Un "sì" solo se nel passato quella fascia è uscita almeno l'80% delle volte [utente, 22/10/2026]:
+    // la soglia vale per il limite inferiore di Wilson (95%) della fascia, dopo la regressione isotonica,
+    // nella tabella del gruppo della competizione (principali, seconde serie, extra, coppe) [correzioni B1, B2].
     probMinima: 0.8,
     // Segnale "giocabile ✅" [22/10/2026, correzione C2]: solo se anche la probabilità senza margine di
     // Pinnacle (o del consenso) è ≥ probMinima e la quota è ≥ margineQuota × quota minima. Il modello da solo

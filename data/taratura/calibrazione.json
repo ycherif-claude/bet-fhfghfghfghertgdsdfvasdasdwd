@@ -1,816 +1,3125 @@
 {
  "calcolataIl": "2026-10-22",
- "calcio": {
-  "Doppia chance|1X": [
-   {
-    "da": 0.5,
-    "n": 877,
-    "prevista": 0.5266,
-    "vera": 0.5268
-   },
-   {
-    "da": 0.55,
-    "n": 1282,
-    "prevista": 0.5764,
-    "vera": 0.5686
-   },
-   {
-    "da": 0.6,
-    "n": 1852,
-    "prevista": 0.6269,
-    "vera": 0.6344
-   },
-   {
-    "da": 0.65,
-    "n": 2565,
-    "prevista": 0.676,
-    "vera": 0.6924
-   },
-   {
-    "da": 0.7,
-    "n": 3083,
-    "prevista": 0.7249,
-    "vera": 0.7444
-   },
-   {
-    "da": 0.75,
-    "n": 2708,
-    "prevista": 0.7745,
-    "vera": 0.7662
-   },
-   {
-    "da": 0.8,
-    "n": 1897,
-    "prevista": 0.8224,
-    "vera": 0.8271
-   },
-   {
-    "da": 0.85,
-    "n": 1096,
-    "prevista": 0.8724,
-    "vera": 0.8905
-   },
-   {
-    "da": 0.9,
-    "n": 560,
-    "prevista": 0.9216,
-    "vera": 0.9375
-   },
-   {
-    "da": 0.95,
-    "n": 104,
-    "prevista": 0.9621,
-    "vera": 0.9519
-   }
+ "metodo": "fasce di 5 punti; isotonica (pool adjacent violators) e limite inferiore di Wilson 95% per fascia con almeno minCampioniFascia partite",
+ "nota": "Il modello live usa anche gli xG (CONFIG.calcio.pesoXg), questa calibrazione no. TODO: ricalibrare a fine prova (18/11/2026).",
+ "gruppi": {
+  "principali": [
+   "E0",
+   "SP1",
+   "I1",
+   "D1",
+   "F1",
+   "N1",
+   "P1"
   ],
-  "Doppia chance|12": [
-   {
-    "da": 0.5,
-    "n": 1,
-    "prevista": 0.533,
-    "vera": 1
-   },
-   {
-    "da": 0.55,
-    "n": 3,
-    "prevista": 0.5905,
-    "vera": 0.3333
-   },
-   {
-    "da": 0.6,
-    "n": 195,
-    "prevista": 0.6381,
-    "vera": 0.6513
-   },
-   {
-    "da": 0.65,
-    "n": 3331,
-    "prevista": 0.684,
-    "vera": 0.7019
-   },
-   {
-    "da": 0.7,
-    "n": 8643,
-    "prevista": 0.725,
-    "vera": 0.7202
-   },
-   {
-    "da": 0.75,
-    "n": 4031,
-    "prevista": 0.7689,
-    "vera": 0.7633
-   },
-   {
-    "da": 0.8,
-    "n": 999,
-    "prevista": 0.8203,
-    "vera": 0.8428
-   },
-   {
-    "da": 0.85,
-    "n": 307,
-    "prevista": 0.8702,
-    "vera": 0.8632
-   },
-   {
-    "da": 0.9,
-    "n": 61,
-    "prevista": 0.9181,
-    "vera": 0.9016
-   }
+  "secondeSerie": [
+   "E1",
+   "I2",
+   "SP2",
+   "D2",
+   "F2"
   ],
-  "Doppia chance|X2": [
-   {
-    "da": 0.5,
-    "n": 2210,
-    "prevista": 0.5262,
-    "vera": 0.5348
-   },
-   {
-    "da": 0.55,
-    "n": 2597,
-    "prevista": 0.5751,
-    "vera": 0.5718
-   },
-   {
-    "da": 0.6,
-    "n": 2428,
-    "prevista": 0.6239,
-    "vera": 0.5972
-   },
-   {
-    "da": 0.65,
-    "n": 1940,
-    "prevista": 0.6737,
-    "vera": 0.6773
-   },
-   {
-    "da": 0.7,
-    "n": 1386,
-    "prevista": 0.7236,
-    "vera": 0.7273
-   },
-   {
-    "da": 0.75,
-    "n": 918,
-    "prevista": 0.773,
-    "vera": 0.768
-   },
-   {
-    "da": 0.8,
-    "n": 562,
-    "prevista": 0.8219,
-    "vera": 0.8078
-   },
-   {
-    "da": 0.85,
-    "n": 298,
-    "prevista": 0.8724,
-    "vera": 0.8758
-   },
-   {
-    "da": 0.9,
-    "n": 96,
-    "prevista": 0.9193,
-    "vera": 0.875
-   },
-   {
-    "da": 0.95,
-    "n": 3,
-    "prevista": 0.9618,
-    "vera": 1
-   }
-  ],
-  "Under/Over 1.5|Over 1.5": [
-   {
-    "da": 0.5,
-    "n": 224,
-    "prevista": 0.5276,
-    "vera": 0.6384
-   },
-   {
-    "da": 0.55,
-    "n": 598,
-    "prevista": 0.5785,
-    "vera": 0.6538
-   },
-   {
-    "da": 0.6,
-    "n": 1569,
-    "prevista": 0.6284,
-    "vera": 0.6934
-   },
-   {
-    "da": 0.65,
-    "n": 2782,
-    "prevista": 0.6766,
-    "vera": 0.6909
-   },
-   {
-    "da": 0.7,
-    "n": 3630,
-    "prevista": 0.7255,
-    "vera": 0.7212
-   },
-   {
-    "da": 0.75,
-    "n": 3742,
-    "prevista": 0.7745,
-    "vera": 0.7672
-   },
-   {
-    "da": 0.8,
-    "n": 3123,
-    "prevista": 0.8236,
-    "vera": 0.8012
-   },
-   {
-    "da": 0.85,
-    "n": 1501,
-    "prevista": 0.8704,
-    "vera": 0.8441
-   },
-   {
-    "da": 0.9,
-    "n": 313,
-    "prevista": 0.9174,
-    "vera": 0.8754
-   },
-   {
-    "da": 0.95,
-    "n": 18,
-    "prevista": 0.9615,
-    "vera": 0.8889
-   }
-  ],
-  "Under/Over 2.5|Under 2.5": [
-   {
-    "da": 0.5,
-    "n": 2835,
-    "prevista": 0.5251,
-    "vera": 0.5196
-   },
-   {
-    "da": 0.55,
-    "n": 2701,
-    "prevista": 0.5742,
-    "vera": 0.5509
-   },
-   {
-    "da": 0.6,
-    "n": 2080,
-    "prevista": 0.6231,
-    "vera": 0.5558
-   },
-   {
-    "da": 0.65,
-    "n": 1091,
-    "prevista": 0.671,
-    "vera": 0.5784
-   },
-   {
-    "da": 0.7,
-    "n": 435,
-    "prevista": 0.7201,
-    "vera": 0.6069
-   },
-   {
-    "da": 0.75,
-    "n": 150,
-    "prevista": 0.7675,
-    "vera": 0.6533
-   },
-   {
-    "da": 0.8,
-    "n": 18,
-    "prevista": 0.8159,
-    "vera": 0.5556
-   },
-   {
-    "da": 0.85,
-    "n": 1,
-    "prevista": 0.8514,
-    "vera": 1
-   },
-   {
-    "da": 0.9,
-    "n": 1,
-    "prevista": 0.9089,
-    "vera": 1
-   }
-  ],
-  "Under/Over 3.5|Under 3.5": [
-   {
-    "da": 0.5,
-    "n": 649,
-    "prevista": 0.5279,
-    "vera": 0.5716
-   },
-   {
-    "da": 0.55,
-    "n": 1232,
-    "prevista": 0.5777,
-    "vera": 0.6307
-   },
-   {
-    "da": 0.6,
-    "n": 1989,
-    "prevista": 0.6262,
-    "vera": 0.6345
-   },
-   {
-    "da": 0.65,
-    "n": 2571,
-    "prevista": 0.6761,
-    "vera": 0.6869
-   },
-   {
-    "da": 0.7,
-    "n": 3223,
-    "prevista": 0.7257,
-    "vera": 0.7294
-   },
-   {
-    "da": 0.75,
-    "n": 3393,
-    "prevista": 0.7748,
-    "vera": 0.7586
-   },
-   {
-    "da": 0.8,
-    "n": 2707,
-    "prevista": 0.8227,
-    "vera": 0.7754
-   },
-   {
-    "da": 0.85,
-    "n": 1035,
-    "prevista": 0.8696,
-    "vera": 0.8106
-   },
-   {
-    "da": 0.9,
-    "n": 189,
-    "prevista": 0.9134,
-    "vera": 0.8519
-   },
-   {
-    "da": 0.95,
-    "n": 3,
-    "prevista": 0.9616,
-    "vera": 1
-   }
-  ],
-  "Under/Over casa 0.5|Over 0.5": [
-   {
-    "da": 0.5,
-    "n": 292,
-    "prevista": 0.5288,
-    "vera": 0.5685
-   },
-   {
-    "da": 0.55,
-    "n": 683,
-    "prevista": 0.5789,
-    "vera": 0.6428
-   },
-   {
-    "da": 0.6,
-    "n": 1392,
-    "prevista": 0.6272,
-    "vera": 0.6509
-   },
-   {
-    "da": 0.65,
-    "n": 2492,
-    "prevista": 0.6772,
-    "vera": 0.6998
-   },
-   {
-    "da": 0.7,
-    "n": 3411,
-    "prevista": 0.7261,
-    "vera": 0.7444
-   },
-   {
-    "da": 0.75,
-    "n": 3606,
-    "prevista": 0.7744,
-    "vera": 0.7804
-   },
-   {
-    "da": 0.8,
-    "n": 2809,
-    "prevista": 0.8236,
-    "vera": 0.8334
-   },
-   {
-    "da": 0.85,
-    "n": 1787,
-    "prevista": 0.8723,
-    "vera": 0.8847
-   },
-   {
-    "da": 0.9,
-    "n": 829,
-    "prevista": 0.9202,
-    "vera": 0.9264
-   },
-   {
-    "da": 0.95,
-    "n": 171,
-    "prevista": 0.9634,
-    "vera": 0.9649
-   }
-  ],
-  "Under/Over trasferta 0.5|Over 0.5": [
-   {
-    "da": 0.5,
-    "n": 1122,
-    "prevista": 0.5283,
-    "vera": 0.5695
-   },
-   {
-    "da": 0.55,
-    "n": 2092,
-    "prevista": 0.5772,
-    "vera": 0.6018
-   },
-   {
-    "da": 0.6,
-    "n": 2981,
-    "prevista": 0.6259,
-    "vera": 0.6451
-   },
-   {
-    "da": 0.65,
-    "n": 3325,
-    "prevista": 0.6748,
-    "vera": 0.689
-   },
-   {
-    "da": 0.7,
-    "n": 2924,
-    "prevista": 0.7241,
-    "vera": 0.7182
-   },
-   {
-    "da": 0.75,
-    "n": 2073,
-    "prevista": 0.7733,
-    "vera": 0.7651
-   },
-   {
-    "da": 0.8,
-    "n": 1393,
-    "prevista": 0.8224,
-    "vera": 0.8184
-   },
-   {
-    "da": 0.85,
-    "n": 682,
-    "prevista": 0.8716,
-    "vera": 0.8519
-   },
-   {
-    "da": 0.9,
-    "n": 212,
-    "prevista": 0.9194,
-    "vera": 0.9198
-   },
-   {
-    "da": 0.95,
-    "n": 20,
-    "prevista": 0.9596,
-    "vera": 0.9
-   }
-  ],
-  "Gol/No gol|Gol": [
-   {
-    "da": 0.5,
-    "n": 3891,
-    "prevista": 0.5244,
-    "vera": 0.5276
-   },
-   {
-    "da": 0.55,
-    "n": 3192,
-    "prevista": 0.5726,
-    "vera": 0.5652
-   },
-   {
-    "da": 0.6,
-    "n": 1938,
-    "prevista": 0.6222,
-    "vera": 0.5949
-   },
-   {
-    "da": 0.65,
-    "n": 777,
-    "prevista": 0.6695,
-    "vera": 0.6113
-   },
-   {
-    "da": 0.7,
-    "n": 187,
-    "prevista": 0.7169,
-    "vera": 0.6471
-   },
-   {
-    "da": 0.75,
-    "n": 14,
-    "prevista": 0.7649,
-    "vera": 0.4286
-   },
-   {
-    "da": 0.8,
-    "n": 3,
-    "prevista": 0.8272,
-    "vera": 0
-   },
-   {
-    "da": 0.85,
-    "n": 1,
-    "prevista": 0.889,
-    "vera": 1
-   }
-  ],
-  "1X2|2": [
-   {
-    "da": 0.5,
-    "n": 615,
-    "prevista": 0.5244,
-    "vera": 0.5301
-   },
-   {
-    "da": 0.55,
-    "n": 388,
-    "prevista": 0.5718,
-    "vera": 0.5773
-   },
-   {
-    "da": 0.6,
-    "n": 234,
-    "prevista": 0.6233,
-    "vera": 0.6026
-   },
-   {
-    "da": 0.65,
-    "n": 162,
-    "prevista": 0.6742,
-    "vera": 0.7099
-   },
-   {
-    "da": 0.7,
-    "n": 88,
-    "prevista": 0.7214,
-    "vera": 0.7273
-   },
-   {
-    "da": 0.75,
-    "n": 44,
-    "prevista": 0.7713,
-    "vera": 0.8182
-   },
-   {
-    "da": 0.8,
-    "n": 14,
-    "prevista": 0.8182,
-    "vera": 0.6429
-   },
-   {
-    "da": 0.85,
-    "n": 2,
-    "prevista": 0.8849,
-    "vera": 1
-   }
-  ],
-  "Under/Over 2.5|Over 2.5": [
-   {
-    "da": 0.5,
-    "n": 2676,
-    "prevista": 0.5239,
-    "vera": 0.5366
-   },
-   {
-    "da": 0.55,
-    "n": 2247,
-    "prevista": 0.5742,
-    "vera": 0.5674
-   },
-   {
-    "da": 0.6,
-    "n": 1722,
-    "prevista": 0.6232,
-    "vera": 0.5825
-   },
-   {
-    "da": 0.65,
-    "n": 915,
-    "prevista": 0.6723,
-    "vera": 0.6579
-   },
-   {
-    "da": 0.7,
-    "n": 459,
-    "prevista": 0.7212,
-    "vera": 0.658
-   },
-   {
-    "da": 0.75,
-    "n": 157,
-    "prevista": 0.7704,
-    "vera": 0.6943
-   },
-   {
-    "da": 0.8,
-    "n": 67,
-    "prevista": 0.8175,
-    "vera": 0.7761
-   },
-   {
-    "da": 0.85,
-    "n": 15,
-    "prevista": 0.8733,
-    "vera": 0.6667
-   },
-   {
-    "da": 0.95,
-    "n": 1,
-    "prevista": 0.9623,
-    "vera": 1
-   }
-  ],
-  "Gol/No gol|No gol": [
-   {
-    "da": 0.5,
-    "n": 3767,
-    "prevista": 0.524,
-    "vera": 0.49
-   },
-   {
-    "da": 0.55,
-    "n": 2482,
-    "prevista": 0.5722,
-    "vera": 0.5085
-   },
-   {
-    "da": 0.6,
-    "n": 970,
-    "prevista": 0.6199,
-    "vera": 0.5557
-   },
-   {
-    "da": 0.65,
-    "n": 288,
-    "prevista": 0.6688,
-    "vera": 0.566
-   },
-   {
-    "da": 0.7,
-    "n": 54,
-    "prevista": 0.7206,
-    "vera": 0.5556
-   },
-   {
-    "da": 0.75,
-    "n": 6,
-    "prevista": 0.7629,
-    "vera": 0.6667
-   },
-   {
-    "da": 0.8,
-    "n": 1,
-    "prevista": 0.8237,
-    "vera": 1
-   }
-  ],
-  "1X2|1": [
-   {
-    "da": 0.5,
-    "n": 1769,
-    "prevista": 0.5229,
-    "vera": 0.5382
-   },
-   {
-    "da": 0.55,
-    "n": 1199,
-    "prevista": 0.5734,
-    "vera": 0.5621
-   },
-   {
-    "da": 0.6,
-    "n": 799,
-    "prevista": 0.6227,
-    "vera": 0.6508
-   },
-   {
-    "da": 0.65,
-    "n": 548,
-    "prevista": 0.6719,
-    "vera": 0.6989
-   },
-   {
-    "da": 0.7,
-    "n": 378,
-    "prevista": 0.723,
-    "vera": 0.7513
-   },
-   {
-    "da": 0.75,
-    "n": 226,
-    "prevista": 0.7725,
-    "vera": 0.8097
-   },
-   {
-    "da": 0.8,
-    "n": 140,
-    "prevista": 0.8225,
-    "vera": 0.8571
-   },
-   {
-    "da": 0.85,
-    "n": 62,
-    "prevista": 0.8711,
-    "vera": 0.871
-   },
-   {
-    "da": 0.9,
-    "n": 12,
-    "prevista": 0.9132,
-    "vera": 0.75
-   }
-  ],
-  "Under/Over 3.5|Over 3.5": [
-   {
-    "da": 0.5,
-    "n": 338,
-    "prevista": 0.5213,
-    "vera": 0.4645
-   },
-   {
-    "da": 0.55,
-    "n": 132,
-    "prevista": 0.5712,
-    "vera": 0.4773
-   },
-   {
-    "da": 0.6,
-    "n": 72,
-    "prevista": 0.6245,
-    "vera": 0.5139
-   },
-   {
-    "da": 0.65,
-    "n": 24,
-    "prevista": 0.67,
-    "vera": 0.2917
-   },
-   {
-    "da": 0.7,
-    "n": 8,
-    "prevista": 0.7197,
-    "vera": 0.625
-   },
-   {
-    "da": 0.75,
-    "n": 5,
-    "prevista": 0.7652,
-    "vera": 0.8
-   },
-   {
-    "da": 0.85,
-    "n": 1,
-    "prevista": 0.8998,
-    "vera": 0
-   }
-  ],
-  "Under/Over 1.5|Under 1.5": [
-   {
-    "da": 0.5,
-    "n": 58,
-    "prevista": 0.5164,
-    "vera": 0.3966
-   },
-   {
-    "da": 0.55,
-    "n": 10,
-    "prevista": 0.5649,
-    "vera": 0.1
-   },
-   {
-    "da": 0.6,
-    "n": 2,
-    "prevista": 0.6063,
-    "vera": 1
-   },
-   {
-    "da": 0.7,
-    "n": 1,
-    "prevista": 0.707,
-    "vera": 1
-   }
+  "extra": [
+   "E2",
+   "E3",
+   "EC",
+   "SC0",
+   "SC1",
+   "SC2",
+   "SC3",
+   "B1",
+   "T1",
+   "G1",
+   "AUT",
+   "DNK",
+   "SWZ",
+   "NOR",
+   "SWE",
+   "POL",
+   "ROU",
+   "IRL",
+   "FIN",
+   "ARG",
+   "BRA",
+   "MEX",
+   "USA",
+   "JPN",
+   "CHN"
   ]
+ },
+ "calcio": {
+  "principali": {
+   "Doppia chance|1X": [
+    {
+     "da": 0.5,
+     "n": 577,
+     "prevista": 0.5255,
+     "vera": 0.5078,
+     "isotonica": 0.5078,
+     "limite": 0.4671
+    },
+    {
+     "da": 0.55,
+     "n": 732,
+     "prevista": 0.5758,
+     "vera": 0.5464,
+     "isotonica": 0.5464,
+     "limite": 0.5102
+    },
+    {
+     "da": 0.6,
+     "n": 883,
+     "prevista": 0.6268,
+     "vera": 0.6263,
+     "isotonica": 0.6263,
+     "limite": 0.5939
+    },
+    {
+     "da": 0.65,
+     "n": 1128,
+     "prevista": 0.6761,
+     "vera": 0.68,
+     "isotonica": 0.68,
+     "limite": 0.6522
+    },
+    {
+     "da": 0.7,
+     "n": 1256,
+     "prevista": 0.7247,
+     "vera": 0.7492,
+     "isotonica": 0.7492,
+     "limite": 0.7245
+    },
+    {
+     "da": 0.75,
+     "n": 1186,
+     "prevista": 0.7749,
+     "vera": 0.7909,
+     "isotonica": 0.7909,
+     "limite": 0.7668
+    },
+    {
+     "da": 0.8,
+     "n": 1035,
+     "prevista": 0.8234,
+     "vera": 0.8444,
+     "isotonica": 0.8444,
+     "limite": 0.8211
+    },
+    {
+     "da": 0.85,
+     "n": 782,
+     "prevista": 0.8736,
+     "vera": 0.899,
+     "isotonica": 0.899,
+     "limite": 0.8759
+    },
+    {
+     "da": 0.9,
+     "n": 488,
+     "prevista": 0.9225,
+     "vera": 0.9488,
+     "isotonica": 0.9488,
+     "limite": 0.9255
+    },
+    {
+     "da": 0.95,
+     "n": 103,
+     "prevista": 0.9621,
+     "vera": 0.9612,
+     "isotonica": 0.9612,
+     "limite": 0.9044
+    }
+   ],
+   "Doppia chance|12": [
+    {
+     "da": 0.6,
+     "n": 35,
+     "prevista": 0.6405,
+     "vera": 0.6571,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.65,
+     "n": 1192,
+     "prevista": 0.6851,
+     "vera": 0.6997,
+     "isotonica": 0.6997,
+     "limite": 0.673
+    },
+    {
+     "da": 0.7,
+     "n": 4323,
+     "prevista": 0.7271,
+     "vera": 0.7252,
+     "isotonica": 0.7252,
+     "limite": 0.7117
+    },
+    {
+     "da": 0.75,
+     "n": 2708,
+     "prevista": 0.77,
+     "vera": 0.7633,
+     "isotonica": 0.7633,
+     "limite": 0.7469
+    },
+    {
+     "da": 0.8,
+     "n": 869,
+     "prevista": 0.821,
+     "vera": 0.8493,
+     "isotonica": 0.8493,
+     "limite": 0.8239
+    },
+    {
+     "da": 0.85,
+     "n": 294,
+     "prevista": 0.8706,
+     "vera": 0.8673,
+     "isotonica": 0.8673,
+     "limite": 0.8238
+    },
+    {
+     "da": 0.9,
+     "n": 61,
+     "prevista": 0.9181,
+     "vera": 0.9016,
+     "isotonica": 0.9016,
+     "limite": 0.8016
+    }
+   ],
+   "Doppia chance|X2": [
+    {
+     "da": 0.5,
+     "n": 940,
+     "prevista": 0.5261,
+     "vera": 0.5191,
+     "isotonica": 0.5191,
+     "limite": 0.4872
+    },
+    {
+     "da": 0.55,
+     "n": 1095,
+     "prevista": 0.5751,
+     "vera": 0.5872,
+     "isotonica": 0.5872,
+     "limite": 0.5578
+    },
+    {
+     "da": 0.6,
+     "n": 1060,
+     "prevista": 0.6242,
+     "vera": 0.6,
+     "isotonica": 0.6,
+     "limite": 0.5702
+    },
+    {
+     "da": 0.65,
+     "n": 903,
+     "prevista": 0.6746,
+     "vera": 0.6955,
+     "isotonica": 0.6955,
+     "limite": 0.6647
+    },
+    {
+     "da": 0.7,
+     "n": 812,
+     "prevista": 0.7244,
+     "vera": 0.7377,
+     "isotonica": 0.7377,
+     "limite": 0.7064
+    },
+    {
+     "da": 0.75,
+     "n": 648,
+     "prevista": 0.7742,
+     "vera": 0.7994,
+     "isotonica": 0.7994,
+     "limite": 0.7668
+    },
+    {
+     "da": 0.8,
+     "n": 477,
+     "prevista": 0.8226,
+     "vera": 0.8218,
+     "isotonica": 0.8218,
+     "limite": 0.7849
+    },
+    {
+     "da": 0.85,
+     "n": 268,
+     "prevista": 0.8727,
+     "vera": 0.8881,
+     "isotonica": 0.8858,
+     "limite": 0.8421
+    },
+    {
+     "da": 0.9,
+     "n": 91,
+     "prevista": 0.9197,
+     "vera": 0.8791,
+     "isotonica": 0.8858,
+     "limite": 0.8043
+    },
+    {
+     "da": 0.95,
+     "n": 3,
+     "prevista": 0.9618,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Over 1.5": [
+    {
+     "da": 0.5,
+     "n": 44,
+     "prevista": 0.532,
+     "vera": 0.6364,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.55,
+     "n": 188,
+     "prevista": 0.5791,
+     "vera": 0.6436,
+     "isotonica": 0.6436,
+     "limite": 0.5729
+    },
+    {
+     "da": 0.6,
+     "n": 590,
+     "prevista": 0.6288,
+     "vera": 0.6881,
+     "isotonica": 0.6881,
+     "limite": 0.6496
+    },
+    {
+     "da": 0.65,
+     "n": 1143,
+     "prevista": 0.6769,
+     "vera": 0.7052,
+     "isotonica": 0.7052,
+     "limite": 0.6781
+    },
+    {
+     "da": 0.7,
+     "n": 1737,
+     "prevista": 0.7261,
+     "vera": 0.7329,
+     "isotonica": 0.7329,
+     "limite": 0.7116
+    },
+    {
+     "da": 0.75,
+     "n": 2193,
+     "prevista": 0.7754,
+     "vera": 0.7884,
+     "isotonica": 0.7884,
+     "limite": 0.7708
+    },
+    {
+     "da": 0.8,
+     "n": 2136,
+     "prevista": 0.824,
+     "vera": 0.8052,
+     "isotonica": 0.8052,
+     "limite": 0.7879
+    },
+    {
+     "da": 0.85,
+     "n": 1156,
+     "prevista": 0.8708,
+     "vera": 0.8581,
+     "isotonica": 0.8581,
+     "limite": 0.8368
+    },
+    {
+     "da": 0.9,
+     "n": 274,
+     "prevista": 0.9179,
+     "vera": 0.8942,
+     "isotonica": 0.8942,
+     "limite": 0.8521
+    },
+    {
+     "da": 0.95,
+     "n": 14,
+     "prevista": 0.9596,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Under 2.5": [
+    {
+     "da": 0.5,
+     "n": 1407,
+     "prevista": 0.5242,
+     "vera": 0.5039,
+     "isotonica": 0.5039,
+     "limite": 0.4778
+    },
+    {
+     "da": 0.55,
+     "n": 1184,
+     "prevista": 0.5737,
+     "vera": 0.5456,
+     "isotonica": 0.5456,
+     "limite": 0.5171
+    },
+    {
+     "da": 0.6,
+     "n": 822,
+     "prevista": 0.6229,
+     "vera": 0.573,
+     "isotonica": 0.5721,
+     "limite": 0.5381
+    },
+    {
+     "da": 0.65,
+     "n": 384,
+     "prevista": 0.6708,
+     "vera": 0.5703,
+     "isotonica": 0.5721,
+     "limite": 0.5222
+    },
+    {
+     "da": 0.7,
+     "n": 127,
+     "prevista": 0.7189,
+     "vera": 0.6142,
+     "isotonica": 0.6142,
+     "limite": 0.5273
+    },
+    {
+     "da": 0.75,
+     "n": 18,
+     "prevista": 0.7686,
+     "vera": 0.5556,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 1,
+     "prevista": 0.8206,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Under 3.5": [
+    {
+     "da": 0.5,
+     "n": 507,
+     "prevista": 0.5276,
+     "vera": 0.5365,
+     "isotonica": 0.5365,
+     "limite": 0.493
+    },
+    {
+     "da": 0.55,
+     "n": 892,
+     "prevista": 0.5776,
+     "vera": 0.6233,
+     "isotonica": 0.6233,
+     "limite": 0.591
+    },
+    {
+     "da": 0.6,
+     "n": 1367,
+     "prevista": 0.6257,
+     "vera": 0.6233,
+     "isotonica": 0.6233,
+     "limite": 0.5973
+    },
+    {
+     "da": 0.65,
+     "n": 1605,
+     "prevista": 0.6758,
+     "vera": 0.6798,
+     "isotonica": 0.6798,
+     "limite": 0.6565
+    },
+    {
+     "da": 0.7,
+     "n": 1688,
+     "prevista": 0.7249,
+     "vera": 0.7097,
+     "isotonica": 0.7097,
+     "limite": 0.6876
+    },
+    {
+     "da": 0.75,
+     "n": 1515,
+     "prevista": 0.7743,
+     "vera": 0.7591,
+     "isotonica": 0.7591,
+     "limite": 0.7369
+    },
+    {
+     "da": 0.8,
+     "n": 1055,
+     "prevista": 0.8222,
+     "vera": 0.7735,
+     "isotonica": 0.7735,
+     "limite": 0.7472
+    },
+    {
+     "da": 0.85,
+     "n": 336,
+     "prevista": 0.8679,
+     "vera": 0.8185,
+     "isotonica": 0.8185,
+     "limite": 0.7737
+    },
+    {
+     "da": 0.9,
+     "n": 27,
+     "prevista": 0.9106,
+     "vera": 0.8148,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over casa 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 205,
+     "prevista": 0.5284,
+     "vera": 0.561,
+     "isotonica": 0.561,
+     "limite": 0.4925
+    },
+    {
+     "da": 0.55,
+     "n": 427,
+     "prevista": 0.5782,
+     "vera": 0.5972,
+     "isotonica": 0.5972,
+     "limite": 0.55
+    },
+    {
+     "da": 0.6,
+     "n": 723,
+     "prevista": 0.627,
+     "vera": 0.6252,
+     "isotonica": 0.6252,
+     "limite": 0.5893
+    },
+    {
+     "da": 0.65,
+     "n": 1183,
+     "prevista": 0.6771,
+     "vera": 0.6796,
+     "isotonica": 0.6796,
+     "limite": 0.6525
+    },
+    {
+     "da": 0.7,
+     "n": 1550,
+     "prevista": 0.7257,
+     "vera": 0.7342,
+     "isotonica": 0.7342,
+     "limite": 0.7116
+    },
+    {
+     "da": 0.75,
+     "n": 1730,
+     "prevista": 0.775,
+     "vera": 0.785,
+     "isotonica": 0.785,
+     "limite": 0.765
+    },
+    {
+     "da": 0.8,
+     "n": 1519,
+     "prevista": 0.8239,
+     "vera": 0.8512,
+     "isotonica": 0.8512,
+     "limite": 0.8324
+    },
+    {
+     "da": 0.85,
+     "n": 1187,
+     "prevista": 0.8732,
+     "vera": 0.8997,
+     "isotonica": 0.8997,
+     "limite": 0.8814
+    },
+    {
+     "da": 0.9,
+     "n": 718,
+     "prevista": 0.9212,
+     "vera": 0.9318,
+     "isotonica": 0.9318,
+     "limite": 0.9109
+    },
+    {
+     "da": 0.95,
+     "n": 167,
+     "prevista": 0.9635,
+     "vera": 0.9701,
+     "isotonica": 0.9701,
+     "limite": 0.9318
+    }
+   ],
+   "Under/Over trasferta 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 589,
+     "prevista": 0.5273,
+     "vera": 0.5518,
+     "isotonica": 0.5518,
+     "limite": 0.5114
+    },
+    {
+     "da": 0.55,
+     "n": 990,
+     "prevista": 0.5768,
+     "vera": 0.5758,
+     "isotonica": 0.5758,
+     "limite": 0.5447
+    },
+    {
+     "da": 0.6,
+     "n": 1331,
+     "prevista": 0.6252,
+     "vera": 0.6529,
+     "isotonica": 0.6529,
+     "limite": 0.6269
+    },
+    {
+     "da": 0.65,
+     "n": 1560,
+     "prevista": 0.6749,
+     "vera": 0.6808,
+     "isotonica": 0.6808,
+     "limite": 0.6572
+    },
+    {
+     "da": 0.7,
+     "n": 1525,
+     "prevista": 0.725,
+     "vera": 0.7351,
+     "isotonica": 0.7351,
+     "limite": 0.7124
+    },
+    {
+     "da": 0.75,
+     "n": 1239,
+     "prevista": 0.7741,
+     "vera": 0.7918,
+     "isotonica": 0.7918,
+     "limite": 0.7683
+    },
+    {
+     "da": 0.8,
+     "n": 1007,
+     "prevista": 0.823,
+     "vera": 0.8103,
+     "isotonica": 0.8103,
+     "limite": 0.785
+    },
+    {
+     "da": 0.85,
+     "n": 587,
+     "prevista": 0.8719,
+     "vera": 0.8739,
+     "isotonica": 0.8739,
+     "limite": 0.8446
+    },
+    {
+     "da": 0.9,
+     "n": 203,
+     "prevista": 0.9194,
+     "vera": 0.9261,
+     "isotonica": 0.9261,
+     "limite": 0.8817
+    },
+    {
+     "da": 0.95,
+     "n": 19,
+     "prevista": 0.9596,
+     "vera": 0.9474,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|Gol": [
+    {
+     "da": 0.5,
+     "n": 2084,
+     "prevista": 0.5248,
+     "vera": 0.536,
+     "isotonica": 0.536,
+     "limite": 0.5145
+    },
+    {
+     "da": 0.55,
+     "n": 2009,
+     "prevista": 0.5729,
+     "vera": 0.5645,
+     "isotonica": 0.5645,
+     "limite": 0.5427
+    },
+    {
+     "da": 0.6,
+     "n": 1306,
+     "prevista": 0.6222,
+     "vera": 0.5995,
+     "isotonica": 0.5995,
+     "limite": 0.5727
+    },
+    {
+     "da": 0.65,
+     "n": 537,
+     "prevista": 0.6697,
+     "vera": 0.6108,
+     "isotonica": 0.6108,
+     "limite": 0.5689
+    },
+    {
+     "da": 0.7,
+     "n": 120,
+     "prevista": 0.7172,
+     "vera": 0.6667,
+     "isotonica": 0.6667,
+     "limite": 0.5783
+    },
+    {
+     "da": 0.75,
+     "n": 3,
+     "prevista": 0.7649,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|2": [
+    {
+     "da": 0.5,
+     "n": 471,
+     "prevista": 0.5252,
+     "vera": 0.5584,
+     "isotonica": 0.5584,
+     "limite": 0.5132
+    },
+    {
+     "da": 0.55,
+     "n": 338,
+     "prevista": 0.5719,
+     "vera": 0.5828,
+     "isotonica": 0.5828,
+     "limite": 0.5296
+    },
+    {
+     "da": 0.6,
+     "n": 210,
+     "prevista": 0.6229,
+     "vera": 0.6143,
+     "isotonica": 0.6143,
+     "limite": 0.547
+    },
+    {
+     "da": 0.65,
+     "n": 152,
+     "prevista": 0.674,
+     "vera": 0.7303,
+     "isotonica": 0.7303,
+     "limite": 0.6547
+    },
+    {
+     "da": 0.7,
+     "n": 81,
+     "prevista": 0.721,
+     "vera": 0.7654,
+     "isotonica": 0.7654,
+     "limite": 0.6625
+    },
+    {
+     "da": 0.75,
+     "n": 44,
+     "prevista": 0.7713,
+     "vera": 0.8182,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 14,
+     "prevista": 0.8182,
+     "vera": 0.6429,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 2,
+     "prevista": 0.8849,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Over 2.5": [
+    {
+     "da": 0.5,
+     "n": 1563,
+     "prevista": 0.5248,
+     "vera": 0.5541,
+     "isotonica": 0.5541,
+     "limite": 0.5293
+    },
+    {
+     "da": 0.55,
+     "n": 1471,
+     "prevista": 0.5746,
+     "vera": 0.5717,
+     "isotonica": 0.5717,
+     "limite": 0.5463
+    },
+    {
+     "da": 0.6,
+     "n": 1226,
+     "prevista": 0.6236,
+     "vera": 0.593,
+     "isotonica": 0.593,
+     "limite": 0.5652
+    },
+    {
+     "da": 0.65,
+     "n": 689,
+     "prevista": 0.6726,
+     "vera": 0.672,
+     "isotonica": 0.672,
+     "limite": 0.6361
+    },
+    {
+     "da": 0.7,
+     "n": 377,
+     "prevista": 0.7212,
+     "vera": 0.687,
+     "isotonica": 0.687,
+     "limite": 0.6385
+    },
+    {
+     "da": 0.75,
+     "n": 138,
+     "prevista": 0.7706,
+     "vera": 0.6957,
+     "isotonica": 0.6957,
+     "limite": 0.6144
+    },
+    {
+     "da": 0.8,
+     "n": 63,
+     "prevista": 0.8176,
+     "vera": 0.8095,
+     "isotonica": 0.8095,
+     "limite": 0.6959
+    },
+    {
+     "da": 0.85,
+     "n": 12,
+     "prevista": 0.8743,
+     "vera": 0.75,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|No gol": [
+    {
+     "da": 0.5,
+     "n": 1824,
+     "prevista": 0.5237,
+     "vera": 0.4896,
+     "isotonica": 0.4896,
+     "limite": 0.4667
+    },
+    {
+     "da": 0.55,
+     "n": 1108,
+     "prevista": 0.5723,
+     "vera": 0.5208,
+     "isotonica": 0.5208,
+     "limite": 0.4913
+    },
+    {
+     "da": 0.6,
+     "n": 419,
+     "prevista": 0.6191,
+     "vera": 0.5465,
+     "isotonica": 0.5465,
+     "limite": 0.4987
+    },
+    {
+     "da": 0.65,
+     "n": 66,
+     "prevista": 0.6654,
+     "vera": 0.5606,
+     "isotonica": 0.5606,
+     "limite": 0.4408
+    },
+    {
+     "da": 0.7,
+     "n": 6,
+     "prevista": 0.7194,
+     "vera": 0.1667,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|1": [
+    {
+     "da": 0.5,
+     "n": 840,
+     "prevista": 0.5237,
+     "vera": 0.5631,
+     "isotonica": 0.5631,
+     "limite": 0.5293
+    },
+    {
+     "da": 0.55,
+     "n": 651,
+     "prevista": 0.5742,
+     "vera": 0.5684,
+     "isotonica": 0.5684,
+     "limite": 0.53
+    },
+    {
+     "da": 0.6,
+     "n": 540,
+     "prevista": 0.623,
+     "vera": 0.6444,
+     "isotonica": 0.6444,
+     "limite": 0.6032
+    },
+    {
+     "da": 0.65,
+     "n": 413,
+     "prevista": 0.6722,
+     "vera": 0.7191,
+     "isotonica": 0.7191,
+     "limite": 0.6739
+    },
+    {
+     "da": 0.7,
+     "n": 324,
+     "prevista": 0.7233,
+     "vera": 0.7531,
+     "isotonica": 0.7531,
+     "limite": 0.7033
+    },
+    {
+     "da": 0.75,
+     "n": 206,
+     "prevista": 0.7725,
+     "vera": 0.8447,
+     "isotonica": 0.8447,
+     "limite": 0.7889
+    },
+    {
+     "da": 0.8,
+     "n": 137,
+     "prevista": 0.8226,
+     "vera": 0.8613,
+     "isotonica": 0.8613,
+     "limite": 0.7935
+    },
+    {
+     "da": 0.85,
+     "n": 62,
+     "prevista": 0.8711,
+     "vera": 0.871,
+     "isotonica": 0.871,
+     "limite": 0.7655
+    },
+    {
+     "da": 0.9,
+     "n": 12,
+     "prevista": 0.9132,
+     "vera": 0.75,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Over 3.5": [
+    {
+     "da": 0.5,
+     "n": 275,
+     "prevista": 0.5216,
+     "vera": 0.4909,
+     "isotonica": 0.4846,
+     "limite": 0.4262
+    },
+    {
+     "da": 0.55,
+     "n": 115,
+     "prevista": 0.5713,
+     "vera": 0.4696,
+     "isotonica": 0.4846,
+     "limite": 0.3953
+    },
+    {
+     "da": 0.6,
+     "n": 67,
+     "prevista": 0.6245,
+     "vera": 0.5522,
+     "isotonica": 0.5522,
+     "limite": 0.4336
+    },
+    {
+     "da": 0.65,
+     "n": 22,
+     "prevista": 0.6683,
+     "vera": 0.2727,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.7,
+     "n": 7,
+     "prevista": 0.7198,
+     "vera": 0.7143,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.75,
+     "n": 4,
+     "prevista": 0.7669,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Under 1.5": [
+    {
+     "da": 0.5,
+     "n": 6,
+     "prevista": 0.5198,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.55,
+     "n": 1,
+     "prevista": 0.5641,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ]
+  },
+  "secondeSerie": {
+   "Doppia chance|1X": [
+    {
+     "da": 0.5,
+     "n": 300,
+     "prevista": 0.5286,
+     "vera": 0.5633,
+     "isotonica": 0.5633,
+     "limite": 0.5068
+    },
+    {
+     "da": 0.55,
+     "n": 550,
+     "prevista": 0.5772,
+     "vera": 0.5982,
+     "isotonica": 0.5982,
+     "limite": 0.5567
+    },
+    {
+     "da": 0.6,
+     "n": 969,
+     "prevista": 0.627,
+     "vera": 0.6419,
+     "isotonica": 0.6419,
+     "limite": 0.6112
+    },
+    {
+     "da": 0.65,
+     "n": 1437,
+     "prevista": 0.6759,
+     "vera": 0.7022,
+     "isotonica": 0.7022,
+     "limite": 0.678
+    },
+    {
+     "da": 0.7,
+     "n": 1827,
+     "prevista": 0.7251,
+     "vera": 0.7411,
+     "isotonica": 0.7411,
+     "limite": 0.7205
+    },
+    {
+     "da": 0.75,
+     "n": 1522,
+     "prevista": 0.7742,
+     "vera": 0.747,
+     "isotonica": 0.747,
+     "limite": 0.7246
+    },
+    {
+     "da": 0.8,
+     "n": 862,
+     "prevista": 0.8213,
+     "vera": 0.8063,
+     "isotonica": 0.8063,
+     "limite": 0.7785
+    },
+    {
+     "da": 0.85,
+     "n": 314,
+     "prevista": 0.8696,
+     "vera": 0.8694,
+     "isotonica": 0.8679,
+     "limite": 0.8259
+    },
+    {
+     "da": 0.9,
+     "n": 72,
+     "prevista": 0.9156,
+     "vera": 0.8611,
+     "isotonica": 0.8679,
+     "limite": 0.7708
+    },
+    {
+     "da": 0.95,
+     "n": 1,
+     "prevista": 0.9619,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Doppia chance|12": [
+    {
+     "da": 0.5,
+     "n": 1,
+     "prevista": 0.533,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.55,
+     "n": 3,
+     "prevista": 0.5905,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 160,
+     "prevista": 0.6376,
+     "vera": 0.65,
+     "isotonica": 0.65,
+     "limite": 0.5734
+    },
+    {
+     "da": 0.65,
+     "n": 2139,
+     "prevista": 0.6834,
+     "vera": 0.7031,
+     "isotonica": 0.7031,
+     "limite": 0.6834
+    },
+    {
+     "da": 0.7,
+     "n": 4320,
+     "prevista": 0.7229,
+     "vera": 0.7153,
+     "isotonica": 0.7153,
+     "limite": 0.7016
+    },
+    {
+     "da": 0.75,
+     "n": 1323,
+     "prevista": 0.7668,
+     "vera": 0.7634,
+     "isotonica": 0.7634,
+     "limite": 0.7398
+    },
+    {
+     "da": 0.8,
+     "n": 130,
+     "prevista": 0.816,
+     "vera": 0.8,
+     "isotonica": 0.8,
+     "limite": 0.7231
+    },
+    {
+     "da": 0.85,
+     "n": 13,
+     "prevista": 0.8614,
+     "vera": 0.7692,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Doppia chance|X2": [
+    {
+     "da": 0.5,
+     "n": 1270,
+     "prevista": 0.5264,
+     "vera": 0.5465,
+     "isotonica": 0.5465,
+     "limite": 0.519
+    },
+    {
+     "da": 0.55,
+     "n": 1502,
+     "prevista": 0.575,
+     "vera": 0.5606,
+     "isotonica": 0.5606,
+     "limite": 0.5354
+    },
+    {
+     "da": 0.6,
+     "n": 1368,
+     "prevista": 0.6237,
+     "vera": 0.595,
+     "isotonica": 0.595,
+     "limite": 0.5688
+    },
+    {
+     "da": 0.65,
+     "n": 1037,
+     "prevista": 0.673,
+     "vera": 0.6615,
+     "isotonica": 0.6615,
+     "limite": 0.6322
+    },
+    {
+     "da": 0.7,
+     "n": 574,
+     "prevista": 0.7225,
+     "vera": 0.7125,
+     "isotonica": 0.7062,
+     "limite": 0.6676
+    },
+    {
+     "da": 0.75,
+     "n": 270,
+     "prevista": 0.77,
+     "vera": 0.6926,
+     "isotonica": 0.7062,
+     "limite": 0.6492
+    },
+    {
+     "da": 0.8,
+     "n": 85,
+     "prevista": 0.8178,
+     "vera": 0.7294,
+     "isotonica": 0.7294,
+     "limite": 0.6266
+    },
+    {
+     "da": 0.85,
+     "n": 30,
+     "prevista": 0.8698,
+     "vera": 0.7667,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.9,
+     "n": 5,
+     "prevista": 0.9119,
+     "vera": 0.8,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Over 1.5": [
+    {
+     "da": 0.5,
+     "n": 180,
+     "prevista": 0.5265,
+     "vera": 0.6389,
+     "isotonica": 0.6389,
+     "limite": 0.5665
+    },
+    {
+     "da": 0.55,
+     "n": 410,
+     "prevista": 0.5782,
+     "vera": 0.6585,
+     "isotonica": 0.6585,
+     "limite": 0.6114
+    },
+    {
+     "da": 0.6,
+     "n": 979,
+     "prevista": 0.6282,
+     "vera": 0.6966,
+     "isotonica": 0.6868,
+     "limite": 0.657
+    },
+    {
+     "da": 0.65,
+     "n": 1639,
+     "prevista": 0.6764,
+     "vera": 0.6809,
+     "isotonica": 0.6868,
+     "limite": 0.6639
+    },
+    {
+     "da": 0.7,
+     "n": 1893,
+     "prevista": 0.725,
+     "vera": 0.7105,
+     "isotonica": 0.7105,
+     "limite": 0.6897
+    },
+    {
+     "da": 0.75,
+     "n": 1549,
+     "prevista": 0.7733,
+     "vera": 0.7372,
+     "isotonica": 0.7372,
+     "limite": 0.7148
+    },
+    {
+     "da": 0.8,
+     "n": 987,
+     "prevista": 0.8227,
+     "vera": 0.7923,
+     "isotonica": 0.7923,
+     "limite": 0.7659
+    },
+    {
+     "da": 0.85,
+     "n": 345,
+     "prevista": 0.8692,
+     "vera": 0.7971,
+     "isotonica": 0.7971,
+     "limite": 0.7515
+    },
+    {
+     "da": 0.9,
+     "n": 39,
+     "prevista": 0.9137,
+     "vera": 0.7436,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 4,
+     "prevista": 0.9682,
+     "vera": 0.5,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Under 2.5": [
+    {
+     "da": 0.5,
+     "n": 1428,
+     "prevista": 0.5259,
+     "vera": 0.535,
+     "isotonica": 0.535,
+     "limite": 0.5091
+    },
+    {
+     "da": 0.55,
+     "n": 1517,
+     "prevista": 0.5746,
+     "vera": 0.555,
+     "isotonica": 0.5503,
+     "limite": 0.5251
+    },
+    {
+     "da": 0.6,
+     "n": 1258,
+     "prevista": 0.6233,
+     "vera": 0.5445,
+     "isotonica": 0.5503,
+     "limite": 0.5227
+    },
+    {
+     "da": 0.65,
+     "n": 707,
+     "prevista": 0.6711,
+     "vera": 0.5827,
+     "isotonica": 0.5827,
+     "limite": 0.546
+    },
+    {
+     "da": 0.7,
+     "n": 308,
+     "prevista": 0.7206,
+     "vera": 0.6039,
+     "isotonica": 0.6039,
+     "limite": 0.5483
+    },
+    {
+     "da": 0.75,
+     "n": 132,
+     "prevista": 0.7673,
+     "vera": 0.6667,
+     "isotonica": 0.6667,
+     "limite": 0.5825
+    },
+    {
+     "da": 0.8,
+     "n": 17,
+     "prevista": 0.8156,
+     "vera": 0.5882,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 1,
+     "prevista": 0.8514,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.9,
+     "n": 1,
+     "prevista": 0.9089,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Under 3.5": [
+    {
+     "da": 0.5,
+     "n": 142,
+     "prevista": 0.5292,
+     "vera": 0.6972,
+     "isotonica": 0.6612,
+     "limite": 0.5801
+    },
+    {
+     "da": 0.55,
+     "n": 340,
+     "prevista": 0.5781,
+     "vera": 0.65,
+     "isotonica": 0.6612,
+     "limite": 0.6094
+    },
+    {
+     "da": 0.6,
+     "n": 622,
+     "prevista": 0.6273,
+     "vera": 0.6592,
+     "isotonica": 0.6612,
+     "limite": 0.6231
+    },
+    {
+     "da": 0.65,
+     "n": 966,
+     "prevista": 0.6765,
+     "vera": 0.6988,
+     "isotonica": 0.6988,
+     "limite": 0.6691
+    },
+    {
+     "da": 0.7,
+     "n": 1535,
+     "prevista": 0.7266,
+     "vera": 0.7511,
+     "isotonica": 0.7511,
+     "limite": 0.7289
+    },
+    {
+     "da": 0.75,
+     "n": 1878,
+     "prevista": 0.7753,
+     "vera": 0.7583,
+     "isotonica": 0.7583,
+     "limite": 0.7384
+    },
+    {
+     "da": 0.8,
+     "n": 1652,
+     "prevista": 0.8231,
+     "vera": 0.7766,
+     "isotonica": 0.7766,
+     "limite": 0.7559
+    },
+    {
+     "da": 0.85,
+     "n": 699,
+     "prevista": 0.8703,
+     "vera": 0.8069,
+     "isotonica": 0.8069,
+     "limite": 0.776
+    },
+    {
+     "da": 0.9,
+     "n": 162,
+     "prevista": 0.9138,
+     "vera": 0.858,
+     "isotonica": 0.858,
+     "limite": 0.796
+    },
+    {
+     "da": 0.95,
+     "n": 3,
+     "prevista": 0.9616,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over casa 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 87,
+     "prevista": 0.5298,
+     "vera": 0.5862,
+     "isotonica": 0.5862,
+     "limite": 0.4812
+    },
+    {
+     "da": 0.55,
+     "n": 256,
+     "prevista": 0.5802,
+     "vera": 0.7188,
+     "isotonica": 0.6897,
+     "limite": 0.6306
+    },
+    {
+     "da": 0.6,
+     "n": 669,
+     "prevista": 0.6274,
+     "vera": 0.6786,
+     "isotonica": 0.6897,
+     "limite": 0.6537
+    },
+    {
+     "da": 0.65,
+     "n": 1309,
+     "prevista": 0.6772,
+     "vera": 0.7181,
+     "isotonica": 0.7181,
+     "limite": 0.6931
+    },
+    {
+     "da": 0.7,
+     "n": 1861,
+     "prevista": 0.7265,
+     "vera": 0.7528,
+     "isotonica": 0.7528,
+     "limite": 0.7327
+    },
+    {
+     "da": 0.75,
+     "n": 1876,
+     "prevista": 0.7739,
+     "vera": 0.7761,
+     "isotonica": 0.7761,
+     "limite": 0.7567
+    },
+    {
+     "da": 0.8,
+     "n": 1290,
+     "prevista": 0.8233,
+     "vera": 0.8124,
+     "isotonica": 0.8124,
+     "limite": 0.7902
+    },
+    {
+     "da": 0.85,
+     "n": 600,
+     "prevista": 0.8704,
+     "vera": 0.855,
+     "isotonica": 0.855,
+     "limite": 0.8246
+    },
+    {
+     "da": 0.9,
+     "n": 111,
+     "prevista": 0.9133,
+     "vera": 0.8919,
+     "isotonica": 0.8919,
+     "limite": 0.8205
+    },
+    {
+     "da": 0.95,
+     "n": 4,
+     "prevista": 0.9618,
+     "vera": 0.75,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over trasferta 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 533,
+     "prevista": 0.5295,
+     "vera": 0.5891,
+     "isotonica": 0.5891,
+     "limite": 0.5469
+    },
+    {
+     "da": 0.55,
+     "n": 1102,
+     "prevista": 0.5776,
+     "vera": 0.6252,
+     "isotonica": 0.6252,
+     "limite": 0.5963
+    },
+    {
+     "da": 0.6,
+     "n": 1650,
+     "prevista": 0.6265,
+     "vera": 0.6388,
+     "isotonica": 0.6388,
+     "limite": 0.6153
+    },
+    {
+     "da": 0.65,
+     "n": 1765,
+     "prevista": 0.6746,
+     "vera": 0.6963,
+     "isotonica": 0.6963,
+     "limite": 0.6745
+    },
+    {
+     "da": 0.7,
+     "n": 1399,
+     "prevista": 0.7232,
+     "vera": 0.6998,
+     "isotonica": 0.6998,
+     "limite": 0.6752
+    },
+    {
+     "da": 0.75,
+     "n": 834,
+     "prevista": 0.7721,
+     "vera": 0.7254,
+     "isotonica": 0.7254,
+     "limite": 0.6941
+    },
+    {
+     "da": 0.8,
+     "n": 386,
+     "prevista": 0.8211,
+     "vera": 0.8394,
+     "isotonica": 0.815,
+     "limite": 0.7732
+    },
+    {
+     "da": 0.85,
+     "n": 95,
+     "prevista": 0.8695,
+     "vera": 0.7158,
+     "isotonica": 0.815,
+     "limite": 0.7252
+    },
+    {
+     "da": 0.9,
+     "n": 9,
+     "prevista": 0.9203,
+     "vera": 0.7778,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 1,
+     "prevista": 0.9602,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|No gol": [
+    {
+     "da": 0.5,
+     "n": 1943,
+     "prevista": 0.5243,
+     "vera": 0.4905,
+     "isotonica": 0.4905,
+     "limite": 0.4683
+    },
+    {
+     "da": 0.55,
+     "n": 1374,
+     "prevista": 0.5721,
+     "vera": 0.4985,
+     "isotonica": 0.4985,
+     "limite": 0.4721
+    },
+    {
+     "da": 0.6,
+     "n": 551,
+     "prevista": 0.6205,
+     "vera": 0.5626,
+     "isotonica": 0.5626,
+     "limite": 0.5209
+    },
+    {
+     "da": 0.65,
+     "n": 222,
+     "prevista": 0.6698,
+     "vera": 0.5676,
+     "isotonica": 0.5676,
+     "limite": 0.5018
+    },
+    {
+     "da": 0.7,
+     "n": 48,
+     "prevista": 0.7207,
+     "vera": 0.6042,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.75,
+     "n": 6,
+     "prevista": 0.7629,
+     "vera": 0.6667,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 1,
+     "prevista": 0.8237,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|1": [
+    {
+     "da": 0.5,
+     "n": 929,
+     "prevista": 0.5222,
+     "vera": 0.5156,
+     "isotonica": 0.5156,
+     "limite": 0.4835
+    },
+    {
+     "da": 0.55,
+     "n": 548,
+     "prevista": 0.5725,
+     "vera": 0.5547,
+     "isotonica": 0.5547,
+     "limite": 0.5129
+    },
+    {
+     "da": 0.6,
+     "n": 259,
+     "prevista": 0.6219,
+     "vera": 0.6641,
+     "isotonica": 0.6548,
+     "limite": 0.595
+    },
+    {
+     "da": 0.65,
+     "n": 135,
+     "prevista": 0.671,
+     "vera": 0.637,
+     "isotonica": 0.6548,
+     "limite": 0.5713
+    },
+    {
+     "da": 0.7,
+     "n": 54,
+     "prevista": 0.7213,
+     "vera": 0.7407,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.75,
+     "n": 20,
+     "prevista": 0.7721,
+     "vera": 0.45,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 3,
+     "prevista": 0.8171,
+     "vera": 0.6667,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Over 2.5": [
+    {
+     "da": 0.5,
+     "n": 1113,
+     "prevista": 0.5228,
+     "vera": 0.5121,
+     "isotonica": 0.5121,
+     "limite": 0.4828
+    },
+    {
+     "da": 0.55,
+     "n": 776,
+     "prevista": 0.5733,
+     "vera": 0.5593,
+     "isotonica": 0.5582,
+     "limite": 0.523
+    },
+    {
+     "da": 0.6,
+     "n": 496,
+     "prevista": 0.6222,
+     "vera": 0.5565,
+     "isotonica": 0.5582,
+     "limite": 0.5142
+    },
+    {
+     "da": 0.65,
+     "n": 226,
+     "prevista": 0.6714,
+     "vera": 0.615,
+     "isotonica": 0.5909,
+     "limite": 0.5258
+    },
+    {
+     "da": 0.7,
+     "n": 82,
+     "prevista": 0.7211,
+     "vera": 0.5244,
+     "isotonica": 0.5909,
+     "limite": 0.4828
+    },
+    {
+     "da": 0.75,
+     "n": 19,
+     "prevista": 0.7683,
+     "vera": 0.6842,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 4,
+     "prevista": 0.8172,
+     "vera": 0.25,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 3,
+     "prevista": 0.8693,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 1,
+     "prevista": 0.9623,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|Gol": [
+    {
+     "da": 0.5,
+     "n": 1807,
+     "prevista": 0.5239,
+     "vera": 0.518,
+     "isotonica": 0.518,
+     "limite": 0.4949
+    },
+    {
+     "da": 0.55,
+     "n": 1183,
+     "prevista": 0.572,
+     "vera": 0.5664,
+     "isotonica": 0.5664,
+     "limite": 0.5379
+    },
+    {
+     "da": 0.6,
+     "n": 632,
+     "prevista": 0.6222,
+     "vera": 0.5854,
+     "isotonica": 0.5854,
+     "limite": 0.5466
+    },
+    {
+     "da": 0.65,
+     "n": 240,
+     "prevista": 0.6691,
+     "vera": 0.6125,
+     "isotonica": 0.6124,
+     "limite": 0.5494
+    },
+    {
+     "da": 0.7,
+     "n": 67,
+     "prevista": 0.7163,
+     "vera": 0.6119,
+     "isotonica": 0.6124,
+     "limite": 0.4927
+    },
+    {
+     "da": 0.75,
+     "n": 11,
+     "prevista": 0.7649,
+     "vera": 0.4545,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 3,
+     "prevista": 0.8272,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 1,
+     "prevista": 0.889,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|2": [
+    {
+     "da": 0.5,
+     "n": 144,
+     "prevista": 0.5219,
+     "vera": 0.4375,
+     "isotonica": 0.4375,
+     "limite": 0.3591
+    },
+    {
+     "da": 0.55,
+     "n": 50,
+     "prevista": 0.5713,
+     "vera": 0.54,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 24,
+     "prevista": 0.6262,
+     "vera": 0.5,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.65,
+     "n": 10,
+     "prevista": 0.6763,
+     "vera": 0.4,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.7,
+     "n": 7,
+     "prevista": 0.7256,
+     "vera": 0.2857,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Over 3.5": [
+    {
+     "da": 0.5,
+     "n": 63,
+     "prevista": 0.5201,
+     "vera": 0.3492,
+     "isotonica": 0.3492,
+     "limite": 0.2433
+    },
+    {
+     "da": 0.55,
+     "n": 17,
+     "prevista": 0.5711,
+     "vera": 0.5294,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 5,
+     "prevista": 0.6246,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.65,
+     "n": 2,
+     "prevista": 0.6877,
+     "vera": 0.5,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.7,
+     "n": 1,
+     "prevista": 0.7191,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.75,
+     "n": 1,
+     "prevista": 0.7583,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 1,
+     "prevista": 0.8998,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Under 1.5": [
+    {
+     "da": 0.5,
+     "n": 52,
+     "prevista": 0.516,
+     "vera": 0.4423,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.55,
+     "n": 9,
+     "prevista": 0.565,
+     "vera": 0.1111,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 2,
+     "prevista": 0.6063,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.7,
+     "n": 1,
+     "prevista": 0.707,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ]
+  },
+  "extra": {
+   "Doppia chance|1X": [
+    {
+     "da": 0.5,
+     "n": 1557,
+     "prevista": 0.5277,
+     "vera": 0.5658,
+     "isotonica": 0.5658,
+     "limite": 0.5411
+    },
+    {
+     "da": 0.55,
+     "n": 2365,
+     "prevista": 0.5766,
+     "vera": 0.5822,
+     "isotonica": 0.5822,
+     "limite": 0.5622
+    },
+    {
+     "da": 0.6,
+     "n": 3438,
+     "prevista": 0.6266,
+     "vera": 0.639,
+     "isotonica": 0.639,
+     "limite": 0.6228
+    },
+    {
+     "da": 0.65,
+     "n": 4641,
+     "prevista": 0.6759,
+     "vera": 0.6876,
+     "isotonica": 0.6876,
+     "limite": 0.6741
+    },
+    {
+     "da": 0.7,
+     "n": 5160,
+     "prevista": 0.7253,
+     "vera": 0.7194,
+     "isotonica": 0.7194,
+     "limite": 0.707
+    },
+    {
+     "da": 0.75,
+     "n": 4843,
+     "prevista": 0.7744,
+     "vera": 0.7714,
+     "isotonica": 0.7714,
+     "limite": 0.7594
+    },
+    {
+     "da": 0.8,
+     "n": 3550,
+     "prevista": 0.8229,
+     "vera": 0.8104,
+     "isotonica": 0.8104,
+     "limite": 0.7972
+    },
+    {
+     "da": 0.85,
+     "n": 1840,
+     "prevista": 0.8715,
+     "vera": 0.8761,
+     "isotonica": 0.8761,
+     "limite": 0.8602
+    },
+    {
+     "da": 0.9,
+     "n": 656,
+     "prevista": 0.9213,
+     "vera": 0.9253,
+     "isotonica": 0.9253,
+     "limite": 0.9026
+    },
+    {
+     "da": 0.95,
+     "n": 85,
+     "prevista": 0.9618,
+     "vera": 0.9765,
+     "isotonica": 0.9765,
+     "limite": 0.9182
+    }
+   ],
+   "Doppia chance|12": [
+    {
+     "da": 0.55,
+     "n": 16,
+     "prevista": 0.5865,
+     "vera": 0.75,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 416,
+     "prevista": 0.6356,
+     "vera": 0.6587,
+     "isotonica": 0.6587,
+     "limite": 0.6118
+    },
+    {
+     "da": 0.65,
+     "n": 4919,
+     "prevista": 0.6831,
+     "vera": 0.7008,
+     "isotonica": 0.7008,
+     "limite": 0.6878
+    },
+    {
+     "da": 0.7,
+     "n": 15776,
+     "prevista": 0.7261,
+     "vera": 0.725,
+     "isotonica": 0.725,
+     "limite": 0.7179
+    },
+    {
+     "da": 0.75,
+     "n": 7322,
+     "prevista": 0.7684,
+     "vera": 0.7723,
+     "isotonica": 0.7723,
+     "limite": 0.7626
+    },
+    {
+     "da": 0.8,
+     "n": 1361,
+     "prevista": 0.8185,
+     "vera": 0.8193,
+     "isotonica": 0.8193,
+     "limite": 0.7979
+    },
+    {
+     "da": 0.85,
+     "n": 288,
+     "prevista": 0.8675,
+     "vera": 0.875,
+     "isotonica": 0.875,
+     "limite": 0.8318
+    },
+    {
+     "da": 0.9,
+     "n": 47,
+     "prevista": 0.915,
+     "vera": 0.8936,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 3,
+     "prevista": 0.9784,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Doppia chance|X2": [
+    {
+     "da": 0.5,
+     "n": 4000,
+     "prevista": 0.5254,
+     "vera": 0.5285,
+     "isotonica": 0.5285,
+     "limite": 0.513
+    },
+    {
+     "da": 0.55,
+     "n": 4520,
+     "prevista": 0.5754,
+     "vera": 0.5759,
+     "isotonica": 0.5759,
+     "limite": 0.5614
+    },
+    {
+     "da": 0.6,
+     "n": 4242,
+     "prevista": 0.6243,
+     "vera": 0.6077,
+     "isotonica": 0.6077,
+     "limite": 0.5929
+    },
+    {
+     "da": 0.65,
+     "n": 3379,
+     "prevista": 0.6743,
+     "vera": 0.6712,
+     "isotonica": 0.6712,
+     "limite": 0.6552
+    },
+    {
+     "da": 0.7,
+     "n": 2468,
+     "prevista": 0.7234,
+     "vera": 0.7006,
+     "isotonica": 0.7006,
+     "limite": 0.6822
+    },
+    {
+     "da": 0.75,
+     "n": 1452,
+     "prevista": 0.7721,
+     "vera": 0.7486,
+     "isotonica": 0.7486,
+     "limite": 0.7257
+    },
+    {
+     "da": 0.8,
+     "n": 769,
+     "prevista": 0.822,
+     "vera": 0.8192,
+     "isotonica": 0.8192,
+     "limite": 0.7905
+    },
+    {
+     "da": 0.85,
+     "n": 325,
+     "prevista": 0.8728,
+     "vera": 0.8708,
+     "isotonica": 0.8708,
+     "limite": 0.8299
+    },
+    {
+     "da": 0.9,
+     "n": 58,
+     "prevista": 0.9146,
+     "vera": 0.8621,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 1,
+     "prevista": 0.9513,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Over 1.5": [
+    {
+     "da": 0.5,
+     "n": 418,
+     "prevista": 0.5294,
+     "vera": 0.6579,
+     "isotonica": 0.6547,
+     "limite": 0.6079
+    },
+    {
+     "da": 0.55,
+     "n": 1030,
+     "prevista": 0.5784,
+     "vera": 0.6534,
+     "isotonica": 0.6547,
+     "limite": 0.6251
+    },
+    {
+     "da": 0.6,
+     "n": 2204,
+     "prevista": 0.6276,
+     "vera": 0.6674,
+     "isotonica": 0.6674,
+     "limite": 0.6475
+    },
+    {
+     "da": 0.65,
+     "n": 4088,
+     "prevista": 0.6771,
+     "vera": 0.7025,
+     "isotonica": 0.7025,
+     "limite": 0.6883
+    },
+    {
+     "da": 0.7,
+     "n": 6387,
+     "prevista": 0.7264,
+     "vera": 0.7418,
+     "isotonica": 0.7418,
+     "limite": 0.7309
+    },
+    {
+     "da": 0.75,
+     "n": 7279,
+     "prevista": 0.7747,
+     "vera": 0.767,
+     "isotonica": 0.767,
+     "limite": 0.7571
+    },
+    {
+     "da": 0.8,
+     "n": 5653,
+     "prevista": 0.8228,
+     "vera": 0.8019,
+     "isotonica": 0.8019,
+     "limite": 0.7913
+    },
+    {
+     "da": 0.85,
+     "n": 2396,
+     "prevista": 0.8701,
+     "vera": 0.8414,
+     "isotonica": 0.8388,
+     "limite": 0.8236
+    },
+    {
+     "da": 0.9,
+     "n": 446,
+     "prevista": 0.916,
+     "vera": 0.8251,
+     "isotonica": 0.8388,
+     "limite": 0.8019
+    },
+    {
+     "da": 0.95,
+     "n": 31,
+     "prevista": 0.9675,
+     "vera": 0.8387,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Over 2.5": [
+    {
+     "da": 0.5,
+     "n": 5211,
+     "prevista": 0.5245,
+     "vera": 0.5258,
+     "isotonica": 0.5258,
+     "limite": 0.5122
+    },
+    {
+     "da": 0.55,
+     "n": 4253,
+     "prevista": 0.5735,
+     "vera": 0.5601,
+     "isotonica": 0.5601,
+     "limite": 0.5451
+    },
+    {
+     "da": 0.6,
+     "n": 2892,
+     "prevista": 0.6222,
+     "vera": 0.5954,
+     "isotonica": 0.5954,
+     "limite": 0.5774
+    },
+    {
+     "da": 0.65,
+     "n": 1585,
+     "prevista": 0.6723,
+     "vera": 0.6189,
+     "isotonica": 0.6189,
+     "limite": 0.5948
+    },
+    {
+     "da": 0.7,
+     "n": 668,
+     "prevista": 0.7211,
+     "vera": 0.6751,
+     "isotonica": 0.6584,
+     "limite": 0.6216
+    },
+    {
+     "da": 0.75,
+     "n": 227,
+     "prevista": 0.7705,
+     "vera": 0.6432,
+     "isotonica": 0.6584,
+     "limite": 0.5945
+    },
+    {
+     "da": 0.8,
+     "n": 71,
+     "prevista": 0.821,
+     "vera": 0.5493,
+     "isotonica": 0.6584,
+     "limite": 0.5425
+    },
+    {
+     "da": 0.85,
+     "n": 14,
+     "prevista": 0.8712,
+     "vera": 0.7143,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.9,
+     "n": 7,
+     "prevista": 0.9139,
+     "vera": 0.4286,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 5,
+     "prevista": 0.9614,
+     "vera": 0.6,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Under 3.5": [
+    {
+     "da": 0.5,
+     "n": 1105,
+     "prevista": 0.528,
+     "vera": 0.609,
+     "isotonica": 0.609,
+     "limite": 0.5799
+    },
+    {
+     "da": 0.55,
+     "n": 2010,
+     "prevista": 0.5778,
+     "vera": 0.6294,
+     "isotonica": 0.6294,
+     "limite": 0.608
+    },
+    {
+     "da": 0.6,
+     "n": 3551,
+     "prevista": 0.6264,
+     "vera": 0.6545,
+     "isotonica": 0.6545,
+     "limite": 0.6387
+    },
+    {
+     "da": 0.65,
+     "n": 5095,
+     "prevista": 0.6759,
+     "vera": 0.6895,
+     "isotonica": 0.6895,
+     "limite": 0.6767
+    },
+    {
+     "da": 0.7,
+     "n": 6080,
+     "prevista": 0.725,
+     "vera": 0.7146,
+     "isotonica": 0.7146,
+     "limite": 0.7032
+    },
+    {
+     "da": 0.75,
+     "n": 5564,
+     "prevista": 0.774,
+     "vera": 0.7471,
+     "isotonica": 0.7471,
+     "limite": 0.7355
+    },
+    {
+     "da": 0.8,
+     "n": 3764,
+     "prevista": 0.8228,
+     "vera": 0.7795,
+     "isotonica": 0.7795,
+     "limite": 0.766
+    },
+    {
+     "da": 0.85,
+     "n": 1749,
+     "prevista": 0.8706,
+     "vera": 0.8308,
+     "isotonica": 0.8308,
+     "limite": 0.8125
+    },
+    {
+     "da": 0.9,
+     "n": 414,
+     "prevista": 0.9168,
+     "vera": 0.8647,
+     "isotonica": 0.8647,
+     "limite": 0.8284
+    },
+    {
+     "da": 0.95,
+     "n": 11,
+     "prevista": 0.9577,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over casa 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 379,
+     "prevista": 0.5297,
+     "vera": 0.6227,
+     "isotonica": 0.6119,
+     "limite": 0.5619
+    },
+    {
+     "da": 0.55,
+     "n": 971,
+     "prevista": 0.5789,
+     "vera": 0.6076,
+     "isotonica": 0.6119,
+     "limite": 0.5808
+    },
+    {
+     "da": 0.6,
+     "n": 2227,
+     "prevista": 0.6276,
+     "vera": 0.6727,
+     "isotonica": 0.6727,
+     "limite": 0.6529
+    },
+    {
+     "da": 0.65,
+     "n": 3902,
+     "prevista": 0.6763,
+     "vera": 0.7014,
+     "isotonica": 0.7014,
+     "limite": 0.6869
+    },
+    {
+     "da": 0.7,
+     "n": 5612,
+     "prevista": 0.7259,
+     "vera": 0.7431,
+     "isotonica": 0.7431,
+     "limite": 0.7315
+    },
+    {
+     "da": 0.75,
+     "n": 6512,
+     "prevista": 0.7752,
+     "vera": 0.7821,
+     "isotonica": 0.7821,
+     "limite": 0.7719
+    },
+    {
+     "da": 0.8,
+     "n": 5679,
+     "prevista": 0.824,
+     "vera": 0.8207,
+     "isotonica": 0.8207,
+     "limite": 0.8106
+    },
+    {
+     "da": 0.85,
+     "n": 3356,
+     "prevista": 0.8725,
+     "vera": 0.8644,
+     "isotonica": 0.8644,
+     "limite": 0.8524
+    },
+    {
+     "da": 0.9,
+     "n": 1190,
+     "prevista": 0.9198,
+     "vera": 0.9134,
+     "isotonica": 0.9134,
+     "limite": 0.8961
+    },
+    {
+     "da": 0.95,
+     "n": 134,
+     "prevista": 0.964,
+     "vera": 0.9701,
+     "isotonica": 0.9701,
+     "limite": 0.9258
+    }
+   ],
+   "Under/Over trasferta 0.5|Over 0.5": [
+    {
+     "da": 0.5,
+     "n": 1856,
+     "prevista": 0.5279,
+     "vera": 0.59,
+     "isotonica": 0.59,
+     "limite": 0.5674
+    },
+    {
+     "da": 0.55,
+     "n": 3284,
+     "prevista": 0.5767,
+     "vera": 0.6163,
+     "isotonica": 0.6163,
+     "limite": 0.5996
+    },
+    {
+     "da": 0.6,
+     "n": 4863,
+     "prevista": 0.6262,
+     "vera": 0.6377,
+     "isotonica": 0.6377,
+     "limite": 0.6241
+    },
+    {
+     "da": 0.65,
+     "n": 5806,
+     "prevista": 0.6756,
+     "vera": 0.6765,
+     "isotonica": 0.6765,
+     "limite": 0.6644
+    },
+    {
+     "da": 0.7,
+     "n": 5547,
+     "prevista": 0.7243,
+     "vera": 0.7218,
+     "isotonica": 0.7218,
+     "limite": 0.7099
+    },
+    {
+     "da": 0.75,
+     "n": 4118,
+     "prevista": 0.7733,
+     "vera": 0.7632,
+     "isotonica": 0.7632,
+     "limite": 0.75
+    },
+    {
+     "da": 0.8,
+     "n": 2373,
+     "prevista": 0.8214,
+     "vera": 0.8196,
+     "isotonica": 0.8196,
+     "limite": 0.8037
+    },
+    {
+     "da": 0.85,
+     "n": 952,
+     "prevista": 0.8704,
+     "vera": 0.8561,
+     "isotonica": 0.8561,
+     "limite": 0.8324
+    },
+    {
+     "da": 0.9,
+     "n": 191,
+     "prevista": 0.9153,
+     "vera": 0.8848,
+     "isotonica": 0.8848,
+     "limite": 0.8318
+    },
+    {
+     "da": 0.95,
+     "n": 10,
+     "prevista": 0.958,
+     "vera": 0.7,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|Gol": [
+    {
+     "da": 0.5,
+     "n": 7113,
+     "prevista": 0.5251,
+     "vera": 0.5394,
+     "isotonica": 0.5394,
+     "limite": 0.5278
+    },
+    {
+     "da": 0.55,
+     "n": 6060,
+     "prevista": 0.5733,
+     "vera": 0.5559,
+     "isotonica": 0.5559,
+     "limite": 0.5434
+    },
+    {
+     "da": 0.6,
+     "n": 3557,
+     "prevista": 0.6221,
+     "vera": 0.589,
+     "isotonica": 0.589,
+     "limite": 0.5727
+    },
+    {
+     "da": 0.65,
+     "n": 1397,
+     "prevista": 0.6703,
+     "vera": 0.6271,
+     "isotonica": 0.6223,
+     "limite": 0.5966
+    },
+    {
+     "da": 0.7,
+     "n": 372,
+     "prevista": 0.7197,
+     "vera": 0.6183,
+     "isotonica": 0.6223,
+     "limite": 0.5721
+    },
+    {
+     "da": 0.75,
+     "n": 66,
+     "prevista": 0.769,
+     "vera": 0.5455,
+     "isotonica": 0.6223,
+     "limite": 0.5017
+    },
+    {
+     "da": 0.8,
+     "n": 12,
+     "prevista": 0.82,
+     "vera": 0.5833,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 3,
+     "prevista": 0.8744,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|2": [
+    {
+     "da": 0.5,
+     "n": 893,
+     "prevista": 0.5227,
+     "vera": 0.523,
+     "isotonica": 0.523,
+     "limite": 0.4902
+    },
+    {
+     "da": 0.55,
+     "n": 541,
+     "prevista": 0.5727,
+     "vera": 0.5693,
+     "isotonica": 0.5693,
+     "limite": 0.5272
+    },
+    {
+     "da": 0.6,
+     "n": 303,
+     "prevista": 0.622,
+     "vera": 0.6535,
+     "isotonica": 0.6535,
+     "limite": 0.5983
+    },
+    {
+     "da": 0.65,
+     "n": 183,
+     "prevista": 0.673,
+     "vera": 0.6667,
+     "isotonica": 0.6667,
+     "limite": 0.5956
+    },
+    {
+     "da": 0.7,
+     "n": 70,
+     "prevista": 0.7189,
+     "vera": 0.6857,
+     "isotonica": 0.6857,
+     "limite": 0.5697
+    },
+    {
+     "da": 0.75,
+     "n": 18,
+     "prevista": 0.7703,
+     "vera": 0.7778,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 5,
+     "prevista": 0.8156,
+     "vera": 0.8,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 2.5|Under 2.5": [
+    {
+     "da": 0.5,
+     "n": 5238,
+     "prevista": 0.5243,
+     "vera": 0.4906,
+     "isotonica": 0.4906,
+     "limite": 0.4771
+    },
+    {
+     "da": 0.55,
+     "n": 4247,
+     "prevista": 0.5735,
+     "vera": 0.5465,
+     "isotonica": 0.5465,
+     "limite": 0.5315
+    },
+    {
+     "da": 0.6,
+     "n": 2877,
+     "prevista": 0.6229,
+     "vera": 0.5607,
+     "isotonica": 0.5607,
+     "limite": 0.5424
+    },
+    {
+     "da": 0.65,
+     "n": 1690,
+     "prevista": 0.6722,
+     "vera": 0.6041,
+     "isotonica": 0.6041,
+     "limite": 0.5806
+    },
+    {
+     "da": 0.7,
+     "n": 790,
+     "prevista": 0.7213,
+     "vera": 0.6215,
+     "isotonica": 0.6215,
+     "limite": 0.5872
+    },
+    {
+     "da": 0.75,
+     "n": 288,
+     "prevista": 0.7704,
+     "vera": 0.6944,
+     "isotonica": 0.6944,
+     "limite": 0.639
+    },
+    {
+     "da": 0.8,
+     "n": 78,
+     "prevista": 0.8185,
+     "vera": 0.7436,
+     "isotonica": 0.7436,
+     "limite": 0.6369
+    },
+    {
+     "da": 0.85,
+     "n": 7,
+     "prevista": 0.869,
+     "vera": 0.7143,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Gol/No gol|No gol": [
+    {
+     "da": 0.5,
+     "n": 5781,
+     "prevista": 0.5239,
+     "vera": 0.4888,
+     "isotonica": 0.4888,
+     "limite": 0.476
+    },
+    {
+     "da": 0.55,
+     "n": 3516,
+     "prevista": 0.5722,
+     "vera": 0.5162,
+     "isotonica": 0.5162,
+     "limite": 0.4997
+    },
+    {
+     "da": 0.6,
+     "n": 1555,
+     "prevista": 0.6212,
+     "vera": 0.5466,
+     "isotonica": 0.5466,
+     "limite": 0.5218
+    },
+    {
+     "da": 0.65,
+     "n": 542,
+     "prevista": 0.6709,
+     "vera": 0.559,
+     "isotonica": 0.559,
+     "limite": 0.517
+    },
+    {
+     "da": 0.7,
+     "n": 146,
+     "prevista": 0.7213,
+     "vera": 0.6507,
+     "isotonica": 0.6507,
+     "limite": 0.5704
+    },
+    {
+     "da": 0.75,
+     "n": 27,
+     "prevista": 0.7629,
+     "vera": 0.5926,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 1,
+     "prevista": 0.8162,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "1X2|1": [
+    {
+     "da": 0.5,
+     "n": 3251,
+     "prevista": 0.5238,
+     "vera": 0.5177,
+     "isotonica": 0.5177,
+     "limite": 0.5005
+    },
+    {
+     "da": 0.55,
+     "n": 2266,
+     "prevista": 0.5736,
+     "vera": 0.5737,
+     "isotonica": 0.5737,
+     "limite": 0.5532
+    },
+    {
+     "da": 0.6,
+     "n": 1587,
+     "prevista": 0.6229,
+     "vera": 0.6446,
+     "isotonica": 0.6446,
+     "limite": 0.6207
+    },
+    {
+     "da": 0.65,
+     "n": 888,
+     "prevista": 0.6731,
+     "vera": 0.6712,
+     "isotonica": 0.6712,
+     "limite": 0.6396
+    },
+    {
+     "da": 0.7,
+     "n": 480,
+     "prevista": 0.7228,
+     "vera": 0.7604,
+     "isotonica": 0.7593,
+     "limite": 0.7191
+    },
+    {
+     "da": 0.75,
+     "n": 272,
+     "prevista": 0.7736,
+     "vera": 0.7574,
+     "isotonica": 0.7593,
+     "limite": 0.7051
+    },
+    {
+     "da": 0.8,
+     "n": 135,
+     "prevista": 0.8189,
+     "vera": 0.8963,
+     "isotonica": 0.8963,
+     "limite": 0.8334
+    },
+    {
+     "da": 0.85,
+     "n": 47,
+     "prevista": 0.8726,
+     "vera": 0.8723,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.9,
+     "n": 5,
+     "prevista": 0.908,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.95,
+     "n": 3,
+     "prevista": 0.9701,
+     "vera": 0.3333,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 1.5|Under 1.5": [
+    {
+     "da": 0.5,
+     "n": 161,
+     "prevista": 0.5209,
+     "vera": 0.3975,
+     "isotonica": 0.3975,
+     "limite": 0.3252
+    },
+    {
+     "da": 0.55,
+     "n": 48,
+     "prevista": 0.5724,
+     "vera": 0.4792,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.6,
+     "n": 5,
+     "prevista": 0.6229,
+     "vera": 0.6,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.65,
+     "n": 2,
+     "prevista": 0.6742,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    }
+   ],
+   "Under/Over 3.5|Over 3.5": [
+    {
+     "da": 0.5,
+     "n": 481,
+     "prevista": 0.5221,
+     "vera": 0.4782,
+     "isotonica": 0.4458,
+     "limite": 0.402
+    },
+    {
+     "da": 0.55,
+     "n": 182,
+     "prevista": 0.5709,
+     "vera": 0.3901,
+     "isotonica": 0.4458,
+     "limite": 0.3754
+    },
+    {
+     "da": 0.6,
+     "n": 84,
+     "prevista": 0.6202,
+     "vera": 0.381,
+     "isotonica": 0.4458,
+     "limite": 0.3442
+    },
+    {
+     "da": 0.65,
+     "n": 34,
+     "prevista": 0.6707,
+     "vera": 0.4118,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.7,
+     "n": 7,
+     "prevista": 0.7139,
+     "vera": 0.4286,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.75,
+     "n": 9,
+     "prevista": 0.7728,
+     "vera": 0.4444,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.8,
+     "n": 3,
+     "prevista": 0.8241,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.85,
+     "n": 2,
+     "prevista": 0.8867,
+     "vera": 0,
+     "isotonica": null,
+     "limite": null
+    },
+    {
+     "da": 0.9,
+     "n": 3,
+     "prevista": 0.9049,
+     "vera": 1,
+     "isotonica": null,
+     "limite": null
+    }
+   ]
+  }
  },
  "tennis": {
   "Vincente incontro|*": [
@@ -818,61 +3127,81 @@
     "da": 0.5,
     "n": 1473,
     "prevista": 0.5249,
-    "vera": 0.5139
+    "vera": 0.5139,
+    "isotonica": 0.5139,
+    "limite": 0.4884
    },
    {
     "da": 0.55,
     "n": 1509,
     "prevista": 0.5742,
-    "vera": 0.5388
+    "vera": 0.5388,
+    "isotonica": 0.5388,
+    "limite": 0.5135
    },
    {
     "da": 0.6,
     "n": 1364,
     "prevista": 0.6246,
-    "vera": 0.5821
+    "vera": 0.5821,
+    "isotonica": 0.5821,
+    "limite": 0.5557
    },
    {
     "da": 0.65,
     "n": 1286,
     "prevista": 0.6745,
-    "vera": 0.6462
+    "vera": 0.6462,
+    "isotonica": 0.6462,
+    "limite": 0.6197
    },
    {
     "da": 0.7,
     "n": 1110,
     "prevista": 0.725,
-    "vera": 0.6604
+    "vera": 0.6604,
+    "isotonica": 0.6604,
+    "limite": 0.632
    },
    {
     "da": 0.75,
     "n": 966,
     "prevista": 0.7744,
-    "vera": 0.7153
+    "vera": 0.7153,
+    "isotonica": 0.7153,
+    "limite": 0.6861
    },
    {
     "da": 0.8,
     "n": 701,
     "prevista": 0.8243,
-    "vera": 0.7889
+    "vera": 0.7889,
+    "isotonica": 0.7889,
+    "limite": 0.7571
    },
    {
     "da": 0.85,
     "n": 539,
     "prevista": 0.8731,
-    "vera": 0.8071
+    "vera": 0.8071,
+    "isotonica": 0.8071,
+    "limite": 0.7716
    },
    {
     "da": 0.9,
     "n": 323,
     "prevista": 0.9243,
-    "vera": 0.9009
+    "vera": 0.9009,
+    "isotonica": 0.9009,
+    "limite": 0.8635
    },
    {
     "da": 0.95,
     "n": 135,
     "prevista": 0.9696,
-    "vera": 0.9481
+    "vera": 0.9481,
+    "isotonica": 0.9481,
+    "limite": 0.8968
    }
   ]
  }

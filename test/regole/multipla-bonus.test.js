@@ -109,15 +109,15 @@ test('Telegram: le multiple bonus nel messaggio del giorno e l\'esito una volta 
 
 test('pronostici: soglia del mercato, probabilità vera della fascia, quota minima, solo i mercati scelti', async () => {
   const { pronosticiPartita, probCalibrata, quotaMinima, testoPronostico } = await import('../../src/regole/pronostici.js');
-  const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 400, vera: 0.82 }, { da: 0.8, n: 30, vera: 0.6 }];
+  const fasce = [{ da: 0.7, n: 500, vera: 0.74 }, { da: 0.75, n: 4000, vera: 0.82 }, { da: 0.8, n: 30, vera: 0.6 }];
   assert.equal(probCalibrata(fasce, 0.72), 0.74);
   assert.equal(probCalibrata(fasce, 0.83), 0.82); // fascia con pochi casi: si usa quella sotto
   assert.equal(probCalibrata(fasce, 0.6), null);
   assert.equal(quotaMinima(0.78), 1.29);
-  const cal = { calcio: {
+  const cal = { calcio: { principali: {
     'Doppia chance|1X': fasce, 'Under/Over 1.5|Over 1.5': fasce, '1X2|1': fasce, 'Under/Over casa 0.5|Over 0.5': fasce, 'Gol/No gol|Gol': fasce,
-  } };
-  const partita = { sport: 'calcio', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
+  } } };
+  const partita = { sport: 'calcio', competizione: 'Serie A', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
     { mercato: 'Doppia chance', selezione: '1X', probModello: 0.9, quota: null },
     { mercato: 'Under/Over 1.5', selezione: 'Over 1.5', probModello: 0.76, quota: 1.35 },
     { mercato: '1X2', selezione: '1', probModello: 0.71, quota: 1.3 }, // nel passato uscito solo il 74%: sotto l'80%

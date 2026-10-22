@@ -167,3 +167,9 @@ test('A3 bilancio dei pronostici sul sito: per partita e collegati', async () =>
   assert.match(t, /1 senza esito/);
   assert.equal(testoBilancioPronostici(null), null);
 });
+
+test('B1 pronostici sul sito: n della fascia accanto alla percentuale', async () => {
+  const { testoProbPronostico } = await import('../../site/app.js');
+  assert.match(testoProbPronostico({ prob: 0.82, n: 4000 }), /^82\s?% su 4\.000 partite$/);
+  assert.doesNotMatch(testoProbPronostico({ prob: 0.82 }), /partite/);
+});

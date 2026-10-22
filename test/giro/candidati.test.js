@@ -265,3 +265,22 @@ test('NBA: stima oltre 10 punti dal consenso → pre-scarto "stima troppo lontan
   const r = costruisciCandidati({ data: '2026-10-20', partite: [p] }, null);
   assert.deepEqual(r.preScartate, [{ idCandidato: `${p.idPartita}-totale-punti-221-5-over-221-5`, motivo: 'stima troppo lontana dal mercato' }]);
 });
+
+// B3: le giocate del modello coppe (Elo europeo) restano solo in modalità prova finché CONFIG.coppe.giocateVere è false.
+test('B3 coppe: giocate del modello elo-europeo solo in prova, salvo CONFIG.coppe.giocateVere', async () => {
+  const { CONFIG } = await import('../../src/config.js');
+  assert.equal(CONFIG.coppe.giocateVere, false);
+  const coppa = () => ({
+    data: '2026-10-22', generataAlle: ORA, competizioniNonCoperte: [], erroriGiro: [],
+    partite: [partita('calcio-2026-10-22-juventus-rennes', 'Juventus - Rennes', 'elo-europeo',
+      [m('1X2', '1', 0.62, 0.6, 1.9), m('1X2', 'X', 0.22, 0.23, 4.0), m('1X2', '2', 0.16, 0.17, 6.0)], { competizione: 'Europa League' })],
+  });
+  const id = 'calcio-2026-10-22-juventus-rennes-1x2-1';
+  const fuori = costruisciCandidati(coppa(), null);
+  assert.ok(fuori.preScartate.some((s) => s.idCandidato === id && /coppe.*solo in prova/.test(s.motivo)), JSON.stringify(fuori.preScartate));
+  const prova = costruisciCandidati(coppa(), null, { senzaScartoMercato: true });
+  assert.ok(prova.candidati.some((c) => c.id === id));
+  assert.ok(!prova.preScartate.some((s) => s.idCandidato === id));
+  // Con il flag acceso (CONFIG.coppe.giocateVere, qui passato come opzione) le coppe tornano giocate vere.
+  assert.ok(!costruisciCandidati(coppa(), null, { coppeVere: true }).preScartate.some((s) => s.idCandidato === id));
+});

@@ -181,3 +181,46 @@ test('esiti rapidi NBA: solo con lo stato STATUS_FINAL, non basta "completed"', 
     assert.equal(leggi(d)[0].esito, atteso, nome);
   }
 });
+
+// B3: coppe finite ai supplementari o ai rigori → risultato dei 90 minuti (primi due tempi di ESPN).
+test('B3 esiti: partita finita ai supplementari o ai rigori → mercati dei 90 minuti dal risultato dei primi due tempi', async () => {
+  const qarabag = { sport: 'calcio', competizione: 'Europa League', partita: 'Qarabag - Twente', inizio: '2026-10-21T20:00:00+02:00' };
+  const ls = (...v) => v.map((x) => ({ displayValue: String(x) }));
+  const casi = [
+    // AET: 90 minuti 1-2 (finale 1-4).
+    ['STATUS_FINAL_AET', ls(0, 1, 0, 0), ls(0, 2, 1, 1), '1', '4', { segno2: 'vinta', under25: 'persa', over35: 'persa' }],
+    // Rigori: 90 minuti 1-1 (finale 1-1, rigori a parte).
+    ['STATUS_FINAL_PEN', ls(1, 0, 0, 0), ls(0, 1, 0, 0), '1', '1', { segno2: 'persa', under25: 'vinta', over35: 'persa' }],
+  ];
+  for (const [stato, lsCasa, lsTrasferta, sc, st, atteso] of casi) {
+    const d = cartella([
+      giocata('segno2', { ...qarabag, mercato: '1X2', selezione: '2' }),
+      giocata('under25', { ...qarabag, mercato: 'Under/Over 2.5', selezione: 'Under 2.5' }),
+      giocata('over35', { ...qarabag, mercato: 'Under/Over 3.5', selezione: 'Over 3.5' }),
+      giocata('cart', { ...qarabag, mercato: 'Cartellini Under/Over 3.5', selezione: 'Under 3.5' }),
+    ], ['segno2', 'under25', 'over35', 'cart']);
+    const summary = { header: { competitions: [{ status: { type: { name: stato } }, competitors: [
+      { homeAway: 'home', score: sc, linescores: lsCasa }, { homeAway: 'away', score: st, linescores: lsTrasferta },
+    ] }] }, boxscore: { teams: [] } };
+    const f = fonti();
+    f.espn = { partite: async () => [{ id: '88', casa: 'Qarabag', trasferta: 'Twente', inizio: '2026-10-21T18:00:00Z' }] };
+    f.opz = { fetch: async () => ({ ok: true, status: 200, text: async () => JSON.stringify(summary) }) };
+    await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T21:30:00Z'), fonti: f });
+    const per = Object.fromEntries(leggi(d).map((g) => [g.id, g.esito ?? null]));
+    assert.deepEqual({ segno2: per.segno2, under25: per.under25, over35: per.over35 }, atteso, stato);
+    // Cartellini e angoli dei supplementari non si separano: nessun esito.
+    assert.equal(per.cart, null, stato);
+  }
+});
+
+test('B3 esiti: supplementari senza il dettaglio dei due tempi → nessun esito', async () => {
+  const d = cartella([giocata('g', { sport: 'calcio', competizione: 'Europa League', partita: 'Qarabag - Twente', inizio: '2026-10-21T20:00:00+02:00', mercato: '1X2', selezione: '2' })], ['g']);
+  const summary = { header: { competitions: [{ status: { type: { name: 'STATUS_FINAL_AET' } }, competitors: [
+    { homeAway: 'home', score: '1' }, { homeAway: 'away', score: '4' },
+  ] }] }, boxscore: { teams: [] } };
+  const f = fonti();
+  f.espn = { partite: async () => [{ id: '88', casa: 'Qarabag', trasferta: 'Twente', inizio: '2026-10-21T18:00:00Z' }] };
+  f.opz = { fetch: async () => ({ ok: true, status: 200, text: async () => JSON.stringify(summary) }) };
+  await eseguiEsitiRapidi({ dirData: d, adesso: new Date('2026-10-21T21:30:00Z'), fonti: f });
+  assert.equal(leggi(d)[0].esito, null);
+});

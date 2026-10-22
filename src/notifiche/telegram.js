@@ -68,6 +68,9 @@ export function testoMultiplaBonus(mb) {
   return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
 }
 const percentuale = (p) => `${Math.round(p * 100)}%`;
+const migliaia = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+// Percentuale del pronostico con il numero di partite della sua fascia (correzione B1).
+const conPartite = (x) => (num(x.n) ? `${percentuale(x.prob)} su ${migliaia(x.n)} partite` : percentuale(x.prob));
 const pronosticiDi = (giornata) => (Array.isArray(giornata?.pronostici) ? giornata.pronostici.filter((x) => x && Array.isArray(x.pronostici)) : []);
 
 // Spiegazione del ✅ e dei pronostici collegati (regola di CONFIG.pronostici; il sito ha lo stesso testo).
@@ -87,7 +90,7 @@ export function testoPronostici(giornata, oggi) {
     const righe = p.pronostici.map((x) => {
       const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile === true ? ' ✅' : ''})` : '';
       const occhio = num(x.quota) && num(x.probMercato) ? '' : ` · ${DA_TENERE_D_OCCHIO}`;
-      return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${percentuale(x.prob)} · min ${virgola(x.quotaMinima)}${quota}${occhio}`;
+      return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · min ${virgola(x.quotaMinima)}${quota}${occhio}`;
     });
     return [`${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>${ora}`, ...righe].join('\n');
   });

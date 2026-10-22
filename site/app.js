@@ -292,6 +292,9 @@ export function esitoPartitaPronostici(p) {
   return 'tutti giusti';
 }
 
+// Percentuale del pronostico con il numero di partite della sua fascia (correzione B1).
+export const testoProbPronostico = (x) => `${percento(x.prob)}${numero(x.n) ? ` su ${String(x.n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} partite` : ''}`;
+
 // Pronostici sì/no di una partita: frase, percentuale, quota minima ed eventuale quota di oggi.
 // Senza quota o senza la probabilità di Pinnacle: "solo da tenere d'occhio".
 export function renderPronostici(p) {
@@ -301,7 +304,7 @@ export function renderPronostici(p) {
     el('p', { class: 'meta' }, `${ora(p.inizio)} · ${p.competizione}`),
     el('ul', {}, p.pronostici.map((x) => el('li', {},
       el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
-      ` · ${percento(x.prob)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
+      ` · ${testoProbPronostico(x)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
       x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
       numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
       x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : ''))),

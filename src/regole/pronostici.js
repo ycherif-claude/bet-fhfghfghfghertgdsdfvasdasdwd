@@ -1,12 +1,17 @@
 // Pronostici sì/no [utente, 22/10/2026]: per ogni partita i mercati dove il modello, da solo e senza
 // quote, è sopra la soglia del mercato (CONFIG.pronostici). La probabilità mostrata è quella vera della
-// stessa fascia nelle stagioni passate (data/taratura/calibrazione.json); la quota minima è 1 / probabilità.
+// stessa fascia nelle stagioni passate, resa monotona con la regressione isotonica, nella tabella del gruppo
+// della competizione (principali, seconde serie, extra: data/taratura/calibrazione.json; coppe:
+// data/storico/elo-europeo.json). Il "sì" esce solo se il limite inferiore di Wilson (95%) della fascia è
+// almeno probMinima [correzioni B1, B2]. La quota minima è 1 / probabilità.
 // La quota del bookmaker, se c'è, serve solo a dire se oggi conviene giocarlo (eGiocabile).
 // Quando il giro li pubblica se ne salva un'istantanea (data/registro/<data>-pronostici.json) che il
 // registro chiude dal risultato della partita, anche se la raccolta non ha quella partita.
 import fs from 'node:fs';
 import path from 'node:path';
 import { CONFIG } from '../config.js';
+import { gruppoCompetizione } from '../calcio/competizioni.js';
+import { fasceIsotoniche } from '../taratura/isotonica.js';
 
 const C = CONFIG.pronostici;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -29,11 +34,32 @@ export function leggiCalibrazione(dirData) {
 
 const chiave = (sport, mercato, selezione) => (sport === 'tennis' ? `${mercato}|*` : `${mercato}|${selezione}`);
 
-// Frequenza vera della fascia del modello; con meno di minCampioniFascia casi si usa la fascia sotto.
-export function probCalibrata(fasce, p) {
-  if (!Array.isArray(fasce)) return null;
-  const valide = fasce.filter((f) => f.n >= C.minCampioniFascia && f.da <= p + 1e-9).sort((a, b) => b.da - a.da);
-  return valide.length ? Math.min(0.97, valide[0].vera) : null;
+const arrotonda = (x) => Math.round(x * 10000) / 10000;
+
+// Fascia del modello: { prob (isotonica), limite (Wilson 95%), n (partite della fascia) }; le fasce con meno
+// di minCampioniFascia casi non contano (si usa la fascia sotto). null se nessuna fascia vale.
+export function fasciaCalibrata(fasce, p) {
+  const valide = fasceIsotoniche(fasce, C.minCampioniFascia).filter((f) => f.da <= p + 1e-9);
+  const f = valide.at(-1);
+  if (!f) return null;
+  const prob = Math.min(0.97, f.isotonica);
+  return { prob: arrotonda(prob), limite: arrotonda(Math.min(prob, f.limite)), n: f.n };
+}
+
+export const probCalibrata = (fasce, p) => fasciaCalibrata(fasce, p)?.prob ?? null;
+
+// Gruppo della calibrazione di una partita: coppe se il modello è l'Elo europeo, altrimenti quello della competizione.
+export function gruppoCalibrazione(partita) {
+  if (partita?.modello === 'elo-europeo') return 'coppe';
+  return gruppoCompetizione(partita?.competizione);
+}
+
+// Tabelle (mercato → fasce) del gruppo della partita; null se il gruppo non ha tabella.
+function tabelleDi(partita, sport, calibrazione) {
+  if (sport !== 'calcio') return calibrazione?.[sport] ?? null;
+  const gruppo = gruppoCalibrazione(partita);
+  if (!gruppo) return null;
+  return (gruppo === 'coppe' ? calibrazione?.coppe : calibrazione?.calcio?.[gruppo]) ?? null;
 }
 
 export const quotaMinima = (prob) => Math.ceil((1 / prob) * 100 - 1e-9) / 100;
@@ -71,19 +97,20 @@ export function testoPronostico(partita, mercato, selezione) {
 export function pronosticiPartita(partita, calibrazione) {
   const sport = partita.sport ?? 'calcio';
   const soglie = C.soglie[sport];
-  const tabelle = partita.modello === 'elo-europeo' ? calibrazione?.coppe : calibrazione?.[sport];
+  const tabelle = tabelleDi(partita, sport, calibrazione);
   if (!soglie || !tabelle) return [];
   const out = [];
   for (const m of partita.mercati ?? []) {
     const k = chiave(sport, m.mercato, m.selezione);
     if (!(k in soglie) || !num(m.probModello) || m.probModello < soglie[k] - 1e-9) continue;
-    const prob = probCalibrata(tabelle[k], m.probModello);
-    if (!prob || prob < C.probMinima - 1e-9) continue;
+    const fascia = fasciaCalibrata(tabelle[k], m.probModello);
+    if (!fascia || fascia.limite < C.probMinima - 1e-9) continue;
+    const { prob, limite, n } = fascia;
     const minima = quotaMinima(prob);
     const quota = num(m.quota) && m.quota > 1 ? m.quota : null;
     const probMercato = num(m.probPinnacle) ? m.probPinnacle : null;
     out.push({
-      mercato: m.mercato, selezione: m.selezione, testo: testoPronostico(partita, m.mercato, m.selezione), probModello: m.probModello, prob, quotaMinima: minima,
+      mercato: m.mercato, selezione: m.selezione, testo: testoPronostico(partita, m.mercato, m.selezione), probModello: m.probModello, prob, limite, n, quotaMinima: minima,
       quota, probMercato, giocabile: eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
     });
   }
@@ -119,7 +146,7 @@ export function righeIstantanea(pronosticiGiornata) {
       righe.push({
         idPartita: p.idPartita, sport: p.sport ?? 'calcio', competizione: p.competizione, partita: p.partita, inizio: p.inizio,
         mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, prob: x.prob, probModello: x.probModello ?? null,
-        quotaMinima: x.quotaMinima, esito: x.esito ?? null,
+        ...(num(x.n) ? { n: x.n, limite: x.limite ?? null } : {}), quotaMinima: x.quotaMinima, esito: x.esito ?? null,
       });
     }
   }

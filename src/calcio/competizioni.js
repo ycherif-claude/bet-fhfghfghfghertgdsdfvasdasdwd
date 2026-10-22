@@ -1,5 +1,12 @@
-const c = (chiave, csv, nome, priorita) =>
-  ({ chiave, nome, csv, priorita, modello: csv ? 'dixon-coles' : 'solo-pinnacle' });
+// Gruppi della calibrazione dei pronostici [correzione B2]: ogni gruppo ha la sua tabella
+// (data/taratura/calibrazione.json; le coppe in data/storico/elo-europeo.json).
+export const GRUPPI_CALIBRAZIONE = ['principali', 'secondeSerie', 'extra', 'coppe'];
+const SECONDE_SERIE = new Set(['E1', 'I2', 'SP2', 'D2', 'F2']);
+
+const c = (chiave, csv, nome, priorita) => ({
+  chiave, nome, csv, priorita, modello: csv ? 'dixon-coles' : 'solo-pinnacle',
+  gruppo: csv ? (SECONDE_SERIE.has(csv) ? 'secondeSerie' : 'principali') : null,
+});
 
 // Campionati senza quote [utente, 22/10/2026]: solo modello e pronostici sì/no, le quote le guarda l'utente.
 // Calendario da ESPN (`espn`) o, se ESPN non li ha, dai file fixtures di football-data.co.uk.
@@ -7,7 +14,7 @@ const c = (chiave, csv, nome, priorita) =>
 // `paese`/`lega`: come nel file fixtures dei campionati extra. Verificati il 22/10/2026 (pronostici giusti
 // il 76-81% sulle stagioni 2023/24-2025/26, in linea con la calibrazione).
 const n = (csv, nome, espn, extra = null) => ({
-  chiave: null, nome, csv, priorita: 4, modello: 'dixon-coles', espn, ...(extra ? { formato: 'extra', ...extra } : {}),
+  chiave: null, nome, csv, priorita: 4, modello: 'dixon-coles', gruppo: 'extra', espn, ...(extra ? { formato: 'extra', ...extra } : {}),
 });
 
 export const COMPETIZIONI = [
@@ -16,8 +23,8 @@ export const COMPETIZIONI = [
   c('soccer_italy_serie_a', 'I1', 'Serie A', 1),
   c('soccer_germany_bundesliga', 'D1', 'Bundesliga', 1),
   c('soccer_france_ligue_one', 'F1', 'Ligue 1', 1),
-  { ...c('soccer_uefa_champs_league', null, 'Champions League', 1), coppa: true },
-  { ...c('soccer_uefa_europa_league', null, 'Europa League', 1), coppa: true },
+  { ...c('soccer_uefa_champs_league', null, 'Champions League', 1), coppa: true, gruppo: 'coppe' },
+  { ...c('soccer_uefa_europa_league', null, 'Europa League', 1), coppa: true, gruppo: 'coppe' },
   c('soccer_netherlands_eredivisie', 'N1', 'Eredivisie', 2),
   c('soccer_portugal_primeira_liga', 'P1', 'Primeira Liga', 2),
   c('soccer_efl_champ', 'E1', 'Championship', 2),
@@ -53,8 +60,11 @@ export const COMPETIZIONI = [
   n('JPN', 'J1 League (Giappone)', 'soccer/jpn.1', { paese: 'Japan', lega: 'J1 League' }),
   n('CHN', 'Super League (Cina)', 'soccer/chn.1', { paese: 'China', lega: 'Super League' }),
   // Coppa senza quote: calendario da ESPN, modello Elo europeo (src/coppe).
-  { chiave: null, nome: 'Conference League', csv: null, priorita: 4, modello: 'elo-europeo', espn: 'soccer/uefa.europa.conf', coppa: true },
+  { chiave: null, nome: 'Conference League', csv: null, priorita: 4, modello: 'elo-europeo', espn: 'soccer/uefa.europa.conf', coppa: true, gruppo: 'coppe' },
 ];
+
+// Gruppo della calibrazione di una competizione (per nome), null se non ha pronostici (nazionali).
+export const gruppoCompetizione = (nome) => COMPETIZIONI.find((x) => x.nome === nome)?.gruppo ?? null;
 
 // Nomi ESPN → nomi del CSV di football-data.co.uk, per i campionati senza quote (codice del CSV → { ESPN: CSV }).
 // I nomi uguali o contenuti l'uno nell'altro si abbinano da soli.

@@ -61,9 +61,9 @@ test('A2 giocabile: serve la probabilità di Pinnacle ≥ probMinima e la quota 
 });
 
 test('A2 pronosticiPartita: quota sopra la minima ma Pinnacle sotto l\'80% → nessun ✅; probMercato salvata', () => {
-  const fasce = [{ da: 0.75, n: 400, vera: 0.82 }];
-  const cal = { calcio: { 'Under/Over 1.5|Over 1.5': fasce, 'Doppia chance|1X': fasce } };
-  const partita = { sport: 'calcio', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
+  const fasce = [{ da: 0.75, n: 4000, vera: 0.82 }];
+  const cal = { calcio: { principali: { 'Under/Over 1.5|Over 1.5': fasce, 'Doppia chance|1X': fasce } } };
+  const partita = { sport: 'calcio', competizione: 'Serie A', partita: 'Inter - Lecce', casa: 'Inter', trasferta: 'Lecce', mercati: [
     { mercato: 'Under/Over 1.5', selezione: 'Over 1.5', probModello: 0.8, probPinnacle: 0.70, quota: 1.45 },
     { mercato: 'Doppia chance', selezione: '1X', probModello: 0.8, probPinnacle: 0.84, quota: 1.30 },
   ] };
@@ -171,7 +171,7 @@ test('A1 registro: i pronostici si chiudono dal risultato anche senza riga nella
 test('A1 giro: salva l\'istantanea dei pronostici pubblicati e mette in erroriGiro quelli senza esito dopo 4 giorni', () => {
   const d = cartella();
   const fasce = [{ da: 0.7, n: 500, vera: 0.86 }];
-  writeFileSync(join(d, 'taratura', 'calibrazione.json'), JSON.stringify({ calcio: { '1X2|1': fasce, 'Doppia chance|1X': fasce } }));
+  writeFileSync(join(d, 'taratura', 'calibrazione.json'), JSON.stringify({ calcio: { principali: { '1X2|1': fasce, 'Doppia chance|1X': fasce } } }));
   const m = (mercato, selezione, probModello, probPinnacle, quota) => ({ mercato, selezione, probModello, probPinnacle, quota, fonteQuota: 'x', oraQuota: null, frequenzaCampionato: null });
   writeFileSync(join(d, 'raccolta', '2026-10-23.json'), JSON.stringify({
     data: '2026-10-23', generataAlle: '2026-10-23T07:35:00+02:00', crediti: {}, competizioniNonCoperte: [], erroriGiro: [],
