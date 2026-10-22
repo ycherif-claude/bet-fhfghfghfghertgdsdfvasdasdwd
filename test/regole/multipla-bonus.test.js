@@ -160,3 +160,15 @@ test('Telegram: pronostici arrivati dopo il messaggio del mattino, una volta sol
   const senza = { data: '2026-10-25', giocate: [] };
   assert.equal(messaggi({ giornata: senza, oggi: '2026-10-25', adesso: new Date('2026-10-25T12:00:00Z'), inviate: new Set(['2026-10-25|giornata']) }).length, 0);
 });
+
+test('Telegram: partite con pronostici aggiunte dopo, solo le nuove', () => {
+  const pr = (id) => ({ idPartita: id, sport: 'calcio', partita: `${id} - Y`, inizio: '2026-10-25T19:00:00Z', pronostici: [{ testo: 'Almeno 2 gol (Over 1.5)', prob: 0.8, quotaMinima: 1.25, quota: null }] });
+  const g = { data: '2026-10-25', prova: true, giocate: [], pronostici: [pr('A'), pr('B')] };
+  const inviate = new Set(['2026-10-25|giornata', '2026-10-25|pronostici', '2026-10-25|pronostico|A']);
+  const m = messaggi({ giornata: g, oggi: '2026-10-25', adesso: new Date('2026-10-25T12:00:00Z'), inviate });
+  assert.equal(m.length, 1);
+  assert.match(m[0].testo, /Nuovi pronostici del 25\/10/);
+  assert.match(m[0].testo, /B - Y/);
+  assert.doesNotMatch(m[0].testo, /A - Y/);
+  assert.deepEqual(m[0].segna, ['2026-10-25|pronostico|B']);
+});

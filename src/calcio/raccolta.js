@@ -12,7 +12,9 @@ import { mercatiConteggi } from './modelli/conteggi.js';
 import { oddsApi } from './fonti/odds-api.js';
 import { footballDataUk } from './fonti/football-data-uk.js';
 import { footballDataOrg } from './fonti/football-data-org.js';
-import { espn } from '../controlli/espn.js';
+import { espn, stessaSquadra } from '../controlli/espn.js';
+import { PARAMETRI as ELO, SOLO_COPPE, lambdaCoppa } from '../coppe/elo.js';
+import { existsSync, readFileSync } from 'node:fs';
 import { aggiornaEsitiGiro } from './esiti.js';
 
 const TOTALE_MESE = 500;
@@ -156,7 +158,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     const stato = c.modello === 'dixon-coles' ? await lega(c.csv, c.formato) : null;
     for (const base of eventiPer.get(chiaveEventi(c))) {
       const evento = quote?.get(base.id) ?? { ...base, bookmaker: [] };
-      const partita = costruisciPartita({ c, evento, base, stato, data, ora, errore: (m) => erroriGiro.push(m) });
+      const coppa = c.coppa ? eloCoppa(base, fonti) : null;
+      const partita = costruisciPartita({ c, evento, base, stato, coppa, data, ora, errore: (m) => erroriGiro.push(m) });
       if (partita) partite.push(partita);
     }
   }
@@ -183,7 +186,7 @@ function datiLiberi(evento, mercato, selezione) {
   return { quota: med?.quota ?? null, n: med?.n ?? null, probPinnacle: pin };
 }
 
-function costruisciPartita({ c, evento, base, stato, data, ora, errore }) {
+function costruisciPartita({ c, evento, base, stato, coppa = null, data, ora, errore }) {
   const casa = base.casa;
   const trasferta = base.trasferta;
   const voce = (mercato, selezione, probModello, frequenzaCampionato) => {
@@ -202,7 +205,16 @@ function costruisciPartita({ c, evento, base, stato, data, ora, errore }) {
   let mercati = [];
   let ragionamentoBase = [];
 
-  if (c.modello === 'solo-pinnacle') {
+  if (coppa) {
+    // Coppa europea: gol attesi dall'Elo europeo (un punteggio per tutti i club).
+    modello = 'elo-europeo';
+    lam = coppa.lambda;
+    ragionamentoBase = [`Elo europeo: ${casa} ${Math.round(coppa.casa)} – ${trasferta} ${Math.round(coppa.trasferta)}; gol attesi ${virgola(lam.casa)} – ${virgola(lam.trasferta)}`];
+    for (const g of mercatiGol(lam.casa, lam.trasferta, 0.45)) mercati.push(voce(g.mercato, g.selezione, g.prob, null));
+  } else if (c.coppa && c.modello === 'elo-europeo') {
+    errore(`Elo europeo senza punteggi per ${casa} - ${trasferta} (${c.nome})`);
+    return null;
+  } else if (c.modello === 'solo-pinnacle') {
     ragionamentoBase = ['Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)'];
     mercati = soloLiberi(voce);
   } else if (!stato) {
@@ -269,8 +281,25 @@ function soloLiberi(voce) {
   return out.filter((m) => m.probPinnacle !== null);
 }
 
+// Elo europeo di una partita di coppa: la partita nello storico delle coppe (ESPN, con gli id delle squadre),
+// poi i punteggi. null se manca il file dei punteggi o la partita.
+function eloCoppa(base, fonti) {
+  const elo = fonti.eloEuropeo;
+  if (!elo || !Array.isArray(fonti.coppe)) return null;
+  const t = Date.parse(base.inizio);
+  const f = fonti.coppe.find((p) => p.id === base.id)
+    ?? fonti.coppe.find((p) => Math.abs(Date.parse(p.inizio) - t) <= 6 * 3600000
+      && stessaSquadra(p.casa.nome, base.casa) && stessaSquadra(p.trasferta.nome, base.trasferta));
+  if (!f) return null;
+  const punti = (s) => elo.rating[elo.squadreEspn?.[s.id] ?? `espn:${s.id}`] ?? SOLO_COPPE;
+  const casa = punti(f.casa);
+  const trasferta = punti(f.trasferta);
+  const delta = casa - trasferta + (f.neutro ? 0 : (elo.parametri?.H ?? ELO.H));
+  return { casa, trasferta, delta, lambda: lambdaCoppa(elo.gol, delta) };
+}
+
 // Chiave degli eventi di una competizione: quella di The Odds API, oppure `fd:<codice CSV>` senza quote.
-const chiaveEventi = (c) => c.chiave ?? `fd:${c.csv}`;
+const chiaveEventi = (c) => c.chiave ?? `fd:${c.csv ?? c.nome}`;
 
 // Giorni (AAAA-MM-GG) da chiedere a ESPN: la giornata va dalle 8 di Roma alle 8 del giorno dopo.
 const giornoDopo = (data) => {
@@ -340,7 +369,13 @@ async function principale() {
     console.error('Manca ODDS_API_KEY');
     process.exit(1);
   }
-  const fonti = { oddsApi, footballDataUk, footballDataOrg, espn };
+  const leggi = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null);
+  const fonti = {
+    oddsApi, footballDataUk, footballDataOrg, espn,
+    // Coppe europee: punteggi (npm run elo-europeo) e partite con gli id ESPN delle squadre.
+    eloEuropeo: leggi('data/storico/elo-europeo.json'),
+    coppe: leggi('data/storico/coppe-europee.json')?.partite ?? null,
+  };
   const raccolta = await eseguiRaccolta({ data, adesso, fonti, chiavi });
   let esiti = { aggiornate: 0 };
   try {

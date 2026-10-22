@@ -162,10 +162,22 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       ? `${testoPronostici(delGiorno, oggi)}\n\n🧪 ${giocate.length === 1 ? '1 giocata' : `${giocate.length} giocate`} di prova sul sito: non giocarle, servono al database.`
       : testo;
     const conBonus = bonus.length ? `${base}\n\n${bonus.join('\n\n')}` : base;
-    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`] });
+    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`)] });
   } else {
     // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).
-    if (Array.isArray(delGiorno.pronostici)) aggiungi(`${oggi}|pronostici`, testoPronostici(delGiorno, oggi) + piede);
+    if (Array.isArray(delGiorno.pronostici) && !inviate.has(`${oggi}|pronostici`)) {
+      out.push({ chiave: `${oggi}|pronostici`, testo: testoPronostici(delGiorno, oggi) + piede, segna: pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`) });
+    } else {
+      // Partite con pronostici aggiunte dopo (per esempio le coppe): un messaggio con le sole nuove.
+      const nuovi = pronosticiDi(delGiorno).filter((p) => !inviate.has(`${oggi}|pronostico|${p.idPartita}`));
+      if (nuovi.length) {
+        out.push({
+          chiave: `${oggi}|pronostici|${hash(nuovi.map((p) => p.idPartita).join(','))}`,
+          testo: testoPronostici({ ...delGiorno, pronostici: nuovi }, oggi).replace('<b>Pronostici del', '<b>Nuovi pronostici del') + piede,
+          segna: nuovi.map((p) => `${oggi}|pronostico|${p.idPartita}`),
+        });
+      }
+    }
     const nuove = prova ? [] : giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
     if (nuove.length) {
       out.push({

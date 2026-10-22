@@ -273,6 +273,8 @@ Per 3-4 settimane le giocate **non vanno giocate**: servono a creare il database
 
 - **25 campionati di calcio in più, senza quote** (`src/calcio/competizioni.js`, priorità 4): Inghilterra (League One, League Two, National League), Scozia (4 serie), Belgio, Turchia, Grecia, Austria, Danimarca, Svizzera, Norvegia, Svezia, Polonia, Romania, Irlanda, Finlandia, Argentina, Brasile, Messico, MLS, Giappone, Cina. Calendario da ESPN o, se ESPN non li ha, dai file fixtures di football-data.co.uk; modello dagli storici di football-data.co.uk (i campionati extra da `new/<codice>.csv`). Danno solo pronostici sì/no e righe del registro, mai giocate. Sulle stagioni 2023/24-2025/26 i pronostici sarebbero stati giusti il 76-81% delle volte.
 
+- **Coppe europee** (Champions, Europa e Conference League) con l'**Elo europeo** (`src/coppe`): un punteggio unico per tutti i club, dalle partite dei campionati con storico e da quelle delle coppe dal 2021 (ESPN, `data/storico/coppe-europee.json`). Dal punteggio, gol attesi con una regressione di Poisson stimata sulle coppe passate e poi la matrice Dixon-Coles. Ogni mattina `npm run elo-europeo` aggiorna storico e punteggi (`data/storico/elo-europeo.json`, con la calibrazione dei pronostici sulle coppe). Provato sulle coppe 2025/26-2026/27: log-loss 1X2 0,943 contro 1,030 delle sole frequenze, pronostici giusti in linea con le percentuali. Un "sì" esce solo se la sua fascia, nel passato, è uscita almeno il 70% delle volte.
+
 Le date sono in `CONFIG.prova`. Dopo il 18 novembre si torna alle regole normali, con le soglie tarate sul registro.
 
 ## Revisione settimanale

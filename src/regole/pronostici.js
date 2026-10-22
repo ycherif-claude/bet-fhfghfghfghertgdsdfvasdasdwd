@@ -10,11 +10,19 @@ const C = CONFIG.pronostici;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 
 export function leggiCalibrazione(dirData) {
+  let cal = null;
   try {
-    return JSON.parse(fs.readFileSync(path.join(dirData, 'taratura', 'calibrazione.json'), 'utf8'));
+    cal = JSON.parse(fs.readFileSync(path.join(dirData, 'taratura', 'calibrazione.json'), 'utf8'));
   } catch {
     return null;
   }
+  // Coppe europee: calibrazione dell'Elo europeo sulle coppe passate (data/storico/elo-europeo.json).
+  try {
+    cal.coppe = JSON.parse(fs.readFileSync(path.join(dirData, 'storico', 'elo-europeo.json'), 'utf8')).calibrazione;
+  } catch {
+    // Senza file le coppe non hanno pronostici.
+  }
+  return cal;
 }
 
 const chiave = (sport, mercato, selezione) => (sport === 'tennis' ? `${mercato}|*` : `${mercato}|${selezione}`);
@@ -54,13 +62,14 @@ export function testoPronostico(partita, mercato, selezione) {
 export function pronosticiPartita(partita, calibrazione) {
   const sport = partita.sport ?? 'calcio';
   const soglie = C.soglie[sport];
-  if (!soglie || !calibrazione?.[sport]) return [];
+  const tabelle = partita.modello === 'elo-europeo' ? calibrazione?.coppe : calibrazione?.[sport];
+  if (!soglie || !tabelle) return [];
   const out = [];
   for (const m of partita.mercati ?? []) {
     const k = chiave(sport, m.mercato, m.selezione);
     if (!(k in soglie) || !num(m.probModello) || m.probModello < soglie[k] - 1e-9) continue;
-    const prob = probCalibrata(calibrazione[sport][k], m.probModello);
-    if (!prob) continue;
+    const prob = probCalibrata(tabelle[k], m.probModello);
+    if (!prob || prob < C.probMinima - 1e-9) continue;
     const minima = quotaMinima(prob);
     const quota = num(m.quota) && m.quota > 1 ? m.quota : null;
     out.push({

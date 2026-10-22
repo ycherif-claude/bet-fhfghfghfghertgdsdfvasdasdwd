@@ -16,8 +16,8 @@ export const COMPETIZIONI = [
   c('soccer_italy_serie_a', 'I1', 'Serie A', 1),
   c('soccer_germany_bundesliga', 'D1', 'Bundesliga', 1),
   c('soccer_france_ligue_one', 'F1', 'Ligue 1', 1),
-  c('soccer_uefa_champs_league', null, 'Champions League', 1),
-  c('soccer_uefa_europa_league', null, 'Europa League', 1),
+  { ...c('soccer_uefa_champs_league', null, 'Champions League', 1), coppa: true },
+  { ...c('soccer_uefa_europa_league', null, 'Europa League', 1), coppa: true },
   c('soccer_netherlands_eredivisie', 'N1', 'Eredivisie', 2),
   c('soccer_portugal_primeira_liga', 'P1', 'Primeira Liga', 2),
   c('soccer_efl_champ', 'E1', 'Championship', 2),
@@ -52,6 +52,8 @@ export const COMPETIZIONI = [
   n('USA', 'MLS (Stati Uniti)', 'soccer/usa.1', { paese: 'USA', lega: 'MLS' }),
   n('JPN', 'J1 League (Giappone)', 'soccer/jpn.1', { paese: 'Japan', lega: 'J1 League' }),
   n('CHN', 'Super League (Cina)', 'soccer/chn.1', { paese: 'China', lega: 'Super League' }),
+  // Coppa senza quote: calendario da ESPN, modello Elo europeo (src/coppe).
+  { chiave: null, nome: 'Conference League', csv: null, priorita: 4, modello: 'elo-europeo', espn: 'soccer/uefa.europa.conf', coppa: true },
 ];
 
 // Nomi ESPN → nomi del CSV di football-data.co.uk, per i campionati senza quote (codice del CSV → { ESPN: CSV }).

@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: 24
       - run: npm test
+      - name: Elo europeo (coppe)
+        # Storico delle coppe e punteggi di tutti i club: servono alla raccolta per Champions, Europa e Conference League.
+        run: npm run elo-europeo
+        continue-on-error: true
       - run: npm run raccolta
         continue-on-error: true
         env:
