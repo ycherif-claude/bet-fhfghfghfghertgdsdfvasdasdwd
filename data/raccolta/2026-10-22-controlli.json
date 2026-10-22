@@ -31,12 +31,27 @@
         "quote non controllate (meno di 3 bookmaker con la stessa linea)"
       ],
       "alle": "2026-10-22T19:54:05+02:00"
+    },
+    "nba-2026-10-22-philadelphia-76ers-cleveland-cavaliers-vincente-cleveland-cavaliers": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,15 sotto la minima 2,36",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,15 sotto la minima 2,36"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-22T23:55:50+02:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "basket-2026-10-22-pallacanestro-olimpia-milano-fc-barcelona-basquet-vincente-fc-barcelona-basquet"
+      "basket-2026-10-22-pallacanestro-olimpia-milano-fc-barcelona-basquet-vincente-fc-barcelona-basquet",
+      "nba-2026-10-22-philadelphia-76ers-cleveland-cavaliers-vincente-cleveland-cavaliers"
     ]
   }
 }
