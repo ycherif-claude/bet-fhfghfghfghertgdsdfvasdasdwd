@@ -19,6 +19,7 @@ import { oddspapi } from '../pallavolo/fonti/oddspapi.js';
 import { CAMPIONATI_ESPN, espn, inElenco } from './espn.js';
 import { quoteFresche, squadreDi, trovaEvento } from './quote.js';
 import { eseguiEsitiRapidi } from '../esiti/rapidi.js';
+import { raccoglitoreChiusure } from '../registro/chiusure.js';
 
 const K = CONFIG.controlli;
 const MIN = 60000;
@@ -235,7 +236,14 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
     if (form && !form.pronta && !ultimo) continue;
     pronte.push({ v, form });
   }
-  const quote = pronte.length ? await quoteFresche(pronte.map((x) => x.v), { fonti, chiavi, finestra: finestraGiornata(data), errore }) : new Map();
+  // Le quote scaricate servono anche al registro della taratura (quote di chiusura).
+  let chiusure = null;
+  try { chiusure = raccoglitoreChiusure({ dirData, data, adesso }); } catch (e) { errore('Registro (chiusure)', e); }
+  const quote = pronte.length ? await quoteFresche(pronte.map((x) => x.v), {
+    fonti, chiavi, finestra: finestraGiornata(data), errore,
+    registra: (...a) => { try { chiusure?.registra(...a); } catch (e) { errore('Registro (chiusure)', e); } },
+  }) : new Map();
+  try { chiusure?.salva(); } catch (e) { errore('Registro (chiusure)', e); }
 
   // 3. Esiti; le revisioni nuove vanno a Claude se c'è posto, altrimenti regole fisse.
   const nuoveRevisioni = [];

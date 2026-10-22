@@ -47,6 +47,10 @@ jobs:
         continue-on-error: true
         env:
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
+      - name: Registro della taratura
+        # Esiti di tutti i mercati dei giorni passati (data/registro): dopo gli storici, che servono a basket e pallavolo.
+        run: npm run registro
+        continue-on-error: true
       - name: Salva i dati
         run: |
           git config user.name "github-actions[bot]"

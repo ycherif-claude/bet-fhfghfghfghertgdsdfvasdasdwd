@@ -260,6 +260,15 @@ Ogni messaggio parte una volta sola (lo stato è in `data/stato/telegram.json`).
 
 Senza i due secrets le notifiche restano spente e nulla si blocca. Se il chat id è sbagliato (Telegram risponde "chat not found") l'Action "Notifiche Telegram" fallisce con un messaggio che lo dice: correggi `TELEGRAM_CHAT_ID`. L'Action "Notifiche Telegram" parte dopo ogni aggiornamento dei dati e dopo le altre Action; si può anche avviare a mano.
 
+## Modalità prova e registro della taratura (fino al 18 novembre 2026)
+
+Per 3-4 settimane le giocate **non vanno giocate**: servono a creare il database per tarare il sistema (Fase 5). In questo periodo:
+
+- **ogni value positivo** diventa una giocata di prova, senza lo scarto massimo dal mercato (fino a 60 singole al giorno); sito e Telegram le segnano "PROVA, non giocare"; su Telegram arriva la lista del giorno, non un messaggio per ogni cambio di stato;
+- il **registro** in `data/registro/<data>.json` salva **ogni mercato di ogni partita** analizzata: probabilità del modello e del mercato, quota del mattino, quota di chiusura (salvata dai controlli prima delle partite, in `<data>-chiusure.json`, senza richieste in più) ed esito. Ogni mattina, dopo la raccolta, completa gli esiti dei 3 giorni precedenti. Cartellini e angoli da ESPN sono segnati come provvisori.
+
+Le date sono in `CONFIG.prova`. Dopo il 18 novembre si torna alle regole normali, con le soglie tarate sul registro.
+
 ## Revisione settimanale
 
 Ogni lunedì mattina (alle 10:37 con l'ora legale, alle 09:37 con l'ora solare) una routine di Claude analizza la settimana appena chiusa e scrive un rapporto in `docs/report/settimana-<data>.md`: risultati, cosa funziona e cosa no, salute del sistema e al massimo 5 proposte di miglioramento. Non cambia niente da sola: le proposte le decidi tu. Le istruzioni sono in `docs/routine/revisione-settimanale.md`.

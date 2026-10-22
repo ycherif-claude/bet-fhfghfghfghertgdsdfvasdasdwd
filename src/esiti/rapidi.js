@@ -118,16 +118,19 @@ async function risultatoTennis(gamba, fonti) {
   return null;
 }
 
-// Ultime giornate salvate dello storico (la partita è nella più recente o nella successiva).
-function giornateRecenti(dirData, file) {
+// Storico salvato e giornate da scaricare della stagione `stagione`: l'ultima salvata, la successiva
+// e la precedente (il registro cerca risultati fino a 3 giorni indietro).
+function giornateRecenti(dirData, file, stagione) {
   try {
     const j = JSON.parse(fs.readFileSync(path.join(dirData, 'storico', `${file}.json`), 'utf8'));
-    const ultima = Math.max(0, ...(j.partite ?? []).map((p) => p.giornata ?? 0));
-    return { partite: j.partite ?? [], giornate: [...new Set([ultima, ultima + 1].filter((g) => g > 0))] };
+    const partite = j.partite ?? [];
+    const ultima = Math.max(0, ...partite.filter((p) => p.stagione === stagione).map((p) => p.giornata ?? 0));
+    return { partite, giornate: [...new Set([ultima, ultima + 1, ultima - 1].filter((g) => g > 0))] };
   } catch {
     return { partite: [], giornate: [] };
   }
 }
+const vicina = (x, gamba) => Math.abs(Date.parse(x.inizio ?? `${x.data}T12:00:00Z`) - Date.parse(gamba.inizio)) < 36 * 3600000;
 
 async function risultatoBasket(gamba, fonti, dirData) {
   const sq = squadreDi(gamba.partita);
@@ -137,34 +140,37 @@ async function risultatoBasket(gamba, fonti, dirData) {
   const trasferta = codiceSquadra(camp, sq.trasferta);
   if (!casa || !trasferta) return null;
   const stagione = stagioneBasket(new Date(gamba.inizio).toISOString().slice(0, 10));
-  const { giornate } = giornateRecenti(dirData, camp);
-  for (const g of giornate) {
+  const stessa = (x) => x.finita !== false && num(x.puntiCasa) && num(x.puntiTrasferta) && vicina(x, gamba)
+    && (camp === 'eurolega' ? x.casa === casa && x.trasferta === trasferta : codiceSquadra('nbl', x.casa) === casa && codiceSquadra('nbl', x.trasferta) === trasferta);
+  const { partite: salvate, giornate } = giornateRecenti(dirData, camp, stagione);
+  // Prima lo storico salvato (la raccolta del mattino lo aggiorna), poi le giornate recenti dalla fonte.
+  let p = salvate.find(stessa);
+  for (const g of p ? [] : giornate) {
     const { partite } = camp === 'eurolega' ? await fonti.eurolega.giornata(stagione, g) : await fonti.thesportsdb.round(stagione, g);
-    const p = partite.find((x) => x.finita !== false
-      && (camp === 'eurolega' ? x.casa === casa && x.trasferta === trasferta : codiceSquadra('nbl', x.casa) === casa && codiceSquadra('nbl', x.trasferta) === trasferta)
-      && Math.abs(Date.parse(x.inizio ?? `${x.data}T12:00:00Z`) - Date.parse(gamba.inizio)) < 36 * 3600000);
-    if (p) return { ...sq, puntiCasa: p.puntiCasa, puntiTrasferta: p.puntiTrasferta, campionato: camp };
+    p = partite.find(stessa);
+    if (p) break;
   }
-  return null;
+  return p ? { ...sq, puntiCasa: p.puntiCasa, puntiTrasferta: p.puntiTrasferta, campionato: camp } : null;
 }
 
 async function risultatoPallavolo(gamba, fonti, dirData) {
   const c = CAMPIONATI_PALLAVOLO.find((x) => x.competizione === gamba.competizione);
   const sq = squadreDi(gamba.partita);
   if (!c?.thesportsdb || !sq) return null;
-  const { partite: salvate, giornate } = giornateRecenti(dirData, `pallavolo-${c.id}`);
+  const stagione = stagioneBasket(new Date(gamba.inizio).toISOString().slice(0, 10));
+  const { partite: salvate, giornate } = giornateRecenti(dirData, `pallavolo-${c.id}`, stagione);
   const squadre = squadreStorico(salvate);
   const idCasa = abbinaSquadra(sq.casa, squadre);
   const idTrasferta = abbinaSquadra(sq.trasferta, squadre);
   if (!idCasa || !idTrasferta) return null;
-  const stagione = stagioneBasket(new Date(gamba.inizio).toISOString().slice(0, 10));
-  for (const g of giornate) {
+  const stessa = (x) => x.finita && x.idCasa === idCasa && x.idTrasferta === idTrasferta && vicina(x, gamba);
+  let p = salvate.find(stessa);
+  for (const g of p ? [] : giornate) {
     const { partite } = await fonti.thesportsdb.round(stagione, g, {}, c.thesportsdb);
-    const p = partite.find((x) => x.finita && x.idCasa === idCasa && x.idTrasferta === idTrasferta
-      && Math.abs(Date.parse(x.inizio) - Date.parse(gamba.inizio)) < 36 * 3600000);
-    if (p) return { ...sq, setCasa: p.puntiCasa, setTrasferta: p.puntiTrasferta };
+    p = partite.find(stessa);
+    if (p) break;
   }
-  return null;
+  return p ? { ...sq, setCasa: p.puntiCasa, setTrasferta: p.puntiTrasferta } : null;
 }
 
 // Esito di una gamba dal suo risultato, con le regole di ogni sport.
@@ -172,10 +178,27 @@ export async function esitoRapido(gamba, fonti, dirData) {
   return (await valutaGamba(gamba, fonti, dirData))?.esito ?? null;
 }
 
+// Per il registro della taratura: { esito, provvisorio } (cartellini e angoli da ESPN sono provvisori) o null.
+// `cache`: Map condivisa, così il risultato di una partita si cerca una volta sola per tutti i suoi mercati.
+export async function esitoPerRegistro(gamba, fonti, dirData, cache) {
+  const v = await valutaGamba(gamba, fonti, dirData, cache);
+  if (v?.esito) return { esito: v.esito, provvisorio: false };
+  if (v?.esitoProvvisorio) return { esito: v.esitoProvvisorio.esito, provvisorio: true };
+  return null;
+}
+
+// Risultato della partita, una volta sola per `cache` (stessa partita, stesso inizio).
+function ricorda(cache, gamba, calcola) {
+  if (!cache) return calcola();
+  const k = `${gamba.sport}|${gamba.competizione}|${gamba.partita}|${gamba.inizio}`;
+  if (!cache.has(k)) cache.set(k, calcola());
+  return cache.get(k);
+}
+
 // { esito } oppure, per cartellini e angoli del calcio, { esitoProvvisorio }; null se non si sa.
-async function valutaGamba(gamba, fonti, dirData) {
+async function valutaGamba(gamba, fonti, dirData, cache = null) {
   if (gamba.sport === 'calcio') {
-    const r = await risultatoCalcio(gamba, fonti);
+    const r = await ricorda(cache, gamba, () => risultatoCalcio(gamba, fonti));
     if (!r) return null;
     if (mercatoConteggio(gamba.mercato)) {
       const p = provvisorio(gamba, r);
@@ -185,25 +208,25 @@ async function valutaGamba(gamba, fonti, dirData) {
     const e = esitoSelezione(gamba.mercato, gamba.selezione, gol);
     return e ? { esito: e } : null;
   }
-  const e = await esitoAltriSport(gamba, fonti, dirData);
+  const e = await esitoAltriSport(gamba, fonti, dirData, cache);
   return e ? { esito: e } : null;
 }
 
-async function esitoAltriSport(gamba, fonti, dirData) {
+async function esitoAltriSport(gamba, fonti, dirData, cache) {
   if (gamba.sport === 'nba') {
-    const r = await risultatoNba(gamba, fonti);
+    const r = await ricorda(cache, gamba, () => risultatoNba(gamba, fonti));
     return r ? esitoNba(gamba.mercato, gamba.selezione, r) : null;
   }
   if (gamba.sport === 'tennis') {
-    const r = await risultatoTennis(gamba, fonti);
+    const r = await ricorda(cache, gamba, () => risultatoTennis(gamba, fonti));
     return r ? esitoTennis(gamba.selezione, r) : null;
   }
   if (gamba.sport === 'basket') {
-    const r = await risultatoBasket(gamba, fonti, dirData);
+    const r = await ricorda(cache, gamba, () => risultatoBasket(gamba, fonti, dirData));
     return r ? esitoNba(gamba.mercato, gamba.selezione, r, (n) => codiceSquadra(r.campionato, n)) : null;
   }
   if (gamba.sport === 'pallavolo') {
-    const r = await risultatoPallavolo(gamba, fonti, dirData);
+    const r = await ricorda(cache, gamba, () => risultatoPallavolo(gamba, fonti, dirData));
     return r ? esitoPallavolo(gamba.mercato, gamba.selezione, r) : null;
   }
   return null;

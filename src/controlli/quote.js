@@ -97,7 +97,7 @@ export function quotaFormatoNba(evento, voce) {
   return { quota: q.quota, n: q.n, prob: riferimento(evento, tipo, linea)?.prob?.[sel] ?? null };
 }
 
-function quotaTennis(evento, selezione) {
+export function quotaTennis(evento, selezione) {
   const q = quotaMedianaTennis(evento, selezione);
   if (!q) return { saltata: 'meno di 3 bookmaker con la quota' };
   const sq = squadreDi(`${evento.giocatore1} - ${evento.giocatore2}`);
@@ -115,7 +115,9 @@ const gruppo = (voci, chiave) => {
 };
 
 // `voci`: [{ id, sport, competizione, partita, inizio, mercato, selezione }]. Restituisce Map(id → risultato).
-export async function quoteFresche(voci, { fonti, chiavi, finestra, errore }) {
+// `registra(sport, competizione, eventi)` (facoltativo) riceve gli eventi con le quote scaricate:
+// servono al registro della taratura come quote di chiusura, senza richieste in più.
+export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {} }) {
   const out = new Map();
   const salta = (lista, motivo) => { for (const v of lista) out.set(v.id, { saltata: motivo }); };
   const opzOdds = { chiave: chiavi.oddsApi };
@@ -139,6 +141,7 @@ export async function quoteFresche(voci, { fonti, chiavi, finestra, errore }) {
         if (!daChiedere.length) continue;
         if (!num(ev.rimasti) || ev.rimasti - costo < K.minCreditiOdds) { salta(daChiedere, 'crediti delle quote finiti'); continue; }
         const q = await fonte.quote(chiave, finestra, opzOdds);
+        registra(sport, comp, q.eventi ?? []);
         for (const v of daChiedere) {
           const e = trovaEvento(v, q.eventi ?? []);
           out.set(v.id, !e ? { saltata: 'partita senza quote' } : sport === 'calcio' ? quotaCalcio(e, v.mercato, v.selezione) : quotaFormatoNba(e, v));
@@ -155,6 +158,7 @@ export async function quoteFresche(voci, { fonti, chiavi, finestra, errore }) {
         if (!daChiedere.length) continue;
         if (!num(ev.rimasti) || ev.rimasti - 1 < K.minCreditiOdds) { salta(daChiedere, 'crediti delle quote finiti'); continue; }
         const q = await fonti.oddsTennis.quote(torneo.chiave, finestra, opzOdds);
+        registra(sport, comp, (q.eventi ?? []).map((e) => ({ ...e, casa: e.giocatore1, trasferta: e.giocatore2 })));
         for (const v of daChiedere) {
           const e = evento(v, q.eventi ?? []);
           out.set(v.id, e ? quotaTennis(e, v.selezione) : { saltata: 'partita senza quote' });
@@ -162,6 +166,7 @@ export async function quoteFresche(voci, { fonti, chiavi, finestra, errore }) {
       } else if (sport === 'nba') {
         if (!chiavi.sportsgameodds) { salta(lista, 'manca SPORTSGAMEODDS_API_KEY'); continue; }
         const eventi = await fonti.sportsgameodds.eventi(finestra, { chiave: chiavi.sportsgameodds });
+        registra(sport, comp, eventi);
         for (const v of lista) {
           const e = trovaEvento(v, eventi);
           out.set(v.id, e ? quotaFormatoNba(e, v) : { assente: true });
@@ -177,6 +182,7 @@ export async function quoteFresche(voci, { fonti, chiavi, finestra, errore }) {
           const f = trovaEvento(stesse[0], elenco);
           if (!f) { for (const v of stesse) out.set(v.id, { assente: true }); continue; }
           const bookmaker = await fonti.oddspapi.quote(f.id, { chiave: chiavi.oddspapi });
+          registra(sport, comp, [{ ...f, bookmaker }]);
           for (const v of stesse) out.set(v.id, quotaFormatoNba({ bookmaker }, v));
         }
       } else {

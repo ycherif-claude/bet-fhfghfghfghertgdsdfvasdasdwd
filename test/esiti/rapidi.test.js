@@ -20,9 +20,9 @@ function cartella(giocate, segnate) {
   for (const id of segnate) {
     writeFileSync(join(d, 'segnature', `${id}.json`), JSON.stringify({ idGiocata: id, fatta: true, quotaReale: 1.6, puntataReale: 2, ora: '2026-10-21T10:00:00Z' }));
   }
-  writeFileSync(join(d, 'storico', 'eurolega.json'), JSON.stringify({ partite: [{ id: 'E2026_60', giornata: 6, data: '2026-10-16', casa: 'PAN', trasferta: 'HTA' }] }));
+  writeFileSync(join(d, 'storico', 'eurolega.json'), JSON.stringify({ partite: [{ id: 'E2026_60', stagione: 2026, giornata: 6, data: '2026-10-16', casa: 'PAN', trasferta: 'HTA' }] }));
   writeFileSync(join(d, 'storico', 'pallavolo-superlega.json'), JSON.stringify({ partite: [
-    { id: '1', giornata: 2, idCasa: '136630', casa: 'Trentino Volley', idTrasferta: '137441', trasferta: 'Verona Volley', inizio: '2026-10-12T18:00:00.000Z', puntiCasa: 3, puntiTrasferta: 0, finita: true },
+    { id: '1', stagione: 2026, giornata: 2, idCasa: '136630', casa: 'Trentino Volley', idTrasferta: '137441', trasferta: 'Verona Volley', inizio: '2026-10-12T18:00:00.000Z', puntiCasa: 3, puntiTrasferta: 0, finita: true },
   ] }));
   return d;
 }
