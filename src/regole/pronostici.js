@@ -117,10 +117,11 @@ export function scegliMigliore(pronostici) {
 }
 
 // Pronostici di una partita della raccolta: al massimo maxPerPartita, i più sicuri; uno è il migliore.
-// `eventoOdss` (idea 1): l'evento odss-api abbinato alla partita. Con l'evento la quota è la migliore dei
-// bookmaker dell'utente (quotaMigliore, null se nessuno la dà: gol casa/ospite non hanno un mercato squadra) e
-// il mercato senza margine è Pinnacle (odss-api, poi The Odds API) o il consenso dei bookmaker. Senza evento,
-// tutto come prima (mediana e Pinnacle di The Odds API).
+// `eventoOdss` (idea 1): l'evento odss-api abbinato alla partita. Con una quota dei bookmaker dell'utente la quota
+// è la migliore (`fonteQuota: 'miei'`) e il mercato senza margine è Pinnacle (odss-api, poi The Odds API) o il
+// consenso dei bookmaker. Il ✅ esce solo con una quota dei bookmaker dell'utente [coordinatore, 22/10/2026]:
+// senza (file odss mancante, partita non abbinata, selezione senza quote dell'utente) resta la media di
+// The Odds API solo come informazione (`fonteQuota: 'media'`), mai ✅.
 export function pronosticiPartita(partita, calibrazione, eventoOdss = null) {
   const sport = partita.sport ?? 'calcio';
   const soglie = C.soglie[sport];
@@ -134,12 +135,14 @@ export function pronosticiPartita(partita, calibrazione, eventoOdss = null) {
     if (!fascia || fascia.limite < C.probMinima - 1e-9) continue;
     const { prob, limite, n } = fascia;
     const minima = quotaMinima(prob);
-    let quota = num(m.quota) && m.quota > 1 ? m.quota : null;
+    const media = num(m.quota) && m.quota > 1 ? m.quota : null;
+    let quota = media;
+    let fonteQuota = media === null ? null : 'media';
     let probMercato = num(m.probPinnacle) ? m.probPinnacle : null;
     let odss = {};
     if (eventoOdss) {
       const q = quoteOdssPronostico(eventoOdss, m.mercato, m.selezione);
-      quota = q?.quotaMigliore ?? null;
+      if (num(q?.quotaMigliore)) { quota = q.quotaMigliore; fonteQuota = 'miei'; }
       if (q) {
         if (num(q.probConsenso) && (q.fonteConsenso === 'Pinnacle' || probMercato === null)) probMercato = q.probConsenso;
         odss = {
@@ -150,7 +153,8 @@ export function pronosticiPartita(partita, calibrazione, eventoOdss = null) {
     }
     out.push({
       mercato: m.mercato, selezione: m.selezione, testo: testoPronostico(partita, m.mercato, m.selezione), probModello: m.probModello, prob, limite, n, quotaMinima: minima,
-      quota, ...odss, probMercato, giocabile: eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
+      quota, ...(fonteQuota ? { fonteQuota } : {}), ...odss, probMercato,
+      giocabile: fonteQuota === 'miei' && eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
     });
   }
   return scegliMigliore(out.sort((a, b) => b.prob - a.prob).slice(0, C.maxPerPartita));

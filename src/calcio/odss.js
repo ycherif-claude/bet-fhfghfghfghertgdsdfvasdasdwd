@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { CONFIG } from '../config.js';
-import { finestraGiornata, isoRoma, oraRoma } from './testo.js';
+import { finestraGiornata, isoRoma, normalizzaNome, oraRoma } from './testo.js';
 import { nomeCanonico } from './squadre.js';
 import { stessaSquadra } from '../controlli/espn.js';
 import { odss } from './fonti/odss.js';
@@ -86,30 +86,43 @@ function mediana(valori) {
   return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
 }
 
+// Esiti sospesi di un bookmaker: nel feed reale `suspended` è un elenco di esiti ([] o ["AWAY"]); true = tutti.
+const sospesi = (b) => new Set(Array.isArray(b.suspended) ? b.suspended.map(String) : []);
+const eExchange = (b) => b.is_exchange === true || EXCHANGE.test(b.key);
+// Riga senza margine di un bookmaker: nessuna se anche un solo esito della riga è sospeso.
+const senzaMargineLibro = (b, esiti, copertura) => (esiti.some((e) => sospesi(b).has(e)) ? null : senzaMargine(b.outcomes, esiti, copertura));
+
 // Riga compatta: { miei: { bookmaker: { quote, aggiornato } }, prob: { esito: p } | null, fonteProb }.
-// prob: Pinnacle senza margine se c'è; altrimenti la mediana delle probabilità senza margine di almeno
-// CONFIG.calcio.minBookmaker bookmaker (exchange e quote sospese fuori).
-export function riassuntoMercato(riga) {
+// miei: senza gli esiti sospesi e, con `adesso`, senza le quote aggiornate da più di CONFIG.odss.oreMaxQuota ore
+// (o senza orario). prob: Pinnacle senza margine se c'è; altrimenti la mediana delle probabilità senza margine di
+// almeno CONFIG.calcio.minBookmaker bookmaker (exchange fuori, anche con `is_exchange`; righe con un esito sospeso fuori).
+export function riassuntoMercato(riga, { adesso = null } = {}) {
   const esiti = ESITI[riga?.market] ?? [];
   const copertura = COPERTURA[riga?.market] ?? 1;
   const libri = (Array.isArray(riga?.bookmakers) ? riga.bookmakers : [])
     .filter((b) => oggetto(b) && typeof b.key === 'string' && b.suspended !== true);
+  const fresca = (b) => {
+    if (!adesso) return true;
+    const t = Date.parse(b.last_update);
+    return Number.isFinite(t) && adesso.getTime() - t <= O.oreMaxQuota * 3600000;
+  };
   const miei = {};
   for (const b of libri) {
     const chiave = b.key.toLowerCase();
-    if (!O.miei.includes(chiave)) continue;
-    const quote = Object.fromEntries(esiti.filter((e) => quotaValida(b.outcomes?.[e])).map((e) => [e, b.outcomes[e]]));
+    if (!O.miei.includes(chiave) || !fresca(b)) continue;
+    const fuori = sospesi(b);
+    const quote = Object.fromEntries(esiti.filter((e) => !fuori.has(e) && quotaValida(b.outcomes?.[e])).map((e) => [e, b.outcomes[e]]));
     if (Object.keys(quote).length) miei[chiave] = { quote, aggiornato: b.last_update ?? null };
   }
   let prob = null;
   let fonteProb = null;
   const pin = libri.find((b) => b.key.toLowerCase() === 'pinnacle');
-  const pinProb = pin ? senzaMargine(pin.outcomes, esiti, copertura) : null;
+  const pinProb = pin ? senzaMargineLibro(pin, esiti, copertura) : null;
   if (pinProb) {
     prob = pinProb;
     fonteProb = 'Pinnacle';
   } else {
-    const tutte = libri.filter((b) => !EXCHANGE.test(b.key)).map((b) => senzaMargine(b.outcomes, esiti, copertura)).filter(Boolean);
+    const tutte = libri.filter((b) => !eExchange(b)).map((b) => senzaMargineLibro(b, esiti, copertura)).filter(Boolean);
     if (tutte.length >= CONFIG.calcio.minBookmaker) {
       prob = Object.fromEntries(esiti.map((e) => [e, mediana(tutte.map((p) => p[e]))]));
       fonteProb = `mediana di ${tutte.length} bookmaker`;
@@ -122,12 +135,12 @@ export function riassuntoMercato(riga) {
 const chiaveMercato = (r) => (r.market === 'ou' ? `ou|${Number(r.line)}` : r.market);
 
 // Eventi compatti dalle righe scelte: { id, campionato, casa, trasferta, inizio, mercati: { '1x2', 'dc', 'ou|1.5', … } }.
-export function eventiOdss(righe) {
+export function eventiOdss(righe, { adesso = null } = {}) {
   const eventi = new Map();
   for (const r of righe) {
     if (!ESITI[r.market] || !r.home_team || !r.away_team || !Number.isFinite(Date.parse(r.commence_time))) continue;
     if (r.market === 'ou' && !O.lineeOu.includes(Number(r.line))) continue;
-    const m = riassuntoMercato(r);
+    const m = riassuntoMercato(r, { adesso });
     if (!Object.keys(m.miei).length && !m.prob) continue;
     const k = chiaveEvento(r);
     if (!eventi.has(k)) {
@@ -168,7 +181,7 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
     const file = {
       data, generataAlle: isoRoma(adesso), fonte: 'odss-api.com', richieste, rimaste: s.rimaste,
       diagnostica: { righe: tutte.length, righeUsate: scelta.righe.length, senzaIntero: senza.length, doppie: scelta.doppie, periodiVisti: scelta.periodiVisti },
-      erroriGiro, eventi: eventiOdss(scelta.righe),
+      erroriGiro, eventi: eventiOdss(scelta.righe, { adesso }),
     };
     return { file, stato: { aggiornatoAlle: adesso.toISOString(), rimaste: s.rimaste, limite: s.limite, reset: s.reset, giorno: data, usateOggi: s.usateOggi }, richieste };
   };
@@ -291,6 +304,17 @@ const lati = (p) => {
 };
 const simile = (a, b) => stessaSquadra(a, b) || nomeCanonico(a, [b]) === b;
 
+// Squadre femminili, giovanili, seconde squadre e riserve: un evento con uno di questi marcatori non va mai a una
+// partita il cui nome non ce l'ha ("Inter Women" non è "Inter").
+const MARCATORI = ['women', 'woman', 'femminile', 'femenino', 'feminin', 'feminine', 'ladies', 'frauen', 'dames', 'w',
+  'u17', 'u18', 'u19', 'u20', 'u21', 'u22', 'u23', 'ii', 'iii', 'b', 'next-gen', 'nextgen', 'reserves', 'reserve', 'riserve', 'primavera', 'youth', 'academy', 'jong'];
+function marcatori(nome) {
+  const parole = normalizzaNome(nome).split('-').filter(Boolean);
+  const testo = `-${parole.join('-')}-`;
+  return MARCATORI.filter((m) => testo.includes(`-${m}-`));
+}
+const stessiMarcatori = (evento, nostro) => { const n = marcatori(nostro); return marcatori(evento).every((m) => n.includes(m)); };
+
 // Map idPartita → evento odss. Solo calcio; stesse squadre (casa con casa, trasferta con trasferta) e inizio entro
 // CONFIG.odss.toleranzaOre. Prima i nomi uguali o con alias noti; solo se nessuno, i nomi simili. Più eventi
 // possibili, oppure lo stesso evento per più partite → nessun abbinamento.
@@ -303,7 +327,8 @@ export function abbinaEventiOdss(partite, eventi) {
     const sq = lati(p);
     const t = Date.parse(p.inizio);
     if (!sq || !Number.isFinite(t)) continue;
-    const vicini = lista.filter((e) => Math.abs(Date.parse(e.inizio) - t) <= tolleranza);
+    const vicini = lista.filter((e) => Math.abs(Date.parse(e.inizio) - t) <= tolleranza
+      && stessiMarcatori(e.casa, sq.casa) && stessiMarcatori(e.trasferta, sq.trasferta));
     const esatti = vicini.filter((e) => stessaSquadra(e.casa, sq.casa) && stessaSquadra(e.trasferta, sq.trasferta));
     const candidati = esatti.length ? esatti : vicini.filter((e) => simile(e.casa, sq.casa) && simile(e.trasferta, sq.trasferta));
     if (candidati.length === 1) scelti.set(p.idPartita, candidati[0]);

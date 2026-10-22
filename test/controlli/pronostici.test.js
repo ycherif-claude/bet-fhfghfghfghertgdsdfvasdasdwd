@@ -12,6 +12,8 @@ import { messaggi } from '../../src/notifiche/telegram.js';
 const OGGI = '2026-10-22';
 const INIZIO = '2026-10-22T20:45:00+02:00';
 const ID = 'calcio-2026-10-22-inter-roma';
+// Registro dei controlli per pronostico (idPartita|mercato|selezione): il migliore qui è 1X2|1.
+const CHIAVE = `${ID}|1X2|1`;
 const ore = (hhmm) => new Date(`2026-10-22T${hhmm}:00+02:00`);
 const px = (mercato, selezione, testo, migliore) => ({
   mercato, selezione, testo, probModello: 0.86, prob: 0.85, limite: 0.82, n: 500, quotaMinima: 1.18, quota: null, giocabile: false, esito: null, migliore,
@@ -65,7 +67,7 @@ test('pronostico: chiave della squadra del pronostico non titolare → avviso su
   assert.equal(altro.avviso, undefined);
   assert.deepEqual(g.giocate, [giocataFatta]);
   const reg = registro(d);
-  assert.equal(reg.pronostici[ID].esito, 'avviso');
+  assert.equal(reg.pronostici[CHIAVE].esito, 'avviso');
   assert.equal(reg.claude.avvii, 0);
 });
 
@@ -73,7 +75,7 @@ test('pronostico: chiave fuori solo nella squadra avversaria → nessun avviso',
   const d = cartella();
   await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: fonti({ casa: titolari(['Lautaro Martínez']), trasferta: titolari([]) }) });
   assert.equal(leggi(d).pronostici[0].pronostici[0].avviso, undefined);
-  assert.equal(registro(d).pronostici[ID].esito, 'ok');
+  assert.equal(registro(d).pronostici[CHIAVE].esito, 'ok');
 });
 
 test('pronostico senza una squadra (Over 1.5): conta un chiave fuori in tutte e due', async () => {
@@ -93,7 +95,7 @@ test('pronostico senza giocatori chiave: nessun avviso, "formazione non controll
   const f = fonti();
   await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: f });
   assert.equal(leggi(d).pronostici[0].pronostici[0].avviso, undefined);
-  const x = registro(d).pronostici[ID];
+  const x = registro(d).pronostici[CHIAVE];
   assert.equal(x.esito, 'non-controllata');
   assert.match(x.motivo, /formazione non controllata/);
   assert.ok(!f.chiamate.includes('espn formazioni'));
@@ -108,7 +110,7 @@ test('pronostico: aspetta le formazioni fuori dall\'ultimo tentativo, poi una so
   await eseguiControlli({ dirData: d, adesso: ore('19:30'), fonti: fonti(nonPronte) });
   assert.throws(() => registro(d));
   await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti: fonti(nonPronte) });
-  assert.match(registro(d).pronostici[ID].motivo, /formazione non controllata/);
+  assert.match(registro(d).pronostici[CHIAVE].motivo, /formazione non controllata/);
   // Già deciso: non si richiede più niente.
   const dopo = fonti();
   await eseguiControlli({ dirData: d, adesso: ore('20:20'), fonti: dopo });

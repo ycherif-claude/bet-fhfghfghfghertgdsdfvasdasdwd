@@ -119,8 +119,9 @@ async function formazioniVoce(voce, notizie, fonti, adesso) {
 
 // ---- Pronostici (idea 3, utente 22/10/2026): formazioni delle partite con un pronostico migliore ----
 // Solo regole fisse, mai Claude, nessun cambio alle giocate: il pronostico riceve `avviso` e Telegram lo
-// manda una volta sola. Nel registro dei controlli: `pronostici[idPartita] = { esito, motivo, pronostico, alle }`
-// con esito 'avviso' | 'ok' | 'non-controllata'.
+// manda una volta sola. Nel registro dei controlli: `pronostici['idPartita|mercato|selezione'] = { esito, motivo,
+// pronostico, alle }` con esito 'avviso' | 'ok' | 'non-controllata': per pronostico, così un nuovo migliore dopo un
+// giro rifatto si controlla ancora [revisione, 22/10/2026]. Le voci vecchie per idPartita valgono per il loro pronostico.
 export const FORMAZIONE_NON_CONTROLLATA = 'formazione non controllata';
 
 // Squadre su cui punta il pronostico: casa, trasferta o tutte e due (12, Over: nessuna squadra in particolare,
@@ -147,7 +148,7 @@ function esitoPronostico(form) {
 }
 
 // Un passaggio sui pronostici migliori del calcio nella loro finestra. Scrive nel registro `reg` e restituisce
-// gli avvisi nuovi { idPartita → avviso }.
+// gli avvisi nuovi { 'idPartita|mercato|selezione' → avviso }.
 async function controllaPronostici({ giornata, notizie, reg, fonti, adesso, ora, errore }) {
   const avvisi = new Map();
   const partite = (Array.isArray(giornata.pronostici) ? giornata.pronostici : [])
@@ -167,12 +168,14 @@ async function controllaPronostici({ giornata, notizie, reg, fonti, adesso, ora,
   const fatti = reg.pronostici ?? {};
   for (const p of partite) {
     const x = p.pronostici.find((y) => oggetto(y) && y.migliore === true);
-    if (!x || fatti[p.idPartita]) continue;
+    if (!x) continue;
     const pronostico = `${x.mercato}|${x.selezione}`;
+    const chiave = `${p.idPartita}|${pronostico}`;
+    if (fatti[chiave] || fatti[p.idPartita]?.pronostico === pronostico) continue;
     const voce = { sport: 'calcio', competizione: p.competizione, partita: p.partita, idPartita: p.idPartita, inizio: p.inizio };
     const m = momento(voce, adesso);
     if (m === 'presto') continue;
-    const segna = (r) => { reg.pronostici = { ...reg.pronostici, [p.idPartita]: { esito: r.esito, motivo: r.motivo, pronostico, alle: ora } }; };
+    const segna = (r) => { reg.pronostici = { ...reg.pronostici, [chiave]: { esito: r.esito, motivo: r.motivo, pronostico, alle: ora } }; };
     if (m === 'iniziata') { segna({ esito: 'non-controllata', motivo: `${FORMAZIONE_NON_CONTROLLATA} (${MOTIVO_TARDI})` }); continue; }
     const chiavi = chiaviDi(notizie, p.idPartita);
     const lati = latiPronostico(x.mercato, x.selezione);
@@ -195,7 +198,7 @@ async function controllaPronostici({ giornata, notizie, reg, fonti, adesso, ora,
     if (form && !form.pronta && !ultimo) continue;
     const r = esitoPronostico(form);
     segna(r);
-    if (r.avviso) avvisi.set(p.idPartita, r.avviso);
+    if (r.avviso) avvisi.set(chiave, r.avviso);
   }
   return avvisi;
 }
@@ -389,8 +392,9 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
       errore('Pronostici', e);
     }
   }
-  const pronostici = avvisiPronostici.size ? giornata.pronostici.map((p) => (!avvisiPronostici.has(p?.idPartita) ? p : {
-    ...p, pronostici: p.pronostici.map((x) => (x?.migliore === true ? { ...x, avviso: avvisiPronostici.get(p.idPartita) } : x)),
+  const avvisoDi = (p, x) => (oggetto(x) ? avvisiPronostici.get(`${p.idPartita}|${x.mercato}|${x.selezione}`) : undefined);
+  const pronostici = avvisiPronostici.size ? giornata.pronostici.map((p) => (!oggetto(p) || !Array.isArray(p.pronostici) ? p : {
+    ...p, pronostici: p.pronostici.map((x) => (avvisoDi(p, x) ? { ...x, avviso: avvisoDi(p, x) } : x)),
   })) : giornata.pronostici;
 
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];

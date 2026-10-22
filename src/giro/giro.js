@@ -13,7 +13,7 @@ import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
-import { costruisciSchedinePronostici } from '../regole/schedine-pronostici.js';
+import { costruisciSchedinePronostici, rivediSchedine } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 import { leggiAvvisiFonti } from '../registro/avvisi-fonti.js';
 import { leggiQuoteOdss } from '../calcio/odss.js';
@@ -226,11 +226,34 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     pronostici.sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
     giornata.pronostici = pronostici;
   }
-  // Doppie e triple di pronostici (idea 4): restano quelle già pubblicate con una partita iniziata; le altre
-  // si rifanno dai pronostici migliori delle partite non iniziate, senza le partite già usate.
+  // Avvisi delle formazioni (idea 3) già scritti dai controlli: restano sullo stesso pronostico [revisione].
+  const avvisiFormazioni = new Map();
+  for (const p of Array.isArray(esistente?.pronostici) ? esistente.pronostici : []) {
+    for (const x of Array.isArray(p?.pronostici) ? p.pronostici : []) {
+      if (oggetto(x) && typeof x.avviso === 'string' && x.avviso) avvisiFormazioni.set(`${p.idPartita}|${x.mercato}|${x.selezione}`, x.avviso);
+    }
+  }
+  if (avvisiFormazioni.size) {
+    for (const p of pronostici) {
+      p.pronostici = p.pronostici.map((x) => {
+        const a = avvisiFormazioni.get(`${p.idPartita}|${x.mercato}|${x.selezione}`);
+        return a && !x.avviso ? { ...x, avviso: a } : x;
+      });
+    }
+  }
+  // Doppie e triple di pronostici (idea 4): restano quelle già pubblicate con una partita iniziata o con le gambe
+  // ancora valide; quelle che cadono si scrivono con il motivo [revisione]. Le altre si rifanno dai pronostici
+  // migliori delle partite non iniziate, senza le partite già usate.
   const t = adesso.getTime();
-  const tenute = (Array.isArray(esistente?.schedinePronostici) ? esistente.schedinePronostici : [])
-    .filter((s) => oggetto(s) && Array.isArray(s.gambe) && s.gambe.some((x) => Date.parse(x?.inizio) <= t));
+  const { tenute, tolte } = rivediSchedine(esistente?.schedinePronostici, pronostici, { adesso, prova });
+  const schedineTolte = [
+    ...(Array.isArray(esistente?.schedineTolte) ? esistente.schedineTolte : []),
+    ...tolte.map((s) => ({ ...s, alle: isoRoma(adesso) })),
+  ];
+  if (schedineTolte.length) giornata.schedineTolte = schedineTolte;
+  for (const s of tolte) {
+    giornata.erroriGiro.push(`${s.tipo === 'tripla' ? 'Tripla' : 'Doppia'} di pronostici tolta dopo un nuovo giro: ${s.motivo}`);
+  }
   const occupate = new Set(tenute.flatMap((s) => s.gambe.map((x) => x?.idPartita)));
   const schedinePronostici = [...tenute, ...costruisciSchedinePronostici(pronostici.filter((p) => Date.parse(p.inizio) > t), {
     data: oggi, prova, escluse: occupate, max: CONFIG.pronostici.schedine.max - tenute.length,

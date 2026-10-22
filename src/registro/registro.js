@@ -200,12 +200,12 @@ async function chiudiPronostici({ dirData, data, adesso, f, cache, errori, espn,
   }
   // Doppie e triple (idea 4): esito dalle gambe, che sono pronostici di questa istantanea.
   const esitiRighe = new Map(ist.pronostici.filter((r) => r.esito).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
-  const schedineCambiate = aggiornaEsitiSchedine(ist.schedine, esitiRighe);
+  const schedineCambiate = aggiornaEsitiSchedine(ist.schedine, esitiRighe, adesso);
   if (nuovi || ist.daGiornata || schedineCambiate) {
     const { daGiornata, ...resto } = ist;
     scrivi(fileIstantanea(dirData, data), { ...resto, aggiornataAlle: isoRoma(adesso) });
   }
-  aggiornaPronostici(dirData, data, ist.pronostici);
+  aggiornaPronostici(dirData, data, ist.pronostici, adesso);
   return { data, n: ist.pronostici.length, conEsito: ist.pronostici.filter((r) => r.esito != null).length, nuovi };
 }
 
@@ -237,7 +237,7 @@ export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
 }
 
 // Esiti dei pronostici sì/no della giornata `data` dalle righe della loro istantanea (solo esiti definitivi).
-export function aggiornaPronostici(dirData, data, righe) {
+export function aggiornaPronostici(dirData, data, righe, adesso = null) {
   const file = path.join(dirData, 'giornate', `${data}.json`);
   const g = leggi(file, null);
   if (!g || !Array.isArray(g.pronostici) || !g.pronostici.length) return false;
@@ -249,7 +249,7 @@ export function aggiornaPronostici(dirData, data, righe) {
       if (e && x.esito !== e) { x.esito = e; cambiato = true; }
     }
   }
-  if (aggiornaEsitiSchedine(g.schedinePronostici, esiti)) cambiato = true;
+  if (aggiornaEsitiSchedine(g.schedinePronostici, esiti, adesso)) cambiato = true;
   if (cambiato) scrivi(file, g);
   return cambiato;
 }

@@ -281,7 +281,7 @@ export function renderScheda(g, segnatura) {
 }
 
 // Spiegazione del ✅ e dei pronostici collegati (stessa regola di CONFIG.pronostici e stesso testo di Telegram).
-export const SPIEGAZIONE_PRONOSTICI = "✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno all'80% e la quota è almeno il 5% sopra la minima. Senza ✅ è solo da tenere d'occhio. I pronostici della stessa partita sono collegati, non indipendenti: mai più di uno della stessa partita in una multipla.";
+export const SPIEGAZIONE_PRONOSTICI = "✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno all'80% e la quota di uno dei tuoi bookmaker è almeno il 5% sopra la minima. Senza ✅ è solo da tenere d'occhio. I pronostici della stessa partita sono collegati, non indipendenti: mai più di uno della stessa partita in una multipla.";
 const numero = (v) => typeof v === 'number' && Number.isFinite(v);
 
 // Esito della partita quando i suoi pronostici sono chiusi: tutti giusti o qualcuno sbagliato.
@@ -308,7 +308,8 @@ const quotaMigliorePronostico = (x) => ` · quota migliore ${fmtQuota.format(x.q
 const rigaPronostico = (x) => el('li', {},
   el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
   ` · ${testoProbPronostico(x)}`,
-  ...(numero(x.quotaMigliore) ? [quotaMigliorePronostico(x)] : [
+  ...(numero(x.quotaMigliore) ? [quotaMigliorePronostico(x)] : x.fonteQuota === 'media' && numero(x.quota)
+    ? [` · quota media ${fmtQuota.format(x.quota)}, non dei tuoi bookmaker (minima ${fmtQuota.format(x.quotaMinima)}) · solo da tenere d'occhio`] : [
     ` · quota minima ${fmtQuota.format(x.quotaMinima)}`,
     x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
     numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
@@ -367,7 +368,8 @@ export function renderSchedinaPronostici(s) {
     el('h3', {}, `${NOME_SCHEDINA[s.tipo] ?? 'Schedina'} (${s.gambe.length} pronostici)`),
     el('p', {}, el('strong', {}, `Quota ${fmtQuota.format(s.quota)}`), ` · probabilità prudente ${percento(s.probCombinata)}`),
     el('ul', {}, s.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): SÌ ${g.testo ?? `${g.mercato}: ${g.selezione}`} @ ${fmtQuota.format(g.quota)}${g.bookmaker ? ` su ${nomeBookmaker(g.bookmaker)}` : ''}`,
-      g.quotaDaVerificare ? el('span', { class: 'da-verificare' }, ' (quota minima, da verificare su bet365)') : '',
+      g.fonteQuota === 'media' ? el('span', { class: 'da-verificare' }, ' (quota media, non dei tuoi bookmaker: da verificare)')
+        : g.quotaDaVerificare ? el('span', { class: 'da-verificare' }, ' (quota minima, da verificare su bet365)') : '',
       g.esito ? ` · ${g.esito === 'vinta' ? 'giusto' : g.esito === 'persa' ? 'sbagliato' : g.esito}` : ''))),
     el('p', {}, el('strong', {}, `Esito: ${esito}`)),
     el('p', { class: 'meta' }, 'Fuori dal bankroll: non conta finché non la giochi davvero.'),

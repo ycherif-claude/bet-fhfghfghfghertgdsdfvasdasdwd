@@ -166,7 +166,8 @@ export const CONFIG = congela({
     margineQuota: 1.05,
     // Doppie e triple di pronostici [utente, 22/10/2026, idea 4]: dai pronostici migliori di partite diverse,
     // fino a `max` schedine da 2 o 3 pronostici con quota totale fra quotaMin e quotaMax.
-    schedine: { max: 3, gambeMin: 2, gambeMax: 3, quotaMin: 1.5, quotaMax: 2 },
+    // Una gamba senza risultato dopo giorniRimborso giorni (partita rinviata o sospesa) è rimborsata, come nelle multiple bonus.
+    schedine: { max: 3, gambeMin: 2, gambeMax: 3, quotaMin: 1.5, quotaMax: 2, giorniRimborso: 3 },
     soglie: {
       calcio: {
         '1X2|1': 0.7,
@@ -197,6 +198,8 @@ export const CONFIG = congela({
     miei: ['bet365', 'snai', 'goldbet', 'sportium', 'daznbet'],
     // Partita odss ↔ partita della giornata: stesse squadre e inizio entro tante ore.
     toleranzaOre: 2,
+    // Quote dei bookmaker dell'utente aggiornate da più di tante ore (al momento del download): ignorate.
+    oreMaxQuota: 6,
   },
   multiplaBonus: {
     quotaMin: 1.25,

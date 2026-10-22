@@ -68,7 +68,9 @@ test('A2 pronosticiPartita: quota sopra la minima ma Pinnacle sotto l\'80% → n
     { mercato: 'Doppia chance', selezione: '1X', probModello: 0.8, probPinnacle: 0.84, quota: 1.30 },
   ] };
   const p = pronosticiPartita(partita, cal);
-  assert.deepEqual(p.map((x) => [x.selezione, x.probMercato, x.giocabile]), [['Over 1.5', 0.70, false], ['1X', 0.84, true]]);
+  // Revisione [coordinatore, 22/10/2026]: la quota qui è la media di The Odds API (non dei bookmaker dell'utente):
+  // resta come informazione (fonteQuota "media") ma il ✅ non esce mai, neanche con Pinnacle all'84%.
+  assert.deepEqual(p.map((x) => [x.selezione, x.probMercato, x.fonteQuota, x.giocabile]), [['Over 1.5', 0.70, 'media', false], ['1X', 0.84, 'media', false]]);
 });
 
 test('A2 Telegram: ✅ solo se giocabile; senza quota o Pinnacle "solo da tenere d\'occhio"; niente più "almeno la minima"', () => {

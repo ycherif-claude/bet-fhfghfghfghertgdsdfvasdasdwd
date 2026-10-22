@@ -76,7 +76,7 @@ const pronosticiDi = (giornata) => (Array.isArray(giornata?.pronostici) ? giorna
 
 // Spiegazione del ✅ e dei pronostici collegati (regola di CONFIG.pronostici; il sito ha lo stesso testo).
 const SPIEGAZIONE_PRONOSTICI = [
-  `✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno al ${Math.round(CONFIG.pronostici.probMinima * 100)}% e la quota è almeno il ${Math.round((CONFIG.pronostici.margineQuota - 1) * 100)}% sopra la minima. Senza ✅ è solo da tenere d'occhio.`,
+  `✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno al ${Math.round(CONFIG.pronostici.probMinima * 100)}% e la quota di uno dei tuoi bookmaker è almeno il ${Math.round((CONFIG.pronostici.margineQuota - 1) * 100)}% sopra la minima. Senza ✅ è solo da tenere d'occhio.`,
   'I pronostici della stessa partita sono collegati, non indipendenti: mai più di uno della stessa partita in una multipla.',
 ].join('\n');
 const DA_TENERE_D_OCCHIO = "solo da tenere d'occhio: controlla la quota su bet365";
@@ -99,6 +99,10 @@ export function testoPronostici(giornata, oggi) {
         const oraQ = Number.isFinite(Date.parse(x.oraQuota)) ? `, quota delle ${oraRoma(new Date(x.oraQuota))}` : '';
         const segnale = x.giocabile === true ? ' ✅' : " · solo da tenere d'occhio";
         return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · quota migliore ${virgola(x.quotaMigliore)} su ${html(nomeBookmaker(x.bookmakerMigliore))} (minima ${virgola(x.quotaMinima)})${oraQ}${segnale}`;
+      }
+      // Quota media di The Odds API: solo un'informazione, mai ✅.
+      if (x.fonteQuota === 'media' && num(x.quota)) {
+        return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · quota media ${virgola(x.quota)}, non dei tuoi bookmaker (minima ${virgola(x.quotaMinima)}) · solo da tenere d'occhio`;
       }
       const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile === true ? ' ✅' : ''})` : '';
       const occhio = num(x.quota) && num(x.probMercato) ? '' : ` · ${DA_TENERE_D_OCCHIO}`;
@@ -150,7 +154,7 @@ export function testoSchedinePronostici(lista, data, { nuove = false } = {}) {
     `${i + 1}. <b>${NOME_SCHEDINA[s.tipo] ?? 'Schedina'}</b> · quota ${virgola(s.quota)} · probabilità prudente ${percentuale(s.probCombinata)}${s.prova === true ? ` · ${html(s.etichetta ?? 'PROVA – non giocare')}` : ''}`,
     ...s.gambe.map((x) => {
       const ora = Number.isFinite(Date.parse(x.inizio)) ? ` · ${oraRoma(new Date(x.inizio))}` : '';
-      return `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}${ora}: SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} @${virgola(x.quota)}${x.bookmaker ? ` su ${html(nomeBookmaker(x.bookmaker))}` : ''}${x.quotaDaVerificare ? ' (quota minima, da verificare su bet365)' : ''}`;
+      return `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}${ora}: SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} @${virgola(x.quota)}${x.bookmaker ? ` su ${html(nomeBookmaker(x.bookmaker))}` : ''}${x.fonteQuota === 'media' ? ' (quota media, non dei tuoi bookmaker: da verificare)' : x.quotaDaVerificare ? ' (quota minima, da verificare su bet365)' : ''}`;
     }),
   ].join('\n'));
   return [titolo, ...blocchi, 'Fuori dal bankroll: non contano finché non le giochi davvero.'].join('\n\n');

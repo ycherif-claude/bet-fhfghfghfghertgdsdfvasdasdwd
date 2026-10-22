@@ -313,20 +313,19 @@ test('pronostici con odss: quota = migliore dei miei bookmaker, ✅ con la regol
   assert.ok(dc.probConsenso > 0.8);
   assert.equal(dc.probMercato, dc.probConsenso);
   assert.equal(dc.giocabile, true);
-  // Gol casa: nessun mercato squadra su odss → nessuna quota (neanche quella vecchia).
+  // Gol casa: nessun mercato squadra su odss → resta la media (solo informazione), mai ✅.
   const gc = p.find((x) => x.mercato === 'Under/Over casa 0.5');
-  assert.equal(gc.quota, null);
-  assert.equal(gc.giocabile, false);
+  assert.deepEqual([gc.quota, gc.fonteQuota, gc.giocabile], [1.3, 'media', false]);
   assert.ok(!('quotaMigliore' in gc));
-  // Con quote odss il migliore è quello con la quota (dc).
-  assert.equal(dc.migliore, true);
+  // Il migliore può usare anche la quota media (coordinatore): qui 1,30 media contro 1,26 di Sportium.
+  assert.equal(gc.migliore, true);
+  assert.equal(dc.migliore, false);
   // Consenso sotto l'80% → solo da tenere d'occhio, anche con la quota alta.
   const basso = eventoCon([dcRiga([bk('pinnacle', { 12: 1.3, '1X': 1.35, X2: 1.9 })])]);
   assert.equal(pronosticiPartita(partitaRaccolta([mercato('Doppia chance', '1X')]), CAL, basso)[0].giocabile, false);
-  // Senza evento odss: tutto come prima.
+  // Senza evento odss: la media resta come informazione, ma niente ✅ (coordinatore, 22/10/2026).
   const vecchio = pronosticiPartita(partitaRaccolta([mercato('Doppia chance', '1X', { quota: 1.3, probPinnacle: 0.85 })]), CAL)[0];
-  assert.equal(vecchio.quota, 1.3);
-  assert.equal(vecchio.giocabile, true);
+  assert.deepEqual([vecchio.quota, vecchio.fonteQuota, vecchio.giocabile], [1.3, 'media', false]);
   assert.ok(!('quotaMigliore' in vecchio));
 });
 

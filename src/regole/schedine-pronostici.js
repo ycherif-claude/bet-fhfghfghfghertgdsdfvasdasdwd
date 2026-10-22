@@ -37,9 +37,10 @@ function gambe(pronosticiGiornata, { soloGiocabili, escluse }) {
     const quota = conQuota ? x.quota : x.quotaMinima;
     if (!num(quota) || quota <= 1) continue;
     const bookmaker = conQuota && typeof x.bookmakerMigliore === 'string' && x.quotaMigliore === x.quota ? x.bookmakerMigliore : null;
+    // Solo la quota di un bookmaker dell'utente è sicura: la media (o una quota senza bookmaker) e la minima sono da verificare.
     out.push({
       idPartita: p.idPartita, sport: p.sport ?? 'calcio', competizione: p.competizione, partita: p.partita, inizio: p.inizio,
-      mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, quota, ...(bookmaker ? { bookmaker } : {}), quotaDaVerificare: !conQuota,
+      mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, quota, ...(bookmaker ? { bookmaker } : {}), ...(conQuota && !bookmaker ? { fonteQuota: 'media' } : {}), quotaDaVerificare: !bookmaker,
       prob: x.prob, limite: num(x.limite) ? x.limite : null, giocabile: x.giocabile === true, esito: null,
       squadre: squadre(p.partita),
     });
@@ -96,6 +97,34 @@ export function costruisciSchedinePronostici(pronosticiGiornata, { data, prova, 
   return out;
 }
 
+// Giro rifatto prima delle partite [revisione, 22/10/2026]: le schedine già pubblicate non si sostituiscono in
+// silenzio. Resta una schedina con una gamba già iniziata, oppure con tutte le gambe ancora valide: stesso pronostico,
+// ancora il migliore della partita (e dopo la prova ancora ✅). Le altre si tolgono con il motivo.
+// { tenute, tolte: [{ id, tipo, motivo }] }.
+export function rivediSchedine(pubblicate, pronosticiGiornata, { adesso, prova }) {
+  const t = adesso.getTime();
+  const partite = new Map((Array.isArray(pronosticiGiornata) ? pronosticiGiornata : []).filter((p) => p && p.idPartita).map((p) => [p.idPartita, p]));
+  const tenute = [];
+  const tolte = [];
+  for (const s of Array.isArray(pubblicate) ? pubblicate : []) {
+    if (!s || typeof s !== 'object' || !Array.isArray(s.gambe)) continue;
+    if (s.gambe.some((g) => Date.parse(g?.inizio) <= t)) { tenute.push(s); continue; }
+    const motivi = [];
+    for (const g of s.gambe) {
+      const p = partite.get(g?.idPartita);
+      const x = (Array.isArray(p?.pronostici) ? p.pronostici : []).find((y) => y && y.mercato === g.mercato && y.selezione === g.selezione);
+      const nome = `${g?.partita}: ${g?.testo ?? `${g?.mercato} ${g?.selezione}`}`;
+      if (!p) motivi.push(`${g?.partita} non ha più pronostici`);
+      else if (!x) motivi.push(`${nome} non è più un pronostico`);
+      else if (x.migliore !== true) motivi.push(`${nome} non è più il pronostico migliore`);
+      else if (!prova && x.giocabile !== true) motivi.push(`${nome} non è più giocabile ✅`);
+    }
+    if (motivi.length) tolte.push({ id: s.id, tipo: s.tipo, motivo: motivi.join('; ') });
+    else tenute.push(s);
+  }
+  return { tenute, tolte };
+}
+
 // Esito dalle gambe: { esito: 'vinta' | 'persa' | 'rimborsata' | null, quotaFinale }.
 export function esitoSchedina(s) {
   const g = Array.isArray(s?.gambe) ? s.gambe : [];
@@ -107,14 +136,21 @@ export function esitoSchedina(s) {
 }
 
 // Riporta sulle gambe gli esiti (mappa idPartita|mercato|selezione → esito) e ricalcola l'esito delle schedine.
-// Vero se qualcosa è cambiato.
-export function aggiornaEsitiSchedine(schedine, esiti) {
+// Con `adesso`: una gamba ancora senza risultato S.giorniRimborso giorni dopo l'inizio (partita rinviata o sospesa)
+// è rimborsata, come nelle multiple bonus; un rimborso così non si cambia più. Vero se qualcosa è cambiato.
+export function aggiornaEsitiSchedine(schedine, esiti, adesso = null) {
   let cambiato = false;
   for (const s of Array.isArray(schedine) ? schedine : []) {
     if (!s || !Array.isArray(s.gambe)) continue;
     for (const x of s.gambe) {
+      if (x.esito === 'rimborsata' && x.motivoEsito) continue;
       const e = esiti.get(`${x.idPartita}|${x.mercato}|${x.selezione}`) ?? null;
       if (e && x.esito !== e) { x.esito = e; cambiato = true; }
+      if (!e && x.esito == null && adesso && adesso.getTime() - Date.parse(x.inizio) >= S.giorniRimborso * 86400000) {
+        x.esito = 'rimborsata';
+        x.motivoEsito = `nessun risultato dopo ${S.giorniRimborso} giorni (partita rinviata o sospesa)`;
+        cambiato = true;
+      }
     }
     const r = esitoSchedina(s);
     if (r.esito !== (s.esito ?? null) || r.quotaFinale !== (s.quotaFinale ?? null)) { s.esito = r.esito; s.quotaFinale = r.quotaFinale; cambiato = true; }
