@@ -102,8 +102,16 @@ const senzaMargineLibro = (b, esiti, copertura) => (esiti.some((e) => sospesi(b)
 export function riassuntoMercato(riga, { adesso = null } = {}) {
   const esiti = ESITI[riga?.market] ?? [];
   const copertura = COPERTURA[riga?.market] ?? 1;
+  // Un bookmaker con un orario d'inizio diverso (start_time) di più di CONFIG.odss.toleranzaInizioOre: fuori, come
+  // in src/odss/eventi.js (può essere un'altra partita con lo stesso nome).
+  const inizio = Date.parse(riga?.commence_time);
+  // Pinnacle fermo da più di CONFIG.odss.oreMaxPinnacle ore: fuori anche dal consenso, vale il consenso degli altri.
+  const pinFresco = (b) => !adesso || !Number.isFinite(Date.parse(b.last_update)) || adesso.getTime() - Date.parse(b.last_update) <= O.oreMaxPinnacle * 3600000;
+  const stessoInizio = (b) => !Object.hasOwn(b, 'start_time')
+    || (Number.isFinite(Date.parse(b.start_time)) && Number.isFinite(inizio) && Math.abs(Date.parse(b.start_time) - inizio) <= O.toleranzaInizioOre * 3600000);
   const libri = (Array.isArray(riga?.bookmakers) ? riga.bookmakers : [])
-    .filter((b) => oggetto(b) && typeof b.key === 'string' && b.suspended !== true);
+    .filter((b) => oggetto(b) && typeof b.key === 'string' && b.suspended !== true && stessoInizio(b)
+      && (b.key.toLowerCase() !== 'pinnacle' || pinFresco(b)));
   const fresca = (b) => {
     if (!adesso) return true;
     const t = Date.parse(b.last_update);

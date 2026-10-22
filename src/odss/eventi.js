@@ -27,6 +27,11 @@ function libroDi(b, inizio, adesso) {
     if (!Number.isFinite(t) || Math.abs(t - inizio) > O.toleranzaInizioOre * ORA_MS) return null;
   }
   const chiave = b.key.toLowerCase();
+  // Pinnacle fermo da più di CONFIG.odss.oreMaxPinnacle ore: fuori, la probabilità viene dal consenso.
+  if (adesso && chiave === 'pinnacle') {
+    const t = Date.parse(b.last_update);
+    if (Number.isFinite(t) && adesso.getTime() - t > O.oreMaxPinnacle * ORA_MS) return null;
+  }
   if (adesso && O.miei.includes(chiave)) {
     const t = Date.parse(b.last_update);
     if (!Number.isFinite(t) || adesso.getTime() - t > O.oreMaxQuota * ORA_MS) return null;
@@ -142,8 +147,9 @@ const lineaValida = (x) => Number.isFinite(x) && Number.isInteger(x * 2);
 const prezzoLinea = (q) => num(q) && q >= 1.01 && q <= 20;
 const mezzo = (v) => { const x = [...v].sort((a, b) => a - b); const m = x.length >> 1; return x.length % 2 ? x[m] : (x[m - 1] + x[m]) / 2; };
 
-// Linea principale fra quelle dei bookmaker: fra le linee con più bookmaker (almeno 3, o il massimo se nessuna ne ha
-// 3), quella con i due prezzi più vicini (mediana di |p1 − p2|); a pari, più bookmaker, poi la linea più piccola.
+// Linea principale fra quelle dei bookmaker [revisione, 23/10/2026]: prima le linee .5 (senza rimborso), se ce ne sono;
+// fra queste quelle offerte dal maggior numero di bookmaker; a pari, i due prezzi più vicini (mediana di |p1 − p2|),
+// poi la linea più piccola.
 function lineaPrincipale(perLibro, lati) {
   const linee = new Map();
   for (const coppie of perLibro) {
@@ -153,9 +159,11 @@ function lineaPrincipale(perLibro, lati) {
     }
   }
   if (!linee.size) return null;
-  const soglia = Math.min(3, Math.max(...[...linee.values()].map((d) => d.length)));
-  return [...linee].filter(([, d]) => d.length >= soglia)
-    .sort((a, b) => mezzo(a[1]) - mezzo(b[1]) || b[1].length - a[1].length || Math.abs(Number(a[0])) - Math.abs(Number(b[0])))[0][0];
+  const mezze = [...linee].filter(([l]) => Number.isInteger(Number(l) - 0.5));
+  const candidate = mezze.length ? mezze : [...linee];
+  const massimo = Math.max(...candidate.map(([, d]) => d.length));
+  return candidate.filter(([, d]) => d.length === massimo)
+    .sort((a, b) => mezzo(a[1]) - mezzo(b[1]) || Math.abs(Number(a[0])) - Math.abs(Number(b[0])))[0][0];
 }
 
 // Formato dei bookmaker di NBA, basket e pallavolo: [{ chiave, aggiornato, mercati: { vincente: { casa, trasferta },
@@ -170,7 +178,8 @@ function lineaPrincipale(perLibro, lati) {
 // - `totali(linea)`: linee del totale ammesse (pallavolo: solo 3.5, i set). `handicap: false`: niente ah (pallavolo:
 //   l'ah è in punti). `handicapSet`: handicap set da "other:set_handicap" (pallavolo), solo con esiti HOME/AWAY e
 //   linea ±1.5, tutte e due le linee.
-export function inFormatoNba(evento, { invertito = false, totali = () => true, handicap = true, handicapSet = false } = {}) {
+// - `linee: { handicap, totale }`: linee imposte (controlli: la linea della giocata, non la principale del momento).
+export function inFormatoNba(evento, { invertito = false, totali = () => true, handicap = true, handicapSet = false, linee = {} } = {}) {
   const libri = [];
   for (const l of senzaExchange(evento)) {
     const m = {};
@@ -193,8 +202,8 @@ export function inFormatoNba(evento, { invertito = false, totali = () => true, h
     }
     libri.push({ l, m, coppie });
   }
-  const hPrincipale = lineaPrincipale(libri.map((x) => x.coppie.handicap), ['casa', 'trasferta']);
-  const tPrincipale = lineaPrincipale(libri.map((x) => x.coppie.totale), ['over', 'under']);
+  const hPrincipale = Number.isFinite(linee.handicap) ? String(linee.handicap) : lineaPrincipale(libri.map((x) => x.coppie.handicap), ['casa', 'trasferta']);
+  const tPrincipale = Number.isFinite(linee.totale) ? String(linee.totale) : lineaPrincipale(libri.map((x) => x.coppie.totale), ['over', 'under']);
   let handicapScartato = false;
   if (hPrincipale !== null) {
     const linea = Number(hPrincipale);

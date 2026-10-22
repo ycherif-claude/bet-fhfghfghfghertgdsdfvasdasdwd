@@ -107,42 +107,80 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData =
     return raccolta;
   }
 
-  // 1. Partite della giornata con le quote: prima odss-api (fonte principale) [utente, 22/10/2026], una richiesta
-  // (league "nba") solo in stagione (ottobre-giugno); se odss non risponde o non ha partite NBA, SportsGameOdds.
   const finestra = finestraGiornata(data);
+  const dentroFinestra = (x) => Number.isFinite(Date.parse(x)) && Date.parse(x) >= finestra.da.getTime() && Date.parse(x) < finestra.a.getTime();
+
+  // 1. Storico (stagione corrente e precedente) da balldontlie: serve al modello e, con le partite non ancora giocate,
+  // è il calendario della giornata con cui si controlla la copertura di odss [revisione, 23/10/2026].
+  const stagione = stagioneNba(data);
+  const storico = [];
+  const ignoteStorico = [];
+  let senzaData = 0;
+  let caricate = 0;
+  let precedente = false;
+  for (const s of [stagione, stagione - 1]) {
+    try {
+      const p = await fonti.balldontlie.partite({ stagioni: [s] }, { chiave: chiavi.balldontlie });
+      storico.push(...p);
+      ignoteStorico.push(...(p.nonRiconosciute ?? []));
+      senzaData += p.diagnostica?.senzaData ?? 0;
+      caricate++;
+      if (s === stagione - 1) precedente = true;
+    } catch (e) {
+      errore(`balldontlie stagione ${s}`, e);
+    }
+  }
+  const calendario = caricate ? [...new Map(storico.filter((g) => dentroFinestra(g.inizio)).map((g) => [g.id, g])).values()] : null;
+
+  // 2. Partite della giornata con le quote: prima odss-api (fonte principale) [utente, 22/10/2026], una richiesta
+  // (league "nba") solo se il calendario ha partite (senza calendario: solo in stagione, ottobre-giugno). Se odss non
+  // risponde, non ha partite NBA o non copre tutte le partite del calendario: SportsGameOdds per la giornata.
   let eventi = null;
   let fonteQuote = 'SportsGameOdds';
+  let daOdss = null;
   if (Object.hasOwn(chiavi, 'odss')) {
     const mese = Number(data.slice(5, 7));
     const inStagione = mese >= 10 || mese <= 6;
+    const partite = calendario ? calendario.length : inStagione ? null : 0;
     const o = await eventiOdssSport({
       dirData, data, adesso, chiave: chiavi.odss, sport: 'basket', budgetSport: 'nba', gruppi: ['moneyline,ah,ou'], league: 'nba',
-      finestra, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite: inStagione ? null : 0, nome: 'NBA',
+      finestra, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite, nome: 'NBA',
     });
     erroriGiro.push(...o.errori);
     const p = partiteNbaDaOdss(o.eventi);
     if (p.handicapScartati) errore('odss-api', plurale(p.handicapScartati, 'handicap NBA scartato: linea della casa con il verso opposto al vincente', 'handicap NBA scartati: linea della casa con il verso opposto al vincente'));
-    if (p.eventi.length) {
-      eventi = Object.defineProperty(p.eventi, 'nonRiconosciute', { value: [], enumerable: false });
+    const coperta = (g) => p.eventi.some((e) => e.casa === g.casa && e.trasferta === g.trasferta
+      && Math.abs(Date.parse(e.inizio) - Date.parse(g.inizio)) <= CONFIG.odss.toleranzaOre * 3600000);
+    const mancanti = calendario ? calendario.filter((g) => !coperta(g)).length : 0;
+    if (p.eventi.length) daOdss = Object.defineProperty(p.eventi, 'nonRiconosciute', { value: [], enumerable: false });
+    if (p.eventi.length && !mancanti) {
+      eventi = daOdss;
       fonteQuote = 'odss-api';
-    } else if (inStagione) {
+    } else if (p.eventi.length) {
+      erroriGiro.push(`NBA: ${mancanti} partite su ${calendario.length} non coperte da odss-api, quote da SportsGameOdds`);
+    } else if (partite !== 0) {
       erroriGiro.push(`Quote NBA: nessuna partita NBA su odss-api, quote da SportsGameOdds`);
     }
   }
   if (!eventi) {
     if (!chiavi.sportsgameodds) {
-      erroriGiro.push(ERRORE_CHIAVI);
-      return raccolta;
+      if (!daOdss) { erroriGiro.push(ERRORE_CHIAVI); return raccolta; }
+      eventi = daOdss;
+      fonteQuote = 'odss-api';
+    } else {
+      try {
+        eventi = await fonti.sportsgameodds.eventi(finestra, { chiave: chiavi.sportsgameodds });
+        raccolta.crediti.sportsgameodds.oggetti = eventi.length;
+      } catch (e) {
+        errore('SportsGameOdds', e);
+        // SportsGameOdds giù: meglio le partite che odss copre che niente.
+        if (!daOdss) return raccolta;
+        eventi = daOdss;
+        fonteQuote = 'odss-api';
+      }
     }
-    try {
-      eventi = await fonti.sportsgameodds.eventi(finestra, { chiave: chiavi.sportsgameodds });
-    } catch (e) {
-      errore('SportsGameOdds', e);
-      return raccolta;
-    }
-    raccolta.crediti.sportsgameodds.oggetti = eventi.length;
   }
-  const ignote = [...(eventi.nonRiconosciute ?? [])];
+  const ignote = [...(eventi.nonRiconosciute ?? []), ...ignoteStorico];
   // Riga di diagnostica di SportsGameOdds: si scrive alla fine, con i mercati scartati senza consenso.
   const d = eventi.diagnostica;
   const parti = [];
@@ -170,24 +208,6 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData =
     errore(fonteQuote, fonteQuote === 'odss-api' ? 'nessun handicap disponibile' : 'nessun handicap disponibile (controllare il campo spread)');
   }
 
-  // 2. Storico: stagione corrente e precedente.
-  const stagione = stagioneNba(data);
-  const storico = [];
-  let senzaData = 0;
-  let caricate = 0;
-  let precedente = false;
-  for (const s of [stagione, stagione - 1]) {
-    try {
-      const p = await fonti.balldontlie.partite({ stagioni: [s] }, { chiave: chiavi.balldontlie });
-      storico.push(...p);
-      ignote.push(...(p.nonRiconosciute ?? []));
-      senzaData += p.diagnostica?.senzaData ?? 0;
-      caricate++;
-      if (s === stagione - 1) precedente = true;
-    } catch (e) {
-      errore(`balldontlie stagione ${s}`, e);
-    }
-  }
   if (senzaData) errore('balldontlie', plurale(senzaData, 'partita senza data', 'partite senza data'));
   if (ignote.length) erroriGiro.push(`Squadre NBA non riconosciute: ${[...new Set(ignote)].join(', ')}`);
   if (!caricate || !delGiorno.length) {

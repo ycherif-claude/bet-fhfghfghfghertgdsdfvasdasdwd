@@ -70,7 +70,7 @@ test('basket con odss: una richiesta per l\'Eurolega (league "eurol"), mercati d
   assert.equal(p.mercati[0].fonteQuota, 'mediana di 4 bookmaker (odss-api)');
   assert.equal(p.mercati[0].quota, 1.61);
   assert.ok(Math.abs(p.mercati[0].probPinnacle - (1 / 1.6) / (1 / 1.6 + 1 / 2.4)) < 1e-9);
-  assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).perSport, { basket: 1 });
+  assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).giornate['2026-10-21'].perSport, { basket: 1 });
 });
 
 test('basket: odss in 429 → The Odds API come prima, con una riga chiara', async () => {
@@ -96,6 +96,8 @@ function storico() {
       out.push({ id: k, dataUsa: s === 2026 ? `2026-10-${String(giorno).padStart(2, '0')}` : `2026-03-${String(giorno).padStart(2, '0')}`, inizio: null, casa: a, trasferta: b, puntiCasa: 105 + ((i + k) % 12), puntiTrasferta: 100 + ((j + 2 * k) % 12), finita: true, stagione: s, postseason: false });
     }));
   }
+  // Partita di oggi non ancora giocata: il calendario della giornata con cui si controlla la copertura di odss.
+  out.push({ id: 999, dataUsa: '2026-10-20', inizio: '2026-10-21T01:30:00+02:00', casa: 'Boston Celtics', trasferta: 'New York Knicks', puntiCasa: null, puntiTrasferta: null, finita: false, stagione: 2026, postseason: false });
   return out;
 }
 const conMeta = (arr) => {
@@ -136,10 +138,10 @@ test('NBA con odss: partite e quote da odss (league "nba"), Pinnacle per la prob
   assert.equal(v.fonteQuota, 'mediana di 5 bookmaker (odss-api)');
   assert.ok(Math.abs(v.probPinnacle - (1 / 1.55) / (1 / 1.55 + 1 / 2.5)) < 1e-9);
   assert.equal(v.etichettaMercato, undefined);
-  assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).perSport, { nba: 1 });
+  assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).giornate['2026-10-20'].perSport, { nba: 1 });
 });
 
-test('NBA: odss senza partite NBA → SportsGameOdds come prima; fuori stagione nessuna richiesta a odss', async () => {
+test('NBA: odss senza partite NBA → SportsGameOdds come prima; nessuna partita nel calendario (fuori stagione) → nessuna richiesta a odss', async () => {
   let f = fetchOdss({ 'basket|moneyline,ah,ou': [[]] });
   let fo = fontiNba({ fetch: f });
   let r = await eseguiRaccoltaNba({ data: '2026-10-20', adesso: new Date('2026-10-20T05:07:00Z'), fonti: fo, chiavi: { balldontlie: 'B', sportsgameodds: 'S', odss: CHIAVE }, dirData: temp() });

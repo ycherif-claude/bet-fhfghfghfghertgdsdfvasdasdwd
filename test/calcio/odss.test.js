@@ -75,7 +75,7 @@ test('fonte: parametri della richiesta, chiave nell\'intestazione, User-Agent on
   assert.equal(u.searchParams.get('state'), 'prematch');
   assert.equal(u.searchParams.get('commence_from'), '2026-10-23T06:00:00Z');
   assert.equal(u.searchParams.get('commence_to'), '2026-10-24T06:00:00Z');
-  assert.equal(u.searchParams.get('limit'), '5000');
+  assert.equal(u.searchParams.get('limit'), '1000');
   // Senza filtro bookmakers (serve il consenso di tutti) e senza la chiave nell'indirizzo.
   assert.equal(u.searchParams.has('bookmakers'), false);
   assert.ok(!f.chiamate[0].url.includes(CHIAVE));
@@ -168,7 +168,7 @@ test('download: 1x2, dc e ou con paginazione; eventi compatti; stato con rimaste
   assert.deepEqual(Object.keys(e.mercati).sort(), ['1x2', 'dc', 'ou|1.5', 'ou|2.5']);
   assert.equal(e.mercati['1x2'].fonteProb, 'Pinnacle');
   assert.equal(file.diagnostica.senzaIntero, 0);
-  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, giorno: DATA, usateOggi: 4, controlliOggi: 0, perSport: { calcio: 4 } });
+  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, limiteRaggiuntoFino: null, giornate: { [DATA]: { usate: 4, controlli: 0, perSport: { calcio: 4 }, avvisi: [] } } });
   assert.equal(file.esito, 'ok');
   assert.ok(!JSON.stringify(file).includes(CHIAVE));
 });
@@ -198,7 +198,7 @@ test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico
   f = fetchFinto(pagineTipo());
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 10, reset: '2026-10-01T00:00:00Z', giorno: '2026-10-22', usateOggi: 6 } });
   assert.equal(f.chiamate.length, 4);
-  assert.equal(r.stato.usateOggi, 4);
+  assert.equal(r.stato.giornate[DATA].usate, 4);
   // Le pagine in più si fanno solo lasciando una richiesta a ogni mercato che manca; poi riga "incomplete".
   const tante = { '1x2': [[riga()], [riga({ event_id: 'e2' })], [riga({ event_id: 'e3' })], [riga({ event_id: 'e4' })]], dc: [[riga({ market: 'dc' })]], ou: [[riga({ market: 'ou', line: 1.5 })]] };
   f = fetchFinto(tante);
@@ -242,7 +242,7 @@ test('raccolta odss: scrive data/raccolta/<data>-odss.json e data/stato/odss.jso
   const file = readFileSync(join(d, 'raccolta', `${DATA}-odss.json`), 'utf8');
   const stato = JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8'));
   assert.equal(JSON.parse(file).eventi.length, 1);
-  assert.equal(stato.usateOggi, 4);
+  assert.equal(stato.giornate[DATA].usate, 4);
   assert.ok(!file.includes(CHIAVE));
   // Seconda raccolta lo stesso giorno: legge lo stato e conta le richieste di oggi del calcio (4 + 3 > 6 → niente).
   const g = fetchFinto(pagineTipo());

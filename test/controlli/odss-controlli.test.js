@@ -53,8 +53,8 @@ test('controlli con odss: una richiesta per calcio e NBA, quote e probabilità d
   assert.equal(out.get('v2').quota, 1.55);
   assert.deepEqual(registrate.sort(), ['calcio|Serie A|1', 'nba|NBA|1']);
   const stato = JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8'));
-  assert.equal(stato.controlliOggi, 1);
-  assert.equal(stato.usateOggi, 0);
+  assert.equal(stato.giornate[DATA].controlli, 1);
+  assert.equal(stato.giornate[DATA].usate, 0);
 });
 
 test('controlli: tetto dei controlli raggiunto → nessuna richiesta a odss, fonti di prima; partita non su odss → fonti di prima', async () => {

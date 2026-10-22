@@ -195,8 +195,10 @@ export const CONFIG = congela({
     tetti: { calcio: 6, tennis: 2, nba: 2, basket: 2, pallavolo: 2 },
     riserva: 60,
     mercati: ['1x2', 'dc', 'ou'],
-    // Righe per pagina (massimo dell'API).
-    limite: 5000,
+    // Righe per pagina (l'API arriva a 5000; 1000 evita risposte enormi e timeout, con più pagine).
+    limite: 1000,
+    // Pinnacle aggiornato da più di tante ore: ignorato, vale il consenso dei bookmaker.
+    oreMaxPinnacle: 24,
     // Linee dell'Under/Over salvate (i pronostici usano l'Over 1.5).
     lineeOu: [1.5, 2.5, 3.5],
     // Bookmaker su cui l'utente ha un conto (Betfair non c'è su odss-api; bet365 di solito senza prematch).

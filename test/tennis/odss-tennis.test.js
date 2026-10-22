@@ -68,7 +68,7 @@ test('tennis con odss: una richiesta, quote per giocatore (evento invertito), me
   assert.equal(m.fonteQuota, 'mediana di 4 bookmaker (odss-api)');
   assert.ok(Math.abs(m.probPinnacle - (1 / 1.78) / (1 / 1.78 + 1 / 2.1)) < 1e-9);
   const stato = JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8'));
-  assert.deepEqual(stato.perSport, { tennis: 1 });
+  assert.deepEqual(stato.giornate['2026-10-20'].perSport, { tennis: 1 });
   assert.ok(!JSON.stringify(r).includes(CHIAVE));
 });
 

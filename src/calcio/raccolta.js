@@ -97,6 +97,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   const conPartite = COMPETIZIONI.filter((c) => eventiPer.has(chiaveEventi(c)));
   const odssPer = new Map();
   const daOdss = new Set();
+  // Competizioni di The Odds API coperte solo in parte da odss: The Odds API riempie le partite mancanti (mai sopra odss).
+  const parziali = new Set();
   if (fonti.odss !== undefined) {
     const eventiOdss = Array.isArray(fonti.odss?.eventi) ? fonti.odss.eventi : [];
     if (!eventiOdss.length) {
@@ -112,14 +114,17 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
         const trovate = eventi.filter((e) => odssPer.has(`${chiaveEventi(c)}#${e.id}`)).length;
         if (trovate) daOdss.add(c.nome);
         if (!trovate && c.chiave) erroriGiro.push(`Quote ${c.nome}: nessuna partita su odss-api, quote da The Odds API`);
-        else if (trovate < eventi.length) erroriGiro.push(`Quote ${c.nome}: ${eventi.length - trovate} partite su ${eventi.length} non trovate su odss-api, senza quote`);
+        else if (trovate < eventi.length) {
+          if (c.chiave) parziali.add(c.nome);
+          erroriGiro.push(`Quote ${c.nome}: ${eventi.length - trovate} partite su ${eventi.length} non trovate su odss-api, ${c.chiave ? 'quote da The Odds API' : 'senza quote'}`);
+        }
       }
     }
   }
 
   // 2. Budget e scelta delle competizioni (solo quelle con le quote di The Odds API spendono crediti).
   const budget = budgetCrediti(rimasti, data);
-  const { scelte, scoperte } = scegliCompetizioni(conPartite.filter((c) => c.chiave && !daOdss.has(c.nome)), budget);
+  const { scelte, scoperte } = scegliCompetizioni(conPartite.filter((c) => c.chiave && (!daOdss.has(c.nome) || parziali.has(c.nome))), budget);
   const competizioniNonCoperte = scoperte.map((c) => `${c.nome}: crediti insufficienti`);
   const crediti = { usati: 0, rimasti };
 

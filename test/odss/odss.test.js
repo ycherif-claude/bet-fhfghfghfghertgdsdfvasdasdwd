@@ -36,18 +36,20 @@ test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli 
   b.conta();
   assert.equal(b.puo(0), false);
   assert.match(b.motivo(), /tetto di 10 richieste al giorno del giro del mattino/);
-  assert.deepEqual(b.stato().perSport, { calcio: 6, nba: 1, basket: 2, tennis: 1 });
+  assert.deepEqual(b.stato().giornate[DATA].perSport, { calcio: 6, nba: 1, basket: 2, tennis: 1 });
   // Il calcio da solo non va oltre il suo tetto.
   b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 6, perSport: { calcio: 6 } }, data: DATA, adesso: ADESSO, sport: 'calcio' });
   assert.equal(b.puo(0), false);
   assert.match(b.motivo(), /per calcio/);
   // I controlli hanno il loro tetto e non toccano quello del mattino.
-  b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 10, controlliOggi: 2 }, data: DATA, adesso: ADESSO, tipo: 'controlli' });
+  // (alle 12:00 la giornata in corso dei controlli è quella del 23, la stessa della raccolta del 23).
+  const MEZZOGIORNO = new Date('2026-10-23T10:00:00Z');
+  b = creaBudgetOdss({ stato: { rimaste: 300, giornate: { [DATA]: { usate: 10, controlli: 2 } } }, data: DATA, adesso: MEZZOGIORNO, tipo: 'controlli' });
   assert.equal(b.puo(0), true);
   b.conta();
   assert.equal(b.puo(0), false);
-  assert.equal(b.stato().usateOggi, 10);
-  assert.equal(b.stato().controlliOggi, 3);
+  assert.equal(b.stato().giornate[DATA].usate, 10);
+  assert.equal(b.stato().giornate[DATA].controlli, 3);
   // Riserva: con 61 rimaste nessuna richiesta che lasci meno di 60.
   b = creaBudgetOdss({ stato: { rimaste: 61, giorno: DATA }, data: DATA, adesso: ADESSO, sport: 'nba' });
   assert.equal(b.puo(0), true);
@@ -58,7 +60,9 @@ test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli 
   // Giorno nuovo: i conteggi ripartono; un reset passato rende sconosciute le rimaste.
   b = creaBudgetOdss({ stato: { rimaste: 10, reset: '2026-10-01T00:00:00Z', giorno: '2026-10-22', usateOggi: 10, controlliOggi: 3, perSport: { calcio: 6 } }, data: DATA, adesso: ADESSO, sport: 'calcio' });
   assert.equal(b.puo(5), true);
-  assert.deepEqual(b.stato(), { aggiornatoAlle: ADESSO.toISOString(), rimaste: null, limite: null, reset: null, giorno: DATA, usateOggi: 0, controlliOggi: 0, perSport: {} });
+  assert.deepEqual(b.stato(), { aggiornatoAlle: ADESSO.toISOString(), rimaste: null, limite: null, reset: null, limiteRaggiuntoFino: null, giornate: {
+    '2026-10-22': { usate: 10, controlli: 3, perSport: { calcio: 6 }, avvisi: [] }, [DATA]: { usate: 0, controlli: 0, perSport: {}, avvisi: [] },
+  } });
 });
 
 // ---- Download generico ----
@@ -83,7 +87,7 @@ test('download: sport, mercati separati da virgola, campionato, solo righe di pa
   assert.equal(r.ok, true);
   assert.equal(r.fermo, null);
   assert.deepEqual(errori, []);
-  assert.equal(budget.stato().perSport.nba, 2);
+  assert.equal(budget.stato().giornate[DATA].perSport.nba, 2);
 });
 
 test('download: 401/403 e 429 fermano tutto (fermo), un 5xx si riprova una volta, budget finito → niente richieste', async () => {
