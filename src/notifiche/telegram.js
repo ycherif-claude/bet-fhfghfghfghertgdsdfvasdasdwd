@@ -162,8 +162,10 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       ? `${testoPronostici(delGiorno, oggi)}\n\n🧪 ${giocate.length === 1 ? '1 giocata' : `${giocate.length} giocate`} di prova sul sito: non giocarle, servono al database.`
       : testo;
     const conBonus = bonus.length ? `${base}\n\n${bonus.join('\n\n')}` : base;
-    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: giocate.map((g) => `${oggi}|giocata|${g.id}`) });
+    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`] });
   } else {
+    // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).
+    if (Array.isArray(delGiorno.pronostici)) aggiungi(`${oggi}|pronostici`, testoPronostici(delGiorno, oggi) + piede);
     const nuove = prova ? [] : giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
     if (nuove.length) {
       out.push({

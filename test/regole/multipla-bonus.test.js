@@ -147,3 +147,16 @@ test('Telegram: bilancio dei pronostici quando sono tutti chiusi', async () => {
   assert.equal(messaggiPronostici({ giornate: [g], inviate: new Set(), oggi: '2026-10-26' }).length, 0);
   assert.equal(messaggiPronostici({ giornate: [g], inviate: new Set(), oggi: '2026-10-29' }).length, 1);
 });
+
+test('Telegram: pronostici arrivati dopo il messaggio del mattino, una volta sola', () => {
+  const g = { data: '2026-10-25', prova: true, giocate: [], pronostici: [] };
+  const inviate = new Set(['2026-10-25|giornata']);
+  const m = messaggi({ giornata: g, oggi: '2026-10-25', adesso: new Date('2026-10-25T12:00:00Z'), inviate });
+  assert.equal(m.length, 1);
+  assert.equal(m[0].chiave, '2026-10-25|pronostici');
+  assert.match(m[0].testo, /nessuna partita ha un pronostico abbastanza sicuro/);
+  inviate.add(m[0].chiave);
+  assert.equal(messaggi({ giornata: g, oggi: '2026-10-25', adesso: new Date('2026-10-25T12:00:00Z'), inviate }).length, 0);
+  const senza = { data: '2026-10-25', giocate: [] };
+  assert.equal(messaggi({ giornata: senza, oggi: '2026-10-25', adesso: new Date('2026-10-25T12:00:00Z'), inviate: new Set(['2026-10-25|giornata']) }).length, 0);
+});

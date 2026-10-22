@@ -168,7 +168,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     ...(prova ? { prova: true } : {}),
     competizioniNonCoperte: Array.isArray(raccolta?.competizioniNonCoperte) ? raccolta.competizioniNonCoperte : [],
     candidati,
-    ...(pronostici.length ? { pronostici } : {}),
+    ...(prova || pronostici.length ? { pronostici } : {}),
     giocate: scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     scartate: [...preScartate, ...scelta.scartate],
