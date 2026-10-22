@@ -196,3 +196,14 @@ test('documentazione: fonti per sport, budget unico e riserva nel README e nelle
   assert.match(readFileSync('docs/routine/controllo-pre-partita.md', 'utf8'), /prima odss-api/);
   assert.match(readFileSync('docs/routine/giro-serale.md', 'utf8'), /budget di odss-api/);
 });
+
+test('sport: righe senza nessuna partita intera → una riga con i periodi visti (per capire il feed vero)', async () => {
+  const { mkdtempSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const { eventiOdssSport } = await import('../../src/odss/sport.js');
+  const f = fetchOdss({ 'basket|moneyline,ah,ou': [[rigaOdss({ sport: 'basket', market: 'moneyline', period: 'full_time_ot', bookmakers: [bkOdss('snai', { HOME: 1.5, AWAY: 2.6 })] })]] });
+  const r = await eventiOdssSport({ dirData: mkdtempSync(join(tmpdir(), 'odss-sport-')), data: DATA, adesso: ADESSO, chiave: CHIAVE, sport: 'basket', budgetSport: 'nba', gruppi: ['moneyline,ah,ou'], finestra: FINESTRA, fetch: f, nome: 'NBA' });
+  assert.deepEqual(r.eventi, []);
+  assert.ok(r.errori.some((e) => /odss-api \(NBA\).*nessuna riga a tempo intero.*match\|full_time_ot/.test(e)), r.errori.join(' | '));
+});

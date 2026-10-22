@@ -27,5 +27,10 @@ export async function eventiOdssSport({
   const esito = r.fermo ?? (r.ok ? 'ok' : 'errore');
   if (!r.ok && !r.righe.length) return { eventi: null, errori, richieste: r.richieste, esito };
   const eventi = eventiDaRighe(r.righe, { adesso });
+  // Righe ricevute ma nessuna partita intera: si scrivono i periodi visti (scope|period), mai indovinare quale vale.
+  if (r.righe.length && !eventi.diagnostica.righeUsate) {
+    const periodi = Object.entries(eventi.diagnostica.periodiVisti).map(([k, n]) => `${k} ${n}`).join(', ');
+    errore(`nessuna riga a tempo intero (scope "match", period "full_time") su ${r.righe.length}: periodi visti ${periodi}`);
+  }
   return { eventi, errori, richieste: r.richieste, esito, diagnostica: eventi.diagnostica };
 }
