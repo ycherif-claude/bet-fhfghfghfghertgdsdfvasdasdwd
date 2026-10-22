@@ -43,6 +43,27 @@ function converti(r) {
   };
 }
 
+// Quote del CSV per la prova sul passato (src/taratura): Pinnacle prima della partita e in chiusura,
+// media e massimo dei bookmaker, per 1X2 e Under/Over 2.5. Ogni terna o coppia incompleta resta null.
+export function quoteFootballData(r) {
+  const gruppo = (...chiavi) => {
+    const v = chiavi.map((k) => numero(r[k]));
+    return v.every((x) => x !== null && x > 1) ? v : null;
+  };
+  return {
+    pinnacle1x2: gruppo('PSH', 'PSD', 'PSA'),
+    pinnacleChiusura1x2: gruppo('PSCH', 'PSCD', 'PSCA'),
+    media1x2: gruppo('AvgH', 'AvgD', 'AvgA'),
+    max1x2: gruppo('MaxH', 'MaxD', 'MaxA'),
+    pinnacleOU: gruppo('P>2.5', 'P<2.5'),
+    pinnacleChiusuraOU: gruppo('PC>2.5', 'PC<2.5'),
+    mediaOU: gruppo('Avg>2.5', 'Avg<2.5'),
+    maxOU: gruppo('Max>2.5', 'Max<2.5'),
+  };
+}
+
+export { converti as partitaFootballData };
+
 export const footballDataUk = {
   async partite(codice, stagioni, opz = {}) {
     const { chiave, ...resto } = opz;

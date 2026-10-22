@@ -23,7 +23,9 @@ function walkover(p) {
   return (p.setW?.length ?? 0) === 0 && (p.setL?.length ?? 0) === 0;
 }
 
-export function calcolaElo(partite, cfg = CONFIG.tennis) {
+// `primaDi(p, eloVincitore, eloPerdente)`: chiamata prima di aggiornare ogni partita (serve alla prova sul passato,
+// che stima ogni partita con i soli dati precedenti).
+export function calcolaElo(partite, cfg = CONFIG.tennis, { primaDi } = {}) {
   const elo = new Map();
   const conteggi = new Map(); // nome -> { tot, cemento, terra, erba }
   const voce = (nome) => {
@@ -46,6 +48,7 @@ export function calcolaElo(partite, cfg = CONFIG.tennis) {
     const l = voce(p.perdente);
     const cw = conteggi.get(p.vincitore);
     const cl = conteggi.get(p.perdente);
+    if (primaDi) primaDi(p, w, l);
     for (const chiave of ['tot', superficieDi(p.superficie)]) {
       const atteso = probElo(w[chiave], l[chiave]);
       const kw = kFattore(cw[chiave], cfg);

@@ -1,0 +1,748 @@
+{
+  "circuiti": {
+    "atp": {
+      "parametriAttuali": {
+        "kBase": 250,
+        "kEsponente": 0.4,
+        "pesoSuperficie": 0.5,
+        "pesoModello": 0.5
+      },
+      "attuali": {
+        "2025 contro Pinnacle": {
+          "partite": 2387,
+          "perditaModello": 0.6418702118587628,
+          "perditaPinnacle": 0.5965271971183189,
+          "perditaAttuale": 0.6099588472972302,
+          "modelloMenoPinnacle": {
+            "differenza": 0.045343014740444394,
+            "errore": 0.005545070054243803
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.013431650178910907,
+            "errore": 0.002635952640213271
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5965271971183189
+        },
+        "2025 contro media bookmaker": {
+          "partite": 2490,
+          "perditaModello": 0.6354578863864305,
+          "perditaPinnacle": 0.5920582854245164,
+          "perditaAttuale": 0.6047370152780405,
+          "modelloMenoPinnacle": {
+            "differenza": 0.04339960096191183,
+            "errore": 0.005373056271189955
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.012678729853521647,
+            "errore": 0.0025520597633131594
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5920582854245164
+        },
+        "2026 contro media bookmaker": {
+          "partite": 2286,
+          "perditaModello": 0.6351213484911105,
+          "perditaPinnacle": 0.5930511310732579,
+          "perditaAttuale": 0.6048063147954275,
+          "modelloMenoPinnacle": {
+            "differenza": 0.042070217417852704,
+            "errore": 0.005727318202266956
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.011755183722168942,
+            "errore": 0.0027005673186657523
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5930511310732579
+        },
+        "pochiDati": {
+          "partite": 1831,
+          "perditaModello": 0.6644637588681037,
+          "perditaPinnacle": 0.6019207974185232,
+          "perditaAttuale": 0.6076315965305928,
+          "modelloMenoPinnacle": {
+            "differenza": 0.06254296144957885,
+            "errore": 0.007655821248239953
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.005710799112068278,
+            "errore": 0.0019237759117068964
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.6019207974185232
+        },
+        "superfici": {
+          "cemento": {
+            "partite": 2701,
+            "perditaModello": 0.6302058507040003,
+            "perditaPinnacle": 0.5916976168005194,
+            "perditaAttuale": 0.6028878544959732,
+            "modelloMenoPinnacle": {
+              "differenza": 0.038508233903479606,
+              "errore": 0.004891381500792253
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.011190237695452413,
+              "errore": 0.002298791355646182
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5916976168005194
+          },
+          "terra": {
+            "partite": 1497,
+            "perditaModello": 0.6382064689885856,
+            "perditaPinnacle": 0.5932655660596571,
+            "perditaAttuale": 0.6056873460658573,
+            "modelloMenoPinnacle": {
+              "differenza": 0.0449409029289273,
+              "errore": 0.007326469229581084
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.012421780006199704,
+              "errore": 0.003521858062332787
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5932655660596571
+          },
+          "erba": {
+            "partite": 578,
+            "perditaModello": 0.6515509566184695,
+            "perditaPinnacle": 0.5948801461969101,
+            "perditaAttuale": 0.6104159935187538,
+            "modelloMenoPinnacle": {
+              "differenza": 0.05667081042156092,
+              "errore": 0.013381075438972368
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.015535847321844156,
+              "errore": 0.006445383852182615
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5948801461969101
+          }
+        }
+      },
+      "parametriMigliori": {
+        "kBase": 150,
+        "kEsponente": 0.5,
+        "pesoSuperficie": 0,
+        "pesoModello": 0
+      },
+      "migliori": {
+        "2025 contro Pinnacle": {
+          "partite": 2387,
+          "perditaModello": 0.6317270379754445,
+          "perditaPinnacle": 0.5965271971183189,
+          "perditaAttuale": 0.607150358725038,
+          "modelloMenoPinnacle": {
+            "differenza": 0.035199840857126546,
+            "errore": 0.004811107085390266
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.010623161606719238,
+            "errore": 0.0024465571335848314
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5965271971183189
+        },
+        "2025 contro media bookmaker": {
+          "partite": 2490,
+          "perditaModello": 0.6265046244735695,
+          "perditaPinnacle": 0.5920582854245164,
+          "perditaAttuale": 0.602728578390377,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03444633904905122,
+            "errore": 0.004564194588903407
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.010670292965857427,
+            "errore": 0.0023156183362427964
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5920582854245164
+        },
+        "2026 contro media bookmaker": {
+          "partite": 2286,
+          "perditaModello": 0.6286030895121981,
+          "perditaPinnacle": 0.5930511310732579,
+          "perditaAttuale": 0.6037252016372261,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03555195843893939,
+            "errore": 0.0049892417709397245
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.010674070563968949,
+            "errore": 0.0025463626070561193
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5930511310732579
+        },
+        "pochiDati": {
+          "partite": 1831,
+          "perditaModello": 0.6520962785222673,
+          "perditaPinnacle": 0.6019207974185232,
+          "perditaAttuale": 0.606523434968684,
+          "modelloMenoPinnacle": {
+            "differenza": 0.05017548110374297,
+            "errore": 0.006671140062456104
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.004602637550160714,
+            "errore": 0.0018736558710687671
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.6019207974185232
+        },
+        "superfici": {
+          "cemento": {
+            "partite": 2701,
+            "perditaModello": 0.6207127989951139,
+            "perditaPinnacle": 0.5916976168005194,
+            "perditaAttuale": 0.6006048026138687,
+            "modelloMenoPinnacle": {
+              "differenza": 0.02901518219459293,
+              "errore": 0.004070598063498028
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.008907185813349794,
+              "errore": 0.002044177131349025
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5916976168005194
+          },
+          "terra": {
+            "partite": 1497,
+            "perditaModello": 0.6397842212494258,
+            "perditaPinnacle": 0.5932655660596571,
+            "perditaAttuale": 0.607473276206471,
+            "modelloMenoPinnacle": {
+              "differenza": 0.04651865518976853,
+              "errore": 0.006907633507385344
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.014207710146813605,
+              "errore": 0.003549709250102064
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5932655660596571
+          },
+          "erba": {
+            "partite": 578,
+            "perditaModello": 0.6274756544427006,
+            "perditaPinnacle": 0.5948801461969101,
+            "perditaAttuale": 0.6024478720783504,
+            "modelloMenoPinnacle": {
+              "differenza": 0.032595508245791056,
+              "errore": 0.011059370571207493
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.007567725881440852,
+              "errore": 0.005889506112624004
+            },
+            "pesoMigliore": 0.05,
+            "perditaPesoMigliore": 0.594636842193489
+          }
+        }
+      },
+      "primeCinque": [
+        {
+          "kBase": 150,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0,
+          "perdita2025": 0.6265046244735695
+        },
+        {
+          "kBase": 150,
+          "kEsponente": 0.4,
+          "pesoSuperficie": 0.25,
+          "perdita2025": 0.6266271560040203
+        },
+        {
+          "kBase": 150,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0.25,
+          "perdita2025": 0.6267288628537543
+        },
+        {
+          "kBase": 150,
+          "kEsponente": 0.4,
+          "pesoSuperficie": 0,
+          "perdita2025": 0.6271177439110492
+        },
+        {
+          "kBase": 200,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0.25,
+          "perdita2025": 0.6272777884134467
+        }
+      ],
+      "calibrazioneModello2025": [
+        {
+          "fascia": "0-10%",
+          "n": 26,
+          "prevista": 0.06659141526276864,
+          "vera": 0.07692307692307693
+        },
+        {
+          "fascia": "10-20%",
+          "n": 95,
+          "prevista": 0.1593471933794139,
+          "vera": 0.22105263157894736
+        },
+        {
+          "fascia": "20-30%",
+          "n": 220,
+          "prevista": 0.2553167281873993,
+          "vera": 0.3
+        },
+        {
+          "fascia": "30-40%",
+          "n": 340,
+          "prevista": 0.3547942616516874,
+          "vera": 0.3764705882352941
+        },
+        {
+          "fascia": "40-50%",
+          "n": 505,
+          "prevista": 0.4516704191985971,
+          "vera": 0.4792079207920792
+        },
+        {
+          "fascia": "50-60%",
+          "n": 513,
+          "prevista": 0.5500326191267624,
+          "vera": 0.5516569200779727
+        },
+        {
+          "fascia": "60-70%",
+          "n": 376,
+          "prevista": 0.6456135188326979,
+          "vera": 0.6223404255319149
+        },
+        {
+          "fascia": "70-80%",
+          "n": 211,
+          "prevista": 0.7423163715313871,
+          "vera": 0.7630331753554502
+        },
+        {
+          "fascia": "80-90%",
+          "n": 87,
+          "prevista": 0.8393884957153614,
+          "vera": 0.9195402298850575
+        },
+        {
+          "fascia": "90-100%",
+          "n": 14,
+          "prevista": 0.9298994841858692,
+          "vera": 1
+        }
+      ],
+      "giocate2025": {
+        "attualeQuotaMedia": {
+          "giocate": 878,
+          "vinte": 0.3348519362186788,
+          "rendimento": -0.14911161731207276,
+          "clv": -0.07010816247197209
+        },
+        "attualeQuotaMax": {
+          "giocate": 1451,
+          "vinte": 0.36319779462439694,
+          "rendimento": -0.04720882150241214,
+          "clv": 0.016264889410731766
+        },
+        "nuovoQuotaMedia": {
+          "giocate": 21,
+          "vinte": 0.2857142857142857,
+          "rendimento": 0.008571428571428558,
+          "clv": 0.14235845557625953
+        },
+        "nuovoQuotaMax": {
+          "giocate": 319,
+          "vinte": 0.27586206896551724,
+          "rendimento": 0.09432601880877742,
+          "clv": 0.1490188863246731
+        },
+        "soloPinnacleQuotaMax": {
+          "giocate": 319,
+          "vinte": 0.27586206896551724,
+          "rendimento": 0.09432601880877742,
+          "clv": 0.1490188863246731
+        }
+      }
+    },
+    "wta": {
+      "parametriAttuali": {
+        "kBase": 250,
+        "kEsponente": 0.4,
+        "pesoSuperficie": 0.5,
+        "pesoModello": 0.5
+      },
+      "attuali": {
+        "2025 contro Pinnacle": {
+          "partite": 2274,
+          "perditaModello": 0.6347860666576159,
+          "perditaPinnacle": 0.5941611123440005,
+          "perditaAttuale": 0.605833963557928,
+          "modelloMenoPinnacle": {
+            "differenza": 0.04062495431361509,
+            "errore": 0.005497646638713739
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.011672851213925754,
+            "errore": 0.0026830468333113207
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5941611123440005
+        },
+        "2025 contro media bookmaker": {
+          "partite": 2376,
+          "perditaModello": 0.6342578937451363,
+          "perditaPinnacle": 0.5919722936389743,
+          "perditaAttuale": 0.6042930902910985,
+          "modelloMenoPinnacle": {
+            "differenza": 0.04228560010616265,
+            "errore": 0.005434540454282101
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.01232079665212441,
+            "errore": 0.002628920081060156
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5919722936389743
+        },
+        "2026 contro media bookmaker": {
+          "partite": 2254,
+          "perditaModello": 0.6093240149703987,
+          "perditaPinnacle": 0.5698019872659473,
+          "perditaAttuale": 0.5814441179012865,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03952202770445153,
+            "errore": 0.005349343730002564
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.011642130635338373,
+            "errore": 0.0025485779582253374
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5698019872659473
+        },
+        "pochiDati": {
+          "partite": 1893,
+          "perditaModello": 0.629061126870802,
+          "perditaPinnacle": 0.5659317583308575,
+          "perditaAttuale": 0.572152126967636,
+          "modelloMenoPinnacle": {
+            "differenza": 0.06312936853994486,
+            "errore": 0.00737776532343643
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.006220368636778379,
+            "errore": 0.0018276688158840818
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5659317583308575
+        },
+        "superfici": {
+          "cemento": {
+            "partite": 2910,
+            "perditaModello": 0.621895756371956,
+            "perditaPinnacle": 0.5843490372096999,
+            "perditaAttuale": 0.5951594117726987,
+            "modelloMenoPinnacle": {
+              "differenza": 0.0375467191622548,
+              "errore": 0.004669507677913843
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.010810374562997455,
+              "errore": 0.0022490202541125153
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5843490372096999
+          },
+          "terra": {
+            "partite": 1136,
+            "perditaModello": 0.6182703401786818,
+            "perditaPinnacle": 0.5614759418228187,
+            "perditaAttuale": 0.5793499446889473,
+            "modelloMenoPinnacle": {
+              "differenza": 0.056794398355862884,
+              "errore": 0.008536289688543693
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.017874002866128474,
+              "errore": 0.004091696740303268
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5614759418228187
+          },
+          "erba": {
+            "partite": 584,
+            "perditaModello": 0.63072145170608,
+            "perditaPinnacle": 0.6019192855764167,
+            "perditaAttuale": 0.6086692459396414,
+            "modelloMenoPinnacle": {
+              "differenza": 0.028802166129663687,
+              "errore": 0.010238392154804092
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.006749960363224615,
+              "errore": 0.005051274051287364
+            },
+            "pesoMigliore": 0.05,
+            "perditaPesoMigliore": 0.6019105872246204
+          }
+        }
+      },
+      "parametriMigliori": {
+        "kBase": 200,
+        "kEsponente": 0.5,
+        "pesoSuperficie": 0.25,
+        "pesoModello": 0
+      },
+      "migliori": {
+        "2025 contro Pinnacle": {
+          "partite": 2274,
+          "perditaModello": 0.630548316309834,
+          "perditaPinnacle": 0.5941611123440005,
+          "perditaAttuale": 0.6051681953998864,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03638720396583356,
+            "errore": 0.00500982343487912
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.011007083055884792,
+            "errore": 0.002546900810363698
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5941611123440005
+        },
+        "2025 contro media bookmaker": {
+          "partite": 2376,
+          "perditaModello": 0.6298032678135842,
+          "perditaPinnacle": 0.5919722936389743,
+          "perditaAttuale": 0.6036745895983715,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03783097417461099,
+            "errore": 0.0049073873773380055
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.011702295959396182,
+            "errore": 0.002477394939336409
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5919722936389743
+        },
+        "2026 contro media bookmaker": {
+          "partite": 2254,
+          "perditaModello": 0.6088294675710202,
+          "perditaPinnacle": 0.5698019872659473,
+          "perditaAttuale": 0.5832508345380579,
+          "modelloMenoPinnacle": {
+            "differenza": 0.03902748030507279,
+            "errore": 0.004595999705756063
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.01344884727211045,
+            "errore": 0.0022894633059176604
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5698019872659473
+        },
+        "pochiDati": {
+          "partite": 1893,
+          "perditaModello": 0.6274271287570564,
+          "perditaPinnacle": 0.5659317583308575,
+          "perditaAttuale": 0.5729659400836592,
+          "modelloMenoPinnacle": {
+            "differenza": 0.061495370426198445,
+            "errore": 0.0067636797597647345
+          },
+          "attualeMenoPinnacle": {
+            "differenza": 0.007034181752801665,
+            "errore": 0.0017881574126197683
+          },
+          "pesoMigliore": 0,
+          "perditaPesoMigliore": 0.5659317583308575
+        },
+        "superfici": {
+          "cemento": {
+            "partite": 2910,
+            "perditaModello": 0.6186148308933834,
+            "perditaPinnacle": 0.5843490372096999,
+            "perditaAttuale": 0.5954753360600666,
+            "modelloMenoPinnacle": {
+              "differenza": 0.03426579368368199,
+              "errore": 0.004043866534479311
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.011126298850366818,
+              "errore": 0.0020520052357059348
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5843490372096999
+          },
+          "terra": {
+            "partite": 1136,
+            "perditaModello": 0.6176924277660734,
+            "perditaPinnacle": 0.5614759418228187,
+            "perditaAttuale": 0.5805343812114252,
+            "modelloMenoPinnacle": {
+              "differenza": 0.05621648594325285,
+              "errore": 0.00787737068968618
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.019058439388604617,
+              "errore": 0.003907564209350539
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.5614759418228187
+          },
+          "erba": {
+            "partite": 584,
+            "perditaModello": 0.6281616924454728,
+            "perditaPinnacle": 0.6019192855764167,
+            "perditaAttuale": 0.6084259670321884,
+            "modelloMenoPinnacle": {
+              "differenza": 0.026242406869056236,
+              "errore": 0.009521266103885548
+            },
+            "attualeMenoPinnacle": {
+              "differenza": 0.006506681455771493,
+              "errore": 0.004862892839621406
+            },
+            "pesoMigliore": 0,
+            "perditaPesoMigliore": 0.6019192855764167
+          }
+        }
+      },
+      "primeCinque": [
+        {
+          "kBase": 200,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0.25,
+          "perdita2025": 0.6298032678135842
+        },
+        {
+          "kBase": 150,
+          "kEsponente": 0.4,
+          "pesoSuperficie": 0.25,
+          "perdita2025": 0.6298244795428483
+        },
+        {
+          "kBase": 150,
+          "kEsponente": 0.4,
+          "pesoSuperficie": 0.5,
+          "perdita2025": 0.6299132703489021
+        },
+        {
+          "kBase": 200,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0.5,
+          "perdita2025": 0.6299219088569143
+        },
+        {
+          "kBase": 250,
+          "kEsponente": 0.5,
+          "pesoSuperficie": 0.5,
+          "perdita2025": 0.6303630657610216
+        }
+      ],
+      "calibrazioneModello2025": [
+        {
+          "fascia": "0-10%",
+          "n": 16,
+          "prevista": 0.08575008644100376,
+          "vera": 0.125
+        },
+        {
+          "fascia": "10-20%",
+          "n": 78,
+          "prevista": 0.16566373292473438,
+          "vera": 0.14102564102564102
+        },
+        {
+          "fascia": "20-30%",
+          "n": 233,
+          "prevista": 0.2562854544229148,
+          "vera": 0.2575107296137339
+        },
+        {
+          "fascia": "30-40%",
+          "n": 355,
+          "prevista": 0.3528013914758293,
+          "vera": 0.3295774647887324
+        },
+        {
+          "fascia": "40-50%",
+          "n": 428,
+          "prevista": 0.45170063705473096,
+          "vera": 0.48130841121495327
+        },
+        {
+          "fascia": "50-60%",
+          "n": 471,
+          "prevista": 0.5505206890572667,
+          "vera": 0.5498938428874734
+        },
+        {
+          "fascia": "60-70%",
+          "n": 353,
+          "prevista": 0.646660352164125,
+          "vera": 0.6373937677053825
+        },
+        {
+          "fascia": "70-80%",
+          "n": 240,
+          "prevista": 0.7447169146489485,
+          "vera": 0.7166666666666667
+        },
+        {
+          "fascia": "80-90%",
+          "n": 91,
+          "prevista": 0.8386313980375173,
+          "vera": 0.8461538461538461
+        },
+        {
+          "fascia": "90-100%",
+          "n": 9,
+          "prevista": 0.9151886310107693,
+          "vera": 1
+        }
+      ],
+      "giocate2025": {
+        "attualeQuotaMedia": {
+          "giocate": 811,
+          "vinte": 0.32552404438964244,
+          "rendimento": -0.11334155363748447,
+          "clv": -0.0676226993551837
+        },
+        "attualeQuotaMax": {
+          "giocate": 1359,
+          "vinte": 0.3524650478292862,
+          "rendimento": -0.06444444444444442,
+          "clv": 0.0226876706059859
+        },
+        "nuovoQuotaMedia": {
+          "giocate": 19,
+          "vinte": 0.42105263157894735,
+          "rendimento": 0.3368421052631579,
+          "clv": 0.15727455189943465
+        },
+        "nuovoQuotaMax": {
+          "giocate": 351,
+          "vinte": 0.26495726495726496,
+          "rendimento": -0.056866096866096866,
+          "clv": 0.14842684258460695
+        },
+        "soloPinnacleQuotaMax": {
+          "giocate": 351,
+          "vinte": 0.26495726495726496,
+          "rendimento": -0.056866096866096866,
+          "clv": 0.14842684258460695
+        }
+      }
+    }
+  }
+}

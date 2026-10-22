@@ -52,8 +52,17 @@ function converti(r) {
   const psw = numero(r.PSW);
   const psl = numero(r.PSL);
   if (psw !== null && psl !== null) { p.psw = psw; p.psl = psl; }
+  // Media e massimo dei bookmaker (servono alla prova sul passato).
+  const avgw = numero(r.AvgW);
+  const avgl = numero(r.AvgL);
+  if (avgw !== null && avgl !== null) { p.avgw = avgw; p.avgl = avgl; }
+  const maxw = numero(r.MaxW);
+  const maxl = numero(r.MaxL);
+  if (maxw !== null && maxl !== null) { p.maxw = maxw; p.maxl = maxl; }
   return p;
 }
+
+export { partiteDaFile };
 
 export const tennisData = {
   async fileStagione(anno, circuito, opz = {}) {

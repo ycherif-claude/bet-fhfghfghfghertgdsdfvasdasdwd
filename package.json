@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "test": "node --test",
     "raccolta": "node src/calcio/raccolta.js",
@@ -18,6 +20,8 @@
     "controlli": "node src/controlli/controlli.js",
     "registro": "node src/registro/registro.js",
     "build": "node src/build/costruisci-sito.js",
-    "serve": "node scripts/serve.js"
+    "serve": "node scripts/serve.js",
+    "taratura-tennis": "node src/taratura/tennis.js",
+    "taratura-calcio": "node src/taratura/calcio.js"
   }
 }

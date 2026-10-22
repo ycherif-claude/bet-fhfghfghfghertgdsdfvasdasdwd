@@ -1,0 +1,808 @@
+{
+  "parametriAttuali": {
+    "mezzaVita": 182,
+    "rho": -0.08,
+    "pesoModello": 0.5
+  },
+  "parametriMigliori": {
+    "mezzaVita": 365,
+    "rho": -0.08,
+    "pesoModello": 0
+  },
+  "griglia": [
+    {
+      "mezzaVita": 365,
+      "rho": -0.08,
+      "perditaScelta": 0.8491254212390233
+    },
+    {
+      "mezzaVita": 365,
+      "rho": -0.05,
+      "perditaScelta": 0.8491547349290921
+    },
+    {
+      "mezzaVita": 365,
+      "rho": -0.1,
+      "perditaScelta": 0.8491762608486002
+    },
+    {
+      "mezzaVita": 365,
+      "rho": 0,
+      "perditaScelta": 0.8494943933013959
+    },
+    {
+      "mezzaVita": 365,
+      "rho": -0.15,
+      "perditaScelta": 0.8495426670231788
+    },
+    {
+      "mezzaVita": 182,
+      "rho": -0.08,
+      "perditaScelta": 0.8495978269720754
+    },
+    {
+      "mezzaVita": 182,
+      "rho": -0.05,
+      "perditaScelta": 0.8496307013051978
+    },
+    {
+      "mezzaVita": 182,
+      "rho": -0.1,
+      "perditaScelta": 0.8496460148879346
+    }
+  ],
+  "attuali": {
+    "scelta": {
+      "1X2": {
+        "voci": 13365,
+        "perditaModello": 1.014471757476658,
+        "perditaPinnacle": 0.994955414820773,
+        "perditaPinnacleChiusura": 0.9913156053773985,
+        "perditaAttuale": 1.0013958617692316,
+        "modelloMenoPinnacle": {
+          "differenza": 0.01951634265588295,
+          "errore": 0.0014034111247674206
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.006440446948457593,
+          "errore": 0.000695697559072729
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.994955414820773
+      },
+      "Under/Over 2.5": {
+        "voci": 13318,
+        "perditaModello": 0.6841420467352528,
+        "perditaPinnacle": 0.6730612461677196,
+        "perditaPinnacleChiusura": 0.6705255769206184,
+        "perditaAttuale": 0.6760880096413858,
+        "modelloMenoPinnacle": {
+          "differenza": 0.011080800567538294,
+          "errore": 0.001227748819086899
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.003026763473665951,
+          "errore": 0.0005980570007710954
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6730612461677196
+      }
+    },
+    "verifica": {
+      "1X2": {
+        "voci": 6238,
+        "perditaModello": 1.0167222082614076,
+        "perditaPinnacle": 0.9938442240856525,
+        "perditaPinnacleChiusura": 0.9911278431060774,
+        "perditaAttuale": 1.0018237516805641,
+        "modelloMenoPinnacle": {
+          "differenza": 0.022877984175756223,
+          "errore": 0.002093506462467773
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.007979527594910524,
+          "errore": 0.001026471087715039
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9938442240856525
+      },
+      "Under/Over 2.5": {
+        "voci": 6209,
+        "perditaModello": 0.6915012044227224,
+        "perditaPinnacle": 0.6764144736827679,
+        "perditaPinnacleChiusura": 0.6745950534803312,
+        "perditaAttuale": 0.6813742461252469,
+        "modelloMenoPinnacle": {
+          "differenza": 0.015086730739957898,
+          "errore": 0.0018209854562459987
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.004959772442480576,
+          "errore": 0.0008798843932460438
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6764144736827679
+      }
+    }
+  },
+  "migliori": {
+    "scelta": {
+      "1X2": {
+        "voci": 13365,
+        "perditaModello": 1.0144030896081537,
+        "perditaPinnacle": 0.994955414820773,
+        "perditaPinnacleChiusura": 0.9913156053773985,
+        "perditaAttuale": 1.001378786010404,
+        "modelloMenoPinnacle": {
+          "differenza": 0.01944767478737772,
+          "errore": 0.001399994781452792
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.006423371189625772,
+          "errore": 0.0006922443294294138
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.994955414820773
+      },
+      "Under/Over 2.5": {
+        "voci": 13318,
+        "perditaModello": 0.6832644783231568,
+        "perditaPinnacle": 0.6730612461677196,
+        "perditaPinnacleChiusura": 0.6705255769206184,
+        "perditaAttuale": 0.6757371867178876,
+        "modelloMenoPinnacle": {
+          "differenza": 0.010203232155440146,
+          "errore": 0.0012066823247092059
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.002675940550171107,
+          "errore": 0.0005872450063461431
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6730612461677196
+      }
+    },
+    "verifica": {
+      "1X2": {
+        "voci": 6238,
+        "perditaModello": 1.0157485104410306,
+        "perditaPinnacle": 0.9938442240856525,
+        "perditaPinnacleChiusura": 0.9911278431060774,
+        "perditaAttuale": 1.0013257332658914,
+        "modelloMenoPinnacle": {
+          "differenza": 0.021904286355380866,
+          "errore": 0.002098975738708216
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.007481509180241115,
+          "errore": 0.0010262093677035214
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9938442240856525
+      },
+      "Under/Over 2.5": {
+        "voci": 6209,
+        "perditaModello": 0.6900007095878464,
+        "perditaPinnacle": 0.6764144736827679,
+        "perditaPinnacleChiusura": 0.6745950534803312,
+        "perditaAttuale": 0.6807266790400508,
+        "modelloMenoPinnacle": {
+          "differenza": 0.013586235905078745,
+          "errore": 0.001785153731429351
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.004312205357287688,
+          "errore": 0.0008652177036017777
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6764144736827679
+      }
+    }
+  },
+  "perLegaVerifica": {
+    "Premier League": {
+      "1X2": {
+        "voci": 587,
+        "perditaModello": 0.9858562752952822,
+        "perditaPinnacle": 0.9777173200776559,
+        "perditaPinnacleChiusura": 0.9746146009259258,
+        "perditaAttuale": 0.9785395408197392,
+        "modelloMenoPinnacle": {
+          "differenza": 0.008138955217625402,
+          "errore": 0.0066668853103892135
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0008222207420841019,
+          "errore": 0.0033127485916271114
+        },
+        "pesoMigliore": 0.2,
+        "perditaPesoMigliore": 0.9772740980029535
+      },
+      "Under/Over 2.5": {
+        "voci": 584,
+        "perditaModello": 0.680985442756953,
+        "perditaPinnacle": 0.6796675160555462,
+        "perditaPinnacleChiusura": 0.6784134238564715,
+        "perditaAttuale": 0.6783917094544619,
+        "modelloMenoPinnacle": {
+          "differenza": 0.0013179267014062866,
+          "errore": 0.005157856803455062
+        },
+        "attualeMenoPinnacle": {
+          "differenza": -0.0012758066010850246,
+          "errore": 0.002567027584482877
+        },
+        "pesoMigliore": 0.4,
+        "perditaPesoMigliore": 0.6783398182347832
+      }
+    },
+    "LaLiga": {
+      "1X2": {
+        "voci": 565,
+        "perditaModello": 0.9691121287777809,
+        "perditaPinnacle": 0.9505057617199073,
+        "perditaPinnacleChiusura": 0.9473428430265943,
+        "perditaAttuale": 0.9576067682021099,
+        "modelloMenoPinnacle": {
+          "differenza": 0.018606367057873694,
+          "errore": 0.005543560158062251
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.007101006482203102,
+          "errore": 0.00277398277572216
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9505057617199073
+      },
+      "Under/Over 2.5": {
+        "voci": 562,
+        "perditaModello": 0.6767081198285012,
+        "perditaPinnacle": 0.6665313729188029,
+        "perditaPinnacleChiusura": 0.6613552680898823,
+        "perditaAttuale": 0.6694193930319069,
+        "modelloMenoPinnacle": {
+          "differenza": 0.010176746909698673,
+          "errore": 0.005591462628074838
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0028880201131041574,
+          "errore": 0.0027813425141138995
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6665313729188029
+      }
+    },
+    "Serie A": {
+      "1X2": {
+        "voci": 574,
+        "perditaModello": 0.9884189534686788,
+        "perditaPinnacle": 0.9621227666522377,
+        "perditaPinnacleChiusura": 0.9630020272405639,
+        "perditaAttuale": 0.9721543170561876,
+        "modelloMenoPinnacle": {
+          "differenza": 0.0262961868164411,
+          "errore": 0.006520401440928623
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.010031550403950098,
+          "errore": 0.0031965667712221366
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9621227666522377
+      },
+      "Under/Over 2.5": {
+        "voci": 573,
+        "perditaModello": 0.6984780954859348,
+        "perditaPinnacle": 0.6846331343749429,
+        "perditaPinnacleChiusura": 0.6828616511820652,
+        "perditaAttuale": 0.6895001034681019,
+        "modelloMenoPinnacle": {
+          "differenza": 0.013844961110992352,
+          "errore": 0.005336436722689309
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0048669690931591484,
+          "errore": 0.002620020612814645
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6846331343749429
+      }
+    },
+    "Bundesliga": {
+      "1X2": {
+        "voci": 453,
+        "perditaModello": 1.0010367384944636,
+        "perditaPinnacle": 0.9675010342479406,
+        "perditaPinnacleChiusura": 0.9650001150901983,
+        "perditaAttuale": 0.9815717025426892,
+        "modelloMenoPinnacle": {
+          "differenza": 0.033535704246522746,
+          "errore": 0.006743453705992602
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0140706682947481,
+          "errore": 0.0033047338249048265
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9675010342479406
+      },
+      "Under/Over 2.5": {
+        "voci": 435,
+        "perditaModello": 0.6617248330643113,
+        "perditaPinnacle": 0.6560092167599657,
+        "perditaPinnacleChiusura": 0.650371688062792,
+        "perditaAttuale": 0.6567217666694048,
+        "modelloMenoPinnacle": {
+          "differenza": 0.00571561630434608,
+          "errore": 0.006291260336997829
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0007125499094390443,
+          "errore": 0.003100359618535635
+        },
+        "pesoMigliore": 0.15,
+        "perditaPesoMigliore": 0.655785667498388
+      }
+    },
+    "Ligue 1": {
+      "1X2": {
+        "voci": 457,
+        "perditaModello": 0.9851509688388225,
+        "perditaPinnacle": 0.9576615075554414,
+        "perditaPinnacleChiusura": 0.9572125916720072,
+        "perditaAttuale": 0.9675095135090804,
+        "modelloMenoPinnacle": {
+          "differenza": 0.027489461283379972,
+          "errore": 0.008189838202387152
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.009848005953638793,
+          "errore": 0.004039664740875698
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9576615075554414
+      },
+      "Under/Over 2.5": {
+        "voci": 453,
+        "perditaModello": 0.6919255437816043,
+        "perditaPinnacle": 0.6771563938235459,
+        "perditaPinnacleChiusura": 0.6724947839418999,
+        "perditaAttuale": 0.6821353309550184,
+        "modelloMenoPinnacle": {
+          "differenza": 0.014769149958058597,
+          "errore": 0.006498772095083831
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.004978937131472319,
+          "errore": 0.0031811020698122587
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6771563938235459
+      }
+    },
+    "Eredivisie": {
+      "1X2": {
+        "voci": 445,
+        "perditaModello": 0.9681108945913852,
+        "perditaPinnacle": 0.9428150343605716,
+        "perditaPinnacleChiusura": 0.9383202540624984,
+        "perditaAttuale": 0.951818049144211,
+        "modelloMenoPinnacle": {
+          "differenza": 0.025295860230813524,
+          "errore": 0.008057882322037954
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.009003014783639816,
+          "errore": 0.0038305004984978673
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9428150343605716
+      },
+      "Under/Over 2.5": {
+        "voci": 445,
+        "perditaModello": 0.6755728994248424,
+        "perditaPinnacle": 0.6659055465653452,
+        "perditaPinnacleChiusura": 0.6659198909567082,
+        "perditaAttuale": 0.6690380624718764,
+        "modelloMenoPinnacle": {
+          "differenza": 0.009667352859497104,
+          "errore": 0.005524387072246226
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.003132515906530825,
+          "errore": 0.0027132403269615824
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6659055465653452
+      }
+    },
+    "Primeira Liga": {
+      "1X2": {
+        "voci": 456,
+        "perditaModello": 0.9376243184015717,
+        "perditaPinnacle": 0.9229523040863201,
+        "perditaPinnacleChiusura": 0.9121525126806206,
+        "perditaAttuale": 0.9273422470942286,
+        "modelloMenoPinnacle": {
+          "differenza": 0.014672014315251475,
+          "errore": 0.007181023904741474
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.004389943007908482,
+          "errore": 0.0036127806432982024
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.9229523040863201
+      },
+      "Under/Over 2.5": {
+        "voci": 456,
+        "perditaModello": 0.678920051542661,
+        "perditaPinnacle": 0.661686792139534,
+        "perditaPinnacleChiusura": 0.6581210220514189,
+        "perditaAttuale": 0.6681433546689796,
+        "modelloMenoPinnacle": {
+          "differenza": 0.017233259403127515,
+          "errore": 0.006119019328954532
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.006456562529445077,
+          "errore": 0.002982564432963781
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.661686792139534
+      }
+    },
+    "Championship": {
+      "1X2": {
+        "voci": 807,
+        "perditaModello": 1.0418850657855012,
+        "perditaPinnacle": 1.0369146504083169,
+        "perditaPinnacleChiusura": 1.0359400193479524,
+        "perditaAttuale": 1.036647077279202,
+        "modelloMenoPinnacle": {
+          "differenza": 0.004970415377184664,
+          "errore": 0.005234369963106783
+        },
+        "attualeMenoPinnacle": {
+          "differenza": -0.0002675731291149849,
+          "errore": 0.002611674649510334
+        },
+        "pesoMigliore": 0.25,
+        "perditaPesoMigliore": 1.036094332461399
+      },
+      "Under/Over 2.5": {
+        "voci": 806,
+        "perditaModello": 0.6911438605785489,
+        "perditaPinnacle": 0.6824566151798397,
+        "perditaPinnacleChiusura": 0.6842245575321665,
+        "perditaAttuale": 0.6847238907991684,
+        "modelloMenoPinnacle": {
+          "differenza": 0.008687245398708769,
+          "errore": 0.004538991447320189
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0022672756193284514,
+          "errore": 0.002209078691288307
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6824566151798397
+      }
+    },
+    "Serie B": {
+      "1X2": {
+        "voci": 460,
+        "perditaModello": 1.0919463226325479,
+        "perditaPinnacle": 1.0577205937467618,
+        "perditaPinnacleChiusura": 1.0529838340392217,
+        "perditaAttuale": 1.0712434696181372,
+        "modelloMenoPinnacle": {
+          "differenza": 0.034225728885786164,
+          "errore": 0.007776101414430528
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.013522875871375751,
+          "errore": 0.0037401612628035316
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 1.0577205937467618
+      },
+      "Under/Over 2.5": {
+        "voci": 460,
+        "perditaModello": 0.7193415289278853,
+        "perditaPinnacle": 0.7000078376118986,
+        "perditaPinnacleChiusura": 0.6982969339028101,
+        "perditaAttuale": 0.7060979177775172,
+        "modelloMenoPinnacle": {
+          "differenza": 0.01933369131598595,
+          "errore": 0.007866394604950212
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.006090080165618668,
+          "errore": 0.00381838004892485
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.7000078376118986
+      }
+    },
+    "Segunda División": {
+      "1X2": {
+        "voci": 649,
+        "perditaModello": 1.0716665762823714,
+        "perditaPinnacle": 1.0407584840234385,
+        "perditaPinnacleChiusura": 1.0379280931588584,
+        "perditaAttuale": 1.051456373234719,
+        "modelloMenoPinnacle": {
+          "differenza": 0.030908092258932922,
+          "errore": 0.007595830472403398
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.01069788921128054,
+          "errore": 0.0036924739209386738
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 1.0407584840234385
+      },
+      "Under/Over 2.5": {
+        "voci": 649,
+        "perditaModello": 0.703580022538981,
+        "perditaPinnacle": 0.6825731398500753,
+        "perditaPinnacleChiusura": 0.6810954399068513,
+        "perditaAttuale": 0.6901647901416711,
+        "modelloMenoPinnacle": {
+          "differenza": 0.021006882688905264,
+          "errore": 0.005951230950128899
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.007591650291595641,
+          "errore": 0.002882952560878529
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6825731398500753
+      }
+    },
+    "2. Bundesliga": {
+      "1X2": {
+        "voci": 389,
+        "perditaModello": 1.0661767500202763,
+        "perditaPinnacle": 1.0520805943332106,
+        "perditaPinnacleChiusura": 1.0536301497848677,
+        "perditaAttuale": 1.0549788007612382,
+        "modelloMenoPinnacle": {
+          "differenza": 0.014096155687066339,
+          "errore": 0.00925655867367108
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.0028982064280283835,
+          "errore": 0.004555483916615953
+        },
+        "pesoMigliore": 0.05,
+        "perditaPesoMigliore": 1.0520056416710002
+      },
+      "Under/Over 2.5": {
+        "voci": 390,
+        "perditaModello": 0.6855174980568896,
+        "perditaPinnacle": 0.6696153826204325,
+        "perditaPinnacleChiusura": 0.6698686357900802,
+        "perditaAttuale": 0.6750730132781066,
+        "modelloMenoPinnacle": {
+          "differenza": 0.015902115436457018,
+          "errore": 0.007128495504368882
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.005457630657673768,
+          "errore": 0.003469307010002221
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6696153826204325
+      }
+    },
+    "Ligue 2": {
+      "1X2": {
+        "voci": 396,
+        "perditaModello": 1.0788892667568841,
+        "perditaPinnacle": 1.04036504489837,
+        "perditaPinnacleChiusura": 1.036565138580496,
+        "perditaAttuale": 1.054150906674904,
+        "modelloMenoPinnacle": {
+          "differenza": 0.03852422185851502,
+          "errore": 0.010432051926668656
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.013785861776534455,
+          "errore": 0.004883956728168386
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 1.04036504489837
+      },
+      "Under/Over 2.5": {
+        "voci": 396,
+        "perditaModello": 0.7134763230735527,
+        "perditaPinnacle": 0.6809838759891098,
+        "perditaPinnacleChiusura": 0.6803725256951034,
+        "perditaAttuale": 0.6923975519496911,
+        "modelloMenoPinnacle": {
+          "differenza": 0.03249244708444236,
+          "errore": 0.009884585337341639
+        },
+        "attualeMenoPinnacle": {
+          "differenza": 0.011413675960581888,
+          "errore": 0.004458499432665701
+        },
+        "pesoMigliore": 0,
+        "perditaPesoMigliore": 0.6809838759891098
+      }
+    }
+  },
+  "calibrazioneModello": {
+    "1X2 casa": [
+      {
+        "fascia": "0-10%",
+        "n": 48,
+        "prevista": 0.07815664908712545,
+        "vera": 0.08333333333333333
+      },
+      {
+        "fascia": "10-20%",
+        "n": 366,
+        "prevista": 0.1619625647727887,
+        "vera": 0.16666666666666666
+      },
+      {
+        "fascia": "20-30%",
+        "n": 781,
+        "prevista": 0.255467798311079,
+        "vera": 0.2701664532650448
+      },
+      {
+        "fascia": "30-40%",
+        "n": 1512,
+        "prevista": 0.3541165376414981,
+        "vera": 0.3551587301587302
+      },
+      {
+        "fascia": "40-50%",
+        "n": 1709,
+        "prevista": 0.44693306863219706,
+        "vera": 0.4511410181392627
+      },
+      {
+        "fascia": "50-60%",
+        "n": 995,
+        "prevista": 0.5444206334507402,
+        "vera": 0.521608040201005
+      },
+      {
+        "fascia": "60-70%",
+        "n": 513,
+        "prevista": 0.6424004304301033,
+        "vera": 0.6432748538011696
+      },
+      {
+        "fascia": "70-80%",
+        "n": 234,
+        "prevista": 0.7444985936857285,
+        "vera": 0.7777777777777778
+      },
+      {
+        "fascia": "80-90%",
+        "n": 72,
+        "prevista": 0.8409518388243806,
+        "vera": 0.8888888888888888
+      },
+      {
+        "fascia": "90-100%",
+        "n": 8,
+        "prevista": 0.9138947036887597,
+        "vera": 0.75
+      }
+    ],
+    "1X2 pareggio": [
+      {
+        "fascia": "0-10%",
+        "n": 30,
+        "prevista": 0.08076566006936431,
+        "vera": 0.03333333333333333
+      },
+      {
+        "fascia": "10-20%",
+        "n": 507,
+        "prevista": 0.16731858910454298,
+        "vera": 0.1755424063116371
+      },
+      {
+        "fascia": "20-30%",
+        "n": 4520,
+        "prevista": 0.26020130860179475,
+        "vera": 0.2719026548672566
+      },
+      {
+        "fascia": "30-40%",
+        "n": 1181,
+        "prevista": 0.3166390141629952,
+        "vera": 0.292125317527519
+      }
+    ],
+    "Over 2.5": [
+      {
+        "fascia": "20-30%",
+        "n": 152,
+        "prevista": 0.2735181967189964,
+        "vera": 0.40789473684210525
+      },
+      {
+        "fascia": "30-40%",
+        "n": 1133,
+        "prevista": 0.36077867401282565,
+        "vera": 0.4501323918799647
+      },
+      {
+        "fascia": "40-50%",
+        "n": 1942,
+        "prevista": 0.45105466254893356,
+        "vera": 0.4593202883625129
+      },
+      {
+        "fascia": "50-60%",
+        "n": 1681,
+        "prevista": 0.5478149240045486,
+        "vera": 0.5395597858417609
+      },
+      {
+        "fascia": "60-70%",
+        "n": 1078,
+        "prevista": 0.6418233570523683,
+        "vera": 0.5983302411873841
+      },
+      {
+        "fascia": "70-80%",
+        "n": 202,
+        "prevista": 0.7325255371944309,
+        "vera": 0.6831683168316832
+      },
+      {
+        "fascia": "80-90%",
+        "n": 20,
+        "prevista": 0.8346746816946384,
+        "vera": 0.75
+      },
+      {
+        "fascia": "90-100%",
+        "n": 1,
+        "prevista": 0.9650130350271877,
+        "vera": 1
+      }
+    ]
+  },
+  "giocateVerifica": {
+    "attualeQuotaMedia": {
+      "giocate": 1498,
+      "vinte": 0.17823765020026702,
+      "rendimento": -0.2510614152202936,
+      "clv": -0.07711989110377622
+    },
+    "attualeQuotaMax": {
+      "giocate": 4436,
+      "vinte": 0.2515779981965735,
+      "rendimento": -0.10774571686203792,
+      "clv": -0.005313731723274972
+    },
+    "attualeSenzaScartoQuotaMedia": {
+      "giocate": 2674,
+      "vinte": 0.2505609573672401,
+      "rendimento": -0.22517950635751674,
+      "clv": -0.07150049906567177
+    },
+    "nuovoQuotaMedia": {
+      "giocate": 46,
+      "vinte": 0.10869565217391304,
+      "rendimento": -0.2532608695652174,
+      "clv": 0.005580645671035228
+    },
+    "nuovoQuotaMax": {
+      "giocate": 760,
+      "vinte": 0.14605263157894738,
+      "rendimento": -0.15223684210526323,
+      "clv": 0.06694593072546612
+    }
+  }
+}

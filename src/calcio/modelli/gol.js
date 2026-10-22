@@ -14,8 +14,7 @@ export function pesoTemporale(data, oggi, mezzaVita = CONFIG.calcio.mezzaVitaGio
 }
 
 // Misura dei gol: y = pesoXg·xG + (1 − pesoXg)·gol; senza xG, i soli gol.
-function misura(gol, xg) {
-  const k = CONFIG.calcio.pesoXg;
+function misura(gol, xg, k = CONFIG.calcio.pesoXg) {
   return xg === null || xg === undefined || !Number.isFinite(xg) ? gol : k * xg + (1 - k) * gol;
 }
 
@@ -26,13 +25,14 @@ const media = (valori) => {
   return n ? s / n : 1;
 };
 
-export function stimaForze(partite, { oggi, squadreUltimaStagione } = {}) {
+// `mezzaVita` e `pesoXg` si possono cambiare per la prova sul passato (src/taratura); di norma vengono da CONFIG.
+export function stimaForze(partite, { oggi, squadreUltimaStagione, mezzaVita = CONFIG.calcio.mezzaVitaGiorni, pesoXg = CONFIG.calcio.pesoXg } = {}) {
   const righe = partite.map((x) => ({
     c: x.casa,
     t: x.trasferta,
-    yc: misura(x.gc, x.xgC),
-    yt: misura(x.gt, x.xgT),
-    w: pesoTemporale(x.data, oggi),
+    yc: misura(x.gc, x.xgC, pesoXg),
+    yt: misura(x.gt, x.xgT, pesoXg),
+    w: pesoTemporale(x.data, oggi, mezzaVita),
   }));
   const squadre = [...new Set(righe.flatMap((r) => [r.c, r.t]))];
   const att = new Map(squadre.map((s) => [s, 1]));
@@ -105,7 +105,7 @@ export function stimaForze(partite, { oggi, squadreUltimaStagione } = {}) {
   let golPT = 0, golTot = 0;
   for (const x of partite) {
     if (x.gcPT === null || x.gcPT === undefined || x.gtPT === null || x.gtPT === undefined) continue;
-    const w = pesoTemporale(x.data, oggi);
+    const w = pesoTemporale(x.data, oggi, mezzaVita);
     golPT += w * (x.gcPT + x.gtPT);
     golTot += w * (x.gc + x.gt);
   }
