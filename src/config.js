@@ -161,7 +161,8 @@ export const CONFIG = congela({
         '1X2|2': 0.7,
         'Doppia chance|1X': 0.7,
         'Doppia chance|X2': 0.7,
-        'Doppia chance|12': 0.75,
+        // 12: sotto l'80% del modello esce quanto una partita qualsiasi (74% nei campionati, 79% nelle coppe).
+        'Doppia chance|12': 0.8,
         'Under/Over 1.5|Over 1.5': 0.7,
         'Under/Over casa 0.5|Over 0.5': 0.75,
         'Under/Over trasferta 0.5|Over 0.5': 0.75,
