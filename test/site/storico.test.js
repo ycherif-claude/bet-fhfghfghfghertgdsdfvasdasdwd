@@ -27,3 +27,8 @@ test('etichette dei gruppi', () => {
   assert.equal(etichettaGruppo('tipo', 'builder'), 'Bet builder');
   assert.equal(etichettaGruppo('sport', 'calcio'), 'calcio');
 });
+
+test('A4 vista fatte: niente giocate di prova', () => {
+  const r = righeVista([{ giocata: g('p', 'vinta', { prova: true }), segnatura: { fatta: true, quotaReale: 2, puntataReale: 5 } }, ...righe], 'fatte');
+  assert.deepEqual(r.map((x) => x.giocata.id), ['a']);
+});

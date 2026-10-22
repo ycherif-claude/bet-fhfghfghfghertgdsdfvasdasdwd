@@ -57,3 +57,9 @@ test('riepilogo per bookmaker dalle segnature; quelle vecchie senza bookmaker so
   assert.deepEqual(r.Snai, { gruppo: 'Snai', n: 2, vinte: 1, profitto: 0, roi: 0 });
   assert.equal(r['non indicato'].n, 1);
 });
+
+test('A4 prova: le giocate di prova non entrano nella vista "fatte" anche se segnate fatte', () => {
+  const righe = [riga('a', { prova: true }, fatta('a')), riga('b', {}, fatta('b'))];
+  assert.equal(riepiloga(righe, 'sport', 'fatte')[0].n, 1);
+  assert.equal(riepiloga(righe, 'sport', 'proposte')[0].n, 2);
+});

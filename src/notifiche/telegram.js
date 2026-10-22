@@ -9,7 +9,9 @@ import { pathToFileURL } from 'node:url';
 import { giornataDi, partiRoma } from '../bankroll/settimana.js';
 import { oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreSegnatura } from '../build/costruisci-sito.js';
-import { statoBankroll } from '../bankroll/bankroll.js';
+import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
+import { bilancioPronostici } from '../regole/pronostici.js';
+import { CONFIG } from '../config.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -41,7 +43,8 @@ const testoPuntata = (p) => (p.fissa && typeof p.fissa === 'object'
 function rigaQuota(g) {
   const minima = num(g.quotaMinima) ? `minima ${virgola(g.quotaMinima)}` : null;
   const quota = num(g.quota) ? `quota ${virgola(g.quota)}` : 'quota da verificare su bet365';
-  const puntata = g.puntata && num(g.puntata.euro) ? testoPuntata(g.puntata) : null;
+  // Giocata di prova: nessun importo da puntare.
+  const puntata = g.prova === true ? 'PROVA – non giocare' : g.puntata && num(g.puntata.euro) ? testoPuntata(g.puntata) : null;
   return [quota, minima, puntata].filter(Boolean).join(' · ');
 }
 
@@ -67,19 +70,28 @@ export function testoMultiplaBonus(mb) {
 const percentuale = (p) => `${Math.round(p * 100)}%`;
 const pronosticiDi = (giornata) => (Array.isArray(giornata?.pronostici) ? giornata.pronostici.filter((x) => x && Array.isArray(x.pronostici)) : []);
 
+// Spiegazione del ✅ e dei pronostici collegati (regola di CONFIG.pronostici; il sito ha lo stesso testo).
+const SPIEGAZIONE_PRONOSTICI = [
+  `✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno al ${Math.round(CONFIG.pronostici.probMinima * 100)}% e la quota è almeno il ${Math.round((CONFIG.pronostici.margineQuota - 1) * 100)}% sopra la minima. Senza ✅ è solo da tenere d'occhio.`,
+  'I pronostici della stessa partita sono collegati, non indipendenti: mai più di uno della stessa partita in una multipla.',
+].join('\n');
+const DA_TENERE_D_OCCHIO = "solo da tenere d'occhio: controlla la quota su bet365";
+
 // Pronostici sì/no del giorno: una riga per pronostico, con la quota minima e, se c'è, la quota di oggi.
+// Senza quota o senza la probabilità di Pinnacle: "solo da tenere d'occhio".
 export function testoPronostici(giornata, oggi) {
   const partite = pronosticiDi(giornata);
   if (!partite.length) return `📋 <b>Pronostici del ${giornoMese(oggi)}</b>: oggi nessuna partita ha un pronostico abbastanza sicuro.`;
   const blocchi = partite.map((p) => {
     const ora = Number.isFinite(Date.parse(p.inizio)) ? ` · ${oraRoma(new Date(p.inizio))}` : '';
     const righe = p.pronostici.map((x) => {
-      const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile ? ' ✅' : ''})` : '';
-      return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${percentuale(x.prob)} · min ${virgola(x.quotaMinima)}${quota}`;
+      const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile === true ? ' ✅' : ''})` : '';
+      const occhio = num(x.quota) && num(x.probMercato) ? '' : ` · ${DA_TENERE_D_OCCHIO}`;
+      return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${percentuale(x.prob)} · min ${virgola(x.quotaMinima)}${quota}${occhio}`;
     });
     return [`${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>${ora}`, ...righe].join('\n');
   });
-  return [`📋 <b>Pronostici del ${giornoMese(oggi)}</b>\nGioca un pronostico solo se la quota è almeno la minima.`, ...blocchi].join('\n\n');
+  return [`📋 <b>Pronostici del ${giornoMese(oggi)}</b>\n${SPIEGAZIONE_PRONOSTICI}`, ...blocchi].join('\n\n');
 }
 
 // Bilancio dei pronostici di una giornata: quando sono tutti chiusi (o dopo 3 giorni), una volta sola.
@@ -95,10 +107,14 @@ export function messaggiPronostici({ giornate, inviate, oggi }) {
     if (aperti.length && x.data > limite) continue;
     const chiave = `${x.data}|pronostici-esito`;
     if (inviate.has(chiave) || !chiusi.length) continue;
-    const giusti = chiusi.filter((y) => y.esito === 'vinta').length;
-    const sbagliati = chiusi.filter((y) => y.esito === 'persa').map((y) => `   ❌ ${html(y.partita)}: ${html(y.testo ?? y.selezione)}`);
+    // Bilancio anche per partita: i pronostici della stessa partita non sono prove indipendenti.
+    const b = bilancioPronostici(x);
+    const sbagliati = b.sbagliati.map((y) => `   ❌ ${html(y.partita)}: ${html(y.testo)}`);
+    const chiuse = b.partite.tutteGiuste + b.partite.conSbagliati;
     out.push({ chiave, testo: [
-      `📋 <b>Pronostici del ${giornoMese(x.data)}</b>: ${giusti} giusti su ${chiusi.length} (${percentuale(giusti / chiusi.length)})${aperti.length ? `, ${aperti.length} senza esito` : ''}`,
+      `📋 <b>Pronostici del ${giornoMese(x.data)}</b>: ${b.giusti} giusti su ${b.chiusi} (${percentuale(b.giusti / b.chiusi)})${aperti.length ? `, ${aperti.length} senza esito` : ''}`,
+      `Per partita: ${b.partite.tutteGiuste} su ${chiuse} tutti giusti, ${b.partite.conSbagliati} con qualcuno sbagliato${b.partite.aperte ? ` (${b.partite.aperte} ancora aperte)` : ''}.`,
+      'I pronostici della stessa partita sono collegati: quando una partita va storta sbagliano spesso insieme, non contarli come indipendenti.',
       ...sbagliati,
     ].join('\n') });
   }
@@ -237,10 +253,11 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
     const prec = ultima.get(sg.idGiocata);
     if (!prec || Date.parse(sg.ora) >= Date.parse(prec.ora)) ultima.set(sg.idGiocata, sg);
   }
-  const tutte = tutteGiornate.flatMap((x) => valide(x));
+  // Giornate di prova: tutte le loro giocate sono di prova (fuori dal bankroll).
+  const tutte = tutteGiornate.flatMap((x) => giocateConProva(x, valide(x)));
   const out = [];
   for (const x of giornate) {
-    for (const g of valide(x)) {
+    for (const g of giocateConProva(x, valide(x))) {
       const sg = ultima.get(g.id);
       if (!ESITO[g.esito] || !sg?.fatta) continue;
       const chiave = `${x.data}|esito|${g.id}|${g.esito}`;
@@ -253,6 +270,7 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
       out.push({ chiave, giocata: g, testo: [
         `${ESITO[g.esito]} · ${titolo}`,
         `quota ${virgola(sg.quotaReale)} · puntata ${importo(sg.puntataReale)} → <b>${euro(profitto)}</b>${gambaRimborsata ? ' (una gamba rimborsata: l\'importo reale è più basso, controllalo)' : ''}`,
+        ...(g.prova === true ? ['🧪 Giocata di PROVA segnata come fatta (PROVA: non conta nel bankroll). Se è un errore annulla la segnatura sul sito.'] : []),
       ].join('\n') });
     }
   }

@@ -67,3 +67,14 @@ test('scheda con puntata fissa: riga "puntata fissa 1,00 € (giornata piena: �
   assert.ok(!tutti(s).some((n) => (n.testo ?? '').startsWith('ridotta da')));
   assert.ok(!tutti(renderScheda(giocata(), null)).some((n) => n.className === 'fissa'));
 });
+
+test('A4 scheda di prova: etichetta "PROVA – non giocare" e nessun importo in euro da puntare', async () => {
+  const { valoriCampi } = await import('../../site/app.js');
+  const s = renderScheda(giocata({ prova: true }), null);
+  const testi = tutti(s).map((n) => n.testo ?? '');
+  assert.ok(testi.some((t) => t === 'PROVA – non giocare'), testi.join(' | '));
+  assert.ok(!testi.some((t) => /Puntata 4,00/.test(t)), testi.join(' | '));
+  assert.equal(valoriCampi(giocata({ prova: true }), null).puntata, '');
+  const normale = tutti(renderScheda(giocata(), null)).map((n) => n.testo ?? '');
+  assert.ok(!normale.some((t) => t === 'PROVA – non giocare'));
+});

@@ -70,7 +70,7 @@ test('fatta:true conta anche se la giocata è annullata', () => {
 test('stop settimanale tolto: nessun campo stopRaggiunto né distanzaStop, anche con la settimana a −90', () => {
   const r = statoBankroll([g('a', '2026-10-20T18:00:00+02:00', { esito: 'persa' })], [s('a', { puntataReale: 90 })], ADESSO);
   assert.equal(r.risultatoSettimana, -90);
-  assert.deepEqual(Object.keys(r).sort(), ['bankroll', 'daSegnare', 'inGiocoOggi', 'risultatoSettimana']);
+  assert.deepEqual(Object.keys(r).sort(), ['avvisi', 'bankroll', 'daSegnare', 'inGiocoOggi', 'risultatoSettimana']);
 });
 test('profitti di settimane precedenti contano nel bankroll ma non nella settimana', () => {
   const r = statoBankroll([g('a', '2026-10-14T18:00:00+02:00', { esito: 'vinta' })], [s('a')], ADESSO);
@@ -82,4 +82,24 @@ import { CONFIG } from '../../src/config.js';
 
 test('CONFIG senza stopSettimanale (stop tolto dall\'utente il 21/10/2026)', () => {
   assert.equal('stopSettimanale' in CONFIG, false);
+});
+
+test('A4 prova: le giocate di prova non entrano in daSegnare, bankroll, inGiocoOggi, risultatoSettimana; se segnate fatte, avviso', async () => {
+  const { giocateConProva } = await import('../../src/bankroll/bankroll.js');
+  const gs = [
+    g('p1', '2026-10-20T18:00:00+02:00', { esito: 'vinta', prova: true }),
+    g('p2', '2026-10-21T10:00:00+02:00', { prova: true }),
+    g('p3', '2026-10-21T11:00:00+02:00', { prova: true }),
+  ];
+  const r = statoBankroll(gs, [s('p1'), s('p2')], ADESSO);
+  assert.equal(r.bankroll, 200);
+  assert.equal(r.risultatoSettimana, 0);
+  assert.equal(r.inGiocoOggi, 0);
+  assert.deepEqual(r.daSegnare, []);
+  assert.equal(r.avvisi.length, 2);
+  assert.match(r.avvisi[0], /PROVA p1 .*non conta nel bankroll/);
+  assert.deepEqual(statoBankroll([g('a', '2026-10-21T10:00:00+02:00')], [], ADESSO).avvisi, []);
+  // Giornata scritta con prova: true: valgono come prova tutte le sue giocate.
+  assert.deepEqual(giocateConProva({ prova: true, giocate: [{ id: 'x' }] }).map((x) => x.prova), [true]);
+  assert.deepEqual(giocateConProva({ giocate: [{ id: 'x' }] }), [{ id: 'x' }]);
 });

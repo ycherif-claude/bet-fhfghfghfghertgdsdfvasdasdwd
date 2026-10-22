@@ -5,14 +5,14 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { selezionaGiocate } from '../regole/selezione.js';
-import { statoBankroll } from '../bankroll/bankroll.js';
+import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
-import { leggiCalibrazione, pronosticiGiornata } from '../regole/pronostici.js';
+import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 
 const PARTITE_ANTEPRIMA = 5;
@@ -78,7 +78,8 @@ function statoPrecedente(dirData, oggi, adesso) {
   const giocate = [];
   for (const { file, contenuto } of giornate) {
     if (!Array.isArray(contenuto.giocate)) { avvisa(file, 'giornata senza giocate'); continue; }
-    for (const g of contenuto.giocate) {
+    // Giornata di prova: tutte le sue giocate sono di prova (fuori dal bankroll).
+    for (const g of giocateConProva(contenuto)) {
       const motivo = erroreGiocata(g);
       if (motivo) avvisa(file, motivo);
       else giocate.push(g);
@@ -169,7 +170,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     competizioniNonCoperte: Array.isArray(raccolta?.competizioniNonCoperte) ? raccolta.competizioniNonCoperte : [],
     candidati,
     ...(prova || pronostici.length ? { pronostici } : {}),
-    giocate: scelta.giocate,
+    // Modalità prova: ogni giocata porta `prova: true` (fuori da bankroll, da segnare e storico "fatte").
+    giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
@@ -178,6 +180,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
       ...(modo === 'riserva' ? ['Giro di Claude non eseguito: notizie non controllate'] : []),
       ...(iniziate > 0 ? [iniziate === 1 ? '1 partita già iniziata esclusa' : `${iniziate} partite già iniziate escluse`] : []),
       ...avvisi,
+      // Pronostici dei giorni passati che il registro non è riuscito a chiudere.
+      ...avvisiPronosticiSenzaEsito(dirData, oggi),
     ],
   };
 
@@ -203,6 +207,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   }
   fs.mkdirSync(cartella, { recursive: true });
   scriviJson(file, giornata);
+  // Istantanea dei pronostici pubblicati: il registro li chiude da qui, anche senza la riga della raccolta.
+  salvaIstantanea(dirData, oggi, pronostici, adesso);
   return { scritto: true, giornata };
 }
 

@@ -128,7 +128,8 @@ test('pronostici: soglia del mercato, probabilità vera della fascia, quota mini
   const p = pronosticiPartita(partita, cal);
   assert.deepEqual(p.map((x) => [x.testo, x.prob, x.quotaMinima, x.giocabile]), [
     ['Inter non perde (1X)', 0.82, 1.22, false],
-    ['Almeno 2 gol (Over 1.5)', 0.82, 1.22, true],
+    // Quota sopra la minima ma senza la probabilità di Pinnacle: niente ✅ (A2).
+    ['Almeno 2 gol (Over 1.5)', 0.82, 1.22, false],
   ]);
   assert.equal(testoPronostico({ partita: 'Sinner J. - Alcaraz C.' }, 'Vincente incontro', 'Sinner J.'), 'Vince Sinner J.');
 });

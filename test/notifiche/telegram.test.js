@@ -299,3 +299,17 @@ test('modalità prova: pronostici al posto dell\'elenco, niente messaggi per i c
   const dopo = new Set([ms[0].chiave, ...ms[0].segna]);
   assert.deepEqual(messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
 });
+
+test('A4 giocata di prova: etichetta PROVA e nessun importo da puntare', () => {
+  const t = testoGiocata(giocata('a', { prova: true }), 1);
+  assert.match(t, /PROVA – non giocare/);
+  assert.doesNotMatch(t, /puntata/);
+});
+
+test('A4 esito di una giocata di prova segnata fatta: detto che non conta nel bankroll, bankroll invariato', () => {
+  const ieri = { data: '2026-10-21', prova: true, giocate: [giocata('a', { inizio: '2026-10-21T20:45:00+02:00', esito: 'vinta' })] };
+  const segnature = [{ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-21T18:00:00Z' }];
+  const [m] = messaggiEsiti({ giornate: [ieri], segnature, inviate: new Set(), adesso: mattina });
+  assert.match(m.testo, /PROVA: non conta nel bankroll/);
+  assert.match(m.testo, /Bankroll: <b>200,00 €<\/b>/);
+});

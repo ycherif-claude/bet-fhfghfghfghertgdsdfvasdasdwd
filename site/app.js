@@ -60,6 +60,8 @@ export function testoAvvisi(dati, adesso = new Date()) {
   else if ((giornata?.giocate ?? []).length === 0) avvisi.push('Oggi nessuna giocata con value');
   if (giornata?.esempio) avvisi.push('Dati di esempio, non sono giocate reali');
   if (giornata?.prova) avvisi.push('Modalità prova: queste giocate non vanno giocate, servono a creare il database per tarare il sistema');
+  // Giocate di prova segnate come fatte per errore: non contano nel bankroll.
+  for (const a of b.avvisi ?? []) avvisi.push(a);
   const n = (b.daSegnare ?? []).length;
   if (n > 0) avvisi.push(n === 1 ? 'Hai 1 giocata da segnare' : `Hai ${n} giocate da segnare`);
   const nonCoperte = giornata?.competizioniNonCoperte ?? [];
@@ -153,7 +155,8 @@ const virgola = (n) => String(n).replace('.', ',');
 export function valoriCampi(giocata, digitati) {
   return {
     quota: digitati?.quota ?? (giocata.quota ? virgola(giocata.quota) : ''),
-    puntata: digitati?.puntata ?? giocata.puntata.euro.toFixed(2).replace('.', ','),
+    // Giocata di prova: nessun importo proposto.
+    puntata: digitati?.puntata ?? (giocata.prova === true ? '' : giocata.puntata.euro.toFixed(2).replace('.', ',')),
     bookmaker: digitati?.bookmaker ?? BOOKMAKER[0],
   };
 }
@@ -258,32 +261,62 @@ export function renderScheda(g, segnatura) {
     el('ul', {}, (g.ragionamento ?? []).map((r) => el('li', {}, r))),
     g.gambe?.length ? [el('p', { class: 'gambe-titolo' }, 'Gambe'), el('ul', {}, g.gambe.map(renderGamba))] : null,
   );
+  const prova = g.prova === true;
   return el('article', { class: `scheda${g.stato === 'annullata' ? ' annullata' : ''}`, 'data-sport': g.sport },
+    prova ? el('p', { class: 'prova' }, 'PROVA – non giocare') : null,
     el('h3', {}, g.partita),
     el('p', { class: 'meta' }, `${ora(g.inizio)} · ${g.competizione}`),
     el('p', {}, el('strong', {}, NOME_TIPO[g.tipo] ?? g.tipo), ` · ${g.mercato}: ${g.selezione}`),
     el('p', {}, rigaQuota(g)),
     el('p', {}, `Quota minima da accettare: ${fmtQuota.format(g.quotaMinima)}`),
     el('p', {}, `Probabilità stimata ${percento(g.prob)} · value ${segno(g.value)}${percento(g.value)}`),
-    el('p', {}, el('strong', {}, `Puntata ${euro(g.puntata.euro)}`), ` (${fmtPerc1.format(g.puntata.percentuale)}% del bankroll)`),
-    testoRidotta(g.puntata) ? el('p', { class: 'ridotta' }, testoRidotta(g.puntata)) : null,
-    testoFissa(g.puntata) ? el('p', { class: 'fissa' }, testoFissa(g.puntata)) : null,
+    // Giocata di prova: nessun importo da puntare.
+    prova ? el('p', {}, el('strong', {}, 'Puntata: nessuna'), ' (giocata di prova, serve solo a tarare il sistema)')
+      : el('p', {}, el('strong', {}, `Puntata ${euro(g.puntata.euro)}`), ` (${fmtPerc1.format(g.puntata.percentuale)}% del bankroll)`),
+    !prova && testoRidotta(g.puntata) ? el('p', { class: 'ridotta' }, testoRidotta(g.puntata)) : null,
+    !prova && testoFissa(g.puntata) ? el('p', { class: 'fissa' }, testoFissa(g.puntata)) : null,
     renderPiedeScheda(g, segnatura),
     dettagli,
   );
 }
 
+// Spiegazione del ✅ e dei pronostici collegati (stessa regola di CONFIG.pronostici e stesso testo di Telegram).
+export const SPIEGAZIONE_PRONOSTICI = "✅ = giocabile: anche Pinnacle (senza margine) lo dà almeno all'80% e la quota è almeno il 5% sopra la minima. Senza ✅ è solo da tenere d'occhio. I pronostici della stessa partita sono collegati, non indipendenti: mai più di uno della stessa partita in una multipla.";
+const numero = (v) => typeof v === 'number' && Number.isFinite(v);
+
+// Esito della partita quando i suoi pronostici sono chiusi: tutti giusti o qualcuno sbagliato.
+export function esitoPartitaPronostici(p) {
+  const esiti = (p?.pronostici ?? []).map((x) => x?.esito ?? null);
+  if (esiti.includes('persa')) return 'qualcuno sbagliato';
+  if (!esiti.length || esiti.includes(null)) return null;
+  return 'tutti giusti';
+}
+
 // Pronostici sì/no di una partita: frase, percentuale, quota minima ed eventuale quota di oggi.
+// Senza quota o senza la probabilità di Pinnacle: "solo da tenere d'occhio".
 export function renderPronostici(p) {
+  const esitoPartita = esitoPartitaPronostici(p);
   return el('article', { class: 'scheda', 'data-sport': p.sport },
     el('h3', {}, p.partita),
     el('p', { class: 'meta' }, `${ora(p.inizio)} · ${p.competizione}`),
     el('ul', {}, p.pronostici.map((x) => el('li', {},
       el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
       ` · ${percento(x.prob)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
-      x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile ? ' ✅' : ''}` : '',
-      x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '')),
-  ));
+      x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
+      numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
+      x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : ''))),
+    esitoPartita ? el('p', {}, el('strong', {}, `Partita: ${esitoPartita}`)) : null,
+  );
+}
+
+// Bilancio dei pronostici di una giornata passata (dati.bilancioPronostici), anche per partita.
+export function testoBilancioPronostici(b) {
+  if (!b || !numero(b.chiusi) || b.chiusi <= 0) return null;
+  const giorno = `${b.data.slice(8, 10)}/${b.data.slice(5, 7)}`;
+  const chiuse = b.partite.tutteGiuste + b.partite.conSbagliati;
+  return `Pronostici del ${giorno}: ${b.giusti} giusti su ${b.chiusi} (${percento(b.giusti / b.chiusi)})${b.aperti ? `, ${b.aperti} senza esito` : ''}; `
+    + `per partita: ${b.partite.tutteGiuste} su ${chiuse} tutti giusti, ${b.partite.conSbagliati} con qualcuno sbagliato. `
+    + 'I pronostici della stessa partita sono collegati: quando una partita va storta sbagliano spesso insieme.';
 }
 
 const ESITO_MB = { vinta: 'vinta', persa: 'persa', rimborsata: 'rimborsata' };
@@ -385,7 +418,13 @@ function avvia(dati) {
 
   const pron = document.getElementById('pronostici');
   const lp = Array.isArray(dati.oggi.giornata?.pronostici) ? dati.oggi.giornata.pronostici : [];
-  if (pron) pron.replaceChildren(...(lp.length ? [el('h2', {}, 'Pronostici di oggi'), el('p', { class: 'meta' }, 'Gioca un pronostico solo se la quota è almeno la minima.'), ...lp.map((x) => schedaSicura(x?.idPartita, () => renderPronostici(x)))] : []));
+  const bilancio = testoBilancioPronostici(dati.bilancioPronostici);
+  if (pron) {
+    pron.replaceChildren(
+      ...(bilancio ? [el('p', { class: 'meta' }, bilancio)] : []),
+      ...(lp.length ? [el('h2', {}, 'Pronostici di oggi'), el('p', { class: 'meta' }, SPIEGAZIONE_PRONOSTICI), ...lp.map((x) => schedaSicura(x?.idPartita, () => renderPronostici(x)))] : []),
+    );
+  }
   const bonus = document.getElementById('multiple-bonus');
   const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

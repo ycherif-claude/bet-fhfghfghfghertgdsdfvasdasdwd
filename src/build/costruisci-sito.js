@@ -4,9 +4,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { selezionaGiocate } from '../regole/selezione.js';
 import { probValida } from '../regole/value.js';
-import { statoBankroll } from '../bankroll/bankroll.js';
+import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { riepiloga } from '../storico/riepiloghi.js';
+import { bilancioPronostici } from '../regole/pronostici.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
 
@@ -66,7 +67,7 @@ function ultimeSegnature(segnature) {
 function calcolaAndamento(righe) {
   const perGiorno = new Map();
   for (const { giocata, segnatura } of righe) {
-    if (!giocata.esito || !segnatura?.fatta) continue;
+    if (!giocata.esito || !segnatura?.fatta || giocata.prova === true) continue;
     const giorno = giornataDi(new Date(giocata.inizio));
     const { puntataReale: p, quotaReale: q } = segnatura;
     const profitto = giocata.esito === 'vinta' ? p * (q - 1) : giocata.esito === 'persa' ? -p : 0;
@@ -96,8 +97,8 @@ export function costruisciDati(dirData, adesso) {
   }
   const tutteSegnature = segnature.map((x) => x.sig);
 
-  // Solo le giocate valide; le altre finiscono in erroriDati.
-  const giocateValide = ({ file, g }) => (g.giocate ?? []).filter((x) => {
+  // Solo le giocate valide; le altre finiscono in erroriDati. Giornata di prova: tutte le giocate di prova.
+  const giocateValide = ({ file, g }) => giocateConProva(g, g.giocate ?? []).filter((x) => {
     const motivo = erroreGiocata(x);
     if (motivo) errore(file, motivo);
     return !motivo;
@@ -148,12 +149,17 @@ export function costruisciDati(dirData, adesso) {
     ...(vista === 'fatte' ? { bookmaker: riepiloga(righe, 'bookmaker', vista) } : {}),
   });
 
+  // Bilancio dei pronostici dell'ultima giornata passata che ne ha (i pronostici si chiudono il giorno dopo).
+  const conPronostici = altre.filter((x) => x.g.data < data && Array.isArray(x.g.pronostici) && x.g.pronostici.length)
+    .sort((a, b) => a.g.data.localeCompare(b.g.data)).at(-1);
+
   return {
     generatoAlle: adesso.toISOString(),
     oggi: { data, disponibile: giornataOggi !== null, giornata: giornataOggi },
     bankroll: statoBankroll(tutte, tutteSegnature, adesso),
     storico: { righe, riepiloghi: { fatte: per('fatte'), proposte: per('proposte') }, andamento: calcolaAndamento(righe) },
     segnature: tutteSegnature,
+    bilancioPronostici: conPronostici ? { data: conPronostici.g.data, ...bilancioPronostici(conPronostici.g) } : null,
     erroriDati,
   };
 }

@@ -5,8 +5,8 @@ const cent = (n) => Math.round(n * 100) / 100;
 function valuta({ giocata, segnatura }, vista) {
   if (!giocata.esito) return null;
   if (vista === 'fatte') {
-    // Giocata segnata fatta: i soldi sono reali anche se poi annullata.
-    if (!segnatura || segnatura.fatta !== true) return null;
+    // Giocata segnata fatta: i soldi sono reali anche se poi annullata. Le giocate di prova mai.
+    if (!segnatura || segnatura.fatta !== true || giocata.prova === true) return null;
     return { puntata: segnatura.puntataReale, quota: segnatura.quotaReale };
   }
   if (giocata.stato === 'annullata') return null;

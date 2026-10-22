@@ -153,3 +153,17 @@ test('testoFissa: riga della puntata fissa da 1 € a giornata piena, null altri
   assert.equal(testoFissa(undefined), null);
   assert.equal(testoFissa({ euro: 'x', fissa: { da: 5, motivo: 'giornata piena' } }), null);
 });
+
+test('A4 avviso del bankroll: giocata di prova segnata come fatta', () => {
+  const a = testoAvvisi(dati({}, { avvisi: ['Giocata di PROVA x segnata come fatta: non conta nel bankroll'] }));
+  assert.ok(a.includes('Giocata di PROVA x segnata come fatta: non conta nel bankroll'));
+});
+
+test('A3 bilancio dei pronostici sul sito: per partita e collegati', async () => {
+  const { testoBilancioPronostici } = await import('../../site/app.js');
+  const t = testoBilancioPronostici({ data: '2026-10-22', giusti: 3, chiusi: 4, aperti: 1, partite: { totale: 3, tutteGiuste: 1, conSbagliati: 1, aperte: 1 }, sbagliati: [] });
+  assert.match(t, /22\/10: 3 giusti su 4 \(75%\)/);
+  assert.match(t, /per partita: 1 su 2 tutti giusti, 1 con qualcuno sbagliato/);
+  assert.match(t, /1 senza esito/);
+  assert.equal(testoBilancioPronostici(null), null);
+});

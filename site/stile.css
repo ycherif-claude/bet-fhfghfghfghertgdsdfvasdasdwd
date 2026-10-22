@@ -68,6 +68,7 @@ nav a { color: var(--accento); }
 .meta { color: var(--testo-tenue); }
 .ridotta, .fissa { color: var(--testo-tenue); font-size: 0.9em; }
 .da-verificare { color: var(--attesa); font-weight: 600; }
+.prova { color: var(--attesa); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
 .scheda.annullata h3, .scheda.annullata p:not(.meta) { text-decoration: line-through; }
 .scheda-errore {
   background: var(--superficie); border: 1px solid var(--errore); border-radius: 10px; padding: 12px; color: var(--errore);

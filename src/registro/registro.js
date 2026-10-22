@@ -2,6 +2,8 @@
 // probabilità del modello e del mercato, quota del mattino, quota di chiusura (dai controlli prima delle
 // partite) ed esito. Un file per giornata: data/registro/<data>.json. Ogni mattina si completano gli
 // esiti dei 4 giorni precedenti; quelli che mancano ancora si riprovano il giorno dopo.
+// I pronostici sì/no si chiudono dalla loro istantanea (data/registro/<data>-pronostici.json, scritta dal
+// giro), non dalle righe della raccolta: così si chiudono anche le partite che la raccolta non ha.
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -14,6 +16,7 @@ import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
+import { leggiIstantanea, fileIstantanea, GIORNI_ESITO_PRONOSTICI } from '../regole/pronostici.js';
 
 // 4 giorni: i CSV di football-data.co.uk (campionati che ESPN non copre) si aggiornano due volte a settimana.
 const GIORNI = 4;
@@ -75,8 +78,12 @@ export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault()
   const cache = new Map();
   const errori = [];
   const riepilogo = [];
+  const pronostici = [];
   for (let i = GIORNI; i >= 1; i--) {
     const data = new Date(Date.parse(`${oggi}T12:00:00Z`) - i * 86400000).toISOString().slice(0, 10);
+    // Pronostici: dall'istantanea, anche se la raccolta della giornata manca.
+    const p = await chiudiPronostici({ dirData, data, adesso, f, cache, errori, ultimo: i >= GIORNI_ESITO_PRONOSTICI });
+    if (p) pronostici.push(p);
     let reg = leggi(fileRegistro(dirData, data), null);
     if (!reg) {
       const { raccolta } = leggiRaccolte(dirData, data);
@@ -105,10 +112,39 @@ export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault()
     reg.aggiornatoAlle = isoRoma(adesso);
     scrivi(fileRegistro(dirData, data), reg);
     aggiornaMultipleBonus(dirData, data, reg);
-    aggiornaPronostici(dirData, data, reg);
     riepilogo.push({ data, righe: reg.righe.length, conEsito: reg.righe.filter((r) => r.esito).length, nuovi });
   }
-  return { riepilogo, errori };
+  return { riepilogo, pronostici, errori };
+}
+
+// Esiti dei pronostici della giornata `data` dalla loro istantanea (se manca: dal file della giornata,
+// e l'istantanea si scrive). Stesse fonti e regole degli altri esiti del calcio, solo esiti definitivi.
+// `ultimo`: ultimo tentativo (4 giorni dopo); le partite ancora senza risultato diventano un errore.
+async function chiudiPronostici({ dirData, data, adesso, f, cache, errori, ultimo }) {
+  const ist = leggiIstantanea(dirData, data);
+  if (!ist) return null;
+  let nuovi = 0;
+  for (const r of ist.pronostici) {
+    if (r.esito != null) continue;
+    try {
+      const e = await esitoPerRegistro(r, f, dirData, cache);
+      if (e && !e.provvisorio) { r.esito = e.esito; nuovi++; }
+    } catch (err) {
+      const m = `${r.partita}: ${err?.message ?? err}`;
+      if (!errori.includes(m)) errori.push(m);
+    }
+  }
+  if (ultimo) {
+    for (const partita of new Set(ist.pronostici.filter((r) => r.esito == null).map((r) => r.partita))) {
+      errori.push(`Pronostici del ${data}: ${partita} senza esito dopo ${GIORNI_ESITO_PRONOSTICI} giorni (partita non trovata nella fonte degli esiti)`);
+    }
+  }
+  if (nuovi || ist.daGiornata) {
+    const { daGiornata, ...resto } = ist;
+    scrivi(fileIstantanea(dirData, data), { ...resto, aggiornataAlle: isoRoma(adesso) });
+  }
+  aggiornaPronostici(dirData, data, ist.pronostici);
+  return { data, n: ist.pronostici.length, conEsito: ist.pronostici.filter((r) => r.esito != null).length, nuovi };
 }
 
 // Esiti delle multiple bonus della giornata `data` dalle righe del registro (stesse partite e mercati).
@@ -131,12 +167,12 @@ export function aggiornaMultipleBonus(dirData, data, reg) {
   return cambiato;
 }
 
-// Esiti dei pronostici sì/no della giornata `data`, dalle righe del registro (solo esiti definitivi).
-export function aggiornaPronostici(dirData, data, reg) {
+// Esiti dei pronostici sì/no della giornata `data` dalle righe della loro istantanea (solo esiti definitivi).
+export function aggiornaPronostici(dirData, data, righe) {
   const file = path.join(dirData, 'giornate', `${data}.json`);
   const g = leggi(file, null);
   if (!g || !Array.isArray(g.pronostici) || !g.pronostici.length) return false;
-  const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
+  const esiti = new Map(righe.filter((r) => r.esito).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
   let cambiato = false;
   for (const p of g.pronostici) {
     for (const x of p.pronostici ?? []) {
@@ -151,6 +187,7 @@ export function aggiornaPronostici(dirData, data, reg) {
 async function principale() {
   const r = await aggiornaRegistro({ dirData: 'data', adesso: new Date() });
   for (const x of r.riepilogo) console.log(`Registro ${x.data}: ${x.righe} mercati, ${x.conEsito} con esito (${x.nuovi} nuovi)`);
+  for (const x of r.pronostici) console.log(`Pronostici ${x.data}: ${x.n}, ${x.conEsito} con esito (${x.nuovi} nuovi)`);
   for (const e of r.errori.slice(0, 20)) console.log(`- ${e}`);
 }
 

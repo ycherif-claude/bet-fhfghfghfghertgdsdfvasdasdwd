@@ -16,7 +16,8 @@ export function righeVista(righe, vista) {
     let puntata;
     let quota;
     if (vista === 'fatte') {
-      if (!segnatura || segnatura.fatta !== true) continue;
+      // Le giocate di prova non sono mai "fatte", anche se segnate per errore.
+      if (!segnatura || segnatura.fatta !== true || giocata.prova === true) continue;
       puntata = segnatura.puntataReale;
       quota = segnatura.quotaReale;
     } else {

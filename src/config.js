@@ -144,7 +144,7 @@ export const CONFIG = congela({
   // una selezione per partita. Incremento sulla vincita dalla tabella ufficiale di bet365 (screenshot dell'utente):
   // ogni selezione deve avere quota ≥ 1,25 e nessun mercato che possa finire rimborsato.
   // Pronostici sì/no [utente, 22/10/2026]: nascono solo dal modello, senza quote; la quota serve dopo,
-  // per decidere se giocare (quota ≥ quota minima). "Sì" quando la probabilità del modello supera la soglia
+  // per decidere se giocare (vedi margineQuota). "Sì" quando la probabilità del modello supera la soglia
   // del mercato. Soglie scelte sulle stagioni passate (data/taratura/calibrazione.json): da lì in su il "sì"
   // è uscito almeno il 70% circa delle volte in ogni stagione. Gol, No gol, Under 1.5/2.5 e Over 3.5 esclusi:
   // il modello li sopravvaluta. La percentuale mostrata è quella vera della stessa fascia nel passato.
@@ -155,6 +155,10 @@ export const CONFIG = congela({
     minCampioniFascia: 60,
     // Un "sì" solo se nel passato quella fascia è uscita almeno l'80% delle volte [utente, 22/10/2026].
     probMinima: 0.8,
+    // Segnale "giocabile ✅" [22/10/2026, correzione C2]: solo se anche la probabilità senza margine di
+    // Pinnacle (o del consenso) è ≥ probMinima e la quota è ≥ margineQuota × quota minima. Il modello da solo
+    // perde contro Pinnacle (backtest): una quota "alta" di solito vuol dire che il mercato non è d'accordo.
+    margineQuota: 1.05,
     soglie: {
       calcio: {
         '1X2|1': 0.7,

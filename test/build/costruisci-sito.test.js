@@ -150,3 +150,28 @@ test('multipla mista con esito nelle gambe: nessun erroriDati', () => {
     [{ idGiocata: 'mm', fatta: true, quotaReale: 2, puntataReale: 5, ora: '2026-10-18T19:00:00+02:00' }]);
   assert.deepEqual(costruisciDati(d, new Date('2026-10-19T10:00:00Z')).erroriDati, []);
 });
+
+test('A4 giornata di prova: giocate marcate prova, fuori da bankroll, "fatte" e andamento; avviso se segnate fatte', () => {
+  const d = dirTemp([
+    { data: '2026-10-18', prova: true, candidati: [], giocate: [giocata('a', '2026-10-18T20:45:00+02:00', 'vinta')] },
+    { data: '2026-10-19', prova: true, candidati: [], giocate: [giocata('b', '2026-10-19T20:45:00+02:00', null)] },
+  ], [{ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-18T18:00:00Z' }]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.equal(r.bankroll.bankroll, 200);
+  assert.equal(r.bankroll.avvisi.length, 1);
+  assert.deepEqual(r.storico.andamento, []);
+  assert.deepEqual(r.storico.riepiloghi.fatte.sport, []);
+  assert.equal(r.oggi.giornata.giocate[0].prova, true);
+  assert.equal(r.storico.righe.find((x) => x.giocata.id === 'a').giocata.prova, true);
+});
+
+test('A3 build: bilancio dei pronostici dell\'ultima giornata passata', () => {
+  const d = dirTemp([
+    { data: '2026-10-18', giocate: [], pronostici: [{ partita: 'A - B', pronostici: [{ testo: 'x', esito: 'vinta' }, { testo: 'y', esito: 'persa' }] }] },
+    { data: '2026-10-19', giocate: [], pronostici: [{ partita: 'C - D', pronostici: [{ testo: 'x', esito: null }] }] },
+  ]);
+  const r = costruisciDati(d, new Date('2026-10-19T10:00:00Z'));
+  assert.equal(r.bilancioPronostici.data, '2026-10-18');
+  assert.equal(r.bilancioPronostici.giusti, 1);
+  assert.deepEqual(r.bilancioPronostici.partite, { totale: 1, tutteGiuste: 0, conSbagliati: 1, aperte: 0 });
+});
