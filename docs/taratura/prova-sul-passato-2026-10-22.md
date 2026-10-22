@@ -69,3 +69,13 @@ Penalità e soglia scelte solo sul 2023/24; verifica una volta sola su 2024/25 e
 Il metodo appreso passa da −25% (regole di oggi) a circa pari, ma un guadagno vero non c'è: il rendimento è
 dentro l'errore e il CLV è negativo. Con le sole quote del mattino e i dati dei CSV non si trova un vantaggio
 stabile su Pinnacle in questi mercati.
+
+## Multiple con il bonus bet365
+
+Le favorite di bet365 a quota 1,25–1,50 perdono in media il 2,3% (± 0,9%) a partita (5 stagioni, circa 4.700
+scommesse; da 0% a −4,5% secondo la stagione). Con l'incremento della tabella ufficiale bet365 il rendimento
+atteso della multipla è: 5 partite −2%, 8 +4%, 10 +7%, 12 +10%, 15 +13%, 20 +26%. Nel caso pessimista
+(−3,2% a partita) è vicino a zero; in una stagione come il 2024/25 (−4,5%) è negativo a ogni lunghezza.
+Le vincite sono rare: 1 su 32 a 10 partite, 1 su 1.000 a 20.
+
+In prova dal 22/10/2026: ogni mattina una multipla da 10 e una da 20 (`src/regole/multipla-bonus.js`).

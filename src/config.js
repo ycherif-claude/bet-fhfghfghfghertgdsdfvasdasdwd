@@ -140,6 +140,15 @@ export const CONFIG = congela({
   // Modalità prova [utente, 22/10/2026]: 3-4 settimane di giocate da non giocare, solo per creare il
   // database della taratura. Ogni value positivo diventa una giocata di prova, senza lo scarto dal mercato.
   prova: { da: '2026-10-22', fino: '2026-11-18', sogliaValue: 0.000001, massimiSingole: 60 },
+  // Multiple bonus bet365 (in prova dal 22/10/2026): partite a quota 1,25–1,50 con il margine più basso,
+  // una selezione per partita. Incremento sulla vincita dalla tabella ufficiale di bet365 (screenshot dell'utente):
+  // ogni selezione deve avere quota ≥ 1,25 e nessun mercato che possa finire rimborsato.
+  multiplaBonus: {
+    quotaMin: 1.25,
+    quotaMax: 1.5,
+    lunghezze: [10, 20],
+    incremento: { 2: 0.025, 3: 0.05, 4: 0.075, 5: 0.1, 6: 0.125, 7: 0.18, 8: 0.25, 9: 0.3, 10: 0.35, 11: 0.4, 12: 0.45, 13: 0.5, 14: 0.55, 15: 0.6, 16: 0.65, 17: 0.7, 18: 0.8, 19: 0.9, 20: 1 },
+  },
   // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
   controlli: {
     // Il cron "ogni 10 minuti" di GitHub parte in realtà ogni 30-43 minuti: la finestra è larga

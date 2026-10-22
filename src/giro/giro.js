@@ -11,6 +11,7 @@ import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
+import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
 import { leggiRaccolte } from './raccolte.js';
 
 const PARTITE_ANTEPRIMA = 5;
@@ -149,6 +150,11 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     : { candidati: [], preScartate: [], iniziate: 0 };
   const fuori = new Set(preScartate.map((s) => s.idCandidato));
   const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato, { prova });
+  // Multiple bonus bet365 (in prova): dai mercati con quota, senza le partite escluse dalle notizie.
+  const escluse = new Set((notizie?.esclusioni ?? []).filter((x) => !x.idCandidato).map((x) => x.idPartita));
+  const multipleBonus = prova && raccolta
+    ? costruisciMultipleBonus(valutaMercati(raccolta, notizie, { adesso }).voci, { data: oggi, escluse })
+    : [];
 
   const giornata = {
     data: oggi,
@@ -160,6 +166,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     competizioniNonCoperte: Array.isArray(raccolta?.competizioniNonCoperte) ? raccolta.competizioniNonCoperte : [],
     candidati,
     giocate: scelta.giocate,
+    ...(multipleBonus.length ? { multipleBonus } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),

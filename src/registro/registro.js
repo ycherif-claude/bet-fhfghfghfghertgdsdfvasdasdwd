@@ -12,6 +12,7 @@ import { esitoPerRegistro } from '../esiti/rapidi.js';
 import { espn } from '../controlli/espn.js';
 import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
+import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
 
 const GIORNI = 3;
 const num = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
@@ -101,9 +102,30 @@ export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault()
     }
     reg.aggiornatoAlle = isoRoma(adesso);
     scrivi(fileRegistro(dirData, data), reg);
+    aggiornaMultipleBonus(dirData, data, reg);
     riepilogo.push({ data, righe: reg.righe.length, conEsito: reg.righe.filter((r) => r.esito).length, nuovi });
   }
   return { riepilogo, errori };
+}
+
+// Esiti delle multiple bonus della giornata `data` dalle righe del registro (stesse partite e mercati).
+// Il file della giornata si riscrive solo se cambia qualcosa.
+export function aggiornaMultipleBonus(dirData, data, reg) {
+  const file = path.join(dirData, 'giornate', `${data}.json`);
+  const g = leggi(file, null);
+  if (!g || !Array.isArray(g.multipleBonus) || !g.multipleBonus.length) return false;
+  const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
+  let cambiato = false;
+  for (const mb of g.multipleBonus) {
+    for (const gamba of mb.gambe ?? []) {
+      const e = esiti.get(chiaveMercato(gamba.idPartita, gamba.mercato, gamba.selezione)) ?? null;
+      if (e && gamba.esito !== e) { gamba.esito = e; cambiato = true; }
+    }
+    const r = esitoMultiplaBonus(mb);
+    if (r.esito !== mb.esito || r.ritorno !== mb.ritorno) { mb.esito = r.esito; mb.ritorno = r.ritorno; cambiato = true; }
+  }
+  if (cambiato) scrivi(file, g);
+  return cambiato;
 }
 
 async function principale() {

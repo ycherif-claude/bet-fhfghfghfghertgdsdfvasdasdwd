@@ -267,6 +267,8 @@ Per 3-4 settimane le giocate **non vanno giocate**: servono a creare il database
 - **ogni value positivo** diventa una giocata di prova, senza lo scarto massimo dal mercato (fino a 60 singole al giorno); sito e Telegram le segnano "PROVA, non giocare"; su Telegram arriva la lista del giorno, non un messaggio per ogni cambio di stato;
 - il **registro** in `data/registro/<data>.json` salva **ogni mercato di ogni partita** analizzata: probabilità del modello e del mercato, quota del mattino, quota di chiusura (salvata dai controlli prima delle partite, in `<data>-chiusure.json`, senza richieste in più) ed esito. Ogni mattina, dopo la raccolta, completa gli esiti dei 3 giorni precedenti. Cartellini e angoli da ESPN sono segnati come provvisori.
 
+- le **multiple bonus bet365** (`multipleBonus` nella giornata): ogni mattina una multipla da 10 e una da 20 partite (se ce ne sono abbastanza), a quota 1,25–1,50 con il margine più basso, una selezione per partita, niente mercati che possono finire rimborsati. L'incremento è quello della tabella ufficiale di bet365 (`CONFIG.multiplaBonus`). Gli esiti li scrive il registro ogni mattina; Telegram manda la multipla con le giocate del giorno e poi l'esito. Le quote sono la media dei bookmaker: su bet365 ogni partita deve essere almeno 1,25.
+
 Le date sono in `CONFIG.prova`. Dopo il 18 novembre si torna alle regole normali, con le soglie tarate sul registro.
 
 ## Revisione settimanale

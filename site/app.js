@@ -273,6 +273,21 @@ export function renderScheda(g, segnatura) {
   );
 }
 
+const ESITO_MB = { vinta: 'vinta', persa: 'persa', rimborsata: 'rimborsata' };
+
+// Multipla bonus bet365 (prova): gambe, quota con l'incremento ed esito.
+export function renderMultiplaBonus(mb) {
+  const esito = mb.esito ? `${ESITO_MB[mb.esito] ?? mb.esito}${mb.esito === 'vinta' ? `: 1 € → ${fmtQuota.format(mb.ritorno)} €` : ''}` : 'in attesa';
+  return el('article', { class: 'scheda' },
+    el('h3', {}, `${mb.nome} (PROVA, non giocare)`),
+    el('p', {}, `Quota ${fmtQuota.format(mb.quota)} · incremento ${percento(mb.incremento)} · con bonus ${fmtQuota.format(mb.quotaConBonus)}`),
+    el('p', { class: 'meta' }, 'Quote medie dei bookmaker: su bet365 controlla che ogni partita sia almeno 1,25.'),
+    el('p', {}, el('strong', {}, `Esito: ${esito}`)),
+    el('details', {}, el('summary', {}, `Partite (${mb.gambe.length})`),
+      el('ul', {}, mb.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): ${g.mercato}, ${g.selezione} @ ${fmtQuota.format(g.quota)}${g.esito ? ` · ${g.esito}` : ''}`)))),
+  );
+}
+
 // Una giocata con dati rotti non deve bloccare le altre: al posto della scheda
 // compare un piccolo riquadro d'errore con il suo id.
 export function schedaSicura(id, crea) {
@@ -354,6 +369,10 @@ function avvia(dati) {
     return bt;
   }));
   disegna();
+
+  const bonus = document.getElementById('multiple-bonus');
+  const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
+  if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));
 }
 
 if (typeof document !== 'undefined' && document.getElementById('giocate')) {

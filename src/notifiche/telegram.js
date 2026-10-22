@@ -59,6 +59,30 @@ export function testoGiocata(g, i) {
   ].join('\n');
 }
 
+// Multipla bonus bet365 (prova): titolo, quota con l'incremento e gambe.
+export function testoMultiplaBonus(mb) {
+  const gambe = mb.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}`);
+  return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
+}
+const multipleBonus = (giornata) => (Array.isArray(giornata?.multipleBonus) ? giornata.multipleBonus.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+
+// Esito delle multiple bonus, una volta per multipla.
+export function messaggiMultipleBonus({ giornate, inviate }) {
+  const out = [];
+  for (const x of giornate) {
+    for (const mb of multipleBonus(x)) {
+      if (!mb.esito) continue;
+      const chiave = `${x.data}|bonus|${mb.id}|${mb.esito}`;
+      if (inviate.has(chiave)) continue;
+      const perse = mb.gambe.filter((g) => g.esito === 'persa').length;
+      const dettaglio = mb.esito === 'vinta' ? `1 € → <b>${virgola(mb.ritorno)} €</b>`
+        : mb.esito === 'persa' ? `${perse} ${perse === 1 ? 'partita persa' : 'partite perse'} su ${mb.gambe.length}` : 'tutte le partite rimborsate';
+      out.push({ chiave, testo: `🧪 ${html(mb.nome)} del ${giornoMese(x.data)} (prova): ${ESITO[mb.esito] ?? mb.esito}, ${dettaglio}` });
+    }
+  }
+  return out;
+}
+
 const valide = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocate.filter((g) => g && g.id) : []);
 
 // Messaggi da mandare ora: [{ chiave, testo }]. `inviate`: Set delle chiavi già mandate.
@@ -91,7 +115,9 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
     const testo = giocate.length
       ? [titolo, ...giocate.map((g, i) => testoGiocata(g, i + 1))].join('\n\n')
       : `${prova ? '🧪' : '🎯'} <b>Oggi, ${giornoMese(oggi)}, nessuna giocata</b>: nessun mercato ha value${prova ? ' positivo' : ' sufficiente'}.`;
-    out.push({ chiave: `${oggi}|giornata`, testo: testo + piede, segna: giocate.map((g) => `${oggi}|giocata|${g.id}`) });
+    const bonus = multipleBonus(delGiorno).map(testoMultiplaBonus);
+    const conBonus = bonus.length ? `${testo}\n\n${bonus.join('\n\n')}` : testo;
+    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: giocate.map((g) => `${oggi}|giocata|${g.id}`) });
   } else {
     const nuove = giocate.filter((g) => !annunciate.has(g.id) && g.stato !== 'annullata');
     if (nuove.length) {
@@ -341,6 +367,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
   lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
+  lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));
