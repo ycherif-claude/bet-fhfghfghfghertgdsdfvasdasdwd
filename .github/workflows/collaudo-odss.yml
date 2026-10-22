@@ -1,0 +1,44 @@
+name: Collaudo odss-api
+
+# Prova di odss-api.com (bookmaker italiani): elenco bookmaker e quote di prova di Serie A, circa 4 richieste.
+# Si avvia a mano o quando cambia lo script di prova. Salva solo dati pubblici in data/collaudo/odss.json.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/collaudo-odss.mjs
+      - .github/workflows/collaudo-odss.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dati
+  cancel-in-progress: false
+
+jobs:
+  collaudo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Prova di odss-api
+        run: node scripts/collaudo-odss.mjs
+        env:
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
+      - name: Salva il risultato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898799+github-actions[bot]@users.noreply.github.com"
+          git add data/collaudo/odss.json
+          if [ -z "$(git status --porcelain data/collaudo/)" ]; then exit 0; fi
+          git commit -m "Collaudo odss-api"
+          for tentativo in 1 2 3; do
+            git pull --rebase || { git rebase --abort || true; exit 1; }
+            if git push; then exit 0; fi
+            sleep 10
+          done
+          exit 1
