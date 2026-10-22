@@ -108,6 +108,8 @@ export function valutaMercati(raccolta, notizie, { adesso = null } = {}) {
   let iniziate = 0;
   for (const originale of raccolta?.partite ?? []) {
     if (!originale || !Array.isArray(originale.mercati)) continue;
+    // Campionati senza quote: solo pronostici sì/no, mai giocate.
+    if (originale.soloPronostici) continue;
     if (adesso && Date.parse(originale.inizio) <= adesso.getTime()) { iniziate++; continue; }
     const partita = applicaCorrezioni(originale, correzioni.filter((c) => c.idPartita === originale.idPartita));
     for (const m of partita.mercati) {

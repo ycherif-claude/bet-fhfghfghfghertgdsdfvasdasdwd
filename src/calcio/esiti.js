@@ -324,7 +324,7 @@ export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccol
   // CSV: quelli già scaricati dalla raccolta, più la stagione corrente delle leghe con giocate in attesa.
   const righeCsv = new Map(csv ?? []);
   for (const c of COMPETIZIONI) {
-    if (!c.csv || !attesa.has(c.nome) || righeCsv.has(c.csv)) continue;
+    if (!c.csv || c.formato === 'extra' || !attesa.has(c.nome) || righeCsv.has(c.csv)) continue;
     try {
       righeCsv.set(c.csv, await fonti.footballDataUk.partite(c.csv, [stagioneDi(oggi)]));
     } catch (e) {

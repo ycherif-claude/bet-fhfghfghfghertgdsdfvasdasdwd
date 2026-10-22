@@ -21,6 +21,8 @@ import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { squadreDi, trovaEvento } from '../controlli/quote.js';
 import { scarica } from '../calcio/fonti/http.js';
+import { COMPETIZIONI } from '../calcio/competizioni.js';
+import { normalizzaNome } from '../calcio/testo.js';
 
 const MIN = 60000;
 // Minuti dopo l'inizio dai quali si cerca il risultato, e ore dopo le quali si lascia al mattino.
@@ -35,9 +37,28 @@ const json = (testo) => JSON.parse(testo);
 
 // --- risultati per sport (null se la partita non è finita o non si trova) ---
 
+// Campionati senza quote che ESPN non copre: risultato finale dal CSV di football-data.co.uk
+// (aggiornato due volte a settimana), stessa data ±1 giorno e stessi nomi (il calendario viene dallo stesso sito).
+async function risultatoFootballData(gamba, fonti) {
+  const c = COMPETIZIONI.find((x) => x.nome === gamba.competizione && !x.chiave);
+  if (!c || !fonti.footballDataUk) return null;
+  const giorno = new Date(gamba.inizio).toISOString().slice(0, 10);
+  const [anno, mese] = giorno.split('-').map(Number);
+  const yy = (n) => String(n % 100).padStart(2, '0');
+  const inizioStagione = mese >= 7 ? anno : anno - 1;
+  const righe = c.formato === 'extra'
+    ? await fonti.footballDataUk.partiteExtra(c.csv)
+    : await fonti.footballDataUk.partite(c.csv, [`${yy(inizioStagione)}${yy(inizioStagione + 1)}`]);
+  const [casa, trasferta] = String(gamba.partita).split(' - ').map(normalizzaNome);
+  const vicino = (d) => Math.abs(Date.parse(`${d}T12:00:00Z`) - Date.parse(`${giorno}T12:00:00Z`)) <= 86400000;
+  const p = righe.find((x) => vicino(x.data) && normalizzaNome(x.casa) === casa && normalizzaNome(x.trasferta) === trasferta);
+  if (!p) return null;
+  return { gc: p.gc, gt: p.gt, gcPT: p.gcPT ?? null, gtPT: p.gtPT ?? null, conteggi: {} };
+}
+
 async function risultatoCalcio(gamba, fonti) {
   const campionato = CAMPIONATI_ESPN[gamba.competizione];
-  if (!campionato) return null;
+  if (!campionato) return risultatoFootballData(gamba, fonti);
   const giorno = new Date(gamba.inizio).toISOString().slice(0, 10);
   const ev = trovaEvento(gamba, await fonti.espn.partite(campionato, giorno));
   if (!ev) return null;

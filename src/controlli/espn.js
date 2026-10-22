@@ -5,6 +5,7 @@ import { normalizzaNome, slug } from '../calcio/testo.js';
 import { ALIAS as ALIAS_CALCIO } from '../calcio/squadre.js';
 import { squadraNba } from '../nba/squadre.js';
 import { CAMPIONATI_BASKET, codiceSquadra } from '../basket/squadre.js';
+import { COMPETIZIONI } from '../calcio/competizioni.js';
 
 const BASE = 'https://site.api.espn.com/apis/site/v2/sports';
 
@@ -27,6 +28,8 @@ export const CAMPIONATI_ESPN = Object.freeze({
   '2. Bundesliga': 'soccer/ger.2',
   'Ligue 2': 'soccer/fra.2',
   NBA: 'basketball/nba',
+  // Campionati senza quote (solo pronostici) che ESPN copre.
+  ...Object.fromEntries(COMPETIZIONI.filter((c) => !c.chiave && c.espn).map((c) => [c.nome, c.espn])),
 });
 
 function json(testo) {

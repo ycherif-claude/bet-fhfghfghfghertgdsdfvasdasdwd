@@ -1,7 +1,7 @@
 // Registro delle previsioni per la taratura (Fase 5): ogni mercato di ogni partita delle raccolte, con
 // probabilità del modello e del mercato, quota del mattino, quota di chiusura (dai controlli prima delle
 // partite) ed esito. Un file per giornata: data/registro/<data>.json. Ogni mattina si completano gli
-// esiti dei 3 giorni precedenti; quelli che mancano ancora si riprovano il giorno dopo.
+// esiti dei 4 giorni precedenti; quelli che mancano ancora si riprovano il giorno dopo.
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -12,9 +12,11 @@ import { esitoPerRegistro } from '../esiti/rapidi.js';
 import { espn } from '../controlli/espn.js';
 import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
+import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
 
-const GIORNI = 3;
+// 4 giorni: i CSV di football-data.co.uk (campionati che ESPN non copre) si aggiornano due volte a settimana.
+const GIORNI = 4;
 const num = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 export const chiaveMercato = (idPartita, mercato, selezione) => `${idPartita}|${mercato}|${selezione}`;
 
@@ -62,7 +64,7 @@ function conMemoria(fonti) {
   return out;
 }
 
-const fontiDefault = () => ({ espn, eurolega, thesportsdb, opz: {} });
+const fontiDefault = () => ({ espn, eurolega, thesportsdb, footballDataUk, opz: {} });
 
 // Completa il registro dei giorni passati (fino a GIORNI fa): righe dalle raccolte, chiusure, esiti.
 export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault() }) {

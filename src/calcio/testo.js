@@ -1,7 +1,10 @@
 import { partiRoma } from '../bankroll/settimana.js';
 
+// Lettere senza scomposizione Unicode (Tromsø, Nordsjælland, Łódź, Đoković): sostituite a mano.
+const LETTERE = { ø: 'o', Ø: 'O', æ: 'ae', Æ: 'AE', ß: 'ss', ł: 'l', Ł: 'L', đ: 'd', Đ: 'D', ı: 'i', þ: 'th', ð: 'd' };
+
 export function slug(testo) {
-  return String(testo).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  return String(testo).replace(/[øØæÆßłŁđĐıþð]/g, (c) => LETTERE[c]).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 

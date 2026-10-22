@@ -73,7 +73,71 @@ export function tiriFootballData(r) {
 
 export { converti as partitaFootballData };
 
+const yy = (n) => String(n % 100).padStart(2, '0');
+
+// Stagione dei file extra ("2025/2026" o "2026") come codice football-data: "2526"; l'anno solare Y vale (Y−1)/Y.
+export function codiceStagioneExtra(testo) {
+  const m = /^(\d{4})(?:\/(\d{4}))?$/.exec(String(testo ?? '').trim());
+  if (!m) return null;
+  const a = Number(m[1]);
+  return m[2] ? `${yy(a)}${yy(a + 1)}` : `${yy(a - 1)}${yy(a)}`;
+}
+
+// Riga di un file extra (football-data.co.uk/new/<codice>.csv): solo risultato finale, niente primo tempo.
+export function partitaExtra(r) {
+  const data = dataIso(r.Date);
+  const gc = numero(r.HG);
+  const gt = numero(r.AG);
+  const stagione = codiceStagioneExtra(r.Season);
+  if (!data || gc === null || gt === null || !stagione || !r.Home || !r.Away) return null;
+  return {
+    data, casa: r.Home, trasferta: r.Away, gc, gt, gcPT: null, gtPT: null, xgC: null, xgT: null,
+    angoliC: null, angoliT: null, cartC: null, cartT: null, arbitro: null, stagione,
+  };
+}
+
+const formatoLondra = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', timeZoneName: 'longOffset' });
+// Data (AAAA-MM-GG) e ora (HH:MM) di Londra, come i file fixtures, in ISO UTC.
+export function isoDaLondra(data, ora) {
+  const base = Date.parse(`${data}T${ora || '15:00'}:00Z`);
+  const off = (t) => {
+    const m = /GMT([+-])(\d{2}):(\d{2})/.exec(formatoLondra.format(new Date(t)));
+    return m ? (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3])) : 0;
+  };
+  return new Date(base - off(base - off(base) * 60000) * 60000).toISOString();
+}
+
+// Partite in calendario dai file fixtures (campionati principali e extra): [{ codice | paese+lega, casa, trasferta, inizio }].
+export function calendarioDaFixtures(principali, extra) {
+  const out = [];
+  for (const r of principali) {
+    const data = dataIso(r.Date);
+    if (data && r.Div && r.HomeTeam && r.AwayTeam) out.push({ codice: r.Div.trim(), casa: r.HomeTeam, trasferta: r.AwayTeam, inizio: isoDaLondra(data, r.Time) });
+  }
+  for (const r of extra) {
+    const data = dataIso(r.Date);
+    if (data && r.Country && r.Home && r.Away) out.push({ paese: r.Country.trim(), lega: String(r.League ?? '').trim(), casa: r.Home, trasferta: r.Away, inizio: isoDaLondra(data, r.Time) });
+  }
+  return out;
+}
+
 export const footballDataUk = {
+  // Tutte le stagioni di un campionato extra, con il codice della stagione.
+  async partiteExtra(codice, opz = {}) {
+    const { chiave, ...resto } = opz;
+    const r = await scarica(`https://www.football-data.co.uk/new/${codice}.csv`, { ...resto, headers: { 'User-Agent': AGENTE } });
+    return leggiCsv(r.testo).map(partitaExtra).filter(Boolean);
+  },
+
+  // Calendario delle prossime partite (aggiornato da football-data due volte a settimana).
+  async calendario(opz = {}) {
+    const { chiave, ...resto } = opz;
+    const o = { ...resto, headers: { 'User-Agent': AGENTE } };
+    const a = await scarica('https://www.football-data.co.uk/fixtures.csv', o);
+    const b = await scarica('https://www.football-data.co.uk/new_league_fixtures.csv', o);
+    return calendarioDaFixtures(leggiCsv(a.testo), leggiCsv(b.testo));
+  },
+
   async partite(codice, stagioni, opz = {}) {
     const { chiave, ...resto } = opz;
     const out = [];

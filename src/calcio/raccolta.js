@@ -2,8 +2,8 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
-import { COMPETIZIONI } from './competizioni.js';
-import { abbinaSquadra } from './squadre.js';
+import { ALIAS_ESPN_CSV, COMPETIZIONI } from './competizioni.js';
+import { abbinaEspn, abbinaSquadra } from './squadre.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from './testo.js';
 import { quotaMediana, probPinnacle } from './quote.js';
 import { lambda, stimaForze } from './modelli/gol.js';
@@ -12,6 +12,7 @@ import { mercatiConteggi } from './modelli/conteggi.js';
 import { oddsApi } from './fonti/odds-api.js';
 import { footballDataUk } from './fonti/football-data-uk.js';
 import { footballDataOrg } from './fonti/football-data-org.js';
+import { espn } from '../controlli/espn.js';
 import { aggiornaEsitiGiro } from './esiti.js';
 
 const TOTALE_MESE = 500;
@@ -66,7 +67,7 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   // 1. Eventi (gratuiti) e crediti rimasti dalla prima risposta.
   let rimasti = null;
   const eventiPer = new Map();
-  for (const c of COMPETIZIONI) {
+  for (const c of COMPETIZIONI.filter((x) => x.chiave)) {
     try {
       const r = await fonti.oddsApi.eventi(c.chiave, finestra, { chiave: chiavi.oddsApi });
       if (rimasti === null && r.rimasti !== null && r.rimasti !== undefined) rimasti = r.rimasti;
@@ -83,10 +84,13 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
     rimasti = 0;
   }
 
-  // 2. Budget e scelta delle competizioni.
-  const conPartite = COMPETIZIONI.filter((c) => eventiPer.has(c.chiave));
+  // 1b. Campionati senza quote: calendario da ESPN o dai file fixtures di football-data.co.uk.
+  await calendarioSenzaQuote({ data, fonti, dentro, eventiPer, errore });
+
+  // 2. Budget e scelta delle competizioni (solo quelle con le quote spendono crediti).
+  const conPartite = COMPETIZIONI.filter((c) => eventiPer.has(chiaveEventi(c)));
   const budget = budgetCrediti(rimasti, data);
-  const { scelte, scoperte } = scegliCompetizioni(conPartite, budget);
+  const { scelte, scoperte } = scegliCompetizioni(conPartite.filter((c) => c.chiave), budget);
   const competizioniNonCoperte = scoperte.map((c) => `${c.nome}: crediti insufficienti`);
   const crediti = { usati: 0, rimasti };
 
@@ -108,8 +112,13 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   // (senza la stagione corrente il modello usa le precedenti, e il buco va in erroriGiro).
   const stagioni = stagioniDa(data);
   const leghe = new Map();
-  async function lega(codice) {
+  async function lega(codice, formato) {
     if (leghe.has(codice)) return leghe.get(codice);
+    if (formato === 'extra') {
+      const stato = await legaExtra(codice, { data, fonti, errore });
+      leghe.set(codice, stato);
+      return stato;
+    }
     const righe = [];
     const perStagione = [];
     for (const stagione of stagioni) {
@@ -144,8 +153,8 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   const partite = [];
   for (const c of conPartite) {
     const quote = quotePer.get(c.chiave);
-    const stato = c.modello === 'dixon-coles' ? await lega(c.csv) : null;
-    for (const base of eventiPer.get(c.chiave)) {
+    const stato = c.modello === 'dixon-coles' ? await lega(c.csv, c.formato) : null;
+    for (const base of eventiPer.get(chiaveEventi(c))) {
       const evento = quote?.get(base.id) ?? { ...base, bookmaker: [] };
       const partita = costruisciPartita({ c, evento, base, stato, data, ora, errore: (m) => erroriGiro.push(m) });
       if (partita) partite.push(partita);
@@ -200,8 +209,9 @@ function costruisciPartita({ c, evento, base, stato, data, ora, errore }) {
     // Nessun dato storico (errore già registrato): restano le probabilità di Pinnacle.
     mercati = soloLiberi(voce);
   } else {
-    const csvCasa = abbinaSquadra(casa, stato.nomi);
-    const csvTrasferta = abbinaSquadra(trasferta, stato.nomi);
+    const abbina = c.chiave ? (x) => abbinaSquadra(x, stato.nomi) : (x) => abbinaEspn(x, stato.nomi, ALIAS_ESPN_CSV[c.csv]);
+    const csvCasa = abbina(casa);
+    const csvTrasferta = abbina(trasferta);
     lam = csvCasa && csvTrasferta && csvCasa !== csvTrasferta ? lambda(stato.forze, csvCasa, csvTrasferta) : null;
     if (!lam) {
       const ignote = [];
@@ -244,6 +254,8 @@ function costruisciPartita({ c, evento, base, stato, data, ora, errore }) {
     lambda: lam,
     ragionamentoBase,
     mercati,
+    // Campionato senza quote: solo pronostici sì/no e registro, niente giocate.
+    ...(c.chiave ? {} : { soloPronostici: true }),
   };
 }
 
@@ -255,6 +267,64 @@ function soloLiberi(voce) {
     out.push(voce(`Under/Over ${l}`, `Over ${l}`, null, null), voce(`Under/Over ${l}`, `Under ${l}`, null, null));
   }
   return out.filter((m) => m.probPinnacle !== null);
+}
+
+// Chiave degli eventi di una competizione: quella di The Odds API, oppure `fd:<codice CSV>` senza quote.
+const chiaveEventi = (c) => c.chiave ?? `fd:${c.csv}`;
+
+// Giorni (AAAA-MM-GG) da chiedere a ESPN: la giornata va dalle 8 di Roma alle 8 del giorno dopo.
+const giornoDopo = (data) => {
+  const [y, m, g] = data.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, g + 1)).toISOString().slice(0, 10);
+};
+
+// Partite dei campionati senza quote: ESPN se c'è, altrimenti il calendario di football-data.co.uk.
+async function calendarioSenzaQuote({ data, fonti, dentro, eventiPer, errore }) {
+  let fixtures = null;
+  for (const c of COMPETIZIONI.filter((x) => !x.chiave)) {
+    let eventi = [];
+    try {
+      if (c.espn && fonti.espn) {
+        const visti = new Map();
+        for (const giorno of [data, giornoDopo(data)]) {
+          for (const e of await fonti.espn.partite(c.espn, giorno)) if (e.casa && e.trasferta) visti.set(e.id, e);
+        }
+        eventi = [...visti.values()];
+      } else if (fonti.footballDataUk.calendario) {
+        fixtures ??= await fonti.footballDataUk.calendario();
+        eventi = fixtures
+          .filter((f) => (c.formato === 'extra' ? f.paese === c.paese && f.lega === c.lega : f.codice === c.csv))
+          .map((f) => ({ id: `${c.csv}-${f.inizio}-${f.casa}`, casa: f.casa, trasferta: f.trasferta, inizio: f.inizio }));
+      }
+    } catch (e) {
+      errore(c.espn ? `ESPN (${c.nome})` : `Calendario football-data.co.uk (${c.nome})`, e);
+      if (!c.espn) fixtures = [];
+      continue;
+    }
+    eventi = eventi.filter(dentro);
+    if (eventi.length) eventiPer.set(chiaveEventi(c), eventi);
+  }
+}
+
+// Storico di un campionato extra: le ultime 3 stagioni con partite giocate fino a `data` (un solo file).
+async function legaExtra(codice, { data, fonti, errore }) {
+  let tutte;
+  try {
+    tutte = (await fonti.footballDataUk.partiteExtra(codice)).filter((x) => x.data < data);
+  } catch (e) {
+    errore(`football-data.co.uk ${codice}`, e);
+    return null;
+  }
+  const stagioni = [...new Set(tutte.map((x) => x.stagione))].sort().reverse().slice(0, 3);
+  const righe = tutte.filter((x) => stagioni.includes(x.stagione));
+  if (!righe.length) return null;
+  const ultima = stagioni[1] ? new Set(righe.filter((x) => x.stagione === stagioni[1]).flatMap((x) => [x.casa, x.trasferta])) : undefined;
+  return {
+    righe,
+    nomi: [...new Set(righe.flatMap((x) => [x.casa, x.trasferta]))],
+    forze: stimaForze(righe, { oggi: data, squadreUltimaStagione: ultima }),
+    frequenze: frequenzeGol(righe, { oggi: data }),
+  };
 }
 
 async function principale() {
@@ -270,7 +340,7 @@ async function principale() {
     console.error('Manca ODDS_API_KEY');
     process.exit(1);
   }
-  const fonti = { oddsApi, footballDataUk, footballDataOrg };
+  const fonti = { oddsApi, footballDataUk, footballDataOrg, espn };
   const raccolta = await eseguiRaccolta({ data, adesso, fonti, chiavi });
   let esiti = { aggiornate: 0 };
   try {

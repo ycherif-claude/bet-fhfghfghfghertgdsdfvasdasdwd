@@ -96,3 +96,17 @@ export function abbinaSquadra(nomeOdds, nomiCsv) {
   if (diretti.length > 1) return null;
   return nomeCanonico(nomeOdds, nomiCsv);
 }
+
+// Campionati senza quote: nome ESPN (o del calendario) → nome del CSV. Prima gli alias del campionato,
+// poi lo stesso nome normalizzato, poi un solo nome che contiene tutte le parole dell'altro.
+export function abbinaEspn(nome, nomiCsv, alias = {}) {
+  const daAlias = Object.hasOwn(alias, nome) ? alias[nome] : null;
+  if (daAlias && nomiCsv.includes(daAlias)) return daAlias;
+  const norm = normalizzaNome(nome);
+  const uguali = nomiCsv.filter((c) => normalizzaNome(c) === norm);
+  if (uguali.length === 1) return uguali[0];
+  if (uguali.length > 1) return null;
+  const t = token(nome);
+  const simili = nomiCsv.filter((c) => simile(t, token(c)));
+  return simili.length === 1 ? simili[0] : null;
+}
