@@ -30,6 +30,14 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+      - name: Quote dei bookmaker italiani (odss-api)
+        # 1x2, doppia chance e under/over del calcio per la giornata: data/raccolta/<data>-odss.json, che il giro
+        # del mattino (routine Claude, senza secrets) legge da solo. Solo questo step riceve ODSS_API_KEY.
+        # Al massimo 6 richieste al giorno, mai sotto 60 rimaste (stato in data/stato/odss.json).
+        run: npm run raccolta-odss
+        continue-on-error: true
+        env:
+          ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}
       - name: Raccolta NBA
         run: npm run raccolta-nba
         continue-on-error: true

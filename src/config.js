@@ -181,6 +181,23 @@ export const CONFIG = congela({
       },
     },
   },
+  // Idea 1 [utente, 22/10/2026]: quote dei bookmaker italiani dell'utente da odss-api.com (piano gratuito:
+  // 500 richieste ogni 30 giorni, 30 al minuto). Ogni mattina 1x2, dc e ou del calcio per la giornata
+  // (08:00→08:00 di Roma), senza filtro bookmaker: servono tutti per la probabilità di consenso.
+  // Al massimo `richiesteGiorno` richieste al giorno e mai sotto `riserva` richieste rimaste.
+  odss: {
+    richiesteGiorno: 6,
+    riserva: 60,
+    mercati: ['1x2', 'dc', 'ou'],
+    // Righe per pagina (massimo dell'API).
+    limite: 5000,
+    // Linee dell'Under/Over salvate (i pronostici usano l'Over 1.5).
+    lineeOu: [1.5, 2.5, 3.5],
+    // Bookmaker su cui l'utente ha un conto (Betfair non c'è su odss-api; bet365 di solito senza prematch).
+    miei: ['bet365', 'snai', 'goldbet', 'sportium', 'daznbet'],
+    // Partita odss ↔ partita della giornata: stesse squadre e inizio entro tante ore.
+    toleranzaOre: 2,
+  },
   multiplaBonus: {
     quotaMin: 1.25,
     quotaMax: 1.5,

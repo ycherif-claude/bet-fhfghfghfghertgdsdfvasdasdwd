@@ -1,7 +1,8 @@
 // Doppie e triple di pronostici [utente, 22/10/2026, idea 4]. Ogni mattina, dai pronostici migliori di partite
 // diverse (mai due della stessa partita, mai due partite della stessa squadra), fino a CONFIG.pronostici.schedine.max
 // schedine da 2 o 3 pronostici con quota totale fra 1,50 e 2,00. Quota della gamba: la quota se c'è, altrimenti la
-// quota minima (`quotaDaVerificare: true`). Ordine: probabilità combinata prudente (prodotto dei limiti di Wilson)
+// quota minima (`quotaDaVerificare: true`). Con le quote di odss-api (idea 1) la quota è la migliore dei bookmaker
+// dell'utente e la gamba dice su quale (`bookmaker`). Ordine: probabilità combinata prudente (prodotto dei limiti di Wilson)
 // decrescente; a parità la quota più alta. Nessuna gamba in comune fra le schedine.
 // In modalità prova: `prova: true`, "PROVA – non giocare". Dopo la prova: solo gambe ✅ (giocabili), altrimenti
 // nessuna schedina. Non sono giocate: non entrano mai nel bankroll.
@@ -35,9 +36,10 @@ function gambe(pronosticiGiornata, { soloGiocabili, escluse }) {
     const conQuota = num(x.quota) && x.quota > 1;
     const quota = conQuota ? x.quota : x.quotaMinima;
     if (!num(quota) || quota <= 1) continue;
+    const bookmaker = conQuota && typeof x.bookmakerMigliore === 'string' && x.quotaMigliore === x.quota ? x.bookmakerMigliore : null;
     out.push({
       idPartita: p.idPartita, sport: p.sport ?? 'calcio', competizione: p.competizione, partita: p.partita, inizio: p.inizio,
-      mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, quota, quotaDaVerificare: !conQuota,
+      mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, quota, ...(bookmaker ? { bookmaker } : {}), quotaDaVerificare: !conQuota,
       prob: x.prob, limite: num(x.limite) ? x.limite : null, giocabile: x.giocabile === true, esito: null,
       squadre: squadre(p.partita),
     });

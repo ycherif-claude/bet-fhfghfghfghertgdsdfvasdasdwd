@@ -295,13 +295,24 @@ export function esitoPartitaPronostici(p) {
 // Percentuale del pronostico con il numero di partite della sua fascia (correzione B1).
 export const testoProbPronostico = (x) => `${percento(x.prob)}${numero(x.n) ? ` su ${String(x.n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} partite` : ''}`;
 
+// Bookmaker dell'utente (stessi nomi di src/calcio/odss.js).
+const NOMI_BOOKMAKER = { bet365: 'bet365', snai: 'Snai', goldbet: 'Goldbet', sportium: 'Sportium', daznbet: 'DAZN Bet' };
+const nomeBookmaker = (k) => NOMI_BOOKMAKER[k] ?? String(k ?? '');
+
+// Idea 1: "quota migliore 1,31 su Sportium (minima 1,24), quota delle 07:40" e ✅ o "solo da tenere d'occhio".
+const quotaMigliorePronostico = (x) => ` · quota migliore ${fmtQuota.format(x.quotaMigliore)} su ${nomeBookmaker(x.bookmakerMigliore)} (minima ${fmtQuota.format(x.quotaMinima)})`
+  + `${x.oraQuota ? `, quota delle ${ora(x.oraQuota)}` : ''}${x.giocabile === true ? ' ✅' : " · solo da tenere d'occhio"}`;
+
 // Pronostici sì/no di una partita: frase, percentuale, quota minima ed eventuale quota di oggi.
 // Senza quota o senza la probabilità di Pinnacle: "solo da tenere d'occhio".
 const rigaPronostico = (x) => el('li', {},
   el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
-  ` · ${testoProbPronostico(x)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
-  x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
-  numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
+  ` · ${testoProbPronostico(x)}`,
+  ...(numero(x.quotaMigliore) ? [quotaMigliorePronostico(x)] : [
+    ` · quota minima ${fmtQuota.format(x.quotaMinima)}`,
+    x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
+    numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
+  ]),
   x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '',
   // Idea 3: avviso dei controlli prima della partita (giocatore chiave non titolare o da verificare).
   x.avviso ? el('span', { class: 'avviso-pronostico' }, ` · ⚠️ Attenzione: ${x.avviso}`) : '');
@@ -355,7 +366,7 @@ export function renderSchedinaPronostici(s) {
     s.prova === true ? el('p', { class: 'prova' }, s.etichetta ?? 'PROVA – non giocare') : null,
     el('h3', {}, `${NOME_SCHEDINA[s.tipo] ?? 'Schedina'} (${s.gambe.length} pronostici)`),
     el('p', {}, el('strong', {}, `Quota ${fmtQuota.format(s.quota)}`), ` · probabilità prudente ${percento(s.probCombinata)}`),
-    el('ul', {}, s.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): SÌ ${g.testo ?? `${g.mercato}: ${g.selezione}`} @ ${fmtQuota.format(g.quota)}`,
+    el('ul', {}, s.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): SÌ ${g.testo ?? `${g.mercato}: ${g.selezione}`} @ ${fmtQuota.format(g.quota)}${g.bookmaker ? ` su ${nomeBookmaker(g.bookmaker)}` : ''}`,
       g.quotaDaVerificare ? el('span', { class: 'da-verificare' }, ' (quota minima, da verificare su bet365)') : '',
       g.esito ? ` · ${g.esito === 'vinta' ? 'giusto' : g.esito === 'persa' ? 'sbagliato' : g.esito}` : ''))),
     el('p', {}, el('strong', {}, `Esito: ${esito}`)),

@@ -57,6 +57,14 @@ Nel repository su GitHub: Settings → Secrets and variables → Actions → New
 
 Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo nei segreti di GitHub.
 
+### Quote dei bookmaker italiani (odss-api)
+
+[odss-api.com](https://odss-api.com) dà le quote prematch di circa 200 bookmaker, fra cui quelli su cui hai un conto: bet365, Snai, Goldbet, Sportium e DAZN Bet (Betfair non c'è; bet365 di solito ha solo quote live, e allora manca senza errori). Secret `ODSS_API_KEY` (piano gratuito: 500 richieste ogni 30 giorni, 30 al minuto).
+
+- **Cosa dà**: ogni mattina la raccolta su GitHub (`npm run raccolta-odss`, solo quello step riceve la chiave) scarica 1X2, doppia chance e under/over del calcio per la giornata (08:00→08:00 di Roma), di tutti i bookmaker, e salva in `data/raccolta/<data>-odss.json` le quote dei tuoi bookmaker e la probabilità senza margine (Pinnacle se c'è, altrimenti la mediana dei bookmaker). Si usa solo la riga della **partita intera**: se non si distingue dal primo o secondo tempo, la riga si scarta e `erroriGiro` dice quante e con quali valori di `scope`/`period`.
+- **Nei pronostici**: il giro abbina le partite per squadre e orario (ambiguo → nessun abbinamento) e mostra "quota migliore 1,31 su Sportium (minima 1,24), quota delle 07:40" con ✅ (regola di sempre, con la quota migliore dei tuoi bookmaker) o "solo da tenere d'occhio". Il pronostico migliore e le doppie/triple usano quella quota (con il bookmaker per gamba). Gol casa/ospite non hanno un mercato squadra: nessuna quota.
+- **Budget**: al massimo 6 richieste al giorno (`CONFIG.odss.richiesteGiorno`; di solito 3-4: una per mercato, più le pagine in più) e mai sotto 60 rimaste (`CONFIG.odss.riserva`); stato in `data/stato/odss.json`. Se non basta: niente quote quel giorno e una riga chiara in `erroriGiro`; i pronostici restano come prima.
+
 ### Gli orari del mattino
 
 - **Raccolta**: ogni giorno alle 05:35 UTC (07:35 ora legale, 06:35 ora solare). Scarica quote e statistiche e calcola le probabilità.

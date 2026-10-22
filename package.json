@@ -9,6 +9,7 @@
   "scripts": {
     "test": "node --test",
     "raccolta": "node src/calcio/raccolta.js",
+    "raccolta-odss": "node src/calcio/raccolta-odss.js",
     "raccolta-nba": "node src/nba/raccolta.js",
     "serale-nba": "node src/nba/serale.js",
     "raccolta-tennis": "node src/tennis/raccolta.js",

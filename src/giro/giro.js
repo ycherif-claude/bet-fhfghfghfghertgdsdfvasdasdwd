@@ -16,6 +16,7 @@ import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronostic
 import { costruisciSchedinePronostici } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 import { leggiAvvisiFonti } from '../registro/avvisi-fonti.js';
+import { leggiQuoteOdss } from '../calcio/odss.js';
 
 const PARTITE_ANTEPRIMA = 5;
 
@@ -159,8 +160,12 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const multipleBonus = prova && raccolta
     ? costruisciMultipleBonus(valutaMercati(raccolta, notizie, { adesso }).voci, { data: oggi, escluse })
     : [];
-  // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare).
-  const pronostici = raccolta ? pronosticiGiornata(raccolta, leggiCalibrazione(dirData), { adesso, escluse }) : [];
+  // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
+  // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).
+  const quoteOdss = leggiQuoteOdss(dirData, oggi);
+  const pronostici = raccolta ? pronosticiGiornata(raccolta, leggiCalibrazione(dirData), { adesso, escluse, odss: quoteOdss.eventi }) : [];
+  const odssMancante = quoteOdss.mancante && pronostici.some((p) => p.sport === 'calcio')
+    ? [`Quote dei bookmaker italiani (odss-api) mancanti: data/raccolta/${oggi}-odss.json`] : [];
 
   const giornata = {
     data: oggi,
@@ -181,6 +186,8 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
       ...errori,
       ...(modo === 'riserva' ? ['Giro di Claude non eseguito: notizie non controllate'] : []),
       ...(iniziate > 0 ? [iniziate === 1 ? '1 partita già iniziata esclusa' : `${iniziate} partite già iniziate escluse`] : []),
+      ...quoteOdss.errori,
+      ...odssMancante,
       ...avvisi,
       // Pronostici dei giorni passati che il registro non è riuscito a chiudere.
       ...avvisiPronosticiSenzaEsito(dirData, oggi),

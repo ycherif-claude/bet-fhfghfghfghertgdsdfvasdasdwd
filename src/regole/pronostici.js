@@ -12,6 +12,7 @@ import path from 'node:path';
 import { CONFIG } from '../config.js';
 import { gruppoCompetizione } from '../calcio/competizioni.js';
 import { fasceIsotoniche } from '../taratura/isotonica.js';
+import { abbinaEventiOdss, quoteOdssPronostico } from '../calcio/odss.js';
 
 const C = CONFIG.pronostici;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -116,7 +117,11 @@ export function scegliMigliore(pronostici) {
 }
 
 // Pronostici di una partita della raccolta: al massimo maxPerPartita, i più sicuri; uno è il migliore.
-export function pronosticiPartita(partita, calibrazione) {
+// `eventoOdss` (idea 1): l'evento odss-api abbinato alla partita. Con l'evento la quota è la migliore dei
+// bookmaker dell'utente (quotaMigliore, null se nessuno la dà: gol casa/ospite non hanno un mercato squadra) e
+// il mercato senza margine è Pinnacle (odss-api, poi The Odds API) o il consenso dei bookmaker. Senza evento,
+// tutto come prima (mediana e Pinnacle di The Odds API).
+export function pronosticiPartita(partita, calibrazione, eventoOdss = null) {
   const sport = partita.sport ?? 'calcio';
   const soglie = C.soglie[sport];
   const tabelle = tabelleDi(partita, sport, calibrazione);
@@ -129,23 +134,37 @@ export function pronosticiPartita(partita, calibrazione) {
     if (!fascia || fascia.limite < C.probMinima - 1e-9) continue;
     const { prob, limite, n } = fascia;
     const minima = quotaMinima(prob);
-    const quota = num(m.quota) && m.quota > 1 ? m.quota : null;
-    const probMercato = num(m.probPinnacle) ? m.probPinnacle : null;
+    let quota = num(m.quota) && m.quota > 1 ? m.quota : null;
+    let probMercato = num(m.probPinnacle) ? m.probPinnacle : null;
+    let odss = {};
+    if (eventoOdss) {
+      const q = quoteOdssPronostico(eventoOdss, m.mercato, m.selezione);
+      quota = q?.quotaMigliore ?? null;
+      if (q) {
+        if (num(q.probConsenso) && (q.fonteConsenso === 'Pinnacle' || probMercato === null)) probMercato = q.probConsenso;
+        odss = {
+          quoteMiei: q.quoteMiei, quotaMigliore: q.quotaMigliore, bookmakerMigliore: q.bookmakerMigliore, oraQuota: q.oraQuota,
+          probConsenso: q.probConsenso, fonteConsenso: q.fonteConsenso,
+        };
+      }
+    }
     out.push({
       mercato: m.mercato, selezione: m.selezione, testo: testoPronostico(partita, m.mercato, m.selezione), probModello: m.probModello, prob, limite, n, quotaMinima: minima,
-      quota, probMercato, giocabile: eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
+      quota, ...odss, probMercato, giocabile: eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
     });
   }
   return scegliMigliore(out.sort((a, b) => b.prob - a.prob).slice(0, C.maxPerPartita));
 }
 
 // Pronostici del giorno: le partite non iniziate con almeno un pronostico, in ordine di inizio.
-export function pronosticiGiornata(raccolta, calibrazione, { adesso = null, escluse = new Set() } = {}) {
+// `odss`: eventi di data/raccolta/<data>-odss.json (null se mancano), abbinati alle partite di calcio.
+export function pronosticiGiornata(raccolta, calibrazione, { adesso = null, escluse = new Set(), odss = null } = {}) {
   const out = [];
+  const abbinati = Array.isArray(odss) ? abbinaEventiOdss(raccolta?.partite ?? [], odss) : new Map();
   for (const p of raccolta?.partite ?? []) {
     if (!p || escluse.has(p.idPartita)) continue;
     if (adesso && Date.parse(p.inizio) <= adesso.getTime()) continue;
-    const pronostici = pronosticiPartita(p, calibrazione);
+    const pronostici = pronosticiPartita(p, calibrazione, abbinati.get(p.idPartita) ?? null);
     if (!pronostici.length) continue;
     out.push({ idPartita: p.idPartita, sport: p.sport ?? 'calcio', competizione: p.competizione, partita: p.partita, inizio: p.inizio, pronostici });
   }
@@ -173,6 +192,8 @@ export function righeIstantanea(pronosticiGiornata) {
         ...(typeof x.migliore === 'boolean' ? { migliore: x.migliore } : {}),
         // Idea 5: il bilancio del lunedì conta a parte i pronostici ✅ (con la quota del mattino).
         ...(x.giocabile === true ? { giocabile: true } : {}), ...(num(x.quota) ? { quota: x.quota } : {}),
+        // Idea 1: il bookmaker della quota del mattino (odss-api).
+        ...(num(x.quota) && typeof x.bookmakerMigliore === 'string' ? { bookmaker: x.bookmakerMigliore } : {}),
       });
     }
   }

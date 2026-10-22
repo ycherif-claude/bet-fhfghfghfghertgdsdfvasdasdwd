@@ -12,6 +12,7 @@ import { leggiJson, erroreSegnatura } from '../build/costruisci-sito.js';
 import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
 import { CONFIG } from '../config.js';
+import { nomeBookmaker } from '../calcio/odss.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -93,6 +94,12 @@ export function testoPronostici(giornata, oggi) {
     const scelti = p.pronostici.some((x) => x?.migliore === true) ? p.pronostici.filter((x) => x?.migliore === true) : p.pronostici;
     altri += p.pronostici.length - scelti.length;
     const righe = scelti.map((x) => {
+      // Idea 1: quota migliore dei bookmaker dell'utente (odss-api), con la minima e l'orario della quota.
+      if (num(x.quotaMigliore)) {
+        const oraQ = Number.isFinite(Date.parse(x.oraQuota)) ? `, quota delle ${oraRoma(new Date(x.oraQuota))}` : '';
+        const segnale = x.giocabile === true ? ' ✅' : " · solo da tenere d'occhio";
+        return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · quota migliore ${virgola(x.quotaMigliore)} su ${html(nomeBookmaker(x.bookmakerMigliore))} (minima ${virgola(x.quotaMinima)})${oraQ}${segnale}`;
+      }
       const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile === true ? ' ✅' : ''})` : '';
       const occhio = num(x.quota) && num(x.probMercato) ? '' : ` · ${DA_TENERE_D_OCCHIO}`;
       return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · min ${virgola(x.quotaMinima)}${quota}${occhio}`;
@@ -143,7 +150,7 @@ export function testoSchedinePronostici(lista, data, { nuove = false } = {}) {
     `${i + 1}. <b>${NOME_SCHEDINA[s.tipo] ?? 'Schedina'}</b> · quota ${virgola(s.quota)} · probabilità prudente ${percentuale(s.probCombinata)}${s.prova === true ? ` · ${html(s.etichetta ?? 'PROVA – non giocare')}` : ''}`,
     ...s.gambe.map((x) => {
       const ora = Number.isFinite(Date.parse(x.inizio)) ? ` · ${oraRoma(new Date(x.inizio))}` : '';
-      return `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}${ora}: SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} @${virgola(x.quota)}${x.quotaDaVerificare ? ' (quota minima, da verificare su bet365)' : ''}`;
+      return `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}${ora}: SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} @${virgola(x.quota)}${x.bookmaker ? ` su ${html(nomeBookmaker(x.bookmaker))}` : ''}${x.quotaDaVerificare ? ' (quota minima, da verificare su bet365)' : ''}`;
     }),
   ].join('\n'));
   return [titolo, ...blocchi, 'Fuori dal bankroll: non contano finché non le giochi davvero.'].join('\n\n');
