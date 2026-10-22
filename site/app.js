@@ -297,17 +297,24 @@ export const testoProbPronostico = (x) => `${percento(x.prob)}${numero(x.n) ? ` 
 
 // Pronostici sì/no di una partita: frase, percentuale, quota minima ed eventuale quota di oggi.
 // Senza quota o senza la probabilità di Pinnacle: "solo da tenere d'occhio".
+const rigaPronostico = (x) => el('li', {},
+  el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
+  ` · ${testoProbPronostico(x)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
+  x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
+  numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
+  x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : '');
+
+// Idea 2: il migliore della partita in evidenza, gli altri (collegati) in un <details>.
+// Dati vecchi senza `migliore`: tutti in lista, come prima.
 export function renderPronostici(p) {
   const esitoPartita = esitoPartitaPronostici(p);
+  const migliore = p.pronostici.find((x) => x?.migliore === true) ?? null;
+  const altri = migliore ? p.pronostici.filter((x) => x !== migliore) : [];
   return el('article', { class: 'scheda', 'data-sport': p.sport },
     el('h3', {}, p.partita),
     el('p', { class: 'meta' }, `${ora(p.inizio)} · ${p.competizione}`),
-    el('ul', {}, p.pronostici.map((x) => el('li', {},
-      el('strong', {}, `SÌ ${x.testo ?? `${x.mercato}: ${x.selezione}`}`),
-      ` · ${testoProbPronostico(x)} · quota minima ${fmtQuota.format(x.quotaMinima)}`,
-      x.quota ? ` · oggi ${fmtQuota.format(x.quota)}${x.giocabile === true ? ' ✅' : ''}` : '',
-      numero(x.quota) && numero(x.probMercato) ? '' : " · solo da tenere d'occhio: controlla la quota su bet365",
-      x.esito ? ` · ${x.esito === 'vinta' ? 'giusto' : x.esito === 'persa' ? 'sbagliato' : x.esito}` : ''))),
+    migliore ? el('ul', { class: 'pronostico-migliore' }, rigaPronostico(migliore)) : el('ul', {}, p.pronostici.map(rigaPronostico)),
+    altri.length ? el('details', {}, el('summary', {}, `altri pronostici (collegati): ${altri.length}`), el('ul', {}, altri.map(rigaPronostico))) : null,
     esitoPartita ? el('p', {}, el('strong', {}, `Partita: ${esitoPartita}`)) : null,
   );
 }

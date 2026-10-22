@@ -93,7 +93,29 @@ export function testoPronostico(partita, mercato, selezione) {
   return `${mercato}: ${selezione}`;
 }
 
-// Pronostici di una partita della raccolta: al massimo maxPerPartita, i più sicuri.
+// Probabilità prudente di un pronostico: il limite di Wilson della fascia (dati vecchi senza limite: la probabilità).
+export const probPrudente = (x) => (num(x?.limite) ? x.limite : num(x?.prob) ? x.prob : 0);
+
+// Pronostico migliore della partita [utente, 22/10/2026, idea 2]: uno solo con `migliore: true`, gli altri false.
+// Se almeno uno ha la quota: il massimo di probabilità prudente × quota fra quelli con quota. Altrimenti la
+// probabilità prudente più alta fra quelli con quota minima ≥ 1,20 (sotto, la giocata non vale la pena); se
+// nessuno arriva a 1,20, quello con la quota minima più alta. A parità vince il primo (il più sicuro).
+export const QUOTA_MINIMA_MIGLIORE = 1.2;
+export function scegliMigliore(pronostici) {
+  const lista = Array.isArray(pronostici) ? pronostici : [];
+  if (!lista.length) return [];
+  const conQuota = lista.filter((x) => num(x.quota));
+  const massimo = (candidati, valore) => candidati.reduce((m, x) => (valore(x) > valore(m) + 1e-12 ? x : m));
+  let scelto;
+  if (conQuota.length) scelto = massimo(conQuota, (x) => probPrudente(x) * x.quota);
+  else {
+    const alti = lista.filter((x) => num(x.quotaMinima) && x.quotaMinima >= QUOTA_MINIMA_MIGLIORE - 1e-9);
+    scelto = alti.length ? massimo(alti, probPrudente) : massimo(lista, (x) => (num(x.quotaMinima) ? x.quotaMinima : 0));
+  }
+  return lista.map((x) => ({ ...x, migliore: x === scelto }));
+}
+
+// Pronostici di una partita della raccolta: al massimo maxPerPartita, i più sicuri; uno è il migliore.
 export function pronosticiPartita(partita, calibrazione) {
   const sport = partita.sport ?? 'calcio';
   const soglie = C.soglie[sport];
@@ -114,7 +136,7 @@ export function pronosticiPartita(partita, calibrazione) {
       quota, probMercato, giocabile: eGiocabile({ quota, probMercato, quotaMinima: minima }), esito: null,
     });
   }
-  return out.sort((a, b) => b.prob - a.prob).slice(0, C.maxPerPartita);
+  return scegliMigliore(out.sort((a, b) => b.prob - a.prob).slice(0, C.maxPerPartita));
 }
 
 // Pronostici del giorno: le partite non iniziate con almeno un pronostico, in ordine di inizio.
@@ -147,6 +169,8 @@ export function righeIstantanea(pronosticiGiornata) {
         idPartita: p.idPartita, sport: p.sport ?? 'calcio', competizione: p.competizione, partita: p.partita, inizio: p.inizio,
         mercato: x.mercato, selezione: x.selezione, testo: x.testo ?? null, prob: x.prob, probModello: x.probModello ?? null,
         ...(num(x.n) ? { n: x.n, limite: x.limite ?? null } : {}), quotaMinima: x.quotaMinima, esito: x.esito ?? null,
+        // Idea 2: il bilancio distingue i migliori da tutti (i dati vecchi non hanno il campo).
+        ...(typeof x.migliore === 'boolean' ? { migliore: x.migliore } : {}),
       });
     }
   }

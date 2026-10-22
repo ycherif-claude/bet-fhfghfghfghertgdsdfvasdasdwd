@@ -85,16 +85,22 @@ const DA_TENERE_D_OCCHIO = "solo da tenere d'occhio: controlla la quota su bet36
 export function testoPronostici(giornata, oggi) {
   const partite = pronosticiDi(giornata);
   if (!partite.length) return `📋 <b>Pronostici del ${giornoMese(oggi)}</b>: oggi nessuna partita ha un pronostico abbastanza sicuro.`;
+  // Idea 2: solo il migliore di ogni partita; gli altri si contano e restano sul sito.
+  // Dati vecchi senza `migliore`: tutti, come prima.
+  let altri = 0;
   const blocchi = partite.map((p) => {
     const ora = Number.isFinite(Date.parse(p.inizio)) ? ` · ${oraRoma(new Date(p.inizio))}` : '';
-    const righe = p.pronostici.map((x) => {
+    const scelti = p.pronostici.some((x) => x?.migliore === true) ? p.pronostici.filter((x) => x?.migliore === true) : p.pronostici;
+    altri += p.pronostici.length - scelti.length;
+    const righe = scelti.map((x) => {
       const quota = num(x.quota) ? ` (ora ${virgola(x.quota)}${x.giocabile === true ? ' ✅' : ''})` : '';
       const occhio = num(x.quota) && num(x.probMercato) ? '' : ` · ${DA_TENERE_D_OCCHIO}`;
       return `   SÌ ${html(x.testo ?? `${x.mercato}: ${x.selezione}`)} · ${conPartite(x)} · min ${virgola(x.quotaMinima)}${quota}${occhio}`;
     });
     return [`${SIMBOLO[p.sport] ?? '•'} <b>${html(p.partita)}</b>${ora}`, ...righe].join('\n');
   });
-  return [`📋 <b>Pronostici del ${giornoMese(oggi)}</b>\n${SPIEGAZIONE_PRONOSTICI}`, ...blocchi].join('\n\n');
+  const piede = altri ? [`altri ${altri} ${altri === 1 ? 'pronostico' : 'pronostici'} sul sito`] : [];
+  return [`📋 <b>Pronostici del ${giornoMese(oggi)}</b>\n${SPIEGAZIONE_PRONOSTICI}`, ...blocchi, ...piede].join('\n\n');
 }
 
 // Bilancio dei pronostici di una giornata: quando sono tutti chiusi (o dopo 3 giorni), una volta sola.
