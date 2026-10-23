@@ -2147,9 +2147,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,90 sotto la minima 3,42",
+      "oraUltimoControllo": "2026-10-23T17:50:31+02:00",
       "esito": null,
       "prova": true
     },
@@ -3134,7 +3134,8 @@
     "odss-api (pallavolo) alle 08:12: budget insufficiente (tetto di 10 richieste al giorno del giro del mattino raggiunto; oggi 10 richieste su 10, rimaste 473, riserva 60): quote di pallavolo dalla fonte di prima",
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "1 partita già iniziata esclusa",
-    "odss-api alle 08:05: ou: quote incomplete (le altre pagine superano il budget di oggi)"
+    "odss-api alle 08:05: ou: quote incomplete (le altre pagine superano il budget di oggi)",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 3 richieste al giorno per i controlli raggiunto; controlli oggi 3 su 3, rimaste 470, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
