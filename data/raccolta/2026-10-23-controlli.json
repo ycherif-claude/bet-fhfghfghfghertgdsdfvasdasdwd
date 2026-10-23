@@ -165,8 +165,8 @@
       "regola": true
     },
     "calcio-2026-10-23-brest-nice-1x2-1": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,27 sotto la minima 2,30",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 2,27, sotto la minima 2,30; il value del mattino era già minimo (1,7%) e non c'è nessun fatto nuovo che alzi la probabilità del 46%: il value sparisce (controlli quote automatici (odss-api), 19:53 del 2026-10-23)",
       "problemi": [
         {
           "tipo": "quota",
@@ -176,7 +176,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-10-23T19:53:54+02:00"
+      "alle": "2026-10-23T19:54:21+02:00",
+      "claude": true
     }
   },
   "claude": {
