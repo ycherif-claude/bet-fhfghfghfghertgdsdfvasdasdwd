@@ -58,6 +58,61 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-23T18:24:26+02:00"
+    },
+    "M-calcio-2026-10-23-sochaux-annecy-fc-1x2-2+calcio-2026-10-23-cruzeiro-remo-handicap-asiatico-meno-1-casa#0": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,96",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,96"
+      ],
+      "alle": "2026-10-23T19:24:32+02:00"
+    },
+    "calcio-2026-10-23-sochaux-annecy-fc-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,96 sotto la minima 2,97",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,96 sotto la minima 2,97"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T19:24:32+02:00",
+      "regola": true
+    },
+    "calcio-2026-10-23-pau-fc-grenoble-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,14 sotto la minima 4,29",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,14 sotto la minima 4,29"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino"
+      ],
+      "alle": "2026-10-23T19:24:32+02:00",
+      "regola": true
+    },
+    "calcio-2026-10-23-usl-dunkerque-metz-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,75 sotto la minima 2,77",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,75 sotto la minima 2,77"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T19:24:32+02:00",
+      "regola": true
     }
   },
   "claude": {
@@ -72,6 +127,30 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-10-23T18:59:00+02:00"
+    },
+    "calcio-2026-10-23-vfb-stuttgart-borussia-monchengladbach|Doppia chance|12": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|12",
+      "alle": "2026-10-23T19:24:32+02:00"
+    },
+    "calcio-2026-10-23-torino-monza|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-23T19:24:32+02:00"
+    },
+    "calcio-2026-10-23-brest-nice|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-23T19:24:32+02:00"
+    },
+    "calcio-2026-10-23-gateshead-tamworth|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-23T19:24:32+02:00"
     }
   }
 }
