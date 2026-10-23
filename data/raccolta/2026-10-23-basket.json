@@ -1,0 +1,381 @@
+{
+  "data": "2026-10-23",
+  "generataAlle": "2026-10-23T08:11:56+02:00",
+  "crediti": {
+    "usati": 6,
+    "rimasti": 429
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api (Eurolega) alle 08:11: budget insufficiente (tetto di 10 richieste al giorno del giro del mattino raggiunto; oggi 10 richieste su 10, rimaste 473, riserva 60): quote di Eurolega dalla fonte di prima",
+    "Quote Eurolega: nessuna partita su odss-api, quote da The Odds API",
+    "odss-api (NBL (Australia)) alle 08:11: budget insufficiente (tetto di 10 richieste al giorno del giro del mattino raggiunto; oggi 10 richieste su 10, rimaste 473, riserva 60): quote di NBL (Australia) dalla fonte di prima",
+    "Quote NBL (Australia): nessuna partita su odss-api, quote da The Odds API"
+  ],
+  "partite": [
+    {
+      "idPartita": "basket-2026-10-23-zalgiris-asvel-lyon-villeurbanne",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Žalgiris - ASVEL Lyon Villeurbanne",
+      "casa": "Žalgiris",
+      "trasferta": "ASVEL Lyon Villeurbanne",
+      "inizio": "2026-10-23T19:00:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 89.1,
+        "trasferta": 81.3
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Žalgiris 89 – ASVEL Lyon Villeurbanne 81 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Žalgiris",
+          "probModello": 0.7735532239373187,
+          "probPinnacle": 0.8173374613003097,
+          "quota": 1.18,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Žalgiris vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "ASVEL Lyon Villeurbanne",
+          "probModello": 0.2264467760626813,
+          "probPinnacle": 0.1826625386996904,
+          "quota": 4.8,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se ASVEL Lyon Villeurbanne vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -10.5",
+          "selezione": "casa",
+          "probModello": 0.40383748544802933,
+          "probPinnacle": 0.4879850560283927,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Žalgiris vincono con almeno 11 punti di scarto, supplementari compresi. Gioca solo su Žalgiris -10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -10.5",
+          "selezione": "trasferta",
+          "probModello": 0.5961625145519707,
+          "probPinnacle": 0.5120149439716072,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i ASVEL Lyon Villeurbanne perdono con meno di 11 punti di scarto o vincono, supplementari compresi. Gioca solo su ASVEL Lyon Villeurbanne +10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 173.5",
+          "selezione": "Over 173.5",
+          "probModello": 0.4243231400105154,
+          "probPinnacle": 0.49674553809613886,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 173.5: Over vince se le due squadre segnano almeno 174 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (173.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 173.5",
+          "selezione": "Under 173.5",
+          "probModello": 0.5756768599894846,
+          "probPinnacle": 0.5032544619038611,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 173.5: Under vince se le due squadre segnano al massimo 173 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (173.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-23-olympiacos-fenerbahce-sk",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Olympiacos - Fenerbahce SK",
+      "casa": "Olympiacos",
+      "trasferta": "Fenerbahce SK",
+      "inizio": "2026-10-23T20:15:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 88,
+        "trasferta": 83.4
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Olympiacos 88 – Fenerbahce SK 83 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Olympiacos",
+          "probModello": 0.6703129466416962,
+          "probPinnacle": 0.5538461538461539,
+          "quota": 1.7,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Olympiacos vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Fenerbahce SK",
+          "probModello": 0.32968705335830384,
+          "probPinnacle": 0.4461538461538462,
+          "quota": 2.14,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Fenerbahce SK vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "casa",
+          "probModello": 0.5771742403280651,
+          "probPinnacle": 0.4883116883116883,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Olympiacos vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Olympiacos -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "trasferta",
+          "probModello": 0.42282575967193486,
+          "probPinnacle": 0.5116883116883117,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Fenerbahce SK perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su Fenerbahce SK +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 169.5",
+          "selezione": "Over 169.5",
+          "probModello": 0.545345839375877,
+          "probPinnacle": 0.499885201494401,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 169.5: Over vince se le due squadre segnano almeno 170 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (169.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 169.5",
+          "selezione": "Under 169.5",
+          "probModello": 0.45465416062412306,
+          "probPinnacle": 0.5001147985055989,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 169.5: Under vince se le due squadre segnano al massimo 169 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (169.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-23-paris-basketball-valencia-basket",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Paris Basketball - Valencia Basket",
+      "casa": "Paris Basketball",
+      "trasferta": "Valencia Basket",
+      "inizio": "2026-10-23T20:45:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 91.4,
+        "trasferta": 95.1
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Paris Basketball 91 – Valencia Basket 95 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Paris Basketball",
+          "probModello": 0.3607227153187462,
+          "probPinnacle": 0.3450704225352113,
+          "quota": 2.65,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Paris Basketball vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Valencia Basket",
+          "probModello": 0.6392772846812538,
+          "probPinnacle": 0.6549295774647887,
+          "quota": 1.48,
+          "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Valencia Basket vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "casa",
+          "probModello": 0.5284654236974118,
+          "probPinnacle": 0.4876307469428397,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Paris Basketball perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Paris Basketball +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "trasferta",
+          "probModello": 0.4715345763025882,
+          "probPinnacle": 0.5123692530571602,
+          "quota": 1.84,
+          "fonteQuota": "mediana di 8 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Valencia Basket vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Valencia Basket -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 188.5",
+          "selezione": "Over 188.5",
+          "probModello": 0.45023098573272113,
+          "probPinnacle": 0.5043134029900819,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 188.5: Over vince se le due squadre segnano almeno 189 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (188.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 188.5",
+          "selezione": "Under 188.5",
+          "probModello": 0.5497690142672789,
+          "probPinnacle": 0.495686597009918,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 9 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 188.5: Under vince se le due squadre segnano al massimo 188 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (188.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-23-perth-wildcats-melbourne-united",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Perth Wildcats - Melbourne United",
+      "casa": "Perth Wildcats",
+      "trasferta": "Melbourne United",
+      "inizio": "2026-10-23T12:36:00+02:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 89.1,
+        "trasferta": 87.7
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Punti attesi: Perth Wildcats 89 – Melbourne United 88 (stagione in corso e precedente)",
+        "Meno di 8 partite in stagione per almeno una squadra: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Perth Wildcats",
+          "probModello": 0.5390562891708448,
+          "probPinnacle": 0.4855643044619423,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Perth Wildcats vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Melbourne United",
+          "probModello": 0.4609437108291553,
+          "probPinnacle": 0.5144356955380577,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Melbourne United vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "casa",
+          "probModello": 0.5799574499057643,
+          "probPinnacle": 0.511970148751758,
+          "quota": 1.82,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Perth Wildcats perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Perth Wildcats +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.4200425500942358,
+          "probPinnacle": 0.48802985124824216,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Melbourne United vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Melbourne United -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Over 185.5",
+          "probModello": 0.30593199138768645,
+          "probPinnacle": 0.5052356020942408,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 185.5: Over vince se le due squadre segnano almeno 186 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Under 185.5",
+          "probModello": 0.6940680086123135,
+          "probPinnacle": 0.4947643979057591,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-23T08:11:56+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 185.5: Under vince se le due squadre segnano al massimo 185 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ]
+    }
+  ]
+}

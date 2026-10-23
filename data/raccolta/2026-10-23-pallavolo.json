@@ -1,0 +1,245 @@
+{
+  "data": "2026-10-23",
+  "generataAlle": "2026-10-23T08:12:05+02:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 234
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "TheSportsDB (Serie A1 femminile) stagione 2025 giornata 22 alle 08:12: www.thesportsdb.com: HTTP 429",
+    "TheSportsDB (Bundesliga) stagione 2026 giornata 1 alle 08:12: www.thesportsdb.com: HTTP 429",
+    "Squadre Bundesliga non riconosciute: VC Bitterfeld-Wolfen",
+    "odss-api (pallavolo) alle 08:12: budget insufficiente (tetto di 10 richieste al giorno del giro del mattino raggiunto; oggi 10 richieste su 10, rimaste 473, riserva 60): quote di pallavolo dalla fonte di prima",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-10-23-mks-slepsk-suwalki-gks-katowice",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "MKS Slepsk Suwalki - GKS Katowice",
+      "casa": "MKS Slepsk Suwalki",
+      "trasferta": "GKS Katowice",
+      "inizio": "2026-10-23T17:30:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "MKS Slepsk Suwalki",
+          "probModello": null,
+          "probPinnacle": 0.6372667797431547,
+          "quota": 1.41,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,46 su 154 bookmaker",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "quotaBet365": 1.41,
+          "oraQuotaBet365": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se MKS Slepsk Suwalki vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probPinnacle": 0.3627332202568452,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 154 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "quotaBet365": 2.62,
+          "oraQuotaBet365": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.4878439754207854,
+          "quota": 1.87,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,93 su 112 bookmaker",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "quotaBet365": 1.87,
+          "oraQuotaBet365": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki -1,5 vince se MKS Slepsk Suwalki vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5121560245792145,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 112 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "quotaBet365": 1.77,
+          "oraQuotaBet365": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice +1,5 vince se GKS Katowice vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.7652632400393622,
+          "quota": 1.2,
+          "fonteQuota": "mediana di 48 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki +1,5 vince se MKS Slepsk Suwalki vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.23473675996063806,
+          "quota": 3.9,
+          "fonteQuota": "mediana di 48 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: GKS Katowice -1,5 vince se GKS Katowice vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6201159566422989,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 66 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.379884043357701,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 66 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-23-cuprum-stilon-gorzow-jastrzebie-barkom",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Cuprum Stilon Gorzow - Jastrzebie Barkom",
+      "casa": "Cuprum Stilon Gorzow",
+      "trasferta": "Jastrzebie Barkom",
+      "inizio": "2026-10-23T20:30:00+02:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cuprum Stilon Gorzow": 1424,
+        "Jastrzebie Barkom": 1361
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Cuprum Stilon Gorzow 1424 – Jastrzebie Barkom 1361, vantaggio campo compreso: vittoria della casa 67% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuprum Stilon Gorzow",
+          "probModello": null,
+          "probPinnacle": 0.5798212005108557,
+          "quota": 1.54,
+          "fonteQuota": "mediana di 153 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cuprum Stilon Gorzow vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Jastrzebie Barkom",
+          "probModello": null,
+          "probPinnacle": 0.42017879948914433,
+          "quota": 2.32,
+          "fonteQuota": "mediana di 153 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Jastrzebie Barkom vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.44078079662358216,
+          "quota": 2.05,
+          "fonteQuota": "mediana di 111 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Cuprum Stilon Gorzow -1,5 vince se Cuprum Stilon Gorzow vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5592192033764178,
+          "quota": 1.68,
+          "fonteQuota": "mediana di 111 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Jastrzebie Barkom +1,5 vince se Jastrzebie Barkom vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.7014791573285523,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 57 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Cuprum Stilon Gorzow +1,5 vince se Cuprum Stilon Gorzow vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.2985208426714478,
+          "quota": 3.25,
+          "fonteQuota": "mediana di 57 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Jastrzebie Barkom -1,5 vince se Jastrzebie Barkom vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6292134831460674,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 65 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.3707865168539326,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 65 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-23T08:12:05+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}

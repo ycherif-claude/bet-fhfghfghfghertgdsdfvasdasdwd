@@ -311,7 +311,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "id": "tennis-2026-10-22-marie-bouzkova-sara-bejlek-vincente-incontro-sara-bejlek",
@@ -386,7 +386,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 3,45 sotto la minima 3,71",
       "oraUltimoControllo": "2026-10-23T02:45:19+02:00",
-      "esito": null
+      "esito": "persa"
     },
     {
       "id": "basket-2026-10-22-pallacanestro-olimpia-milano-fc-barcelona-basquet-vincente-fc-barcelona-basquet",
@@ -423,7 +423,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota scesa a 2,02 sotto la minima 2,17 e nessun fatto concreto che alzi la probabilità del 49% usata al mattino (le notizie non erano state controllate; Pinnacle era al 45%): senza value, nel dubbio si annulla (controllo quote automatico (The Odds API), 19:26)",
       "oraUltimoControllo": "2026-10-22T19:26:46+02:00",
-      "esito": null
+      "esito": "vinta"
     },
     {
       "id": "tennis-2026-10-22-marie-bouzkova-sara-bejlek-vincente-incontro-sara-bejlek",
@@ -496,7 +496,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,15 sotto la minima 2,36",
       "oraUltimoControllo": "2026-10-23T00:18:44+02:00",
-      "esito": null
+      "esito": "persa"
     },
     {
       "id": "tennis-2026-10-22-ekaterina-alexandrova-leylah-fernandez-vincente-incontro-leylah-fernandez",
@@ -570,7 +570,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (meno di 3 bookmaker con la stessa linea)",
       "oraUltimoControllo": "2026-10-22T19:54:05+02:00",
-      "esito": null
+      "esito": "persa"
     }
   ],
   "scartate": [
@@ -609,7 +609,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -620,7 +620,7 @@
           "quotaMinima": 1.2,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -631,7 +631,7 @@
           "quotaMinima": 1.25,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -651,7 +651,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -662,7 +662,7 @@
           "quotaMinima": 1.2,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -673,7 +673,7 @@
           "quotaMinima": 1.25,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -693,7 +693,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -704,7 +704,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -715,7 +715,7 @@
           "quotaMinima": 1.22,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -726,7 +726,7 @@
           "quotaMinima": 1.25,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -746,7 +746,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -766,7 +766,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -786,7 +786,7 @@
           "quotaMinima": 1.06,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over casa 0.5",
@@ -797,7 +797,7 @@
           "quotaMinima": 1.07,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -808,7 +808,7 @@
           "quotaMinima": 1.14,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "1X2",
@@ -819,7 +819,7 @@
           "quotaMinima": 1.2,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -830,7 +830,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -850,7 +850,7 @@
           "quotaMinima": 1.19,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -861,7 +861,7 @@
           "quotaMinima": 1.23,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -881,7 +881,7 @@
           "quotaMinima": 1.14,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "Under/Over trasferta 0.5",
@@ -892,7 +892,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "Doppia chance",
@@ -903,7 +903,7 @@
           "quotaMinima": 1.22,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -914,7 +914,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         }
       ]
     },
@@ -934,7 +934,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -954,7 +954,7 @@
           "quotaMinima": 1.13,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -974,7 +974,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -994,7 +994,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -1014,7 +1014,7 @@
           "quotaMinima": 1.19,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -1025,7 +1025,7 @@
           "quotaMinima": 1.2,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -1045,7 +1045,7 @@
           "quotaMinima": 1.13,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     },
@@ -1065,7 +1065,7 @@
           "quotaMinima": 1.13,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "Doppia chance",
@@ -1076,7 +1076,7 @@
           "quotaMinima": 1.14,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "mercato": "Doppia chance",
@@ -1087,7 +1087,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -1098,7 +1098,7 @@
           "quotaMinima": 1.25,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         }
       ]
     },
@@ -1118,7 +1118,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -1129,7 +1129,7 @@
           "quotaMinima": 1.15,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Doppia chance",
@@ -1140,7 +1140,7 @@
           "quotaMinima": 1.22,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "mercato": "Under/Over 1.5",
@@ -1151,7 +1151,7 @@
           "quotaMinima": 1.24,
           "quota": null,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ]
     }
