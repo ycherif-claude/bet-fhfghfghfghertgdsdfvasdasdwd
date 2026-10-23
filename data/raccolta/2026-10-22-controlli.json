@@ -46,6 +46,21 @@
       ],
       "alle": "2026-10-23T00:18:44+02:00",
       "regola": true
+    },
+    "nba-2026-10-22-oklahoma-city-thunder-denver-nuggets-vincente-denver-nuggets": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,45 sotto la minima 3,71",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,45 sotto la minima 3,71"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-23T02:45:19+02:00",
+      "regola": true
     }
   },
   "claude": {
