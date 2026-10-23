@@ -271,9 +271,9 @@
         "euro": 0.5,
         "percentuale": 0.5
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quota 2,02 · quota 2,37",
+      "oraUltimoControllo": "2026-10-23T05:59:15+02:00",
       "esito": null,
       "gambe": [
         {
@@ -457,9 +457,9 @@
         "euro": 1.5,
         "percentuale": 1
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quota 2,37 ≥ minima 2,34",
+      "oraUltimoControllo": "2026-10-23T05:59:15+02:00",
       "esito": null
     },
     {
@@ -589,7 +589,8 @@
   ],
   "erroriGiro": [
     "TheSportsDB (Serie A1 femminile) stagione 2026 giornata 1 alle 08:11: www.thesportsdb.com: HTTP 429",
-    "1 partita già iniziata esclusa"
+    "1 partita già iniziata esclusa",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 3 richieste al giorno per i controlli raggiunto; controlli oggi 3 su 3, rimaste 483, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "pronostici": [
     {
