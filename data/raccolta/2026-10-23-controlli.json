@@ -178,6 +178,41 @@
       ],
       "alle": "2026-10-23T19:54:21+02:00",
       "claude": true
+    },
+    "calcio-2026-10-23-torino-monza-under-over-3-5-over-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-10-23T20:16:43+02:00"
+    },
+    "calcio-2026-10-23-gateshead-tamworth-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-23T20:16:43+02:00"
+    },
+    "calcio-2026-10-23-bolton-wanderers-middlesbrough-1x2-x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,30 sotto la minima 4,69",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,30 sotto la minima 4,69"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T20:16:43+02:00",
+      "regola": true
     }
   },
   "claude": {
