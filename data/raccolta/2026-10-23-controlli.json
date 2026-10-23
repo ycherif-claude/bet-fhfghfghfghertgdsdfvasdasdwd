@@ -113,12 +113,77 @@
       ],
       "alle": "2026-10-23T19:24:32+02:00",
       "regola": true
+    },
+    "M-calcio-2026-10-23-empoli-vicenza-1x2-1+calcio-2026-10-23-randers-fc-brondby-if-under-over-2-5-under-2-5#0": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,46",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,46"
+      ],
+      "alle": "2026-10-23T19:53:54+02:00"
+    },
+    "calcio-2026-10-23-empoli-vicenza-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,46 ≥ minima 2,38",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,46 ≥ minima 2,38"
+      ],
+      "alle": "2026-10-23T19:53:54+02:00"
+    },
+    "calcio-2026-10-23-vfb-stuttgart-borussia-monchengladbach-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,18 sotto la minima 2,20",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,18 sotto la minima 2,20"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T19:53:54+02:00",
+      "regola": true
+    },
+    "calcio-2026-10-23-granada-cf-real-valladolid-cf-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,11 sotto la minima 2,31",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,11 sotto la minima 2,31"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T19:53:54+02:00",
+      "regola": true
+    },
+    "calcio-2026-10-23-brest-nice-1x2-1": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,27 sotto la minima 2,30",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,27 sotto la minima 2,30"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-23T19:53:54+02:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "basket-2026-10-23-perth-wildcats-melbourne-united-totale-punti-185-5-under-185-5"
+      "basket-2026-10-23-perth-wildcats-melbourne-united-totale-punti-185-5-under-185-5",
+      "calcio-2026-10-23-brest-nice-1x2-1"
     ]
   },
   "pronostici": {
@@ -151,6 +216,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over trasferta 0.5|Over 0.5",
       "alle": "2026-10-23T19:24:32+02:00"
+    },
+    "calcio-2026-10-23-alaves-malaga|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-23T19:53:54+02:00"
     }
   }
 }
