@@ -7764,9 +7764,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,71 ≥ minima 2,24",
+      "oraUltimoControllo": "2026-10-24T20:11:17+02:00",
       "esito": null,
       "prova": true
     },
@@ -8084,9 +8084,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,45 ≥ minima 4,23",
+      "oraUltimoControllo": "2026-10-24T20:11:17+02:00",
       "esito": null,
       "prova": true
     },
@@ -8725,9 +8725,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,46 ≥ minima 2,45",
+      "oraUltimoControllo": "2026-10-24T20:11:17+02:00",
       "esito": null,
       "prova": true
     },
@@ -9526,9 +9526,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "oraUltimoControllo": "2026-10-24T20:11:17+02:00",
       "esito": null,
       "prova": true
     },
@@ -10985,7 +10985,8 @@
     "odss-api alle 08:00: ou: quote incomplete (le altre pagine superano il budget di oggi)",
     "odss-api alle 08:00: 9 partite senza righe a tempo intero (full_time), senza quote: Shandong Taishan B-Jiangxi Liansheng FC, FC Barcelona (Women) - Granada CF (Women), Trabzonspor Wom. - .1207 Antalyaspor Wom., Barcelona Wom. - Granada Wom., Lyon Wom. - Marseille Wom., Shanghai Shengli (W) - Liaoning Shenbei Hefeng (W), Kaohsiung Attackers (W) - Taichung Sakura (W), Paide Linnameeskond (W) - Elva (W), Como 1907 - US Sassuolo Calcio",
     "Controlli prima delle partite (odss-api): 1x2,ou: quote incomplete (le altre pagine superano il budget di oggi)",
-    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 3 richieste al giorno per i controlli raggiunto; controlli oggi 3 su 3, rimaste 457, riserva 60): quote dei controlli dalle fonti di prima"
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 3 richieste al giorno per i controlli raggiunto; controlli oggi 3 su 3, rimaste 457, riserva 60): quote dei controlli dalle fonti di prima",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto giornaliero di 13 richieste a odss-api raggiunto; controlli oggi 3 su 4, giornata 13 su 13, rimaste 457, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
