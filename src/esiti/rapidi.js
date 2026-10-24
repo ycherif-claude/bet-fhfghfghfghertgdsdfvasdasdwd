@@ -95,7 +95,7 @@ export async function esitoConteggioDefinitivo(gamba, fonti) {
   return esitoSelezione(gamba.mercato, gamba.selezione, p[0]);
 }
 
-async function risultatoCalcio(gamba, fonti) {
+export async function risultatoCalcio(gamba, fonti) {
   const campionato = CAMPIONATI_ESPN[gamba.competizione];
   if (!campionato) return risultatoFootballData(gamba, fonti);
   const ev = await eventoEspn(gamba, campionato, fonti);

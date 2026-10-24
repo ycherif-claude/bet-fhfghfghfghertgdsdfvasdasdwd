@@ -308,6 +308,41 @@ function stagioneDi(data) {
   return `${yy(inizio)}${yy(inizio + 1)}`;
 }
 
+// Risultati da ESPN delle gambe di calcio finite (competizioni in CAMPIONATI_ESPN), con i nomi della gamba: la
+// stessa ricerca degli esiti rapidi (giorno UTC dell'inizio e quello prima, 90 minuti anche ai supplementari), un
+// tabellone per campionato e giorno. Cartellini e angoli no (ESPN li conta diversamente: restano ai CSV).
+// Dopo un rifiuto di ESPN (403) nessun'altra richiesta.
+async function risultatiEspn(gambe, fonti, adesso, errore) {
+  const { risultatoCalcio } = await import('../esiti/rapidi.js');
+  const { CAMPIONATI_ESPN } = await import('../controlli/espn.js');
+  const tabelloni = new Map();
+  const espn = { ...fonti.espn, partite: (c, giorno) => {
+    const k = `${c}|${giorno}`;
+    if (!tabelloni.has(k)) tabelloni.set(k, fonti.espn.partite(c, giorno, fonti.opz));
+    return tabelloni.get(k);
+  } };
+  const viste = new Set();
+  const out = [];
+  for (const x of gambe) {
+    const i = String(x.partita).indexOf(' - ');
+    const k = `${x.competizione}|${x.partita}|${x.inizio}`;
+    if (i < 0 || viste.has(k) || !CAMPIONATI_ESPN[x.competizione] || Date.parse(x.inizio) + TRE_ORE >= adesso.getTime()) continue;
+    viste.add(k);
+    try {
+      const r = await risultatoCalcio(x, { ...fonti, espn, opz: fonti.opz ?? {} });
+      if (!r || !num(r.gc) || !num(r.gt)) continue;
+      out.push({
+        casa: x.partita.slice(0, i), trasferta: x.partita.slice(i + 3), data: dataRoma(new Date(x.inizio)), inizio: x.inizio,
+        gc: r.gc, gt: r.gt, gcPT: r.gcPT ?? null, gtPT: r.gtPT ?? null, fonte: 'ESPN', competizione: x.competizione,
+      });
+    } catch (e) {
+      errore(`ESPN (${x.competizione})`, e);
+      if (e?.espnBloccato) break;
+    }
+  }
+  return out;
+}
+
 // Passo della CLI: scarica i risultati necessari, aggiorna i file e registra crediti ed errori nella raccolta.
 export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccolta, csv }) {
   const pendenti = giocateInAttesa(dirData, adesso);
@@ -321,17 +356,23 @@ export async function aggiornaEsitiGiro({ dirData, adesso, fonti, chiavi, raccol
   const daFdOrg = da < limite ? limite : da;
   const attesa = new Set(gambe.map((x) => x.competizione));
 
-  // CSV: quelli già scaricati dalla raccolta, più la stagione corrente delle leghe con giocate in attesa.
+  // ESPN (gratuito) per ogni competizione che copre [correzioni 24/10/2026, punto 5]: il risultato c'è subito dopo la
+  // partita, mentre i CSV arrivano un paio di volte a settimana e football-data.org ha solo 9 competizioni.
+  const risultati = fonti.espn ? await risultatiEspn(gambe.filter((x) => (x.sport ?? 'calcio') === 'calcio'), fonti, adesso, errore) : [];
+
+  // CSV: quelli già scaricati dalla raccolta, più la stagione corrente delle leghe con giocate in attesa (anche i
+  // campionati "extra", che prima non avevano nessuna fonte di risultati al mattino).
   const righeCsv = new Map(csv ?? []);
   for (const c of COMPETIZIONI) {
-    if (!c.csv || c.formato === 'extra' || !attesa.has(c.nome) || righeCsv.has(c.csv)) continue;
+    if (!c.csv || !attesa.has(c.nome) || righeCsv.has(c.csv)) continue;
+    if (c.formato === 'extra' && typeof fonti.footballDataUk?.partiteExtra !== 'function') continue;
     try {
-      righeCsv.set(c.csv, await fonti.footballDataUk.partite(c.csv, [stagioneDi(oggi)]));
+      righeCsv.set(c.csv, c.formato === 'extra' ? await fonti.footballDataUk.partiteExtra(c.csv) : await fonti.footballDataUk.partite(c.csv, [stagioneDi(oggi)]));
     } catch (e) {
       errore(`football-data.co.uk ${c.csv}`, e);
     }
   }
-  const risultati = risultatiDaCsv(righeCsv, da);
+  risultati.push(...risultatiDaCsv(righeCsv, da));
 
   if (!chiavi.footballDataOrg) {
     errore('football-data.org', new Error('manca FOOTBALL_DATA_ORG_KEY'));
