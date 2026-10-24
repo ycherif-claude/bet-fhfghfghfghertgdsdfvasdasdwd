@@ -85,8 +85,8 @@
       "alle": "2026-10-24T12:34:32+02:00"
     },
     "calcio-2026-10-24-dijon-rodez-af-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,25 sotto la minima 3,46",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 3,25 sotto la minima 3,46 e nessun fatto nuovo che alzi la probabilità rispetto all'analisi del mattino (32%): il value non c'è più (controlli quote odss-api, 12:34)",
       "problemi": [
         {
           "tipo": "quota",
@@ -96,7 +96,8 @@
       "dettagli": [
         "partita non trovata su ESPN: formazioni non controllate"
       ],
-      "alle": "2026-10-24T12:34:32+02:00"
+      "alle": "2026-10-24T12:35:02+02:00",
+      "claude": true
     },
     "calcio-2026-10-24-bristol-rovers-swindon-town-doppia-chance-x2": {
       "esito": "confermata",
