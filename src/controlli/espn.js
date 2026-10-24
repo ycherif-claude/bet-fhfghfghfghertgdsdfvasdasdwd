@@ -120,7 +120,7 @@ export const espn = {
       const squadre = e.competitions?.[0]?.competitors ?? [];
       const lato = (h) => squadre.find((s) => s.homeAway === h);
       const di = (h) => lato(h)?.team?.displayName ?? null;
-      const n = (v) => (v !== undefined && v !== null && /^d+$/.test(String(v)) ? Number(v) : null);
+      const n = (v) => (v !== undefined && v !== null && /^\d+$/.test(String(v)) ? Number(v) : null);
       return {
         id: String(e.id), casa: di('home'), trasferta: di('away'), inizio: e.date,
         stato: e.competitions?.[0]?.status?.type?.name ?? e.status?.type?.name ?? null,

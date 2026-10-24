@@ -61,3 +61,17 @@ test('M4: il Vitória brasiliano non diventa il Vitória Guimarães; il portoghe
   assert.equal(abbinaSquadra('Vitória SC', ['Guimaraes', 'Porto']), 'Guimaraes');
   assert.equal(abbinaSquadra('Vitoria Guimaraes', ['Guimaraes', 'Porto']), 'Guimaraes');
 });
+
+test('ESPN tabellone: punteggi e primo tempo letti dal formato reale (stringhe di cifre)', async () => {
+  const { espn } = await import('../../src/controlli/espn.js');
+  const tabellone = { events: [{ id: '700', date: '2026-10-23T18:30Z', status: { type: { name: 'STATUS_FULL_TIME' } }, competitions: [{
+    status: { type: { name: 'STATUS_FULL_TIME' } },
+    competitors: [
+      { homeAway: 'home', score: '0', team: { displayName: 'Empoli' }, linescores: [{ displayValue: '0', value: 0 }, { displayValue: '0', value: 0 }] },
+      { homeAway: 'away', score: '2', team: { displayName: 'Vicenza' }, linescores: [{ displayValue: '1', value: 1 }, { displayValue: '1', value: 1 }] },
+    ],
+  }] }] };
+  const fetch = async () => ({ ok: true, status: 200, headers: new Map(), text: async () => JSON.stringify(tabellone) });
+  const [p] = await espn.partite('ita.2', '2026-10-23', { fetch });
+  assert.deepEqual([p.stato, p.gc, p.gt, p.gcPT, p.gtPT], ['STATUS_FULL_TIME', 0, 2, 0, 1]);
+});
