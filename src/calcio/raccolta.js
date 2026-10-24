@@ -467,7 +467,7 @@ async function principale() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   principale().catch((e) => {
-    console.error(`Raccolta fallita: ${String(e?.message ?? e).replaceAll(process.env.ODSS_API_KEY || ' ', '***')}`);
+    console.error(`Raccolta fallita: ${String(e?.message ?? e).replaceAll(process.env.ODSS_API_KEY || '\u0000', '***')}`);
     process.exit(1);
   });
 }
