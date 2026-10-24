@@ -16,7 +16,7 @@ import { riassuntoMercato, eventiOdss } from '../../src/calcio/odss.js';
 import { eseguiRaccolta } from '../../src/calcio/raccolta.js';
 import { eseguiRaccoltaNba } from '../../src/nba/raccolta.js';
 import { quoteFresche } from '../../src/controlli/quote.js';
-import { fetchOdss, rigaOdss, bkOdss, AGG } from './aiuti.js';
+import { fetchOdss, rigaOdss, bkOdss, AGG, mattinoOdss } from './aiuti.js';
 
 const CHIAVE = 'CHIAVE-SEGRETA-123';
 const temp = () => { const d = mkdtempSync(join(tmpdir(), 'odss-rev-')); mkdirSync(join(d, 'raccolta'), { recursive: true }); return d; };
@@ -195,7 +195,8 @@ test('controlli: la linea della giocata, una riga per motivo per giornata (non a
     rigaOdss({ ...base, market: 'ah', line: -4.5, bookmakers: libri.map((k) => bkOdss(k, { HOME: 1.91, AWAY: 1.91 })) }),
     rigaOdss({ ...base, market: 'ah', line: -5.5, bookmakers: libri.map((k) => bkOdss(k, { HOME: 2.05, AWAY: 1.78 })) }),
   ];
-  const voce = { id: 'v', sport: 'nba', competizione: 'NBA', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-24T01:30:00+02:00', mercato: 'Handicap -5.5', selezione: 'casa' };
+  mattinoOdss(d, '2026-10-23', { partite: { nba: [{ idPartita: 'nba-bos-nyk', idOdss: ['n1'] }] } });
+  const voce = { id: 'v', idPartita: 'nba-bos-nyk', sport: 'nba', competizione: 'NBA', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-24T01:30:00+02:00', mercato: 'Handicap -5.5', selezione: 'casa' };
   const fonti = (fetch) => ({ fetchOdss: fetch, sportsgameodds: { eventi: async () => [] } });
   const adesso = new Date('2026-10-23T22:30:00Z');
   const out = await quoteFresche([voce], { fonti: fonti(fetchOdss({ 'basket|moneyline,ah,ou': [righe] })), chiavi: { sportsgameodds: 'S', odss: CHIAVE }, finestra: FIN, errore: () => {}, dirData: d, data: '2026-10-23', adesso });

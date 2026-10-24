@@ -234,7 +234,7 @@ export async function raccogliTennis({ data, adesso, fonti, chiavi, dirData = 'd
       const evs = eventiPer.get(t.chiave);
       const abbinati = abbinaEventi(evs.map((e) => ({ id: e.id, casa: e.giocatore1, trasferta: e.giocatore2, inizio: e.inizio })), (o.eventi ?? []).filter(tennisSingolare), { stesso: stessoGiocatore, invertibile: true });
       const conQuote = evs.filter((e) => abbinati.has(e.id))
-        .map((e) => ({ ...e, bookmaker: inFormatoTennis(abbinati.get(e.id).evento, e.giocatore1, e.giocatore2, { invertito: abbinati.get(e.id).invertito }) }))
+        .map((e) => ({ ...e, idOdss: String(abbinati.get(e.id).evento.id).split(','), bookmaker: inFormatoTennis(abbinati.get(e.id).evento, e.giocatore1, e.giocatore2, { invertito: abbinati.get(e.id).invertito }) }))
         .filter((e) => e.bookmaker.length);
       if (conQuote.length) {
         daOdss.add(t.chiave);
@@ -400,6 +400,7 @@ function costruisciPartita({ t, ev, evento, stato, superficie, bestOf, motivo, d
   }
   if (!mercati.length) return false;
   return {
+    ...(Array.isArray(evento?.idOdss) ? { idOdss: evento.idOdss } : {}),
     idPartita: idPartitaTennis(data, g1, g2),
     sport: 'tennis',
     competizione: t.titolo,

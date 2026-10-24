@@ -66,6 +66,7 @@ test('tennis con odss: una richiesta, quote per giocatore (evento invertito), me
   const m = p.mercati.find((x) => x.selezione === 'Jannik Sinner');
   assert.equal(m.quota, 1.8);
   assert.equal(m.fonteQuota, 'mediana di 4 bookmaker (odss-api)');
+  assert.ok(Array.isArray(p.idOdss) && p.idOdss.length, 'event_id di odss per i controlli');
   assert.ok(Math.abs(m.probPinnacle - (1 / 1.78) / (1 / 1.78 + 1 / 2.1)) < 1e-9);
   const stato = JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8'));
   assert.deepEqual(stato.giornate['2026-10-20'].perSport, { tennis: 1 });

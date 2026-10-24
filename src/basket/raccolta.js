@@ -185,6 +185,7 @@ function partiteCampionato({ c, eventi, stato, data, ora, errore, raccolta, font
     const mercati = mercatiPartita({ ev, attesi, forze: stato?.forze, nomi, ora, conta, fonte });
     if (!mercati.length) { conta.senzaQuota++; continue; }
     raccolta.partite.push({
+      ...(Array.isArray(ev.idOdss) ? { idOdss: ev.idOdss } : {}),
       idPartita: `basket-${data}-${slug(ev.casa)}-${slug(ev.trasferta)}`,
       sport: 'basket',
       competizione: c.competizione,
@@ -294,7 +295,7 @@ export async function eseguiRaccoltaBasket({ data, adesso, fonti, chiavi, dirDat
       const conQuote = nostri.filter((e) => abbinati.has(e.id)).map((e) => {
         const f = inFormatoNba(abbinati.get(e.id).evento);
         if (f.handicapScartato) storti++;
-        return { ...e, bookmaker: f.bookmaker };
+        return { ...e, bookmaker: f.bookmaker, idOdss: String(abbinati.get(e.id).evento.id).split(',') };
       }).filter((e) => e.bookmaker.length);
       if (storti) errore('odss-api', `${plurale(storti, 'handicap scartato', 'handicap scartati')}: linea della casa con il verso opposto al vincente (${c.competizione})`);
       if (conQuote.length) {

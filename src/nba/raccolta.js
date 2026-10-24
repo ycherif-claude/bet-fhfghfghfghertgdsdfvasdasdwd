@@ -104,7 +104,7 @@ export function partiteNbaDaOdss(eventi, { calendario = null } = {}) {
     const unito = unisciEventi(g.eventi);
     const f = inFormatoNba(unito);
     if (f.handicapScartato) handicapScartati++;
-    if (f.bookmaker.length) out.push({ id: unito.id, casa: g.casa.nome, trasferta: g.trasferta.nome, inizio: g.eventi[0].inizio, bookmaker: f.bookmaker });
+    if (f.bookmaker.length) out.push({ id: unito.id, idOdss: g.eventi.map((e) => String(e.id)), casa: g.casa.nome, trasferta: g.trasferta.nome, inizio: g.eventi[0].inizio, bookmaker: f.bookmaker });
   }
   return { eventi: out, handicapScartati, invertiti, fuoriCalendario };
 }
@@ -309,6 +309,7 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData =
       backToBack: b2b,
       ragionamentoBase,
       mercati,
+      ...(fonteQuote === 'odss-api' && Array.isArray(ev.idOdss) ? { idOdss: ev.idOdss } : {}),
     });
   }
   diagnostica();

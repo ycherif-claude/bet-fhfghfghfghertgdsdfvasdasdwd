@@ -1,7 +1,9 @@
 // Quote dell'ultimo momento da odss-api per i controlli pre-partita [utente, 22/10/2026]: una sola richiesta per
-// passaggio con tutti gli sport e i mercati delle voci da controllare, finestra da un'ora prima della prima partita a
-// un'ora dopo l'ultima, tetto dei controlli del budget unico (CONFIG.odss.tetti.controlli al giorno, mai sotto la
-// riserva). Map(id voce → { quota, n, prob }) solo per le voci con una quota: le altre (partita non trovata, mercato
+// passaggio con tutti gli sport e i mercati delle voci da controllare, solo per i loro event_id [correzioni 24/10/2026,
+// punto 4] (senza finestra: una pagina, mai "quote incomplete"), presi dalle raccolte del mattino: calcio dagli eventi
+// di data/raccolta/<data>-odss.json abbinati alla partita, gli altri sport da `idOdss` della partita in
+// data/raccolta/<data>-<sport>.json. Voci senza event_id: niente richiesta, fonti di prima. Tetto dei controlli del
+// budget (CONFIG.odss.tetti.controlli al giorno, mai sotto la riserva). Map(id voce → { quota, n, prob }) solo per le voci con una quota: le altre (partita non trovata, mercato
 // che odss non ha, budget finito, errore) restano alle fonti di prima.
 import { creaBudgetOdss, leggiStatoOdss, scriviStatoOdss } from '../odss/budget.js';
 import { scaricaOdss } from '../odss/scarica.js';
@@ -9,15 +11,34 @@ import { abbinaEventi, eventiDaRighe, femminile, inFormatoCalcio, inFormatoNba, 
 import { CAMPIONATI_PALLAVOLO } from '../pallavolo/campionati.js';
 import { abbinaSquadra, squadreStorico } from '../pallavolo/squadre.js';
 import { leggiStorico } from '../basket/storico.js';
-import { abbinaEventiOdss } from '../calcio/odss.js';
+import fs from 'node:fs';
+import path from 'node:path';
+import { CONFIG } from '../config.js';
+import { abbinaEventiOdss, candidatiOdss, leggiQuoteOdss, unisciRigheEventi } from '../calcio/odss.js';
 import { stessoGiocatore } from '../tennis/raccolta.js';
 import { squadraNba } from '../nba/squadre.js';
 import { stessaSquadra } from './espn.js';
 import { quotaCalcio, quotaFormatoNba, quotaTennis, squadreDi } from './quote.js';
 
-const ORA_MS = 3600000;
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
-const iso = (t) => new Date(t);
+
+// event_id di odss della voce (stringhe), dalle raccolte del mattino; [] se non si sanno.
+function idOdssVoce(v, dirData, data, cache) {
+  const sq = squadreDi(v.partita);
+  if (v.sport === 'calcio') {
+    cache.calcio ??= leggiQuoteOdss(dirData, data).eventi ?? [];
+    if (!sq) return [];
+    const lista = candidatiOdss([{ idPartita: v.id, sport: 'calcio', casa: sq.casa, trasferta: sq.trasferta, inizio: v.inizio }], cache.calcio).get(v.id) ?? [];
+    return [...new Set(lista.flatMap((e) => String(e.id).split(',')))];
+  }
+  if (!Object.hasOwn(cache, v.sport)) {
+    try {
+      cache[v.sport] = JSON.parse(fs.readFileSync(path.join(dirData, 'raccolta', `${data}-${v.sport}.json`), 'utf8')).partite ?? [];
+    } catch { cache[v.sport] = []; }
+  }
+  const p = (Array.isArray(cache[v.sport]) ? cache[v.sport] : []).find((x) => x?.idPartita === v.idPartita);
+  return Array.isArray(p?.idOdss) ? p.idOdss.map(String) : [];
+}
 
 // Sport delle voci → sport e mercati di odss-api.
 const SPORT = {
@@ -92,20 +113,34 @@ export async function quoteOdssControlli(voci, { chiave, dirData, data, adesso, 
     if (avvisato) scriviStatoOdss(dirData, budget.stato());
     return out;
   }
-  const sport = [...new Set(conSport.map((v) => SPORT[v.sport].odss))];
-  const mercati = [...new Set(conSport.flatMap((v) => SPORT[v.sport].mercati))];
-  const inizi = conSport.map((v) => Date.parse(v.inizio));
-  const finestra = { da: iso(Math.min(...inizi) - ORA_MS), a: iso(Math.max(...inizi) + ORA_MS) };
-  const r = await scaricaOdss({
-    chiave, budget, sport: sport.join(','), gruppi: [mercati.join(',')], finestra, fetch, attesaMs,
-    errore: avvisa, suffissoBudget: ': quote dei controlli dalle fonti di prima',
-  });
-  if (r.richieste || avvisato) scriviStatoOdss(dirData, budget.stato());
-  if (!r.righe.length) return out;
-  const eventi = eventiDaRighe(r.righe, { adesso });
+  const cache = {};
+  const idsVoce = new Map(conSport.map((v) => [v.id, idOdssVoce(v, dirData, data, cache)]));
+  const conId = conSport.filter((v) => idsVoce.get(v.id).length);
+  if (!conId.length) {
+    if (avvisato) scriviStatoOdss(dirData, budget.stato());
+    return out;
+  }
+  const sport = [...new Set(conId.map((v) => SPORT[v.sport].odss))];
+  const mercati = [...new Set(conId.flatMap((v) => SPORT[v.sport].mercati))];
+  const ids = [...new Set(conId.flatMap((v) => idsVoce.get(v.id)))];
+  const righe = [];
+  let richieste = 0;
+  for (let i = 0; i < ids.length; i += CONFIG.odss.eventiPerRichiesta) {
+    const r = await scaricaOdss({
+      chiave, budget, sport: sport.join(','), gruppi: [mercati.join(',')], eventId: ids.slice(i, i + CONFIG.odss.eventiPerRichiesta).join(','),
+      fetch, attesaMs, errore: avvisa, suffissoBudget: ': quote dei controlli dalle fonti di prima',
+    });
+    richieste += r.richieste;
+    righe.push(...r.righe);
+    if (r.fermo) break;
+  }
+  if (richieste || avvisato) scriviStatoOdss(dirData, budget.stato());
+  if (!righe.length) return out;
   const perRegistro = new Map();
-  for (const v of conSport) {
-    const e = eventoPerVoce(v, eventi, dirData);
+  for (const v of conId) {
+    const mie = idsVoce.get(v.id);
+    const delleVoce = mie.length > 1 ? unisciRigheEventi(righe, mie) : righe.filter((x) => String(x.event_id) === mie[0]);
+    const e = eventoPerVoce(v, eventiDaRighe(delleVoce, { adesso }), dirData);
     if (!e) continue;
     const q = v.sport === 'calcio' ? quotaCalcio(e, v.mercato, v.selezione)
       : v.sport === 'tennis' ? quotaTennis(e, v.selezione) : quotaFormatoNba(e, v);

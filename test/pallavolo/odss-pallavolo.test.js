@@ -87,6 +87,7 @@ test('pallavolo con odss: una richiesta, vincente e totale set da odss, niente O
   const v = p.mercati[0];
   assert.equal(v.quotaBet365, 1.33);
   assert.equal(v.fonteQuota, 'mediana di 4 bookmaker (odss-api)');
+  assert.ok(Array.isArray(p.idOdss) && p.idOdss.length, 'event_id di odss per i controlli');
   assert.ok(Math.abs(v.probPinnacle - (1 / 1.3) / (1 / 1.3 + 1 / 3.5)) < 1e-9);
   assert.equal(p.mercati[2].quota, 1.75);
   assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).giornate['2026-10-21'].perSport, { pallavolo: 1 });

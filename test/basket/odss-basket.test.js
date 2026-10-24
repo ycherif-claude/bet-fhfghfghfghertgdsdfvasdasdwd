@@ -68,6 +68,7 @@ test('basket con odss: una richiesta per l\'Eurolega (league "eurol"), mercati d
     'Totale punti 162.5 | Over 162.5', 'Totale punti 162.5 | Under 162.5',
   ]);
   assert.equal(p.mercati[0].fonteQuota, 'mediana di 4 bookmaker (odss-api)');
+  assert.ok(Array.isArray(p.idOdss) && p.idOdss.length, 'event_id di odss per i controlli');
   assert.equal(p.mercati[0].quota, 1.61);
   assert.ok(Math.abs(p.mercati[0].probPinnacle - (1 / 1.6) / (1 / 1.6 + 1 / 2.4)) < 1e-9);
   assert.deepEqual(JSON.parse(readFileSync(join(dir, 'stato', 'odss.json'), 'utf8')).giornate['2026-10-21'].perSport, { basket: 1 });

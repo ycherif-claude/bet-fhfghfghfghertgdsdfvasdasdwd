@@ -269,7 +269,7 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
       // I nomi delle squadre restano quelli del palinsesto (OddsPapi), come negli esiti; senza palinsesto, quelli di odss.
       const x = g.partita ?? { f: { casa: g.eventi[0].casa, trasferta: g.eventi[0].trasferta, inizio: g.eventi[0].inizio }, c: g.c, idCasa: g.idCasa, idTrasferta: g.idTrasferta };
       const prima = raccolta.partite.length;
-      aggiungiPartita(x, bookmaker, 'odss-api');
+      aggiungiPartita({ ...x, idOdss: g.eventi.map((e) => String(e.id)) }, bookmaker, 'odss-api');
       if (raccolta.partite.length > prima) {
         if (g.partita) coperte.add(g.partita);
         conQuote.set(g.c.competizione, (conQuote.get(g.c.competizione) ?? 0) + 1);
@@ -337,6 +337,7 @@ function partitaPallavolo({ x, bookmaker, fonte, storici, modelli, data, ora, co
     if (!mercati.length) { conta.senzaQuota++; return false; }
     const pct = (p) => `${Math.round(p * 100)}%`;
     return ({
+      ...(Array.isArray(x.idOdss) ? { idOdss: x.idOdss } : {}),
       idPartita: `pallavolo-${data}-${slug(x.f.casa)}-${slug(x.f.trasferta)}`,
       sport: 'pallavolo',
       competizione: x.c.competizione,

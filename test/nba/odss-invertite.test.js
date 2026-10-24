@@ -72,6 +72,8 @@ test('NBA 24/10: eventi invertiti rispetto al calendario ignorati (una riga), ne
   assert.equal(den.mercati.find((m) => m.selezione === 'Denver Nuggets').quota, 1.5);
   const cha = r.partite.find((p) => p.casa === 'Charlotte Hornets');
   assert.equal(cha.mercati.find((m) => m.selezione === 'Charlotte Hornets').quota, 2.3);
+  // event_id di odss per i controlli (punto 4): solo quello vero, mai il fantasma.
+  assert.deepEqual(cha.idOdss, ['v1']);
 });
 
 test('NBA: senza calendario (balldontlie giù) gli eventi restano come prima; con il calendario conta il verso', () => {

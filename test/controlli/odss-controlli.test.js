@@ -8,16 +8,20 @@ import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { quoteFresche } from '../../src/controlli/quote.js';
-import { fetchOdss, rigaOdss, bkOdss } from '../odss/aiuti.js';
+import { fetchOdss, rigaOdss, bkOdss, mattinoOdss } from '../odss/aiuti.js';
 
 const CHIAVE = 'CHIAVE-SEGRETA-123';
 const DATA = '2026-10-23';
 const adesso = new Date('2026-10-23T17:30:00Z');
 const finestra = { da: new Date('2026-10-23T06:00:00Z'), a: new Date('2026-10-24T06:00:00Z') };
-const temp = () => mkdtempSync(join(tmpdir(), 'odss-controlli-'));
+// Le raccolte del mattino danno gli event_id (correzioni 24/10/2026): Torino - Monza = c1, Boston - New York = n1.
+const temp = () => mattinoOdss(mkdtempSync(join(tmpdir(), 'odss-controlli-')), DATA, {
+  calcio: [{ id: 'c1', casa: 'Torino', trasferta: 'Monza', inizio: '2026-10-23T18:45:00Z', campionato: 'Serie A', mercati: {} }],
+  partite: { nba: [{ idPartita: 'nba-bos-nyk', idOdss: ['n1'] }], pallavolo: [{ idPartita: 'pal-1', idOdss: ['m'] }] },
+});
 
 const voceCalcio = { id: 'v1', sport: 'calcio', competizione: 'Serie A', partita: 'Torino - Monza', inizio: '2026-10-23T20:45:00+02:00', mercato: '1X2', selezione: '1' };
-const voceNba = { id: 'v2', sport: 'nba', competizione: 'NBA', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-24T01:30:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics' };
+const voceNba = { id: 'v2', idPartita: 'nba-bos-nyk', sport: 'nba', competizione: 'NBA', partita: 'Boston Celtics - New York Knicks', inizio: '2026-10-24T01:30:00+02:00', mercato: 'Vincente', selezione: 'Boston Celtics' };
 const libri = ['pinnacle', 'snai', 'bwin', 'unibet'];
 const RIGHE = [
   rigaOdss({ event_id: 'c1', home_team: 'Torino', away_team: 'Monza', commence_time: '2026-10-23T18:45:00Z', market: '1x2', bookmakers: libri.map((k) => bkOdss(k, { HOME: 2.1, DRAW: 3.3, AWAY: 3.6 })) }),
@@ -44,9 +48,9 @@ test('controlli con odss: una richiesta per calcio e NBA, quote e probabilità d
   const u = new URL(f.chiamate[0].url);
   assert.equal(u.searchParams.get('sport'), 'calcio,basket');
   assert.equal(u.searchParams.get('market'), '1x2,ou,moneyline,ah');
-  // Finestra stretta: un'ora prima della prima partita, un'ora dopo l'ultima.
-  assert.equal(u.searchParams.get('commence_from'), '2026-10-23T17:45:00Z');
-  assert.equal(u.searchParams.get('commence_to'), '2026-10-24T00:30:00Z');
+  // Solo gli event_id delle voci, senza finestra (correzioni 24/10/2026).
+  assert.equal(u.searchParams.get('event_id'), 'c1,n1');
+  assert.equal(u.searchParams.has('commence_from'), false);
   assert.deepEqual(fo.chiamate, []);
   // snai (bookmaker dell'utente) ha la quota delle 07:40: più vecchia di 6 ore alle 19:30, fuori.
   assert.deepEqual(out.get('v1'), { quota: 2.1, n: 3, prob: (1 / 2.1) / (1 / 2.1 + 1 / 3.3 + 1 / 3.6) });
@@ -87,7 +91,7 @@ test('controlli pallavolo: stessi filtri della raccolta (nome esatto del campion
   writeFileSync(join(d, 'storico', 'pallavolo-superlega.json'), JSON.stringify({ partite: [
     { id: '1', stagione: 2026, giornata: 1, idCasa: '136630', idTrasferta: '137441', casa: 'Trentino Volley', trasferta: 'Verona Volley', inizio: '2026-10-10T18:00:00.000Z', puntiCasa: 3, puntiTrasferta: 1, finita: true },
   ] }));
-  const voce = { id: 'p1', sport: 'pallavolo', competizione: 'SuperLega', partita: 'Itas Trentino - Rana Verona', inizio: '2026-10-23T20:30:00+02:00', mercato: 'Vincente', selezione: 'Itas Trentino' };
+  const voce = { id: 'p1', idPartita: 'pal-1', sport: 'pallavolo', competizione: 'SuperLega', partita: 'Itas Trentino - Rana Verona', inizio: '2026-10-23T20:30:00+02:00', mercato: 'Vincente', selezione: 'Itas Trentino' };
   const riga = (id, league, h) => rigaOdss({ event_id: id, sport: 'volley', league, home_team: 'Trentino Itas', away_team: 'Verona Rana', commence_time: '2026-10-23T18:30:00Z', market: 'moneyline', bookmakers: ['pinnacle', 'bwin', 'unibet'].map((k) => bkOdss(k, { HOME: h, AWAY: 3.2 })) });
   const chiamate = [];
   const fo = (fetch) => ({ fetchOdss: fetch, oddspapi: { conto: async () => { chiamate.push('conto'); return null; } } });
