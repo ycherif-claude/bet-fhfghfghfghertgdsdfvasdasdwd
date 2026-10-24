@@ -211,6 +211,60 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-24T14:14:58+02:00"
+    },
+    "calcio-2026-10-24-cremonese-juve-stabia-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,65 sotto la minima 3,85",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,65 sotto la minima 3,85"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-24T14:52:41+02:00",
+      "regola": true
+    },
+    "calcio-2026-10-24-1-fc-koln-fc-schalke-04-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,20 ≥ minima 2,11",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,20 ≥ minima 2,11"
+      ],
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-antwerp-charleroi-1x2-1": {
+      "esito": "confermata",
+      "motivo": "quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-como-sassuolo-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 1,80 ≥ minima 1,76",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 1,80 ≥ minima 1,76"
+      ],
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-augsburg-union-berlin-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,75 ≥ minima 2,66",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,75 ≥ minima 2,66"
+      ],
+      "alle": "2026-10-24T14:52:41+02:00"
     }
   },
   "claude": {
@@ -339,6 +393,144 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|12",
       "alle": "2026-10-24T14:14:58+02:00"
+    },
+    "calcio-2026-10-24-arsenal-everton|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-west-ham-united-southampton|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-wolverhampton-wanderers-watford|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-afc-wimbledon-wycombe-wanderers|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-bromley-peterborough-united|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-cambridge-united-plymouth-argyle|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-reading-barnsley|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-barnet-oldham-athletic|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-aldershot-town-wealdstone|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-barrow-forest-green-rovers|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-boreham-wood-afc-fylde|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-solihull-moors-carlisle-united|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-southend-united-fc-halifax-town|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-yeovil-town-altrincham|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-falkirk-kilmarnock|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-rangers-st-johnstone|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-livingston-arbroath|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-alloa-queen-of-sth|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-hamilton-east-fife|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-montrose-peterhead|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-ross-county-airdrie-utd|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-bodo-glimt-valerenga|1X2|1": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "1X2|1",
+      "alle": "2026-10-24T14:52:41+02:00"
+    },
+    "calcio-2026-10-24-gnistan-ac-oulu|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T14:52:41+02:00"
     }
   }
 }
