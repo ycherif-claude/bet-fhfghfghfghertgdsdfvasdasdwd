@@ -16,7 +16,7 @@
       "n": 1187,
       "limite": 0.8813,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -33,7 +33,7 @@
       "n": 1156,
       "limite": 0.8368,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.12,
       "bookmaker": "daznbet"
@@ -52,7 +52,7 @@
       "n": 718,
       "limite": 0.911,
       "quotaMinima": 1.08,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -69,7 +69,7 @@
       "n": 1156,
       "limite": 0.8368,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -86,7 +86,7 @@
       "n": 869,
       "limite": 0.824,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.14
     },
@@ -104,7 +104,7 @@
       "n": 1035,
       "limite": 0.821,
       "quotaMinima": 1.19,
-      "esito": null,
+      "esito": "persa",
       "migliore": false,
       "quota": 1.09
     },
@@ -122,7 +122,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -139,7 +139,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -173,7 +173,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -190,7 +190,7 @@
       "n": 1035,
       "limite": 0.821,
       "quotaMinima": 1.19,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.15,
       "bookmaker": "sportium"
@@ -209,7 +209,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.1
     },
@@ -227,7 +227,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -244,7 +244,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -303,7 +303,7 @@
           "prob": 0.8512,
           "limite": 0.8324,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-23-cruzeiro-remo",
@@ -320,7 +320,7 @@
           "prob": 0.8761,
           "limite": 0.8603,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-23-necaxa-fc-juarez",
@@ -336,7 +336,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.51,
@@ -344,8 +344,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.51
     },
     {
       "id": "sp-2026-10-23-r62e3l",
@@ -366,7 +366,7 @@
           "prob": 0.8581,
           "limite": 0.8368,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-23-gateshead-tamworth",
@@ -429,7 +429,7 @@
           "prob": 0.8493,
           "limite": 0.824,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-23-brest-nice",
@@ -445,7 +445,7 @@
           "prob": 0.8512,
           "limite": 0.8324,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-23-alaves-malaga",
@@ -462,7 +462,7 @@
           "prob": 0.8444,
           "limite": 0.821,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.55,
@@ -470,8 +470,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.55
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-10-24T08:11:38+02:00"
 }

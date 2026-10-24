@@ -1,0 +1,708 @@
+{
+  "data": "2026-10-24",
+  "generataAlle": "2026-10-24T08:08:15+02:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 7,
+      "rimaste": 227
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "TheSportsDB (PlusLiga) stagione 2026 giornata 2 alle 08:08: www.thesportsdb.com: HTTP 429",
+    "Squadre Efeler Ligi non riconosciute: Gebze Genclik, Sungurluspor, Spor Toto SK Ankara, Istanbul Genclik Spor, Fenerbahce SK Istanbul, Ibb Spor, Sultanbeyli Bld",
+    "Squadre Bundesliga non riconosciute: SV Warnemünde",
+    "odss-api (pallavolo) alle 08:08: budget insufficiente (tetto di 10 richieste al giorno del giro del mattino raggiunto; oggi 10 richieste su 10, rimaste 460, riserva 60): quote di pallavolo dalla fonte di prima",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
+    "Quote Efeler Ligi: nessuna partita su odss-api, quote da OddsPapi",
+    "Quote Bundesliga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-10-24-skra-belchatow-projekt-warsaw",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Skra Belchatow - Projekt Warsaw",
+      "casa": "Skra Belchatow",
+      "trasferta": "Projekt Warsaw",
+      "inizio": "2026-10-24T18:00:00+02:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Skra Belchatow": 1504,
+        "Projekt Warsaw": 1617
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Skra Belchatow 1504 – Projekt Warsaw 1617, vantaggio campo compreso: vittoria della casa 42% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Skra Belchatow",
+          "probModello": null,
+          "probPinnacle": 0.28847807394668956,
+          "quota": 3.4,
+          "fonteQuota": "mediana di 92 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Skra Belchatow vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probPinnacle": 0.7115219260533103,
+          "quota": 1.27,
+          "fonteQuota": "mediana di 92 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.17683365768986187,
+          "quota": 5.2,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Skra Belchatow -1,5 vince se Skra Belchatow vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.8231663423101383,
+          "quota": 1.12,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Projekt Warsaw +1,5 vince se Projekt Warsaw vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.4495898385816353,
+          "quota": 2.25,
+          "fonteQuota": "mediana di 94 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Skra Belchatow +1,5 vince se Skra Belchatow vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5504101614183646,
+          "quota": 1.57,
+          "fonteQuota": "mediana di 94 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw -1,5 vince se Projekt Warsaw vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6076078631605821,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.39239213683941787,
+          "quota": 2.34,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-24-galatasaray-sk-onikisubat-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Galatasaray SK - Onikisubat Bld",
+      "casa": "Galatasaray SK",
+      "trasferta": "Onikisubat Bld",
+      "inizio": "2026-10-24T12:00:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Galatasaray SK",
+          "probModello": null,
+          "probPinnacle": 0.8287457223627437,
+          "quota": 1.1,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,15 su 140 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.1,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Galatasaray SK vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Onikisubat Bld",
+          "probModello": null,
+          "probPinnacle": 0.17125427763725637,
+          "quota": 4.8,
+          "fonteQuota": "mediana di 140 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 5.5,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Onikisubat Bld vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.7060390763765542,
+          "quota": 1.36,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Galatasaray SK -1,5 vince se Galatasaray SK vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.29396092362344584,
+          "quota": 2.84,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Onikisubat Bld +1,5 vince se Onikisubat Bld vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.8752879608422898,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 34 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Galatasaray SK +1,5 vince se Galatasaray SK vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.12471203915770986,
+          "quota": 7,
+          "fonteQuota": "mediana di 34 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Onikisubat Bld -1,5 vince se Onikisubat Bld vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5101549973276323,
+          "quota": 1.66,
+          "fonteQuota": "mediana di 67 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.48984500267236764,
+          "quota": 2.04,
+          "fonteQuota": "mediana di 67 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-24-ziraat-bankasi-ankara-tfl-altekma",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Ziraat Bankasi Ankara - TFL Altekma",
+      "casa": "Ziraat Bankasi Ankara",
+      "trasferta": "TFL Altekma",
+      "inizio": "2026-10-24T18:00:00+02:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Ziraat Bankasi Ankara": 1762,
+        "TFL Altekma": 1505
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Ziraat Bankasi Ankara 1762 – TFL Altekma 1505, vantaggio campo compreso: vittoria della casa 86% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Ziraat Bankasi Ankara",
+          "probModello": null,
+          "probPinnacle": 0.8334545454545456,
+          "quota": 1.091,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,11 su 148 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.091,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Ziraat Bankasi Ankara vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "TFL Altekma",
+          "probModello": null,
+          "probPinnacle": 0.16654545454545455,
+          "quota": 5.5,
+          "fonteQuota": "mediana di 148 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 6,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se TFL Altekma vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.7124068391056554,
+          "quota": 1.3,
+          "fonteQuota": "mediana di 65 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Ziraat Bankasi Ankara -1,5 vince se Ziraat Bankasi Ankara vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.2875931608943446,
+          "quota": 3.15,
+          "fonteQuota": "mediana di 65 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: TFL Altekma +1,5 vince se TFL Altekma vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.893564025748537,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Ziraat Bankasi Ankara +1,5 vince se Ziraat Bankasi Ankara vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.10643597425146316,
+          "quota": 8.2,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: TFL Altekma -1,5 vince se TFL Altekma vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.47185916244331816,
+          "quota": 1.77,
+          "fonteQuota": "mediana di 75 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5281408375566817,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 75 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-24-vfb-friedrichshafen-ssc-karlsruhe",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "VfB Friedrichshafen - SSC Karlsruhe",
+      "casa": "VfB Friedrichshafen",
+      "trasferta": "SSC Karlsruhe",
+      "inizio": "2026-10-24T18:30:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "VfB Friedrichshafen",
+          "probModello": null,
+          "probPinnacle": 0.8644400785854618,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 139 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.068,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se VfB Friedrichshafen vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SSC Karlsruhe",
+          "probModello": null,
+          "probPinnacle": 0.13555992141453835,
+          "quota": 7,
+          "fonteQuota": "mediana di 139 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 7,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se SSC Karlsruhe vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.7553885702985961,
+          "quota": 1.21,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: VfB Friedrichshafen -1,5 vince se VfB Friedrichshafen vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.244611429701404,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: SSC Karlsruhe +1,5 vince se SSC Karlsruhe vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.8899470899470899,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 3 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: VfB Friedrichshafen +1,5 vince se VfB Friedrichshafen vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.11005291005291006,
+          "quota": 8.41,
+          "fonteQuota": "mediana di 3 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: SSC Karlsruhe -1,5 vince se SSC Karlsruhe vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.4413702239789197,
+          "quota": 2.06,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5586297760210804,
+          "quota": 1.64,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-24-tsv-giesen-grizzlys-berlin-rv",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "TSV Giesen Grizzlys - Berlin RV",
+      "casa": "TSV Giesen Grizzlys",
+      "trasferta": "Berlin RV",
+      "inizio": "2026-10-24T19:30:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "TSV Giesen Grizzlys",
+          "probModello": null,
+          "probPinnacle": 0.31596828992072484,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 139 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 3,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se TSV Giesen Grizzlys vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Berlin RV",
+          "probModello": null,
+          "probPinnacle": 0.6840317100792752,
+          "quota": 1.33,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,35 su 139 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.33,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Berlin RV vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.21482366439509815,
+          "quota": 4.19,
+          "fonteQuota": "mediana di 54 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: TSV Giesen Grizzlys -1,5 vince se TSV Giesen Grizzlys vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.7851763356049021,
+          "quota": 1.17,
+          "fonteQuota": "mediana di 54 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Berlin RV +1,5 vince se Berlin RV vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.46276595744680854,
+          "quota": 1.97,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 2,02 su 99 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.97,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: TSV Giesen Grizzlys +1,5 vince se TSV Giesen Grizzlys vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5372340425531915,
+          "quota": 1.69,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,70 su 99 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.69,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Berlin RV -1,5 vince se Berlin RV vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5952074207678434,
+          "quota": 1.51,
+          "fonteQuota": "mediana di 77 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.40479257923215667,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 77 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-24-swd-powervolleys-duren-wwk-volleys-munich",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SWD Powervolleys Duren - Wwk Volleys Munich",
+      "casa": "SWD Powervolleys Duren",
+      "trasferta": "Wwk Volleys Munich",
+      "inizio": "2026-10-24T19:30:00+02:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SWD Powervolleys Duren",
+          "probModello": null,
+          "probPinnacle": 0.7678469006479899,
+          "quota": 1.19,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,20 su 47 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 1.19,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SWD Powervolleys Duren vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Wwk Volleys Munich",
+          "probModello": null,
+          "probPinnacle": 0.23215309935201,
+          "quota": 4,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 4,01 su 47 bookmaker",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "quotaBet365": 4,
+          "oraQuotaBet365": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Wwk Volleys Munich vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.6340829798470996,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 23 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: SWD Powervolleys Duren -1,5 vince se SWD Powervolleys Duren vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.3659170201529002,
+          "quota": 2.5,
+          "fonteQuota": "mediana di 23 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Wwk Volleys Munich +1,5 vince se Wwk Volleys Munich vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.8453951404386116,
+          "quota": 1.1,
+          "fonteQuota": "mediana di 23 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: SWD Powervolleys Duren +1,5 vince se SWD Powervolleys Duren vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.15460485956138836,
+          "quota": 5.8,
+          "fonteQuota": "mediana di 23 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Wwk Volleys Munich -1,5 vince se Wwk Volleys Munich vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5647593779516153,
+          "quota": 1.65,
+          "fonteQuota": "mediana di 25 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.43524062204838465,
+          "quota": 2.1,
+          "fonteQuota": "mediana di 25 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-24T08:08:15+02:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}
