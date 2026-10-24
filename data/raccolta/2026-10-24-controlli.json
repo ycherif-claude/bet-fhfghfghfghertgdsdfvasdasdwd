@@ -118,6 +118,30 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-24T12:34:32+02:00"
+    },
+    "calcio-2026-10-24-csikszereda-m-ciuc-fc-voluntari-1x2-1": {
+      "esito": "confermata",
+      "motivo": "quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-24T13:00:04+02:00"
+    },
+    "calcio-2026-10-24-sheffield-united-derby-county-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,20 sotto la minima 4,52",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,20 sotto la minima 4,52"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-24T13:00:04+02:00",
+      "regola": true
     }
   },
   "claude": {
@@ -204,6 +228,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-10-24T12:09:05+02:00"
+    },
+    "calcio-2026-10-24-csikszereda-m-ciuc-fc-voluntari|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-24T13:00:04+02:00"
     }
   }
 }
