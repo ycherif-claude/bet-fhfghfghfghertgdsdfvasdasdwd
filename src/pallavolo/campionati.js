@@ -30,5 +30,12 @@ export const ALIAS_PALLAVOLO = Object.freeze({
   156370: ['olympia'],
   152032: ['konigs', 'wusterhausen'],
   152030: ['ssc', 'baden'],
-  // PlusLiga e Efeler Ligi: per ora bastano i nomi di TheSportsDB.
+  // Efeler Ligi [correzioni 24/10/2026, punto 6]: nomi di odss e OddsPapi non riconosciuti il 24/10 (IBB = İstanbul
+  // Büyükşehir Belediyesi, GSK = Gençlik Spor Kulübü). "Gebze Genclik" no: nello storico c'è solo Gebze Belediyespor.
+  156401: ['sungurluspor'],
+  141588: ['ankara'],
+  151627: ['genclik'],
+  136619: ['istanbul'],
+  156397: ['ibb'],
+  // PlusLiga: per ora bastano i nomi di TheSportsDB.
 });

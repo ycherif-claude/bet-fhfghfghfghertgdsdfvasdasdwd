@@ -79,6 +79,7 @@ export const ALIAS_ESPN_CSV = {
   AUT: { 'Austria Lustenau': 'A. Lustenau', 'SV Josko Ried': 'Ried', 'Rapid Vienna': 'SK Rapid', 'WSG Swarovski Tirol': 'Tirol' },
   DNK: { 'Brøndby IF': 'Brondby', 'F.C. København': 'FC Copenhagen', 'FC Nordsjælland': 'Nordsjaelland', 'Sønderjyske Fodbold': 'Sonderjyske', AGF: 'Aarhus' },
   NOR: { Hamarkameratene: 'HamKam', 'Sarpsborg FK': 'Sarpsborg 08' },
+  SWE: { 'Halmstads BK': 'Halmstad' },
   ARG: {
     "Newell's Old Boys": 'Newells Old Boys', 'Central Córdoba (Santiago del Estero)': 'Central Cordoba', 'Deportivo Riestra': 'Dep. Riestra',
     'Argentinos Juniors': 'Argentinos Jrs', 'Atlético Tucumán': 'Atl. Tucuman', 'Gimnasia La Plata': 'Gimnasia L.P.', 'Estudiantes de La Plata': 'Estudiantes L.P.',

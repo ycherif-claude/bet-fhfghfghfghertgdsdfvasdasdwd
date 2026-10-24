@@ -49,6 +49,14 @@ export const ALIAS = {
   'sporting-clube-braga': 'SC Braga',
   'sport-lisboa-benfica': 'Benfica',
   'vitoria': 'Vitoria Guimaraes',
+  // Squadre non riconosciute il 23 e il 24/10/2026 (nomi dei CSV 2026/27) [correzioni 24/10/2026, punto 6].
+  // Celta Fortuna è la seconda squadra del Celta ("Celta B" nel CSV di Segunda).
+  'mainz': 'FSV Mainz 05',
+  'darmstadt': 'SV Darmstadt 98',
+  'santander': 'Real Racing Club de Santander',
+  'celta-b': 'Celta Fortuna',
+  'guimaraes': 'Vitória SC',
+  'laval': 'Stade Lavallois',
 };
 
 const token = (n) => new Set(normalizzaNome(n).split('-').filter(Boolean));
