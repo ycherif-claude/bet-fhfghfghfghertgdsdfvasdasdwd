@@ -60,7 +60,7 @@ async function risultatoFootballData(gamba, fonti) {
 // Evento ESPN della partita: prima il giorno UTC dell'inizio, poi il giorno UTC precedente [correzione C2]:
 // ESPN raggruppa le partite per giorno americano, quindi una partita serale americana (dopo la mezzanotte
 // UTC) sta nel tabellone del giorno prima.
-async function eventoEspn(gamba, campionato, fonti) {
+export async function eventoEspn(gamba, campionato, fonti) {
   const t = Date.parse(gamba.inizio);
   for (const d of [0, -1]) {
     const giorno = new Date(t + d * 86400000).toISOString().slice(0, 10);

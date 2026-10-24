@@ -313,7 +313,7 @@ function stagioneDi(data) {
 // tabellone per campionato e giorno. Cartellini e angoli no (ESPN li conta diversamente: restano ai CSV).
 // Dopo un rifiuto di ESPN (403) nessun'altra richiesta.
 async function risultatiEspn(gambe, fonti, adesso, errore) {
-  const { risultatoCalcio } = await import('../esiti/rapidi.js');
+  const { eventoEspn, risultatoCalcio } = await import('../esiti/rapidi.js');
   const { CAMPIONATI_ESPN } = await import('../controlli/espn.js');
   const tabelloni = new Map();
   const espn = { ...fonti.espn, partite: (c, giorno) => {
@@ -329,7 +329,15 @@ async function risultatiEspn(gambe, fonti, adesso, errore) {
     if (i < 0 || viste.has(k) || !CAMPIONATI_ESPN[x.competizione] || Date.parse(x.inizio) + TRE_ORE >= adesso.getTime()) continue;
     viste.add(k);
     try {
-      const r = await risultatoCalcio(x, { ...fonti, espn, opz: fonti.opz ?? {} });
+      // Prima il tabellone (già in memoria): finita ai 90 con il punteggio → nessun summary. Il summary solo se serve:
+      // supplementari o rigori (90 minuti dai due tempi), punteggio assente, primo tempo che manca a un mercato del 1° tempo.
+      const ev = await eventoEspn(x, CAMPIONATI_ESPN[x.competizione], { espn });
+      if (!ev) continue;
+      const pieno = ev.stato === 'STATUS_FULL_TIME' && num(ev.gc) && num(ev.gt) && ((num(ev.gcPT) && num(ev.gtPT)) || !/1° tempo/.test(x.mercato));
+      const finita = /^STATUS_(FULL_TIME|FINAL)/.test(String(ev.stato ?? ''));
+      if (ev.stato && !finita) continue;
+      const r = pieno ? { gc: ev.gc, gt: ev.gt, gcPT: num(ev.gcPT) ? ev.gcPT : null, gtPT: num(ev.gtPT) ? ev.gtPT : null }
+        : await risultatoCalcio(x, { ...fonti, espn, opz: fonti.opz ?? {} });
       if (!r || !num(r.gc) || !num(r.gt)) continue;
       out.push({
         casa: x.partita.slice(0, i), trasferta: x.partita.slice(i + 3), data: dataRoma(new Date(x.inizio)), inizio: x.inizio,

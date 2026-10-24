@@ -267,9 +267,8 @@ test('abbinamento: squadre (con alias) e orario; ambiguo, invertito o lontano �
   assert.equal(m.get('in')?.id, 'b');
   assert.equal(m.has('la'), false, 'casa e trasferta invertite');
   assert.equal(m.has('ge'), false, 'orario lontano');
-  // Due eventi esatti (stesse squadre, orario vicino): doppi del feed della stessa partita [correzioni 24/10/2026];
-  // senza il completamento che li unisce vale quello con più bookmaker (qui pari: l'id più piccolo).
-  assert.equal(m.get('na')?.id, 'e1', 'eventi doppi della stessa partita');
+  // Due eventi esatti a 45 minuti uno dall'altro: non sono doppi della stessa partita (solo entro 15 minuti) → ambiguo.
+  assert.equal(m.has('na'), false, 'due eventi possibili');
   // Un evento che andrebbe a due partite: a nessuna.
   const doppio = abbinaEventiOdss([pt('x', 'Torino', 'Monza'), pt('y', 'Torino', 'Monza', '2026-10-23T21:00:00+02:00')], [ev('a', 'Torino', 'Monza')]);
   assert.equal(doppio.size, 0);

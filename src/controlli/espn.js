@@ -112,13 +112,21 @@ export function inElenco(nome, elenco, { infortuni = false } = {}) {
 }
 
 export const espn = {
-  // Partite di un giorno (AAAA-MM-GG): [{ id, casa, trasferta, inizio }].
+  // Partite di un giorno (AAAA-MM-GG): [{ id, casa, trasferta, inizio, stato, gc, gt, gcPT, gtPT }] (stato e punteggi
+  // del tabellone: servono agli esiti del mattino senza chiedere il summary).
   async partite(campionato, data, opz = {}) {
     const r = await scarica(`${BASE}/${campionato}/scoreboard?dates=${data.replaceAll('-', '')}`, opz);
     return (json(r.testo).events ?? []).map((e) => {
       const squadre = e.competitions?.[0]?.competitors ?? [];
-      const di = (lato) => squadre.find((s) => s.homeAway === lato)?.team?.displayName ?? null;
-      return { id: String(e.id), casa: di('home'), trasferta: di('away'), inizio: e.date };
+      const lato = (h) => squadre.find((s) => s.homeAway === h);
+      const di = (h) => lato(h)?.team?.displayName ?? null;
+      const n = (v) => (v !== undefined && v !== null && /^d+$/.test(String(v)) ? Number(v) : null);
+      return {
+        id: String(e.id), casa: di('home'), trasferta: di('away'), inizio: e.date,
+        stato: e.competitions?.[0]?.status?.type?.name ?? e.status?.type?.name ?? null,
+        gc: n(lato('home')?.score), gt: n(lato('away')?.score),
+        gcPT: n(lato('home')?.linescores?.[0]?.displayValue ?? lato('home')?.linescores?.[0]?.value), gtPT: n(lato('away')?.linescores?.[0]?.displayValue ?? lato('away')?.linescores?.[0]?.value),
+      };
     });
   },
 

@@ -288,7 +288,11 @@ export async function completaQuoteOdss({
   const righe = [];
   let richieste = 0;
   const completati = new Set();
-  for (const b of blocchi) {
+  // Raccolta rifatta lo stesso giorno con il budget del calcio finito: niente richieste e niente righe di budget, si
+  // tengono le quote già completate al primo giro [revisione, 24/10/2026].
+  const giaCompletato = oggetto(file.completamento) && !budget.puo(0);
+  if (giaCompletato) errore(`completamento già fatto alle ${String(file.completamento.alle ?? '').slice(11, 16)} e budget del calcio finito: restano le quote salvate`);
+  for (const b of giaCompletato ? [] : blocchi) {
     if (!chiave) { errore('manca il secret ODSS_API_KEY nella raccolta del calcio: niente doppia chance e under/over di odss'); break; }
     const r = await scaricaOdss({
       chiave, budget, sport: 'calcio', gruppi: ['1x2,dc,ou'], eventId: b.ids.join(','), fetch, fonte, attesaMs, errore,
@@ -300,20 +304,25 @@ export async function completaQuoteOdss({
     if (r.fermo) break;
   }
   if (richieste) scrivi(fileStato(dirData), budget.stato());
-  const mancanti = lista.filter((g) => !completati.has(g)).length;
-  if (mancanti && chiave) errore(`${mancanti} ${mancanti === 1 ? 'partita' : 'partite'} senza doppia chance e under/over (restano con l'1x2 del mattino)`);
-  const perId = new Map(file.eventi.filter(oggetto).map((e) => [String(e.id), e]));
+  // Eventi salvati per id intero e per ognuna delle sue parti: un evento già unito ("a,b") si ritrova da "a" e da "b".
+  const perId = new Map();
+  for (const e of file.eventi.filter(oggetto)) for (const k of [String(e.id), ...String(e.id).split(',')]) if (!perId.has(k)) perId.set(k, e);
+  const conDcOu = (e) => Object.keys(e?.mercati ?? {}).some((k) => k === 'dc' || k.startsWith('ou|'));
   const eventi = [];
+  let senza = 0;
   for (const g of lista) {
     const nuovi = completati.has(g) ? eventiOdss(scegliPartitaIntera(unisciRigheEventi(righe, g)).righe, { adesso }) : [];
-    if (nuovi.length) eventi.push(...nuovi);
-    else eventi.push(...g.map((id) => perId.get(id)).filter(Boolean));
+    if (nuovi.length) { eventi.push(...nuovi); continue; }
+    const salvati = [...new Set(g.map((id) => perId.get(id)).filter(Boolean))];
+    eventi.push(...salvati);
+    if (!salvati.some(conDcOu)) senza++;
   }
+  if (senza && chiave) errore(`${senza} ${senza === 1 ? 'partita' : 'partite'} senza doppia chance e under/over (budget del calcio finito o errore: solo l'1x2 del mattino)`);
   const unici = [...new Map(eventi.map((e) => [e.id, e])).values()];
   const st = budget.stato();
   scrivi(percorso, {
     ...file, rimaste: st.rimaste, richieste: (num(file.richieste) ? file.richieste : 0) + richieste,
-    completamento: { alle: isoRoma(adesso), partite: lista.length, completate: completati.size, richieste },
+    completamento: giaCompletato ? file.completamento : { alle: isoRoma(adesso), partite: lista.length, completate: completati.size, richieste },
     erroriGiro: [...(Array.isArray(file.erroriGiro) ? file.erroriGiro : []), ...errori], eventi: unici,
   });
   return { eventi: unici, errori, richieste };
@@ -371,7 +380,12 @@ export function candidatiOdss(partite, eventi) {
       && (!campionatoFemminile(e.campionato) || marcatori(`${sq.casa} ${sq.trasferta}`).some((m) => DONNE.includes(m)))
       && stessiMarcatori(e.casa, sq.casa) && stessiMarcatori(e.trasferta, sq.trasferta));
     const esatti = vicini.filter((e) => stessaSquadra(e.casa, sq.casa) && stessaSquadra(e.trasferta, sq.trasferta));
-    if (esatti.length) { scelti.set(p.idPartita, esatti); continue; }
+    if (esatti.length) {
+      // Doppi del feed solo alla stessa ora (entro 15 minuti): orari più lontani con gli stessi nomi sono ambigui.
+      const t0 = esatti.map((e) => Date.parse(e.inizio));
+      if (Math.max(...t0) - Math.min(...t0) <= 15 * 60000) scelti.set(p.idPartita, esatti);
+      continue;
+    }
     const simili = vicini.filter((e) => simile(e.casa, sq.casa) && simile(e.trasferta, sq.trasferta));
     if (simili.length === 1) scelti.set(p.idPartita, simili);
   }
