@@ -70,8 +70,13 @@ export function spiegazioneMercato(mercato, selezione, nomi, linee) {
 }
 
 // Partite NBA dagli eventi di odss-api: squadre NBA (le altre, WNBA compresa, fuori), più eventi della stessa partita
-// (stesse squadre, inizio vicino) uniti, bookmaker nel formato NBA. { eventi, handicapScartati }.
-export function partiteNbaDaOdss(eventi) {
+// (stesse squadre, inizio vicino) uniti, bookmaker nel formato NBA. { eventi, handicapScartati, invertiti, fuoriCalendario }.
+// Con il calendario di balldontlie [correzioni 24/10/2026, punto 3]: solo gli eventi nel verso del calendario (casa e
+// trasferta, inizio entro CONFIG.odss.toleranzaOre). Il 24/10 odss aveva per ogni partita anche un evento con casa e
+// trasferta invertite e pochi bookmaker ("Miami Heat - Charlotte Hornets"): finiva in "nessuna quota utilizzabile" o,
+// con 3 bookmaker, in una partita in più con il verso sbagliato. Gli invertiti (nomi) e quelli fuori calendario si
+// contano, mai usati.
+export function partiteNbaDaOdss(eventi, { calendario = null } = {}) {
   const gruppi = [];
   const ordinati = (eventi ?? []).filter((e) => !femminile(e) && legaAmmessa(e.campionato, LEGHE_NBA)).sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio));
   for (const e of ordinati) {
@@ -85,13 +90,23 @@ export function partiteNbaDaOdss(eventi) {
   }
   let handicapScartati = 0;
   const out = [];
+  const invertiti = [];
+  let fuoriCalendario = 0;
+  const vicino = (a, b) => Math.abs(Date.parse(a) - Date.parse(b)) <= CONFIG.odss.toleranzaOre * 3600000;
+  const nelCalendario = (casa, trasferta, inizio) => (calendario ?? []).some((c) => squadraNba(c.casa)?.abbr === casa.abbr
+    && squadraNba(c.trasferta)?.abbr === trasferta.abbr && vicino(c.inizio, inizio));
   for (const g of gruppi) {
+    if (Array.isArray(calendario) && !nelCalendario(g.casa, g.trasferta, g.eventi[0].inizio)) {
+      if (nelCalendario(g.trasferta, g.casa, g.eventi[0].inizio)) invertiti.push(`${g.casa.nome} - ${g.trasferta.nome}`);
+      else fuoriCalendario++;
+      continue;
+    }
     const unito = unisciEventi(g.eventi);
     const f = inFormatoNba(unito);
     if (f.handicapScartato) handicapScartati++;
     if (f.bookmaker.length) out.push({ id: unito.id, casa: g.casa.nome, trasferta: g.trasferta.nome, inizio: g.eventi[0].inizio, bookmaker: f.bookmaker });
   }
-  return { eventi: out, handicapScartati };
+  return { eventi: out, handicapScartati, invertiti, fuoriCalendario };
 }
 
 export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData = 'data' }) {
@@ -147,7 +162,9 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData =
       finestra, fetch: fonti.fetchOdss, attesaMs: fonti.attesaOdssMs, partite, nome: 'NBA',
     });
     erroriGiro.push(...o.errori);
-    const p = partiteNbaDaOdss(o.eventi);
+    const p = partiteNbaDaOdss(o.eventi, { calendario });
+    if (p.invertiti.length) errore('odss-api', `${plurale(p.invertiti.length, 'evento NBA', 'eventi NBA')} con casa e trasferta invertite rispetto al calendario, ignorati: ${p.invertiti.join(', ')}`);
+    if (p.fuoriCalendario) errore('odss-api', `${plurale(p.fuoriCalendario, 'evento NBA', 'eventi NBA')} nella giornata ma non nel calendario di balldontlie, ignorati`);
     if (p.handicapScartati) errore('odss-api', plurale(p.handicapScartati, 'handicap NBA scartato: linea della casa con il verso opposto al vincente', 'handicap NBA scartati: linea della casa con il verso opposto al vincente'));
     const coperta = (g) => p.eventi.some((e) => e.casa === g.casa && e.trasferta === g.trasferta
       && Math.abs(Date.parse(e.inizio) - Date.parse(g.inizio)) <= CONFIG.odss.toleranzaOre * 3600000);
