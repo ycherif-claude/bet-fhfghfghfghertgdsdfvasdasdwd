@@ -27,7 +27,10 @@ export function leggiStorico(dirData, campionato) {
 
 // `scarica(stagione, giornata)` → { partite, scartate }. Errori in `errore(fonte, e)`: lo storico salvato resta.
 // `maxRichieste`: tetto di richieste per esecuzione (le giornate mancanti si scaricano i giorni dopo).
-export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, adesso, scarica, errore, pausaMs = 1000, maxRichieste = Infinity }) {
+// `stagioni`: le stagioni da aggiornare (per difetto la corrente e la precedente). `contatore` (facoltativo, condiviso
+// fra più campionati della stessa fonte): { rimaste, fermo }; ogni richiesta toglie una `rimaste`, un HTTP 429 mette
+// `fermo` e nessun campionato chiede più niente in questa esecuzione.
+export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, adesso, scarica, errore, pausaMs = 1000, maxRichieste = Infinity, stagioni = null, contatore = null }) {
   let salvato;
   try {
     salvato = leggiStorico(dirData, campionato);
@@ -42,18 +45,21 @@ export async function aggiornaStorico({ campionato, nomeFonte, dirData, data, ad
   let scartate = 0;
   let cambiato = false;
   // Prima la stagione in corso (modello di oggi ed esiti): se la fonte limita le richieste, la precedente aspetta domani.
-  for (const stagione of [corrente, corrente - 1]) {
+  const puoChiedere = () => richieste < maxRichieste && (!contatore || (contatore.rimaste > 0 && !contatore.fermo));
+  for (const stagione of stagioni ?? [corrente, corrente - 1]) {
     if (complete.has(stagione)) continue;
     const giornate = [...perId.values()].filter((p) => p.stagione === stagione).map((p) => p.giornata);
     let giornata = giornate.length ? Math.max(...giornate) : 1;
     let finita = false;
-    for (let n = 0; n < MAX_GIORNATE && richieste < maxRichieste; n++, giornata++) {
-      if (richieste++) await pausa(pausaMs);
+    for (let n = 0; n < MAX_GIORNATE && puoChiedere(); n++, giornata++) {
+      if (richieste++ || contatore?.usate) await pausa(pausaMs);
+      if (contatore) { contatore.rimaste--; contatore.usate = (contatore.usate ?? 0) + 1; }
       let r;
       try {
         r = await scarica(stagione, giornata);
       } catch (e) {
         errore(`${nomeFonte} stagione ${stagione} giornata ${giornata}`, e);
+        if (contatore && (e?.status === 429 || /HTTP 429/.test(String(e?.message)))) contatore.fermo = true;
         break;
       }
       scartate += r.scartate ?? 0;

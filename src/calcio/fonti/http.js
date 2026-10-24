@@ -31,6 +31,7 @@ export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, 
   const intestazioni = espn ? { ...INTESTAZIONI_ESPN, ...headers } : headers;
   const tentativi = CONFIG.calcio.ripetizioni + 1;
   let motivo = 'errore sconosciuto';
+  let status = null;
   for (let i = 0; i < tentativi; i++) {
     if (i > 0) await pausa(attesaMs);
     let r;
@@ -40,7 +41,7 @@ export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, 
       motivo = `errore di rete (${senzaChiave(e?.message ?? e)})`;
       continue;
     }
-    if (r.status >= 500 || r.status === 429) { motivo = `HTTP ${r.status}`; continue; }
+    if (r.status >= 500 || r.status === 429) { motivo = `HTTP ${r.status}`; status = r.status; continue; }
     if (espn && r.status === 403) {
       throw Object.assign(new Error(`${nome}: HTTP 403 (ESPN: accesso negato, probabile blocco per troppe richieste)`), { status: 403, espnBloccato: true });
     }
@@ -48,5 +49,5 @@ export async function scarica(url, { fetch = globalThis.fetch, attesaMs = 2000, 
     if (binario) return { status: r.status, headers: r.headers, corpo: Buffer.from(await r.arrayBuffer()) };
     return { status: r.status, headers: r.headers, testo: await r.text() };
   }
-  throw new Error(`${nome}: ${motivo}`);
+  throw Object.assign(new Error(`${nome}: ${motivo}`), status ? { status } : {});
 }

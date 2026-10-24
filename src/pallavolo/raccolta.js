@@ -140,15 +140,22 @@ export async function eseguiRaccoltaPallavolo({ data, adesso, fonti, chiavi, dir
   const corrente = stagioneBasket(data);
 
   // 1. Storico (gratuito, anche senza chiave): modello di oggi ed esiti dei giorni passati.
+  // Al massimo P.maxGiornateEsecuzione giornate fra tutti i campionati, prima le stagioni in corso; dopo un HTTP 429
+  // nessun'altra richiesta (si riprende alla raccolta dopo) [correzioni 24/10/2026, punto 7].
   const storici = new Map();
-  for (const c of CAMPIONATI_PALLAVOLO.filter((x) => x.thesportsdb)) {
-    const { partite } = await aggiornaStorico({
-      campionato: fileStorico(c), nomeFonte: `TheSportsDB (${c.competizione})`, dirData, data, adesso, errore,
-      scarica: (s, g) => fonti.thesportsdb.round(s, g, {}, c.thesportsdb),
-      pausaMs: pausaMs ?? P.pausaTheSportsDbMs, maxRichieste: P.maxGiornateGiorno,
-    });
-    storici.set(c.id, partite);
+  const contatore = { rimaste: P.maxGiornateEsecuzione, fermo: false };
+  for (const stagioni of [[corrente], [corrente - 1]]) {
+    for (const c of CAMPIONATI_PALLAVOLO.filter((x) => x.thesportsdb)) {
+      const { partite } = await aggiornaStorico({
+        campionato: fileStorico(c), nomeFonte: `TheSportsDB (${c.competizione})`, dirData, data, adesso, errore,
+        scarica: (s, g) => fonti.thesportsdb.round(s, g, {}, c.thesportsdb),
+        pausaMs: pausaMs ?? P.pausaTheSportsDbMs, stagioni, contatore,
+        maxRichieste: stagioni[0] === corrente ? P.maxGiornateCampionato : Infinity,
+      });
+      storici.set(c.id, partite);
+    }
   }
+  if (contatore.fermo) errore('TheSportsDB', 'HTTP 429 (troppe richieste): niente altre richieste, storico della pallavolo ripreso alla prossima raccolta');
   Object.defineProperty(raccolta, 'storici', { value: storici, enumerable: false });
   // Coperti solo i campionati con partite finite nella stagione in corso: servono agli esiti.
   const attivi = CAMPIONATI_PALLAVOLO.filter((c) => (storici.get(c.id) ?? []).some((p) => p.stagione === corrente && p.finita !== false));

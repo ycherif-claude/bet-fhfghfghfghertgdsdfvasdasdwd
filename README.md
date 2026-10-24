@@ -226,7 +226,7 @@ Per ricontrollare a mano cosa copre OddsPapi (circa 5 richieste) c'è l'Action "
 
 ### Campionati
 
-In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie A1 femminile, PlusLiga, Efeler Ligi (Turchia), Bundesliga. Lo storico gratuito viene da TheSportsDB e si salva in `data/storico/pallavolo-<campionato>.json`. Un campionato senza storico gratuito della stagione in corso resta fuori, perché gli esiti non si chiuderebbero: per ora la Champions League (TheSportsDB non la ha) e la Serie A1 femminile (TheSportsDB non ha ancora la stagione 2026-27; entrerà da sola quando ci sarà).
+In ordine di priorità: SuperLega, Champions League maschile e femminile, Serie A1 femminile, PlusLiga, Efeler Ligi (Turchia), Bundesliga. Lo storico gratuito viene da TheSportsDB e si salva in `data/storico/pallavolo-<campionato>.json`. TheSportsDB limita le richieste (il 23 e il 24/10 rispondeva HTTP 429): 12 secondi fra una richiesta e l'altra, al massimo 15 giornate per raccolta fra tutti i campionati (prima 3 giornate della stagione in corso per campionato, poi le stagioni precedenti) e, dopo un 429, nessun'altra richiesta: lo storico riprende la mattina dopo dall'ultima giornata salvata. Un campionato senza storico gratuito della stagione in corso resta fuori, perché gli esiti non si chiuderebbero: per ora la Champions League (TheSportsDB non la ha) e la Serie A1 femminile (TheSportsDB non ha ancora la stagione 2026-27; entrerà da sola quando ci sarà).
 
 ### Mercati
 

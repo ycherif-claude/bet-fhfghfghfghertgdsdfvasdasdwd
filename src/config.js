@@ -133,9 +133,15 @@ export const CONFIG = congela({
     riservaRichieste: 0.20,
     // OddsPapi: 2 s di pausa obbligatoria su /fixtures, 0,5 s su /odds.
     pausaOddsPapiMs: 2100,
-    // TheSportsDB: circa 10 richieste al minuto, al massimo 12 giornate per campionato a ogni raccolta.
-    pausaTheSportsDbMs: 6500,
-    maxGiornateGiorno: 12,
+    // TheSportsDB [correzioni 24/10/2026, punto 7]: il 23 e il 24/10 HTTP 429 con 6,5 s di pausa e fino a 12 giornate
+    // per campionato (60 richieste). Ora 12 s fra una richiesta e l'altra (5 al minuto), al massimo 15 giornate per
+    // esecuzione fra tutti i campionati (prima le stagioni in corso) e, dopo un 429, basta fino alla raccolta del giorno
+    // dopo, che riprende dall'ultima giornata salvata.
+    pausaTheSportsDbMs: 12000,
+    maxGiornateEsecuzione: 15,
+    // Stagione in corso: al massimo 3 giornate per campionato a esecuzione (5 campionati × 3 = 15), così tutti la
+    // aggiornano; le giornate che avanzano vanno alle stagioni precedenti.
+    maxGiornateCampionato: 3,
   },
   // Modalità prova [utente, 22/10/2026]: 3-4 settimane di giocate da non giocare, solo per creare il
   // database della taratura. Ogni value positivo diventa una giocata di prova, senza lo scarto dal mercato.
