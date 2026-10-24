@@ -268,6 +268,21 @@
       ],
       "alle": "2026-10-24T02:27:29+02:00",
       "regola": true
+    },
+    "nba-2026-10-23-los-angeles-lakers-la-clippers-vincente-la-clippers": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,80 sotto la minima 3,93",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,80 sotto la minima 3,93"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-24T03:17:29+02:00",
+      "regola": true
     }
   },
   "claude": {
