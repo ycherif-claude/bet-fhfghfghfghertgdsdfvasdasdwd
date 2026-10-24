@@ -1,0 +1,196 @@
+{
+  "data": "2026-10-24",
+  "scaricateAlle": "2026-10-24T21:39:55+02:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 8
+    }
+  },
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-24-cleveland-cavaliers-brooklyn-nets",
+      "id": "ge6zwDoFGNAT6ix85f1k",
+      "casa": "Cleveland Cavaliers",
+      "trasferta": "Brooklyn Nets",
+      "inizio": "2026-10-25T01:30:00+02:00",
+      "bookmaker": [
+        {
+          "chiave": "fanduel",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.85
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.94,
+                "trasferta": 1.88
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "unibet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.21,
+              "trasferta": 4.6
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.93,
+                "trasferta": 1.89
+              }
+            }
+          }
+        },
+        {
+          "chiave": "williamhill",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.5
+            }
+          }
+        },
+        {
+          "chiave": "bovada",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.6
+            },
+            "handicap": {
+              "-11": {
+                "casa": 1.91,
+                "trasferta": 1.91
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "caesars",
+          "mercati": {
+            "vincente": {
+              "casa": 1.21,
+              "trasferta": 4.6
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.95,
+                "under": 1.87
+              }
+            }
+          }
+        },
+        {
+          "chiave": "espnbet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.18,
+              "trasferta": 4.8
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "draftkings",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.8
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.93,
+                "trasferta": 1.89
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.87,
+                "under": 1.95
+              }
+            }
+          }
+        },
+        {
+          "chiave": "betmgm",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.75
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "pointsbet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.2,
+              "trasferta": 4.75
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.9,
+                "trasferta": 1.9
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.95,
+                "under": 1.87
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "giocate": [
+    {
+      "idGiocata": "nba-2026-10-24-cleveland-cavaliers-brooklyn-nets-handicap-meno-11-5-casa",
+      "idPartita": "nba-2026-10-24-cleveland-cavaliers-brooklyn-nets",
+      "mercato": "Handicap -11.5",
+      "selezione": "casa",
+      "consensoFresco": 0.49345549738219896,
+      "quotaFresca": 1.93
+    }
+  ]
+}
