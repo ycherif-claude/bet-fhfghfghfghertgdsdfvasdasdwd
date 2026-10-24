@@ -185,21 +185,20 @@ export const CONFIG = congela({
   // Idea 1 [utente, 22/10/2026]: quote dei bookmaker italiani dell'utente da odss-api.com (piano gratuito:
   // 500 richieste ogni 30 giorni, 30 al minuto). Dal 22/10/2026 odss-api è la fonte principale delle quote di tutti
   // gli sport (calcio, tennis, basket, NBA, pallavolo) e dei controlli; le fonti di prima restano di riserva.
-  // Budget unico (data/stato/odss.json): al massimo `richiesteGiorno` richieste nel giro del mattino fra tutti gli
-  // sport (ognuno al massimo `tetti[sport]`), `richiesteControlli` al giorno per i controlli e mai sotto `riserva`
-  // richieste rimaste. (10 + 3) × 30 = 390 richieste in 30 giorni al massimo, sotto le 440 spendibili.
-  // Uno sport senza partite oggi non fa richieste.
+  // Budget per sport [correzioni 24/10/2026, punto 2] (data/stato/odss.json): ogni sport del giro del mattino e i
+  // controlli hanno il loro tetto al giorno (`tetti`), dentro il tetto giornaliero totale `richiesteGiorno`, che è la
+  // loro somma: in qualunque ordine girino le raccolte, ognuno ha la sua quota (prima calcio, NBA e tennis finivano le
+  // 10 richieste del mattino e basket e pallavolo restavano senza). Mai sotto `riserva` richieste rimaste.
+  // Uno sport senza partite oggi non fa richieste. Al massimo 13 × 30 = 390 richieste in 30 giorni (sotto le 440
+  // spendibili); consumo atteso più basso (README, "Budget di odss-api").
   odss: {
-    richiesteGiorno: 10,
-    richiesteControlli: 3,
-    tetti: { calcio: 6, tennis: 2, nba: 2, basket: 2, pallavolo: 2 },
+    richiesteGiorno: 13,
+    tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 4 },
     riserva: 60,
     mercati: ['1x2', 'dc', 'ou'],
-    // Righe per pagina (l'API arriva a 5000; 1000 evita risposte enormi e timeout, con più pagine).
-    limite: 1000,
-    // Calcio: tutte le competizioni del mondo in una giornata (decine di migliaia di righe con l'under/over). Con 1000
-    // righe il tetto di 6 richieste non basterebbe: pagine da 5000 (il massimo dell'API).
-    limiteCalcio: 5000,
+    // Righe per pagina: 5000, il massimo dell'API, per tutti gli sport (con 1000 NBA e tennis finivano in 2 pagine e
+    // il 23/10 l'NBA è rimasta con le quote incomplete).
+    limite: 5000,
     // Pinnacle aggiornato da più di tante ore: ignorato, vale il consenso dei bookmaker.
     oreMaxPinnacle: 24,
     // Linee dell'Under/Over salvate (i pronostici usano l'Over 1.5).

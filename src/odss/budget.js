@@ -5,9 +5,11 @@
 // La chiave è sempre la giornata del progetto (dalle 08:00 di Roma alle 08:00 del giorno dopo, giornataDi):
 // - raccolte del mattino: la giornata che raccolgono (`data`, la cui finestra comincia alle 08:00): la raccolta delle
 //   07:35 del 23 conta nella giornata del 23 anche se parte prima delle 08:00, e un cron in ritardo dopo le 08:00 non
-//   la sposta. usate ≤ CONFIG.odss.richiesteGiorno, perSport[sport] ≤ CONFIG.odss.tetti[sport];
+//   la sposta. perSport[sport] ≤ CONFIG.odss.tetti[sport];
 // - controlli: la giornata in corso, giornataDi(adesso) (alle 07:50 del 23 è ancora quella del 22).
-//   controlli ≤ CONFIG.odss.richiesteControlli.
+//   controlli ≤ CONFIG.odss.tetti.controlli.
+// In tutto usate + controlli ≤ CONFIG.odss.richiesteGiorno, la somma dei tetti: ognuno ha sempre la sua quota,
+// in qualunque ordine girino le raccolte [correzioni 24/10/2026, punto 2].
 // Ogni tipo ha il suo contatore nella sua giornata: scrivere l'uno non azzera mai l'altro [revisione, 23/10/2026].
 // Mai sotto CONFIG.odss.riserva richieste rimaste. Dopo un HTTP 429 (limite di odss) nessuno step chiede più niente
 // fino al reset (o per un'ora se il reset non si sa): `limiteRaggiuntoFino`.
@@ -76,10 +78,8 @@ export function creaBudgetOdss({ stato, data, adesso, tipo = 'mattino', sport = 
   };
   const dellaSport = () => (sport ? g.perSport[sport] ?? 0 : 0);
   const tettoSport = () => (sport && num(O.tetti?.[sport]) ? O.tetti[sport] : Infinity);
-  const libere = () => {
-    if (tipo === 'controlli') return O.richiesteControlli - g.controlli;
-    return Math.min(O.richiesteGiorno - g.usate, tettoSport() - dellaSport());
-  };
+  const proprieLibere = () => (tipo === 'controlli' ? O.tetti.controlli - g.controlli : tettoSport() - dellaSport());
+  const libere = () => Math.min(O.richiesteGiorno - g.usate - g.controlli, proprieLibere());
   return {
     chiave,
     puo(dopo = 0) {
@@ -90,15 +90,18 @@ export function creaBudgetOdss({ stato, data, adesso, tipo = 'mattino', sport = 
     motivo() {
       if (s.limiteRaggiuntoFino) return `limite di richieste di odss-api raggiunto (HTTP 429) fino a ${s.limiteRaggiuntoFino}`;
       if (libere() < 1) {
-        if (tipo === 'controlli') return `tetto di ${O.richiesteControlli} richieste al giorno per i controlli raggiunto`;
-        if (O.richiesteGiorno - g.usate < 1) return `tetto di ${O.richiesteGiorno} richieste al giorno del giro del mattino raggiunto`;
-        return `tetto di ${tettoSport()} richieste al giorno per ${sport} raggiunto`;
+        if (proprieLibere() < 1) {
+          return tipo === 'controlli' ? `tetto di ${O.tetti.controlli} richieste al giorno per i controlli raggiunto`
+            : `tetto di ${tettoSport()} richieste al giorno per ${sport} raggiunto`;
+        }
+        return `tetto giornaliero di ${O.richiesteGiorno} richieste a odss-api raggiunto`;
       }
       return `riserva di ${O.riserva} richieste raggiunta (rimaste ${s.rimaste})`;
     },
     descrizione() {
-      const oggi = tipo === 'controlli' ? `controlli oggi ${g.controlli} su ${O.richiesteControlli}` : `oggi ${g.usate} richieste su ${O.richiesteGiorno}`;
-      return `${oggi}, rimaste ${s.rimaste ?? 'sconosciute'}, riserva ${O.riserva}`;
+      const oggi = tipo === 'controlli' ? `controlli oggi ${g.controlli} su ${O.tetti.controlli}`
+        : sport ? `${sport} oggi ${dellaSport()} su ${tettoSport()}` : `mattino oggi ${g.usate}`;
+      return `${oggi}, giornata ${g.usate + g.controlli} su ${O.richiesteGiorno}, rimaste ${s.rimaste ?? 'sconosciute'}, riserva ${O.riserva}`;
     },
     conta() {
       if (tipo === 'controlli') g.controlli++;

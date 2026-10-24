@@ -29,7 +29,7 @@ jobs:
         # Fonte principale delle quote del calcio (tutte le competizioni) e quote dei bookmaker italiani dell'utente:
         # 1x2, doppia chance e under/over della giornata in data/raccolta/<data>-odss.json, che la raccolta del calcio
         # (step dopo, senza chiave odss) e il giro del mattino (routine Claude, senza secrets) leggono da soli.
-        # Budget unico odss in data/stato/odss.json: calcio al massimo 6 richieste, 10 al giorno fra tutti gli sport,
+        # Budget odss per sport in data/stato/odss.json: calcio al massimo 4 richieste, 13 al giorno in tutto (CONFIG.odss),
         # mai sotto 60 rimaste. Senza quote odss la raccolta del calcio torna a The Odds API.
         run: npm run raccolta-odss
         continue-on-error: true

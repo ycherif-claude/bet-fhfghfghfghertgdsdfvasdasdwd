@@ -1,6 +1,6 @@
 // Quote dell'ultimo momento da odss-api per i controlli pre-partita [utente, 22/10/2026]: una sola richiesta per
 // passaggio con tutti gli sport e i mercati delle voci da controllare, finestra da un'ora prima della prima partita a
-// un'ora dopo l'ultima, tetto dei controlli del budget unico (CONFIG.odss.richiesteControlli al giorno, mai sotto la
+// un'ora dopo l'ultima, tetto dei controlli del budget unico (CONFIG.odss.tetti.controlli al giorno, mai sotto la
 // riserva). Map(id voce → { quota, n, prob }) solo per le voci con una quota: le altre (partita non trovata, mercato
 // che odss non ha, budget finito, errore) restano alle fonti di prima.
 import { creaBudgetOdss, leggiStatoOdss, scriviStatoOdss } from '../odss/budget.js';

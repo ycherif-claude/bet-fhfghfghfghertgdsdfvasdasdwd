@@ -185,7 +185,7 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
     esito = 'senza chiave';
   } else {
     const r = await scaricaOdss({
-      chiave, budget, sport: 'calcio', gruppi: O.mercati, finestra: finestraGiornata(data), fetch, fonte, attesaMs, errore, limite: O.limiteCalcio,
+      chiave, budget, sport: 'calcio', gruppi: O.mercati, finestra: finestraGiornata(data), fetch, fonte, attesaMs, errore, limite: O.limite,
       suffissoBudget: ': niente quote dei bookmaker italiani oggi',
     });
     tutte = r.righe;

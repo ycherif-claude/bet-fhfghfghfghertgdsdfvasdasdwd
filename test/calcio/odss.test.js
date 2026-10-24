@@ -75,7 +75,7 @@ test('fonte: parametri della richiesta, chiave nell\'intestazione, User-Agent on
   assert.equal(u.searchParams.get('state'), 'prematch');
   assert.equal(u.searchParams.get('commence_from'), '2026-10-23T06:00:00Z');
   assert.equal(u.searchParams.get('commence_to'), '2026-10-24T06:00:00Z');
-  assert.equal(u.searchParams.get('limit'), '1000');
+  assert.equal(u.searchParams.get('limit'), '5000');
   // Senza filtro bookmakers (serve il consenso di tutti) e senza la chiave nell'indirizzo.
   assert.equal(u.searchParams.has('bookmakers'), false);
   assert.ok(!f.chiamate[0].url.includes(CHIAVE));
@@ -176,7 +176,7 @@ test('download: 1x2, dc e ou con paginazione; eventi compatti; stato con rimaste
 test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico); se non basta niente quote e una riga chiara', async () => {
   const { riserva, tetti } = CONFIG.odss;
   assert.equal(riserva, 60);
-  assert.equal(tetti.calcio, 6);
+  assert.equal(tetti.calcio, 4);
   // Rimaste 62: servirebbero 3 richieste e si scenderebbe sotto 60 → nessuna richiesta.
   let f = fetchFinto(pagineTipo());
   let r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f,
@@ -185,14 +185,14 @@ test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico
   assert.deepEqual(r.file.eventi, []);
   assert.match(r.file.erroriGiro[0], /odss-api.*budget insufficiente.*rimaste 62.*riserva 60/);
   assert.equal(r.file.esito, 'budget');
-  // Già 4 richieste oggi del calcio: ne restano 2 sulle 6, non bastano per 3 mercati.
+  // Già 2 richieste oggi del calcio: ne restano 2 sulle 4, non bastano per 3 mercati.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 4, perSport: { calcio: 4 } } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 2, perSport: { calcio: 2 } } });
   assert.equal(f.chiamate.length, 0);
   assert.match(r.file.erroriGiro[0], /budget insufficiente/);
-  // 9 richieste oggi fra tutti gli sport: il tetto del giro del mattino (10) non basta.
+  // 11 richieste oggi fra tutti gli sport: il tetto giornaliero (13) non basta.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 9, perSport: { tennis: 9 } } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 11, perSport: { tennis: 11 } } });
   assert.equal(f.chiamate.length, 0);
   // Giorno nuovo: il conteggio di oggi riparte; un reset passato rende sconosciute le rimaste.
   f = fetchFinto(pagineTipo());
@@ -202,9 +202,9 @@ test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico
   // Le pagine in più si fanno solo lasciando una richiesta a ogni mercato che manca; poi riga "incomplete".
   const tante = { '1x2': [[riga()], [riga({ event_id: 'e2' })], [riga({ event_id: 'e3' })], [riga({ event_id: 'e4' })]], dc: [[riga({ market: 'dc' })]], ou: [[riga({ market: 'ou', line: 1.5 })]] };
   f = fetchFinto(tante);
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 1, perSport: { calcio: 1 } } });
-  assert.equal(f.chiamate.length, 5);
-  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', '1x2', '1x2', 'dc', 'ou']);
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 0 } });
+  assert.equal(f.chiamate.length, 4);
+  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', '1x2', 'dc', 'ou']);
   assert.ok(r.file.erroriGiro.some((x) => /1x2.*incomplete/.test(x)));
   // Dopo ogni risposta conta l'intestazione: a 61 rimaste non si fa la richiesta successiva.
   f = fetchFinto(pagineTipo(), { rimaste: 62 });

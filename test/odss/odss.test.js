@@ -24,32 +24,32 @@ const intere = MOCK.odds.map((r) => ({ ...r, scope: 'match', period: 'full_time'
 test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli a parte, riserva fissa', () => {
   const O = CONFIG.odss;
   assert.equal(O.riserva, 60);
-  assert.equal(O.richiesteGiorno, 10);
-  assert.equal(O.richiesteControlli, 3);
-  assert.equal(O.tetti.calcio, 6);
+  assert.equal(O.richiesteGiorno, 13);
+  assert.equal(O.tetti.calcio, 4);
+  assert.equal(O.tetti.controlli, 4);
   // Al massimo ~400 richieste in 30 giorni anche usando tutti i tetti.
-  assert.ok((O.richiesteGiorno + O.richiesteControlli) * 30 <= 400);
-  // 9 richieste già fatte oggi dalle altre raccolte: il tennis ne può fare una sola.
-  let b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 9, perSport: { calcio: 6, nba: 1, basket: 2 } }, data: DATA, adesso: ADESSO, sport: 'tennis' });
+  assert.ok(O.richiesteGiorno * 30 <= 400);
+  // 7 richieste già fatte oggi dalle altre raccolte: il tennis ne può fare una sola (il suo tetto).
+  let b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 7, perSport: { calcio: 4, nba: 2, basket: 1 } }, data: DATA, adesso: ADESSO, sport: 'tennis' });
   assert.equal(b.puo(0), true);
   assert.equal(b.puo(1), false);
   b.conta();
   assert.equal(b.puo(0), false);
-  assert.match(b.motivo(), /tetto di 10 richieste al giorno del giro del mattino/);
-  assert.deepEqual(b.stato().giornate[DATA].perSport, { calcio: 6, nba: 1, basket: 2, tennis: 1 });
+  assert.match(b.motivo(), /tetto di 1 richieste al giorno per tennis/);
+  assert.deepEqual(b.stato().giornate[DATA].perSport, { calcio: 4, nba: 2, basket: 1, tennis: 1 });
   // Il calcio da solo non va oltre il suo tetto.
-  b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 6, perSport: { calcio: 6 } }, data: DATA, adesso: ADESSO, sport: 'calcio' });
+  b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 4, perSport: { calcio: 4 } }, data: DATA, adesso: ADESSO, sport: 'calcio' });
   assert.equal(b.puo(0), false);
   assert.match(b.motivo(), /per calcio/);
   // I controlli hanno il loro tetto e non toccano quello del mattino.
   // (alle 12:00 la giornata in corso dei controlli è quella del 23, la stessa della raccolta del 23).
   const MEZZOGIORNO = new Date('2026-10-23T10:00:00Z');
-  b = creaBudgetOdss({ stato: { rimaste: 300, giornate: { [DATA]: { usate: 10, controlli: 2 } } }, data: DATA, adesso: MEZZOGIORNO, tipo: 'controlli' });
+  b = creaBudgetOdss({ stato: { rimaste: 300, giornate: { [DATA]: { usate: 9, controlli: 3 } } }, data: DATA, adesso: MEZZOGIORNO, tipo: 'controlli' });
   assert.equal(b.puo(0), true);
   b.conta();
   assert.equal(b.puo(0), false);
-  assert.equal(b.stato().giornate[DATA].usate, 10);
-  assert.equal(b.stato().giornate[DATA].controlli, 3);
+  assert.equal(b.stato().giornate[DATA].usate, 9);
+  assert.equal(b.stato().giornate[DATA].controlli, 4);
   // Riserva: con 61 rimaste nessuna richiesta che lasci meno di 60.
   b = creaBudgetOdss({ stato: { rimaste: 61, giorno: DATA }, data: DATA, adesso: ADESSO, sport: 'nba' });
   assert.equal(b.puo(0), true);
@@ -59,7 +59,7 @@ test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli 
   assert.match(b.motivo(), /riserva di 60/);
   // Giorno nuovo: i conteggi ripartono; un reset passato rende sconosciute le rimaste.
   b = creaBudgetOdss({ stato: { rimaste: 10, reset: '2026-10-01T00:00:00Z', giorno: '2026-10-22', usateOggi: 10, controlliOggi: 3, perSport: { calcio: 6 } }, data: DATA, adesso: ADESSO, sport: 'calcio' });
-  assert.equal(b.puo(5), true);
+  assert.equal(b.puo(3), true);
   assert.deepEqual(b.stato(), { aggiornatoAlle: ADESSO.toISOString(), rimaste: null, limite: null, reset: null, limiteRaggiuntoFino: null, giornate: {
     '2026-10-22': { usate: 10, controlli: 3, perSport: { calcio: 6 }, avvisi: [] }, [DATA]: { usate: 0, controlli: 0, perSport: {}, avvisi: [] },
   } });
@@ -102,7 +102,7 @@ test('download: 401/403 e 429 fermano tutto (fermo), un 5xx si riprova una volta
     assert.ok(!errori.join(' ').includes(CHIAVE));
   }
   let f = fetchOdss({}, { status: 503 });
-  let r = await scaricaOdss({ chiave: CHIAVE, budget: creaBudgetOdss({ stato: null, data: DATA, adesso: ADESSO, sport: 'tennis' }), sport: 'tennis', gruppi: ['moneyline'], finestra: FINESTRA, fetch: f, errore: () => {}, attesaMs: 0 });
+  let r = await scaricaOdss({ chiave: CHIAVE, budget: creaBudgetOdss({ stato: null, data: DATA, adesso: ADESSO, sport: 'nba' }), sport: 'tennis', gruppi: ['moneyline'], finestra: FINESTRA, fetch: f, errore: () => {}, attesaMs: 0 });
   assert.equal(f.chiamate.length, 2);
   assert.equal(r.ok, false);
   f = fetchOdss({});
@@ -194,7 +194,7 @@ test('formati: NBA/basket (vincente, handicap della casa, totale), tennis per no
 test('documentazione: fonti per sport, budget unico e riserva nel README e nelle routine', () => {
   const r = readFileSync('README.md', 'utf8');
   assert.match(r, /odss-api è la fonte principale di tutti gli sport/);
-  assert.match(r, /\(10 \+ 3\) × 30 = 390/);
+  assert.match(r, /13 × 30 = 390/);
   for (const riserva of ['The Odds API', 'SportsGameOdds', 'OddsPapi']) assert.ok(r.includes(riserva));
   assert.match(readFileSync('docs/routine/giro-del-mattino.md', 'utf8'), /mediana di N bookmaker \(odss-api\)/);
   assert.match(readFileSync('docs/routine/controllo-pre-partita.md', 'utf8'), /prima odss-api/);

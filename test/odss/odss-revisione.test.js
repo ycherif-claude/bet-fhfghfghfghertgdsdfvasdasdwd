@@ -62,14 +62,14 @@ test('budget: un 429 ferma tutti gli step dopo (anche in un altro processo) fino
 
 // ---- Pagine e richieste separate ----
 
-test('download: pagine da 1000 righe; HTTP 400 con più valori → una richiesta per mercato e sport, nel budget', async () => {
-  assert.equal(CONFIG.odss.limite, 1000);
+test('download: pagine da 5000 righe; HTTP 400 con più valori → una richiesta per mercato e sport, nel budget', async () => {
+  assert.equal(CONFIG.odss.limite, 5000);
   const pagine = { 'basket|moneyline': [[rigaOdss({ sport: 'basket', market: 'moneyline' })]], 'basket|ou': [[rigaOdss({ sport: 'basket', market: 'ou', line: 210.5 })]] };
   const f = fetchOdss(pagine, { status: (u) => (u.searchParams.get('market').includes(',') ? 400 : 200) });
   const b = creaBudgetOdss({ stato: null, data: '2026-10-23', adesso: new Date('2026-10-23T05:36:00Z'), sport: 'calcio' });
   const r = await scaricaOdss({ chiave: CHIAVE, budget: b, sport: 'basket', gruppi: ['moneyline,ou'], finestra: FIN, fetch: f, attesaMs: 0 });
   assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['moneyline,ou', 'moneyline', 'ou']);
-  assert.equal(new URL(f.chiamate[0].url).searchParams.get('limit'), '1000');
+  assert.equal(new URL(f.chiamate[0].url).searchParams.get('limit'), '5000');
   assert.equal(r.righe.length, 2);
   assert.equal(r.ok, true);
 });
@@ -208,9 +208,9 @@ test('controlli: la linea della giocata, una riga per motivo per giornata (non a
   assert.equal(errori.filter((e) => /odss-api.*tetto/.test(e)).length, 1, errori.join(' | '));
 });
 
-test('pagine: 1000 righe per gli altri sport e i controlli, 5000 per il calcio (con 1000 il tetto di 6 richieste non basterebbe)', async () => {
+test('pagine: 5000 righe per tutti gli sport (correzioni 24/10: con 1000 NBA e tennis finivano in più pagine)', async () => {
   const { scaricaQuoteOdss } = await import('../../src/calcio/odss.js');
-  assert.equal(CONFIG.odss.limiteCalcio, 5000);
+  assert.equal(CONFIG.odss.limite, 5000);
   const f = fetchOdss({});
   await scaricaQuoteOdss({ data: '2026-10-23', adesso: new Date('2026-10-23T05:36:00Z'), chiave: CHIAVE, stato: null, fetch: f, attesaMs: 0 });
   assert.ok(f.chiamate.every((c) => new URL(c.url).searchParams.get('limit') === '5000'));

@@ -145,5 +145,5 @@ test('workflow: la raccolta odss gira prima della raccolta del calcio, che legge
   assert.ok(w.indexOf('npm run raccolta-odss') < w.indexOf('npm run raccolta\n'));
   const step = w.split('\n      - ').find((s) => s.includes('npm run raccolta\n'));
   assert.ok(!step.includes('ODSS_API_KEY'));
-  assert.equal(CONFIG.odss.tetti.calcio, 6);
+  assert.equal(CONFIG.odss.tetti.calcio, 4);
 });
