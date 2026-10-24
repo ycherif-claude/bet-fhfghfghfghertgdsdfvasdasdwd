@@ -63,7 +63,7 @@ Non incollare mai le chiavi in una chat né in un file del progetto: vanno solo 
 
 | Sport | Mercati odss-api | Riserva (se odss non risponde, dà 401/403/429, il budget non basta o non ha la competizione) |
 |---|---|---|
-| Calcio (principali, seconde serie, coppe, campionati extra) | 1x2, dc, ou (linee 1.5, 2.5, 3.5) | The Odds API (solo le competizioni che ha) |
+| Calcio (principali, seconde serie, coppe, campionati extra) | 1x2 della giornata, poi 1x2, dc e ou (linee 1.5, 2.5, 3.5) per gli `event_id` delle nostre partite | The Odds API (solo le competizioni che ha) |
 | Tennis | moneyline (vincente incontro) | The Odds API |
 | Basket (Eurolega, NBL) | moneyline, ah (handicap, linea della casa), ou | The Odds API |
 | NBA | moneyline, ah, ou | SportsGameOdds |

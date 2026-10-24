@@ -201,7 +201,6 @@ export const CONFIG = congela({
     richiesteGiorno: 13,
     tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 4 },
     riserva: 60,
-    mercati: ['1x2', 'dc', 'ou'],
     // Righe per pagina: 5000, il massimo dell'API, per tutti gli sport (con 1000 NBA e tennis finivano in 2 pagine e
     // il 23/10 l'NBA è rimasta con le quote incomplete).
     limite: 5000,
