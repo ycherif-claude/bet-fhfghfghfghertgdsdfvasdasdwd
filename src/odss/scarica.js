@@ -5,6 +5,8 @@
 // errore di rete o 5xx (conta anche lui nel budget). HTTP 400 su un gruppo con più valori (l'API non li accetta più):
 // si rifà con una richiesta per sport e mercato, sempre nel budget. 401/403 (chiave rifiutata) e 429 (limite
 // raggiunto, che ferma anche gli step successivi) fermano tutto. Nessun messaggio contiene la chiave.
+// `eventId`: solo quegli eventi (CSV di event_id), di solito senza finestra. `riservaDopo`: richieste da lasciare a uno
+// step successivo dello stesso sport (il completamento del calcio).
 // Risultato: { righe (grezze), richieste, ok (almeno un gruppo scaricato per intero), fermo }
 // con fermo = null | 'budget' | 'chiave' | 'limite'.
 import { odss } from '../calcio/fonti/odss.js';
@@ -13,14 +15,14 @@ import { CONFIG } from '../config.js';
 const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function scaricaOdss({
-  chiave, budget, sport, gruppi, finestra, league = null, fetch = globalThis.fetch, fonte = odss, attesaMs = 2000,
-  errore = () => {}, suffissoBudget = '', limite = CONFIG.odss.limite,
+  chiave, budget, sport, gruppi, finestra = null, league = null, eventId = null, fetch = globalThis.fetch, fonte = odss, attesaMs = 2000,
+  errore = () => {}, suffissoBudget = '', limite = CONFIG.odss.limite, riservaDopo = 0,
 }) {
   const righe = [];
   let richieste = 0;
   let completi = 0;
   const coda = gruppi.map((market) => ({ sport, market }));
-  if (!budget.puo(coda.length - 1)) {
+  if (!budget.puo(coda.length - 1 + riservaDopo)) {
     errore(`budget insufficiente (${budget.motivo()}; ${budget.descrizione()})${suffissoBudget}`);
     return { righe, richieste, ok: false, fermo: 'budget' };
   }
@@ -30,8 +32,8 @@ export async function scaricaOdss({
     let offset = 0;
     let pagina = 0;
     for (;;) {
-      const dopo = coda.length - 1 - i;
-      if (!budget.puo(pagina === 0 ? 0 : dopo)) {
+      const dopo = coda.length - 1 - i + riservaDopo;
+      if (!budget.puo(pagina === 0 ? riservaDopo : dopo)) {
         if (pagina > 0) { errore(`${market}: quote incomplete (le altre pagine superano il budget di oggi)`); break; }
         errore(`${budget.motivo()}: mercati non scaricati: ${coda.slice(i).map((x) => x.market).join(', ')}`);
         fermo = 'budget';
@@ -41,13 +43,13 @@ export async function scaricaOdss({
       let err = null;
       for (let t = 0; t < 2; t++) {
         if (t > 0) {
-          if (!budget.puo(pagina === 0 ? 0 : dopo)) break;
+          if (!budget.puo(pagina === 0 ? riservaDopo : dopo)) break;
           await pausa(attesaMs);
         }
         budget.conta();
         richieste++;
         try {
-          r = await fonte.quote({ chiave, sport: sp, market, league, finestra, offset, limite, fetch });
+          r = await fonte.quote({ chiave, sport: sp, market, league, eventId, finestra, offset, limite, fetch });
           budget.aggiorna(r.limiti);
           err = null;
           break;

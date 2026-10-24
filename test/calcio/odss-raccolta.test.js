@@ -140,10 +140,10 @@ test('campionato extra con le quote di odss: niente più soloPronostici, quota d
   assert.ok(m.probModello > 0);
 });
 
-test('workflow: la raccolta odss gira prima della raccolta del calcio, che legge il file senza chiave odss', () => {
+test('workflow: la raccolta odss (1x2) gira prima della raccolta del calcio, che completa dc e ou con la chiave odss', () => {
   const w = readFileSync('.github/workflows/raccolta.yml', 'utf8');
   assert.ok(w.indexOf('npm run raccolta-odss') < w.indexOf('npm run raccolta\n'));
   const step = w.split('\n      - ').find((s) => s.includes('npm run raccolta\n'));
-  assert.ok(!step.includes('ODSS_API_KEY'));
+  assert.ok(step.includes('ODSS_API_KEY: ${{ secrets.ODSS_API_KEY }}'));
   assert.equal(CONFIG.odss.tetti.calcio, 4);
 });

@@ -199,6 +199,9 @@ export const CONFIG = congela({
     // Righe per pagina: 5000, il massimo dell'API, per tutti gli sport (con 1000 NBA e tennis finivano in 2 pagine e
     // il 23/10 l'NBA è rimasta con le quote incomplete).
     limite: 5000,
+    // Calcio mirato: event_id per richiesta nel completamento (dc e ou fanno ~40 righe a partita: 100 partite stanno
+    // in una pagina da 5000 righe e l'indirizzo resta corto).
+    eventiPerRichiesta: 100,
     // Pinnacle aggiornato da più di tante ore: ignorato, vale il consenso dei bookmaker.
     oreMaxPinnacle: 24,
     // Linee dell'Under/Over salvate (i pronostici usano l'Over 1.5).

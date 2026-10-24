@@ -17,7 +17,7 @@ import { espn, stessaSquadra } from '../controlli/espn.js';
 import { PARAMETRI as ELO, SOLO_COPPE, lambdaCoppa } from '../coppe/elo.js';
 import { existsSync, readFileSync } from 'node:fs';
 import { aggiornaEsitiGiro } from './esiti.js';
-import { abbinaEventiOdss, leggiQuoteOdss, mercatoOdss } from './odss.js';
+import { abbinaEventiOdss, candidatiOdss, completaQuoteOdss, leggiQuoteOdss, mercatoOdss } from './odss.js';
 
 const TOTALE_MESE = 500;
 const COSTO_QUOTE = 2;
@@ -100,7 +100,23 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
   // Competizioni di The Odds API coperte solo in parte da odss: The Odds API riempie le partite mancanti (mai sopra odss).
   const parziali = new Set();
   if (fonti.odss !== undefined) {
-    const eventiOdss = Array.isArray(fonti.odss?.eventi) ? fonti.odss.eventi : [];
+    let eventiOdss = Array.isArray(fonti.odss?.eventi) ? fonti.odss.eventi : [];
+    // Completamento mirato [correzioni 24/10/2026, punto 1]: dc e ou (e l'1x2 di tutti gli eventi doppi) solo per gli
+    // event_id delle nostre partite, in ordine di priorità della competizione. `fonti.completaOdss(gruppi)` →
+    // { eventi, errori } (src/calcio/odss.js, completaQuoteOdss); senza, si usa il file com'è.
+    if (eventiOdss.length && typeof fonti.completaOdss === 'function') {
+      const nostre = [...conPartite].sort((a, b) => a.priorita - b.priorita).flatMap((c) => eventiPer.get(chiaveEventi(c)).map((e) => ({
+        idPartita: `${chiaveEventi(c)}#${e.id}`, sport: 'calcio', casa: e.casa, trasferta: e.trasferta, inizio: e.inizio,
+      })));
+      const gruppi = [...candidatiOdss(nostre, eventiOdss).values()].map((lista) => lista.flatMap((e) => String(e.id).split(',')));
+      try {
+        const c = await fonti.completaOdss(gruppi);
+        erroriGiro.push(...(c?.errori ?? []));
+        if (Array.isArray(c?.eventi) && c.eventi.length) eventiOdss = c.eventi;
+      } catch (e) {
+        errore('odss-api (completamento del calcio)', e);
+      }
+    }
     if (!eventiOdss.length) {
       const motivo = (fonti.odss?.errori ?? []).map((x) => String(x).replace(/^odss-api alle \d\d:\d\d: /, '')).join('; ') || 'nessuna partita nel file';
       erroriGiro.push(`odss-api non disponibile alle ${oraRoma(adesso)} (${motivo}): quote del calcio da The Odds API come prima`);
@@ -425,10 +441,12 @@ async function principale() {
     process.exit(1);
   }
   const leggi = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null);
-  // Quote di odss-api scaricate poco prima dallo step della raccolta odss (questo step non ha la chiave).
+  // Quote di odss-api: l'1x2 della giornata scaricato poco prima dallo step della raccolta odss; questo step completa
+  // con dc e ou solo le nostre partite (ODSS_API_KEY, mai stampata) [correzioni 24/10/2026, punto 1].
   const q = leggiQuoteOdss('data', data);
   const fonti = {
     odss: { eventi: q.eventi?.length ? q.eventi : null, errori: q.mancante ? [`file data/raccolta/${data}-odss.json mancante`] : q.errori },
+    completaOdss: (gruppi) => completaQuoteOdss({ dirData: 'data', data, adesso, chiave: process.env.ODSS_API_KEY, gruppi }),
     oddsApi, footballDataUk, footballDataOrg, espn,
     // Coppe europee: punteggi (npm run elo-europeo) e partite con gli id ESPN delle squadre.
     eloEuropeo: leggi('data/storico/elo-europeo.json'),
@@ -449,7 +467,7 @@ async function principale() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   principale().catch((e) => {
-    console.error(`Raccolta fallita: ${e?.message ?? e}`);
+    console.error(`Raccolta fallita: ${String(e?.message ?? e).replaceAll(process.env.ODSS_API_KEY || ' ', '***')}`);
     process.exit(1);
   });
 }

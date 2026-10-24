@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { odss } from '../../src/calcio/fonti/odss.js';
 import {
-  scegliPartitaIntera, riassuntoMercato, scaricaQuoteOdss, abbinaEventiOdss, quoteOdssPronostico, eseguiRaccoltaOdss,
+  scegliPartitaIntera, riassuntoMercato, scaricaQuoteOdss, abbinaEventiOdss, quoteOdssPronostico, eseguiRaccoltaOdss, eventiOdss,
 } from '../../src/calcio/odss.js';
 import { pronosticiPartita } from '../../src/regole/pronostici.js';
 import { costruisciSchedinePronostici } from '../../src/regole/schedine-pronostici.js';
@@ -155,63 +155,62 @@ const pagineTipo = () => ({
   ou: [[riga({ market: 'ou', line: 1.5, bookmakers: [bk('snai', { UNDER: 3.25, OVER: 1.27 })] })], [riga({ market: 'ou', line: 2.5, bookmakers: [bk('goldbet', { UNDER: 1.8, OVER: 1.9 })] })]],
 });
 
-test('download: 1x2, dc e ou con paginazione; eventi compatti; stato con rimaste e usate oggi', async () => {
+test('download: solo l\'1x2 della giornata (dc e ou nel completamento mirato); eventi compatti; stato con rimaste e usate oggi', async () => {
   const f = fetchFinto(pagineTipo());
   const { file, stato } = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, stato: null, fetch: f, attesaMs: 0 });
-  assert.equal(f.chiamate.length, 4);
-  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', 'dc', 'ou', 'ou']);
+  assert.equal(f.chiamate.length, 1);
+  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2']);
   assert.equal(file.data, DATA);
   assert.deepEqual(file.erroriGiro, []);
   assert.equal(file.eventi.length, 1);
   const e = file.eventi[0];
   assert.deepEqual([e.casa, e.trasferta, e.inizio, e.campionato], ['Torino', 'Monza', '2026-10-23T18:45:00.000Z', 'Serie A']);
-  assert.deepEqual(Object.keys(e.mercati).sort(), ['1x2', 'dc', 'ou|1.5', 'ou|2.5']);
+  assert.deepEqual(Object.keys(e.mercati), ['1x2']);
   assert.equal(e.mercati['1x2'].fonteProb, 'Pinnacle');
   assert.equal(file.diagnostica.senzaIntero, 0);
-  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 476, limite: 500, reset: RESET_ISO, limiteRaggiuntoFino: null, giornate: { [DATA]: { usate: 4, controlli: 0, perSport: { calcio: 4 }, avvisi: [] } } });
+  assert.deepEqual(stato, { aggiornatoAlle: ADESSO.toISOString(), rimaste: 479, limite: 500, reset: RESET_ISO, limiteRaggiuntoFino: null, giornate: { [DATA]: { usate: 1, controlli: 0, perSport: { calcio: 1 }, avvisi: [] } } });
   assert.equal(file.esito, 'ok');
   assert.ok(!JSON.stringify(file).includes(CHIAVE));
 });
 
-test('budget: mai sotto la riserva, al massimo il tetto del calcio (budget unico); se non basta niente quote e una riga chiara', async () => {
+test('budget: mai sotto la riserva, al massimo il tetto del calcio lasciando una richiesta al completamento; se non basta una riga chiara', async () => {
   const { riserva, tetti } = CONFIG.odss;
   assert.equal(riserva, 60);
   assert.equal(tetti.calcio, 4);
-  // Rimaste 62: servirebbero 3 richieste e si scenderebbe sotto 60 → nessuna richiesta.
+  // Rimaste 61: servirebbero 2 richieste (1x2 e completamento) e si scenderebbe sotto 60 → nessuna richiesta.
   let f = fetchFinto(pagineTipo());
   let r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f,
-    stato: { rimaste: 62, reset: '2026-11-20T00:00:00Z', giorno: DATA, usateOggi: 0 } });
+    stato: { rimaste: 61, reset: '2026-11-20T00:00:00Z', giorno: DATA, usateOggi: 0 } });
   assert.equal(f.chiamate.length, 0);
   assert.deepEqual(r.file.eventi, []);
-  assert.match(r.file.erroriGiro[0], /odss-api.*budget insufficiente.*rimaste 62.*riserva 60/);
+  assert.match(r.file.erroriGiro[0], /odss-api.*budget insufficiente.*rimaste 61.*riserva 60/);
   assert.equal(r.file.esito, 'budget');
-  // Già 2 richieste oggi del calcio: ne restano 2 sulle 4, non bastano per 3 mercati.
+  // Già 3 richieste oggi del calcio: l'ultima resta al completamento.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 2, perSport: { calcio: 2 } } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 3, perSport: { calcio: 3 } } });
   assert.equal(f.chiamate.length, 0);
   assert.match(r.file.erroriGiro[0], /budget insufficiente/);
-  // 11 richieste oggi fra tutti gli sport: il tetto giornaliero (13) non basta.
+  // 12 richieste oggi fra tutti gli sport: il tetto giornaliero (13) non basta.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 11, perSport: { tennis: 11 } } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 12, perSport: { tennis: 12 } } });
   assert.equal(f.chiamate.length, 0);
   // Giorno nuovo: il conteggio di oggi riparte; un reset passato rende sconosciute le rimaste.
   f = fetchFinto(pagineTipo());
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 10, reset: '2026-10-01T00:00:00Z', giorno: '2026-10-22', usateOggi: 6 } });
-  assert.equal(f.chiamate.length, 4);
-  assert.equal(r.stato.giornate[DATA].usate, 4);
-  // Le pagine in più si fanno solo lasciando una richiesta a ogni mercato che manca; poi riga "incomplete".
-  const tante = { '1x2': [[riga()], [riga({ event_id: 'e2' })], [riga({ event_id: 'e3' })], [riga({ event_id: 'e4' })]], dc: [[riga({ market: 'dc' })]], ou: [[riga({ market: 'ou', line: 1.5 })]] };
+  assert.equal(f.chiamate.length, 1);
+  assert.equal(r.stato.giornate[DATA].usate, 1);
+  // Pagine dell'1x2: al massimo 3 (la quarta resta al completamento); poi riga "incomplete".
+  const tante = { '1x2': [[riga()], [riga({ event_id: 'e2' })], [riga({ event_id: 'e3' })], [riga({ event_id: 'e4' })]] };
   f = fetchFinto(tante);
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 0 } });
-  assert.equal(f.chiamate.length, 4);
-  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', '1x2', 'dc', 'ou']);
+  assert.deepEqual(f.chiamate.map((c) => new URL(c.url).searchParams.get('market')), ['1x2', '1x2', '1x2']);
   assert.ok(r.file.erroriGiro.some((x) => /1x2.*incomplete/.test(x)));
-  // Dopo ogni risposta conta l'intestazione: a 61 rimaste non si fa la richiesta successiva.
-  f = fetchFinto(pagineTipo(), { rimaste: 62 });
+  // Dopo ogni risposta conta l'intestazione: a 61 rimaste non si fa la pagina successiva.
+  f = fetchFinto(tante, { rimaste: 62 });
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
-  assert.equal(f.chiamate.length, 2);
-  assert.equal(r.stato.rimaste, 60);
-  assert.ok(r.file.erroriGiro.some((x) => /riserva/.test(x)));
+  assert.equal(f.chiamate.length, 1);
+  assert.equal(r.stato.rimaste, 61);
+  assert.ok(r.file.erroriGiro.some((x) => /incomplete/.test(x)), r.file.erroriGiro.join(' | '));
 });
 
 test('download: 429 ferma tutto con una riga chiara; nessuna chiave → nessuna richiesta', async () => {
@@ -226,10 +225,10 @@ test('download: 429 ferma tutto con una riga chiara; nessuna chiave → nessuna 
 });
 
 test('download: i tempi si ignorano in silenzio; una partita senza nessuna riga full_time → una riga in erroriGiro', async () => {
-  let f = fetchFinto({ '1x2': [[riga(), riga({ period: '1st_half' }), riga({ period: '2nd_half' })]], dc: [[]], ou: [[]] });
+  let f = fetchFinto({ '1x2': [[riga(), riga({ period: '1st_half' }), riga({ period: '2nd_half' })]] });
   let r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
   assert.deepEqual(r.file.erroriGiro, []);
-  f = fetchFinto({ '1x2': [[riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '1st_half' }), riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '2nd_half' })]], dc: [[]], ou: [[]] });
+  f = fetchFinto({ '1x2': [[riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '1st_half' }), riga({ event_id: 'e9', event: 'Genoa - Pisa', period: '2nd_half' })]] });
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
   assert.deepEqual(r.file.eventi, []);
   assert.ok(r.file.erroriGiro.some((x) => /1 partita senza righe a tempo intero.*Genoa - Pisa/.test(x)), r.file.erroriGiro.join(' | '));
@@ -242,13 +241,13 @@ test('raccolta odss: scrive data/raccolta/<data>-odss.json e data/stato/odss.jso
   const file = readFileSync(join(d, 'raccolta', `${DATA}-odss.json`), 'utf8');
   const stato = JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8'));
   assert.equal(JSON.parse(file).eventi.length, 1);
-  assert.equal(stato.giornate[DATA].usate, 4);
+  assert.equal(stato.giornate[DATA].usate, 1);
   assert.ok(!file.includes(CHIAVE));
-  // Seconda raccolta lo stesso giorno: legge lo stato e conta le richieste di oggi del calcio (4 + 3 > 6 → niente).
-  const g = fetchFinto(pagineTipo());
+  // Seconda raccolta lo stesso giorno senza partite (feed vuoto): il file buono del mattino non si cancella.
+  const g = fetchFinto({});
   await eseguiRaccoltaOdss({ dirData: d, data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: g });
-  assert.equal(g.chiamate.length, 0);
-  // Il file buono del mattino non si cancella.
+  assert.equal(g.chiamate.length, 1);
+  assert.equal(JSON.parse(readFileSync(join(d, 'stato', 'odss.json'), 'utf8')).giornate[DATA].perSport.calcio, 2);
   assert.equal(JSON.parse(readFileSync(join(d, 'raccolta', `${DATA}-odss.json`), 'utf8')).eventi.length, 1);
   assert.ok(existsSync(join(d, 'raccolta', `${DATA}-odss.json`)));
 });
@@ -268,7 +267,9 @@ test('abbinamento: squadre (con alias) e orario; ambiguo, invertito o lontano �
   assert.equal(m.get('in')?.id, 'b');
   assert.equal(m.has('la'), false, 'casa e trasferta invertite');
   assert.equal(m.has('ge'), false, 'orario lontano');
-  assert.equal(m.has('na'), false, 'due eventi possibili');
+  // Due eventi esatti (stesse squadre, orario vicino): doppi del feed della stessa partita [correzioni 24/10/2026];
+  // senza il completamento che li unisce vale quello con più bookmaker (qui pari: l'id più piccolo).
+  assert.equal(m.get('na')?.id, 'e1', 'eventi doppi della stessa partita');
   // Un evento che andrebbe a due partite: a nessuna.
   const doppio = abbinaEventiOdss([pt('x', 'Torino', 'Monza'), pt('y', 'Torino', 'Monza', '2026-10-23T21:00:00+02:00')], [ev('a', 'Torino', 'Monza')]);
   assert.equal(doppio.size, 0);
@@ -365,8 +366,8 @@ const cartella = () => {
 
 test('giro: legge data/raccolta/<oggi>-odss.json e mette la quota migliore nei pronostici; errori del file in erroriGiro', async () => {
   const d = cartella();
-  const f = fetchFinto({ '1x2': [[]], dc: [[dcRiga([bk('pinnacle', { 12: 1.3, '1X': 1.15, X2: 2.3 })])]], ou: [[]] });
-  const { file } = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: null });
+  // File dopo il completamento mirato (1x2 del mattino + dc e ou delle nostre partite).
+  const file = { data: DATA, erroriGiro: [], eventi: eventiOdss([dcRiga([bk('pinnacle', { 12: 1.3, '1X': 1.15, X2: 2.3 })])], { adesso: ADESSO }) };
   file.erroriGiro.push('odss-api alle 07:36: prova');
   writeFileSync(join(d, 'raccolta', `${DATA}-odss.json`), JSON.stringify(file));
   const g = eseguiGiro({ dirData: d, adesso: new Date('2026-10-23T07:10:00Z'), modo: 'riserva' }).giornata;
@@ -404,8 +405,8 @@ test('workflow: ODSS_API_KEY solo agli step che usano odss-api; npm run raccolta
   const w = readFileSync('.github/workflows/raccolta.yml', 'utf8');
   const step = w.split('\n      - ').filter((s) => s.includes('ODSS_API_KEY'));
   const comandi = step.map((s) => /run: (npm run [\w-]+)/.exec(s)?.[1]);
-  // La raccolta del calcio legge il file della raccolta odss: non ha bisogno della chiave.
-  assert.ok(!comandi.includes('npm run raccolta'));
+  // La raccolta del calcio completa dc e ou delle sue partite (correzioni 24/10/2026): ha la chiave.
+  assert.ok(comandi.includes('npm run raccolta'));
   assert.ok(comandi.includes('npm run raccolta-odss'));
   assert.ok(comandi.includes('npm run raccolta-tennis'));
   for (const s of step) {

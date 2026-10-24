@@ -1,6 +1,11 @@
 // Quote dei bookmaker italiani dell'utente da odss-api.com [utente, 22/10/2026, idea 1].
-// - Download (raccolta su GitHub, dove c'è il secret): 1x2, dc e ou del calcio per la giornata, con budget
-//   (CONFIG.odss.richiesteGiorno al giorno, mai sotto CONFIG.odss.riserva rimaste; stato in data/stato/odss.json).
+// - Download mirato [correzioni 24/10/2026, punto 1] (raccolta su GitHub, dove c'è il secret), budget del calcio
+//   (CONFIG.odss.tetti.calcio al giorno, mai sotto CONFIG.odss.riserva rimaste; stato in data/stato/odss.json):
+//   1. step raccolta-odss: solo l'1x2 della giornata di tutto il mondo (il filtro league non accetta più campionati),
+//      lasciando sempre una richiesta al passo 2;
+//   2. raccolta del calcio: abbina le nostre partite e chiede 1x2, dc e ou solo per i loro event_id (a blocchi di
+//      CONFIG.odss.eventiPerRichiesta, in ordine di priorità della competizione, senza finestra). Più eventi del feed
+//      per la stessa partita si uniscono. Il file resta con le sole partite nostre.
 //   Si salva in data/raccolta/<data>-odss.json solo il necessario: quote dei bookmaker dell'utente e probabilità
 //   di consenso senza margine (Pinnacle se c'è, altrimenti la mediana dei bookmaker).
 // - Per la stessa partita l'API dà più righe dello stesso mercato (partita intera, primo e secondo tempo):
@@ -184,9 +189,10 @@ export async function scaricaQuoteOdss({ data, adesso, chiave, stato, fetch = gl
     errore('manca il secret ODSS_API_KEY: niente quote dei bookmaker italiani oggi');
     esito = 'senza chiave';
   } else {
+    // Solo 1x2 (le pagine dell'1x2 di un sabato sono 2-3 da 5000 righe), lasciando una richiesta al completamento.
     const r = await scaricaOdss({
-      chiave, budget, sport: 'calcio', gruppi: O.mercati, finestra: finestraGiornata(data), fetch, fonte, attesaMs, errore, limite: O.limite,
-      suffissoBudget: ': niente quote dei bookmaker italiani oggi',
+      chiave, budget, sport: 'calcio', gruppi: ['1x2'], finestra: finestraGiornata(data), fetch, fonte, attesaMs, errore, limite: O.limite,
+      suffissoBudget: ': niente quote dei bookmaker italiani oggi', riservaDopo: 1,
     });
     tutte = r.righe;
     richieste = r.richieste;
@@ -230,6 +236,89 @@ export async function eseguiRaccoltaOdss({ dirData, data, adesso, chiave, fetch 
   return { ...r, tenuto };
 }
 
+// Righe di più eventi del feed della stessa partita → righe di un evento solo (id = gli id uniti da virgola, nomi e
+// orario del primo). Per ogni mercato, linea e periodo i bookmaker di tutti; lo stesso bookmaker con quote diverse
+// nei due eventi per la stessa riga: fuori da quella riga (non si sceglie a caso).
+export function unisciRigheEventi(righe, ids) {
+  const id = ids.join(',');
+  const primo = new Map();
+  for (const r of righe) if (!primo.has(r.event_id)) primo.set(r.event_id, r);
+  const base = ids.map((x) => primo.get(x)).find(Boolean);
+  if (!base) return [];
+  const gruppi = new Map();
+  for (const r of righe) {
+    if (!ids.includes(r.event_id)) continue;
+    const k = `${r.market}|${vuoto(r.line) ? '' : Number(r.line)}|${r.scope}|${r.period}|${r.player ?? ''}`;
+    if (!gruppi.has(k)) gruppi.set(k, { riga: r, libri: new Map(), fuori: new Set() });
+    const g = gruppi.get(k);
+    for (const b of Array.isArray(r.bookmakers) ? r.bookmakers : []) {
+      if (!oggetto(b) || typeof b.key !== 'string') continue;
+      const prima = g.libri.get(b.key);
+      if (!prima) g.libri.set(b.key, b);
+      else if (JSON.stringify(prima.outcomes) !== JSON.stringify(b.outcomes)) g.fuori.add(b.key);
+    }
+  }
+  return [...gruppi.values()].map(({ riga, libri, fuori }) => ({
+    ...riga, event_id: id, event: base.event, league: base.league, home_team: base.home_team, away_team: base.away_team,
+    commence_time: base.commence_time, bookmakers: [...libri.values()].filter((b) => !fuori.has(b.key)),
+  }));
+}
+
+// Completamento della raccolta del calcio [correzioni 24/10/2026, punto 1]: `gruppi` = per ogni nostra partita gli
+// event_id dei suoi eventi odss (in ordine di priorità). Chiede 1x2, dc e ou solo per quegli id, a blocchi di al
+// massimo `perRichiesta` id (un gruppo mai diviso), finché basta il budget del calcio; unisce gli eventi doppi e
+// riscrive data/raccolta/<data>-odss.json con le sole nostre partite (completate, o con l'1x2 del mattino).
+// { eventi, errori, richieste }.
+export async function completaQuoteOdss({
+  dirData, data, adesso, chiave, gruppi, fetch = globalThis.fetch, fonte = odss, attesaMs = 2000, perRichiesta = O.eventiPerRichiesta,
+}) {
+  const errori = [];
+  const errore = (m) => errori.push(`odss-api alle ${oraRoma(adesso)}: ${m}`);
+  const percorso = fileQuoteOdss(dirData, data);
+  const file = leggi(percorso);
+  if (!oggetto(file) || file.data !== data || !Array.isArray(file.eventi)) return { eventi: null, errori, richieste: 0 };
+  const lista = (Array.isArray(gruppi) ? gruppi : []).map((g) => [...new Set(g.map(String))]).filter((g) => g.length);
+  if (!lista.length) return { eventi: file.eventi, errori, richieste: 0 };
+  const blocchi = [];
+  for (const g of lista) {
+    const ultimo = blocchi.at(-1);
+    if (ultimo && ultimo.ids.length + g.length <= perRichiesta) { ultimo.gruppi.push(g); ultimo.ids.push(...g); } else blocchi.push({ gruppi: [g], ids: [...g] });
+  }
+  const budget = creaBudgetOdss({ stato: leggi(fileStato(dirData)), data, adesso, sport: 'calcio' });
+  const righe = [];
+  let richieste = 0;
+  const completati = new Set();
+  for (const b of blocchi) {
+    if (!chiave) { errore('manca il secret ODSS_API_KEY nella raccolta del calcio: niente doppia chance e under/over di odss'); break; }
+    const r = await scaricaOdss({
+      chiave, budget, sport: 'calcio', gruppi: ['1x2,dc,ou'], eventId: b.ids.join(','), fetch, fonte, attesaMs, errore,
+      suffissoBudget: ': doppia chance e under/over solo per le partite già completate',
+    });
+    richieste += r.richieste;
+    righe.push(...r.righe);
+    if (r.ok) for (const g of b.gruppi) completati.add(g);
+    if (r.fermo) break;
+  }
+  if (richieste) scrivi(fileStato(dirData), budget.stato());
+  const mancanti = lista.filter((g) => !completati.has(g)).length;
+  if (mancanti && chiave) errore(`${mancanti} ${mancanti === 1 ? 'partita' : 'partite'} senza doppia chance e under/over (restano con l'1x2 del mattino)`);
+  const perId = new Map(file.eventi.filter(oggetto).map((e) => [String(e.id), e]));
+  const eventi = [];
+  for (const g of lista) {
+    const nuovi = completati.has(g) ? eventiOdss(scegliPartitaIntera(unisciRigheEventi(righe, g)).righe, { adesso }) : [];
+    if (nuovi.length) eventi.push(...nuovi);
+    else eventi.push(...g.map((id) => perId.get(id)).filter(Boolean));
+  }
+  const unici = [...new Map(eventi.map((e) => [e.id, e])).values()];
+  const st = budget.stato();
+  scrivi(percorso, {
+    ...file, rimaste: st.rimaste, richieste: (num(file.richieste) ? file.richieste : 0) + richieste,
+    completamento: { alle: isoRoma(adesso), partite: lista.length, completate: completati.size, richieste },
+    erroriGiro: [...(Array.isArray(file.erroriGiro) ? file.erroriGiro : []), ...errori], eventi: unici,
+  });
+  return { eventi: unici, errori, richieste };
+}
+
 // Quote salvate della giornata per il giro: { eventi: [...] | null, errori: [righe per erroriGiro] }.
 // eventi null se il file manca o non si legge.
 export function leggiQuoteOdss(dirData, oggi) {
@@ -265,10 +354,11 @@ const stessiMarcatori = (evento, nostro) => { const n = marcatori(nostro); retur
 const DONNE = ['women', 'woman', 'femminile', 'femenino', 'feminin', 'feminine', 'ladies', 'frauen', 'dames', 'w'];
 const campionatoFemminile = (nome) => marcatori(nome ?? '').some((m) => DONNE.includes(m));
 
-// Map idPartita → evento odss. Solo calcio; stesse squadre (casa con casa, trasferta con trasferta) e inizio entro
-// CONFIG.odss.toleranzaOre. Prima i nomi uguali o con alias noti; solo se nessuno, i nomi simili. Più eventi
-// possibili, oppure lo stesso evento per più partite → nessun abbinamento.
-export function abbinaEventiOdss(partite, eventi) {
+// Map idPartita → [eventi odss della partita]. Solo calcio; stesse squadre (casa con casa, trasferta con trasferta) e
+// inizio entro CONFIG.odss.toleranzaOre. Prima i nomi uguali o con alias noti: tutti (il feed ha spesso più eventi della
+// stessa partita, da fonti diverse: "1. FC Köln" e "1. FC Cologne" contro "FC Schalke 04" alla stessa ora); solo se
+// nessuno, i nomi simili, e allora un evento solo. Lo stesso evento per più partite → nessun abbinamento per quelle.
+export function candidatiOdss(partite, eventi) {
   const tolleranza = O.toleranzaOre * 3600000;
   const lista = (Array.isArray(eventi) ? eventi : []).filter((e) => oggetto(e) && e.casa && e.trasferta && Number.isFinite(Date.parse(e.inizio)));
   const scelti = new Map();
@@ -281,13 +371,28 @@ export function abbinaEventiOdss(partite, eventi) {
       && (!campionatoFemminile(e.campionato) || marcatori(`${sq.casa} ${sq.trasferta}`).some((m) => DONNE.includes(m)))
       && stessiMarcatori(e.casa, sq.casa) && stessiMarcatori(e.trasferta, sq.trasferta));
     const esatti = vicini.filter((e) => stessaSquadra(e.casa, sq.casa) && stessaSquadra(e.trasferta, sq.trasferta));
-    const candidati = esatti.length ? esatti : vicini.filter((e) => simile(e.casa, sq.casa) && simile(e.trasferta, sq.trasferta));
-    if (candidati.length === 1) scelti.set(p.idPartita, candidati[0]);
+    if (esatti.length) { scelti.set(p.idPartita, esatti); continue; }
+    const simili = vicini.filter((e) => simile(e.casa, sq.casa) && simile(e.trasferta, sq.trasferta));
+    if (simili.length === 1) scelti.set(p.idPartita, simili);
   }
   const usi = new Map();
-  for (const e of scelti.values()) usi.set(e, (usi.get(e) ?? 0) + 1);
-  for (const [id, e] of scelti) if (usi.get(e) > 1) scelti.delete(id);
+  for (const lista of scelti.values()) for (const e of lista) usi.set(e, (usi.get(e) ?? 0) + 1);
+  for (const [id, lista] of scelti) if (lista.some((e) => usi.get(e) > 1)) scelti.delete(id);
   return scelti;
+}
+
+// Bookmaker che hanno quotato un evento (il massimo n delle mediane dei suoi mercati).
+const libriEvento = (e) => Math.max(0, ...Object.values(oggetto(e?.mercati) ? e.mercati : {})
+  .flatMap((m) => Object.values(oggetto(m?.mediana) ? m.mediana : {}).map((x) => (num(x?.n) ? x.n : 0))));
+
+// Map idPartita → evento odss. Più eventi della stessa partita (doppi del feed non ancora uniti dal completamento):
+// quello con più bookmaker, a pari l'id più piccolo (sono la stessa partita: stesse squadre, stesso orario).
+export function abbinaEventiOdss(partite, eventi) {
+  const out = new Map();
+  for (const [id, lista] of candidatiOdss(partite, eventi)) {
+    out.set(id, [...lista].sort((a, b) => libriEvento(b) - libriEvento(a) || String(a.id).localeCompare(String(b.id)))[0]);
+  }
+  return out;
 }
 
 // ---- Quote di un pronostico ----
