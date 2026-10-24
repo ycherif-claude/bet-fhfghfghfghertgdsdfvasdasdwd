@@ -7684,9 +7684,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-24T09:22:35+02:00",
       "esito": null,
       "prova": true
     },
@@ -9005,9 +9005,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,39 sotto la minima 2,55",
+      "oraUltimoControllo": "2026-10-24T09:22:35+02:00",
       "esito": null,
       "prova": true
     },
@@ -10983,7 +10983,8 @@
     "Quote Bundesliga: nessuna partita su odss-api, quote da OddsPapi",
     "6 partite già iniziate escluse",
     "odss-api alle 08:00: ou: quote incomplete (le altre pagine superano il budget di oggi)",
-    "odss-api alle 08:00: 9 partite senza righe a tempo intero (full_time), senza quote: Shandong Taishan B-Jiangxi Liansheng FC, FC Barcelona (Women) - Granada CF (Women), Trabzonspor Wom. - .1207 Antalyaspor Wom., Barcelona Wom. - Granada Wom., Lyon Wom. - Marseille Wom., Shanghai Shengli (W) - Liaoning Shenbei Hefeng (W), Kaohsiung Attackers (W) - Taichung Sakura (W), Paide Linnameeskond (W) - Elva (W), Como 1907 - US Sassuolo Calcio"
+    "odss-api alle 08:00: 9 partite senza righe a tempo intero (full_time), senza quote: Shandong Taishan B-Jiangxi Liansheng FC, FC Barcelona (Women) - Granada CF (Women), Trabzonspor Wom. - .1207 Antalyaspor Wom., Barcelona Wom. - Granada Wom., Lyon Wom. - Marseille Wom., Shanghai Shengli (W) - Liaoning Shenbei Hefeng (W), Kaohsiung Attackers (W) - Taichung Sakura (W), Paide Linnameeskond (W) - Elva (W), Como 1907 - US Sassuolo Calcio",
+    "Controlli prima delle partite (odss-api): 1x2,ou: quote incomplete (le altre pagine superano il budget di oggi)"
   ],
   "schedinePronostici": [
     {
