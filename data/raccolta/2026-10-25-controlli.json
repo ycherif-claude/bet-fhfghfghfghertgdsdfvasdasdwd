@@ -373,6 +373,41 @@
       ],
       "alle": "2026-10-25T17:30:51+01:00",
       "regola": true
+    },
+    "calcio-2026-10-25-aris-atromitos-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-25T18:02:09+01:00"
+    },
+    "calcio-2026-10-25-cd-castellon-sporting-gijon-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (mercato senza quote nella fonte gratuita)"
+      ],
+      "alle": "2026-10-25T18:02:09+01:00"
+    },
+    "calcio-2026-10-25-real-sociedad-levante-under-over-3-5-over-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,16 sotto la minima 2,36",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,16 sotto la minima 2,36"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-25T18:02:09+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -567,6 +602,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over trasferta 0.5|Over 0.5",
       "alle": "2026-10-25T17:30:51+01:00"
+    },
+    "calcio-2026-10-25-st-gilloise-cercle-brugge|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-25T18:02:09+01:00"
+    },
+    "calcio-2026-10-25-molde-fredrikstad|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T18:02:09+01:00"
     }
   }
 }
