@@ -35,7 +35,9 @@ test('alias calcio: i nomi di The Odds API e di ESPN non riconosciuti il 23 e il
 });
 
 test('alias pallavolo: Efeler Ligi con i nomi dello storico TheSportsDB; chi non c\'è resta non riconosciuto', () => {
-  const squadre = squadreStorico(JSON.parse(readFileSync('data/storico/pallavolo-turchia.json', 'utf8')).partite);
+  // Storico com'era il 24/10 mattina: lo storico vero cresce ogni giorno (il 24/10 sera è arrivato il Warnemünde).
+  const fino = (file) => JSON.parse(readFileSync(file, 'utf8')).partite.filter((x) => x.inizio < '2026-10-24');
+  const squadre = squadreStorico(fino('data/storico/pallavolo-turchia.json'));
   const nome = (id) => [...(squadre.get(id) ?? [])][0] ?? null;
   const di = (x) => nome(abbinaPallavolo(x, squadre));
   assert.equal(di('Sungurluspor'), 'Sungurlu Belediyespor');
@@ -51,7 +53,7 @@ test('alias pallavolo: Efeler Ligi con i nomi dello storico TheSportsDB; chi non
   // Mai indovinare.
   assert.equal(di('Sultanbeyli Bld'), null);
   assert.equal(di('Gebze Genclik'), null);
-  const bundesliga = squadreStorico(JSON.parse(readFileSync('data/storico/pallavolo-bundesliga.json', 'utf8')).partite);
+  const bundesliga = squadreStorico(fino('data/storico/pallavolo-bundesliga.json'));
   assert.equal(abbinaPallavolo('SV Warnemünde', bundesliga), null);
   assert.equal(abbinaPallavolo('VC Bitterfeld-Wolfen', bundesliga), null);
 });
