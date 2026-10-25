@@ -1,0 +1,336 @@
+{
+  "data": "2026-10-25",
+  "generataAlle": "2026-10-25T07:09:29+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 225
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: Barock Volleys MTV Ludwigsburg",
+    "Squadre SuperLega non riconosciute: VV Monza, Power Volley Milano",
+    "Quote pallavolo: 18 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "0b574c62a11748d3",
+        "25cf34d7a98a124a",
+        "6237495f4312301f",
+        "91f5d72ec7552be2",
+        "bde65643d5e85d31",
+        "ca2fba446f8ebc8f",
+        "d9694307152b35cc",
+        "db16da21ad3ff87c"
+      ],
+      "idPartita": "pallavolo-2026-10-25-trentino-volley-top-volley-cisterna",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Trentino Volley - TOP Volley Cisterna",
+      "casa": "Trentino Volley",
+      "trasferta": "TOP Volley Cisterna",
+      "inizio": "2026-10-25T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Trentino Volley": 1638,
+        "TOP Volley Cisterna": 1381
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Trentino Volley 1638 – TOP Volley Cisterna 1381, vantaggio campo compreso: vittoria della casa 86% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Trentino Volley",
+          "probModello": null,
+          "probPinnacle": 0.898399154622346,
+          "quota": 1.03,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Trentino Volley vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "TOP Volley Cisterna",
+          "probModello": null,
+          "probPinnacle": 0.10160084537765436,
+          "quota": 9.5,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TOP Volley Cisterna vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "009e4ecee8bcfdc8",
+        "0d26cc8ee3c77780",
+        "1c94d6eb9bdf7e5f",
+        "672c3da5c802f024",
+        "69861acb28188d8c"
+      ],
+      "idPartita": "pallavolo-2026-10-25-perugia-volley-tinet-prata-di-pordenone",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Perugia Volley - Tinet Prata Di Pordenone",
+      "casa": "Perugia Volley",
+      "trasferta": "Tinet Prata Di Pordenone",
+      "inizio": "2026-10-25T18:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Perugia Volley",
+          "probModello": null,
+          "probPinnacle": 0.921625061276182,
+          "quota": 1.01,
+          "fonteQuota": "mediana di 19 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Perugia Volley vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Tinet Prata Di Pordenone",
+          "probModello": null,
+          "probPinnacle": 0.07837493872381789,
+          "quota": 11.5,
+          "fonteQuota": "mediana di 19 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Tinet Prata Di Pordenone vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "17099466fed2903d",
+        "250c0a469cba205b",
+        "cf08129ada41dccb",
+        "dbe9ec14a3e5fa05"
+      ],
+      "idPartita": "pallavolo-2026-10-25-gas-sales-piacenza-modena-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Gas Sales Piacenza - Modena Volley",
+      "casa": "Gas Sales Piacenza",
+      "trasferta": "Modena Volley",
+      "inizio": "2026-10-25T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Gas Sales Piacenza": 1577,
+        "Modena Volley": 1564
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Gas Sales Piacenza 1577 – Modena Volley 1564, vantaggio campo compreso: vittoria della casa 60% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Gas Sales Piacenza",
+          "probModello": null,
+          "probPinnacle": 0.6504646175839887,
+          "quota": 1.41,
+          "fonteQuota": "mediana di 160 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Gas Sales Piacenza vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Modena Volley",
+          "probModello": null,
+          "probPinnacle": 0.34953538241601145,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 160 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Modena Volley vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4c0bfe770e139a83",
+        "5fb2961654425935",
+        "8d7aeb717ee5727a",
+        "ab2f370b0a768084",
+        "c20349a55055541b",
+        "da6ec939fd29584c"
+      ],
+      "idPartita": "pallavolo-2026-10-25-volley-civitanova-pallavolo-padova",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Volley Civitanova - Pallavolo Padova",
+      "casa": "Volley Civitanova",
+      "trasferta": "Pallavolo Padova",
+      "inizio": "2026-10-25T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Volley Civitanova": 1601,
+        "Pallavolo Padova": 1378
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Volley Civitanova 1601 – Pallavolo Padova 1378, vantaggio campo compreso: vittoria della casa 84% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Civitanova",
+          "probModello": null,
+          "probPinnacle": 0.9171903587622307,
+          "quota": 1.01,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Volley Civitanova vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Pallavolo Padova",
+          "probModello": null,
+          "probPinnacle": 0.08280964123776946,
+          "quota": 11,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Pallavolo Padova vince la partita."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-25-ks-arka-tempo-chelm-resovia-rzeszow",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "KS Arka Tempo Chelm - Resovia Rzeszow",
+      "casa": "KS Arka Tempo Chelm",
+      "trasferta": "Resovia Rzeszow",
+      "inizio": "2026-10-25T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "KS Arka Tempo Chelm": 1339,
+        "Resovia Rzeszow": 1562
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: KS Arka Tempo Chelm 1339 – Resovia Rzeszow 1562, vantaggio campo compreso: vittoria della casa 28% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "KS Arka Tempo Chelm",
+          "probModello": null,
+          "probPinnacle": 0.2765778989305934,
+          "quota": 3.45,
+          "fonteQuota": "mediana di 89 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KS Arka Tempo Chelm vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Resovia Rzeszow",
+          "probModello": null,
+          "probPinnacle": 0.7234221010694066,
+          "quota": 1.27,
+          "fonteQuota": "mediana di 89 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Resovia Rzeszow vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.17180842386221842,
+          "quota": 5.32,
+          "fonteQuota": "mediana di 18 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: KS Arka Tempo Chelm -1,5 vince se KS Arka Tempo Chelm vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.8281915761377818,
+          "quota": 1.12,
+          "fonteQuota": "mediana di 18 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Resovia Rzeszow +1,5 vince se Resovia Rzeszow vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.4248366013071895,
+          "quota": 2.2,
+          "fonteQuota": "mediana di 95 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Arka Tempo Chelm +1,5 vince se KS Arka Tempo Chelm vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.5751633986928104,
+          "quota": 1.6,
+          "fonteQuota": "mediana di 95 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Resovia Rzeszow -1,5 vince se Resovia Rzeszow vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5830296720458095,
+          "quota": 1.5,
+          "fonteQuota": "mediana di 37 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.41697032795419053,
+          "quota": 2.39,
+          "fonteQuota": "mediana di 37 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-25T07:09:29+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}
