@@ -334,6 +334,21 @@
         "quote non controllate (mercato senza quote nella fonte gratuita)"
       ],
       "alle": "2026-10-25T16:33:33+01:00"
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,05 sotto la minima 2,31",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,05 sotto la minima 2,31"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-25T17:01:02+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -516,6 +531,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-10-25T16:08:14+01:00"
+    },
+    "calcio-2026-10-25-real-sociedad-levante|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-25T17:01:02+01:00"
     }
   }
 }

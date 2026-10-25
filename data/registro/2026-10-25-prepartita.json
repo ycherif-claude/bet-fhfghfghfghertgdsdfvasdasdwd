@@ -815,6 +815,48 @@
       "prob": 0.47948717948717956,
       "alle": "2026-10-25T16:33:33+01:00",
       "minutiPrima": 41
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|1X2|1": {
+      "quota": 5.42,
+      "prob": 0.17253314105052972,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|1X2|X": {
+      "quota": 5.02,
+      "prob": 0.1876088524044595,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|1X2|2": {
+      "quota": 1.48,
+      "prob": 0.6398580065450109,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|Under/Over 2.5|Over 2.5": {
+      "quota": 1.3,
+      "prob": null,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|Under/Over 2.5|Under 2.5": {
+      "quota": 3.55,
+      "prob": null,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|Under/Over 3.5|Over 3.5": {
+      "quota": 1.73,
+      "prob": null,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
+    },
+    "calcio-2026-10-25-sc-freiburg-bayern-munich|Under/Over 3.5|Under 3.5": {
+      "quota": 2.05,
+      "prob": null,
+      "alle": "2026-10-25T17:01:02+01:00",
+      "minutiPrima": 29
     }
   },
   "copertura": {
@@ -908,6 +950,13 @@
       "idPartite": [
         "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc",
         "calcio-2026-10-25-albacete-cd-eldense"
+      ]
+    },
+    "calcio|Bundesliga": {
+      "alle": "2026-10-25T17:01:02+01:00",
+      "partite": 1,
+      "idPartite": [
+        "calcio-2026-10-25-sc-freiburg-bayern-munich"
       ]
     }
   }
