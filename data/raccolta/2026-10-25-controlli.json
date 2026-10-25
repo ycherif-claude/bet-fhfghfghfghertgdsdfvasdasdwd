@@ -508,6 +508,51 @@
       ],
       "alle": "2026-10-25T20:59:16+01:00",
       "claude": true
+    },
+    "calcio-2026-10-25-river-plate-racing-club-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-25T22:54:06+01:00"
+    },
+    "nba-2026-10-25-minnesota-timberwolves-toronto-raptors-totale-punti-232-5-under-232-5": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quote non controllate (meno di 3 bookmaker con la stessa linea)"
+      ],
+      "alle": "2026-10-25T22:54:06+01:00"
+    },
+    "nba-2026-10-25-new-york-knicks-orlando-magic-vincente-orlando-magic": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,15 sotto la minima 3,46",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,15 sotto la minima 3,46"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-25T22:54:06+01:00",
+      "regola": true
+    },
+    "nba-2026-10-25-oklahoma-city-thunder-la-clippers-handicap-meno-14-5-trasferta": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quote non controllate (meno di 3 bookmaker con la stessa linea)"
+      ],
+      "alle": "2026-10-25T22:54:06+01:00"
     }
   },
   "claude": {
@@ -721,6 +766,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-10-25T19:47:30+01:00"
+    },
+    "calcio-2026-10-25-atlas-puebla|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T22:54:06+01:00"
     }
   }
 }

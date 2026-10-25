@@ -1115,6 +1115,90 @@
       "prob": 0.4967277486910995,
       "alle": "2026-10-25T20:58:22+01:00",
       "minutiPrima": 62
+    },
+    "nba-2026-10-25-brooklyn-nets-indiana-pacers|Vincente|Brooklyn Nets": {
+      "quota": 2.8,
+      "prob": 0.34263700600397207,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 6
+    },
+    "nba-2026-10-25-brooklyn-nets-indiana-pacers|Vincente|Indiana Pacers": {
+      "quota": 1.45,
+      "prob": 0.657362993996028,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 6
+    },
+    "nba-2026-10-25-brooklyn-nets-indiana-pacers|Totale punti 231.5|Over 231.5": {
+      "quota": 1.91,
+      "prob": 0.5,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 6
+    },
+    "nba-2026-10-25-brooklyn-nets-indiana-pacers|Totale punti 231.5|Under 231.5": {
+      "quota": 1.91,
+      "prob": 0.5,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 6
+    },
+    "nba-2026-10-25-oklahoma-city-thunder-la-clippers|Vincente|Oklahoma City Thunder": {
+      "quota": 1.07,
+      "prob": 0.8911592341505877,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-oklahoma-city-thunder-la-clippers|Vincente|LA Clippers": {
+      "quota": 9,
+      "prob": 0.10884076584941228,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-minnesota-timberwolves-toronto-raptors|Vincente|Minnesota Timberwolves": {
+      "quota": 1.88,
+      "prob": 0.5072869783533879,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-minnesota-timberwolves-toronto-raptors|Vincente|Toronto Raptors": {
+      "quota": 1.94,
+      "prob": 0.4927130216466122,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-minnesota-timberwolves-toronto-raptors|Handicap -1.5|casa": {
+      "quota": 1.95,
+      "prob": 0.4864308727234894,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-minnesota-timberwolves-toronto-raptors|Handicap -1.5|trasferta": {
+      "quota": 1.87,
+      "prob": 0.5135691272765107,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-new-york-knicks-orlando-magic|Vincente|New York Knicks": {
+      "quota": 1.37,
+      "prob": 0.6976036132371102,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-new-york-knicks-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 3.15,
+      "prob": 0.3023963867628898,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-new-york-knicks-orlando-magic|Totale punti 224.5|Over 224.5": {
+      "quota": 1.91,
+      "prob": 0.49775617053103965,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
+    },
+    "nba-2026-10-25-new-york-knicks-orlando-magic|Totale punti 224.5|Under 224.5": {
+      "quota": 1.91,
+      "prob": 0.5022438294689604,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "minutiPrima": 66
     }
   },
   "copertura": {
@@ -1231,10 +1315,14 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-10-25T20:58:22+01:00",
-      "partite": 1,
+      "alle": "2026-10-25T22:54:06+01:00",
+      "partite": 5,
       "idPartite": [
-        "nba-2026-10-25-utah-jazz-los-angeles-lakers"
+        "nba-2026-10-25-utah-jazz-los-angeles-lakers",
+        "nba-2026-10-25-brooklyn-nets-indiana-pacers",
+        "nba-2026-10-25-oklahoma-city-thunder-la-clippers",
+        "nba-2026-10-25-minnesota-timberwolves-toronto-raptors",
+        "nba-2026-10-25-new-york-knicks-orlando-magic"
       ]
     }
   }
