@@ -493,12 +493,27 @@
       ],
       "alle": "2026-10-25T20:14:10+01:00",
       "regola": true
+    },
+    "nba-2026-10-25-utah-jazz-los-angeles-lakers-handicap-piu-6-5-trasferta": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,91 sotto la minima 1,98",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,91 sotto la minima 1,98"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-25T20:58:22+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "calcio-2026-10-25-hjk-kups-1x2-2"
+      "calcio-2026-10-25-hjk-kups-1x2-2",
+      "nba-2026-10-25-utah-jazz-los-angeles-lakers-handicap-piu-6-5-trasferta"
     ]
   },
   "pronostici": {
