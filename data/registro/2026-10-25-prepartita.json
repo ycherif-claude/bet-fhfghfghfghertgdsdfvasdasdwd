@@ -1031,6 +1031,66 @@
       "prob": null,
       "alle": "2026-10-25T19:12:30+01:00",
       "minutiPrima": 47
+    },
+    "calcio-2026-10-25-barcelona-real-madrid|1X2|1": {
+      "quota": 1.55,
+      "prob": 0.6027155578337526,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 46
+    },
+    "calcio-2026-10-25-barcelona-real-madrid|1X2|X": {
+      "quota": 5.8,
+      "prob": 0.1516206325175534,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 46
+    },
+    "calcio-2026-10-25-barcelona-real-madrid|1X2|2": {
+      "quota": 4,
+      "prob": 0.24566380964869408,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 46
+    },
+    "calcio-2026-10-25-barcelona-real-madrid|Under/Over 2.5|Over 2.5": {
+      "quota": 1.17,
+      "prob": null,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 46
+    },
+    "calcio-2026-10-25-barcelona-real-madrid|Under/Over 2.5|Under 2.5": {
+      "quota": 4.85,
+      "prob": null,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 46
+    },
+    "calcio-2026-10-25-udinese-ac-milan|1X2|1": {
+      "quota": 4.48,
+      "prob": 0.20384883991619462,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-udinese-ac-milan|1X2|X": {
+      "quota": 3.56,
+      "prob": 0.27275549002871113,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-udinese-ac-milan|1X2|2": {
+      "quota": 1.8,
+      "prob": 0.5233956700550942,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-udinese-ac-milan|Under/Over 2.5|Over 2.5": {
+      "quota": 1.87,
+      "prob": 0.5051282051282052,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-udinese-ac-milan|Under/Over 2.5|Under 2.5": {
+      "quota": 1.92,
+      "prob": 0.49487179487179483,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "minutiPrima": 31
     }
   },
   "copertura": {
@@ -1056,12 +1116,13 @@
       ]
     },
     "calcio|LaLiga": {
-      "alle": "2026-10-25T18:02:09+01:00",
-      "partite": 3,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "partite": 4,
       "idPartite": [
         "calcio-2026-10-25-athletic-bilbao-getafe",
         "calcio-2026-10-25-celta-vigo-real-betis",
-        "calcio-2026-10-25-real-sociedad-levante"
+        "calcio-2026-10-25-real-sociedad-levante",
+        "calcio-2026-10-25-barcelona-real-madrid"
       ]
     },
     "calcio|Veikkausliiga (Finlandia)": {
@@ -1098,12 +1159,13 @@
       ]
     },
     "calcio|Serie A": {
-      "alle": "2026-10-25T17:30:51+01:00",
-      "partite": 3,
+      "alle": "2026-10-25T20:14:10+01:00",
+      "partite": 4,
       "idPartite": [
         "calcio-2026-10-25-atalanta-bc-frosinone",
         "calcio-2026-10-25-genoa-venezia",
-        "calcio-2026-10-25-lecce-juventus"
+        "calcio-2026-10-25-lecce-juventus",
+        "calcio-2026-10-25-udinese-ac-milan"
       ]
     },
     "calcio|Ligue 1": {

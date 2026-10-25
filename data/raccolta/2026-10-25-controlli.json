@@ -458,6 +458,41 @@
       ],
       "alle": "2026-10-25T19:12:30+01:00",
       "regola": true
+    },
+    "M-calcio-2026-10-25-barcelona-real-madrid-under-over-3-5-under-3-5+calcio-2026-10-25-hull-city-brentford-doppia-chance-1x#0": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-10-25T20:14:10+01:00"
+    },
+    "calcio-2026-10-25-barcelona-real-madrid-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-10-25T20:14:10+01:00"
+    },
+    "calcio-2026-10-25-udinese-ac-milan-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,48 sotto la minima 4,70",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,48 sotto la minima 4,70"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-25T20:14:10+01:00",
+      "regola": true
     }
   },
   "claude": {
