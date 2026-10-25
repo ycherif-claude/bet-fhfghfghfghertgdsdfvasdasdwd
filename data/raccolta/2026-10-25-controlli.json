@@ -83,11 +83,50 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-25T13:14:26+01:00"
+    },
+    "calcio-2026-10-25-hjk-kups-1x2-2": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 3,65 sotto la minima 4,31",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,65 sotto la minima 4,31"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-gais-ifk-goteborg-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,04 ≥ minima 2,04",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,04 ≥ minima 2,04"
+      ],
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-nec-nijmegen-groningen-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,04 sotto la minima 2,34",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,04 sotto la minima 2,34"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-25T13:52:20+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "calcio-2026-10-25-hjk-kups-1x2-2"
+    ]
   },
   "pronostici": {
     "calcio-2026-10-25-inter-milan-fiorentina|Doppia chance|1X": {
@@ -143,6 +182,36 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-10-25T13:14:26+01:00"
+    },
+    "calcio-2026-10-25-manchester-united-bournemouth|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-atalanta-bc-frosinone|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-olympiacos-kalamata|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-thun-lugano|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-25T13:52:20+01:00"
+    },
+    "calcio-2026-10-25-hjk-kups|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-25T13:52:20+01:00"
     }
   }
 }
