@@ -5274,9 +5274,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -5394,9 +5394,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -5637,9 +5637,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 1,97 ≥ minima 1,91",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -5999,9 +5999,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -6199,9 +6199,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -6320,9 +6320,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,80 sotto la minima 4,08",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -6521,9 +6521,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,25 sotto la minima 2,42",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -6721,9 +6721,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,27 sotto la minima 3,45",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -6761,9 +6761,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,60 sotto la minima 2,99",
+      "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
       "esito": null,
       "prova": true
     },
@@ -7568,7 +7568,8 @@
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "Giro di Claude non eseguito: notizie non controllate",
     "3 partite già iniziate escluse",
-    "odss-api alle 07:02: 6 partite senza righe a tempo intero (full_time), senza quote: Garuda Yaksa - Persib Bandung, Heart of Midlothian WFC (donne) - Montrose (donne), Rangers (donne) - Motherwell  (donne), Panionios GSS - Marko, Birmingham City Women - Charlton Athletic Women, Tromejnik Montpreis - Beltinci"
+    "odss-api alle 07:02: 6 partite senza righe a tempo intero (full_time), senza quote: Garuda Yaksa - Persib Bandung, Heart of Midlothian WFC (donne) - Montrose (donne), Rangers (donne) - Motherwell  (donne), Panionios GSS - Marko, Birmingham City Women - Charlton Athletic Women, Tromejnik Montpreis - Beltinci",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 10 su 13, rimaste 447, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
