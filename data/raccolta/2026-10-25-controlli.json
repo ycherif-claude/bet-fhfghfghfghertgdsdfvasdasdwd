@@ -85,8 +85,8 @@
       "alle": "2026-10-25T13:14:26+01:00"
     },
     "calcio-2026-10-25-hjk-kups-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,65 sotto la minima 4,31",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 3,65, sotto la minima 4,31 del mattino; nessun fatto concreto che renda la probabilità più alta di quella del mattino (analisi basata solo su modello e quote, notizie non controllate): senza value la giocata viene annullata (controlli quote odss-api, 13:52)",
       "problemi": [
         {
           "tipo": "quota",
@@ -94,7 +94,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-25T13:52:20+01:00"
+      "alle": "2026-10-25T13:53:04+01:00",
+      "claude": true
     },
     "calcio-2026-10-25-gais-ifk-goteborg-under-over-2-5-under-2-5": {
       "esito": "confermata",
