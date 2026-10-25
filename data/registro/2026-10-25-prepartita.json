@@ -653,6 +653,96 @@
       "prob": null,
       "alle": "2026-10-25T14:22:39+01:00",
       "minutiPrima": 37
+    },
+    "calcio-2026-10-25-celta-vigo-real-betis|1X2|1": {
+      "quota": 2.82,
+      "prob": 0.32878009717334894,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-celta-vigo-real-betis|1X2|X": {
+      "quota": 3.25,
+      "prob": 0.2940148301006383,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-celta-vigo-real-betis|1X2|2": {
+      "quota": 2.5,
+      "prob": 0.37720507272601267,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-celta-vigo-real-betis|Under/Over 2.5|Over 2.5": {
+      "quota": 1.91,
+      "prob": 0.49487179487179483,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-celta-vigo-real-betis|Under/Over 2.5|Under 2.5": {
+      "quota": 1.88,
+      "prob": 0.5051282051282052,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc|1X2|1": {
+      "quota": 1.92,
+      "prob": 0.49303897700144184,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc|1X2|X": {
+      "quota": 3.37,
+      "prob": 0.27068806580471316,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc|1X2|2": {
+      "quota": 3.8,
+      "prob": 0.236272957193845,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc|Under/Over 2.5|Over 2.5": {
+      "quota": 1.87,
+      "prob": 0.5038560411311055,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc|Under/Over 2.5|Under 2.5": {
+      "quota": 1.85,
+      "prob": 0.4961439588688946,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-albacete-cd-eldense|1X2|1": {
+      "quota": 2.25,
+      "prob": 0.40677019412348064,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-albacete-cd-eldense|1X2|X": {
+      "quota": 3.35,
+      "prob": 0.27581568718344274,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-albacete-cd-eldense|1X2|2": {
+      "quota": 2.9,
+      "prob": 0.31741411869307673,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-albacete-cd-eldense|Under/Over 2.5|Over 2.5": {
+      "quota": 1.72,
+      "prob": null,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
+    },
+    "calcio-2026-10-25-albacete-cd-eldense|Under/Over 2.5|Under 2.5": {
+      "quota": 2.03,
+      "prob": null,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "minutiPrima": 32
     }
   },
   "copertura": {
@@ -678,10 +768,11 @@
       ]
     },
     "calcio|LaLiga": {
-      "alle": "2026-10-25T13:14:26+01:00",
-      "partite": 1,
+      "alle": "2026-10-25T15:43:18+01:00",
+      "partite": 2,
       "idPartite": [
-        "calcio-2026-10-25-athletic-bilbao-getafe"
+        "calcio-2026-10-25-athletic-bilbao-getafe",
+        "calcio-2026-10-25-celta-vigo-real-betis"
       ]
     },
     "calcio|Veikkausliiga (Finlandia)": {
@@ -735,6 +826,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-10-25-palermo-carrarese"
+      ]
+    },
+    "calcio|Segunda División": {
+      "alle": "2026-10-25T15:43:18+01:00",
+      "partite": 2,
+      "idPartite": [
+        "calcio-2026-10-25-cadiz-cf-ad-ceuta-fc",
+        "calcio-2026-10-25-albacete-cd-eldense"
       ]
     }
   }
