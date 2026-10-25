@@ -1,5 +1,16 @@
 {
   "decisioni": [
-    { "idGiocata": "calcio-2026-10-25-hjk-kups-1x2-2", "stato": "annullata", "motivo": "Quota scesa a 3,65, sotto la minima 4,31 del mattino; nessun fatto concreto che renda la probabilità più alta di quella del mattino (analisi basata solo su modello e quote, notizie non controllate): senza value la giocata viene annullata", "fonte": "controlli quote odss-api, 13:52" }
+    {
+      "idGiocata": "calcio-2026-10-25-hjk-kups-1x2-2",
+      "stato": "annullata",
+      "motivo": "Quota scesa a 3,65, sotto la minima 4,31 del mattino; nessun fatto concreto che renda la probabilità più alta di quella del mattino (analisi basata solo su modello e quote, notizie non controllate): senza value la giocata viene annullata",
+      "fonte": "controlli quote odss-api, 13:52"
+    },
+    {
+      "idGiocata": "nba-2026-10-25-utah-jazz-los-angeles-lakers-handicap-piu-6-5-trasferta",
+      "stato": "annullata",
+      "motivo": "Quota scesa a 1,91, sotto la minima 1,98 del mattino (value già sottile, 2,7%); la ricerca non ha trovato alcuna notizia concreta sulla partita che alzi la probabilità rispetto all'analisi del mattino (basata solo su modello e quote): senza value la giocata viene annullata",
+      "fonte": "controlli quote odss-api, 20:58; ricerca web senza report infortuni per la partita, 20:59"
+    }
   ]
 }

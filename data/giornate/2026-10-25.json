@@ -6280,9 +6280,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,91 sotto la minima 1,98",
-      "oraUltimoControllo": "2026-10-25T20:58:22+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota scesa a 1,91, sotto la minima 1,98 del mattino (value già sottile, 2,7%); la ricerca non ha trovato alcuna notizia concreta sulla partita che alzi la probabilità rispetto all'analisi del mattino (basata solo su modello e quote): senza value la giocata viene annullata (controlli quote odss-api, 20:58; ricerca web senza report infortuni per la partita, 20:59)",
+      "oraUltimoControllo": "2026-10-25T20:59:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -7569,7 +7569,8 @@
     "Giro di Claude non eseguito: notizie non controllate",
     "3 partite già iniziate escluse",
     "odss-api alle 07:02: 6 partite senza righe a tempo intero (full_time), senza quote: Garuda Yaksa - Persib Bandung, Heart of Midlothian WFC (donne) - Montrose (donne), Rangers (donne) - Motherwell  (donne), Panionios GSS - Marko, Birmingham City Women - Charlton Athletic Women, Tromejnik Montpreis - Beltinci",
-    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 10 su 13, rimaste 447, riserva 60): quote dei controlli dalle fonti di prima"
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 10 su 13, rimaste 447, riserva 60): quote dei controlli dalle fonti di prima",
+    "Decisione di Claude per calcio-2026-10-25-hjk-kups-1x2-2 arrivata dopo l'inizio della partita (20:59): non applicata"
   ],
   "schedinePronostici": [
     {
