@@ -929,6 +929,66 @@
       "prob": null,
       "alle": "2026-10-25T18:02:09+01:00",
       "minutiPrima": 28
+    },
+    "calcio-2026-10-25-nacional-braga|1X2|1": {
+      "quota": 5.9,
+      "prob": 0.14297160773384426,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-nacional-braga|1X2|X": {
+      "quota": 4.07,
+      "prob": 0.22306218428845148,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-nacional-braga|1X2|2": {
+      "quota": 1.47,
+      "prob": 0.6339662079777043,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-nacional-braga|Under/Over 2.5|Over 2.5": {
+      "quota": 1.8,
+      "prob": 0.5218508997429305,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-nacional-braga|Under/Over 2.5|Under 2.5": {
+      "quota": 1.95,
+      "prob": 0.47814910025706947,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-rio-ave-fc-famalicao|1X2|1": {
+      "quota": 3.5,
+      "prob": 0.25188511214684145,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-rio-ave-fc-famalicao|1X2|X": {
+      "quota": 3.3,
+      "prob": 0.2853211889804929,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-rio-ave-fc-famalicao|1X2|2": {
+      "quota": 2,
+      "prob": 0.46279369887266564,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-rio-ave-fc-famalicao|Under/Over 2.5|Over 2.5": {
+      "quota": 1.95,
+      "prob": 0.4896907216494846,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
+    },
+    "calcio-2026-10-25-rio-ave-fc-famalicao|Under/Over 2.5|Under 2.5": {
+      "quota": 1.81,
+      "prob": 0.5103092783505154,
+      "alle": "2026-10-25T18:29:00+01:00",
+      "minutiPrima": 31
     }
   },
   "copertura": {
@@ -1031,6 +1091,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-10-25-sc-freiburg-bayern-munich"
+      ]
+    },
+    "calcio|Primeira Liga": {
+      "alle": "2026-10-25T18:29:00+01:00",
+      "partite": 2,
+      "idPartite": [
+        "calcio-2026-10-25-nacional-braga",
+        "calcio-2026-10-25-rio-ave-fc-famalicao"
       ]
     }
   }
