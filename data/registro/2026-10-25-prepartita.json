@@ -785,6 +785,36 @@
       "prob": 0.5167095115681234,
       "alle": "2026-10-25T16:08:14+01:00",
       "minutiPrima": 37
+    },
+    "calcio-2026-10-25-hellas-verona-pisa|1X2|1": {
+      "quota": 2.2,
+      "prob": 0.42230723179625823,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-25-hellas-verona-pisa|1X2|X": {
+      "quota": 3.25,
+      "prob": 0.28194856000391577,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-25-hellas-verona-pisa|1X2|2": {
+      "quota": 3.01,
+      "prob": 0.29574420819982605,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-25-hellas-verona-pisa|Under/Over 2.5|Over 2.5": {
+      "quota": 1.8,
+      "prob": 0.5205128205128204,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-25-hellas-verona-pisa|Under/Over 2.5|Under 2.5": {
+      "quota": 1.9,
+      "prob": 0.47948717948717956,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "minutiPrima": 41
     }
   },
   "copertura": {
@@ -865,10 +895,11 @@
       ]
     },
     "calcio|Serie B": {
-      "alle": "2026-10-25T14:22:39+01:00",
-      "partite": 1,
+      "alle": "2026-10-25T16:33:33+01:00",
+      "partite": 2,
       "idPartite": [
-        "calcio-2026-10-25-palermo-carrarese"
+        "calcio-2026-10-25-palermo-carrarese",
+        "calcio-2026-10-25-hellas-verona-pisa"
       ]
     },
     "calcio|Segunda División": {
