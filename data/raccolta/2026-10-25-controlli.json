@@ -553,6 +553,21 @@
         "quote non controllate (meno di 3 bookmaker con la stessa linea)"
       ],
       "alle": "2026-10-25T22:54:06+01:00"
+    },
+    "nba-2026-10-25-philadelphia-76ers-detroit-pistons-vincente-detroit-pistons": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,81 sotto la minima 2,08",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,81 sotto la minima 2,08"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-25T23:40:25+01:00",
+      "regola": true
     }
   },
   "claude": {
