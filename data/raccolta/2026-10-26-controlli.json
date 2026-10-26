@@ -50,12 +50,67 @@
         "quote non controllate (mercato senza quote nella fonte gratuita)"
       ],
       "alle": "2026-10-26T19:14:23+01:00"
+    },
+    "calcio-2026-10-26-montpellier-red-star-under-over-1-5-under-1-5": {
+      "esito": "confermata",
+      "motivo": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-10-26T20:00:40+01:00"
+    },
+    "calcio-2026-10-26-paris-saint-germain-lyon-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,10 sotto la minima 3,13",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,10 sotto la minima 3,13"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-26T20:00:40+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-26-sevilla-ca-osasuna-1x2-2": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 4,35 sotto la minima 4,50",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,35 sotto la minima 4,50"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-26T20:00:40+01:00"
+    },
+    "calcio-2026-10-26-andorra-cf-burgos-cf-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,72 sotto la minima 1,81",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,72 sotto la minima 1,81"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-26T20:00:40+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5"
+      "calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5",
+      "calcio-2026-10-26-sevilla-ca-osasuna-1x2-2"
     ]
   },
   "pronostici": {

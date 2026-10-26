@@ -1908,9 +1908,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -2029,9 +2029,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,10 sotto la minima 3,13",
+      "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -2275,9 +2275,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 4,35 sotto la minima 4,50",
+      "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -2398,9 +2398,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 1,72 sotto la minima 1,81",
+      "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -3025,7 +3025,8 @@
     "odss-api alle 07:08: 7 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Minnesota Timberwolves - Cleveland Cavaliers, Chicago Bulls - Boston Celtics, Dallas Mavericks - Miami Heat, Phoenix Suns - Oklahoma City Thunder, Indiana Pacers - Milwaukee Bucks, Atlanta Hawks - Houston Rockets, Memphis Grizzlies - Utah Jazz",
     "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
     "Storico tennis WTA fermo al 18/10/2026: ricarica il file in data/storico-tennis/wta/2026.xlsx",
-    "Superficie sconosciuta per ATP Swiss Indoors Basel: solo Pinnacle"
+    "Superficie sconosciuta per ATP Swiss Indoors Basel: solo Pinnacle",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 8 su 13, rimaste 439, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
