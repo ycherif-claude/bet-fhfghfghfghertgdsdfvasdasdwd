@@ -18,7 +18,7 @@ Il sistema è quasi tutto in **modalità prova**: 160 giocate su 162 sono di pro
 | Ancora aperte | 0 | 34 (partite dal 23 al 27/10) |
 
 - **Bankroll** (il capitale di gioco): 200 € a inizio settimana, 198 € a fine settimana.
-- Le proposte contano solo quelle non annullate; le annullate (prima di giocare) sono 40.
+- Le proposte contano solo quelle non annullate; le annullate (prima di giocare) sono 40 (2 sono del 26/10, fuori settimana).
 - Nel totale dall'inizio i numeri sono gli stessi della settimana (solo 3 giocate chiuse in più della sera del 26/10 non ci sono ancora).
 
 **Tetto giornaliero** (12% del bankroll ≈ 23,76 €):
@@ -63,7 +63,7 @@ Il modello è **troppo ottimista sotto il 50%** (di circa 7-9 punti) e ben centr
 
 **Quote prese davvero**: c'è una sola segnatura fatta (Levante–Athletic Bilbao, cartellini Under 3,5, 21/10): quota presa 2,65, contro la minima 2,35, quindi **sopra** la minima. Il bookmaker non è indicato (segnatura precedente al campo) e non c'era una quota gratuita da confrontare. Persa. Un'altra giocata (Wolverhampton–Portsmouth, 20/10) è stata segnata come *non fatta*. Non si può dire nulla su bookmaker o differenze di quota.
 
-**Giocate annullate prima di giocare**: 40. Quasi tutte (circa 37) sono state fermate dalla "regola automatica" perché la quota era scesa sotto la minima, in giorni senza controllo di Claude. Delle annullate, 9 avrebbero vinto e 31 perso: il filtro, in questa settimana, ha evitato più perdite che vincite.
+**Giocate annullate prima di giocare**: 40. 34 sono state fermate dalla "regola automatica" (Claude non disponibile) perché la quota era scesa sotto la minima: 7 sarebbero state vinte e 27 perse. Le altre 6 sono state fermate da Claude (2 vinte, 2 perse, 2 rimborsate). Il filtro, in questa settimana, ha evitato più perdite che vincite.
 
 ## 4. Pronostici e doppie/triple
 I pronostici sì/no (per esempio "più di 1,5 gol sì/no") sono stati registrati dal 22/10 al 25/10: 246 pronostici, di cui 206 chiusi e 40 ancora aperti.
@@ -79,7 +79,7 @@ I pronostici sì/no (per esempio "più di 1,5 gol sì/no") sono stati registrati
   - Tutte e 9 usano quote "da verificare". Campione piccolissimo: la fortuna conta più del metodo.
 
 ## 5. Salute del sistema
-- **Giorni senza giro di Claude**: 1 su 7 (25/10, giro di "riserva": senza notizie e senza controllo di Claude; è il giorno con più giocate annullate dalla regola automatica).
+- **Giorni senza giro di Claude**: 1 su 7 (25/10, giro di "riserva": senza notizie e senza controllo di Claude; le giocate annullate dalla regola automatica sono state 34 in totale nella settimana, non solo quel giorno).
 - **Errori ricorrenti nelle giornate**:
   - Quote non trovate su odss-api per molte leghe (Bundesliga, 2. Bundesliga, Süper Lig, Liga Profesional, Liga MX, Grecia, Austria, Norvegia, Danimarca, MLS e altre), in 3 o più giorni: spesso si usa The Odds API, altrimenti si gioca senza quota.
   - Budget di richieste raggiunto (odss-api): 4 volte per i controlli prima delle partite e anche per NBL, pallavolo ed Eurolega. Le quote dei controlli vengono prese dalle fonti precedenti.
@@ -110,7 +110,7 @@ I pronostici sì/no (per esempio "più di 1,5 gol sì/no") sono stati registrati
    - Rischio a farlo: perdere un po' di giocate valide; a non farlo: puntate su giocate che non hanno il vantaggio che sembra.
 
 4. **Capire perché nessun pronostico è ✅ e perché il 25/10 il giro di Claude non c'è stato.**
-   - Perché: 0 pronostici giocabili su 246; il 25/10 senza giro 38 giocate sono state annullate dalla regola automatica.
+   - Perché: 0 pronostici giocabili su 246; la regola automatica ha annullato 34 giocate quando Claude non era disponibile.
    - Sicurezza: alta sul fatto, da chiarire la causa.
    - Rischio a farlo: nessuno (solo controllo). A non farlo: restare senza pronostici utili e senza notizie in certi giorni.
 
