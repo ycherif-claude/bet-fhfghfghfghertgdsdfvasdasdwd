@@ -29,8 +29,8 @@
       "alle": "2026-10-26T17:18:47+01:00"
     },
     "calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,35 sotto la minima 3,40",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 3,35, sotto la minima 3,40 del mattino: non c'è un fatto concreto che alzi la probabilità (notizie non controllate al mattino, consenso bookmaker al 27% contro il 32% usato), quindi il value non c'è più (controlli quote odss-api, 18:38)",
       "problemi": [
         {
           "tipo": "quota",
@@ -38,7 +38,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-26T18:38:23+01:00"
+      "alle": "2026-10-26T18:39:35+01:00",
+      "claude": true
     }
   },
   "claude": {
