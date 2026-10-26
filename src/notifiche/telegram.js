@@ -181,6 +181,59 @@ export function messaggiSchedinePronostici({ giornate, inviate }) {
 
 const multipleBonus = (giornata) => (Array.isArray(giornata?.multipleBonus) ? giornata.multipleBonus.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
 
+// Storico diviso [utente, 26/10/2026]: pronostici dall'80% in su e partite della multipla da 20, dall'inizio
+// e del giorno prima. Solo esiti chiusi (vinta/persa). Un messaggio al giorno, dopo le 9 (dopo il registro del mattino).
+export function contaStorico(giornate, ieri) {
+  const conta = () => ({ giusti: 0, chiusi: 0, promessa: 0 });
+  const r = { pronostici: conta(), pronosticiIeri: conta(), multipla: conta(), multiplaIeri: conta(), multipleVinte: 0, multipleChiuse: 0 };
+  const aggiungi = (c, esito, p) => {
+    if (esito !== 'vinta' && esito !== 'persa') return;
+    c.chiusi++;
+    if (esito === 'vinta') c.giusti++;
+    if (num(p)) c.promessa += p;
+  };
+  for (const g of giornate) {
+    for (const p of pronosticiDi(g)) {
+      for (const x of p.pronostici) {
+        if (!(x.prob >= 0.8 - 1e-9)) continue;
+        aggiungi(r.pronostici, x.esito, x.prob);
+        if (g.data === ieri) aggiungi(r.pronosticiIeri, x.esito, x.prob);
+      }
+    }
+    for (const mb of multipleBonus(g).filter((m) => m.gambe.length === 20)) {
+      for (const x of mb.gambe) {
+        aggiungi(r.multipla, x.esito, x.probMercato);
+        if (g.data === ieri) aggiungi(r.multiplaIeri, x.esito, x.probMercato);
+      }
+      if (mb.esito === 'vinta' || mb.esito === 'persa') { r.multipleChiuse++; if (mb.esito === 'vinta') r.multipleVinte++; }
+    }
+  }
+  return r;
+}
+
+export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
+  const chiave = `${oggi}|storico`;
+  if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
+  const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
+  const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
+  if (!r.pronostici.chiusi && !r.multipla.chiusi) return [];
+  const riga = (c) => (c.chiusi ? `${c.giusti} su ${c.chiusi} (${percentuale(c.giusti / c.chiusi)})` : 'nessuno chiuso');
+  const promessa = (c) => (c.chiusi ? percentuale(c.promessa / c.chiusi) : '–');
+  const testo = [
+    `📊 <b>Storico al ${giornoMese(oggi)}</b>`,
+    '',
+    '📋 <b>Pronostici dall\'80% in su</b>',
+    `   dall'inizio: <b>${riga(r.pronostici)}</b> · promessi ${promessa(r.pronostici)}`,
+    `   ieri (${giornoMese(ieri)}): ${riga(r.pronosticiIeri)}`,
+    '',
+    '🧪 <b>Partite della multipla da 20</b>',
+    `   dall'inizio: <b>${riga(r.multipla)}</b> · attese dal mercato ${promessa(r.multipla)}`,
+    `   ieri (${giornoMese(ieri)}): ${riga(r.multiplaIeri)}`,
+    `   multiple da 20 vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
+  ].join('\n');
+  return [{ chiave, testo }];
+}
+
 // Esito delle multiple bonus, una volta per multipla.
 export function messaggiMultipleBonus({ giornate, inviate }) {
   const out = [];
@@ -526,6 +579,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
+  lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));

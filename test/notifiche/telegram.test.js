@@ -313,3 +313,32 @@ test('A4 esito di una giocata di prova segnata fatta: detto che non conta nel ba
   assert.match(m.testo, /PROVA: non conta nel bankroll/);
   assert.match(m.testo, /Bankroll: <b>200,00 €<\/b>/);
 });
+
+test('storico diviso: pronostici dall\'80% e partite della multipla da 20, una volta al giorno dopo le 9', async () => {
+  const { messaggioStorico, contaStorico } = await import('../../src/notifiche/telegram.js');
+  const pr = (prob, esito) => ({ prob, esito });
+  const gamba = (esito) => ({ esito, probMercato: 0.7, quota: 1.4 });
+  const g = (data, pronostici, gambe) => ({
+    data, pronostici: [{ idPartita: 'x', partita: 'A - B', pronostici }],
+    multipleBonus: [
+      { id: `MB20-${data}`, nome: 'Multipla bonus bet365 da 20', gambe, esito: gambe.some((x) => x.esito === 'persa') ? 'persa' : null },
+      { id: `MB10-${data}`, nome: 'Multipla bonus bet365 da 10', gambe: gambe.slice(0, 10).map(() => gamba('persa')), esito: 'persa' },
+    ],
+  });
+  const venti = (perse) => Array.from({ length: 20 }, (_, i) => gamba(i < perse ? 'persa' : 'vinta'));
+  const giornate = [
+    g('2026-10-24', [pr(0.85, 'vinta'), pr(0.82, 'persa'), pr(0.75, 'vinta'), pr(0.9, null)], venti(2)),
+    g('2026-10-25', [pr(0.88, 'vinta')], venti(3)),
+  ];
+  const r = contaStorico(giornate, '2026-10-25');
+  assert.deepEqual([r.pronostici.giusti, r.pronostici.chiusi, r.pronosticiIeri.giusti, r.pronosticiIeri.chiusi], [2, 3, 1, 1]);
+  assert.deepEqual([r.multipla.giusti, r.multipla.chiusi, r.multiplaIeri.giusti, r.multipleChiuse, r.multipleVinte], [35, 40, 17, 2, 0]);
+  assert.deepEqual(messaggioStorico({ giornate, inviate: new Set(), oggi: '2026-10-26', adesso: new Date('2026-10-26T06:30:00Z') }), []);
+  const m = messaggioStorico({ giornate, inviate: new Set(), oggi: '2026-10-26', adesso: new Date('2026-10-26T08:30:00Z') });
+  assert.equal(m.length, 1);
+  assert.match(m[0].testo, /Pronostici dall'80% in su<\/b>\n   dall'inizio: <b>2 su 3 \(67%\)<\/b>/);
+  assert.match(m[0].testo, /Partite della multipla da 20<\/b>\n   dall'inizio: <b>35 su 40 \(88%\)<\/b> · attese dal mercato 70%/);
+  assert.match(m[0].testo, /ieri \(25\/10\): 17 su 20 \(85%\)/);
+  assert.match(m[0].testo, /multiple da 20 vinte: 0 su 2/);
+  assert.deepEqual(messaggioStorico({ giornate, inviate: new Set([m[0].chiave]), oggi: '2026-10-26', adesso: new Date('2026-10-26T08:30:00Z') }), []);
+});
