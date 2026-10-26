@@ -2275,9 +2275,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 4,35 sotto la minima 4,50",
-      "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota scesa a 4,35, sotto la minima 4,50 del mattino; formazioni ufficiali uscite senza giocatori chiave segnalati e nessun fatto concreto che alzi la probabilità oltre il 24% usato (modello 27%, Pinnacle 22%): il value non c'è più (controlli quote odss-api, 20:00)",
+      "oraUltimoControllo": "2026-10-26T20:01:42+01:00",
       "esito": null,
       "prova": true
     },
@@ -3026,7 +3026,8 @@
     "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
     "Storico tennis WTA fermo al 18/10/2026: ricarica il file in data/storico-tennis/wta/2026.xlsx",
     "Superficie sconosciuta per ATP Swiss Indoors Basel: solo Pinnacle",
-    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 8 su 13, rimaste 439, riserva 60): quote dei controlli dalle fonti di prima"
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 8 su 13, rimaste 439, riserva 60): quote dei controlli dalle fonti di prima",
+    "Decisione di Claude per calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5 arrivata dopo l'inizio della partita (20:01): non applicata"
   ],
   "schedinePronostici": [
     {

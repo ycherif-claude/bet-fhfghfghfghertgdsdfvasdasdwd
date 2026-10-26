@@ -77,8 +77,8 @@
       "regola": true
     },
     "calcio-2026-10-26-sevilla-ca-osasuna-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 4,35 sotto la minima 4,50",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 4,35, sotto la minima 4,50 del mattino; formazioni ufficiali uscite senza giocatori chiave segnalati e nessun fatto concreto che alzi la probabilità oltre il 24% usato (modello 27%, Pinnacle 22%): il value non c'è più (controlli quote odss-api, 20:00)",
       "problemi": [
         {
           "tipo": "quota",
@@ -88,7 +88,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-10-26T20:00:40+01:00"
+      "alle": "2026-10-26T20:01:42+01:00",
+      "claude": true
     },
     "calcio-2026-10-26-andorra-cf-burgos-cf-under-over-2-5-under-2-5": {
       "esito": "annullata",

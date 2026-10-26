@@ -1,5 +1,16 @@
 {
   "decisioni": [
-    { "idGiocata": "calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5", "stato": "annullata", "motivo": "Quota scesa a 3,35, sotto la minima 3,40 del mattino: non c'è un fatto concreto che alzi la probabilità (notizie non controllate al mattino, consenso bookmaker al 27% contro il 32% usato), quindi il value non c'è più", "fonte": "controlli quote odss-api, 18:38" }
+    {
+      "idGiocata": "calcio-2026-10-26-sepsi-sf-gheorghe-univ-craiova-under-over-1-5-under-1-5",
+      "stato": "annullata",
+      "motivo": "Quota scesa a 3,35, sotto la minima 3,40 del mattino: non c'è un fatto concreto che alzi la probabilità (notizie non controllate al mattino, consenso bookmaker al 27% contro il 32% usato), quindi il value non c'è più",
+      "fonte": "controlli quote odss-api, 18:38"
+    },
+    {
+      "idGiocata": "calcio-2026-10-26-sevilla-ca-osasuna-1x2-2",
+      "stato": "annullata",
+      "motivo": "Quota scesa a 4,35, sotto la minima 4,50 del mattino; formazioni ufficiali uscite senza giocatori chiave segnalati e nessun fatto concreto che alzi la probabilità oltre il 24% usato (modello 27%, Pinnacle 22%): il value non c'è più",
+      "fonte": "controlli quote odss-api, 20:00"
+    }
   ]
 }
