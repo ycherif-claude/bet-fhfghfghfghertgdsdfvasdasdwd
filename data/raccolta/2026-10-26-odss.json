@@ -1,0 +1,2296 @@
+{
+  "data": "2026-10-26",
+  "generataAlle": "2026-10-26T07:08:04+01:00",
+  "fonte": "odss-api.com",
+  "esito": "ok",
+  "richieste": 2,
+  "rimaste": 445,
+  "diagnostica": {
+    "righe": 2101,
+    "righeUsate": 1062,
+    "senzaIntero": 0,
+    "doppie": 0,
+    "periodiVisti": {
+      "match|full_time": 1062,
+      "match|1st_half": 744,
+      "match|2nd_half": 295
+    }
+  },
+  "erroriGiro": [],
+  "eventi": [
+    {
+      "id": "20eb1d2a8ce676d6",
+      "campionato": "La Liga",
+      "casa": "Sevilla",
+      "trasferta": "Osasuna",
+      "inizio": "2026-10-26T20:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.5066,
+            "DRAW": 0.2771,
+            "AWAY": 0.2163
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.9,
+              "n": 157
+            },
+            "DRAW": {
+              "quota": 3.4,
+              "n": 157
+            },
+            "AWAY": {
+              "quota": 4.33,
+              "n": 157
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3109,
+            "OVER": 0.6891
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.2,
+              "n": 59
+            },
+            "OVER": {
+              "quota": 1.33,
+              "n": 59
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5669,
+            "OVER": 0.4331
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.68,
+              "n": 150
+            },
+            "OVER": {
+              "quota": 2.19,
+              "n": 150
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.715,
+            "1X": 0.7654,
+            "X2": 0.5196
+          },
+          "fonteProb": "mediana di 143 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 143
+            },
+            "1X": {
+              "quota": 1.22,
+              "n": 143
+            },
+            "X2": {
+              "quota": 1.8,
+              "n": 143
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.75,
+            "OVER": 0.25
+          },
+          "fonteProb": "mediana di 58 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.25,
+              "n": 58
+            },
+            "OVER": {
+              "quota": 3.75,
+              "n": 58
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "186f84b541392096,65a2688bbc14797c,9ef0eef8e18170b3,a3e8105a4aa93291",
+      "campionato": "Ligue 1",
+      "casa": "PSG",
+      "trasferta": "Lyon",
+      "inizio": "2026-10-26T19:30:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.7053,
+            "DRAW": 0.164,
+            "AWAY": 0.1306
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.36,
+              "n": 144
+            },
+            "DRAW": {
+              "quota": 5.75,
+              "n": 144
+            },
+            "AWAY": {
+              "quota": 7,
+              "n": 144
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8249,
+            "1X": 0.8413,
+            "X2": 0.3338
+          },
+          "fonteProb": "mediana di 139 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.13,
+              "n": 139
+            },
+            "1X": {
+              "quota": 1.11,
+              "n": 139
+            },
+            "X2": {
+              "quota": 2.8,
+              "n": 139
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.301,
+            "OVER": 0.699
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.2,
+              "n": 54
+            },
+            "OVER": {
+              "quota": 1.34,
+              "n": 54
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5069,
+            "OVER": 0.4931
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.88,
+              "n": 138
+            },
+            "OVER": {
+              "quota": 1.94,
+              "n": 138
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.1347,
+            "OVER": 0.8653
+          },
+          "fonteProb": "mediana di 50 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 7,
+              "n": 50
+            },
+            "OVER": {
+              "quota": 1.09,
+              "n": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dc03a9280bedc42b",
+      "campionato": "Primeira Liga",
+      "casa": "Santa Clara",
+      "trasferta": "Benfica",
+      "inizio": "2026-10-26T18:45:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "HOME": 7.5,
+                "DRAW": 4.65,
+                "AWAY": 1.4
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 7.5,
+                "DRAW": 4.6,
+                "AWAY": 1.4
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 7.4,
+                "DRAW": 4.45,
+                "AWAY": 1.39
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.1139,
+            "DRAW": 0.2013,
+            "AWAY": 0.6836
+          },
+          "fonteProb": "mediana di 105 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 8,
+              "n": 105
+            },
+            "DRAW": {
+              "quota": 4.6,
+              "n": 105
+            },
+            "AWAY": {
+              "quota": 1.36,
+              "n": 105
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.95,
+                "OVER": 1.75
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.9,
+                "OVER": 1.78
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.93,
+                "OVER": 1.78
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4882,
+            "OVER": 0.5118
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.95,
+              "n": 101
+            },
+            "OVER": {
+              "quota": 1.76,
+              "n": 101
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.35,
+                "OVER": 2.9
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.35,
+                "OVER": 2.9
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.693,
+            "OVER": 0.307
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.36,
+              "n": 82
+            },
+            "OVER": {
+              "quota": 2.8,
+              "n": 82
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 3.8,
+                "OVER": 1.22
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.55,
+                "OVER": 1.25
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2695,
+            "OVER": 0.7305
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.82,
+              "n": 82
+            },
+            "OVER": {
+              "quota": 1.21,
+              "n": 82
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "12": 1.17,
+                "1X": 2.85,
+                "X2": 1.07
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.19,
+                "1X": 2.82,
+                "X2": 1.09
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.8111,
+            "1X": 0.3082,
+            "X2": 0.8806
+          },
+          "fonteProb": "mediana di 75 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.14,
+              "n": 76
+            },
+            "1X": {
+              "quota": 3,
+              "n": 76
+            },
+            "X2": {
+              "quota": 1.05,
+              "n": 75
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "99ff003f93989080",
+      "campionato": "LaLiga 2",
+      "casa": "Fc Andorra",
+      "trasferta": "Burgos Cf",
+      "inizio": "2026-10-26T19:30:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "HOME": 2.05,
+                "DRAW": 3.1,
+                "AWAY": 3.55
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 2.05,
+                "DRAW": 3.25,
+                "AWAY": 3.4
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 2.05,
+                "DRAW": 3.25,
+                "AWAY": 3.4
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.4516,
+            "DRAW": 0.2933,
+            "AWAY": 0.2551
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.05,
+              "n": 184
+            },
+            "DRAW": {
+              "quota": 3.2,
+              "n": 184
+            },
+            "AWAY": {
+              "quota": 3.6,
+              "n": 184
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.73,
+                "OVER": 1.98
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.71,
+                "OVER": 1.94
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.73,
+                "OVER": 1.95
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5343,
+            "OVER": 0.4657
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.75,
+              "n": 180
+            },
+            "OVER": {
+              "quota": 1.98,
+              "n": 180
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.25,
+                "OVER": 3.4
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.27,
+                "OVER": 3.3
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.7407,
+            "OVER": 0.2593
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.27,
+              "n": 91
+            },
+            "OVER": {
+              "quota": 3.4,
+              "n": 91
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 3.25,
+                "OVER": 1.3
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.1,
+                "OVER": 1.3
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2754,
+            "OVER": 0.7246
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.25,
+              "n": 91
+            },
+            "OVER": {
+              "quota": 1.28,
+              "n": 91
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "12": 1.3,
+                "1X": 1.25,
+                "X2": 1.65
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.31,
+                "1X": 1.28,
+                "X2": 1.68
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7067,
+            "1X": 0.734,
+            "X2": 0.5646
+          },
+          "fonteProb": "mediana di 148 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 148
+            },
+            "1X": {
+              "quota": 1.25,
+              "n": 148
+            },
+            "X2": {
+              "quota": 1.64,
+              "n": 148
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "9b7890fd85126e93,f1f0b5edfb8fb47b",
+      "campionato": "Ligue 2",
+      "casa": "US Boulogne",
+      "trasferta": "Stade Reims",
+      "inizio": "2026-10-26T19:45:00.000Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3015,
+            "DRAW": 0.2933,
+            "AWAY": 0.4059
+          },
+          "fonteProb": "mediana di 14 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 3.1,
+              "n": 14
+            },
+            "DRAW": {
+              "quota": 3.15,
+              "n": 14
+            },
+            "AWAY": {
+              "quota": 2.3,
+              "n": 14
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.7555,
+            "OVER": 0.2445
+          },
+          "fonteProb": "mediana di 13 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.23,
+              "n": 13
+            },
+            "OVER": {
+              "quota": 3.8,
+              "n": 13
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3176,
+            "OVER": 0.6824
+          },
+          "fonteProb": "mediana di 13 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.9,
+              "n": 13
+            },
+            "OVER": {
+              "quota": 1.35,
+              "n": 13
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5703,
+            "OVER": 0.4297
+          },
+          "fonteProb": "mediana di 13 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.62,
+              "n": 13
+            },
+            "OVER": {
+              "quota": 2.15,
+              "n": 13
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.707,
+            "1X": 0.5897,
+            "X2": 0.6981
+          },
+          "fonteProb": "mediana di 8 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.32,
+              "n": 8
+            },
+            "1X": {
+              "quota": 1.57,
+              "n": 8
+            },
+            "X2": {
+              "quota": 1.34,
+              "n": 8
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "42dc80eedb7069f9",
+      "campionato": "Ligue 2",
+      "casa": "Montpellier",
+      "trasferta": "Red Star",
+      "inizio": "2026-10-26T19:45:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "HOME": 2.3,
+                "DRAW": 3.3,
+                "AWAY": 2.95
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 2.28,
+                "DRAW": 3.35,
+                "AWAY": 3
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 2.27,
+                "DRAW": 3.3,
+                "AWAY": 3
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.4078,
+            "DRAW": 0.281,
+            "AWAY": 0.3112
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.28,
+              "n": 171
+            },
+            "DRAW": {
+              "quota": 3.25,
+              "n": 171
+            },
+            "AWAY": {
+              "quota": 2.95,
+              "n": 171
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.85,
+                "OVER": 1.85
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.83,
+                "OVER": 1.84
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.86,
+                "OVER": 1.85
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5023,
+            "OVER": 0.4977
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.85,
+              "n": 165
+            },
+            "OVER": {
+              "quota": 1.85,
+              "n": 165
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.3,
+                "OVER": 3.1
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.33,
+                "OVER": 3.05
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.71,
+            "OVER": 0.29
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.35,
+              "n": 75
+            },
+            "OVER": {
+              "quota": 2.9,
+              "n": 75
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 3.5,
+                "OVER": 1.25
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.45,
+                "OVER": 1.27
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2602,
+            "OVER": 0.7398
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.9,
+              "n": 75
+            },
+            "OVER": {
+              "quota": 1.21,
+              "n": 75
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "12": 1.28,
+                "1X": 1.35,
+                "X2": 1.55
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.32,
+                "1X": 1.37,
+                "X2": 1.6
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7138,
+            "1X": 0.6891,
+            "X2": 0.6043
+          },
+          "fonteProb": "mediana di 141 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 141
+            },
+            "1X": {
+              "quota": 1.33,
+              "n": 141
+            },
+            "X2": {
+              "quota": 1.52,
+              "n": 141
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "e76fc0c8f60a6d6c",
+      "campionato": "League Two",
+      "casa": "Walsall",
+      "trasferta": "Salford City",
+      "inizio": "2026-10-26T20:00:00.000Z",
+      "mercati": {
+        "dc": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "12": 1.25,
+                "1X": 1.72,
+                "X2": 1.3
+              },
+              "aggiornato": "2026-10-26T06:03:51.705086+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "12": 1.23,
+                "1X": 1.65,
+                "X2": 1.3
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.28,
+                "1X": 1.64,
+                "X2": 1.33
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.734,
+            "1X": 0.5646,
+            "X2": 0.7014
+          },
+          "fonteProb": "mediana di 145 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.25,
+              "n": 145
+            },
+            "1X": {
+              "quota": 1.62,
+              "n": 145
+            },
+            "X2": {
+              "quota": 1.3,
+              "n": 145
+            }
+          }
+        },
+        "1x2": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "HOME": 3.2,
+                "DRAW": 3.6,
+                "AWAY": 2
+              },
+              "aggiornato": "2026-10-26T06:03:51.705086+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "HOME": 3.05,
+                "DRAW": 3.6,
+                "AWAY": 2.05
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 3.1,
+                "DRAW": 3.45,
+                "AWAY": 2.13
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 3.1,
+                "DRAW": 3.45,
+                "AWAY": 2.13
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.2991,
+            "DRAW": 0.2536,
+            "AWAY": 0.4473
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 3.14,
+              "n": 179
+            },
+            "DRAW": {
+              "quota": 3.6,
+              "n": 179
+            },
+            "AWAY": {
+              "quota": 2.08,
+              "n": 179
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 4,
+                "OVER": 1.18
+              },
+              "aggiornato": "2026-10-26T06:03:51.705086+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 4.15,
+                "OVER": 1.19
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.9,
+                "OVER": 1.21
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2223,
+            "OVER": 0.7777
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.15,
+              "n": 85
+            },
+            "OVER": {
+              "quota": 1.18,
+              "n": 85
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 2.1,
+                "OVER": 1.62
+              },
+              "aggiornato": "2026-10-26T06:03:51.705086+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 2.05,
+                "OVER": 1.65
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.98,
+                "OVER": 1.68
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.03,
+                "OVER": 1.7
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4447,
+            "OVER": 0.5553
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.12,
+              "n": 177
+            },
+            "OVER": {
+              "quota": 1.66,
+              "n": 177
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.42,
+                "OVER": 2.5
+              },
+              "aggiornato": "2026-10-26T06:03:51.705086+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.4,
+                "OVER": 2.7
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.4,
+                "OVER": 2.7
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.6656,
+            "OVER": 0.3344
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.42,
+              "n": 85
+            },
+            "OVER": {
+              "quota": 2.62,
+              "n": 85
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "27068be60e3c18ab",
+      "campionato": "Super Lig",
+      "casa": "Caykur Rizespor",
+      "trasferta": "Trabzonspor",
+      "inizio": "2026-10-26T16:00:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "HOME": 3.55,
+                "DRAW": 3.9,
+                "AWAY": 1.88
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 3.6,
+                "DRAW": 3.75,
+                "AWAY": 1.91
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 3.55,
+                "DRAW": 3.7,
+                "AWAY": 1.9
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.264,
+            "DRAW": 0.2432,
+            "AWAY": 0.4928
+          },
+          "fonteProb": "mediana di 168 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 3.5,
+              "n": 168
+            },
+            "DRAW": {
+              "quota": 3.8,
+              "n": 168
+            },
+            "AWAY": {
+              "quota": 1.87,
+              "n": 168
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 2.35,
+                "OVER": 1.53
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 2.28,
+                "OVER": 1.53
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.35,
+                "OVER": 1.53
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4016,
+            "OVER": 0.5984
+          },
+          "fonteProb": "mediana di 164 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.3,
+              "n": 164
+            },
+            "OVER": {
+              "quota": 1.53,
+              "n": 164
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 4.85,
+                "OVER": 1.14
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 4.6,
+                "OVER": 1.16
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.186,
+            "OVER": 0.814
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.8,
+              "n": 86
+            },
+            "OVER": {
+              "quota": 1.14,
+              "n": 86
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.5,
+                "OVER": 2.35
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.55,
+                "OVER": 2.3
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.6042,
+            "OVER": 0.3958
+          },
+          "fonteProb": "mediana di 85 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.52,
+              "n": 85
+            },
+            "OVER": {
+              "quota": 2.32,
+              "n": 85
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "12": 1.23,
+                "1X": 1.85,
+                "X2": 1.27
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.27,
+                "1X": 1.83,
+                "X2": 1.28
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7511,
+            "1X": 0.5245,
+            "X2": 0.7244
+          },
+          "fonteProb": "mediana di 135 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.22,
+              "n": 135
+            },
+            "1X": {
+              "quota": 1.75,
+              "n": 135
+            },
+            "X2": {
+              "quota": 1.26,
+              "n": 135
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dc38a8790d61b315",
+      "campionato": "Süper Lig",
+      "casa": "Galatasaray",
+      "trasferta": "Fenerbahce",
+      "inizio": "2026-10-26T18:30:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "HOME": 2.02,
+                "DRAW": 3.85,
+                "AWAY": 3.15
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 2.01,
+                "DRAW": 3.8,
+                "AWAY": 3.15
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.4624,
+            "DRAW": 0.2434,
+            "AWAY": 0.2942
+          },
+          "fonteProb": "mediana di 186 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2,
+              "n": 186
+            },
+            "DRAW": {
+              "quota": 3.8,
+              "n": 186
+            },
+            "AWAY": {
+              "quota": 3.14,
+              "n": 186
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "UNDER": 2.43,
+                "OVER": 1.47
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.5,
+                "OVER": 1.47
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.3671,
+            "OVER": 0.6329
+          },
+          "fonteProb": "mediana di 91 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.55,
+              "n": 91
+            },
+            "OVER": {
+              "quota": 1.45,
+              "n": 91
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.63,
+                "OVER": 2.15
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5687,
+            "OVER": 0.4313
+          },
+          "fonteProb": "mediana di 171 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.61,
+              "n": 171
+            },
+            "OVER": {
+              "quota": 2.14,
+              "n": 171
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "UNDER": 5,
+                "OVER": 1.14
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.1663,
+            "OVER": 0.8337
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 5.4,
+              "n": 85
+            },
+            "OVER": {
+              "quota": 1.12,
+              "n": 85
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "12": 1.26,
+                "1X": 1.34,
+                "X2": 1.75
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7463,
+            "1X": 0.6966,
+            "X2": 0.5578
+          },
+          "fonteProb": "mediana di 148 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.23,
+              "n": 148
+            },
+            "1X": {
+              "quota": 1.32,
+              "n": 148
+            },
+            "X2": {
+              "quota": 1.64,
+              "n": 148
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "4d186457a413d78e",
+      "campionato": "Rumunija 1",
+      "casa": "SEPSI SF GHEORGHE",
+      "trasferta": "UNIV CRAIOVA",
+      "inizio": "2026-10-26T18:00:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "HOME": 5.6,
+                "DRAW": 4,
+                "AWAY": 1.51
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.1624,
+            "DRAW": 0.2286,
+            "AWAY": 0.609
+          },
+          "fonteProb": "mediana di 9 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 5.7,
+              "n": 9
+            },
+            "DRAW": {
+              "quota": 4.05,
+              "n": 9
+            },
+            "AWAY": {
+              "quota": 1.52,
+              "n": 9
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "12": 1.21,
+                "1X": 2.33,
+                "X2": 1.13
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7722,
+            "1X": 0.401,
+            "X2": 0.8268
+          },
+          "fonteProb": "mediana di 4 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.21,
+              "n": 4
+            },
+            "1X": {
+              "quota": 2.33,
+              "n": 4
+            },
+            "X2": {
+              "quota": 1.13,
+              "n": 4
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "sportium": {
+              "quote": {
+                "UNDER": 1.83,
+                "OVER": 1.8
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4959,
+            "OVER": 0.5041
+          },
+          "fonteProb": "mediana di 9 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.85,
+              "n": 9
+            },
+            "OVER": {
+              "quota": 1.8,
+              "n": 9
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2733,
+            "OVER": 0.7267
+          },
+          "fonteProb": "mediana di 5 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.35,
+              "n": 5
+            },
+            "OVER": {
+              "quota": 1.26,
+              "n": 5
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6944,
+            "OVER": 0.3056
+          },
+          "fonteProb": "mediana di 5 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.32,
+              "n": 5
+            },
+            "OVER": {
+              "quota": 3,
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "14b9a7912380b123,42ab8c997dfcede8,94787a9c854eba27,c5f84a6ce8716ff3",
+      "campionato": "Argentina Liga Profesional",
+      "casa": "Union de Santa Fe",
+      "trasferta": "Estudiantes La Plata",
+      "inizio": "2026-10-26T22:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3503,
+            "DRAW": 0.2982,
+            "AWAY": 0.3515
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.45,
+              "n": 73
+            },
+            "DRAW": {
+              "quota": 3.1,
+              "n": 73
+            },
+            "AWAY": {
+              "quota": 2.8,
+              "n": 73
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.7755,
+            "OVER": 0.2245
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.21,
+              "n": 61
+            },
+            "OVER": {
+              "quota": 4.1,
+              "n": 61
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5753,
+            "OVER": 0.4247
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.62,
+              "n": 69
+            },
+            "OVER": {
+              "quota": 2.23,
+              "n": 69
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3077,
+            "OVER": 0.6923
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.85,
+              "n": 61
+            },
+            "OVER": {
+              "quota": 1.38,
+              "n": 61
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.6992,
+            "1X": 0.684,
+            "X2": 0.6169
+          },
+          "fonteProb": "mediana di 62 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.35,
+              "n": 62
+            },
+            "1X": {
+              "quota": 1.38,
+              "n": 62
+            },
+            "X2": {
+              "quota": 1.53,
+              "n": 62
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "a4625dd98e87d55f,ea9a6721673814ba",
+      "campionato": "Liga Profesional de Futbol",
+      "casa": "Instituto Cordoba",
+      "trasferta": "Deportivo Riestra",
+      "inizio": "2026-10-27T00:15:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "HOME": 1.8,
+                "DRAW": 3.15,
+                "AWAY": 5.25
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 1.82,
+                "DRAW": 3.15,
+                "AWAY": 4.9
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 1.8,
+                "DRAW": 3.1,
+                "AWAY": 4.8
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.513,
+            "DRAW": 0.2969,
+            "AWAY": 0.1906
+          },
+          "fonteProb": "mediana di 61 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 1.8,
+              "n": 61
+            },
+            "DRAW": {
+              "quota": 3.1,
+              "n": 61
+            },
+            "AWAY": {
+              "quota": 4.9,
+              "n": 61
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 2.3,
+                "OVER": 1.55
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.3,
+                "OVER": 1.53
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4042,
+            "OVER": 0.5958
+          },
+          "fonteProb": "mediana di 53 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.28,
+              "n": 53
+            },
+            "OVER": {
+              "quota": 1.55,
+              "n": 53
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.4,
+                "OVER": 2.75
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.41,
+                "OVER": 2.62
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.4,
+                "OVER": 2.6
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.6511,
+            "OVER": 0.3489
+          },
+          "fonteProb": "mediana di 47 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.41,
+              "n": 47
+            },
+            "OVER": {
+              "quota": 2.65,
+              "n": 47
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.1,
+                "OVER": 5.5
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.13,
+                "OVER": 4.9
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.8208,
+            "OVER": 0.1792
+          },
+          "fonteProb": "mediana di 44 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.13,
+              "n": 44
+            },
+            "OVER": {
+              "quota": 5.15,
+              "n": 44
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "goldbet": {
+              "quote": {
+                "12": 1.33,
+                "1X": 1.14,
+                "X2": 1.95
+              },
+              "aggiornato": "2026-10-26T06:03:54.348966+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.34,
+                "1X": 1.18,
+                "X2": 1.92
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7053,
+            "1X": 0.8016,
+            "X2": 0.489
+          },
+          "fonteProb": "mediana di 29 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.32,
+              "n": 29
+            },
+            "1X": {
+              "quota": 1.15,
+              "n": 29
+            },
+            "X2": {
+              "quota": 1.92,
+              "n": 29
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "4f2edd312c614b59",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Coritiba",
+      "trasferta": "Gremio",
+      "inizio": "2026-10-26T22:30:00.000Z",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "HOME": 2.1,
+                "DRAW": 3.5,
+                "AWAY": 3.1
+              },
+              "aggiornato": "2026-10-26T06:03:35.707479+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 2.16,
+                "DRAW": 3.35,
+                "AWAY": 3.25
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 2.15,
+                "DRAW": 3.3,
+                "AWAY": 3.2
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.4341,
+            "DRAW": 0.273,
+            "AWAY": 0.2929
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.2,
+              "n": 128
+            },
+            "DRAW": {
+              "quota": 3.4,
+              "n": 128
+            },
+            "AWAY": {
+              "quota": 3.33,
+              "n": 128
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 3.5,
+                "OVER": 1.25
+              },
+              "aggiornato": "2026-10-26T06:03:35.707479+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.55,
+                "OVER": 1.25
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2565,
+            "OVER": 0.7435
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.5,
+              "n": 32
+            },
+            "OVER": {
+              "quota": 1.25,
+              "n": 32
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.9,
+                "OVER": 1.8
+              },
+              "aggiornato": "2026-10-26T06:03:35.707479+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.86,
+                "OVER": 1.81
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.88,
+                "OVER": 1.82
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4978,
+            "OVER": 0.5022
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.92,
+              "n": 127
+            },
+            "OVER": {
+              "quota": 1.9,
+              "n": 127
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.33,
+                "OVER": 3
+              },
+              "aggiornato": "2026-10-26T06:03:35.707479+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.35,
+                "OVER": 2.95
+              },
+              "aggiornato": "2026-10-26T06:05:55.389738+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.7084,
+            "OVER": 0.2916
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.33,
+              "n": 32
+            },
+            "OVER": {
+              "quota": 2.97,
+              "n": 32
+            }
+          }
+        },
+        "dc": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "12": 1.28,
+                "1X": 1.33,
+                "X2": 1.67
+              },
+              "aggiornato": "2026-10-26T06:03:35.707479+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.32,
+                "1X": 1.33,
+                "X2": 1.66
+              },
+              "aggiornato": "2026-10-26T06:03:12.345386+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7194,
+            "1X": 0.7016,
+            "X2": 0.5791
+          },
+          "fonteProb": "mediana di 101 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 101
+            },
+            "1X": {
+              "quota": 1.33,
+              "n": 101
+            },
+            "X2": {
+              "quota": 1.61,
+              "n": 101
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "6df6b7944ab1cbc7",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Flamengo",
+      "trasferta": "Atlético-MG",
+      "inizio": "2026-10-26T23:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.7319,
+            "DRAW": 0.1679,
+            "AWAY": 0.1002
+          },
+          "fonteProb": "mediana di 89 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 1.3,
+              "n": 89
+            },
+            "DRAW": {
+              "quota": 5.66,
+              "n": 89
+            },
+            "AWAY": {
+              "quota": 9.5,
+              "n": 89
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8307,
+            "1X": 0.8678,
+            "X2": 0.3015
+          },
+          "fonteProb": "mediana di 87 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.12,
+              "n": 87
+            },
+            "1X": {
+              "quota": 1.07,
+              "n": 87
+            },
+            "X2": {
+              "quota": 3.1,
+              "n": 87
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6026,
+            "OVER": 0.3974
+          },
+          "fonteProb": "mediana di 85 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.58,
+              "n": 85
+            },
+            "OVER": {
+              "quota": 2.4,
+              "n": 85
+            }
+          }
+        }
+      }
+    }
+  ],
+  "completamento": {
+    "alle": "2026-10-26T07:08:05+01:00",
+    "partite": 14,
+    "completate": 14,
+    "richieste": 1
+  }
+}
