@@ -200,7 +200,7 @@ export function contaStorico(giornate, ieri) {
         if (g.data === ieri) aggiungi(r.pronosticiIeri, x.esito, x.prob);
       }
     }
-    for (const mb of multipleBonus(g).filter((m) => m.gambe.length === 20)) {
+    for (const mb of multipleBonus(g).filter((m) => m.lunga === true || m.gambe.length === 20)) {
       for (const x of mb.gambe) {
         aggiungi(r.multipla, x.esito, x.probMercato);
         if (g.data === ieri) aggiungi(r.multiplaIeri, x.esito, x.probMercato);
@@ -226,10 +226,10 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
     `   dall'inizio: <b>${riga(r.pronostici)}</b> · promessi ${promessa(r.pronostici)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.pronosticiIeri)}`,
     '',
-    '🧪 <b>Partite della multipla da 20</b>',
+    '🧪 <b>Partite della multipla lunga (da 20, o con tutte le partite adatte)</b>',
     `   dall'inizio: <b>${riga(r.multipla)}</b> · attese dal mercato ${promessa(r.multipla)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.multiplaIeri)}`,
-    `   multiple da 20 vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
+    `   multiple lunghe vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
   ].join('\n');
   return [{ chiave, testo }];
 }

@@ -91,7 +91,13 @@ test('gambe: quota 1,25-1,50, una per partita, la più vicina alla quota equa, p
 
 test('multiple da 10 e da 20 solo con abbastanza partite; quota, incremento e probabilità', () => {
   const voci = Array.from({ length: 12 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75));
-  const mb = costruisciMultipleBonus(voci, { data: '2026-10-25' });
+  const tutte = costruisciMultipleBonus(voci, { data: '2026-10-25' });
+  // 12 partite adatte: quella da 10 e quella lunga con tutte e 12.
+  assert.deepEqual(tutte.map((x) => [x.id, x.gambe.length, x.lunga ?? false]), [['MB10-2026-10-25', 10, false], ['MB12-2026-10-25', 12, true]]);
+  assert.equal(tutte[1].incremento, 0.45);
+  assert.equal(costruisciMultipleBonus(voci.slice(0, 10), { data: '2026-10-25' }).length, 1);
+  assert.equal(costruisciMultipleBonus(Array.from({ length: 25 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' })[1].gambe.length, 20);
+  const mb = tutte.slice(0, 1);
   assert.equal(mb.length, 1);
   assert.equal(mb[0].id, 'MB10-2026-10-25');
   assert.equal(mb[0].gambe.length, 10);

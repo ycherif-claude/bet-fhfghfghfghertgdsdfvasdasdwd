@@ -337,8 +337,8 @@ test('storico diviso: pronostici dall\'80% e partite della multipla da 20, una v
   const m = messaggioStorico({ giornate, inviate: new Set(), oggi: '2026-10-26', adesso: new Date('2026-10-26T08:30:00Z') });
   assert.equal(m.length, 1);
   assert.match(m[0].testo, /Pronostici dall'80% in su<\/b>\n   dall'inizio: <b>2 su 3 \(67%\)<\/b>/);
-  assert.match(m[0].testo, /Partite della multipla da 20<\/b>\n   dall'inizio: <b>35 su 40 \(88%\)<\/b> · attese dal mercato 70%/);
+  assert.match(m[0].testo, /Partite della multipla lunga \(da 20, o con tutte le partite adatte\)<\/b>\n   dall'inizio: <b>35 su 40 \(88%\)<\/b> · attese dal mercato 70%/);
   assert.match(m[0].testo, /ieri \(25\/10\): 17 su 20 \(85%\)/);
-  assert.match(m[0].testo, /multiple da 20 vinte: 0 su 2/);
+  assert.match(m[0].testo, /multiple lunghe vinte: 0 su 2/);
   assert.deepEqual(messaggioStorico({ giornate, inviate: new Set([m[0].chiave]), oggi: '2026-10-26', adesso: new Date('2026-10-26T08:30:00Z') }), []);
 });

@@ -72,9 +72,15 @@ function multipla(gambe, data) {
 }
 
 // Le multiple del giorno: per ogni lunghezza le prime n gambe (quella da 20 contiene quella da 10).
+// La più lunga (20) si fa anche con meno partite [utente, 26/10/2026]: con 11-19 partite adatte, una
+// multipla con tutte (`lunga: true`); con 10 o meno solo quella da 10 (se ci sono 10 partite).
 export function costruisciMultipleBonus(voci, { data, escluse } = {}) {
   const gambe = gambePossibili(voci, { escluse });
-  return C.lunghezze.filter((n) => gambe.length >= n).map((n) => multipla(gambe.slice(0, n), data));
+  const [corta, lunga] = [Math.min(...C.lunghezze), Math.max(...C.lunghezze)];
+  const out = [];
+  if (gambe.length >= corta) out.push(multipla(gambe.slice(0, corta), data));
+  if (gambe.length > corta) out.push({ ...multipla(gambe.slice(0, Math.min(lunga, gambe.length)), data), lunga: true });
+  return out;
 }
 
 // Esito con gli esiti delle gambe: una persa → persa; una ancora aperta → null; le rimborsate escono
