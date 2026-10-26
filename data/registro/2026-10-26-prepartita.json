@@ -239,6 +239,42 @@
       "prob": null,
       "alle": "2026-10-26T20:00:40+01:00",
       "minutiPrima": 29
+    },
+    "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Vincente|Cleveland Cavaliers": {
+      "quota": 1.63,
+      "prob": 0.5851439620676643,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Vincente|Minnesota Timberwolves": {
+      "quota": 2.35,
+      "prob": 0.4148560379323357,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Handicap -4.5|casa": {
+      "quota": 1.9,
+      "prob": 0.5008726003490401,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Handicap -4.5|trasferta": {
+      "quota": 1.91,
+      "prob": 0.4991273996509598,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-10-26-charlotte-hornets-washington-wizards|Vincente|Charlotte Hornets": {
+      "quota": 1.69,
+      "prob": 0.5690111253881942,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-10-26-charlotte-hornets-washington-wizards|Vincente|Washington Wizards": {
+      "quota": 2.25,
+      "prob": 0.43098887461180574,
+      "alle": "2026-10-26T22:47:46+01:00",
+      "minutiPrima": 72
     }
   },
   "copertura": {
@@ -284,6 +320,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-10-26-andorra-cf-burgos-cf"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-10-26T22:47:46+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves",
+        "nba-2026-10-26-charlotte-hornets-washington-wizards"
       ]
     }
   }
