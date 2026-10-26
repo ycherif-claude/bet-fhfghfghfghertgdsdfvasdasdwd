@@ -226,7 +226,7 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
     `   dall'inizio: <b>${riga(r.pronostici)}</b> · promessi ${promessa(r.pronostici)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.pronosticiIeri)}`,
     '',
-    '🧪 <b>Partite della multipla lunga (da 20, o con tutte le partite adatte)</b>',
+    '🧪 <b>Partite della multipla lunga (tutte le partite adatte)</b>',
     `   dall'inizio: <b>${riga(r.multipla)}</b> · attese dal mercato ${promessa(r.multipla)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.multiplaIeri)}`,
     `   multiple lunghe vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
