@@ -155,6 +155,41 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-26T22:47:46+01:00"
+    },
+    "M-nba-2026-10-26-miami-heat-dallas-mavericks-vincente-dallas-mavericks+tennis-2026-10-26-maria-sakkari-yulia-putintseva-vincente-incontro-maria-sakkari#0": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 3,30",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 3,30"
+      ],
+      "alle": "2026-10-26T23:15:07+01:00"
+    },
+    "nba-2026-10-26-miami-heat-dallas-mavericks-vincente-dallas-mavericks": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,30 sotto la minima 3,33",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,30 sotto la minima 3,33"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-26T23:15:07+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-26-flamengo-atletico-mg-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-26T23:15:07+01:00"
     }
   },
   "claude": {

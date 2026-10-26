@@ -241,16 +241,16 @@
       "minutiPrima": 29
     },
     "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Vincente|Cleveland Cavaliers": {
-      "quota": 1.63,
-      "prob": 0.5851439620676643,
-      "alle": "2026-10-26T22:47:46+01:00",
-      "minutiPrima": 72
+      "quota": 1.69,
+      "prob": 0.5696326783555603,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 45
     },
     "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Vincente|Minnesota Timberwolves": {
-      "quota": 2.35,
-      "prob": 0.4148560379323357,
-      "alle": "2026-10-26T22:47:46+01:00",
-      "minutiPrima": 72
+      "quota": 2.22,
+      "prob": 0.4303673216444397,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 45
     },
     "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves|Handicap -4.5|casa": {
       "quota": 1.9,
@@ -266,15 +266,51 @@
     },
     "nba-2026-10-26-charlotte-hornets-washington-wizards|Vincente|Charlotte Hornets": {
       "quota": 1.69,
-      "prob": 0.5690111253881942,
-      "alle": "2026-10-26T22:47:46+01:00",
-      "minutiPrima": 72
+      "prob": 0.5697179858003453,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 45
     },
     "nba-2026-10-26-charlotte-hornets-washington-wizards|Vincente|Washington Wizards": {
       "quota": 2.25,
-      "prob": 0.43098887461180574,
-      "alle": "2026-10-26T22:47:46+01:00",
-      "minutiPrima": 72
+      "prob": 0.4302820141996546,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 45
+    },
+    "nba-2026-10-26-miami-heat-dallas-mavericks|Vincente|Miami Heat": {
+      "quota": 1.36,
+      "prob": 0.7059989261190376,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
+    },
+    "nba-2026-10-26-miami-heat-dallas-mavericks|Vincente|Dallas Mavericks": {
+      "quota": 3.3,
+      "prob": 0.2940010738809625,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
+    },
+    "nba-2026-10-26-boston-celtics-chicago-bulls|Vincente|Boston Celtics": {
+      "quota": 1.13,
+      "prob": 0.8417013993985323,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
+    },
+    "nba-2026-10-26-boston-celtics-chicago-bulls|Vincente|Chicago Bulls": {
+      "quota": 6,
+      "prob": 0.15829860060146772,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
+    },
+    "nba-2026-10-26-boston-celtics-chicago-bulls|Handicap -14.5|casa": {
+      "quota": 1.95,
+      "prob": 0.49280104712041894,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
+    },
+    "nba-2026-10-26-boston-celtics-chicago-bulls|Handicap -14.5|trasferta": {
+      "quota": 1.87,
+      "prob": 0.5071989528795812,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "minutiPrima": 75
     }
   },
   "copertura": {
@@ -323,11 +359,13 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-10-26T22:47:46+01:00",
-      "partite": 2,
+      "alle": "2026-10-26T23:15:07+01:00",
+      "partite": 4,
       "idPartite": [
         "nba-2026-10-26-cleveland-cavaliers-minnesota-timberwolves",
-        "nba-2026-10-26-charlotte-hornets-washington-wizards"
+        "nba-2026-10-26-charlotte-hornets-washington-wizards",
+        "nba-2026-10-26-miami-heat-dallas-mavericks",
+        "nba-2026-10-26-boston-celtics-chicago-bulls"
       ]
     }
   }
