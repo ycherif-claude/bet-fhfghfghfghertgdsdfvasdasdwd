@@ -72,14 +72,19 @@ function multipla(gambe, data) {
 }
 
 // Le multiple del giorno: per ogni lunghezza le prime n gambe (quella da 20 contiene quella da 10).
-// La lunga ha tutte le partite adatte [utente, 26/10/2026], anche più di 20 (`lunga: true`): l'utente le usa
-// anche per comporre le doppie. Oltre 20 l'incremento resta al 100%; con 10 o meno solo quella da 10.
+// Tre multiple [utente, 26/10/2026]: da 10, da 20 e una con tutte le partite adatte (`lunga: true`, anche oltre 20;
+// oltre 20 l'incremento resta al 100%). Ognuna solo se ci sono abbastanza partite; quando la lunga avrebbe le
+// stesse partite di un'altra (esattamente 20, o tra 11 e 19 senza la da 20) non si ripete.
 export function costruisciMultipleBonus(voci, { data, escluse } = {}) {
   const gambe = gambePossibili(voci, { escluse });
-  const corta = Math.min(...C.lunghezze);
   const out = [];
-  if (gambe.length >= corta) out.push(multipla(gambe.slice(0, corta), data));
-  if (gambe.length > corta) out.push({ ...multipla(gambe, data), lunga: true });
+  for (const n of C.lunghezze) if (gambe.length >= n) out.push(multipla(gambe.slice(0, n), data));
+  const corta = Math.min(...C.lunghezze);
+  if (gambe.length > corta) {
+    const uguale = out.find((m) => m.gambe.length === gambe.length);
+    if (uguale) uguale.lunga = true;
+    else out.push({ ...multipla(gambe, data), lunga: true });
+  }
   return out;
 }
 
