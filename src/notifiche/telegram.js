@@ -20,6 +20,9 @@ const STATO_SERALE = { in_revisione: 'IN REVISIONE', confermata: 'CONFERMATA', m
 // Righe informative di erroriGiro che non sono guasti: non si notificano.
 const INFORMATIVI = [/già iniziat/, /TheSportsDB.*HTTP 429/];
 
+// Errori (erroriGiro, Action fallite, giornata non scritta) solo sul sito, non su Telegram [utente, 26/10/2026].
+const ERRORI_SU_TELEGRAM = false;
+
 const html = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const virgola = (q) => q.toFixed(2).replace('.', ',');
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -255,12 +258,12 @@ const valide = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocat
 
 // Messaggi da mandare ora: [{ chiave, testo }]. `inviate`: Set delle chiavi già mandate.
 // `run`: Action finita male da segnalare ({ id, nome, url, conclusione }) oppure null. `sito`: indirizzo del sito o null.
-export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = null }) {
+export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = null, errori = ERRORI_SU_TELEGRAM }) {
   const out = [];
   const aggiungi = (chiave, testo) => { if (!inviate.has(chiave)) out.push({ chiave, testo }); };
   const piede = sito ? `\n\n${sito}` : '';
 
-  if (run) {
+  if (run && errori) {
     const come = run.conclusione === 'cancelled' ? 'è stata annullata' : 'è fallita';
     aggiungi(`${oggi}|run|${run.id}`, `⚠️ L'Action «${html(run.nome)}» ${come}.\n${run.url}`);
   }
@@ -268,7 +271,7 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   const delGiorno = giornata && giornata.data === oggi ? giornata : null;
   if (!delGiorno) {
     // Dopo le 12:00 la giornata di oggi dovrebbe esserci (giro di Claude o riserva delle 09:45 UTC).
-    if (partiRoma(adesso).ora >= 12) aggiungi(`${oggi}|mancante`, `⚠️ La giornata del ${giornoMese(oggi)} non è stata scritta: né il giro del mattino né la riserva.`);
+    if (errori && partiRoma(adesso).ora >= 12) aggiungi(`${oggi}|mancante`, `⚠️ La giornata del ${giornoMese(oggi)} non è stata scritta: né il giro del mattino né la riserva.`);
     return out;
   }
   const giocate = valide(delGiorno);
@@ -348,12 +351,13 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   }
 
   // 3. Errori del sistema: le righe nuove di erroriGiro, senza quelle solo informative.
-  out.push(...messaggioErrori(delGiorno, oggi, inviate));
+  out.push(...messaggioErrori(delGiorno, oggi, inviate, errori));
   return out;
 }
 
 // Righe nuove di erroriGiro di una giornata (chiavi `<data>|errore|<hash>`), in un messaggio solo.
-function messaggioErrori(giornata, data, inviate) {
+function messaggioErrori(giornata, data, inviate, attivi = ERRORI_SU_TELEGRAM) {
+  if (!attivi) return [];
   const errori = (Array.isArray(giornata?.erroriGiro) ? giornata.erroriGiro : [])
     .filter((e) => typeof e === 'string' && !INFORMATIVI.some((r) => r.test(e)))
     .filter((e) => !inviate.has(`${data}|errore|${hash(e)}`));
@@ -368,9 +372,9 @@ function messaggioErrori(giornata, data, inviate) {
 // Errori scritti nella giornata precedente dopo il suo ultimo invio: i controlli e gli esiti rapidi,
 // prima del giro del mattino, scrivono nell'ultima giornata salvata. Ogni riga parte una volta sola
 // (stesse chiavi di quando quella giornata era "oggi": le già mandate non si ripetono).
-export function messaggiErroriPrecedenti({ giornate, oggi, inviate }) {
+export function messaggiErroriPrecedenti({ giornate, oggi, inviate, errori = ERRORI_SU_TELEGRAM }) {
   const precedente = giornate.filter((x) => typeof x?.data === 'string' && x.data < oggi).sort((a, b) => a.data.localeCompare(b.data)).at(-1);
-  return precedente ? messaggioErrori(precedente, precedente.data, inviate) : [];
+  return precedente ? messaggioErrori(precedente, precedente.data, inviate, errori) : [];
 }
 
 const ESITO = { vinta: '✅ <b>VINTA</b>', persa: '❌ <b>PERSA</b>', rimborsata: '↩️ <b>RIMBORSATA</b>' };
@@ -557,7 +561,7 @@ export async function manda(testo, { token, chat, fetch = globalThis.fetch, atte
   for (const pezzo of dividi(testo)) await mandaPezzo(pezzo, { token, chat, fetch, attendi });
 }
 
-export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi }) {
+export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi, errori = ERRORI_SU_TELEGRAM }) {
   const oggi = giornataDi(adesso);
   const fileStato = join(dirData, 'stato', 'telegram.json');
   const inviate = leggiInviate(fileStato);
@@ -570,11 +574,11 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
       giornata = { data: oggi, giocate: [], erroriGiro: [`File della giornata illeggibile: ${e.message}`] };
     }
   }
-  const lista = messaggi({ giornata, oggi, adesso, inviate, run, sito });
+  const lista = messaggi({ giornata, oggi, adesso, inviate, run, sito, errori });
   // Esiti: le giornate fino a 13 giorni fa (le chiavi restano 14 giorni, niente doppioni).
   const segnature = leggiJson(dirData, 'segnature', []).map((x) => x.contenuto).filter((x) => x && !erroreSegnatura(x));
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
-  lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate }));
+  lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate, errori }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));

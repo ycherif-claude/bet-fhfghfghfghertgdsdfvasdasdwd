@@ -38,10 +38,10 @@ test('giocate del giorno: un solo messaggio, poi solo le giocate nuove', () => {
 });
 
 test('nessuna giocata: una riga che lo dice; giornata mancante dopo le 12:00', () => {
-  const [m] = messaggi({ giornata: giornata([]), oggi: OGGI, adesso: mattina, inviate: new Set() });
+  const [m] = messaggi({ errori: true, giornata: giornata([]), oggi: OGGI, adesso: mattina, inviate: new Set() });
   assert.match(m.testo, /nessuna giocata/);
-  assert.deepEqual(messaggi({ giornata: null, oggi: OGGI, adesso: mattina, inviate: new Set() }), []);
-  const tardi = messaggi({ giornata: { ...giornata([]), data: '2026-10-21' }, oggi: OGGI, adesso: new Date('2026-10-22T10:30:00Z'), inviate: new Set() });
+  assert.deepEqual(messaggi({ errori: true, giornata: null, oggi: OGGI, adesso: mattina, inviate: new Set() }), []);
+  const tardi = messaggi({ errori: true, giornata: { ...giornata([]), data: '2026-10-21' }, oggi: OGGI, adesso: new Date('2026-10-22T10:30:00Z'), inviate: new Set() });
   assert.equal(tardi[0].chiave, `${OGGI}|mancante`);
 });
 
@@ -52,13 +52,13 @@ test('giro serale: confermata, modificata con la quota nuova, annullata; una vol
     giocata('b', { sport: 'nba', stato: 'modificata', quota: 2.1, motivoStato: 'assente il titolare', oraUltimoControllo: '21:05' }),
     giocata('c', { sport: 'nba', stato: 'annullata', motivoStato: 'quota scesa sotto la minima', oraUltimoControllo: '21:05' }),
   ]);
-  const ms = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: base });
+  const ms = messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: base });
   assert.equal(ms.length, 3);
   assert.match(ms[0].testo, /^🔎 🏀 <b>Inter - Roma<\/b>\n1X2 → 1: <b>CONFERMATA<\/b>$/);
   assert.match(ms[1].testo, /MODIFICATA<\/b>\nassente il titolare\nquota 2,10/);
   assert.match(ms[2].testo, /ANNULLATA<\/b>\nquota scesa sotto la minima/);
   const dopo = new Set([...base, ...ms.map((m) => m.chiave)]);
-  assert.deepEqual(messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
+  assert.deepEqual(messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
 });
 
 test('errori: solo le righe nuove e non informative; Action fallita', () => {
@@ -68,12 +68,12 @@ test('errori: solo le righe nuove e non informative; Action fallita', () => {
     '2 partite già iniziate escluse',
     'The Odds API alle 07:35: manca ODDS_API_KEY',
   ]);
-  const [m] = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: base });
+  const [m] = messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: base });
   assert.equal(m.testo, '⚠️ <b>Errore della giornata 22/10</b>\n• The Odds API alle 07:35: manca ODDS_API_KEY');
   const dopo = new Set([...base, m.chiave, ...m.segna]);
-  assert.deepEqual(messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
+  assert.deepEqual(messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
   const run = { id: 77, nome: 'Raccolta dati calcio', url: 'https://github.com/a/b/actions/runs/77' };
-  const [r] = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo, run });
+  const [r] = messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo, run });
   assert.equal(r.testo, "⚠️ L'Action «Raccolta dati calcio» è fallita.\nhttps://github.com/a/b/actions/runs/77");
 });
 
@@ -83,16 +83,16 @@ test('eseguiNotifiche: manda, salva lo stato, non ripete; il token non finisce n
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
   const inviati = [];
   const fetch = async (url, init) => { inviati.push({ url, corpo: JSON.parse(init.body) }); return { ok: true, status: 200, text: async () => '' }; };
-  const r = await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch });
+  const r = await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch });
   assert.equal(r.mandati, 1);
   assert.equal(inviati[0].url, 'https://api.telegram.org/botSEGRETO/sendMessage');
   assert.equal(inviati[0].corpo.chat_id, '42');
   assert.equal(inviati[0].corpo.parse_mode, 'HTML');
   assert.ok(leggiInviate(join(dir, 'stato', 'telegram.json')).has(`${OGGI}|giocata|a`));
-  assert.equal((await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch })).mandati, 0);
+  assert.equal((await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch })).mandati, 0);
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([], ['errore nuovo'])));
   const rotto = async () => ({ ok: false, status: 401, text: async () => 'bot SEGRETO non valido' });
-  await assert.rejects(eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch: rotto }), (e) => !e.message.includes('SEGRETO'));
+  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch: rotto }), (e) => !e.message.includes('SEGRETO'));
 });
 
 test('stato: si tengono solo gli ultimi 14 giorni', () => {
@@ -108,7 +108,7 @@ test('chat not found: errore chiaro, nessun ripiego su getUpdates', async () => 
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
   const url = [];
   const fetch = async (u) => { url.push(u); return { ok: false, status: 400, text: async () => '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}' }; };
-  await assert.rejects(eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch }), /TELEGRAM_CHAT_ID/);
+  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch }), /TELEGRAM_CHAT_ID/);
   assert.ok(url.every((u) => u.endsWith('/sendMessage')));
   assert.equal(url.length, 1);
 });
@@ -156,7 +156,7 @@ test('un messaggio che fallisce non blocca gli altri; alla fine errore, gli invi
     testi.push(t);
     return { ok: true, status: 200, text: async () => '' };
   };
-  await assert.rejects(eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', run, fetch }), /1 messaggi/);
+  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '42', run, fetch }), /1 messaggi/);
   assert.equal(testi.length, 2);
   const inviate = leggiInviate(join(dir, 'stato', 'telegram.json'));
   assert.ok(inviate.has(`${OGGI}|run|9`));
@@ -168,7 +168,7 @@ test('Action annullata segnalata come la fallita; riga della chat senza nome', (
   assert.equal(runDaSegnalare({}), null);
   const r = runDaSegnalare({ RUN_CONCLUSIONE: 'cancelled', RUN_ID: '5', RUN_NOME: 'Giro serale', RUN_URL: 'https://x/5' });
   assert.deepEqual(r, { id: '5', nome: 'Giro serale', url: 'https://x/5', conclusione: 'cancelled' });
-  const [m] = messaggi({ giornata: null, oggi: OGGI, adesso: mattina, inviate: new Set(), run: r });
+  const [m] = messaggi({ errori: true, giornata: null, oggi: OGGI, adesso: mattina, inviate: new Set(), run: r });
   assert.equal(m.testo, "⚠️ L'Action «Giro serale» è stata annullata.\nhttps://x/5");
   assert.equal(runDaSegnalare({ RUN_CONCLUSIONE: 'failure', RUN_ID: '6', RUN_NOME: 'n', RUN_URL: 'u' }).conclusione, 'failure');
   assert.equal(rigaChat({ ok: true, result: { type: 'group', title: 'Segreto' } }), 'Chat di TELEGRAM_CHAT_ID: ok');
@@ -262,27 +262,27 @@ test('errori scritti prima del giro del mattino nella giornata di ieri: partono 
   writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio'])));
   const inviati = [];
   const fetch = async (url, init) => { inviati.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
-  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
   assert.ok(inviati.some((t) => t.includes('errore vecchio')));
   // Il 23 alle 08:30, prima del giro del mattino: gli esiti rapidi scrivono nella giornata del 22.
   writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio', 'Esiti rapidi: Inter - Roma: HTTP 500'])));
   inviati.length = 0;
   const domani = new Date('2026-10-23T06:30:00Z');
-  const r = await eseguiNotifiche({ dirData: dir, adesso: domani, token: 'T', chat: '42', fetch });
+  const r = await eseguiNotifiche({ errori: true, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch });
   assert.equal(r.mandati, 1);
   assert.equal(inviati[0], '⚠️ <b>Errore della giornata 22/10</b>\n• Esiti rapidi: Inter - Roma: HTTP 500');
   // Non si ripete, nemmeno quando c'è la giornata del 23.
-  assert.equal((await eseguiNotifiche({ dirData: dir, adesso: domani, token: 'T', chat: '42', fetch })).mandati, 0);
+  assert.equal((await eseguiNotifiche({ errori: true, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch })).mandati, 0);
   writeFileSync(join(dir, 'giornate', '2026-10-23.json'), JSON.stringify({ data: '2026-10-23', giocate: [], erroriGiro: [] }));
   inviati.length = 0;
-  await eseguiNotifiche({ dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ errori: true, dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
   assert.ok(!inviati.some((t) => t.includes('Inter - Roma: HTTP 500') || t.includes('errore vecchio')));
 });
 
 test('puntata con due decimali e, se ridotta, da quanto e per quale limite; fissa a giornata piena', () => {
   const ridotta = giocata('r', { puntata: { euro: 2.4, percentuale: 1.2, ridotta: { da: 5, motivo: 'tetto giornaliero' } } });
   const fissa = giocata('f', { idPartita: 'q', puntata: { euro: 1, percentuale: 0.5, fissa: { da: 6, motivo: 'giornata piena' } } });
-  const [m] = messaggi({ giornata: giornata([ridotta, fissa]), oggi: OGGI, adesso: mattina, inviate: new Set() });
+  const [m] = messaggi({ errori: true, giornata: giornata([ridotta, fissa]), oggi: OGGI, adesso: mattina, inviate: new Set() });
   assert.match(m.testo, /puntata 2,40 € \(1,2%, ridotta da 5,00 €, tetto giornaliero\)/);
   assert.match(m.testo, /puntata 1,00 € \(puntata fissa, giornata piena\)/);
   assert.ok(!/stop/i.test(m.testo));
@@ -292,12 +292,12 @@ test('puntata con due decimali e, se ridotta, da quanto e per quale limite; fiss
 
 test('modalità prova: pronostici al posto dell\'elenco, niente messaggi per i cambi di stato', () => {
   const g = { ...giornata([giocata('a', { stato: 'confermata', oraUltimoControllo: '20:00' })]), prova: true };
-  const ms = messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: new Set() });
+  const ms = messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: new Set() });
   assert.equal(ms.length, 1);
   assert.match(ms[0].testo, /^📋 <b>Pronostici del 22\/10<\/b>: oggi nessuna partita/);
   assert.match(ms[0].testo, /🧪 1 giocata di prova sul sito: non giocarle/);
   const dopo = new Set([ms[0].chiave, ...ms[0].segna]);
-  assert.deepEqual(messaggi({ giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
+  assert.deepEqual(messaggi({ errori: true, giornata: g, oggi: OGGI, adesso: mattina, inviate: dopo }), []);
 });
 
 test('A4 giocata di prova: etichetta PROVA e nessun importo da puntare', () => {
@@ -341,4 +341,12 @@ test('storico diviso: pronostici dall\'80% e partite della multipla da 20, una v
   assert.match(m[0].testo, /ieri \(25\/10\): 17 su 20 \(85%\)/);
   assert.match(m[0].testo, /multiple lunghe vinte: 0 su 2/);
   assert.deepEqual(messaggioStorico({ giornate, inviate: new Set([m[0].chiave]), oggi: '2026-10-26', adesso: new Date('2026-10-26T08:30:00Z') }), []);
+});
+
+test('errori solo sul sito: per default Telegram non manda erroriGiro, Action fallite né giornata mancante', () => {
+  const g = { data: '2026-10-26', giocate: [], erroriGiro: ['Raccolta di oggi mancante'] };
+  const inviate = new Set(['2026-10-26|giornata', '2026-10-26|pronostici']);
+  const run = { id: 1, nome: 'Raccolta', url: 'u', conclusione: 'failure' };
+  assert.deepEqual(messaggi({ giornata: g, oggi: '2026-10-26', adesso: new Date('2026-10-26T13:00:00Z'), inviate, run }), []);
+  assert.deepEqual(messaggi({ giornata: null, oggi: '2026-10-26', adesso: new Date('2026-10-26T13:00:00Z'), inviate: new Set() }), []);
 });
