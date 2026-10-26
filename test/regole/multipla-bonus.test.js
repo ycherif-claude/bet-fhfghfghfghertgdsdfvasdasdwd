@@ -235,3 +235,24 @@ test('C1 Telegram: la gamba mostra anche la quota bet365 quando c\'è', async ()
   assert.match(t, /A - B: 1X2 → 1 @1,32 \(bet365 1,27\)/);
   assert.match(t, /C - D: 1X2 → 2 @1,35$/m);
 });
+
+test('multipla senza Under: la lunga senza le partite con Under 2.5 o 3.5, in più alle altre', () => {
+  const voci = [
+    ...Array.from({ length: 21 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)),
+    voce(30, 'Under/Over 3.5', 'Under 3.5', 1.3, 0.76),
+    voce(31, 'Under/Over 2.5', 'Under 2.5', 1.3, 0.76),
+    voce(32, 'Under/Over 1.5', 'Over 1.5', 1.3, 0.75),
+  ];
+  const mb = costruisciMultipleBonus(voci, { data: 'x' });
+  assert.deepEqual(mb.map((m) => [m.id, m.gambe.length]), [['MB10-x', 10], ['MB20-x', 20], ['MB24-x', 24], ['MBSU22-x', 22]]);
+  const su = mb[3];
+  assert.equal(su.senzaUnder, true);
+  assert.equal(su.lunga, undefined);
+  assert.ok(su.gambe.every((g) => !/^Under/.test(g.selezione)));
+  assert.ok(su.gambe.some((g) => g.selezione === 'Over 1.5'));
+  assert.equal(su.incremento, 1);
+  // Le altre restano uguali a prima.
+  assert.ok(mb[2].gambe.some((g) => g.selezione === 'Under 3.5'));
+  // Senza Under nella lunga: nessuna multipla in più.
+  assert.equal(costruisciMultipleBonus(Array.from({ length: 12 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' }).length, 2);
+});

@@ -85,7 +85,21 @@ export function costruisciMultipleBonus(voci, { data, escluse } = {}) {
     if (uguale) uguale.lunga = true;
     else out.push({ ...multipla(gambe, data), lunga: true });
   }
+  const senza = senzaUnder(gambe, data);
+  if (senza && gambe.length > corta) out.push(senza);
   return out;
+}
+
+// Under 2.5 e Under 3.5: le partite con queste giocate escono dalla multipla "senza Under" [utente, 26/10/2026].
+export const giocataUnder = (g) => /^Under\/Over [23]\.5$/.test(g.mercato) && /^Under /.test(String(g.selezione));
+
+// In più alle altre: la multipla con tutte le partite adatte, tolte le partite con Under 2.5 o 3.5 (la partita
+// esce, non si sostituisce). Solo se ne toglie almeno una e ne restano almeno 2; incremento per le partite rimaste.
+function senzaUnder(gambe, data) {
+  const restano = gambe.filter((g) => !giocataUnder(g));
+  if (restano.length === gambe.length || restano.length < 2) return null;
+  const m = multipla(restano, data);
+  return { ...m, id: `MBSU${restano.length}-${data}`, nome: `Multipla bonus bet365 senza Under (${restano.length} partite)`, senzaUnder: true };
 }
 
 // Esito con gli esiti delle gambe: una persa → persa; una ancora aperta → null; le rimborsate escono
