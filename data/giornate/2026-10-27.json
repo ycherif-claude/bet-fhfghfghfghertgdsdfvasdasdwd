@@ -1762,9 +1762,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,12 ≥ minima 2,09",
+      "oraUltimoControllo": "2026-10-27T19:47:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -2168,9 +2168,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,20 sotto la minima 2,29",
+      "oraUltimoControllo": "2026-10-27T19:47:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -2208,9 +2208,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,50 sotto la minima 3,98",
+      "oraUltimoControllo": "2026-10-27T19:47:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -2248,9 +2248,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,40 sotto la minima 3,82",
+      "oraUltimoControllo": "2026-10-27T19:47:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -2331,9 +2331,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 1,87 sotto la minima 1,97",
+      "oraUltimoControllo": "2026-10-27T19:47:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -3618,7 +3618,8 @@
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "1 partita già iniziata esclusa",
     "odss-api alle 07:07: 1 partita senza righe a tempo intero (full_time), senza quote: AIK - Elfsborg",
-    "Pronostici del 23/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Gateshead - Tamworth"
+    "Pronostici del 23/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Gateshead - Tamworth",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 10 su 13, rimaste 429, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
