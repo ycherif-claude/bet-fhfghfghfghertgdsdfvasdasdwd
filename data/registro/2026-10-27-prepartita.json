@@ -449,6 +449,18 @@
       "prob": null,
       "alle": "2026-10-27T20:28:40+01:00",
       "minutiPrima": 16
+    },
+    "nba-2026-10-27-boston-celtics-brooklyn-nets|Vincente|Boston Celtics": {
+      "quota": 1.15,
+      "prob": 0.8318646556265743,
+      "alle": "2026-10-27T23:20:15+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-27-boston-celtics-brooklyn-nets|Vincente|Brooklyn Nets": {
+      "quota": 5.6,
+      "prob": 0.16813534437342573,
+      "alle": "2026-10-27T23:20:15+01:00",
+      "minutiPrima": 70
     }
   },
   "copertura": {
@@ -490,6 +502,13 @@
       "idPartite": [
         "calcio-2026-10-27-as-roma-cagliari",
         "calcio-2026-10-27-torino-como"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-10-27T23:20:15+01:00",
+      "partite": 1,
+      "idPartite": [
+        "nba-2026-10-27-boston-celtics-brooklyn-nets"
       ]
     }
   }
