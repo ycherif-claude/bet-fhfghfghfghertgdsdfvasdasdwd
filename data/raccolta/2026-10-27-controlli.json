@@ -234,12 +234,37 @@
         "quote non controllate (meno di 3 bookmaker con la stessa linea)"
       ],
       "alle": "2026-10-27T23:20:15+01:00"
+    },
+    "nba-2026-10-27-san-antonio-spurs-sacramento-kings-totale-punti-230-5-over-230-5": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quote non controllate (meno di 3 bookmaker con la stessa linea)"
+      ],
+      "alle": "2026-10-27T23:56:40+01:00"
+    },
+    "nba-2026-10-27-new-york-knicks-detroit-pistons-vincente-detroit-pistons": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,40 sotto la minima 2,41",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,40 sotto la minima 2,41"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-27T23:56:40+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "tennis-2026-10-27-andrey-rublev-tommy-paul-vincente-incontro-tommy-paul"
+      "tennis-2026-10-27-andrey-rublev-tommy-paul-vincente-incontro-tommy-paul",
+      "nba-2026-10-27-new-york-knicks-detroit-pistons-vincente-detroit-pistons"
     ]
   },
   "pronostici": {

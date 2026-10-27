@@ -452,15 +452,51 @@
     },
     "nba-2026-10-27-boston-celtics-brooklyn-nets|Vincente|Boston Celtics": {
       "quota": 1.15,
-      "prob": 0.8318646556265743,
-      "alle": "2026-10-27T23:20:15+01:00",
-      "minutiPrima": 70
+      "prob": 0.8316038713461971,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 33
     },
     "nba-2026-10-27-boston-celtics-brooklyn-nets|Vincente|Brooklyn Nets": {
       "quota": 5.6,
-      "prob": 0.16813534437342573,
-      "alle": "2026-10-27T23:20:15+01:00",
-      "minutiPrima": 70
+      "prob": 0.16839612865380282,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 33
+    },
+    "nba-2026-10-27-new-york-knicks-detroit-pistons|Vincente|New York Knicks": {
+      "quota": 1.59,
+      "prob": 0.6024771118774502,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-27-new-york-knicks-detroit-pistons|Vincente|Detroit Pistons": {
+      "quota": 2.4,
+      "prob": 0.3975228881225499,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-27-san-antonio-spurs-sacramento-kings|Vincente|San Antonio Spurs": {
+      "quota": 1.06,
+      "prob": 0.9102077978885738,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-27-san-antonio-spurs-sacramento-kings|Vincente|Sacramento Kings": {
+      "quota": 11,
+      "prob": 0.0897922021114263,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-27-san-antonio-spurs-sacramento-kings|Handicap -18.5|casa": {
+      "quota": 1.87,
+      "prob": 0.5091623036649214,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-27-san-antonio-spurs-sacramento-kings|Handicap -18.5|trasferta": {
+      "quota": 1.95,
+      "prob": 0.49083769633507857,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "minutiPrima": 63
     }
   },
   "copertura": {
@@ -505,10 +541,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-10-27T23:20:15+01:00",
-      "partite": 1,
+      "alle": "2026-10-27T23:56:40+01:00",
+      "partite": 3,
       "idPartite": [
-        "nba-2026-10-27-boston-celtics-brooklyn-nets"
+        "nba-2026-10-27-boston-celtics-brooklyn-nets",
+        "nba-2026-10-27-new-york-knicks-detroit-pistons",
+        "nba-2026-10-27-san-antonio-spurs-sacramento-kings"
       ]
     }
   }
