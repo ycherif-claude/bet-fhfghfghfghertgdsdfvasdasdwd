@@ -997,6 +997,33 @@
       "probModello": 0.6615994481234532,
       "probPinnacle": 0.4910505836575875,
       "correzioneNotizie": null
+    },
+    {
+      "id": "tennis-2026-10-27-ekaterina-alexandrova-kamilla-rakhimova-vincente-incontro-kamilla-rakhimova",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Kamilla Rakhimova - Ekaterina Alexandrova",
+      "idPartita": "tennis-2026-10-27-ekaterina-alexandrova-kamilla-rakhimova",
+      "inizio": "2026-10-28T02:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente incontro",
+      "selezione": "Kamilla Rakhimova",
+      "prob": 0.3073188678038704,
+      "quota": 3.31,
+      "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-27T21:49:47+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Elo complessivo e su cemento: Kamilla Rakhimova 1616/1587 – Ekaterina Alexandrova 1723/1702 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set",
+        "Modello 35%, Pinnacle 27%, probabilità usata 31%",
+        "Quota mediana 3,31 su 19 bookmaker alle 21:49",
+        "Notizie controllate alle 22:05: nessuna correzione",
+        "Vincente incontro: vince se Kamilla Rakhimova vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+      ],
+      "probModello": 0.3454069663769716,
+      "probPinnacle": 0.2692307692307693,
+      "correzioneNotizie": null
     }
   ],
   "pronostici": [
@@ -1964,9 +1991,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "nessuna novità rilevante: Boston senza Devin Carter (mononucleosi, a lungo termine, non titolare chiave), Brooklyn con solo Bilodeau in dubbio e giovani in G League (Sportskeeda, report infortuni del 27/10)",
+      "oraUltimoControllo": "2026-10-27T21:51:17+01:00",
       "esito": null,
       "prova": true
     },
@@ -2045,9 +2072,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "nessuna novità trovata per Lakers-Blazers (ricerca web serale 27/10, nessun fatto concreto)",
+      "oraUltimoControllo": "2026-10-27T21:51:17+01:00",
       "esito": null,
       "prova": true
     },
@@ -2086,9 +2113,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "nessuna novità sul totale: assenze note di Harris (Spurs) e Murray (Kings), già nella situazione di partenza (Sportskeeda, report infortuni del 27/10)",
+      "oraUltimoControllo": "2026-10-27T21:51:17+01:00",
       "esito": null,
       "prova": true
     },
@@ -2289,9 +2316,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "Duren (Pistons) fuori per stiramento al bicipite femorale e Ausar Thompson in dubbio (non è un fatto); l'assenza di Duren è riportata senza ora di annuncio e non risulta nuova rispetto al mattino, quindi nessuna modifica; Alvarado fuori per i Knicks (Sportskeeda, report infortuni del 27/10)",
+      "oraUltimoControllo": "2026-10-27T21:51:17+01:00",
       "esito": null,
       "prova": true
     },
@@ -2374,6 +2401,44 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 3,85 sotto la minima 4,39",
       "oraUltimoControllo": "2026-10-27T20:28:40+01:00",
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "tennis-2026-10-27-ekaterina-alexandrova-kamilla-rakhimova-vincente-incontro-kamilla-rakhimova",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Kamilla Rakhimova - Ekaterina Alexandrova",
+      "idPartita": "tennis-2026-10-27-ekaterina-alexandrova-kamilla-rakhimova",
+      "inizio": "2026-10-28T02:30:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Vincente incontro",
+      "selezione": "Kamilla Rakhimova",
+      "prob": 0.3073188678038704,
+      "quota": 3.31,
+      "fonteQuota": "mediana di 19 bookmaker (The Odds API)",
+      "oraQuota": "2026-10-27T21:49:47+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Elo complessivo e su cemento: Kamilla Rakhimova 1616/1587 – Ekaterina Alexandrova 1723/1702 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set",
+        "Modello 35%, Pinnacle 27%, probabilità usata 31%",
+        "Quota mediana 3,31 su 19 bookmaker alle 21:49",
+        "Notizie controllate alle 22:05: nessuna correzione",
+        "Vincente incontro: vince se Kamilla Rakhimova vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+      ],
+      "probModello": 0.3454069663769716,
+      "probPinnacle": 0.2692307692307693,
+      "correzioneNotizie": null,
+      "value": 0.017225452430811083,
+      "quotaMinima": 3.58,
+      "puntata": {
+        "euro": 1.5,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
       "esito": null,
       "prova": true
     }
