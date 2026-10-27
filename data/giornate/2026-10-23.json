@@ -3235,7 +3235,8 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "rimborsata",
+          "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
         },
         {
           "idPartita": "calcio-2026-10-23-sanfrecce-hiroshima-shimizu-s-pulse",
@@ -3260,8 +3261,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.23
     },
     {
       "id": "sp-2026-10-23-1t7wxhk",

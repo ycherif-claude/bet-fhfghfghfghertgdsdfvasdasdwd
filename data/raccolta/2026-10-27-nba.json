@@ -1,0 +1,398 @@
+{
+  "data": "2026-10-27",
+  "generataAlle": "2026-10-27T07:07:44+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 0
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api alle 07:07: 4 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Brooklyn Nets - Boston Celtics, Sacramento Kings - San Antonio Spurs, Detroit Pistons - New York Knicks, Portland Trail Blazers - Los Angeles Lakers"
+  ],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-27-boston-celtics-brooklyn-nets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Boston Celtics - Brooklyn Nets",
+      "casa": "Boston Celtics",
+      "trasferta": "Brooklyn Nets",
+      "inizio": "2026-10-28T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 121.3,
+        "trasferta": 102.7
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": true,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Boston Celtics 121 – Brooklyn Nets 103 (stagione in corso e precedente)",
+        "Boston Celtics alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Boston Celtics",
+          "probModello": 0.9068883531822343,
+          "probPinnacle": 0.8326093252244425,
+          "quota": 1.15,
+          "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Boston Celtics vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Brooklyn Nets",
+          "probModello": 0.09311164681776568,
+          "probPinnacle": 0.16739067477555747,
+          "quota": 5.25,
+          "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Brooklyn Nets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -11.5",
+          "selezione": "casa",
+          "probModello": 0.6898490973159392,
+          "probPinnacle": 0.5279423126448622,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Boston Celtics vincono con almeno 12 punti di scarto, supplementari compresi. Gioca solo su Boston Celtics -11.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -11.5",
+          "selezione": "trasferta",
+          "probModello": 0.3101509026840608,
+          "probPinnacle": 0.4720576873551378,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Brooklyn Nets perdono con meno di 12 punti di scarto o vincono, supplementari compresi. Gioca solo su Brooklyn Nets +11.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 220.5",
+          "selezione": "Over 220.5",
+          "probModello": 0.5746797332725083,
+          "probPinnacle": 0.5066182195691669,
+          "quota": 1.82,
+          "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 220.5: Over vince se le due squadre segnano almeno 221 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (220.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 220.5",
+          "selezione": "Under 220.5",
+          "probModello": 0.4253202667274917,
+          "probPinnacle": 0.49338178043083303,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 220.5: Under vince se le due squadre segnano al massimo 220 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (220.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "d2a34c3c01e5e85c",
+        "4026e17467e56ad0"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-27-new-york-knicks-detroit-pistons",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New York Knicks - Detroit Pistons",
+      "casa": "New York Knicks",
+      "trasferta": "Detroit Pistons",
+      "inizio": "2026-10-28T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 108.8,
+        "trasferta": 111.4
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: New York Knicks 109 – Detroit Pistons 111 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "New York Knicks",
+          "probModello": 0.42544371748348964,
+          "probPinnacle": 0.6085889570552148,
+          "quota": 1.6,
+          "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se New York Knicks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Detroit Pistons",
+          "probModello": 0.5745562825165104,
+          "probPinnacle": 0.3914110429447853,
+          "quota": 2.3,
+          "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Detroit Pistons vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "casa",
+          "probModello": 0.33508296191593634,
+          "probPinnacle": 0.5212903225806451,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i New York Knicks vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su New York Knicks -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "trasferta",
+          "probModello": 0.6649170380840637,
+          "probPinnacle": 0.47870967741935483,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Detroit Pistons perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Detroit Pistons +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 218.5",
+          "selezione": "Over 218.5",
+          "probModello": 0.5363053497599832,
+          "probPinnacle": 0.5122141372141372,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 70 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 218.5: Over vince se le due squadre segnano almeno 219 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (218.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 218.5",
+          "selezione": "Under 218.5",
+          "probModello": 0.4636946502400167,
+          "probPinnacle": 0.4877858627858628,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 70 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 218.5: Under vince se le due squadre segnano al massimo 218 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (218.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "32a9a284a7025865",
+        "b27fe39ad2f222e1",
+        "d262fd180c3badfa"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-27-san-antonio-spurs-sacramento-kings",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "San Antonio Spurs - Sacramento Kings",
+      "casa": "San Antonio Spurs",
+      "trasferta": "Sacramento Kings",
+      "inizio": "2026-10-28T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 126.4,
+        "trasferta": 111.7
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: San Antonio Spurs 126 – Sacramento Kings 112 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "San Antonio Spurs",
+          "probModello": 0.8513138090420782,
+          "probPinnacle": 0.9195226438188495,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se San Antonio Spurs vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Sacramento Kings",
+          "probModello": 0.14868619095792177,
+          "probPinnacle": 0.08047735618115057,
+          "quota": 9.5,
+          "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Sacramento Kings vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -18.5",
+          "selezione": "casa",
+          "probModello": 0.3949557490085065,
+          "probPinnacle": 0.46272493573264784,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i San Antonio Spurs vincono con almeno 19 punti di scarto, supplementari compresi. Gioca solo su San Antonio Spurs -18.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -18.5",
+          "selezione": "trasferta",
+          "probModello": 0.6050442509914935,
+          "probPinnacle": 0.5372750642673522,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Sacramento Kings perdono con meno di 19 punti di scarto o vincono, supplementari compresi. Gioca solo su Sacramento Kings +18.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 230.5",
+          "selezione": "Over 230.5",
+          "probModello": 0.6592444308655407,
+          "probPinnacle": 0.49453694068678455,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 230.5",
+          "selezione": "Under 230.5",
+          "probModello": 0.3407555691344592,
+          "probPinnacle": 0.5054630593132153,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 230.5: Under vince se le due squadre segnano al massimo 230 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "473e5ccfeee6ff79",
+        "f0db3b2cc5b784ef"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-27-los-angeles-lakers-portland-trail-blazers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Portland Trail Blazers",
+      "casa": "Los Angeles Lakers",
+      "trasferta": "Portland Trail Blazers",
+      "inizio": "2026-10-28T04:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 115.3,
+        "trasferta": 112.3
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Los Angeles Lakers 115 – Portland Trail Blazers 112 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Los Angeles Lakers",
+          "probModello": 0.5831696003341886,
+          "probPinnacle": 0.5646999240314003,
+          "quota": 1.67,
+          "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Los Angeles Lakers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Portland Trail Blazers",
+          "probModello": 0.41683039966581137,
+          "probPinnacle": 0.43530007596859965,
+          "quota": 2.15,
+          "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Portland Trail Blazers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "casa",
+          "probModello": 0.5399119814416029,
+          "probPinnacle": 0.5482961824237766,
+          "quota": 1.74,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Los Angeles Lakers vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Los Angeles Lakers -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.4600880185583971,
+          "probPinnacle": 0.4517038175762234,
+          "quota": 2,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Portland Trail Blazers perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Portland Trail Blazers +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 237.5",
+          "selezione": "Over 237.5",
+          "probModello": 0.29772470227431924,
+          "probPinnacle": 0.479948253557568,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 65 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 237.5: Over vince se le due squadre segnano almeno 238 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (237.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 237.5",
+          "selezione": "Under 237.5",
+          "probModello": 0.7022752977256808,
+          "probPinnacle": 0.520051746442432,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 65 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:07:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 237.5: Under vince se le due squadre segnano al massimo 237 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (237.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "b923517e657423e3",
+        "329f530e5bf16655",
+        "61194e403e5a6f6f"
+      ]
+    }
+  ]
+}

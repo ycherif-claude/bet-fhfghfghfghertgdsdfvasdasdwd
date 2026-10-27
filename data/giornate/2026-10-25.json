@@ -3943,7 +3943,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -3965,7 +3965,7 @@
           "fonteConsenso": "mediana di 5 bookmaker",
           "probMercato": 0.8786,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -4510,7 +4510,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -4532,7 +4532,7 @@
           "fonteConsenso": "mediana di 4 bookmaker",
           "probMercato": 0.8727,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -5197,7 +5197,7 @@
       "stato": "confermata",
       "motivoStato": "quota 2,29 ≥ minima 2,24",
       "oraUltimoControllo": "2026-10-25T12:29:46+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -5881,7 +5881,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
       "oraUltimoControllo": "2026-10-25T16:33:33+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -7125,7 +7125,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.7303,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",

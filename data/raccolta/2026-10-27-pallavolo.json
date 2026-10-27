@@ -1,0 +1,516 @@
+{
+  "data": "2026-10-27",
+  "generataAlle": "2026-10-27T07:13:52+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 222
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Efeler Ligi non riconosciute: Sultanbeyli Bld, Gebze Genclik",
+    "Quote pallavolo: 9 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "0e1f58f646ed664d",
+        "ccd7cff81c4c296f"
+      ],
+      "idPartita": "pallavolo-2026-10-27-istanbul-genclik-spor-ibb-spor",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Istanbul Genclik Spor - Ibb Spor",
+      "casa": "Istanbul Genclik Spor",
+      "trasferta": "Ibb Spor",
+      "inizio": "2026-10-27T12:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Istanbul Genclik Spor": 1533,
+        "Ibb Spor": 1390
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Istanbul Genclik Spor 1533 – Ibb Spor 1390, vantaggio campo compreso: vittoria della casa 76% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Istanbul Genclik Spor",
+          "probModello": null,
+          "probPinnacle": 0.531160436365875,
+          "quota": 1.72,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Istanbul Genclik Spor vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Ibb Spor",
+          "probModello": null,
+          "probPinnacle": 0.4688395636341251,
+          "quota": 1.97,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ibb Spor vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "092facebe950d5fa",
+        "3a9323692c18c0ae",
+        "6be8e8fdbc3c4604",
+        "811b19d366a04c41",
+        "f128df0974248c89"
+      ],
+      "idPartita": "pallavolo-2026-10-27-tfl-altekma-halkbank-ankara",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "TFL Altekma - Halkbank Ankara",
+      "casa": "TFL Altekma",
+      "trasferta": "Halkbank Ankara",
+      "inizio": "2026-10-27T13:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "TFL Altekma": 1497,
+        "Halkbank Ankara": 1699
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: TFL Altekma 1497 – Halkbank Ankara 1699, vantaggio campo compreso: vittoria della casa 31% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "TFL Altekma",
+          "probModello": null,
+          "probPinnacle": 0.3314146996872184,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 155 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TFL Altekma vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Halkbank Ankara",
+          "probModello": null,
+          "probPinnacle": 0.6685853003127833,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 155 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Halkbank Ankara vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "05127f9122d4c7a2",
+        "3348ac03b4fd1522",
+        "4f566ab14e5150d4",
+        "5c5f4706f084638f",
+        "fb5c6495efbdfdab"
+      ],
+      "idPartita": "pallavolo-2026-10-27-corum-sungurlu-bld-galatasaray-sk",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Corum Sungurlu Bld - Galatasaray SK",
+      "casa": "Corum Sungurlu Bld",
+      "trasferta": "Galatasaray SK",
+      "inizio": "2026-10-27T14:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Corum Sungurlu Bld",
+          "probModello": null,
+          "probPinnacle": 0.24514091153343268,
+          "quota": 3.8,
+          "fonteQuota": "mediana di 97 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Corum Sungurlu Bld vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Galatasaray SK",
+          "probModello": null,
+          "probPinnacle": 0.7548590884665665,
+          "quota": 1.22,
+          "fonteQuota": "mediana di 97 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Galatasaray SK vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "28675abcb16f05d6",
+        "dee871ecae32ef5a"
+      ],
+      "idPartita": "pallavolo-2026-10-27-onikisubat-bld-spor-toto-sk-ankara",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Onikisubat Bld - Spor Toto SK Ankara",
+      "casa": "Onikisubat Bld",
+      "trasferta": "Spor Toto SK Ankara",
+      "inizio": "2026-10-27T17:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Onikisubat Bld",
+          "probModello": null,
+          "probPinnacle": 0.3027384802799926,
+          "quota": 3,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Onikisubat Bld vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Spor Toto SK Ankara",
+          "probModello": null,
+          "probPinnacle": 0.6972615197200075,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Spor Toto SK Ankara vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "769605e4edf16e8c",
+        "f61542369317c502"
+      ],
+      "idPartita": "pallavolo-2026-10-27-fenerbahce-sk-istanbul-alanya-belediye",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Fenerbahce SK Istanbul - Alanya Belediye",
+      "casa": "Fenerbahce SK Istanbul",
+      "trasferta": "Alanya Belediye",
+      "inizio": "2026-10-27T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Fenerbahce SK Istanbul": 1523,
+        "Alanya Belediye": 1426
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Fenerbahce SK Istanbul 1523 – Alanya Belediye 1426, vantaggio campo compreso: vittoria della casa 71% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Fenerbahce SK Istanbul",
+          "probModello": null,
+          "probPinnacle": 0.7264779350541215,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Fenerbahce SK Istanbul vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Alanya Belediye",
+          "probModello": null,
+          "probPinnacle": 0.2735220649458784,
+          "quota": 3.1,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Alanya Belediye vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "8d381ac9efe5682c",
+        "c224c1049d1d4465"
+      ],
+      "idPartita": "pallavolo-2026-10-27-ziraat-bankasi-ankara-gaziantep-genclik-spor",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Ziraat Bankasi Ankara - Gaziantep Genclik Spor",
+      "casa": "Ziraat Bankasi Ankara",
+      "trasferta": "Gaziantep Genclik Spor",
+      "inizio": "2026-10-27T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Ziraat Bankasi Ankara": 1771,
+        "Gaziantep Genclik Spor": 1383
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Ziraat Bankasi Ankara 1771 – Gaziantep Genclik Spor 1383, vantaggio campo compreso: vittoria della casa 93% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Ziraat Bankasi Ankara",
+          "probModello": null,
+          "probPinnacle": 0.863812181326658,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ziraat Bankasi Ankara vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Gaziantep Genclik Spor",
+          "probModello": null,
+          "probPinnacle": 0.13618781867334256,
+          "quota": 7,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Gaziantep Genclik Spor vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "401fc214bf4cee6a"
+      ],
+      "idPartita": "pallavolo-2026-10-27-sv-warnemunde-vfb-friedrichshafen",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SV Warnemünde - VfB Friedrichshafen",
+      "casa": "SV Warnemünde",
+      "trasferta": "VfB Friedrichshafen",
+      "inizio": "2026-10-27T19:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SV Warnemünde",
+          "probModello": null,
+          "probPinnacle": 0.08429056786927683,
+          "quota": 8.5,
+          "fonteQuota": "mediana di 130 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se SV Warnemünde vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "VfB Friedrichshafen",
+          "probModello": null,
+          "probPinnacle": 0.9157094321307232,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 130 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se VfB Friedrichshafen vince la partita."
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "133788ec5ecd91d5",
+        "4db44aa8fdf3b193",
+        "c9dd96ffaef1f42b"
+      ],
+      "idPartita": "pallavolo-2026-10-27-ssc-karlsruhe-swd-powervolleys-duren",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SSC Karlsruhe - SWD Powervolleys Duren",
+      "casa": "SSC Karlsruhe",
+      "trasferta": "SWD Powervolleys Duren",
+      "inizio": "2026-10-27T20:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SSC Karlsruhe",
+          "probModello": null,
+          "probPinnacle": 0.24155145929339475,
+          "quota": 4,
+          "fonteQuota": "mediana di 120 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se SSC Karlsruhe vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SWD Powervolleys Duren",
+          "probModello": null,
+          "probPinnacle": 0.7584485407066053,
+          "quota": 1.2,
+          "fonteQuota": "mediana di 120 bookmaker (odss-api)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se SWD Powervolleys Duren vince la partita."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-27-skra-belchatow-gks-katowice",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Skra Belchatow - GKS Katowice",
+      "casa": "Skra Belchatow",
+      "trasferta": "GKS Katowice",
+      "inizio": "2026-10-27T17:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Skra Belchatow",
+          "probModello": null,
+          "probPinnacle": 0.6828493647912887,
+          "quota": 1.3,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,35 su 143 bookmaker",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "quotaBet365": 1.3,
+          "oraQuotaBet365": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Skra Belchatow vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probPinnacle": 0.31715063520871145,
+          "quota": 2.94,
+          "fonteQuota": "mediana di 143 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "quotaBet365": 3.25,
+          "oraQuotaBet365": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.5272969374167776,
+          "quota": 1.69,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,74 su 108 bookmaker",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "quotaBet365": 1.69,
+          "oraQuotaBet365": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Skra Belchatow -1,5 vince se Skra Belchatow vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.47270306258322237,
+          "quota": 1.96,
+          "fonteQuota": "mediana di 108 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "quotaBet365": 1.97,
+          "oraQuotaBet365": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice +1,5 vince se GKS Katowice vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.8056703638226944,
+          "quota": 1.15,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Skra Belchatow +1,5 vince se Skra Belchatow vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.19432963617730575,
+          "quota": 4.7,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: GKS Katowice -1,5 vince se GKS Katowice vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6304510341390481,
+          "quota": 1.46,
+          "fonteQuota": "mediana di 60 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.369548965860952,
+          "quota": 2.53,
+          "fonteQuota": "mediana di 60 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-27T07:13:52+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}

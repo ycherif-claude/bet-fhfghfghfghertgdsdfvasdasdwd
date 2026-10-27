@@ -16,7 +16,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -33,7 +33,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -50,7 +50,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -67,7 +67,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -84,7 +84,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -101,7 +101,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.14,
       "bookmaker": "daznbet"
@@ -120,7 +120,7 @@
       "n": 1187,
       "limite": 0.8813,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -137,7 +137,7 @@
       "n": 1035,
       "limite": 0.821,
       "quotaMinima": 1.19,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.11
     },
@@ -155,7 +155,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.07
     },
@@ -173,7 +173,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     }
   ],
@@ -196,7 +196,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-26-caykur-rizespor-trabzonspor",
@@ -212,7 +212,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -220,8 +220,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-10-27T07:15:33+01:00"
 }

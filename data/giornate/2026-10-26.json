@@ -1385,7 +1385,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1409,7 +1409,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1433,7 +1433,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -1448,7 +1448,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1472,7 +1472,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -1500,7 +1500,7 @@
           "fonteConsenso": "Pinnacle",
           "probMercato": 0.8337,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1524,7 +1524,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -1546,7 +1546,7 @@
           "fonteConsenso": "mediana di 139 bookmaker",
           "probMercato": 0.8413,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1577,7 +1577,7 @@
           "fonteConsenso": "mediana di 87 bookmaker",
           "probMercato": 0.8678,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -1592,7 +1592,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -1860,7 +1860,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "id": "tennis-2026-10-26-maria-sakkari-yulia-putintseva-vincente-incontro-maria-sakkari",
@@ -1939,7 +1939,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (meno di 3 bookmaker con la quota)",
       "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -1980,7 +1980,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 3,30 sotto la minima 3,33",
       "oraUltimoControllo": "2026-10-26T23:15:07+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2020,7 +2020,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
       "oraUltimoControllo": "2026-10-26T19:14:23+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2060,7 +2060,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 3,10 sotto la minima 3,13",
       "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2100,7 +2100,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-26T20:42:25+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2266,7 +2266,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 2,35 ≥ minima 2,22",
       "oraUltimoControllo": "2026-10-26T22:47:46+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2306,7 +2306,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota scesa a 4,35, sotto la minima 4,50 del mattino; formazioni ufficiali uscite senza giocatori chiave segnalati e nessun fatto concreto che alzi la probabilità oltre il 24% usato (modello 27%, Pinnacle 22%): il value non c'è più (controlli quote odss-api, 20:00)",
       "oraUltimoControllo": "2026-10-26T20:01:42+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2347,7 +2347,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
       "oraUltimoControllo": "2026-10-26T22:47:46+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2429,7 +2429,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 1,72 sotto la minima 1,81",
       "oraUltimoControllo": "2026-10-26T20:00:40+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2469,7 +2469,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-26T23:15:07+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2509,7 +2509,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-26T22:16:41+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2549,7 +2549,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-26T22:47:46+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     }
   ],
@@ -2570,7 +2570,7 @@
           "quota": 1.36,
           "quotaBet365": null,
           "probMercato": 0.693,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2583,7 +2583,7 @@
           "quota": 1.36,
           "quotaBet365": null,
           "probMercato": 0.7053,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2596,7 +2596,7 @@
           "quota": 1.35,
           "quotaBet365": null,
           "probMercato": 0.71,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2609,7 +2609,7 @@
           "quota": 1.34,
           "quotaBet365": null,
           "probMercato": 0.6981,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2622,7 +2622,7 @@
           "quota": 1.42,
           "quotaBet365": null,
           "probMercato": 0.6656,
-          "esito": null
+          "esito": "persa"
         },
         {
           "sport": "calcio",
@@ -2635,7 +2635,7 @@
           "quota": 1.38,
           "quotaBet365": null,
           "probMercato": 0.6923,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2648,7 +2648,7 @@
           "quota": 1.33,
           "quotaBet365": null,
           "probMercato": 0.7084,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2661,7 +2661,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.7319,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2674,7 +2674,7 @@
           "quota": 1.32,
           "quotaBet365": null,
           "probMercato": 0.7053,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "nba",
@@ -2687,7 +2687,7 @@
           "quota": 1.46,
           "quotaBet365": null,
           "probMercato": 0.6563161609033169,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 21.85,
@@ -2695,8 +2695,8 @@
       "quotaConBonus": 29.49,
       "prob": 0.026792178741933174,
       "valueAtteso": -0.20978113207425364,
-      "esito": null,
-      "ritorno": null
+      "esito": "persa",
+      "ritorno": 0
     },
     {
       "id": "MB15-2026-10-26",
@@ -2714,7 +2714,7 @@
           "quota": 1.32,
           "quotaBet365": null,
           "probMercato": 0.6966,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2727,7 +2727,7 @@
           "quota": 1.36,
           "quotaBet365": null,
           "probMercato": 0.693,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2753,7 +2753,7 @@
           "quota": 1.36,
           "quotaBet365": null,
           "probMercato": 0.7053,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2766,7 +2766,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.7067,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2779,7 +2779,7 @@
           "quota": 1.35,
           "quotaBet365": null,
           "probMercato": 0.71,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2792,7 +2792,7 @@
           "quota": 1.34,
           "quotaBet365": null,
           "probMercato": 0.6981,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2805,7 +2805,7 @@
           "quota": 1.42,
           "quotaBet365": null,
           "probMercato": 0.6656,
-          "esito": null
+          "esito": "persa"
         },
         {
           "sport": "calcio",
@@ -2818,7 +2818,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.715,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2831,7 +2831,7 @@
           "quota": 1.38,
           "quotaBet365": null,
           "probMercato": 0.6923,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2844,7 +2844,7 @@
           "quota": 1.33,
           "quotaBet365": null,
           "probMercato": 0.7084,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2857,7 +2857,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.7319,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -2870,7 +2870,7 @@
           "quota": 1.32,
           "quotaBet365": null,
           "probMercato": 0.7053,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "nba",
@@ -2883,7 +2883,7 @@
           "quota": 1.46,
           "quotaBet365": null,
           "probMercato": 0.6563161609033169,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "nba",
@@ -2896,7 +2896,7 @@
           "quota": 1.3,
           "quotaBet365": null,
           "probMercato": 0.7130620985010707,
-          "esito": null
+          "esito": "persa"
         }
       ],
       "quota": 83.63,
@@ -2904,8 +2904,8 @@
       "quotaConBonus": 133.81,
       "prob": 0.004669492694201603,
       "valueAtteso": -0.375153708091263,
-      "esito": null,
-      "ritorno": null,
+      "esito": "persa",
+      "ritorno": 0,
       "lunga": true
     }
   ],
@@ -3080,7 +3080,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-26-caykur-rizespor-trabzonspor",
@@ -3096,7 +3096,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -3104,8 +3104,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     }
   ]
 }
