@@ -2993,9 +2993,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-28T18:32:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -3113,9 +3113,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-28T18:32:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -3642,9 +3642,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-28T18:32:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -3928,9 +3928,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 1,85 sotto la minima 1,90",
+      "oraUltimoControllo": "2026-10-28T18:32:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -3968,9 +3968,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-10-28T18:32:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -5655,7 +5655,8 @@
     "Quote Bundesliga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi",
     "odss-api alle 07:13: 8 partite senza righe a tempo intero (full_time), senza quote: Leeds United (donne) - York City Ladies (donne), Leeds United FC (F) - York City Ladies, Rayo Vallecano (Shot) - Levante (aloha), Man.City - Brighton, Leeds United FC (W) - York City Ladies, Cazin - Borac Banja Luka, Jedinstvo - Crvena zvezda, Manchester Utd Wom. - Burnley Wom.",
     "Pronostici del 23/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Gateshead - Tamworth",
-    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers"
+    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 11 su 13, rimaste 418, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
