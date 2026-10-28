@@ -35,6 +35,31 @@
         "quota 4,75 ≥ minima 4,64"
       ],
       "alle": "2026-10-28T14:29:43+01:00"
+    },
+    "calcio-2026-10-28-venezia-inter-milan-handicap-asiatico-piu-1-5-trasferta": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (mercato senza quote nella fonte gratuita)"
+      ],
+      "alle": "2026-10-28T17:51:00+01:00"
+    },
+    "calcio-2026-10-28-ac-milan-bologna-1x2-x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,65 sotto la minima 4,18",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,65 sotto la minima 4,18"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-28T17:51:00+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -49,6 +74,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|12",
       "alle": "2026-10-28T17:02:21+01:00"
+    },
+    "calcio-2026-10-28-if-brommapojkarna-bk-hacken|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-28T17:51:00+01:00"
+    },
+    "calcio-2026-10-28-ifk-goteborg-djurgarden|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-28T17:51:00+01:00"
     }
   }
 }
