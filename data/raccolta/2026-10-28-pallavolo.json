@@ -1,0 +1,309 @@
+{
+  "data": "2026-10-28",
+  "generataAlle": "2026-10-28T07:20:25+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 219
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: VC Bitterfeld-Wolfen",
+    "Quote pallavolo: 11 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
+    "Quote Bundesliga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "2a10536d20e81344",
+        "633b086ca3335fbf",
+        "8979b3d95d2ad4e9",
+        "8d3db1ee8014050c",
+        "9f53d29fc2e5df66"
+      ],
+      "idPartita": "pallavolo-2026-10-28-netzhoppers-konigs-wusterhausen-svg-luneburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Netzhoppers Konigs Wusterhausen - Svg Luneburg",
+      "casa": "Netzhoppers Konigs Wusterhausen",
+      "trasferta": "Svg Luneburg",
+      "inizio": "2026-10-28T19:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Netzhoppers Konigs Wusterhausen",
+          "probModello": null,
+          "probPinnacle": 0.20483353007034716,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 123 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Netzhoppers Konigs Wusterhausen vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Svg Luneburg",
+          "probModello": null,
+          "probPinnacle": 0.7951664699296526,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 123 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Svg Luneburg vince la partita."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-28-projekt-warsaw-warta-zawiercie",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Projekt Warsaw - Warta Zawiercie",
+      "casa": "Projekt Warsaw",
+      "trasferta": "Warta Zawiercie",
+      "inizio": "2026-10-28T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Projekt Warsaw": 1583,
+        "Warta Zawiercie": 1666
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Projekt Warsaw 1583 – Warta Zawiercie 1666, vantaggio campo compreso: vittoria della casa 47% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probPinnacle": 0.451948051948052,
+          "quota": 2.08,
+          "fonteQuota": "mediana di 152 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 2.25,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Warta Zawiercie",
+          "probModello": null,
+          "probPinnacle": 0.548051948051948,
+          "quota": 1.54,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,70 su 152 bookmaker",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 1.54,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Warta Zawiercie vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.319981369352585,
+          "quota": 2.96,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw -1,5 vince se Projekt Warsaw vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.680018630647415,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 55 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Warta Zawiercie +1,5 vince se Warta Zawiercie vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.6041986687147978,
+          "quota": 1.54,
+          "fonteQuota": "mediana di 110 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 1.54,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw +1,5 vince se Projekt Warsaw vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.3958013312852023,
+          "quota": 2.25,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 2,34 su 110 bookmaker",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 2.25,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Warta Zawiercie -1,5 vince se Warta Zawiercie vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6672999287580147,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 59 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.3327000712419853,
+          "quota": 2.81,
+          "fonteQuota": "mediana di 59 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-28-wwk-volleys-munich-barock-volleys-mtv-ludwigsburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Wwk Volleys Munich - Barock Volleys MTV Ludwigsburg",
+      "casa": "Wwk Volleys Munich",
+      "trasferta": "Barock Volleys MTV Ludwigsburg",
+      "inizio": "2026-10-28T19:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Wwk Volleys Munich",
+          "probModello": null,
+          "probPinnacle": 0.5493788156684266,
+          "quota": 1.63,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,68 su 20 bookmaker",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 1.63,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Wwk Volleys Munich vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Barock Volleys MTV Ludwigsburg",
+          "probModello": null,
+          "probPinnacle": 0.4506211843315734,
+          "quota": 2.05,
+          "fonteQuota": "mediana di 20 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 2.1,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Barock Volleys MTV Ludwigsburg vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.3945036197090215,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 15 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 2.37,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Wwk Volleys Munich -1,5 vince se Wwk Volleys Munich vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.6054963802909785,
+          "quota": 1.5,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,55 su 15 bookmaker",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "quotaBet365": 1.5,
+          "oraQuotaBet365": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Barock Volleys MTV Ludwigsburg +1,5 vince se Barock Volleys MTV Ludwigsburg vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.6876769661722016,
+          "quota": 1.31,
+          "fonteQuota": "mediana di 11 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Wwk Volleys Munich +1,5 vince se Wwk Volleys Munich vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.31232303382779825,
+          "quota": 3,
+          "fonteQuota": "mediana di 11 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Barock Volleys MTV Ludwigsburg -1,5 vince se Barock Volleys MTV Ludwigsburg vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6839622641509433,
+          "quota": 1.34,
+          "fonteQuota": "mediana di 7 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.31603773584905664,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 7 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-28T07:20:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}

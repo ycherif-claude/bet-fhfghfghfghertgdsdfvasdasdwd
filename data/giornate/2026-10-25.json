@@ -3348,7 +3348,7 @@
           "fonteConsenso": "Pinnacle",
           "probMercato": 0.8217,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -3363,7 +3363,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -3378,7 +3378,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": false
         }
       ]
@@ -3792,7 +3792,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -3825,7 +3825,7 @@
           "fonteConsenso": "Pinnacle",
           "probMercato": 0.8618,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -3849,7 +3849,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -3919,7 +3919,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -4354,7 +4354,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": false
         },
         {
@@ -4376,7 +4376,7 @@
           "fonteConsenso": "mediana di 8 bookmaker",
           "probMercato": 0.8413,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         }
       ]
@@ -4400,7 +4400,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -5037,7 +5037,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota scesa a 3,65, sotto la minima 4,31 del mattino; nessun fatto concreto che renda la probabilità più alta di quella del mattino (analisi basata solo su modello e quote, notizie non controllate): senza value la giocata viene annullata (controlli quote odss-api, 13:52)",
       "oraUltimoControllo": "2026-10-25T13:53:04+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -5237,7 +5237,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-25T17:30:51+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -5357,7 +5357,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-25T16:08:14+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -5437,7 +5437,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-25T12:29:46+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -6002,7 +6002,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-25T14:22:39+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -6877,7 +6877,7 @@
           "quota": 1.39,
           "quotaBet365": null,
           "probMercato": 0.6939,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -6916,7 +6916,7 @@
           "quota": 1.41,
           "quotaBet365": null,
           "probMercato": 0.6935,
-          "esito": null
+          "esito": "persa"
         },
         {
           "sport": "calcio",
@@ -6950,8 +6950,8 @@
       "quotaConBonus": 42.82,
       "prob": 0.021753521718314867,
       "valueAtteso": -0.06844756580957423,
-      "esito": null,
-      "ritorno": null
+      "esito": "persa",
+      "ritorno": 0
     },
     {
       "id": "MB20-2026-10-25",
@@ -7060,7 +7060,7 @@
           "quota": 1.39,
           "quotaBet365": null,
           "probMercato": 0.6939,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "sport": "calcio",
@@ -7138,7 +7138,7 @@
           "quota": 1.41,
           "quotaBet365": null,
           "probMercato": 0.6935,
-          "esito": null
+          "esito": "persa"
         },
         {
           "sport": "calcio",
@@ -7669,7 +7669,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -7677,8 +7677,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-10-25-1e8pwyl",
@@ -7714,7 +7714,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -7722,8 +7722,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     }
   ]
 }

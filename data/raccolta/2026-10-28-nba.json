@@ -1,0 +1,1166 @@
+{
+  "data": "2026-10-28",
+  "generataAlle": "2026-10-28T07:14:13+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 0
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api alle 07:14: 12 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Washington Wizards - Cleveland Cavaliers, Philadelphia 76ers - Indiana Pacers, Miami Heat - Atlanta Hawks, Charlotte Hornets - Detroit Pistons, Orlando Magic - Toronto Raptors, Houston Rockets - Milwaukee Bucks, Golden State Warriors - Minnesota Timberwolves, Denver Nuggets - New Orleans Pelicans, New York Knicks - Chicago Bulls, San Antonio Spurs - Utah Jazz, Oklahoma City Thunder - Dallas Mavericks, Los Angeles Lakers - LA Clippers"
+  ],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-28-detroit-pistons-charlotte-hornets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Detroit Pistons - Charlotte Hornets",
+      "casa": "Detroit Pistons",
+      "trasferta": "Charlotte Hornets",
+      "inizio": "2026-10-29T00:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 111.6,
+        "trasferta": 105.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": true,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Detroit Pistons 112 – Charlotte Hornets 106 (stagione in corso e precedente)",
+        "Detroit Pistons alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Detroit Pistons",
+          "probModello": 0.6571529533770886,
+          "probPinnacle": 0.6891203190782184,
+          "quota": 1.38,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Detroit Pistons vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Charlotte Hornets",
+          "probModello": 0.3428470466229114,
+          "probPinnacle": 0.3108796809217815,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Charlotte Hornets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "casa",
+          "probModello": 0.4495232503167459,
+          "probPinnacle": 0.46070878274268107,
+          "quota": 2,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Detroit Pistons vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su Detroit Pistons -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "trasferta",
+          "probModello": 0.5504767496832541,
+          "probPinnacle": 0.539291217257319,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Charlotte Hornets perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su Charlotte Hornets +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 215.5",
+          "selezione": "Over 215.5",
+          "probModello": 0.5423205863405315,
+          "probPinnacle": 0.49780304988369084,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 77 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 215.5: Over vince se le due squadre segnano almeno 216 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (215.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 215.5",
+          "selezione": "Under 215.5",
+          "probModello": 0.4576794136594685,
+          "probPinnacle": 0.502196950116309,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 77 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 215.5: Under vince se le due squadre segnano al massimo 215 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (215.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "9f1e6bf88f1a7989",
+        "c3f59c0319f70043"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-cleveland-cavaliers-washington-wizards",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Cleveland Cavaliers - Washington Wizards",
+      "casa": "Cleveland Cavaliers",
+      "trasferta": "Washington Wizards",
+      "inizio": "2026-10-29T00:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 127.3,
+        "trasferta": 112.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Cleveland Cavaliers 127 – Washington Wizards 113 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cleveland Cavaliers",
+          "probModello": 0.8464610553682896,
+          "probPinnacle": 0.7825472531354885,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cleveland Cavaliers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Washington Wizards",
+          "probModello": 0.1535389446317103,
+          "probPinnacle": 0.2174527468645116,
+          "quota": 3.85,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Washington Wizards vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -9.5",
+          "selezione": "casa",
+          "probModello": 0.6322648282584975,
+          "probPinnacle": 0.502186776434268,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Cleveland Cavaliers vincono con almeno 10 punti di scarto, supplementari compresi. Gioca solo su Cleveland Cavaliers -9.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -9.5",
+          "selezione": "trasferta",
+          "probModello": 0.36773517174150244,
+          "probPinnacle": 0.4978132235657319,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Washington Wizards perdono con meno di 10 punti di scarto o vincono, supplementari compresi. Gioca solo su Washington Wizards +9.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 239.5",
+          "selezione": "Over 239.5",
+          "probModello": 0.5144885958986477,
+          "probPinnacle": 0.4866476536168006,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 239.5: Over vince se le due squadre segnano almeno 240 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (239.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 239.5",
+          "selezione": "Under 239.5",
+          "probModello": 0.4855114041013523,
+          "probPinnacle": 0.5133523463831993,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 239.5: Under vince se le due squadre segnano al massimo 239 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (239.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "b324b80984a794be",
+        "0caa624586368570"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-indiana-pacers-philadelphia-76ers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Indiana Pacers - Philadelphia 76ers",
+      "casa": "Indiana Pacers",
+      "trasferta": "Philadelphia 76ers",
+      "inizio": "2026-10-29T00:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 111.9,
+        "trasferta": 113
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Indiana Pacers 112 – Philadelphia 76ers 113 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Indiana Pacers",
+          "probModello": 0.46725123104136895,
+          "probPinnacle": 0.3685474189675871,
+          "quota": 2.47,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Indiana Pacers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "probModello": 0.532748768958631,
+          "probPinnacle": 0.6314525810324131,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Philadelphia 76ers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +3.5",
+          "selezione": "casa",
+          "probModello": 0.5647876710470856,
+          "probPinnacle": 0.4517038175762234,
+          "quota": 1.98,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Indiana Pacers perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Indiana Pacers +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +3.5",
+          "selezione": "trasferta",
+          "probModello": 0.43521232895291445,
+          "probPinnacle": 0.5482961824237766,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Philadelphia 76ers vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Philadelphia 76ers -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Over 238.5",
+          "probModello": 0.2318147012864793,
+          "probPinnacle": 0.44930519814719505,
+          "quota": 1.97,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Over vince se le due squadre segnano almeno 239 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Under 238.5",
+          "probModello": 0.7681852987135207,
+          "probPinnacle": 0.550694801852805,
+          "quota": 1.75,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Under vince se le due squadre segnano al massimo 238 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "b8d7358eff2434cf",
+        "695a1257ee1615e4"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-atlanta-hawks-miami-heat",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Atlanta Hawks - Miami Heat",
+      "casa": "Atlanta Hawks",
+      "trasferta": "Miami Heat",
+      "inizio": "2026-10-29T00:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 130.5,
+        "trasferta": 114.7
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Atlanta Hawks 131 – Miami Heat 115 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Atlanta Hawks",
+          "probModello": 0.8694050667633909,
+          "probPinnacle": 0.5847076461769115,
+          "quota": 1.61,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Atlanta Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Miami Heat",
+          "probModello": 0.13059493323660915,
+          "probPinnacle": 0.41529235382308843,
+          "quota": 2.27,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Miami Heat vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "casa",
+          "probModello": 0.8037695142460669,
+          "probPinnacle": 0.49087168938030346,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Atlanta Hawks vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Atlanta Hawks -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "trasferta",
+          "probModello": 0.1962304857539331,
+          "probPinnacle": 0.5091283106196965,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Miami Heat perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Miami Heat +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 241.5",
+          "selezione": "Over 241.5",
+          "probModello": 0.5797142804274096,
+          "probPinnacle": 0.4976635514018692,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 73 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 241.5",
+          "selezione": "Under 241.5",
+          "probModello": 0.42028571957259037,
+          "probPinnacle": 0.5023364485981309,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 73 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 241.5: Under vince se le due squadre segnano al massimo 241 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "e47733604d1ef23e",
+        "5d87a7755709c0dd"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-toronto-raptors-orlando-magic",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Toronto Raptors - Orlando Magic",
+      "casa": "Toronto Raptors",
+      "trasferta": "Orlando Magic",
+      "inizio": "2026-10-29T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 113.6,
+        "trasferta": 110.1
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Toronto Raptors 114 – Orlando Magic 110 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Toronto Raptors",
+          "probModello": 0.5989657911459993,
+          "probPinnacle": 0.6257550132882339,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Toronto Raptors vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Orlando Magic",
+          "probModello": 0.40103420885400065,
+          "probPinnacle": 0.37424498671176615,
+          "quota": 2.45,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Orlando Magic vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -4.5",
+          "selezione": "casa",
+          "probModello": 0.472660541352091,
+          "probPinnacle": 0.49305555555555547,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Toronto Raptors vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Toronto Raptors -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -4.5",
+          "selezione": "trasferta",
+          "probModello": 0.527339458647909,
+          "probPinnacle": 0.5069444444444444,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Orlando Magic perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Orlando Magic +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 223.5",
+          "selezione": "Over 223.5",
+          "probModello": 0.5037934062899186,
+          "probPinnacle": 0.4909607438016529,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 66 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 223.5: Over vince se le due squadre segnano almeno 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 223.5",
+          "selezione": "Under 223.5",
+          "probModello": 0.49620659371008136,
+          "probPinnacle": 0.5090392561983471,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 66 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 223.5: Under vince se le due squadre segnano al massimo 223 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "cb6dc04836c4ec47",
+        "cd37168ea9d0d9a1"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-chicago-bulls-new-york-knicks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Chicago Bulls - New York Knicks",
+      "casa": "Chicago Bulls",
+      "trasferta": "New York Knicks",
+      "inizio": "2026-10-29T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 109.4,
+        "trasferta": 119.5
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": true
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Chicago Bulls 109 – New York Knicks 120 (stagione in corso e precedente)",
+        "New York Knicks alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Chicago Bulls",
+          "probModello": 0.2342866027051105,
+          "probPinnacle": 0.30111038536903983,
+          "quota": 3,
+          "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chicago Bulls vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "New York Knicks",
+          "probModello": 0.7657133972948895,
+          "probPinnacle": 0.6988896146309601,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se New York Knicks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +7.5",
+          "selezione": "casa",
+          "probModello": 0.4263063791397048,
+          "probPinnacle": 0.5212903225806451,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 70 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Chicago Bulls perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su Chicago Bulls +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +7.5",
+          "selezione": "trasferta",
+          "probModello": 0.5736936208602952,
+          "probPinnacle": 0.47870967741935483,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 70 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i New York Knicks vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su New York Knicks -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 234.5",
+          "selezione": "Over 234.5",
+          "probModello": 0.38145077486487255,
+          "probPinnacle": 0.4955867082035307,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 234.5: Over vince se le due squadre segnano almeno 235 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (234.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 234.5",
+          "selezione": "Under 234.5",
+          "probModello": 0.6185492251351274,
+          "probPinnacle": 0.5044132917964693,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 234.5: Under vince se le due squadre segnano al massimo 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (234.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "265bf5da33ff8e09",
+        "4a236c7c2330e986",
+        "fa9ac52f6a490dd1"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-new-orleans-pelicans-denver-nuggets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Denver Nuggets",
+      "casa": "New Orleans Pelicans",
+      "trasferta": "Denver Nuggets",
+      "inizio": "2026-10-29T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 122.2,
+        "trasferta": 125.4
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: New Orleans Pelicans 122 – Denver Nuggets 125 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "New Orleans Pelicans",
+          "probModello": 0.4100902737025742,
+          "probPinnacle": 0.36292054402290624,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se New Orleans Pelicans vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Denver Nuggets",
+          "probModello": 0.5899097262974258,
+          "probPinnacle": 0.6370794559770938,
+          "quota": 1.5,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Denver Nuggets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "casa",
+          "probModello": 0.5363829775284361,
+          "probPinnacle": 0.4877102199223804,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 71 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i New Orleans Pelicans perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su New Orleans Pelicans +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "trasferta",
+          "probModello": 0.46361702247156394,
+          "probPinnacle": 0.5122897800776197,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 71 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Denver Nuggets vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Denver Nuggets -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 240.5",
+          "selezione": "Over 240.5",
+          "probModello": 0.6473495561160101,
+          "probPinnacle": 0.5111514522821577,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 73 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 240.5: Over vince se le due squadre segnano almeno 241 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (240.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 240.5",
+          "selezione": "Under 240.5",
+          "probModello": 0.35265044388399,
+          "probPinnacle": 0.4888485477178423,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 73 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 240.5: Under vince se le due squadre segnano al massimo 240 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (240.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "8f8bac01055ac544",
+        "370dcea30b63b247"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-milwaukee-bucks-houston-rockets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Milwaukee Bucks - Houston Rockets",
+      "casa": "Milwaukee Bucks",
+      "trasferta": "Houston Rockets",
+      "inizio": "2026-10-29T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 105.9,
+        "trasferta": 124.2
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Milwaukee Bucks 106 – Houston Rockets 124 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Milwaukee Bucks",
+          "probModello": 0.09645459426915502,
+          "probPinnacle": 0.25273865414710484,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Milwaukee Bucks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Houston Rockets",
+          "probModello": 0.903545405730845,
+          "probPinnacle": 0.747261345852895,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Houston Rockets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +8.5",
+          "selezione": "casa",
+          "probModello": 0.2470039251446522,
+          "probPinnacle": 0.5046296296296295,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Milwaukee Bucks perdono con meno di 9 punti di scarto o vincono, supplementari compresi. Gioca solo su Milwaukee Bucks +8.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +8.5",
+          "selezione": "trasferta",
+          "probModello": 0.7529960748553478,
+          "probPinnacle": 0.4953703703703703,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Houston Rockets vincono con almeno 9 punti di scarto, supplementari compresi. Gioca solo su Houston Rockets -8.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Over 227.5",
+          "probModello": 0.5553653117630852,
+          "probPinnacle": 0.5254983173699197,
+          "quota": 1.84,
+          "fonteQuota": "mediana di 62 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 227.5: Over vince se le due squadre segnano almeno 228 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Under 227.5",
+          "probModello": 0.4446346882369148,
+          "probPinnacle": 0.4745016826300803,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 62 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 227.5: Under vince se le due squadre segnano al massimo 227 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "d58467ba1eedff63",
+        "e6fc96e3da50069c"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-minnesota-timberwolves-golden-state-warriors",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Minnesota Timberwolves - Golden State Warriors",
+      "casa": "Minnesota Timberwolves",
+      "trasferta": "Golden State Warriors",
+      "inizio": "2026-10-29T01:10:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 119.2,
+        "trasferta": 110.7
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Minnesota Timberwolves 119 – Golden State Warriors 111 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Minnesota Timberwolves",
+          "probModello": 0.7260845609189281,
+          "probPinnacle": 0.586913086913087,
+          "quota": 1.63,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Minnesota Timberwolves vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Golden State Warriors",
+          "probModello": 0.2739154390810719,
+          "probPinnacle": 0.4130869130869131,
+          "quota": 2.23,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Golden State Warriors vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "casa",
+          "probModello": 0.6340211331958894,
+          "probPinnacle": 0.49305555555555547,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Minnesota Timberwolves vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Minnesota Timberwolves -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "trasferta",
+          "probModello": 0.3659788668041107,
+          "probPinnacle": 0.5069444444444444,
+          "quota": 1.84,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Golden State Warriors perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Golden State Warriors +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 228.5",
+          "selezione": "Over 228.5",
+          "probModello": 0.5301324858701173,
+          "probPinnacle": 0.5089494163424125,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 50 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 228.5: Over vince se le due squadre segnano almeno 229 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (228.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 228.5",
+          "selezione": "Under 228.5",
+          "probModello": 0.46986751412988276,
+          "probPinnacle": 0.4910505836575875,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 50 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 228.5: Under vince se le due squadre segnano al massimo 228 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (228.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "6ee111b083575915"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-utah-jazz-san-antonio-spurs",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Utah Jazz - San Antonio Spurs",
+      "casa": "Utah Jazz",
+      "trasferta": "San Antonio Spurs",
+      "inizio": "2026-10-29T02:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 111.7,
+        "trasferta": 122.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": true
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Utah Jazz 112 – San Antonio Spurs 123 (stagione in corso e precedente)",
+        "San Antonio Spurs alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Utah Jazz",
+          "probModello": 0.21127635047501148,
+          "probPinnacle": 0.18338777414839014,
+          "quota": 5,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Utah Jazz vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "San Antonio Spurs",
+          "probModello": 0.7887236495249885,
+          "probPinnacle": 0.81661222585161,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se San Antonio Spurs vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +12.5",
+          "selezione": "casa",
+          "probModello": 0.5342088686082114,
+          "probPinnacle": 0.5148005148005148,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Utah Jazz perdono con meno di 13 punti di scarto o vincono, supplementari compresi. Gioca solo su Utah Jazz +12.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +12.5",
+          "selezione": "trasferta",
+          "probModello": 0.4657911313917886,
+          "probPinnacle": 0.4851994851994852,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i San Antonio Spurs vincono con almeno 13 punti di scarto, supplementari compresi. Gioca solo su San Antonio Spurs -12.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 234.5",
+          "selezione": "Over 234.5",
+          "probModello": 0.5013806822652258,
+          "probPinnacle": 0.4788695877625098,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 234.5: Over vince se le due squadre segnano almeno 235 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (234.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 234.5",
+          "selezione": "Under 234.5",
+          "probModello": 0.49861931773477425,
+          "probPinnacle": 0.5211304122374903,
+          "quota": 1.78,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 234.5: Under vince se le due squadre segnano al massimo 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (234.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "7e8c471904dafa9c",
+        "baff0da9261d9ae9"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-dallas-mavericks-oklahoma-city-thunder",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Dallas Mavericks - Oklahoma City Thunder",
+      "casa": "Dallas Mavericks",
+      "trasferta": "Oklahoma City Thunder",
+      "inizio": "2026-10-29T02:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 108.7,
+        "trasferta": 118.4
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Dallas Mavericks 109 – Oklahoma City Thunder 118 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Dallas Mavericks",
+          "probModello": 0.2460182886509435,
+          "probPinnacle": 0.3340987370838117,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Dallas Mavericks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Oklahoma City Thunder",
+          "probModello": 0.7539817113490566,
+          "probPinnacle": 0.6659012629161882,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Oklahoma City Thunder vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "casa",
+          "probModello": 0.41359199899338206,
+          "probPinnacle": 0.5191115702479339,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 69 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Dallas Mavericks perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su Dallas Mavericks +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "trasferta",
+          "probModello": 0.5864080010066179,
+          "probPinnacle": 0.48088842975206614,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 69 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Oklahoma City Thunder vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Oklahoma City Thunder -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 229.5",
+          "selezione": "Over 229.5",
+          "probModello": 0.44949139263482274,
+          "probPinnacle": 0.5,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 77 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 229.5: Over vince se le due squadre segnano almeno 230 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (229.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 229.5",
+          "selezione": "Under 229.5",
+          "probModello": 0.5505086073651773,
+          "probPinnacle": 0.5,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 77 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 229.5: Under vince se le due squadre segnano al massimo 229 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (229.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "3f279a2f68390e04",
+        "8063afe6a21a97db"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-28-la-clippers-los-angeles-lakers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "LA Clippers - Los Angeles Lakers",
+      "casa": "LA Clippers",
+      "trasferta": "Los Angeles Lakers",
+      "inizio": "2026-10-29T03:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 117,
+        "trasferta": 116
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": true
+      },
+      "ragionamentoBase": [
+        "Punti attesi: LA Clippers 117 – Los Angeles Lakers 116 (stagione in corso e precedente)",
+        "Los Angeles Lakers alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "LA Clippers",
+          "probModello": 0.5264531265581435,
+          "probPinnacle": 0.3525547664535989,
+          "quota": 2.65,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se LA Clippers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Los Angeles Lakers",
+          "probModello": 0.47354687344185653,
+          "probPinnacle": 0.6474452335464026,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Los Angeles Lakers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap +5.5",
+          "selezione": "casa",
+          "probModello": 0.6723937424024192,
+          "probPinnacle": 0.5017236171749707,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 166 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i LA Clippers perdono con meno di 6 punti di scarto o vincono, supplementari compresi. Gioca solo su LA Clippers +5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap +5.5",
+          "selezione": "trasferta",
+          "probModello": 0.3276062575975808,
+          "probPinnacle": 0.49827638282502923,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 166 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Los Angeles Lakers vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su Los Angeles Lakers -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Over 227.5",
+          "probModello": 0.6168769010432982,
+          "probPinnacle": 0.4992322748957327,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 168 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 227.5: Over vince se le due squadre segnano almeno 228 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Under 227.5",
+          "probModello": 0.3831230989567018,
+          "probPinnacle": 0.5007677251042674,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 168 bookmaker (odss-api)",
+          "oraQuota": "2026-10-28T07:14:13+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 227.5: Under vince se le due squadre segnano al massimo 227 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "0c96e776c8a367e0",
+        "d7a5db733368563c",
+        "e051064e87a5e58e"
+      ]
+    }
+  ]
+}

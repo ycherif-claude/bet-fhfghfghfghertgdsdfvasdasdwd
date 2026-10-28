@@ -4647,7 +4647,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -4839,7 +4839,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -5867,7 +5867,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -6098,7 +6098,7 @@
           "fonteConsenso": "mediana di 85 bookmaker",
           "probMercato": 0.7763,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -6113,7 +6113,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -6161,7 +6161,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -6176,7 +6176,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -6200,7 +6200,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -6215,7 +6215,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -6230,7 +6230,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -6530,7 +6530,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -6554,7 +6554,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -6569,7 +6569,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -6584,7 +6584,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         }
       ]
@@ -8447,7 +8447,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-24T10:46:49+02:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -8487,7 +8487,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-24T13:21:47+02:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -8527,7 +8527,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-24T13:00:04+02:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -9329,7 +9329,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-24T11:44:26+02:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -9489,7 +9489,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-24T15:51:30+02:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -11097,7 +11097,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-24-cambridge-united-plymouth-argyle",
@@ -11121,8 +11121,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     }
   ]
 }

@@ -1704,7 +1704,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "prova": true
@@ -1792,7 +1792,7 @@
       "stato": "in_revisione",
       "motivoStato": "regola automatica (Claude non disponibile): partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso): resta in revisione, controlla su bet365 prima di giocarla",
       "oraUltimoControllo": "2026-10-27T01:08:47+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -1824,7 +1824,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 3,30 · quota 1,57",
       "oraUltimoControllo": "2026-10-27T01:08:47+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "nba-2026-10-26-miami-heat-dallas-mavericks-vincente-dallas-mavericks",
@@ -1897,7 +1897,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa"
         }
       ],
       "prova": true
@@ -2142,7 +2142,7 @@
       "stato": "confermata",
       "motivoStato": "quota 2,05 ≥ minima 1,94",
       "oraUltimoControllo": "2026-10-26T17:18:47+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2184,7 +2184,7 @@
       "stato": "confermata",
       "motivoStato": "quota 1,57 ≥ minima 1,57",
       "oraUltimoControllo": "2026-10-27T01:08:47+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2224,7 +2224,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota scesa a 3,35, sotto la minima 3,40 del mattino: non c'è un fatto concreto che alzi la probabilità (notizie non controllate al mattino, consenso bookmaker al 27% contro il 32% usato), quindi il value non c'è più (controlli quote odss-api, 18:38)",
       "oraUltimoControllo": "2026-10-26T18:39:35+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2389,7 +2389,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 1,96 sotto la minima 1,97",
       "oraUltimoControllo": "2026-10-27T01:48:24+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2740,7 +2740,7 @@
           "quota": 1.32,
           "quotaBet365": null,
           "probMercato": 0.6944,
-          "esito": null
+          "esito": "persa"
         },
         {
           "sport": "calcio",
