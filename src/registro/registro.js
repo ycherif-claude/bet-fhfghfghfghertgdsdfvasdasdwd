@@ -232,7 +232,7 @@ export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
         cambiato = true;
       }
     }
-    const r = mb.criterio ? esitoCoppia(mb) : esitoMultiplaBonus(mb);
+    const r = coppie.includes(mb) ? esitoCoppia(mb) : esitoMultiplaBonus(mb);
     if (r.esito !== mb.esito || r.ritorno !== mb.ritorno) { mb.esito = r.esito; mb.ritorno = r.ritorno; cambiato = true; }
   }
   if (cambiato) scrivi(file, g);

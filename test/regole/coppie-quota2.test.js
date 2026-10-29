@@ -120,3 +120,32 @@ test('sito: scheda della coppia e bilancio dei due modi', () => {
   assert.equal(testoBilancioCoppie({ margine: { chiuse: 0 }, probabilita: { chiuse: 0 } }), null);
   assert.match(testoBilancioCoppie({ margine: { chiuse: 2, vinte: 1, profitto: 0.04 }, probabilita: { chiuse: 0 } }), /Per margine \(queste\): 1 su 2 vinte/);
 });
+
+test('multiple bonus con le partite più probabili: da 5 e da 10, prime per probabilità di Pinnacle', async () => {
+  const { multiplePerProbabilita } = await import('../../src/regole/multipla-bonus.js');
+  // Probabilità in ordine inverso alla resa: per margine verrebbero prima le meno probabili.
+  const gambe = Array.from({ length: 12 }, (_, i) => gamba(`g${i}`, 1.3 + i * 0.02, 0.76 - i * 0.01));
+  const [da5, da10] = multiplePerProbabilita(gambe, '2026-10-30');
+  assert.equal(da5.id, 'MBP5-2026-10-30');
+  assert.equal(da5.criterio, 'probabilita');
+  assert.match(da5.nome, /da 5 \(le più probabili\)/);
+  assert.deepEqual(da5.gambe.map((g) => g.idPartita).sort(), ['g0', 'g1', 'g2', 'g3', 'g4']);
+  assert.equal(da5.incremento, 0.1);
+  assert.equal(da10.gambe.length, 10);
+  assert.equal(da10.incremento, 0.35);
+  assert.deepEqual(multiplePerProbabilita(gambe.slice(0, 7), 'x').map((m) => m.id), ['MBP5-x']);
+});
+
+test('Telegram storico: multiple per probabilità per lunghezza', () => {
+  const g = { data: '2026-10-30', multipleBonus: [
+    { id: 'MBP5-a', criterio: 'probabilita', gambe: Array(5).fill({}), esito: 'vinta', ritorno: 4.4 },
+    { id: 'MBP10-a', criterio: 'probabilita', gambe: Array(10).fill({}), esito: 'persa', ritorno: 0 },
+    { id: 'MB10-a', gambe: Array(10).fill({}), esito: 'persa', ritorno: 0 },
+  ] };
+  const r = contaStorico([g], '2026-10-30');
+  assert.deepEqual(r.multipleProb[5], { chiuse: 1, vinte: 1, profitto: 3.4000000000000004 });
+  assert.equal(r.multipleProb[10].chiuse, 1);
+  const s = messaggioStorico({ giornate: [g], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
+  assert.match(s[0].testo, /da 5: <b>1 su 1 vinte, \+3,40 €<\/b>/);
+  assert.match(s[0].testo, /da 10: <b>0 su 1 vinte, −1,00 €<\/b>/);
+});

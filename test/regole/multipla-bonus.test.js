@@ -92,11 +92,14 @@ test('gambe: quota 1,25-1,50, una per partita, la più vicina alla quota equa, p
 test('multiple da 10 e da 20 solo con abbastanza partite; quota, incremento e probabilità', () => {
   const voci = Array.from({ length: 12 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75));
   const tutte = costruisciMultipleBonus(voci, { data: '2026-10-25' });
-  // 12 partite adatte: quella da 10 e quella lunga con tutte e 12.
-  assert.deepEqual(tutte.map((x) => [x.id, x.gambe.length, x.lunga ?? false]), [['MB10-2026-10-25', 10, false], ['MB12-2026-10-25', 12, true]]);
+  // 12 partite adatte: quella da 10, quella lunga con tutte e 12, e quelle da 5 e da 10 con le più probabili.
+  assert.deepEqual(tutte.map((x) => [x.id, x.gambe.length, x.lunga ?? false]), [['MB10-2026-10-25', 10, false], ['MB12-2026-10-25', 12, true], ['MBP5-2026-10-25', 5, false], ['MBP10-2026-10-25', 10, false]]);
   assert.equal(tutte[1].incremento, 0.45);
-  assert.equal(costruisciMultipleBonus(voci.slice(0, 10), { data: '2026-10-25' }).length, 1);
-  const molte = (n) => costruisciMultipleBonus(Array.from({ length: n }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' });
+  assert.equal(costruisciMultipleBonus(voci.slice(0, 10), { data: '2026-10-25' }).filter((m) => !m.criterio).length, 1);
+  const tutteDi = (n) => costruisciMultipleBonus(Array.from({ length: n }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' });
+  const molte = (n) => tutteDi(n).filter((m) => !m.criterio);
+  // Con 9 partite c'è solo quella da 5 con le più probabili.
+  assert.deepEqual(tutteDi(9).map((m) => m.id), ['MBP5-x']);
   assert.deepEqual(molte(25).map((x) => [x.gambe.length, x.lunga ?? false]), [[10, false], [20, false], [25, true]]);
   assert.equal(molte(25)[2].incremento, 1);
   assert.deepEqual(molte(20).map((x) => [x.gambe.length, x.lunga ?? false]), [[10, false], [20, true]]);
@@ -244,7 +247,7 @@ test('multipla senza Under: la lunga senza le partite con Under 2.5 o 3.5, in pi
     voce(32, 'Under/Over 1.5', 'Over 1.5', 1.3, 0.75),
   ];
   const mb = costruisciMultipleBonus(voci, { data: 'x' });
-  assert.deepEqual(mb.map((m) => [m.id, m.gambe.length]), [['MB10-x', 10], ['MB20-x', 20], ['MB24-x', 24], ['MBSU22-x', 22]]);
+  assert.deepEqual(mb.map((m) => [m.id, m.gambe.length]), [['MB10-x', 10], ['MB20-x', 20], ['MB24-x', 24], ['MBSU22-x', 22], ['MBP5-x', 5], ['MBP10-x', 10]]);
   const su = mb[3];
   assert.equal(su.senzaUnder, true);
   assert.equal(su.lunga, undefined);
@@ -254,5 +257,5 @@ test('multipla senza Under: la lunga senza le partite con Under 2.5 o 3.5, in pi
   // Le altre restano uguali a prima.
   assert.ok(mb[2].gambe.some((g) => g.selezione === 'Under 3.5'));
   // Senza Under nella lunga: nessuna multipla in più.
-  assert.equal(costruisciMultipleBonus(Array.from({ length: 12 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' }).length, 2);
+  assert.equal(costruisciMultipleBonus(Array.from({ length: 12 }, (_, i) => voce(i, '1X2', '1', 1.3, 0.75)), { data: 'x' }).filter((m) => !m.criterio).length, 2);
 });

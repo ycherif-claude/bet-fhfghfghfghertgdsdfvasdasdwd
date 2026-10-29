@@ -230,6 +230,8 @@ export const CONFIG = congela({
     // Gamba senza risultato dopo 3 giorni (partita rinviata o sospesa): rimborsata, come fa bet365.
     giorniRimborso: 3,
     lunghezze: [10, 20],
+    // Multiple con le partite più probabili (non per margine) [utente, 29/10/2026].
+    lunghezzeProbabilita: [5, 10],
     incremento: { 2: 0.025, 3: 0.05, 4: 0.075, 5: 0.1, 6: 0.125, 7: 0.18, 8: 0.25, 9: 0.3, 10: 0.35, 11: 0.4, 12: 0.45, 13: 0.5, 14: 0.55, 15: 0.6, 16: 0.65, 17: 0.7, 18: 0.8, 19: 0.9, 20: 1 },
   },
   // Coppie a quota 2 [utente, 29/10/2026]: due partite della multipla bonus con quota totale in questo intervallo.

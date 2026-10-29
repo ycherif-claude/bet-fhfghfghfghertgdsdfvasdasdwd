@@ -86,7 +86,20 @@ export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePoss
   }
   const senza = senzaUnder(gambe, data);
   if (senza && gambe.length > corta) out.push(senza);
+  out.push(...multiplePerProbabilita(gambe, data));
   return out;
+}
+
+// Multiple con le partite più probabili [utente, 29/10/2026]: stesse gambe e regole del bonus, ma le prime n
+// per probabilità di Pinnacle invece che per margine, da confrontare con quelle per margine.
+export function multiplePerProbabilita(gambe, data) {
+  const ordinate = [...gambe].sort((a, b) => b.probMercato - a.probMercato || b.resa - a.resa);
+  return C.lunghezzeProbabilita.filter((n) => ordinate.length >= n).map((n) => ({
+    ...multipla(ordinate.slice(0, n), data),
+    id: `MBP${n}-${data}`,
+    nome: `Multipla bonus bet365 da ${n} (le più probabili)`,
+    criterio: 'probabilita',
+  }));
 }
 
 // Under 2.5 e Under 3.5: le partite con queste giocate escono dalla multipla "senza Under" [utente, 26/10/2026].

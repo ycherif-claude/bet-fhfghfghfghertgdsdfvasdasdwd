@@ -227,6 +227,16 @@ export function contaStorico(giornate, ieri) {
   // Coppie a quota 2: i due modi a confronto (dall'inizio e ieri).
   const diIeri = giornate.filter((g) => g.data === ieri);
   r.coppie = Object.fromEntries(['margine', 'probabilita'].map((k) => [k, { tutte: bilancioCoppie(giornate, k), ieri: bilancioCoppie(diIeri, k) }]));
+  // Multiple con le partite più probabili, per lunghezza: chiuse, vinte e profitto con 1 € (bonus compreso).
+  r.multipleProb = {};
+  for (const g of giornate) {
+    for (const mb of multipleBonus(g).filter((m) => m.criterio === 'probabilita')) {
+      if (mb.esito !== 'vinta' && mb.esito !== 'persa') continue;
+      const c = (r.multipleProb[mb.gambe.length] ??= { chiuse: 0, vinte: 0, profitto: 0 });
+      c.chiuse++;
+      if (mb.esito === 'vinta') { c.vinte++; c.profitto += mb.ritorno - 1; } else c.profitto -= 1;
+    }
+  }
   return r;
 }
 
@@ -239,7 +249,8 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
   const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0;
-  if (!r.pronostici.chiusi && !r.multipla.chiusi && !conCoppie) return [];
+  const lunghezzeProb = Object.keys(r.multipleProb).map(Number).sort((a, b) => a - b);
+  if (!r.pronostici.chiusi && !r.multipla.chiusi && !conCoppie && !lunghezzeProb.length) return [];
   const riga = (c) => (c.chiusi ? `${c.giusti} su ${c.chiusi} (${percentuale(c.giusti / c.chiusi)})` : 'nessuno chiuso');
   const promessa = (c) => (c.chiusi ? percentuale(c.promessa / c.chiusi) : '–');
   const testo = [
@@ -258,6 +269,11 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
       `   per margine (quelle mostrate): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
       `   per probabilità (confronto): <b>${rigaCoppie(r.coppie.probabilita.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilita.ieri)}`,
+    ] : []),
+    ...(lunghezzeProb.length ? [
+      '',
+      '🧪 <b>Multiple con le partite più probabili</b> (1 € a multipla, bonus compreso)',
+      ...lunghezzeProb.map((n) => `   da ${n}: <b>${rigaCoppie(r.multipleProb[n])}</b>`),
     ] : []),
   ].join('\n');
   return [{ chiave, testo }];
