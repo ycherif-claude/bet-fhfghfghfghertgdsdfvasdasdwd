@@ -109,16 +109,106 @@
       "minutiPrima": 33
     },
     "basket-2026-10-29-maccabi-tel-aviv-paris-basketball|Vincente|Maccabi Tel Aviv": {
-      "quota": 1.55,
-      "prob": 0.6043909451169812,
-      "alle": "2026-10-29T19:10:30+01:00",
-      "minutiPrima": 54
+      "quota": 1.54,
+      "prob": 0.6123456790123457,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 1
     },
     "basket-2026-10-29-maccabi-tel-aviv-paris-basketball|Vincente|Paris Basketball": {
-      "quota": 2.38,
-      "prob": 0.39560905488301884,
-      "alle": "2026-10-29T19:10:30+01:00",
-      "minutiPrima": 54
+      "quota": 2.45,
+      "prob": 0.38765432098765434,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 1
+    },
+    "basket-2026-10-29-maccabi-tel-aviv-paris-basketball|Handicap -4.5|casa": {
+      "quota": 1.93,
+      "prob": 0.4894076360562967,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 1
+    },
+    "basket-2026-10-29-maccabi-tel-aviv-paris-basketball|Handicap -4.5|trasferta": {
+      "quota": 1.83,
+      "prob": 0.5105923639437032,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 1
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Vincente|Real Madrid": {
+      "quota": 1.42,
+      "prob": 0.6643518518518519,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Vincente|Fenerbahce SK": {
+      "quota": 2.85,
+      "prob": 0.3356481481481481,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Handicap -5.5|casa": {
+      "quota": 1.89,
+      "prob": 0.49870129870129865,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Handicap -5.5|trasferta": {
+      "quota": 1.91,
+      "prob": 0.5012987012987012,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Totale punti 172.5|Over 172.5": {
+      "quota": 1.91,
+      "prob": 0.5,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "basket-2026-10-29-real-madrid-fenerbahce-sk|Totale punti 172.5|Under 172.5": {
+      "quota": 1.89,
+      "prob": 0.5,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|1X2|1": {
+      "quota": 2.35,
+      "prob": 0.408470231725122,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|1X2|X": {
+      "quota": 3.7,
+      "prob": 0.2548939566117602,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|1X2|2": {
+      "quota": 2.77,
+      "prob": 0.33663581166311785,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|Under/Over 2.5|Over 2.5": {
+      "quota": 1.5,
+      "prob": null,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|Under/Over 2.5|Under 2.5": {
+      "quota": 2.58,
+      "prob": null,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|Under/Over 3.5|Over 3.5": {
+      "quota": 2.12,
+      "prob": null,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
+    },
+    "calcio-2026-10-29-fiorentina-atalanta-bc|Under/Over 3.5|Under 3.5": {
+      "quota": 1.71,
+      "prob": null,
+      "alle": "2026-10-29T20:03:34+01:00",
+      "minutiPrima": 41
     }
   },
   "copertura": {
@@ -137,10 +227,18 @@
       ]
     },
     "basket|Eurolega": {
-      "alle": "2026-10-29T19:10:30+01:00",
+      "alle": "2026-10-29T20:03:34+01:00",
+      "partite": 2,
+      "idPartite": [
+        "basket-2026-10-29-maccabi-tel-aviv-paris-basketball",
+        "basket-2026-10-29-real-madrid-fenerbahce-sk"
+      ]
+    },
+    "calcio|Serie A": {
+      "alle": "2026-10-29T20:03:34+01:00",
       "partite": 1,
       "idPartite": [
-        "basket-2026-10-29-maccabi-tel-aviv-paris-basketball"
+        "calcio-2026-10-29-fiorentina-atalanta-bc"
       ]
     }
   }

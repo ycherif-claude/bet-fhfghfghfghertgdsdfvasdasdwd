@@ -732,9 +732,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,00 · quota 1,89",
+      "oraUltimoControllo": "2026-10-29T20:03:34+01:00",
       "esito": null,
       "gambe": [
         {
@@ -839,9 +839,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quota 2,58 · quota 2,38",
+      "oraUltimoControllo": "2026-10-29T20:03:34+01:00",
       "esito": null,
       "gambe": [
         {
@@ -994,9 +994,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quota 2,58 ≥ minima 2,16",
+      "oraUltimoControllo": "2026-10-29T20:03:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -1080,9 +1080,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quota 1,89 ≥ minima 1,82",
+      "oraUltimoControllo": "2026-10-29T20:03:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -1869,7 +1869,8 @@
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "odss-api alle 07:15: 11 partite senza righe a tempo intero (full_time), senza quote: HB Koge - FC Barcelona, South Korea (zyX) - United States (Shp_ik), Czechia (Sonata) - South Korea (zyX), Barcelona (Shot) - Girona FC (aloha), Aston Villa (Shp_ik) - RB Leipzig (zyX), RB Leipzig (zyX) - Newcastle United (Sonata), Tjeckien (Sonata) - South Korea (zyX), Koge W - Barcelona W, Chequia (Sonata) - South Korea (zyX), Tsjechië (Sonata) - South Korea (zyX), Werder Bremen - TSG 1899 Hoffenheim",
     "Pronostici del 23/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Gateshead - Tamworth",
-    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers"
+    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 4 richieste al giorno per i controlli raggiunto; controlli oggi 4 su 4, giornata 10 su 13, rimaste 409, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
