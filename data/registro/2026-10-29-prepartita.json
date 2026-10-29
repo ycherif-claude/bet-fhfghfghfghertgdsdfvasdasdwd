@@ -209,6 +209,42 @@
       "prob": null,
       "alle": "2026-10-29T20:03:34+01:00",
       "minutiPrima": 41
+    },
+    "nba-2026-10-29-new-orleans-pelicans-sacramento-kings|Vincente|New Orleans Pelicans": {
+      "quota": 1.42,
+      "prob": 0.6744476474013377,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
+    },
+    "nba-2026-10-29-new-orleans-pelicans-sacramento-kings|Vincente|Sacramento Kings": {
+      "quota": 2.95,
+      "prob": 0.32555235259866244,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
+    },
+    "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers|Vincente|Atlanta Hawks": {
+      "quota": 1.83,
+      "prob": 0.51973439578323,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
+    },
+    "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers|Vincente|Cleveland Cavaliers": {
+      "quota": 2,
+      "prob": 0.4802656042167699,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
+    },
+    "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers|Handicap -1.5|casa": {
+      "quota": 1.95,
+      "prob": 0.4912739965095987,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
+    },
+    "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers|Handicap -1.5|trasferta": {
+      "quota": 1.87,
+      "prob": 0.5087260034904013,
+      "alle": "2026-10-30T00:05:00+01:00",
+      "minutiPrima": 55
     }
   },
   "copertura": {
@@ -239,6 +275,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-10-29-fiorentina-atalanta-bc"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-10-30T00:05:00+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
+        "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers"
       ]
     }
   }
