@@ -158,10 +158,14 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato, { prova });
   // Multiple bonus bet365 (in prova): dai mercati con quota, senza le partite escluse dalle notizie.
   const escluse = new Set((notizie?.esclusioni ?? []).filter((x) => !x.idCandidato).map((x) => x.idPartita));
-  const gambeBonus = prova && raccolta ? gambePossibili(valutaMercati(raccolta, notizie, { adesso }).voci, { escluse }) : [];
-  const multipleBonus = prova && raccolta ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus }) : [];
-  // Coppie a quota 2 (prova): dalle stesse partite della multipla, per margine e, per confronto, per probabilità.
-  const coppie = costruisciCoppieQuota2(gambeBonus, { data: oggi });
+  const voci = prova && raccolta ? valutaMercati(raccolta, notizie, { adesso }).voci : [];
+  const gambeBonus = gambePossibili(voci, { escluse });
+  // Coppie e multiple per probabilità (quelle che l'utente vede): senza Under 2.5 e 3.5 [utente, 29/10/2026].
+  // Le multiple per margine restano come prima, anche per continuare a misurare gli Under.
+  const gambeSenzaUnder = gambePossibili(voci, { escluse, senzaUnder: true });
+  const multipleBonus = prova && raccolta ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
+  // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
+  const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi });
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
   // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).
   const quoteOdss = leggiQuoteOdss(dirData, oggi);

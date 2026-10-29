@@ -17,7 +17,8 @@ function nodo(tag) {
     addEventListener() {},
   };
 }
-globalThis.document = { createElement: nodo, createTextNode: (text) => ({ text }) };
+// getElementById: site/storico.js con `document` prova a caricare dati.json e scrive l'errore nella pagina.
+globalThis.document = { createElement: nodo, createTextNode: (text) => ({ text }), getElementById: () => nodo('div') };
 const testi = (n) => [n.text ?? '', ...(n.figli ?? []).flatMap((f) => (f && typeof f === 'object' ? [testi(f)] : [String(f ?? '')]))].join(' ');
 
 const gamba = (id, quota, probMercato, ora = 15) => ({
@@ -185,4 +186,51 @@ test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il res
   const s = messaggioStorico({ giornate: [g], inviate: new Set(), oggi: '2026-10-30', adesso: new Date('2026-10-30T08:30:00Z'), essenziale: true });
   assert.doesNotMatch(s[0].testo, /Pronostici dall/);
   assert.match(s[0].testo, /Coppie a quota 2/);
+});
+
+test('senza Under 2.5 e 3.5: la partita resta con la sua selezione migliore fra le altre', async () => {
+  const { gambePossibili, costruisciMultipleBonus } = await import('../../src/regole/multipla-bonus.js');
+  const p = (i) => ({ idPartita: `p${i}`, sport: 'calcio', competizione: 'Serie A', partita: `C${i} - O${i}`, inizio: '2026-10-30T15:00:00+01:00' });
+  const voci = [
+    { partita: p(1), m: { mercato: 'Under/Over 3.5', selezione: 'Under 3.5', quota: 1.35, probPinnacle: 0.73 } },
+    { partita: p(1), m: { mercato: 'Doppia chance', selezione: '1X', quota: 1.3, probPinnacle: 0.74 } },
+    { partita: p(2), m: { mercato: 'Under/Over 2.5', selezione: 'Under 2.5', quota: 1.4, probPinnacle: 0.7 } },
+    { partita: p(3), m: { mercato: 'Under/Over 2.5', selezione: 'Over 2.5', quota: 1.4, probPinnacle: 0.7 } },
+  ];
+  assert.deepEqual(gambePossibili(voci).map((g) => g.selezione).sort(), ['Over 2.5', 'Under 2.5', 'Under 3.5']);
+  const senza = gambePossibili(voci, { senzaUnder: true });
+  assert.deepEqual(senza.map((g) => `${g.idPartita} ${g.selezione}`).sort(), ['p1 1X', 'p3 Over 2.5']);
+  // Multiple per margine con gli Under, per probabilità senza.
+  const molte = Array.from({ length: 6 }, (_, i) => ({ ...gamba(`u${i}`, 1.3, 0.75), mercato: 'Under/Over 3.5', selezione: 'Under 3.5' }));
+  const pulite = Array.from({ length: 5 }, (_, i) => gamba(`o${i}`, 1.3, 0.74));
+  const mb = costruisciMultipleBonus(null, { data: 'x', gambe: [...molte, ...pulite], gambeProbabilita: pulite });
+  assert.ok(mb.find((m) => m.id === 'MB11-x' || m.lunga).gambe.some((g) => g.selezione === 'Under 3.5'));
+  assert.ok(mb.find((m) => m.id === 'MBP5-x').gambe.every((g) => !/^Under/.test(g.selezione)));
+});
+
+test('storico per mercato: una volta per partita e mercato, quota media, vinte e guadagno a 1 €', async () => {
+  const { storicoMercati, chiaveMercato } = await import('../../src/regole/mercati-partite.js');
+  const g = (id, mercato, selezione, quota, esito, extra = {}) => ({ idPartita: id, sport: 'calcio', partita: `${id}c - ${id}t`, mercato, selezione, quota, probMercato: 0.7, esito, ...extra });
+  const a = g('a', 'Doppia chance', '12', 1.3, 'vinta');
+  const giornate = [{
+    multipleBonus: [{ gambe: [a, g('b', 'Doppia chance', '12', 1.5, 'persa')] }, { gambe: [a] }],
+    coppieQuota2: { margine: [{ gambe: [{ ...a }, g('c', 'Vincente', 'cc', 1.4, 'vinta', { sport: 'nba' })] }], probabilita: [] },
+  }, { multipleBonus: [{ gambe: [g('d', 'Doppia chance', '12', 1.4, null), g('e', 'Doppia chance', '12', 1.4, 'rimborsata')] }] }];
+  const r = storicoMercati(giornate);
+  const dc = r.find((x) => x.mercato === 'Calcio: Doppia chance → 12');
+  assert.deepEqual({ ...dc }, { mercato: 'Calcio: Doppia chance → 12', partite: 2, vinte: 1, perse: 1, rimborsate: 1, aperte: 1, profitto: -0.7, percentuale: 0.5, quotaMedia: 1.4, probMercato: 0.7, rendimento: -0.35 });
+  assert.equal(r[0].mercato, dc.mercato);
+  assert.equal(chiaveMercato({ sport: 'nba', mercato: 'Vincente', selezione: 'cc', partita: 'cc - tt' }), 'NBA: Vincente → casa');
+  assert.equal(chiaveMercato({ sport: 'basket', mercato: 'Vincente', selezione: 'tt', partita: 'cc - tt' }), 'Basket: Vincente → trasferta');
+  assert.ok(r.some((x) => x.mercato === 'NBA: Vincente → casa' && x.vinte === 1));
+});
+
+test('sito storico: tabella dei mercati', async () => {
+  const { renderMercati } = await import('../../site/storico.js');
+  const t = testi({ figli: renderMercati([{ mercato: 'Calcio: Doppia chance → 12', partite: 2, vinte: 1, percentuale: 0.5, probMercato: 0.7, quotaMedia: 1.4, profitto: -0.7 }, { mercato: 'X', partite: 0 }]) });
+  assert.match(t, /Mercati di multiple e coppie/);
+  assert.match(t, /Calcio: Doppia chance → 12/);
+  assert.match(t, /1,40/);
+  assert.doesNotMatch(t, / X /);
+  assert.match(testi({ figli: renderMercati(null) }), /Nessuna partita chiusa/);
 });

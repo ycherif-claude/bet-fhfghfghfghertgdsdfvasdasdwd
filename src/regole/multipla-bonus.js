@@ -31,10 +31,13 @@ export function mercatoAmmesso(mercato, selezione, sport = null) {
 // mediana deve essere ≥ quotaMinMediana (bet365 di solito paga un po' meno della mediana).
 const quotaBet365Ok = (m) => (num(m.quotaBet365) ? m.quotaBet365 >= C.quotaMinBet365 - EPS : m.quota >= C.quotaMinMediana - EPS);
 
-export function gambePossibili(voci, { escluse = new Set() } = {}) {
+// `senzaUnder` [utente, 29/10/2026]: niente Under 2.5 e 3.5 (coppie e multiple per probabilità); la partita
+// resta con la sua selezione migliore fra le altre.
+export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false } = {}) {
   const migliori = new Map();
   for (const { partita, m } of voci) {
     if (escluse.has(partita.idPartita)) continue;
+    if (senzaUnder && giocataUnder(m)) continue;
     if (!num(m.quota) || m.quota < C.quotaMin - EPS || m.quota > C.quotaMax + EPS) continue;
     if (!num(m.probPinnacle) || !mercatoAmmesso(m.mercato, m.selezione, partita.sport ?? 'calcio') || !quotaBet365Ok(m)) continue;
     const resa = m.quota * m.probPinnacle;
@@ -75,7 +78,8 @@ function multipla(gambe, data) {
 // Tre multiple [utente, 26/10/2026]: da 10, da 20 e una con tutte le partite adatte (`lunga: true`, anche oltre 20;
 // oltre 20 l'incremento resta al 100%). Ognuna solo se ci sono abbastanza partite; quando la lunga avrebbe le
 // stesse partite di un'altra (esattamente 20, o tra 11 e 19 senza la da 20) non si ripete.
-export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePossibili(voci, { escluse }) } = {}) {
+// `gambeProbabilita`: le gambe delle multiple per probabilità (senza Under), se diverse da `gambe`.
+export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePossibili(voci, { escluse }), gambeProbabilita = gambe } = {}) {
   const out = [];
   for (const n of C.lunghezze) if (gambe.length >= n) out.push(multipla(gambe.slice(0, n), data));
   const corta = Math.min(...C.lunghezze);
@@ -86,7 +90,7 @@ export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePoss
   }
   const senza = senzaUnder(gambe, data);
   if (senza && gambe.length > corta) out.push(senza);
-  out.push(...multiplePerProbabilita(gambe, data));
+  out.push(...multiplePerProbabilita(gambeProbabilita, data));
   return out;
 }
 

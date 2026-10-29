@@ -505,6 +505,7 @@ function avvia(dati) {
   const perProb = tutteMb.filter((x) => x?.criterio === 'probabilita');
   const mp = document.getElementById('multiple-probabili');
   if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));
+  if (cq && !lc.length && !perProb.length) cq.append(el('p', { class: 'vuoto' }, 'Oggi nessuna coppia a quota 2 e nessuna multipla con le partite più probabili.'));
   const bonus = document.getElementById('multiple-bonus');
   const mb = tutteMb.filter((x) => x?.criterio !== 'probabilita');
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

@@ -118,6 +118,30 @@ function renderTabella({ chiave, titolo }, righe) {
   );
 }
 
+// Mercati delle partite di multiple bonus e coppie (dati.storicoMercati): uno per riga, dal più giocato.
+const fmtQuotaMedia = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+export function renderMercati(righe) {
+  const lista = Array.isArray(righe) ? righe.filter((r) => r && r.mercato) : [];
+  const chiuse = lista.filter((r) => r.partite > 0);
+  const corpo = chiuse.length
+    ? chiuse.map((r) => el('tr', {},
+      el('td', {}, r.mercato),
+      el('td', {}, r.partite),
+      el('td', {}, `${percento(r.percentuale)} (mercato ${percento(r.probMercato)})`),
+      el('td', {}, fmtQuotaMedia.format(r.quotaMedia)),
+      el('td', { class: classeProfitto(r.profitto) }, euroConSegno(r.profitto)),
+    ))
+    : [el('tr', {}, el('td', { colspan: '5', class: 'vuoto' }, 'Nessuna partita chiusa'))];
+  return [
+    el('h2', {}, 'Mercati di multiple e coppie'),
+    el('p', { class: 'meta' }, 'Ogni partita delle multiple bonus e delle coppie a quota 2, una volta per giorno. Vinte: quante sono uscite (tra parentesi quante ne dava il mercato). Guadagno: giocando ogni partita da sola con 1 €.'),
+    el('table', {},
+      el('thead', {}, el('tr', {}, ['Mercato', 'Partite', 'Vinte', 'Quota media', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, corpo),
+    ),
+  ];
+}
+
 function renderRiga({ giocata: g, profitto }) {
   return el('article', { class: 'riga-storico' },
     el('div', {},
@@ -136,6 +160,7 @@ function avvia(dati) {
   document.getElementById('bankroll-attuale').textContent = `Bankroll attuale ${euro(dati.bankroll.bankroll)}`;
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
+  document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));
 
   const interruttore = document.getElementById('vista');
