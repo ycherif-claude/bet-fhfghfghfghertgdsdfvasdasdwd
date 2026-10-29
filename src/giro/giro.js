@@ -186,7 +186,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     // Modalità prova: ogni giocata porta `prova: true` (fuori da bankroll, da segnare e storico "fatte").
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
-    ...(coppie.margine.length || coppie.probabilita.length ? { coppieQuota2: coppie } : {}),
+    ...(Object.values(coppie).some((l) => l.length) ? { coppieQuota2: coppie } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),

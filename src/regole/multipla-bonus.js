@@ -44,7 +44,9 @@ export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false }
     const g = {
       sport: partita.sport ?? 'calcio', competizione: partita.competizione, partita: partita.partita,
       idPartita: partita.idPartita, inizio: partita.inizio, mercato: m.mercato, selezione: m.selezione,
-      quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle, resa, esito: null,
+      quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle,
+      // Probabilità del nostro modello (null dove non c'è, per esempio nella pallavolo) [utente, 29/10/2026].
+      probModello: num(m.probModello) ? m.probModello : null, resa, esito: null,
     };
     const cur = migliori.get(partita.idPartita);
     if (!cur || resa > cur.resa + EPS || (Math.abs(resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);

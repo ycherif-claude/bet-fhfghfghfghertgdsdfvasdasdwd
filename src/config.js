@@ -235,7 +235,8 @@ export const CONFIG = congela({
     incremento: { 2: 0.025, 3: 0.05, 4: 0.075, 5: 0.1, 6: 0.125, 7: 0.18, 8: 0.25, 9: 0.3, 10: 0.35, 11: 0.4, 12: 0.45, 13: 0.5, 14: 0.55, 15: 0.6, 16: 0.65, 17: 0.7, 18: 0.8, 19: 0.9, 20: 1 },
   },
   // Coppie a quota 2 [utente, 29/10/2026]: due partite della multipla bonus con quota totale in questo intervallo.
-  coppieQuota2: { quotaMin: 1.9, quotaMax: 2.15 },
+  // scartoConferma: modello e mercato "d'accordo" se le loro probabilità distano meno di 5 punti (coppie "confermate").
+  coppieQuota2: { quotaMin: 1.9, quotaMax: 2.15, scartoConferma: 0.05 },
   // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
   controlli: {
     // Il cron "ogni 10 minuti" di GitHub parte in realtà ogni 30-43 minuti: la finestra è larga

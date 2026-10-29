@@ -179,6 +179,7 @@ button:disabled { opacity: .6; cursor: progress; }
 .tabelle .tabella-blocco { margin: 0; }
 .tabella-blocco h2 { font-family: var(--condensato); font-weight: 600; font-size: 1.5rem; margin: 0 0 6px; color: var(--inchiostro); }
 .tabella-blocco .meta { color: var(--inchiostro-tenue); font-size: .9rem; margin: 0 0 10px; max-width: 70ch; }
+.tabella-blocco table + h2 { margin-top: 22px; }
 table { border-collapse: collapse; width: 100%; font-size: .92rem; }
 th, td { text-align: right; padding: 6px 8px; white-space: nowrap; border-bottom: 1px solid var(--carta-bordo); }
 th:first-child, td:first-child { text-align: left; white-space: normal; }
@@ -203,6 +204,7 @@ th:first-child, td:first-child { overflow-wrap: normal; }
   .giocate, .tabelle { grid-template-columns: 1fr; }
   .quota-totale { font-size: 2.3rem; }
   /* Mercati: il nome su una riga intera, i quattro numeri sotto. */
+  .tabella-modi td:first-child { min-width: 9rem; }
   .tabella-mercati tr { display: grid; grid-template-columns: 1fr 1.6fr 1fr 1.2fr; border-bottom: 1px solid var(--carta-bordo); padding: 6px 0; }
   .tabella-mercati th, .tabella-mercati td { border-bottom: 0; padding: 2px 4px; white-space: normal; }
   .tabella-mercati th:first-child, .tabella-mercati td:first-child { grid-column: 1 / -1; font-weight: 600; }

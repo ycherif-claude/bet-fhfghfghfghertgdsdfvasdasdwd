@@ -247,3 +247,48 @@ test('sito: giocata scritta come sul bookmaker e data lunga', async () => {
   assert.equal(dataLunga('2026-10-29'), 'giovedì 29 ottobre');
   assert.equal(dataLunga('boh'), 'boh');
 });
+
+test('coppie nascoste: solo il nostro modello e confermate da modello e mercato', () => {
+  const conM = (id, quota, probMercato, probModello) => ({ ...gamba(id, quota, probMercato), probModello });
+  const gambe = [
+    conM('a', 1.4, 0.70, 0.71), // d'accordo
+    conM('b', 1.42, 0.69, 0.68), // d'accordo
+    conM('c', 1.4, 0.70, 0.80), // modello molto sopra
+    conM('d', 1.42, 0.69, 0.79), // modello molto sopra
+    gamba('e', 1.4, 0.70), // senza modello (pallavolo)
+  ];
+  const c = costruisciCoppieQuota2(gambe, { data: '2026-10-30' });
+  const ids = (l) => l.map((x) => x.gambe.map((g) => g.idPartita).sort().join('+'));
+  assert.deepEqual(ids(c.confermate), ['a+b']);
+  assert.equal(c.confermate[0].id, 'Q2C1-2026-10-30');
+  // Modello: prima le due che il modello dà più probabili; "e" senza modello resta fuori.
+  assert.deepEqual(ids(c.modello), ['c+d', 'a+b']);
+  assert.equal(c.modello[0].id, 'Q2O1-2026-10-30');
+  assert.equal(Math.round(c.modello[0].probModello * 1000), Math.round(0.8 * 0.79 * 1000));
+  assert.ok(!c.modello.flat().some((x) => x.gambe.some((g) => g.idPartita === 'e')));
+  assert.ok(c.margine.some((x) => x.gambe.some((g) => g.idPartita === 'e')));
+});
+
+test('modello contro mercato: errore medio e partite divise per scarto', async () => {
+  const { confrontoModello } = await import('../../src/regole/mercati-partite.js');
+  const g = (id, probModello, probMercato, esito) => ({ idPartita: id, sport: 'calcio', partita: 'x - y', mercato: '1X2', selezione: '1', quota: 1.5, probMercato, probModello, esito });
+  const giornate = [{ multipleBonus: [{ gambe: [g('a', 0.8, 0.7, 'vinta'), g('b', 0.7, 0.7, 'persa'), g('c', 0.6, 0.7, 'vinta'), g('d', null, 0.7, 'vinta'), g('e', 0.7, 0.7, null)] }] }];
+  const r = confrontoModello(giornate);
+  assert.equal(r.partite, 3);
+  assert.equal(r.vinte, 2);
+  assert.equal(r.erroreModello, Math.round(((0.2 ** 2 + 0.7 ** 2 + 0.4 ** 2) / 3) * 10000) / 10000);
+  assert.equal(r.erroreMercato, Math.round(((0.3 ** 2 + 0.7 ** 2 + 0.3 ** 2) / 3) * 10000) / 10000);
+  assert.deepEqual(r.gruppi.map((x) => [x.gruppo, x.partite, x.vinte, x.profitto]), [['sopra', 1, 1, 0.5], ['accordo', 1, 0, -1], ['sotto', 1, 1, 0.5]]);
+});
+
+test('sito storico: i quattro modi delle coppie e il confronto col modello', async () => {
+  const { renderConfronto } = await import('../../site/storico.js');
+  const t = testi({ figli: renderConfronto(
+    { margine: { chiuse: 2, vinte: 1, profitto: -0.1 }, modello: { chiuse: 0 } },
+    { partite: 3, erroreModello: 0.23, erroreMercato: 0.2, gruppi: [{ nome: 'modello sopra', partite: 1, percentuale: 1, probMercato: 0.7, profitto: 0.5 }] },
+  ).filter(Boolean) });
+  assert.match(t, /Solo il nostro modello/);
+  assert.match(t, /Confermate da modello e mercato/);
+  assert.match(t, /errore medio del modello 0,230, del mercato 0,200/);
+  assert.match(testi({ figli: renderConfronto(null, null).filter(Boolean) }), /Ancora nessuna partita chiusa/);
+});

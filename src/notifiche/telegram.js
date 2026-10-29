@@ -13,7 +13,7 @@ import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
 import { CONFIG } from '../config.js';
 import { nomeBookmaker } from '../calcio/odss.js';
-import { bilancioCoppie } from '../regole/coppie-quota2.js';
+import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -231,7 +231,7 @@ export function contaStorico(giornate, ieri) {
   }
   // Coppie a quota 2: i due modi a confronto (dall'inizio e ieri).
   const diIeri = giornate.filter((g) => g.data === ieri);
-  r.coppie = Object.fromEntries(['margine', 'probabilita'].map((k) => [k, { tutte: bilancioCoppie(giornate, k), ieri: bilancioCoppie(diIeri, k) }]));
+  r.coppie = Object.fromEntries(MODI.map((k) => [k, { tutte: bilancioCoppie(giornate, k), ieri: bilancioCoppie(diIeri, k) }]));
   // Multiple con le partite più probabili, per lunghezza: chiuse, vinte e profitto con 1 € (bonus compreso).
   r.multipleProb = {};
   for (const g of giornate) {
@@ -254,6 +254,7 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
   if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
+  // Su Telegram niente modello [utente, 29/10/2026]: solo margine e probabilità del mercato (gli altri modi sul sito).
   const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0;
   const lunghezzeProb = Object.keys(r.multipleProb).map(Number).sort((a, b) => a - b);
   const altri = !essenziale && (r.pronostici.chiusi || r.multipla.chiusi);

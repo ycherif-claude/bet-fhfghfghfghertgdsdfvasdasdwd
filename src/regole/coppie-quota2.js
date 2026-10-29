@@ -11,16 +11,25 @@ const C = CONFIG.coppieQuota2;
 const EPS = 1e-9;
 const arrotonda = (x) => Math.round(x * 100) / 100;
 
+// Due modi in più, solo per confronto [utente, 29/10/2026], con la probabilità del nostro modello:
+// - "modello": prima le coppie più probabili secondo il modello (solo partite che hanno il modello);
+// - "confermate": come "margine", ma solo partite su cui modello e mercato sono d'accordo (entro `scarto`).
+const resa = (a, b) => a.quota * a.probMercato * b.quota * b.probMercato;
 export const CRITERI = Object.freeze({
-  margine: (a, b) => a.quota * a.probMercato * b.quota * b.probMercato,
+  margine: resa,
   probabilita: (a, b) => a.probMercato * b.probMercato,
+  modello: (a, b) => a.probModello * b.probModello,
+  confermate: resa,
 });
+const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C' };
+const conModello = (g) => typeof g.probModello === 'number' && Number.isFinite(g.probModello);
+export const confermata = (g) => conModello(g) && Math.abs(g.probModello - g.probMercato) < C.scartoConferma + EPS;
 
 // Coppie del giorno con `criterio` dalle gambe di gambePossibili (con quota e probMercato).
 export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
   const punteggio = CRITERI[criterio];
   if (!punteggio) throw new Error(`Criterio delle coppie non valido: ${criterio}`);
-  const altro = CRITERI[criterio === 'margine' ? 'probabilita' : 'margine'];
+  const altro = CRITERI[criterio === 'probabilita' || criterio === 'modello' ? 'margine' : 'probabilita'];
   const possibili = [];
   for (let i = 0; i < gambe.length; i++) {
     for (let j = i + 1; j < gambe.length; j++) {
@@ -41,12 +50,13 @@ export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
     usate.add(c.b.idPartita);
     const prob = c.a.probMercato * c.b.probMercato;
     out.push({
-      id: `Q2${criterio === 'margine' ? 'M' : 'P'}${out.length + 1}-${data}`,
+      id: `Q2${SIGLA[criterio]}${out.length + 1}-${data}`,
       criterio,
       prova: true,
       gambe: [c.a, c.b].sort((x, y) => Date.parse(x.inizio) - Date.parse(y.inizio)).map(({ resa, ...g }) => ({ ...g, esito: null })),
       quota: arrotonda(c.quota),
       prob,
+      probModello: conModello(c.a) && conModello(c.b) ? c.a.probModello * c.b.probModello : null,
       valueAtteso: prob * c.quota - 1,
       esito: null,
       ritorno: null,
@@ -55,11 +65,16 @@ export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
   return out;
 }
 
-// Le coppie dei due modi.
+// Le coppie dei quattro modi (si mostrano solo quelle per margine).
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate']);
 export const costruisciCoppieQuota2 = (gambe, { data } = {}) => ({
   margine: costruisciCoppie(gambe, { data, criterio: 'margine' }),
   probabilita: costruisciCoppie(gambe, { data, criterio: 'probabilita' }),
+  modello: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modello' }),
+  confermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'confermate' }),
 });
+// Tutte le coppie di una giornata, di qualunque modo.
+export const tutteLeCoppie = (giornata) => Object.values(giornata?.coppieQuota2 ?? {}).flatMap((l) => (Array.isArray(l) ? l : []));
 
 // Esito con gli esiti delle due partite: una persa → persa; una aperta → null; una rimborsata esce e resta
 // la quota dell'altra (regola bet365). `ritorno`: euro per 1 € puntato.

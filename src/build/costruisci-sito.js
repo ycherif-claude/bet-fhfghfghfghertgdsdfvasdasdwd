@@ -8,8 +8,8 @@ import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { riepiloga } from '../storico/riepiloghi.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
-import { bilancioCoppie } from '../regole/coppie-quota2.js';
-import { storicoMercati } from '../regole/mercati-partite.js';
+import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
+import { confrontoModello, storicoMercati } from '../regole/mercati-partite.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
 
@@ -163,9 +163,11 @@ export function costruisciDati(dirData, adesso) {
     segnature: tutteSegnature,
     bilancioPronostici: conPronostici ? { data: conPronostici.g.data, ...bilancioPronostici(conPronostici.g) } : null,
     // Coppie a quota 2 dall'inizio: i due modi a confronto (1 € a coppia).
-    bilancioCoppie: Object.fromEntries(['margine', 'probabilita'].map((k) => [k, bilancioCoppie(giornate.map((x) => x.g), k)])),
+    bilancioCoppie: Object.fromEntries(MODI.map((k) => [k, bilancioCoppie(giornate.map((x) => x.g), k)])),
     // Mercati delle partite di multiple bonus e coppie: vinte, quota media e guadagno a 1 € per mercato.
     storicoMercati: storicoMercati(giornate.map((x) => x.g)),
+    // Modello contro mercato sulle stesse partite (dal 30/10/2026).
+    confrontoModello: confrontoModello(giornate.map((x) => x.g)),
     erroriDati,
   };
 }

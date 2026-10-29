@@ -142,6 +142,47 @@ export function renderMercati(righe) {
   ];
 }
 
+// Coppie a quota 2 nei quattro modi (dati.bilancioCoppie) e modello contro mercato (dati.confrontoModello).
+const MODI_COPPIE = [
+  ['margine', 'Per margine (quelle che vedi)'],
+  ['probabilita', 'Per probabilità del mercato'],
+  ['modello', 'Solo il nostro modello'],
+  ['confermate', 'Confermate da modello e mercato'],
+];
+const fmtErrore = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+export function renderConfronto(bilancio, confronto) {
+  const righeModi = MODI_COPPIE.map(([k, nome]) => {
+    const b = bilancio?.[k];
+    return el('tr', {},
+      el('td', {}, nome),
+      el('td', {}, b?.chiuse ?? 0),
+      el('td', {}, b?.chiuse ? percento(b.vinte / b.chiuse) : '–'),
+      el('td', { class: classeProfitto(b?.profitto ?? 0) }, b?.chiuse ? euroConSegno(b.profitto) : '–'),
+    );
+  });
+  const c = confronto ?? { partite: 0, gruppi: [] };
+  const righeGruppi = (c.gruppi ?? []).map((g) => el('tr', {},
+    el('td', {}, g.nome),
+    el('td', {}, g.partite),
+    el('td', {}, g.partite ? `${percento(g.percentuale)} (${percento(g.probMercato)})` : '–'),
+    el('td', { class: classeProfitto(g.profitto) }, g.partite ? euroConSegno(g.profitto) : '–'),
+  ));
+  return [
+    el('h2', {}, 'Coppie a quota 2: i quattro modi'),
+    el('p', { class: 'meta' }, 'Stesse partite, abbinate in quattro modi. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
+    el('table', { class: 'tabella-modi' },
+      el('thead', {}, el('tr', {}, ['Modo', 'Coppie', 'Vinte', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, righeModi)),
+    el('h2', {}, 'Il nostro modello contro il mercato'),
+    el('p', { class: 'meta' }, c.partite
+      ? `Sulle stesse ${c.partite} partite, errore medio del modello ${fmtErrore.format(c.erroreModello)}, del mercato ${fmtErrore.format(c.erroreMercato)}: vince chi ha il numero più basso. Sotto, le partite divise per quanto il modello si scosta dal mercato (tra parentesi quante ne dava il mercato); guadagno giocando ogni partita da sola con 1 €.`
+      : 'Ancora nessuna partita chiusa con la probabilità del modello.'),
+    c.partite ? el('table', { class: 'tabella-modi' },
+      el('thead', {}, el('tr', {}, ['Partite', 'Quante', 'Vinte (mercato)', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, righeGruppi)) : null,
+  ];
+}
+
 function renderRiga({ giocata: g, profitto }) {
   return el('article', { class: 'riga-storico' },
     el('div', {},
@@ -161,6 +202,7 @@ function avvia(dati) {
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
+  document.getElementById('confronto')?.replaceChildren(...renderConfronto(dati.bilancioCoppie, dati.confrontoModello).filter(Boolean));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));
 
   const interruttore = document.getElementById('vista');

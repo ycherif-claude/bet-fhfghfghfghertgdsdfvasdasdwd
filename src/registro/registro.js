@@ -23,7 +23,7 @@ import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
-import { esitoCoppia } from '../regole/coppie-quota2.js';
+import { esitoCoppia, tutteLeCoppie } from '../regole/coppie-quota2.js';
 import { leggiIstantanea, fileIstantanea, GIORNI_ESITO_PRONOSTICI } from '../regole/pronostici.js';
 import { aggiornaEsitiSchedine } from '../regole/schedine-pronostici.js';
 
@@ -217,7 +217,7 @@ export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
   const file = path.join(dirData, 'giornate', `${data}.json`);
   const g = leggi(file, null);
   // Coppie a quota 2: stesse partite della multipla, stesse regole per gli esiti delle gambe.
-  const coppie = [...(g?.coppieQuota2?.margine ?? []), ...(g?.coppieQuota2?.probabilita ?? [])];
+  const coppie = tutteLeCoppie(g);
   if (!g || ((!Array.isArray(g.multipleBonus) || !g.multipleBonus.length) && !coppie.length)) return false;
   const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
   let cambiato = false;
