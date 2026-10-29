@@ -318,6 +318,21 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-10-29T00:57:21+01:00"
+    },
+    "nba-2026-10-28-la-clippers-los-angeles-lakers-vincente-la-clippers": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,90 sotto la minima 2,66",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,90 sotto la minima 2,66"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-29T02:33:55+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -447,6 +462,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-10-29T00:23:52+01:00"
+    },
+    "calcio-2026-10-28-vancouver-whitecaps-san-diego-fc|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-10-29T02:33:55+01:00"
+    },
+    "calcio-2026-10-28-america-tijuana|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-29T02:33:55+01:00"
     }
   }
 }
