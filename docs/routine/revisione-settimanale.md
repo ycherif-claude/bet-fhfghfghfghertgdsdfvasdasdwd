@@ -45,7 +45,14 @@ Per la settimana, e per il totale dall'inizio, sempre separando **giocate fatte 
    **Modello contro mercato** (dal 30/10/2026; `confrontoModello` e `bilancioCoppie` di `site/dati.json`): le coppie hanno quattro modi, `margine` (quelle mostrate), `probabilita`, `modello` (solo la probabilità del nostro modello, `probModello` delle gambe) e `confermate` (solo partite su cui modello e mercato distano meno di 5 punti). Confronta vinte e profitto dei quattro modi; poi, sulle stesse partite, l'errore medio (Brier) del modello e del mercato e i tre gruppi (modello sopra, d'accordo, sotto il mercato). La domanda dell'utente è: le nostre probabilità funzionano meglio di quelle del mercato? Rispondi chiaramente, dicendo quanto è grande il campione.
    **Taratura automatica** (dal 30/10/2026): ogni giornata ha `taraturaModello` (per sport: correzione `a`, `b` e partite usate) e le gambe hanno `probModelloTarato`; `confrontoModello.erroreCorretto` è l'errore del modello corretto. Riporta come cambia la correzione di settimana in settimana, sport per sport (pallavolo compresa: Elo "di studio"). **Avviso:** quando le partite del confronto sono almeno `CONFIG.taraturaModello.avvisoPartite` (100) e l'errore del modello corretto è più basso di quello del mercato, scrivilo come **prima riga del rapporto**, in grassetto: "Il nostro modello corretto ora indovina meglio del mercato", con i numeri. È il segnale per decidere con l'utente se usarlo per le giocate; non cambiare nulla da solo.
    **Mercati** (`storicoMercati` di `site/dati.json`, o ricalcolato con `storicoMercati` di `src/regole/mercati-partite.js`): per ogni mercato delle partite di multiple e coppie, partite chiuse, percentuale vinta contro quella del mercato, quota media e guadagno a 1 € a partita. Indica i mercati che vincono più del mercato su almeno 30 partite e quelli che perdono: l'utente vuole andare su quelli migliori.
-10. **Crediti delle quote:** dai file `data/raccolta/*.json` (`crediti`), quanto si è speso a settimana per sport e quanto resta nel mese. Il ritmo è sostenibile fino a fine mese?
+10. **Ricerca di un sistema vincente** [utente, 29/10/2026]. Obiettivo: trovare regole semplici che vincano più di quanto dice il mercato, senza farsi ingannare dal caso.
+   - **Dati:** tutte le partite di coppie e multiple (gambe di `multipleBonus` e `coppieQuota2` di tutte le giornate, una volta per giorno, partita e mercato; puoi usare `gambeDelGiorno` di `src/regole/mercati-partite.js`) con `esito`, `quota`, `probMercato`, `probModello`, `probModelloTarato`, `chiusura`, `bookmaker`, sport, competizione e mercato. Puoi aggiungere le righe di `data/registro/` per avere più partite.
+   - **Metodo (obbligatorio):** dividi le partite in due parti per data. *Ricerca*: tutte le settimane tranne l'ultima. *Verifica*: solo l'ultima settimana, che la ricerca non deve vedere. Sulla parte di ricerca prova regole semplici, al massimo due condizioni insieme (sport, mercato, fascia di quota, casa/trasferta, fascia di probabilità del mercato, accordo modello–mercato entro 3/5/8 punti, movimento verso la chiusura). Per ogni regola: partite, vinte, percentuale contro la probabilità media del mercato, guadagno a 1 € a partita.
+   - **Filtri:** tieni solo le regole con almeno 40 partite nella ricerca e guadagno positivo, e che **restano positive nella verifica** con almeno 10 partite. Scarta le regole che non hanno una spiegazione sensata (per esempio "il martedì") anche se i numeri sono buoni.
+   - **Avvertenza da scrivere sempre:** più regole si provano, più è facile trovarne una che sembra vincente per caso. Scrivi quante regole hai provato. Una regola diventa interessante solo dopo aver retto almeno 3 settimane di verifica di fila: tieni il conto settimana per settimana, leggendo i rapporti precedenti in `docs/report/`.
+   - **Prima del 23/11/2026** i dati sono pochi: fai la ricerca lo stesso ma scrivi chiaramente che è solo un indizio.
+   - Non cambiare niente da solo: proponi all'utente.
+11. **Crediti delle quote:** dai file `data/raccolta/*.json` (`crediti`), quanto si è speso a settimana per sport e quanto resta nel mese. Il ritmo è sostenibile fino a fine mese?
 
 ## 3. Proposte di miglioramento
 Alla fine scrivi **al massimo 5 proposte**, in ordine di importanza. Ognuna dice:
@@ -68,7 +75,8 @@ Ricorda sempre: nessun modello garantisce vincite, e su poche settimane la fortu
   3. **Cosa funziona e cosa no.**
   4. **Pronostici e doppie/triple:** ✅, migliori e tutti, per partita, doppie e triple (punto 8).
   5. **Salute del sistema.**
-  6. **Proposte.**
+  6. **Ricerca di un sistema** (punto 10): una tabella con le regole che hanno retto la verifica (partite e risultato nella ricerca, partite e risultato nella verifica, settimane di fila in cui ha retto), quante regole hai provato e l'avvertenza. Se nessuna regge, scrivilo: è una risposta utile.
+  7. **Proposte.**
 - Lingua: italiano semplice, frasi brevi, niente gergo tecnico. Se usi un termine come "ROI" o "calibrazione", spiegalo la prima volta.
 - Numeri con la virgola decimale italiana ed euro con il simbolo €.
 
