@@ -1,0 +1,1030 @@
+{
+  "data": "2026-10-29",
+  "generataAlle": "2026-10-29T07:15:44+01:00",
+  "fonte": "odss-api.com",
+  "esito": "ok",
+  "richieste": 2,
+  "rimaste": 416,
+  "diagnostica": {
+    "righe": 2492,
+    "righeUsate": 1214,
+    "senzaIntero": 11,
+    "doppie": 0,
+    "periodiVisti": {
+      "match|full_time": 1214,
+      "match|1st_half": 908,
+      "match|2nd_half": 370
+    }
+  },
+  "erroriGiro": [
+    "odss-api alle 07:15: 11 partite senza righe a tempo intero (full_time), senza quote: HB Koge - FC Barcelona, South Korea (zyX) - United States (Shp_ik), Czechia (Sonata) - South Korea (zyX), Barcelona (Shot) - Girona FC (aloha), Aston Villa (Shp_ik) - RB Leipzig (zyX), RB Leipzig (zyX) - Newcastle United (Sonata), Tjeckien (Sonata) - South Korea (zyX), Koge W - Barcelona W, Chequia (Sonata) - South Korea (zyX), Tsjechië (Sonata) - South Korea (zyX), Werder Bremen - TSG 1899 Hoffenheim"
+  ],
+  "eventi": [
+    {
+      "id": "84339409a4319fb8",
+      "campionato": "Serie A",
+      "casa": "Frosinone",
+      "trasferta": "Lecce",
+      "inizio": "2026-10-29T17:30:00.000Z",
+      "mercati": {
+        "dc": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "12": 1.22,
+                "1X": 1.19,
+                "X2": 2.15
+              },
+              "aggiornato": "2026-10-29T06:13:27.847653+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "12": 1.23,
+                "1X": 1.19,
+                "X2": 2.15
+              },
+              "aggiornato": "2026-10-29T06:10:26.813747+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.24,
+                "1X": 1.19,
+                "X2": 2.08
+              },
+              "aggiornato": "2026-10-29T06:10:30.401732+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7598,
+            "1X": 0.7913,
+            "X2": 0.449
+          },
+          "fonteProb": "mediana di 160 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.23,
+              "n": 160
+            },
+            "1X": {
+              "quota": 1.18,
+              "n": 160
+            },
+            "X2": {
+              "quota": 2.08,
+              "n": 160
+            }
+          }
+        },
+        "1x2": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "HOME": 1.7,
+                "DRAW": 4,
+                "AWAY": 4.5
+              },
+              "aggiornato": "2026-10-29T06:13:27.847653+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "HOME": 1.7,
+                "DRAW": 4.1,
+                "AWAY": 4.5
+              },
+              "aggiornato": "2026-10-29T06:10:26.813747+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 1.7,
+                "DRAW": 4.05,
+                "AWAY": 4.65
+              },
+              "aggiornato": "2026-10-29T06:10:30.401732+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 1.67,
+                "DRAW": 4.25,
+                "AWAY": 4.4
+              },
+              "aggiornato": "2026-10-29T06:09:12.090469+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.561,
+            "DRAW": 0.2275,
+            "AWAY": 0.2115
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.66,
+              "n": 194
+            },
+            "DRAW": {
+              "quota": 4,
+              "n": 194
+            },
+            "AWAY": {
+              "quota": 4.7,
+              "n": 194
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 6,
+                "OVER": 1.08
+              },
+              "aggiornato": "2026-10-29T06:13:27.847653+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 6.75,
+                "OVER": 1.07
+              },
+              "aggiornato": "2026-10-29T06:10:26.813747+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 5.6,
+                "OVER": 1.11
+              },
+              "aggiornato": "2026-10-29T06:09:12.090469+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.154,
+            "OVER": 0.846
+          },
+          "fonteProb": "mediana di 93 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 6.1,
+              "n": 93
+            },
+            "OVER": {
+              "quota": 1.11,
+              "n": 93
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 2.9,
+                "OVER": 1.36
+              },
+              "aggiornato": "2026-10-29T06:13:27.847653+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 2.95,
+                "OVER": 1.35
+              },
+              "aggiornato": "2026-10-29T06:10:26.813747+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 2.75,
+                "OVER": 1.4
+              },
+              "aggiornato": "2026-10-29T06:10:30.401732+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.8,
+                "OVER": 1.39
+              },
+              "aggiornato": "2026-10-29T06:09:12.090469+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.3099,
+            "OVER": 0.6901
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.75,
+              "n": 100
+            },
+            "OVER": {
+              "quota": 1.4,
+              "n": 100
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.75,
+                "OVER": 1.9
+              },
+              "aggiornato": "2026-10-29T06:13:27.847653+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.78,
+                "OVER": 1.9
+              },
+              "aggiornato": "2026-10-29T06:10:26.813747+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.76,
+                "OVER": 1.95
+              },
+              "aggiornato": "2026-10-29T06:09:12.090469+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5204,
+            "OVER": 0.4796
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.77,
+              "n": 182
+            },
+            "OVER": {
+              "quota": 2.05,
+              "n": 182
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "28e223a6337d297f",
+      "campionato": "Allsvenskan",
+      "casa": "Kalmar Ff",
+      "trasferta": "Gais",
+      "inizio": "2026-10-29T18:00:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "HOME": 2.35,
+                "DRAW": 3.25,
+                "AWAY": 2.85
+              },
+              "aggiornato": "2026-10-29T06:11:39.214861+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.3891,
+            "DRAW": 0.2818,
+            "AWAY": 0.3291
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.33,
+              "n": 168
+            },
+            "DRAW": {
+              "quota": 3.25,
+              "n": 168
+            },
+            "AWAY": {
+              "quota": 2.9,
+              "n": 168
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.83,
+                "OVER": 1.87
+              },
+              "aggiornato": "2026-10-29T06:11:39.214861+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5066,
+            "OVER": 0.4934
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.82,
+              "n": 165
+            },
+            "OVER": {
+              "quota": 1.88,
+              "n": 165
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.32,
+                "OVER": 3.1
+              },
+              "aggiornato": "2026-10-29T06:11:39.214861+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.7117,
+            "OVER": 0.2883
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.3,
+              "n": 72
+            },
+            "OVER": {
+              "quota": 3.3,
+              "n": 72
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.4,
+                "OVER": 1.28
+              },
+              "aggiornato": "2026-10-29T06:11:39.214861+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.2601,
+            "OVER": 0.7399
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.37,
+              "n": 72
+            },
+            "OVER": {
+              "quota": 1.28,
+              "n": 72
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7077,
+            "1X": 0.6849,
+            "X2": 0.6043
+          },
+          "fonteProb": "mediana di 138 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 138
+            },
+            "1X": {
+              "quota": 1.35,
+              "n": 138
+            },
+            "X2": {
+              "quota": 1.52,
+              "n": 138
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "fd5cddee15a14191",
+      "campionato": "Allsvenskan",
+      "casa": "Örgryte IS",
+      "trasferta": "Mjällby AIF",
+      "inizio": "2026-10-29T18:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3222,
+            "DRAW": 0.2713,
+            "AWAY": 0.4049
+          },
+          "fonteProb": "mediana di 52 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2.88,
+              "n": 52
+            },
+            "DRAW": {
+              "quota": 3.4,
+              "n": 52
+            },
+            "AWAY": {
+              "quota": 2.3,
+              "n": 52
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.445,
+            "OVER": 0.555
+          },
+          "fonteProb": "mediana di 51 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.07,
+              "n": 51
+            },
+            "OVER": {
+              "quota": 1.68,
+              "n": 51
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7269,
+            "1X": 0.5947,
+            "X2": 0.6784
+          },
+          "fonteProb": "mediana di 45 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.26,
+              "n": 45
+            },
+            "1X": {
+              "quota": 1.54,
+              "n": 45
+            },
+            "X2": {
+              "quota": 1.35,
+              "n": 45
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2279,
+            "OVER": 0.7721
+          },
+          "fonteProb": "mediana di 50 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.1,
+              "n": 50
+            },
+            "OVER": {
+              "quota": 1.2,
+              "n": 50
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6527,
+            "OVER": 0.3473
+          },
+          "fonteProb": "mediana di 50 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.41,
+              "n": 50
+            },
+            "OVER": {
+              "quota": 2.7,
+              "n": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "426f003be1498193",
+      "campionato": "Veikkausliiga",
+      "casa": "FC Inter Turku",
+      "trasferta": "HJK",
+      "inizio": "2026-10-29T16:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3921,
+            "DRAW": 0.2738,
+            "AWAY": 0.3342
+          },
+          "fonteProb": "mediana di 50 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2.3,
+              "n": 50
+            },
+            "DRAW": {
+              "quota": 3.3,
+              "n": 50
+            },
+            "AWAY": {
+              "quota": 2.7,
+              "n": 50
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4541,
+            "OVER": 0.5459
+          },
+          "fonteProb": "mediana di 47 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.02,
+              "n": 47
+            },
+            "OVER": {
+              "quota": 1.68,
+              "n": 47
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6659,
+            "OVER": 0.3341
+          },
+          "fonteProb": "mediana di 44 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.38,
+              "n": 44
+            },
+            "OVER": {
+              "quota": 2.75,
+              "n": 44
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.225,
+            "OVER": 0.775
+          },
+          "fonteProb": "mediana di 44 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.1,
+              "n": 44
+            },
+            "OVER": {
+              "quota": 1.19,
+              "n": 44
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7247,
+            "1X": 0.6665,
+            "X2": 0.6088
+          },
+          "fonteProb": "mediana di 48 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.26,
+              "n": 48
+            },
+            "1X": {
+              "quota": 1.37,
+              "n": 48
+            },
+            "X2": {
+              "quota": 1.5,
+              "n": 48
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "1565e58b0e3050ef",
+      "campionato": "Veikkausliiga",
+      "casa": "KuPS",
+      "trasferta": "Gnistan",
+      "inizio": "2026-10-29T17:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.6431,
+            "DRAW": 0.1989,
+            "AWAY": 0.158
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.44,
+              "n": 139
+            },
+            "DRAW": {
+              "quota": 4.5,
+              "n": 139
+            },
+            "AWAY": {
+              "quota": 6,
+              "n": 139
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6155,
+            "OVER": 0.3845
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.5,
+              "n": 59
+            },
+            "OVER": {
+              "quota": 2.38,
+              "n": 59
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3969,
+            "OVER": 0.6031
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.18,
+              "n": 130
+            },
+            "OVER": {
+              "quota": 1.58,
+              "n": 130
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.1915,
+            "OVER": 0.8085
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.7,
+              "n": 59
+            },
+            "OVER": {
+              "quota": 1.14,
+              "n": 59
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7861,
+            "1X": 0.8258,
+            "X2": 0.3848
+          },
+          "fonteProb": "mediana di 124 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.16,
+              "n": 124
+            },
+            "1X": {
+              "quota": 1.11,
+              "n": 124
+            },
+            "X2": {
+              "quota": 2.38,
+              "n": 124
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "b190cf522262f6ea",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Atletico MG",
+      "trasferta": "Cruzeiro",
+      "inizio": "2026-10-29T22:30:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3739,
+            "DRAW": 0.28,
+            "AWAY": 0.3461
+          },
+          "fonteProb": "mediana di 86 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2.54,
+              "n": 86
+            },
+            "DRAW": {
+              "quota": 3.4,
+              "n": 86
+            },
+            "AWAY": {
+              "quota": 2.75,
+              "n": 86
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7145,
+            "1X": 0.654,
+            "X2": 0.6315
+          },
+          "fonteProb": "mediana di 84 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.3,
+              "n": 84
+            },
+            "1X": {
+              "quota": 1.42,
+              "n": 84
+            },
+            "X2": {
+              "quota": 1.48,
+              "n": 84
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4675,
+            "OVER": 0.5325
+          },
+          "fonteProb": "mediana di 86 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.05,
+              "n": 86
+            },
+            "OVER": {
+              "quota": 1.8,
+              "n": 86
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2406,
+            "OVER": 0.7594
+          },
+          "fonteProb": "mediana di 3 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.85,
+              "n": 3
+            },
+            "OVER": {
+              "quota": 1.23,
+              "n": 3
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6881,
+            "OVER": 0.3119
+          },
+          "fonteProb": "mediana di 3 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.36,
+              "n": 3
+            },
+            "OVER": {
+              "quota": 3,
+              "n": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "373c779dafca0b83",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Vasco Da Gama",
+      "trasferta": "Flamengo",
+      "inizio": "2026-10-29T23:00:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.2419,
+            "DRAW": 0.2481,
+            "AWAY": 0.5099
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 4,
+              "n": 97
+            },
+            "DRAW": {
+              "quota": 4,
+              "n": 97
+            },
+            "AWAY": {
+              "quota": 1.81,
+              "n": 97
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4796,
+            "OVER": 0.5204
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.14,
+              "n": 89
+            },
+            "OVER": {
+              "quota": 1.71,
+              "n": 89
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6917,
+            "OVER": 0.3083
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.41,
+              "n": 4
+            },
+            "OVER": {
+              "quota": 2.94,
+              "n": 4
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2432,
+            "OVER": 0.7568
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.95,
+              "n": 4
+            },
+            "OVER": {
+              "quota": 1.25,
+              "n": 4
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7597,
+            "1X": 0.4922,
+            "X2": 0.7481
+          },
+          "fonteProb": "mediana di 92 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.23,
+              "n": 92
+            },
+            "1X": {
+              "quota": 1.9,
+              "n": 92
+            },
+            "X2": {
+              "quota": 1.25,
+              "n": 92
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "bd9cc6602fea9c70",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Gremio",
+      "trasferta": "Athletico-PR",
+      "inizio": "2026-10-30T00:30:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3968,
+            "DRAW": 0.2857,
+            "AWAY": 0.3175
+          },
+          "fonteProb": "mediana di 90 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2.4,
+              "n": 90
+            },
+            "DRAW": {
+              "quota": 3.33,
+              "n": 90
+            },
+            "AWAY": {
+              "quota": 3,
+              "n": 90
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7077,
+            "1X": 0.6849,
+            "X2": 0.6074
+          },
+          "fonteProb": "mediana di 88 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.32,
+              "n": 88
+            },
+            "1X": {
+              "quota": 1.36,
+              "n": 88
+            },
+            "X2": {
+              "quota": 1.53,
+              "n": 88
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5122,
+            "OVER": 0.4878
+          },
+          "fonteProb": "mediana di 90 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.86,
+              "n": 90
+            },
+            "OVER": {
+              "quota": 1.96,
+              "n": 90
+            }
+          }
+        }
+      }
+    }
+  ],
+  "completamento": {
+    "alle": "2026-10-29T07:15:46+01:00",
+    "partite": 8,
+    "completate": 8,
+    "richieste": 1
+  }
+}

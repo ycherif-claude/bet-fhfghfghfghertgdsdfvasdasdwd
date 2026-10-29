@@ -1,0 +1,820 @@
+{
+  "data": "2026-10-29",
+  "generataAlle": "2026-10-29T07:21:58+01:00",
+  "crediti": {
+    "usati": 4,
+    "rimasti": 284
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Storico tennis WTA fermo al 18/10/2026: ricarica il file in data/storico-tennis/wta/2026.xlsx",
+    "Superficie sconosciuta per ATP Swiss Indoors Basel: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "34665e9373b8bac3",
+        "4dcb96680befb061",
+        "b26fd4f9166e258b",
+        "88f2895737c1b4ab"
+      ],
+      "idPartita": "tennis-2026-10-29-rafael-jodar-valentin-vacherot",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Valentin Vacherot - Rafael Jodar",
+      "casa": "Valentin Vacherot",
+      "trasferta": "Rafael Jodar",
+      "inizio": "2026-10-29T12:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Valentin Vacherot",
+          "probModello": null,
+          "probPinnacle": 0.2749183006535948,
+          "quota": 3.4,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Valentin Vacherot vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Rafael Jodar",
+          "probModello": null,
+          "probPinnacle": 0.7250816993464052,
+          "quota": 1.29,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Rafael Jodar vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "750b786ed940276a",
+        "75a91f039ec08af5",
+        "76e35fb3f8d19aef",
+        "f62ccb937a30c190"
+      ],
+      "idPartita": "tennis-2026-10-29-alex-michelsen-arthur-fils",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Alex Michelsen - Arthur Fils",
+      "casa": "Alex Michelsen",
+      "trasferta": "Arthur Fils",
+      "inizio": "2026-10-29T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alex Michelsen",
+          "probModello": null,
+          "probPinnacle": 0.33409350057012543,
+          "quota": 2.71,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alex Michelsen vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Arthur Fils",
+          "probModello": null,
+          "probPinnacle": 0.6659064994298746,
+          "quota": 1.42,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Arthur Fils vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "711ba739685b6262",
+        "26cce8d86f5a819c"
+      ],
+      "idPartita": "tennis-2026-10-29-denis-shapovalov-taylor-fritz",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Taylor Fritz - Denis Shapovalov",
+      "casa": "Taylor Fritz",
+      "trasferta": "Denis Shapovalov",
+      "inizio": "2026-10-29T15:10:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Taylor Fritz",
+          "probModello": null,
+          "probPinnacle": 0.6750959584556334,
+          "quota": 1.38,
+          "fonteQuota": "mediana di 186 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Taylor Fritz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Denis Shapovalov",
+          "probModello": null,
+          "probPinnacle": 0.3249040415443667,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 186 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Denis Shapovalov vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "0c0f63601dfa685c",
+        "51bf4ed65bc9246b",
+        "5c79ad6bbc8a3d28",
+        "d8096d617fee1181"
+      ],
+      "idPartita": "tennis-2026-10-29-daniel-altmaier-jiri-lehecka",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Daniel Altmaier - Jiri Lehecka",
+      "casa": "Daniel Altmaier",
+      "trasferta": "Jiri Lehecka",
+      "inizio": "2026-10-29T16:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Daniel Altmaier",
+          "probModello": null,
+          "probPinnacle": 0.16513111268603828,
+          "quota": 5.2,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Daniel Altmaier vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Jiri Lehecka",
+          "probModello": null,
+          "probPinnacle": 0.8348688873139617,
+          "quota": 1.15,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Jiri Lehecka vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "41fb582590a8ca68",
+        "ea749f034980f2e2"
+      ],
+      "idPartita": "tennis-2026-10-29-jan-lennard-struff-novak-djokovic",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Novak Djokovic - Jan-Lennard Struff",
+      "casa": "Novak Djokovic",
+      "trasferta": "Jan-Lennard Struff",
+      "inizio": "2026-10-29T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Novak Djokovic",
+          "probModello": null,
+          "probPinnacle": 0.7565415244596131,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 178 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Novak Djokovic vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Jan-Lennard Struff",
+          "probModello": null,
+          "probPinnacle": 0.24345847554038677,
+          "quota": 3.8,
+          "fonteQuota": "mediana di 178 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Jan-Lennard Struff vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "1a36b91f623aa2ee",
+        "03f46eed48e260e8",
+        "3a725c8f76532c41",
+        "fac216a957267432"
+      ],
+      "idPartita": "tennis-2026-10-29-ben-shelton-jerome-kym",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Ben Shelton - Jerome Kym",
+      "casa": "Ben Shelton",
+      "trasferta": "Jerome Kym",
+      "inizio": "2026-10-29T19:10:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Ben Shelton",
+          "probModello": null,
+          "probPinnacle": 0.7457758788114197,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Ben Shelton vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Jerome Kym",
+          "probModello": null,
+          "probPinnacle": 0.2542241211885803,
+          "quota": 3.4,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Jerome Kym vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "673e2d72977d4bac",
+        "8c54830f32ee1007",
+        "e47c0ba686ff0687",
+        "ffdf6f30fdb266a7",
+        "87a678ff4e2df660"
+      ],
+      "idPartita": "tennis-2026-10-29-cameron-norrie-daniil-medvedev",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Cameron Norrie - Daniil Medvedev",
+      "casa": "Cameron Norrie",
+      "trasferta": "Daniil Medvedev",
+      "inizio": "2026-10-29T13:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cameron Norrie": {
+          "tot": 1634,
+          "superficie": 1623
+        },
+        "Daniil Medvedev": {
+          "tot": 1836,
+          "superficie": 1858
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Cameron Norrie 1634/1623 – Daniil Medvedev 1836/1858 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Cameron Norrie",
+          "probModello": 0.22222237757539048,
+          "probPinnacle": 0.18348482514250503,
+          "quota": 4.75,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Cameron Norrie vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Daniil Medvedev",
+          "probModello": 0.7777776224246096,
+          "probPinnacle": 0.816515174857495,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Daniil Medvedev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "1bffff15ed773268",
+        "a6beed7658129bcc",
+        "f5e30b2edb3e2971",
+        "722f0b7b8fa3b3f0"
+      ],
+      "idPartita": "tennis-2026-10-29-luciano-darderi-tommy-paul",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Tommy Paul - Luciano Darderi",
+      "casa": "Tommy Paul",
+      "trasferta": "Luciano Darderi",
+      "inizio": "2026-10-29T13:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Tommy Paul": {
+          "tot": 1813,
+          "superficie": 1777
+        },
+        "Luciano Darderi": {
+          "tot": 1663,
+          "superficie": 1563
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Tommy Paul 1813/1777 – Luciano Darderi 1663/1563 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Tommy Paul",
+          "probModello": 0.7388021890446832,
+          "probPinnacle": 0.7740548288837127,
+          "quota": 1.23,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Tommy Paul vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Luciano Darderi",
+          "probModello": 0.2611978109553168,
+          "probPinnacle": 0.22594517111628737,
+          "quota": 4,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Luciano Darderi vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4be14b5cdd636697",
+        "a8e71b54367d9411",
+        "ccf477a3f149b5c6"
+      ],
+      "idPartita": "tennis-2026-10-29-carlos-alcaraz-nikoloz-basilashvili",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Nikoloz Basilashvili - Carlos Alcaraz",
+      "casa": "Nikoloz Basilashvili",
+      "trasferta": "Carlos Alcaraz",
+      "inizio": "2026-10-29T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Nikoloz Basilashvili": {
+          "tot": 1528,
+          "superficie": 1502
+        },
+        "Carlos Alcaraz": {
+          "tot": 2124,
+          "superficie": 2046
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Nikoloz Basilashvili 1528/1502 – Carlos Alcaraz 2124/2046 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set",
+        "Meno di 20 partite negli ultimi 12 mesi per almeno un giocatore: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Nikoloz Basilashvili",
+          "probModello": 0.03608127221943089,
+          "probPinnacle": 0.11729921513815716,
+          "quota": 7,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Nikoloz Basilashvili vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Carlos Alcaraz",
+          "probModello": 0.9639187277805691,
+          "probPinnacle": 0.8827007848618428,
+          "quota": 1.08,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Carlos Alcaraz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "58429c50d9e2fdc2",
+        "8c5c03744c56cc32",
+        "a5826c4ad0fb2eb6",
+        "f41709d878aea98b"
+      ],
+      "idPartita": "tennis-2026-10-29-arthur-fery-lorenzo-musetti",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Arthur Fery - Lorenzo Musetti",
+      "casa": "Arthur Fery",
+      "trasferta": "Lorenzo Musetti",
+      "inizio": "2026-10-29T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Arthur Fery": {
+          "tot": 1666,
+          "superficie": 1564
+        },
+        "Lorenzo Musetti": {
+          "tot": 1757,
+          "superficie": 1700
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Arthur Fery 1666/1564 – Lorenzo Musetti 1757/1700 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Arthur Fery",
+          "probModello": 0.34949145286193994,
+          "probPinnacle": 0.26618415761962205,
+          "quota": 3.22,
+          "fonteQuota": "mediana di 189 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Arthur Fery vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Lorenzo Musetti",
+          "probModello": 0.6505085471380601,
+          "probPinnacle": 0.733815842380378,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 189 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Lorenzo Musetti vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "009de02472f125da",
+        "6d86292319895456",
+        "9aabbef763870a07",
+        "abc2b1e76f00463d"
+      ],
+      "idPartita": "tennis-2026-10-29-alexander-zverev-tallon-griekspoor",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Alexander Zverev - Tallon Griekspoor",
+      "casa": "Alexander Zverev",
+      "trasferta": "Tallon Griekspoor",
+      "inizio": "2026-10-29T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Alexander Zverev": {
+          "tot": 1982,
+          "superficie": 1937
+        },
+        "Tallon Griekspoor": {
+          "tot": 1532,
+          "superficie": 1611
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Alexander Zverev 1982/1937 – Tallon Griekspoor 1532/1611 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alexander Zverev",
+          "probModello": 0.8989634187971756,
+          "probPinnacle": 0.7652495378927912,
+          "quota": 1.23,
+          "fonteQuota": "mediana di 189 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alexander Zverev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Tallon Griekspoor",
+          "probModello": 0.10103658120282444,
+          "probPinnacle": 0.2347504621072089,
+          "quota": 4,
+          "fonteQuota": "mediana di 189 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Tallon Griekspoor vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "577da3510697b935",
+        "72d764ab044bc968",
+        "8f6787bc8db701b5",
+        "c93975c1c92a7c61"
+      ],
+      "idPartita": "tennis-2026-10-29-flavio-cobolli-matteo-berrettini",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Flavio Cobolli - Matteo Berrettini",
+      "casa": "Flavio Cobolli",
+      "trasferta": "Matteo Berrettini",
+      "inizio": "2026-10-29T20:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Flavio Cobolli": {
+          "tot": 1728,
+          "superficie": 1611
+        },
+        "Matteo Berrettini": {
+          "tot": 1641,
+          "superficie": 1626
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Flavio Cobolli 1728/1611 – Matteo Berrettini 1641/1626 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Flavio Cobolli",
+          "probModello": 0.5501469307952599,
+          "probPinnacle": 0.5046082949308756,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Flavio Cobolli vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Matteo Berrettini",
+          "probModello": 0.4498530692047401,
+          "probPinnacle": 0.49539170506912444,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 187 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Matteo Berrettini vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "07596e99774a16c6",
+        "d378be8493469181",
+        "f35052fb54d0afbb"
+      ],
+      "idPartita": "tennis-2026-10-29-elena-rybakina-yulia-putintseva",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Elena Rybakina - Yulia Putintseva",
+      "casa": "Elena Rybakina",
+      "trasferta": "Yulia Putintseva",
+      "inizio": "2026-10-29T09:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Elena Rybakina": {
+          "tot": 2026,
+          "superficie": 2091
+        },
+        "Yulia Putintseva": {
+          "tot": 1564,
+          "superficie": 1578
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Elena Rybakina 2026/2091 – Yulia Putintseva 1564/1578 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Elena Rybakina",
+          "probModello": 0.9425766552042774,
+          "probPinnacle": 0.8536585365853658,
+          "quota": 1.09,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Elena Rybakina vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Yulia Putintseva",
+          "probModello": 0.05742334479572264,
+          "probPinnacle": 0.14634146341463414,
+          "quota": 6.33,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Yulia Putintseva vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4820f34271023ee5",
+        "4a0a06342939bff6",
+        "75957d7526f6d055"
+      ],
+      "idPartita": "tennis-2026-10-29-alexandra-eala-diana-shnaider",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Alexandra Eala - Diana Shnaider",
+      "casa": "Alexandra Eala",
+      "trasferta": "Diana Shnaider",
+      "inizio": "2026-10-30T05:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Alexandra Eala": {
+          "tot": 1771,
+          "superficie": 1744
+        },
+        "Diana Shnaider": {
+          "tot": 1810,
+          "superficie": 1777
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Alexandra Eala 1771/1744 – Diana Shnaider 1810/1777 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alexandra Eala",
+          "probModello": 0.4486274041874141,
+          "probPinnacle": 0.42462311557788945,
+          "quota": 2.16,
+          "fonteQuota": "mediana di 142 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alexandra Eala vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Diana Shnaider",
+          "probModello": 0.5513725958125859,
+          "probPinnacle": 0.5753768844221105,
+          "quota": 1.61,
+          "fonteQuota": "mediana di 142 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Diana Shnaider vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "12288be2961fa97d",
+        "82fc8fd69c7410c2",
+        "f8013db79fa96fdb"
+      ],
+      "idPartita": "tennis-2026-10-29-kamilla-rakhimova-maya-joint",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Kamilla Rakhimova - Maya Joint",
+      "casa": "Kamilla Rakhimova",
+      "trasferta": "Maya Joint",
+      "inizio": "2026-10-30T05:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Kamilla Rakhimova": {
+          "tot": 1616,
+          "superficie": 1587
+        },
+        "Maya Joint": {
+          "tot": 1578,
+          "superficie": 1579
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Kamilla Rakhimova 1616/1587 – Maya Joint 1578/1579 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Kamilla Rakhimova",
+          "probModello": 0.5332008439044769,
+          "probPinnacle": 0.4542208620249936,
+          "quota": 2,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Kamilla Rakhimova vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Maya Joint",
+          "probModello": 0.46679915609552314,
+          "probPinnacle": 0.5457791379750064,
+          "quota": 1.72,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:21:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Maya Joint vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}

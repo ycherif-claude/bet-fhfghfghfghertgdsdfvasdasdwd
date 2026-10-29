@@ -1,0 +1,253 @@
+{
+  "data": "2026-10-29",
+  "generataAlle": "2026-10-29T07:22:18+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 216
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League maschile: senza storico gratuito della stagione in corso",
+    "Champions League femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: VCO Berlin",
+    "Quote pallavolo: 4 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-10-29-azs-olsztyn-zaksa-kedzierzyn-kozle",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "AZS Olsztyn - ZAKSA Kedzierzyn-Kozle",
+      "casa": "AZS Olsztyn",
+      "trasferta": "ZAKSA Kedzierzyn-Kozle",
+      "inizio": "2026-10-29T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "AZS Olsztyn": 1522,
+        "ZAKSA Kedzierzyn-Kozle": 1456
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: AZS Olsztyn 1522 – ZAKSA Kedzierzyn-Kozle 1456, vantaggio campo compreso: vittoria della casa 67% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "AZS Olsztyn",
+          "probModello": null,
+          "probPinnacle": 0.4913612565445027,
+          "quota": 1.77,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,85 su 122 bookmaker",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 1.77,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se AZS Olsztyn vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "ZAKSA Kedzierzyn-Kozle",
+          "probModello": null,
+          "probPinnacle": 0.5086387434554974,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 122 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 1.87,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se ZAKSA Kedzierzyn-Kozle vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.3580914904082637,
+          "quota": 2.58,
+          "fonteQuota": "mediana di 88 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 2.62,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: AZS Olsztyn -1,5 vince se AZS Olsztyn vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.6419085095917364,
+          "quota": 1.41,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,43 su 88 bookmaker",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 1.41,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: ZAKSA Kedzierzyn-Kozle +1,5 vince se ZAKSA Kedzierzyn-Kozle vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.6275000000000001,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 61 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: AZS Olsztyn +1,5 vince se AZS Olsztyn vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.37250000000000005,
+          "quota": 2.56,
+          "fonteQuota": "mediana di 61 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: ZAKSA Kedzierzyn-Kozle -1,5 vince se ZAKSA Kedzierzyn-Kozle vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6395061728395062,
+          "quota": 1.43,
+          "fonteQuota": "mediana di 67 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.36049382716049383,
+          "quota": 2.65,
+          "fonteQuota": "mediana di 67 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-29-resovia-rzeszow-trefl-gdansk",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Resovia Rzeszow - Trefl Gdansk",
+      "casa": "Resovia Rzeszow",
+      "trasferta": "Trefl Gdansk",
+      "inizio": "2026-10-29T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Resovia Rzeszow": 1588,
+        "Trefl Gdansk": 1428
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Resovia Rzeszow 1588 – Trefl Gdansk 1428, vantaggio campo compreso: vittoria della casa 78% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Resovia Rzeszow",
+          "probModello": null,
+          "probPinnacle": 0.7915658486000691,
+          "quota": 1.13,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,16 su 123 bookmaker",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 1.13,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Resovia Rzeszow vince la partita."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Trefl Gdansk",
+          "probModello": null,
+          "probPinnacle": 0.20843415139993085,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 123 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "quotaBet365": 4.5,
+          "oraQuotaBet365": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Trefl Gdansk vince la partita."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.6539113586824897,
+          "quota": 1.39,
+          "fonteQuota": "mediana di 59 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Resovia Rzeszow -1,5 vince se Resovia Rzeszow vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.34608864131751027,
+          "quota": 2.74,
+          "fonteQuota": "mediana di 59 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Trefl Gdansk +1,5 vince se Trefl Gdansk vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probPinnacle": 0.8770266974869008,
+          "quota": 1.05,
+          "fonteQuota": "mediana di 47 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Resovia Rzeszow +1,5 vince se Resovia Rzeszow vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probPinnacle": 0.12297330251309932,
+          "quota": 7.6,
+          "fonteQuota": "mediana di 47 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Trefl Gdansk -1,5 vince se Trefl Gdansk vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.535143769968051,
+          "quota": 1.71,
+          "fonteQuota": "mediana di 72 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.46485623003194887,
+          "quota": 2,
+          "fonteQuota": "mediana di 72 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-29T07:22:18+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    }
+  ]
+}

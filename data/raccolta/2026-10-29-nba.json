@@ -1,0 +1,303 @@
+{
+  "data": "2026-10-29",
+  "generataAlle": "2026-10-29T07:16:01+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 0
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api alle 07:16: 3 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Sacramento Kings - New Orleans Pelicans, Cleveland Cavaliers - Atlanta Hawks, Memphis Grizzlies - Portland Trail Blazers"
+  ],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Sacramento Kings",
+      "casa": "New Orleans Pelicans",
+      "trasferta": "Sacramento Kings",
+      "inizio": "2026-10-30T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 122.7,
+        "trasferta": 120.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": true,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: New Orleans Pelicans 123 – Sacramento Kings 121 (stagione in corso e precedente)",
+        "New Orleans Pelicans alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "New Orleans Pelicans",
+          "probModello": 0.5490289416404488,
+          "probPinnacle": 0.6684981684981686,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se New Orleans Pelicans vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Sacramento Kings",
+          "probModello": 0.45097105835955126,
+          "probPinnacle": 0.3315018315018315,
+          "quota": 2.7,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Sacramento Kings vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "casa",
+          "probModello": 0.3966881045854679,
+          "probPinnacle": 0.5112316034082107,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i New Orleans Pelicans vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su New Orleans Pelicans -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "trasferta",
+          "probModello": 0.6033118954145321,
+          "probPinnacle": 0.4887683965917893,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Sacramento Kings perdono con meno di 6 punti di scarto o vincono, supplementari compresi. Gioca solo su Sacramento Kings +5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Over 238.5",
+          "probModello": 0.6075162519523363,
+          "probPinnacle": 0.4788695877625098,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 58 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Over vince se le due squadre segnano almeno 239 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Under 238.5",
+          "probModello": 0.39248374804766367,
+          "probPinnacle": 0.5211304122374903,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 58 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Under vince se le due squadre segnano al massimo 238 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "52b65d02237a9425",
+        "1eb8bddd02c049a7"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-29-atlanta-hawks-cleveland-cavaliers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Atlanta Hawks - Cleveland Cavaliers",
+      "casa": "Atlanta Hawks",
+      "trasferta": "Cleveland Cavaliers",
+      "inizio": "2026-10-30T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 123.1,
+        "trasferta": 115.6
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": true,
+        "trasferta": true
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Atlanta Hawks 123 – Cleveland Cavaliers 116 (stagione in corso e precedente)",
+        "Atlanta Hawks alla seconda partita in due sere",
+        "Cleveland Cavaliers alla seconda partita in due sere"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Atlanta Hawks",
+          "probModello": 0.7036566476802868,
+          "probPinnacle": 0.5091283106196965,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Atlanta Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Cleveland Cavaliers",
+          "probModello": 0.2963433523197132,
+          "probPinnacle": 0.49087168938030346,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cleveland Cavaliers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "casa",
+          "probModello": 0.6616408062583481,
+          "probPinnacle": 0.48645161290322575,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 48 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Atlanta Hawks vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Atlanta Hawks -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.33835919374165196,
+          "probPinnacle": 0.5135483870967742,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 48 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Cleveland Cavaliers perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Cleveland Cavaliers +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Over 238.5",
+          "probModello": 0.5027158940203266,
+          "probPinnacle": 0.5045231325924011,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Over vince se le due squadre segnano almeno 239 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 238.5",
+          "selezione": "Under 238.5",
+          "probModello": 0.49728410597967343,
+          "probPinnacle": 0.49547686740759883,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 238.5: Under vince se le due squadre segnano al massimo 238 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (238.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "63211c7713890371",
+        "444955c038d8636c"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-29-portland-trail-blazers-memphis-grizzlies",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Portland Trail Blazers - Memphis Grizzlies",
+      "casa": "Portland Trail Blazers",
+      "trasferta": "Memphis Grizzlies",
+      "inizio": "2026-10-30T03:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 119.6,
+        "trasferta": 108.3
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Portland Trail Blazers 120 – Memphis Grizzlies 108 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Portland Trail Blazers",
+          "probModello": 0.7892422986960572,
+          "probPinnacle": 0.7097186700767264,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Portland Trail Blazers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Memphis Grizzlies",
+          "probModello": 0.2107577013039428,
+          "probPinnacle": 0.2902813299232737,
+          "quota": 3.2,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Memphis Grizzlies vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "casa",
+          "probModello": 0.6038754810078861,
+          "probPinnacle": 0.4909607438016529,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Portland Trail Blazers vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su Portland Trail Blazers -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "trasferta",
+          "probModello": 0.39612451899211387,
+          "probPinnacle": 0.5090392561983471,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 74 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Memphis Grizzlies perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su Memphis Grizzlies +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 233.5",
+          "selezione": "Over 233.5",
+          "probModello": 0.3820810748819572,
+          "probPinnacle": 0.5276771857216761,
+          "quota": 1.79,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 233.5: Over vince se le due squadre segnano almeno 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (233.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        },
+        {
+          "mercato": "Totale punti 233.5",
+          "selezione": "Under 233.5",
+          "probModello": 0.6179189251180428,
+          "probPinnacle": 0.4723228142783238,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-29T07:16:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 233.5: Under vince se le due squadre segnano al massimo 233 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (233.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+        }
+      ],
+      "idOdss": [
+        "b80f045de8bc0714",
+        "e04ba961bd836348"
+      ]
+    }
+  ]
+}
