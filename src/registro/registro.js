@@ -23,6 +23,7 @@ import { eurolega } from '../basket/fonti/eurolega.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
+import { esitoCoppia } from '../regole/coppie-quota2.js';
 import { leggiIstantanea, fileIstantanea, GIORNI_ESITO_PRONOSTICI } from '../regole/pronostici.js';
 import { aggiornaEsitiSchedine } from '../regole/schedine-pronostici.js';
 
@@ -215,10 +216,12 @@ async function chiudiPronostici({ dirData, data, adesso, f, cache, errori, espn,
 export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
   const file = path.join(dirData, 'giornate', `${data}.json`);
   const g = leggi(file, null);
-  if (!g || !Array.isArray(g.multipleBonus) || !g.multipleBonus.length) return false;
+  // Coppie a quota 2: stesse partite della multipla, stesse regole per gli esiti delle gambe.
+  const coppie = [...(g?.coppieQuota2?.margine ?? []), ...(g?.coppieQuota2?.probabilita ?? [])];
+  if (!g || ((!Array.isArray(g.multipleBonus) || !g.multipleBonus.length) && !coppie.length)) return false;
   const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
   let cambiato = false;
-  for (const mb of g.multipleBonus) {
+  for (const mb of [...(g.multipleBonus ?? []), ...coppie]) {
     for (const gamba of mb.gambe ?? []) {
       const e = esiti.get(chiaveMercato(gamba.idPartita, gamba.mercato, gamba.selezione)) ?? null;
       if (e && gamba.esito !== e) { gamba.esito = e; cambiato = true; }
@@ -229,7 +232,7 @@ export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
         cambiato = true;
       }
     }
-    const r = esitoMultiplaBonus(mb);
+    const r = mb.criterio ? esitoCoppia(mb) : esitoMultiplaBonus(mb);
     if (r.esito !== mb.esito || r.ritorno !== mb.ritorno) { mb.esito = r.esito; mb.ritorno = r.ritorno; cambiato = true; }
   }
   if (cambiato) scrivi(file, g);

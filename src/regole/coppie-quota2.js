@@ -1,0 +1,88 @@
+// Coppie a quota 2 [utente, 29/10/2026]: l'utente unisce due partite della multipla bonus per giocare
+// una quota intorno a 2 ("raddoppio": una giocata sola, nessuna progressione). Le partite e le quote
+// sono le stesse della multipla (gambePossibili): qui si formano solo le coppie.
+// Due modi, tenuti entrambi in prova per confrontarli di settimana in settimana:
+// - "margine" (quello mostrato): prima le coppie pagate meglio rispetto al giusto (quota × probabilità di Pinnacle);
+// - "probabilita" (solo per confronto): prima le coppie più probabili secondo Pinnacle.
+// Ogni partita entra in una sola coppia per modo: una partita andata storta non ne fa perdere due.
+import { CONFIG } from '../config.js';
+
+const C = CONFIG.coppieQuota2;
+const EPS = 1e-9;
+const arrotonda = (x) => Math.round(x * 100) / 100;
+
+export const CRITERI = Object.freeze({
+  margine: (a, b) => a.quota * a.probMercato * b.quota * b.probMercato,
+  probabilita: (a, b) => a.probMercato * b.probMercato,
+});
+
+// Coppie del giorno con `criterio` dalle gambe di gambePossibili (con quota e probMercato).
+export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
+  const punteggio = CRITERI[criterio];
+  if (!punteggio) throw new Error(`Criterio delle coppie non valido: ${criterio}`);
+  const altro = CRITERI[criterio === 'margine' ? 'probabilita' : 'margine'];
+  const possibili = [];
+  for (let i = 0; i < gambe.length; i++) {
+    for (let j = i + 1; j < gambe.length; j++) {
+      const a = gambe[i];
+      const b = gambe[j];
+      if (a.idPartita === b.idPartita) continue;
+      const quota = a.quota * b.quota;
+      if (quota < C.quotaMin - EPS || quota > C.quotaMax + EPS) continue;
+      possibili.push({ a, b, quota, p: punteggio(a, b), q: altro(a, b), chiave: [a.idPartita, b.idPartita].sort().join('|') });
+    }
+  }
+  possibili.sort((x, y) => y.p - x.p || y.q - x.q || x.chiave.localeCompare(y.chiave));
+  const usate = new Set();
+  const out = [];
+  for (const c of possibili) {
+    if (usate.has(c.a.idPartita) || usate.has(c.b.idPartita)) continue;
+    usate.add(c.a.idPartita);
+    usate.add(c.b.idPartita);
+    const prob = c.a.probMercato * c.b.probMercato;
+    out.push({
+      id: `Q2${criterio === 'margine' ? 'M' : 'P'}${out.length + 1}-${data}`,
+      criterio,
+      prova: true,
+      gambe: [c.a, c.b].sort((x, y) => Date.parse(x.inizio) - Date.parse(y.inizio)).map(({ resa, ...g }) => ({ ...g, esito: null })),
+      quota: arrotonda(c.quota),
+      prob,
+      valueAtteso: prob * c.quota - 1,
+      esito: null,
+      ritorno: null,
+    });
+  }
+  return out;
+}
+
+// Le coppie dei due modi.
+export const costruisciCoppieQuota2 = (gambe, { data } = {}) => ({
+  margine: costruisciCoppie(gambe, { data, criterio: 'margine' }),
+  probabilita: costruisciCoppie(gambe, { data, criterio: 'probabilita' }),
+});
+
+// Esito con gli esiti delle due partite: una persa → persa; una aperta → null; una rimborsata esce e resta
+// la quota dell'altra (regola bet365). `ritorno`: euro per 1 € puntato.
+export function esitoCoppia(c) {
+  const esiti = c.gambe.map((g) => g.esito);
+  if (esiti.includes('persa')) return { esito: 'persa', ritorno: 0 };
+  if (esiti.some((e) => e !== 'vinta' && e !== 'rimborsata')) return { esito: null, ritorno: null };
+  const vinte = c.gambe.filter((g) => g.esito === 'vinta');
+  if (!vinte.length) return { esito: 'rimborsata', ritorno: 1 };
+  return { esito: 'vinta', ritorno: arrotonda(vinte.reduce((a, g) => a * g.quota, 1)) };
+}
+
+// Bilancio delle coppie chiuse di un modo su più giornate: 1 € a coppia.
+export function bilancioCoppie(giornate, criterio) {
+  const r = { chiuse: 0, vinte: 0, perse: 0, rimborsate: 0, aperte: 0, profitto: 0 };
+  for (const g of giornate) {
+    for (const c of g?.coppieQuota2?.[criterio] ?? []) {
+      if (c.esito === 'vinta') { r.chiuse++; r.vinte++; r.profitto += c.ritorno - 1; }
+      else if (c.esito === 'persa') { r.chiuse++; r.perse++; r.profitto -= 1; }
+      else if (c.esito === 'rimborsata') { r.chiuse++; r.rimborsate++; }
+      else r.aperte++;
+    }
+  }
+  r.profitto = arrotonda(r.profitto);
+  return r;
+}

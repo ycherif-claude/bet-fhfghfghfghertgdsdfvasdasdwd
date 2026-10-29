@@ -8,6 +8,7 @@ import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { riepiloga } from '../storico/riepiloghi.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
+import { bilancioCoppie } from '../regole/coppie-quota2.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
 
@@ -160,6 +161,8 @@ export function costruisciDati(dirData, adesso) {
     storico: { righe, riepiloghi: { fatte: per('fatte'), proposte: per('proposte') }, andamento: calcolaAndamento(righe) },
     segnature: tutteSegnature,
     bilancioPronostici: conPronostici ? { data: conPronostici.g.data, ...bilancioPronostici(conPronostici.g) } : null,
+    // Coppie a quota 2 dall'inizio: i due modi a confronto (1 € a coppia).
+    bilancioCoppie: Object.fromEntries(['margine', 'probabilita'].map((k) => [k, bilancioCoppie(giornate.map((x) => x.g), k)])),
     erroriDati,
   };
 }

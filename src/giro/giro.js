@@ -11,7 +11,8 @@ import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
-import { costruisciMultipleBonus } from '../regole/multipla-bonus.js';
+import { costruisciMultipleBonus, gambePossibili } from '../regole/multipla-bonus.js';
+import { costruisciCoppieQuota2 } from '../regole/coppie-quota2.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
 import { costruisciSchedinePronostici, rivediSchedine } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
@@ -157,9 +158,10 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato, { prova });
   // Multiple bonus bet365 (in prova): dai mercati con quota, senza le partite escluse dalle notizie.
   const escluse = new Set((notizie?.esclusioni ?? []).filter((x) => !x.idCandidato).map((x) => x.idPartita));
-  const multipleBonus = prova && raccolta
-    ? costruisciMultipleBonus(valutaMercati(raccolta, notizie, { adesso }).voci, { data: oggi, escluse })
-    : [];
+  const gambeBonus = prova && raccolta ? gambePossibili(valutaMercati(raccolta, notizie, { adesso }).voci, { escluse }) : [];
+  const multipleBonus = prova && raccolta ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus }) : [];
+  // Coppie a quota 2 (prova): dalle stesse partite della multipla, per margine e, per confronto, per probabilità.
+  const coppie = costruisciCoppieQuota2(gambeBonus, { data: oggi });
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
   // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).
   const quoteOdss = leggiQuoteOdss(dirData, oggi);
@@ -180,6 +182,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     // Modalità prova: ogni giocata porta `prova: true` (fuori da bankroll, da segnare e storico "fatte").
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
+    ...(coppie.margine.length || coppie.probabilita.length ? { coppieQuota2: coppie } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),

@@ -358,6 +358,25 @@ export function renderMultiplaBonus(mb) {
   );
 }
 
+// Coppie a quota 2 (prova): due partite della multipla bonus, quota totale ed esito.
+export function renderCoppia(c, n) {
+  const esito = c.esito ? `${ESITO_MB[c.esito] ?? c.esito}${c.esito === 'vinta' ? `: 1 € → ${fmtQuota.format(c.ritorno)} €` : ''}` : 'in attesa';
+  return el('article', { class: 'scheda' },
+    el('p', { class: 'prova' }, 'PROVA'),
+    el('h3', {}, `Coppia ${n}: quota ${fmtQuota.format(c.quota)}`),
+    el('p', {}, `Il mercato (Pinnacle) la dà al ${percento(c.prob)}`),
+    el('ul', {}, c.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): ${g.mercato}, ${g.selezione} @ ${fmtQuota.format(g.quota)}${numero(g.quotaBet365) ? ` (bet365 ${fmtQuota.format(g.quotaBet365)})` : ''}${g.esito ? ` · ${g.esito}` : ''}`))),
+    el('p', {}, el('strong', {}, `Esito: ${esito}`)),
+  );
+}
+
+// Bilancio dall'inizio dei due modi (margine, mostrato; probabilità, per confronto).
+export function testoBilancioCoppie(b) {
+  const riga = (x) => (x?.chiuse ? `${x.vinte} su ${x.chiuse} vinte (${percento(x.vinte / x.chiuse)}), ${segno(x.profitto)}${euro(x.profitto)}` : 'nessuna chiusa');
+  if (!b || (!b.margine?.chiuse && !b.probabilita?.chiuse)) return null;
+  return `Dall'inizio, 1 € a coppia. Per margine (queste): ${riga(b.margine)}. Per probabilità (confronto): ${riga(b.probabilita)}.`;
+}
+
 // Doppie e triple di pronostici (idea 4): quota totale, probabilità combinata prudente, gambe ed esito.
 // Non sono giocate: non entrano nel bankroll.
 const NOME_SCHEDINA = { doppia: 'Doppia', tripla: 'Tripla' };
@@ -470,6 +489,17 @@ function avvia(dati) {
   const sch = document.getElementById('schedine-pronostici');
   const ls = Array.isArray(dati.oggi.giornata?.schedinePronostici) ? dati.oggi.giornata.schedinePronostici : [];
   if (sch) sch.replaceChildren(...(ls.length ? [el('h2', {}, 'Doppie e triple'), el('p', { class: 'meta' }, 'Dai pronostici migliori di partite diverse, quota totale fra 1,50 e 2,00. Senza quota si usa la quota minima: controllala su bet365.'), ...ls.map((x) => schedaSicura(x?.id, () => renderSchedinaPronostici(x)))] : []));
+  const cq = document.getElementById('coppie-quota2');
+  const lc = Array.isArray(dati.oggi.giornata?.coppieQuota2?.margine) ? dati.oggi.giornata.coppieQuota2.margine : [];
+  const bilCoppie = testoBilancioCoppie(dati.bilancioCoppie);
+  if (cq) {
+    cq.replaceChildren(...(lc.length || bilCoppie ? [
+      el('h2', {}, 'Coppie a quota 2'),
+      el('p', { class: 'meta' }, 'Due partite della multipla bonus, quota totale fra 1,90 e 2,15, ogni partita in una coppia sola. Prima le coppie pagate meglio rispetto al giusto (margine).'),
+      ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
+      ...lc.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, i + 1))),
+    ] : []));
+  }
   const bonus = document.getElementById('multiple-bonus');
   const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

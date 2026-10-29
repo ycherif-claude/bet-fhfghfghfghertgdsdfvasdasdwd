@@ -13,6 +13,7 @@ import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
 import { CONFIG } from '../config.js';
 import { nomeBookmaker } from '../calcio/odss.js';
+import { bilancioCoppie } from '../regole/coppie-quota2.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -70,6 +71,18 @@ export function testoGiocata(g, i) {
 export function testoMultiplaBonus(mb) {
   const gambe = mb.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`);
   return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
+}
+
+// Coppie a quota 2 del giorno (solo quelle per margine; quelle per probabilità servono al confronto).
+const coppieMargine = (giornata) => (Array.isArray(giornata?.coppieQuota2?.margine) ? giornata.coppieQuota2.margine.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+export function testoCoppie(giornata) {
+  const coppie = coppieMargine(giornata);
+  if (!coppie.length) return null;
+  const blocchi = coppie.map((c, i) => [
+    `${i + 1}. quota <b>${virgola(c.quota)}</b> · mercato ${percentuale(c.prob)}`,
+    ...c.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`),
+  ].join('\n'));
+  return [`🎲 <b>Coppie a quota 2</b> (prova, partite della multipla)`, ...blocchi].join('\n\n');
 }
 const percentuale = (p) => `${Math.round(p * 100)}%`;
 const migliaia = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -211,15 +224,22 @@ export function contaStorico(giornate, ieri) {
       if (mb.esito === 'vinta' || mb.esito === 'persa') { r.multipleChiuse++; if (mb.esito === 'vinta') r.multipleVinte++; }
     }
   }
+  // Coppie a quota 2: i due modi a confronto (dall'inizio e ieri).
+  const diIeri = giornate.filter((g) => g.data === ieri);
+  r.coppie = Object.fromEntries(['margine', 'probabilita'].map((k) => [k, { tutte: bilancioCoppie(giornate, k), ieri: bilancioCoppie(diIeri, k) }]));
   return r;
 }
+
+const euroSegno = (n) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${virgola(Math.abs(n))} €`;
+const rigaCoppie = (b) => (b.chiuse ? `${b.vinte} su ${b.chiuse} vinte, ${euroSegno(b.profitto)}` : 'nessuna chiusa');
 
 export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
   const chiave = `${oggi}|storico`;
   if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
-  if (!r.pronostici.chiusi && !r.multipla.chiusi) return [];
+  const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0;
+  if (!r.pronostici.chiusi && !r.multipla.chiusi && !conCoppie) return [];
   const riga = (c) => (c.chiusi ? `${c.giusti} su ${c.chiusi} (${percentuale(c.giusti / c.chiusi)})` : 'nessuno chiuso');
   const promessa = (c) => (c.chiusi ? percentuale(c.promessa / c.chiusi) : '–');
   const testo = [
@@ -233,6 +253,12 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
     `   dall'inizio: <b>${riga(r.multipla)}</b> · attese dal mercato ${promessa(r.multipla)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.multiplaIeri)}`,
     `   multiple lunghe vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
+    ...(conCoppie ? [
+      '',
+      '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
+      `   per margine (quelle mostrate): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
+      `   per probabilità (confronto): <b>${rigaCoppie(r.coppie.probabilita.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilita.ieri)}`,
+    ] : []),
   ].join('\n');
   return [{ chiave, testo }];
 }
@@ -291,7 +317,8 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
     const base = prova
       ? `${testoPronostici(delGiorno, oggi)}\n\n🧪 ${giocate.length === 1 ? '1 giocata' : `${giocate.length} giocate`} di prova sul sito: non giocarle, servono al database.`
       : testo;
-    const conBonus = bonus.length ? `${base}\n\n${bonus.join('\n\n')}` : base;
+    const coppie = testoCoppie(delGiorno);
+    const conBonus = [base, ...(coppie ? [coppie] : []), ...bonus].join('\n\n');
     out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`)] });
   } else {
     // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).

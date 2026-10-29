@@ -1,0 +1,122 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { bilancioCoppie, costruisciCoppie, costruisciCoppieQuota2, esitoCoppia } from '../../src/regole/coppie-quota2.js';
+import { aggiornaMultipleBonus } from '../../src/registro/registro.js';
+import { contaStorico, messaggi, messaggioStorico, testoCoppie } from '../../src/notifiche/telegram.js';
+import { renderCoppia, testoBilancioCoppie } from '../../site/app.js';
+
+function nodo(tag) {
+  return {
+    tag, attrs: {}, figli: [], className: '',
+    setAttribute(k, v) { this.attrs[k] = v; },
+    append(...n) { this.figli.push(...n); },
+    replaceChildren(...n) { this.figli = n; },
+    addEventListener() {},
+  };
+}
+globalThis.document = { createElement: nodo, createTextNode: (text) => ({ text }) };
+const testi = (n) => [n.text ?? '', ...(n.figli ?? []).flatMap((f) => (f && typeof f === 'object' ? [testi(f)] : [String(f ?? '')]))].join(' ');
+
+const gamba = (id, quota, probMercato, ora = 15) => ({
+  sport: 'calcio', competizione: 'Serie A', partita: `Casa${id} - Ospite${id}`, idPartita: id,
+  inizio: `2026-10-30T${String(ora).padStart(2, '0')}:00:00+01:00`, mercato: '1X2', selezione: '1',
+  quota, quotaBet365: null, probMercato, resa: quota * probMercato, esito: null,
+});
+
+test('coppie: quota totale fra 1,90 e 2,15, partite diverse, ogni partita una volta sola', () => {
+  const gambe = [gamba('a', 1.4, 0.7), gamba('b', 1.4, 0.69), gamba('c', 1.45, 0.66), gamba('d', 1.3, 0.75), gamba('e', 1.25, 0.77)];
+  const coppie = costruisciCoppie(gambe, { data: '2026-10-30' });
+  for (const c of coppie) {
+    assert.ok(c.quota >= 1.9 && c.quota <= 2.15, `quota ${c.quota}`);
+    assert.notEqual(c.gambe[0].idPartita, c.gambe[1].idPartita);
+    assert.equal(c.prova, true);
+    assert.equal(c.criterio, 'margine');
+    assert.ok(!('resa' in c.gambe[0]));
+  }
+  const usate = coppie.flatMap((c) => c.gambe.map((g) => g.idPartita));
+  assert.equal(new Set(usate).size, usate.length);
+  // 1,25 × 1,30 = 1,625: e non ha nessun compagno abbastanza alto con d, ma 1,25 × 1,45 = 1,81: fuori.
+  assert.ok(!usate.includes('e'));
+});
+
+test('coppie: per margine prima la coppia pagata meglio, per probabilità la più probabile', () => {
+  // Coppie possibili: x+y 2,10 (prob 0,462, resa 0,970), x+z 1,95 (0,488, 0,952), y+w 2,10 (0,452), z+w 1,95 (0,477).
+  // Per margine: prima x+y, poi z+w. Per probabilità: prima x+z, poi y+w.
+  const gambe = [
+    gamba('x', 1.5, 0.66), gamba('y', 1.4, 0.70), // 2,10 × 0,462 = 0,970
+    gamba('z', 1.3, 0.74), gamba('w', 1.5, 0.645), // 1,95 × 0,4773 = 0,931
+  ];
+  const { margine, probabilita } = costruisciCoppieQuota2(gambe, { data: '2026-10-30' });
+  const ids = (c) => c.gambe.map((g) => g.idPartita).sort().join('+');
+  assert.equal(ids(margine[0]), 'x+y');
+  assert.equal(ids(margine[1]), 'w+z');
+  assert.equal(ids(probabilita[0]), 'x+z');
+  assert.equal(ids(probabilita[1]), 'w+y');
+  assert.match(margine[0].id, /^Q2M1-2026-10-30$/);
+  assert.match(probabilita[0].id, /^Q2P1-2026-10-30$/);
+  assert.throws(() => costruisciCoppie(gambe, { criterio: 'boh' }));
+});
+
+test('esito della coppia: persa, aperta, rimborsata e vinta con la quota rimasta', () => {
+  const c = (a, b) => ({ gambe: [{ quota: 1.4, esito: a }, { quota: 1.45, esito: b }] });
+  assert.deepEqual(esitoCoppia(c('vinta', 'persa')), { esito: 'persa', ritorno: 0 });
+  assert.deepEqual(esitoCoppia(c('vinta', null)), { esito: null, ritorno: null });
+  assert.deepEqual(esitoCoppia(c('vinta', 'vinta')), { esito: 'vinta', ritorno: 2.03 });
+  assert.deepEqual(esitoCoppia(c('rimborsata', 'vinta')), { esito: 'vinta', ritorno: 1.45 });
+  assert.deepEqual(esitoCoppia(c('rimborsata', 'rimborsata')), { esito: 'rimborsata', ritorno: 1 });
+});
+
+test('registro: gli esiti chiudono le coppie anche senza multiple bonus', () => {
+  const d = mkdtempSync(join(tmpdir(), 'bet-q2-'));
+  mkdirSync(join(d, 'giornate'));
+  const coppie = costruisciCoppieQuota2([gamba('a', 1.4, 0.7), gamba('b', 1.42, 0.69)], { data: '2026-10-30' });
+  writeFileSync(join(d, 'giornate', '2026-10-30.json'), JSON.stringify({ data: '2026-10-30', giocate: [], coppieQuota2: coppie }));
+  const reg = { righe: [
+    { idPartita: 'a', mercato: '1X2', selezione: '1', esito: 'vinta', esitoProvvisorio: false },
+    { idPartita: 'b', mercato: '1X2', selezione: '1', esito: 'vinta', esitoProvvisorio: false },
+  ] };
+  assert.equal(aggiornaMultipleBonus(d, '2026-10-30', reg), true);
+  const g = JSON.parse(readFileSync(join(d, 'giornate', '2026-10-30.json'), 'utf8'));
+  assert.equal(g.coppieQuota2.margine[0].esito, 'vinta');
+  assert.equal(g.coppieQuota2.margine[0].ritorno, 1.99);
+  assert.equal(g.coppieQuota2.probabilita[0].esito, 'vinta');
+  assert.equal(aggiornaMultipleBonus(d, '2026-10-30', reg), false);
+});
+
+test('bilancio delle coppie: 1 € a coppia per modo', () => {
+  const giornate = [{ coppieQuota2: { margine: [{ esito: 'vinta', ritorno: 2.04 }, { esito: 'persa', ritorno: 0 }, { esito: null }], probabilita: [{ esito: 'rimborsata', ritorno: 1 }] } }, {}];
+  assert.deepEqual(bilancioCoppie(giornate, 'margine'), { chiuse: 2, vinte: 1, perse: 1, rimborsate: 0, aperte: 1, profitto: 0.04 });
+  assert.deepEqual(bilancioCoppie(giornate, 'probabilita'), { chiuse: 1, vinte: 0, perse: 0, rimborsate: 1, aperte: 0, profitto: 0 });
+});
+
+test('Telegram: coppie per margine nel messaggio del mattino e confronto nello storico', () => {
+  const coppie = costruisciCoppieQuota2([gamba('a', 1.4, 0.7, 15), gamba('b', 1.42, 0.69, 18)], { data: '2026-10-30' });
+  const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie };
+  assert.match(testoCoppie(giornata), /Coppie a quota 2/);
+  assert.match(testoCoppie(giornata), /quota <b>1,99<\/b>/);
+  assert.match(testoCoppie(giornata), /15:00 Casaa - Ospitea/);
+  assert.equal(testoCoppie({}), null);
+  const m = messaggi({ giornata, oggi: '2026-10-30', adesso: new Date('2026-10-30T07:30:00Z'), inviate: new Set() });
+  assert.match(m.find((x) => x.chiave === '2026-10-30|giornata').testo, /Coppie a quota 2/);
+
+  const chiuse = { data: '2026-10-30', coppieQuota2: { margine: [{ id: 'm', esito: 'vinta', ritorno: 1.99 }], probabilita: [{ id: 'p', esito: 'persa', ritorno: 0 }] } };
+  const r = contaStorico([chiuse], '2026-10-30');
+  assert.equal(r.coppie.margine.tutte.vinte, 1);
+  assert.equal(r.coppie.probabilita.ieri.perse, 1);
+  const s = messaggioStorico({ giornate: [chiuse], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
+  assert.match(s[0].testo, /per margine \(quelle mostrate\): <b>1 su 1 vinte, \+0,99 €<\/b>/);
+  assert.match(s[0].testo, /per probabilità \(confronto\): <b>0 su 1 vinte, −1,00 €<\/b>/);
+});
+
+test('sito: scheda della coppia e bilancio dei due modi', () => {
+  const [c] = costruisciCoppie([gamba('a', 1.4, 0.7), gamba('b', 1.42, 0.69)], { data: '2026-10-30' });
+  const t = testi(renderCoppia(c, 1));
+  assert.match(t, /Coppia 1: quota 1,99/);
+  assert.match(t, /Casaa - Ospitea/);
+  assert.equal(testoBilancioCoppie(null), null);
+  assert.equal(testoBilancioCoppie({ margine: { chiuse: 0 }, probabilita: { chiuse: 0 } }), null);
+  assert.match(testoBilancioCoppie({ margine: { chiuse: 2, vinte: 1, profitto: 0.04 }, probabilita: { chiuse: 0 } }), /Per margine \(queste\): 1 su 2 vinte/);
+});
