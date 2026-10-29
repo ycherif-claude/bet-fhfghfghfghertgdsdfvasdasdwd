@@ -13,6 +13,7 @@ import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { costruisciMultipleBonus, gambePossibili } from '../regole/multipla-bonus.js';
 import { costruisciCoppieQuota2 } from '../regole/coppie-quota2.js';
+import { calcolaTaratura, tara } from '../regole/taratura-modello.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
 import { costruisciSchedinePronostici, rivediSchedine } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
@@ -23,6 +24,15 @@ const PARTITE_ANTEPRIMA = 5;
 
 const oggetto = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 const scriviJson = (file, dati) => fs.writeFileSync(file, `${JSON.stringify(dati, null, 2)}\n`);
+
+// Giornate prima di `oggi` (per la taratura automatica del modello); i file illeggibili si saltano.
+function giornatePassate(dirData, oggi) {
+  const dir = path.join(dirData, 'giornate');
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) < oggi).flatMap((f) => {
+    try { return [JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))]; } catch { return []; }
+  });
+}
 
 // Si può scrivere il file della giornata? No se è in uso: una giocata segnata o una partita iniziata.
 export function puoScrivere(fileEsistente, segnature, adesso, modo) {
@@ -159,10 +169,13 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   // Multiple bonus bet365 (in prova): dai mercati con quota, senza le partite escluse dalle notizie.
   const escluse = new Set((notizie?.esclusioni ?? []).filter((x) => !x.idCandidato).map((x) => x.idPartita));
   const voci = prova && raccolta ? valutaMercati(raccolta, notizie, { adesso }).voci : [];
-  const gambeBonus = gambePossibili(voci, { escluse });
+  // Taratura automatica del modello (solo studio): dalle partite chiuse delle giornate passate, per sport.
+  const taraturaModello = calcolaTaratura(giornatePassate(dirData, oggi));
+  const taraGambe = (gambe) => gambe.map((g) => ({ ...g, probModelloTarato: tara(taraturaModello, g.sport, g.probModello) }));
+  const gambeBonus = taraGambe(gambePossibili(voci, { escluse }));
   // Coppie e multiple per probabilità (quelle che l'utente vede): senza Under 2.5 e 3.5 [utente, 29/10/2026].
   // Le multiple per margine restano come prima, anche per continuare a misurare gli Under.
-  const gambeSenzaUnder = gambePossibili(voci, { escluse, senzaUnder: true });
+  const gambeSenzaUnder = taraGambe(gambePossibili(voci, { escluse, senzaUnder: true }));
   const multipleBonus = prova && raccolta ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
   // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
   const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi });
@@ -187,6 +200,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     ...(Object.values(coppie).some((l) => l.length) ? { coppieQuota2: coppie } : {}),
+    ...(prova && raccolta ? { taraturaModello } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),

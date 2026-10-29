@@ -18,12 +18,15 @@ const resa = (a, b) => a.quota * a.probMercato * b.quota * b.probMercato;
 export const CRITERI = Object.freeze({
   margine: resa,
   probabilita: (a, b) => a.probMercato * b.probMercato,
-  modello: (a, b) => a.probModello * b.probModello,
+  modello: (a, b) => pm(a) * pm(b),
   confermate: resa,
 });
 const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C' };
-const conModello = (g) => typeof g.probModello === 'number' && Number.isFinite(g.probModello);
-export const confermata = (g) => conModello(g) && Math.abs(g.probModello - g.probMercato) < C.scartoConferma + EPS;
+// Probabilità del modello di una partita: quella corretta dalla taratura automatica, se c'è, altrimenti la grezza.
+const numero = (v) => typeof v === 'number' && Number.isFinite(v);
+export const pm = (g) => (numero(g.probModelloTarato) ? g.probModelloTarato : g.probModello);
+const conModello = (g) => numero(pm(g));
+export const confermata = (g) => conModello(g) && Math.abs(pm(g) - g.probMercato) < C.scartoConferma + EPS;
 
 // Coppie del giorno con `criterio` dalle gambe di gambePossibili (con quota e probMercato).
 export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
@@ -56,7 +59,7 @@ export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
       gambe: [c.a, c.b].sort((x, y) => Date.parse(x.inizio) - Date.parse(y.inizio)).map(({ resa, ...g }) => ({ ...g, esito: null })),
       quota: arrotonda(c.quota),
       prob,
-      probModello: conModello(c.a) && conModello(c.b) ? c.a.probModello * c.b.probModello : null,
+      probModello: conModello(c.a) && conModello(c.b) ? pm(c.a) * pm(c.b) : null,
       valueAtteso: prob * c.quota - 1,
       esito: null,
       ritorno: null,

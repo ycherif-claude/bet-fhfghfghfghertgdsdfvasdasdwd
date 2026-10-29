@@ -237,6 +237,10 @@ export const CONFIG = congela({
   // Coppie a quota 2 [utente, 29/10/2026]: due partite della multipla bonus con quota totale in questo intervallo.
   // scartoConferma: modello e mercato "d'accordo" se le loro probabilità distano meno di 5 punti (coppie "confermate").
   coppieQuota2: { quotaMin: 1.9, quotaMax: 2.15, scartoConferma: 0.05 },
+  // Taratura automatica del modello (solo studio) [utente, 29/10/2026]: da 50 partite chiuse per sport; `forza`
+  // = quanto la correzione è trattenuta verso "nessuna correzione" (circa come 20 partite che dicono il contrario).
+  // avvisoPartite: dopo quante partite la revisione del lunedì dice se il modello corretto batte il mercato.
+  taraturaModello: { minPartite: 50, forza: 20, avvisoPartite: 100 },
   // Fase 3 (controlli prima delle partite): finestre in minuti prima dell'inizio, soglie e tetti.
   controlli: {
     // Il cron "ogni 10 minuti" di GitHub parte in realtà ogni 30-43 minuti: la finestra è larga

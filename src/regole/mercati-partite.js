@@ -2,7 +2,7 @@
 // vincono di più, con la quota media e quanto si sarebbe vinto giocando ogni partita da sola con 1 €.
 // Ogni partita conta una volta per giorno e mercato, anche se è in più multiple o coppie.
 import { CONFIG } from '../config.js';
-import { tutteLeCoppie } from './coppie-quota2.js';
+import { pm, tutteLeCoppie } from './coppie-quota2.js';
 
 const SPORT = { calcio: 'Calcio', nba: 'NBA', basket: 'Basket', pallavolo: 'Pallavolo', tennis: 'Tennis' };
 const arrotonda = (x, cifre = 2) => Math.round(x * 10 ** cifre) / 10 ** cifre;
@@ -18,7 +18,7 @@ export function chiaveMercato(g) {
 }
 
 // Gambe di una giornata: tutte le multiple bonus e tutte le coppie, una volta per partita e mercato.
-function gambeDelGiorno(giornata) {
+export function gambeDelGiorno(giornata) {
   const tutte = [
     ...(giornata?.multipleBonus ?? []).flatMap((m) => m?.gambe ?? []),
     ...tutteLeCoppie(giornata).flatMap((c) => c?.gambe ?? []),
@@ -64,7 +64,8 @@ export function storicoMercati(giornate) {
 }
 
 // Modello contro mercato [utente, 29/10/2026], sulle stesse partite (solo quelle con la probabilità del modello):
-// errore medio (Brier: più basso è meglio) di ciascuno e partite divise per quanto il modello si scosta dal mercato.
+// errore medio (Brier: più basso è meglio) del modello grezzo, del modello corretto dalla taratura automatica (dove
+// non c'è ancora la correzione vale il grezzo) e del mercato; partite divise per quanto il modello corretto si scosta.
 export function confrontoModello(giornate) {
   const scarto = CONFIG.coppieQuota2.scartoConferma;
   const gruppi = [
@@ -75,6 +76,8 @@ export function confrontoModello(giornate) {
   let partite = 0;
   let vinte = 0;
   let erroreModello = 0;
+  let erroreCorretto = 0;
+  let conCorrezione = 0;
   let erroreMercato = 0;
   for (const giornata of giornate) {
     for (const g of gambeDelGiorno(giornata)) {
@@ -83,8 +86,10 @@ export function confrontoModello(giornate) {
       partite++;
       vinte += v;
       erroreModello += (g.probModello - v) ** 2;
+      erroreCorretto += (pm(g) - v) ** 2;
+      if (pm(g) !== g.probModello) conCorrezione++;
       erroreMercato += (g.probMercato - v) ** 2;
-      const d = g.probModello - g.probMercato;
+      const d = pm(g) - g.probMercato;
       const r = gruppi[d >= scarto - 1e-9 ? 0 : d <= -scarto + 1e-9 ? 2 : 1];
       r.partite++;
       r.vinte += v;
@@ -96,6 +101,8 @@ export function confrontoModello(giornate) {
     partite,
     vinte,
     erroreModello: partite ? arrotonda(erroreModello / partite, 4) : null,
+    erroreCorretto: partite ? arrotonda(erroreCorretto / partite, 4) : null,
+    conCorrezione,
     erroreMercato: partite ? arrotonda(erroreMercato / partite, 4) : null,
     gruppi: gruppi.map(({ sommaProb, ...r }) => ({
       ...r,

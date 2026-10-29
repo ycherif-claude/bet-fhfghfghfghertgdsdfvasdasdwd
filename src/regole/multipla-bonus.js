@@ -45,8 +45,8 @@ export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false }
       sport: partita.sport ?? 'calcio', competizione: partita.competizione, partita: partita.partita,
       idPartita: partita.idPartita, inizio: partita.inizio, mercato: m.mercato, selezione: m.selezione,
       quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle,
-      // Probabilità del nostro modello (null dove non c'è, per esempio nella pallavolo) [utente, 29/10/2026].
-      probModello: num(m.probModello) ? m.probModello : null, resa, esito: null,
+      // Probabilità del nostro modello [utente, 29/10/2026]; per la pallavolo l'Elo "di studio", che non entra nelle giocate.
+      probModello: num(m.probModello) ? m.probModello : num(m.probModelloStudio) ? m.probModelloStudio : null, resa, esito: null,
     };
     const cur = migliori.get(partita.idPartita);
     if (!cur || resa > cur.resa + EPS || (Math.abs(resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);

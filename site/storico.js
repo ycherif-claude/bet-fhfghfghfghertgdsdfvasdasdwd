@@ -175,7 +175,7 @@ export function renderConfronto(bilancio, confronto) {
       el('tbody', {}, righeModi)),
     el('h2', {}, 'Il nostro modello contro il mercato'),
     el('p', { class: 'meta' }, c.partite
-      ? `Sulle stesse ${c.partite} partite, errore medio del modello ${fmtErrore.format(c.erroreModello)}, del mercato ${fmtErrore.format(c.erroreMercato)}: vince chi ha il numero più basso. Sotto, le partite divise per quanto il modello si scosta dal mercato (tra parentesi quante ne dava il mercato); guadagno giocando ogni partita da sola con 1 €.`
+      ? `Sulle stesse ${c.partite} partite, errore medio del modello ${fmtErrore.format(c.erroreModello)}${c.conCorrezione ? `, del modello corretto da solo sui risultati ${fmtErrore.format(c.erroreCorretto)} (${c.conCorrezione} partite corrette)` : ''}, del mercato ${fmtErrore.format(c.erroreMercato)}: vince chi ha il numero più basso. Sotto, le partite divise per quanto il modello si scosta dal mercato (tra parentesi quante ne dava il mercato); guadagno giocando ogni partita da sola con 1 €.`
       : 'Ancora nessuna partita chiusa con la probabilità del modello.'),
     c.partite ? el('table', { class: 'tabella-modi' },
       el('thead', {}, el('tr', {}, ['Partite', 'Quante', 'Vinte (mercato)', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),

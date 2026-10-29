@@ -112,6 +112,8 @@ export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta, fonte
       // Dal modello solo se attivati (CONFIG.pallavolo.vincenteDalModello e mercatiSetDalModello).
       probModello: !dalModello ? null
         : modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
+      // Elo sempre, solo per lo studio di coppie e multiple [utente, 29/10/2026]: non entra nelle giocate.
+      probModelloStudio: modello.find((m) => m.mercato === v.mercato && m.selezione === v.selezione)?.probModello ?? null,
       probPinnacle: rif.prob[v.sel],
       quota: sotto ? b365 : q.quota,
       fonteQuota: sotto ? `bet365 via ${fonte}, più bassa della mediana ${virgola(q.quota)} su ${q.n} bookmaker` : `mediana di ${q.n} bookmaker (${fonte})`,
