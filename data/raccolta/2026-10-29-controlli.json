@@ -2,8 +2,8 @@
   "data": "2026-10-29",
   "voci": {
     "calcio-2026-10-29-inter-turku-hjk-under-over-1-5-under-1-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 4,00 sotto la minima 4,46",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 4,00, sotto la minima 4,46 del mattino; il value era già sottile (1,2%) e non c'è nessun fatto nuovo che alzi la probabilità del 25% usata al mattino (controllo quote odss-api, 16:07)",
       "problemi": [
         {
           "tipo": "quota",
@@ -11,7 +11,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-29T16:07:11+01:00"
+      "alle": "2026-10-29T16:08:29+01:00",
+      "claude": true
     }
   },
   "claude": {
