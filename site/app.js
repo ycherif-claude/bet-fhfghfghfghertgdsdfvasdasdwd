@@ -86,6 +86,9 @@ export function ultimeSegnature(segnature) {
 
 // ---- Formattazione ----
 const fmtOra = new Intl.DateTimeFormat('it-IT', { timeZone: FUSO, hour: '2-digit', minute: '2-digit' });
+// "giovedì 29 ottobre" dalla data della giornata (AAAA-MM-GG).
+const fmtData = new Intl.DateTimeFormat('it-IT', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+export const dataLunga = (data) => (/^\d{4}-\d{2}-\d{2}$/.test(String(data)) ? fmtData.format(new Date(`${data}T12:00:00Z`)) : String(data ?? ''));
 const fmtEuro = new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' });
 const fmtNum = (cifre) => new Intl.NumberFormat('it-IT', { minimumFractionDigits: cifre, maximumFractionDigits: cifre });
 export const fmtQuota = fmtNum(2);
@@ -345,29 +348,64 @@ export function testoBilancioPronostici(b) {
 
 const ESITO_MB = { vinta: 'vinta', persa: 'persa', rimborsata: 'rimborsata' };
 
-// Multipla bonus bet365 (prova): gambe, quota con l'incremento ed esito.
-export function renderMultiplaBonus(mb) {
-  const esito = mb.esito ? `${ESITO_MB[mb.esito] ?? mb.esito}${mb.esito === 'vinta' ? `: 1 € → ${fmtQuota.format(mb.ritorno)} €` : ''}` : 'in attesa';
-  return el('article', { class: 'scheda' },
-    el('h3', {}, `${mb.nome} (PROVA, non giocare)`),
-    el('p', {}, `Quota ${fmtQuota.format(mb.quota)} · incremento ${percento(mb.incremento)} · con bonus ${fmtQuota.format(mb.quotaConBonus)}`),
-    el('p', { class: 'meta' }, 'Quote medie dei bookmaker: su bet365 controlla che ogni partita sia almeno 1,25.'),
-    el('p', {}, el('strong', {}, `Esito: ${esito}`)),
-    el('details', {}, el('summary', {}, `Partite (${mb.gambe.length})`),
-      el('ul', {}, mb.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): ${g.mercato}, ${g.selezione} @ ${fmtQuota.format(g.quota)}${g.esito ? ` · ${g.esito}` : ''}`)))),
+// La giocata di una partita detta come la si cerca sul bookmaker: "Over 2.5", "Doppia chance X2", "Vince Real Madrid".
+export function testoScelta(g) {
+  const s = String(g.selezione ?? '');
+  if (/^(Over|Under) /.test(s) && /^Under\/Over/.test(g.mercato)) return s;
+  if (g.mercato === 'Vincente') return `Vince ${s}`;
+  if (g.mercato === '1X2') return `Esito finale ${s}`;
+  return `${g.mercato} ${s}`;
+}
+
+const SEGNO_ESITO = { vinta: '✓', persa: '✗', rimborsata: '↺' };
+const NOME_ESITO = { vinta: 'Vinta', persa: 'Persa', rimborsata: 'Rimborsata' };
+
+// Biglietto (coppie e multiple bonus): quota grande in alto, una riga per partita (ora, partita, giocata,
+// quota, esito) e in fondo l'esito con quanto rende 1 €.
+function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = true }) {
+  const righe = el('ol', { class: 'partite' }, gambe.map((g) => el('li', { class: `partita${g.esito ? ` esito-${g.esito}` : ''}` },
+    el('span', { class: 'ora' }, ora(g.inizio)),
+    el('span', { class: 'chi' }, el('span', { class: 'incontro' }, g.partita), el('span', { class: 'scelta' }, testoScelta(g))),
+    el('span', { class: 'quota-gamba' }, fmtQuota.format(g.quota)),
+    el('span', { class: 'segno-esito', 'aria-label': NOME_ESITO[g.esito] ?? 'in attesa' }, SEGNO_ESITO[g.esito] ?? ''),
+  )));
+  const piede = esito
+    ? `${NOME_ESITO[esito] ?? esito}${esito === 'vinta' && numero(ritorno) ? `: 1 € diventa ${fmtQuota.format(ritorno)} €` : ''}`
+    : 'In attesa';
+  return el('article', { class: `biglietto${esito ? ` esito-${esito}` : ''}` },
+    el('header', { class: 'testa' },
+      el('h3', {}, titolo),
+      el('p', { class: 'quota-totale' }, el('span', { class: 'sr' }, 'quota '), fmtQuota.format(quota)),
+    ),
+    nota ? el('p', { class: 'nota-biglietto' }, nota) : null,
+    aperto ? righe : el('details', {}, el('summary', {}, `Le ${gambe.length} partite`), righe),
+    el('p', { class: 'piede' }, piede),
   );
+}
+
+// Multipla bonus bet365 (prova): quota con l'incremento, partite (aperte per quelle più probabili) ed esito.
+export function renderMultiplaBonus(mb) {
+  return renderBiglietto({
+    titolo: mb.nome.replace('Multipla bonus bet365 ', 'Multipla ').replace(' (le più probabili)', ''),
+    quota: mb.quota,
+    nota: `Con il bonus bet365 del ${percento(mb.incremento)} diventa ${fmtQuota.format(mb.quotaConBonus)}. Su bet365 ogni partita deve essere almeno 1,25.`,
+    gambe: mb.gambe,
+    esito: mb.esito,
+    ritorno: mb.ritorno,
+    aperto: mb.criterio === 'probabilita',
+  });
 }
 
 // Coppie a quota 2 (prova): due partite della multipla bonus, quota totale ed esito.
 export function renderCoppia(c, n) {
-  const esito = c.esito ? `${ESITO_MB[c.esito] ?? c.esito}${c.esito === 'vinta' ? `: 1 € → ${fmtQuota.format(c.ritorno)} €` : ''}` : 'in attesa';
-  return el('article', { class: 'scheda' },
-    el('p', { class: 'prova' }, 'PROVA'),
-    el('h3', {}, `Coppia ${n}: quota ${fmtQuota.format(c.quota)}`),
-    el('p', {}, `Il mercato (Pinnacle) la dà al ${percento(c.prob)}`),
-    el('ul', {}, c.gambe.map((g) => el('li', {}, `${g.partita} (${ora(g.inizio)}): ${g.mercato}, ${g.selezione} @ ${fmtQuota.format(g.quota)}${numero(g.quotaBet365) ? ` (bet365 ${fmtQuota.format(g.quotaBet365)})` : ''}${g.esito ? ` · ${g.esito}` : ''}`))),
-    el('p', {}, el('strong', {}, `Esito: ${esito}`)),
-  );
+  return renderBiglietto({
+    titolo: `Coppia ${n}`,
+    quota: c.quota,
+    nota: `Pinnacle la dà al ${percento(c.prob)}`,
+    gambe: c.gambe,
+    esito: c.esito,
+    ritorno: c.ritorno,
+  });
 }
 
 // Bilancio dall'inizio dei due modi (margine, mostrato; probabilità, per confronto).
@@ -459,7 +497,7 @@ function avvia(dati) {
   riquadro.replaceChildren(renderRiquadro(dati.bankroll, dati.oggi?.giornata));
   avvisi.replaceChildren(...testoAvvisi(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   const sottotitolo = document.getElementById('data-giornata');
-  if (sottotitolo) sottotitolo.textContent = dati.oggi.data;
+  if (sottotitolo) sottotitolo.textContent = dataLunga(dati.oggi.data).replace(/^./, (c) => c.toUpperCase());
   const aggiornamento = document.getElementById('aggiornamento');
   if (aggiornamento) aggiornamento.textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
 
@@ -495,7 +533,7 @@ function avvia(dati) {
   if (cq) {
     cq.replaceChildren(...(lc.length || bilCoppie ? [
       el('h2', {}, 'Coppie a quota 2'),
-      el('p', { class: 'meta' }, 'Due partite della multipla bonus, quota totale fra 1,90 e 2,15, ogni partita in una coppia sola. Prima le coppie pagate meglio rispetto al giusto (margine).'),
+      el('p', { class: 'meta' }, 'Quota totale fra 1,90 e 2,15. Ogni partita è in una coppia sola; prima quelle pagate meglio.'),
       ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
       ...lc.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, i + 1))),
     ] : []));

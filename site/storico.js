@@ -127,7 +127,7 @@ export function renderMercati(righe) {
     ? chiuse.map((r) => el('tr', {},
       el('td', {}, r.mercato),
       el('td', {}, r.partite),
-      el('td', {}, `${percento(r.percentuale)} (mercato ${percento(r.probMercato)})`),
+      el('td', {}, `${percento(r.percentuale)} (${percento(r.probMercato)})`),
       el('td', {}, fmtQuotaMedia.format(r.quotaMedia)),
       el('td', { class: classeProfitto(r.profitto) }, euroConSegno(r.profitto)),
     ))
@@ -135,8 +135,8 @@ export function renderMercati(righe) {
   return [
     el('h2', {}, 'Mercati di multiple e coppie'),
     el('p', { class: 'meta' }, 'Ogni partita delle multiple bonus e delle coppie a quota 2, una volta per giorno. Vinte: quante sono uscite (tra parentesi quante ne dava il mercato). Guadagno: giocando ogni partita da sola con 1 €.'),
-    el('table', {},
-      el('thead', {}, el('tr', {}, ['Mercato', 'Partite', 'Vinte', 'Quota media', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
+    el('table', { class: 'tabella-mercati' },
+      el('thead', {}, el('tr', {}, ['Mercato', 'Partite', 'Vinte (mercato)', 'Quota media', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
       el('tbody', {}, corpo),
     ),
   ];

@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Giocate del giorno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="stile.css">
 </head>
 <body>
-  <header>
-    <h1>Giocate del giorno</h1>
-    <p class="data" id="data-giornata"></p>
+  <header class="testata">
+    <nav><a href="index.html" aria-current="page">Oggi</a><a href="storico.html">Storico</a></nav>
+    <h1 id="data-giornata">Giocate del giorno</h1>
     <p class="data" id="aggiornamento"></p>
-    <nav><a href="storico.html">Storico</a></nav>
   </header>
   <main>
     <div id="riquadro"></div>

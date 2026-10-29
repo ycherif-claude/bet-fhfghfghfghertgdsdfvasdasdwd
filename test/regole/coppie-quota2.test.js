@@ -115,7 +115,9 @@ test('Telegram: coppie per margine nel messaggio del mattino e confronto nello s
 test('sito: scheda della coppia e bilancio dei due modi', () => {
   const [c] = costruisciCoppie([gamba('a', 1.4, 0.7), gamba('b', 1.42, 0.69)], { data: '2026-10-30' });
   const t = testi(renderCoppia(c, 1));
-  assert.match(t, /Coppia 1: quota 1,99/);
+  assert.match(t, /Coppia 1 .*quota\s+1,99/);
+  assert.match(t, /Esito finale 1\s+1,40/);
+  assert.match(t, /In attesa/);
   assert.match(t, /Casaa - Ospitea/);
   assert.equal(testoBilancioCoppie(null), null);
   assert.equal(testoBilancioCoppie({ margine: { chiuse: 0 }, probabilita: { chiuse: 0 } }), null);
@@ -233,4 +235,15 @@ test('sito storico: tabella dei mercati', async () => {
   assert.match(t, /1,40/);
   assert.doesNotMatch(t, / X /);
   assert.match(testi({ figli: renderMercati(null) }), /Nessuna partita chiusa/);
+});
+
+test('sito: giocata scritta come sul bookmaker e data lunga', async () => {
+  const { testoScelta, dataLunga } = await import('../../site/app.js');
+  assert.equal(testoScelta({ mercato: 'Under/Over 2.5', selezione: 'Over 2.5' }), 'Over 2.5');
+  assert.equal(testoScelta({ mercato: 'Vincente', selezione: 'Real Madrid' }), 'Vince Real Madrid');
+  assert.equal(testoScelta({ mercato: 'Doppia chance', selezione: 'X2' }), 'Doppia chance X2');
+  assert.equal(testoScelta({ mercato: '1X2', selezione: '1' }), 'Esito finale 1');
+  assert.equal(testoScelta({ mercato: 'Handicap set -1.5', selezione: 'casa' }), 'Handicap set -1.5 casa');
+  assert.equal(dataLunga('2026-10-29'), 'giovedì 29 ottobre');
+  assert.equal(dataLunga('boh'), 'boh');
 });
