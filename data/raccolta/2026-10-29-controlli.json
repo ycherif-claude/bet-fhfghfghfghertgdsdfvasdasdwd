@@ -54,8 +54,8 @@
       "alle": "2026-10-29T19:10:30+01:00"
     },
     "basket-2026-10-29-maccabi-tel-aviv-paris-basketball-vincente-paris-basketball": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,38 sotto la minima 2,44",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 2,38, sotto la minima 2,44 del mattino; nessun fatto nuovo che alzi la probabilità del 43% usata al mattino, quindi il value non regge (controllo quote odss-api, 19:10)",
       "problemi": [
         {
           "tipo": "quota",
@@ -63,7 +63,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-29T19:10:30+01:00"
+      "alle": "2026-10-29T19:11:13+01:00",
+      "claude": true
     }
   },
   "claude": {
