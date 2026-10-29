@@ -43,12 +43,34 @@
         "quote non controllate (mercato senza quote nella fonte gratuita)"
       ],
       "alle": "2026-10-29T18:27:19+01:00"
+    },
+    "M-calcio-2026-10-29-fiorentina-atalanta-bc-under-over-2-5-under-2-5+basket-2026-10-29-maccabi-tel-aviv-paris-basketball-vincente-paris-basketball#1": {
+      "esito": "confermata",
+      "motivo": "quota 2,38",
+      "problemi": [],
+      "dettagli": [
+        "quota 2,38"
+      ],
+      "alle": "2026-10-29T19:10:30+01:00"
+    },
+    "basket-2026-10-29-maccabi-tel-aviv-paris-basketball-vincente-paris-basketball": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,38 sotto la minima 2,44",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,38 sotto la minima 2,44"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-10-29T19:10:30+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "calcio-2026-10-29-inter-turku-hjk-under-over-1-5-under-1-5"
+      "calcio-2026-10-29-inter-turku-hjk-under-over-1-5-under-1-5",
+      "basket-2026-10-29-maccabi-tel-aviv-paris-basketball-vincente-paris-basketball"
     ]
   },
   "pronostici": {
