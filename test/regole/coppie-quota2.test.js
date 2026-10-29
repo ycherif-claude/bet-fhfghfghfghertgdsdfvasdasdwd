@@ -149,3 +149,40 @@ test('Telegram storico: multiple per probabilità per lunghezza', () => {
   assert.match(s[0].testo, /da 5: <b>1 su 1 vinte, \+3,40 €<\/b>/);
   assert.match(s[0].testo, /da 10: <b>0 su 1 vinte, −1,00 €<\/b>/);
 });
+
+test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il resto taciuto', async () => {
+  const { soloEssenziale, testoMattinoEssenziale } = await import('../../src/notifiche/telegram.js');
+  const coppie = costruisciCoppieQuota2([gamba('a', 1.4, 0.7), gamba('b', 1.42, 0.69)], { data: '2026-10-30' });
+  const mbp = { id: 'MBP5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili)', criterio: 'probabilita', quota: 4.5, incremento: 0.1, quotaConBonus: 4.95, gambe: [gamba('c', 1.3, 0.75)] };
+  const mbm = { id: 'MB10-2026-10-30', nome: 'Multipla bonus bet365 da 10', quota: 25, incremento: 0.35, quotaConBonus: 33.75, gambe: [gamba('d', 1.4, 0.7)] };
+  const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie, multipleBonus: [mbm, mbp] };
+  const mattino = testoMattinoEssenziale(giornata, '2026-10-30');
+  assert.match(mattino, /Coppie a quota 2/);
+  assert.match(mattino, /da 5 \(le più probabili\)/);
+  assert.doesNotMatch(mattino, /Multipla bonus bet365 da 10</);
+  assert.match(testoMattinoEssenziale({}, '2026-10-30'), /nessuna coppia/);
+
+  const lista = [
+    { chiave: '2026-10-30|giornata', testo: 'pronostici…' },
+    { chiave: '2026-10-30|pronostici|x', testo: 'nuovi pronostici' },
+    { chiave: '2026-10-30|schedine-pronostici', testo: 'doppie' },
+    { chiave: '2026-10-29|bonus|MB10-2026-10-29|persa', testo: 'margine' },
+    { chiave: '2026-10-29|bonus|MBP5-2026-10-29|vinta', testo: 'probabilità' },
+    { chiave: '2026-10-29|pronostici-esito', testo: 'esiti pronostici' },
+    { chiave: '2026-10-29|schedina-esito|s|vinta', testo: 'esito doppia' },
+    { chiave: '2026-10-30|storico', testo: 'storico' },
+    { chiave: '2026-10-29|esito|g1|vinta', testo: 'giocata fatta' },
+    { chiave: '2026-10-29|provvisorio|g1|0', testo: 'provvisorio' },
+    { chiave: '2026-10-30|stato|g2|annullata|', testo: 'stato' },
+  ];
+  const { manda, tacere } = soloEssenziale(lista, { giornata, oggi: '2026-10-30', sito: 'https://sito' });
+  assert.deepEqual(manda.map((m) => m.chiave), ['2026-10-30|giornata', '2026-10-29|bonus|MBP5-2026-10-29|vinta', '2026-10-30|storico', '2026-10-29|esito|g1|vinta', '2026-10-29|provvisorio|g1|0']);
+  assert.match(manda[0].testo, /Coppie a quota 2[\s\S]*https:\/\/sito$/);
+  assert.equal(tacere.length, 6);
+
+  // Storico essenziale: niente pronostici né multipla lunga.
+  const g = { data: '2026-10-29', pronostici: [{ pronostici: [{ prob: 0.85, esito: 'vinta' }] }], coppieQuota2: { margine: [{ esito: 'vinta', ritorno: 2 }], probabilita: [] } };
+  const s = messaggioStorico({ giornate: [g], inviate: new Set(), oggi: '2026-10-30', adesso: new Date('2026-10-30T08:30:00Z'), essenziale: true });
+  assert.doesNotMatch(s[0].testo, /Pronostici dall/);
+  assert.match(s[0].testo, /Coppie a quota 2/);
+});

@@ -500,8 +500,13 @@ function avvia(dati) {
       ...lc.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, i + 1))),
     ] : []));
   }
+  // Multiple con le partite più probabili in alto; le altre (per margine) nella sezione chiusa.
+  const tutteMb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
+  const perProb = tutteMb.filter((x) => x?.criterio === 'probabilita');
+  const mp = document.getElementById('multiple-probabili');
+  if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));
   const bonus = document.getElementById('multiple-bonus');
-  const mb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
+  const mb = tutteMb.filter((x) => x?.criterio !== 'probabilita');
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));
 }
 

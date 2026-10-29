@@ -83,16 +83,16 @@ test('eseguiNotifiche: manda, salva lo stato, non ripete; il token non finisce n
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
   const inviati = [];
   const fetch = async (url, init) => { inviati.push({ url, corpo: JSON.parse(init.body) }); return { ok: true, status: 200, text: async () => '' }; };
-  const r = await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch });
+  const r = await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch });
   assert.equal(r.mandati, 1);
   assert.equal(inviati[0].url, 'https://api.telegram.org/botSEGRETO/sendMessage');
   assert.equal(inviati[0].corpo.chat_id, '42');
   assert.equal(inviati[0].corpo.parse_mode, 'HTML');
   assert.ok(leggiInviate(join(dir, 'stato', 'telegram.json')).has(`${OGGI}|giocata|a`));
-  assert.equal((await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch })).mandati, 0);
+  assert.equal((await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch })).mandati, 0);
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([], ['errore nuovo'])));
   const rotto = async () => ({ ok: false, status: 401, text: async () => 'bot SEGRETO non valido' });
-  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch: rotto }), (e) => !e.message.includes('SEGRETO'));
+  await assert.rejects(eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'SEGRETO', chat: '42', fetch: rotto }), (e) => !e.message.includes('SEGRETO'));
 });
 
 test('stato: si tengono solo gli ultimi 14 giorni', () => {
@@ -108,7 +108,7 @@ test('chat not found: errore chiaro, nessun ripiego su getUpdates', async () => 
   writeFileSync(join(dir, 'giornate', `${OGGI}.json`), JSON.stringify(giornata([giocata('a')])));
   const url = [];
   const fetch = async (u) => { url.push(u); return { ok: false, status: 400, text: async () => '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}' }; };
-  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch }), /TELEGRAM_CHAT_ID/);
+  await assert.rejects(eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '123', fetch }), /TELEGRAM_CHAT_ID/);
   assert.ok(url.every((u) => u.endsWith('/sendMessage')));
   assert.equal(url.length, 1);
 });
@@ -156,7 +156,7 @@ test('un messaggio che fallisce non blocca gli altri; alla fine errore, gli invi
     testi.push(t);
     return { ok: true, status: 200, text: async () => '' };
   };
-  await assert.rejects(eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '42', run, fetch }), /1 messaggi/);
+  await assert.rejects(eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '42', run, fetch }), /1 messaggi/);
   assert.equal(testi.length, 2);
   const inviate = leggiInviate(join(dir, 'stato', 'telegram.json'));
   assert.ok(inviate.has(`${OGGI}|run|9`));
@@ -232,12 +232,12 @@ test('eseguiNotifiche: l\'esito provvisorio parte una volta e il definitivo del 
   writeFileSync(join(dir, 'segnature', 'c.json'), JSON.stringify({ idGiocata: 'c', fatta: true, quotaReale: 2, puntataReale: 2, ora: '2026-10-22T05:00:00Z' }));
   const testi = [];
   const fetch = async (url, init) => { testi.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
-  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
   assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
-  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
   assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
   scrivi({ esito: 'vinta' });
-  await eseguiNotifiche({ dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
   assert.equal(testi.filter((t) => /probabilmente/.test(t)).length, 1);
   assert.match(testi.at(-1), /^✅ <b>VINTA<\/b>/);
 });
@@ -262,20 +262,20 @@ test('errori scritti prima del giro del mattino nella giornata di ieri: partono 
   writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio'])));
   const inviati = [];
   const fetch = async (url, init) => { inviati.push(JSON.parse(init.body).text); return { ok: true, status: 200, text: async () => '' }; };
-  await eseguiNotifiche({ errori: true, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: mattina, token: 'T', chat: '42', fetch });
   assert.ok(inviati.some((t) => t.includes('errore vecchio')));
   // Il 23 alle 08:30, prima del giro del mattino: gli esiti rapidi scrivono nella giornata del 22.
   writeFileSync(file, JSON.stringify(giornata([], ['errore vecchio', 'Esiti rapidi: Inter - Roma: HTTP 500'])));
   inviati.length = 0;
   const domani = new Date('2026-10-23T06:30:00Z');
-  const r = await eseguiNotifiche({ errori: true, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch });
+  const r = await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch });
   assert.equal(r.mandati, 1);
   assert.equal(inviati[0], '⚠️ <b>Errore della giornata 22/10</b>\n• Esiti rapidi: Inter - Roma: HTTP 500');
   // Non si ripete, nemmeno quando c'è la giornata del 23.
-  assert.equal((await eseguiNotifiche({ errori: true, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch })).mandati, 0);
+  assert.equal((await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: domani, token: 'T', chat: '42', fetch })).mandati, 0);
   writeFileSync(join(dir, 'giornate', '2026-10-23.json'), JSON.stringify({ data: '2026-10-23', giocate: [], erroriGiro: [] }));
   inviati.length = 0;
-  await eseguiNotifiche({ errori: true, dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
+  await eseguiNotifiche({ errori: true, essenziale: false, dirData: dir, adesso: new Date('2026-10-23T07:30:00Z'), token: 'T', chat: '42', fetch });
   assert.ok(!inviati.some((t) => t.includes('Inter - Roma: HTTP 500') || t.includes('errore vecchio')));
 });
 

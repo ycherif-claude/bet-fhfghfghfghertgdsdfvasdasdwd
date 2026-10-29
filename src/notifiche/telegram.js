@@ -24,6 +24,11 @@ const INFORMATIVI = [/già iniziat/, /TheSportsDB.*HTTP 429/];
 // Errori (erroriGiro, Action fallite, giornata non scritta) solo sul sito, non su Telegram [utente, 26/10/2026].
 const ERRORI_SU_TELEGRAM = false;
 
+// Solo l'essenziale [utente, 29/10/2026]: al mattino le coppie a quota 2 e le multiple con le partite più
+// probabili; durante il giorno i loro esiti e quelli delle giocate fatte. Tutto il resto si calcola e si
+// registra come prima, ma non si manda (le chiavi si segnano lo stesso: niente arretrati se si riaccende).
+const SOLO_ESSENZIALE = true;
+
 const html = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const virgola = (q) => q.toFixed(2).replace('.', ',');
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -243,18 +248,21 @@ export function contaStorico(giornate, ieri) {
 const euroSegno = (n) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${virgola(Math.abs(n))} €`;
 const rigaCoppie = (b) => (b.chiuse ? `${b.vinte} su ${b.chiuse} vinte, ${euroSegno(b.profitto)}` : 'nessuna chiusa');
 
-export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
+// `essenziale`: solo coppie a quota 2 e multiple con le partite più probabili (SOLO_ESSENZIALE).
+export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale = false }) {
   const chiave = `${oggi}|storico`;
   if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
   const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0;
   const lunghezzeProb = Object.keys(r.multipleProb).map(Number).sort((a, b) => a - b);
-  if (!r.pronostici.chiusi && !r.multipla.chiusi && !conCoppie && !lunghezzeProb.length) return [];
+  const altri = !essenziale && (r.pronostici.chiusi || r.multipla.chiusi);
+  if (!altri && !conCoppie && !lunghezzeProb.length) return [];
   const riga = (c) => (c.chiusi ? `${c.giusti} su ${c.chiusi} (${percentuale(c.giusti / c.chiusi)})` : 'nessuno chiuso');
   const promessa = (c) => (c.chiusi ? percentuale(c.promessa / c.chiusi) : '–');
   const testo = [
     `📊 <b>Storico al ${giornoMese(oggi)}</b>`,
+    ...(essenziale ? [] : [
     '',
     '📋 <b>Pronostici dall\'80% in su</b>',
     `   dall'inizio: <b>${riga(r.pronostici)}</b> · promessi ${promessa(r.pronostici)}`,
@@ -264,6 +272,7 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso }) {
     `   dall'inizio: <b>${riga(r.multipla)}</b> · attese dal mercato ${promessa(r.multipla)}`,
     `   ieri (${giornoMese(ieri)}): ${riga(r.multiplaIeri)}`,
     `   multiple lunghe vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
+    ]),
     ...(conCoppie ? [
       '',
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
@@ -294,6 +303,32 @@ export function messaggiMultipleBonus({ giornate, inviate }) {
     }
   }
   return out;
+}
+
+// Messaggio del mattino essenziale: coppie a quota 2 e multiple con le partite più probabili.
+const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilita');
+export function testoMattinoEssenziale(giornata, oggi) {
+  const coppie = testoCoppie(giornata);
+  const multiple = multipleProb(giornata).map(testoMultiplaBonus);
+  if (!coppie && !multiple.length) return `🎲 <b>Oggi, ${giornoMese(oggi)}</b>: nessuna coppia a quota 2 e nessuna multipla (poche partite adatte).`;
+  return [...(coppie ? [coppie] : []), ...multiple].join('\n\n');
+}
+
+// Divide i messaggi in da mandare e da tacere (SOLO_ESSENZIALE). Il messaggio del mattino diventa quello essenziale.
+// Si mandano: Action fallite e giornata mancante (se gli errori sono accesi), esiti delle multiple per probabilità,
+// esiti (anche provvisori) delle giocate fatte, storico. Il resto si tace.
+export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
+  const manda = [];
+  const tacere = [];
+  const piede = sito ? `\n\n${sito}` : '';
+  const sempre = /\|(run|mancante|esito|provvisorio|storico)(\||$)/;
+  for (const m of lista) {
+    if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
+    else if (sempre.test(m.chiave)) manda.push(m);
+    else if (/\|bonus\|MBP/.test(m.chiave)) manda.push(m);
+    else tacere.push(m);
+  }
+  return { manda, tacere };
 }
 
 const valide = (giornata) => (Array.isArray(giornata?.giocate) ? giornata.giocate.filter((g) => g && g.id) : []);
@@ -604,7 +639,7 @@ export async function manda(testo, { token, chat, fetch = globalThis.fetch, atte
   for (const pezzo of dividi(testo)) await mandaPezzo(pezzo, { token, chat, fetch, attendi });
 }
 
-export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi, errori = ERRORI_SU_TELEGRAM }) {
+export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi, errori = ERRORI_SU_TELEGRAM, essenziale = SOLO_ESSENZIALE }) {
   const oggi = giornataDi(adesso);
   const fileStato = join(dirData, 'stato', 'telegram.json');
   const inviate = leggiInviate(fileStato);
@@ -617,7 +652,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
       giornata = { data: oggi, giocate: [], erroriGiro: [`File della giornata illeggibile: ${e.message}`] };
     }
   }
-  const lista = messaggi({ giornata, oggi, adesso, inviate, run, sito, errori });
+  let lista = messaggi({ giornata, oggi, adesso, inviate, run, sito, errori });
   // Esiti: le giornate fino a 13 giorni fa (le chiavi restano 14 giorni, niente doppioni).
   const segnature = leggiJson(dirData, 'segnature', []).map((x) => x.contenuto).filter((x) => x && !erroreSegnatura(x));
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
@@ -626,10 +661,17 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
-  lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso }));
+  lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso, essenziale }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));
+  // Solo l'essenziale: i messaggi taciuti si segnano come mandati senza mandarli.
+  let tacere = [];
+  if (essenziale) ({ manda: lista, tacere } = soloEssenziale(lista, { giornata, oggi, sito }));
+  for (const m of tacere) {
+    inviate.add(m.chiave);
+    for (const k of m.segna ?? []) inviate.add(k);
+  }
   let mandati = 0;
   const falliti = [];
   try {
@@ -648,7 +690,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
     }
   } finally {
     // Anche se un invio fallisce, quelli già partiti restano segnati: niente doppioni la volta dopo.
-    if (mandati) scriviInviate(fileStato, inviate, oggi);
+    if (mandati || tacere.length) scriviInviate(fileStato, inviate, oggi);
   }
   // Alla fine l'errore, perché l'Action risulti fallita: i non mandati si riprovano la volta dopo.
   if (falliti.length) throw new Error(`${falliti.length} messaggi su ${lista.length} non mandati (${mandati} mandati): ${falliti.join(' | ')}`);
