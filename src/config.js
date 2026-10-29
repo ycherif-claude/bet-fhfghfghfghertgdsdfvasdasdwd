@@ -9,7 +9,8 @@ export const CONFIG = congela({
   bankrollIniziale: 200,
   // Saldo [utente, 29/10/2026]: non esiste un bankroll vero. Guadagni e perdite delle giocate fatte si contano da 0
   // a partire da questo giorno (giornata di inizio della giocata); quelle prima restano solo nello storico.
-  inizioConti: '2026-10-30',
+  // Anticipato al 29/10 [utente, 29/10/2026]: una coppia di quel giorno è stata giocata davvero.
+  inizioConti: '2026-10-29',
   // Giocate ancora aperte dopo tanti giorni: esito definitivo dal registro, se c'è (src/registro/registro.js).
   giorniEsitoDalRegistro: 2,
   // Stop settimanale (−50 €) tolto dall'utente il 21/10/2026: nessun limite settimanale.

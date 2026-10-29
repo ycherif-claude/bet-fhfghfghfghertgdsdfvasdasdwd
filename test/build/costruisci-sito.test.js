@@ -47,13 +47,13 @@ test('costruisciDati: se la giornata non ha "giocate", applica selezionaGiocate 
 });
 
 test('andamento: saldo da 0 dal giorno di inizio dei conti, un punto per giorno con giocate chiuse', () => {
-  const g0 = giocata('z', '2026-10-29T20:00:00+01:00', 'vinta'); // prima dei conti: solo nello storico
+  const g0 = giocata('z', '2026-10-28T20:00:00+01:00', 'vinta'); // prima dei conti: solo nello storico
   const g1 = giocata('a', '2026-10-30T20:00:00+01:00', 'vinta');
   const g2 = giocata('b', '2026-10-30T21:00:00+01:00', 'persa');
   const g3 = giocata('c', '2026-10-31T20:00:00+01:00', 'vinta');
   const g4 = giocata('d', '2026-11-01T20:00:00+01:00', null);
   const d = dirTemp(
-    [{ data: '2026-10-29', candidati: [], giocate: [g0] }, { data: '2026-10-30', candidati: [], giocate: [g1, g2] }, { data: '2026-10-31', candidati: [], giocate: [g3, g4] }],
+    [{ data: '2026-10-28', candidati: [], giocate: [g0] }, { data: '2026-10-30', candidati: [], giocate: [g1, g2] }, { data: '2026-10-31', candidati: [], giocate: [g3, g4] }],
     ['z', 'a', 'b', 'c', 'd'].map((id) => ({ idGiocata: id, fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-29T09:00:00+01:00' })));
   const r = costruisciDati(d, new Date('2026-11-02T10:00:00Z'));
   assert.deepEqual(r.storico.andamento, [

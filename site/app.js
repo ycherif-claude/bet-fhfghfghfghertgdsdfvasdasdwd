@@ -432,9 +432,13 @@ export function renderMultiplaBonus(mb, segnatura = null, { segnabile = false } 
 }
 
 // Coppie a quota 2 (prova): due partite della multipla bonus, quota totale ed esito.
+// Orari delle partite accanto al titolo [utente, 29/10/2026]: "18:30 e 01:00", in ordine di inizio.
+export const orariCoppia = (gambe) => gambe.map((g) => ora(g.inizio)).filter(Boolean).join(' e ');
+
 export function renderCoppia(c, n, segnatura = null, { segnabile = false } = {}) {
+  const orari = orariCoppia(c.gambe);
   return renderBiglietto({
-    titolo: `Coppia ${n}`,
+    titolo: orari ? `Coppia ${n} · ${orari}` : `Coppia ${n}`,
     quota: c.quota,
     nota: `Pinnacle la dà al ${percento(c.prob)}`,
     gambe: c.gambe,
