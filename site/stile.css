@@ -42,7 +42,9 @@ a { color: var(--segnapunti); }
 :focus-visible { outline: 3px solid var(--segnapunti); outline-offset: 2px; }
 
 /* Testata: data grande in condensato, navigazione a schede in alto. */
-.testata { padding-top: 12px; padding-bottom: 4px; }
+/* App installata sull'iPhone: la barra di stato è sopra la pagina (black-translucent), si lascia il suo spazio. */
+.testata { padding-top: calc(12px + env(safe-area-inset-top, 0px)); padding-bottom: 4px; }
+main { padding-bottom: env(safe-area-inset-bottom, 0px); }
 .testata nav { display: flex; gap: 4px; margin-bottom: 14px; }
 .testata nav a {
   color: var(--gesso-tenue); text-decoration: none; font-weight: 600;
