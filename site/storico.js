@@ -19,9 +19,10 @@ export function righeVista(righe, vista) {
       // Le giocate di prova non sono mai "fatte", anche se segnate per errore.
       if (!segnatura || segnatura.fatta !== true || giocata.prova === true) continue;
       puntata = segnatura.puntataReale;
-      quota = segnatura.quotaReale;
+      // Coppie e multiple: bonus bet365 e partite rimborsate nel moltiplicatore.
+      quota = segnatura.quotaReale * (giocata.moltiplicatore ?? 1);
     } else {
-      if (giocata.stato === 'annullata') continue;
+      if (giocata.stato === 'annullata' || giocata.biglietto === true) continue;
       puntata = giocata.puntata.euro;
       quota = giocata.quota ?? giocata.quotaMinima;
     }
@@ -60,14 +61,14 @@ function svg(tag, attrs = {}, testo) {
 function renderGrafico(andamento) {
   if (!andamento.length) return el('p', { class: 'vuoto' }, 'Ancora nessuna giocata chiusa');
   const L = 640, A = 240, sx = 70, dx = 16, sup = 16, inf = 32;
-  const valori = andamento.map((p) => p.bankroll);
+  const valori = andamento.map((p) => p.saldo);
   let min = Math.min(...valori);
   let max = Math.max(...valori);
   if (min === max) { min -= 1; max += 1; }
   const x = (i) => (andamento.length === 1 ? (sx + L - dx) / 2 : sx + ((L - sx - dx) * i) / (andamento.length - 1));
   const y = (v) => sup + (A - sup - inf) * (1 - (v - min) / (max - min));
 
-  const radice = svg('svg', { viewBox: `0 0 ${L} ${A}`, role: 'img', 'aria-label': 'Andamento del bankroll nel tempo' });
+  const radice = svg('svg', { viewBox: `0 0 ${L} ${A}`, role: 'img', 'aria-label': 'Andamento del saldo nel tempo' });
   radice.append(
     svg('line', { class: 'asse', x1: sx, y1: sup, x2: sx, y2: A - inf }),
     svg('line', { class: 'asse', x1: sx, y1: A - inf, x2: L - dx, y2: A - inf }),
@@ -78,12 +79,12 @@ function renderGrafico(andamento) {
   if (andamento.length > 1) {
     radice.append(
       svg('text', { x: x(andamento.length - 1), y: A - 10, 'text-anchor': 'end' }, dataBreve(andamento.at(-1).data)),
-      svg('polyline', { class: 'linea', points: andamento.map((p, i) => `${x(i)},${y(p.bankroll)}`).join(' ') }),
+      svg('polyline', { class: 'linea', points: andamento.map((p, i) => `${x(i)},${y(p.saldo)}`).join(' ') }),
     );
   }
   for (const [i, p] of andamento.entries()) {
-    const punto = svg('circle', { class: 'punto', cx: x(i), cy: y(p.bankroll), r: 3 });
-    punto.append(svg('title', {}, `${dataBreve(p.data)}: ${euro(p.bankroll)}`));
+    const punto = svg('circle', { class: 'punto', cx: x(i), cy: y(p.saldo), r: 3 });
+    punto.append(svg('title', {}, `${dataBreve(p.data)}: ${segno(p.saldo)}${euro(p.saldo)}`));
     radice.append(punto);
   }
   return radice;
@@ -150,6 +151,25 @@ const MODI_COPPIE = [
   ['confermate', 'Confermate da modello e mercato'],
 ];
 const fmtErrore = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+// Quota di chiusura (dati.chiusura): il mercato si è mosso verso le nostre partite?
+export function renderChiusura(righe) {
+  const lista = Array.isArray(righe) ? righe.filter((r) => r && r.partite > 0) : [];
+  return [
+    el('h2', {}, 'Quota di chiusura'),
+    el('p', { class: 'meta' }, lista.length
+      ? 'Le partite di coppie e multiple confrontate con Pinnacle subito prima dell\'inizio. "A favore": quante volte la probabilità è salita dopo la nostra scelta. "Valore": quanto rendeva la quota del mattino con la probabilità di chiusura; sopra zero vuol dire che abbiamo preso un prezzo migliore del mercato finale, ed è il segnale più rapido che un metodo funziona.'
+      : 'Ancora nessuna partita con la quota di chiusura: si registra dal 30/10, nell\'ultimo controllo prima dell\'inizio.'),
+    lista.length ? el('table', { class: 'tabella-modi' },
+      el('thead', {}, el('tr', {}, ['Partite', 'Quante', 'A favore', 'Valore'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, lista.map((r) => el('tr', {},
+        el('td', {}, r.gruppo === 'tutte' ? 'Tutte' : r.gruppo),
+        el('td', {}, r.partite),
+        el('td', {}, `${percento(r.percentualeAFavore)} (${segno(r.movimento)}${Math.round(r.movimento * 1000) / 10} punti)`),
+        el('td', { class: classeProfitto(r.valore) }, `${segno(r.valore)}${percento(r.valore)}`),
+      )))) : null,
+  ];
+}
+
 export function renderConfronto(bilancio, confronto) {
   const righeModi = MODI_COPPIE.map(([k, nome]) => {
     const b = bilancio?.[k];
@@ -198,11 +218,11 @@ function renderRiga({ giocata: g, profitto }) {
 
 function avvia(dati) {
   let vista = 'fatte';
-  document.getElementById('bankroll-attuale').textContent = `Bankroll attuale ${euro(dati.bankroll.bankroll)}`;
+  document.getElementById('bankroll-attuale').textContent = `Saldo${dati.inizioConti ? ` dal ${dataBreve(dati.inizioConti)}` : ''}: ${segno(dati.bankroll.saldo ?? 0)}${euro(dati.bankroll.saldo ?? 0)}`;
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
-  document.getElementById('confronto')?.replaceChildren(...renderConfronto(dati.bilancioCoppie, dati.confrontoModello).filter(Boolean));
+  document.getElementById('confronto')?.replaceChildren(...[...renderChiusura(dati.chiusura), ...renderConfronto(dati.bilancioCoppie, dati.confrontoModello)].filter(Boolean));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));
 
   const interruttore = document.getElementById('vista');

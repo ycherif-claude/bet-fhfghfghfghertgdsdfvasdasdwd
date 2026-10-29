@@ -244,6 +244,11 @@ export function inFormatoCalcio(evento) {
       const h = Object.fromEntries([['casa', x.HOME], ['pareggio', x.DRAW], ['trasferta', x.AWAY]].filter(([, q]) => quotaValida(q)));
       if (Object.keys(h).length) m.h2h = h;
     }
+    const dc = l.mercati.dc;
+    if (dc) {
+      const d = Object.fromEntries(['1X', 'X2', '12'].map((k) => [k, dc[k]]).filter(([, q]) => quotaValida(q)));
+      if (Object.keys(d).length) m.dc = d;
+    }
     for (const [k, o] of Object.entries(l.mercati)) {
       const ou = lineaDi(k, 'ou');
       if (!Number.isFinite(ou) || !Number.isInteger(ou - 0.5)) continue;

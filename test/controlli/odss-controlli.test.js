@@ -40,14 +40,14 @@ const opz = (f, extra = {}) => ({ fonti: f, chiavi: { oddsApi: 'K', sportsgameod
 
 test('controlli con odss: una richiesta per calcio e NBA, quote e probabilità da odss, fonti di prima non chiamate', async () => {
   const d = temp();
-  const f = fetchOdss({ 'calcio,basket|1x2,ou,moneyline,ah': [RIGHE] });
+  const f = fetchOdss({ 'calcio,basket|1x2,dc,ou,moneyline,ah': [RIGHE] });
   const fo = fonti(f);
   const registrate = [];
   const out = await quoteFresche([voceCalcio, voceNba], opz(fo, { dirData: d, registra: (s, c, e) => registrate.push(`${s}|${c}|${e.length}`) }));
   assert.equal(f.chiamate.length, 1);
   const u = new URL(f.chiamate[0].url);
   assert.equal(u.searchParams.get('sport'), 'calcio,basket');
-  assert.equal(u.searchParams.get('market'), '1x2,ou,moneyline,ah');
+  assert.equal(u.searchParams.get('market'), '1x2,dc,ou,moneyline,ah');
   // Solo gli event_id delle voci, senza finestra (correzioni 24/10/2026).
   assert.equal(u.searchParams.get('event_id'), 'c1,n1');
   assert.equal(u.searchParams.has('commence_from'), false);

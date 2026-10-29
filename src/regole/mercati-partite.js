@@ -112,3 +112,31 @@ export function confrontoModello(giornate) {
     })),
   };
 }
+
+// Quota di chiusura [utente, 29/10/2026]: per le partite di coppie e multiple con la chiusura (prob di Pinnacle
+// nell'ultimo controllo), quante volte il mercato si è mosso verso la nostra scelta, di quanto in media e quanto
+// valeva la quota del mattino con la probabilità di chiusura (quota × prob di chiusura − 1: sopra 0 = vantaggio).
+export function chiusuraPartite(giornate) {
+  const gruppi = new Map();
+  const aggiungi = (k, g) => {
+    const r = gruppi.get(k) ?? { gruppo: k, partite: 0, aFavore: 0, sommaMovimento: 0, sommaValore: 0 };
+    r.partite++;
+    if (g.chiusura.prob > g.probMercato + 1e-9) r.aFavore++;
+    r.sommaMovimento += g.chiusura.prob - g.probMercato;
+    r.sommaValore += g.quota * g.chiusura.prob - 1;
+    gruppi.set(k, r);
+  };
+  for (const giornata of giornate) {
+    for (const g of gambeDelGiorno(giornata)) {
+      if (typeof g.chiusura?.prob !== 'number' || typeof g.probMercato !== 'number' || typeof g.quota !== 'number') continue;
+      aggiungi('tutte', g);
+      aggiungi(SPORT[g.sport] ?? g.sport, g);
+    }
+  }
+  return [...gruppi.values()].map(({ sommaMovimento, sommaValore, ...r }) => ({
+    ...r,
+    percentualeAFavore: arrotonda(r.aFavore / r.partite, 4),
+    movimento: arrotonda(sommaMovimento / r.partite, 4),
+    valore: arrotonda(sommaValore / r.partite, 4),
+  }));
+}

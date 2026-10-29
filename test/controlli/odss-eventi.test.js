@@ -67,7 +67,7 @@ test('controlli: una richiesta con i soli event_id delle partite del passaggio, 
   const u = new URL(f.chiamate[0]);
   assert.deepEqual(u.searchParams.get('event_id').split(',').sort(), ['c1', 'c2', 'n1']);
   assert.equal(u.searchParams.get('sport'), 'calcio,basket');
-  assert.equal(u.searchParams.get('market'), '1x2,ou,moneyline,ah');
+  assert.equal(u.searchParams.get('market'), '1x2,dc,ou,moneyline,ah');
   assert.equal(u.searchParams.has('commence_from'), false);
   assert.ok(!f.chiamate[0].includes(CHIAVE));
   // Torino - Monza: i bookmaker dei due eventi uniti (4 + goldbet).

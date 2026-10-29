@@ -75,17 +75,15 @@ test('giornataPiena: vero se una giocata di oggi ha la puntata fissa', () => {
   assert.equal(giornataPiena({ giocate: [null, {}] }), false);
 });
 
-test('riquadro: niente "Distanza dallo stop"; in gioco oggi / tetto, e "tetto tolto oggi" a giornata piena', () => {
-  const b = { ...bankrollOk, risultatoSettimana: -12.5, inGiocoOggi: 7 };
-  const voci = vociRiquadro(b, { giocate: [{ puntata: { euro: 5 } }] });
-  const etichette = voci.map(([e]) => e);
-  assert.deepEqual(etichette, ['Bankroll', 'Risultato settimana', 'In gioco oggi / tetto']);
-  assert.ok(!voci.some(([e, v]) => /stop/i.test(e) || /stop/i.test(v)));
-  const tetto = voci.find(([e]) => e === 'In gioco oggi / tetto')[1];
-  assert.match(tetto, /^7,00\s€ \/ 24,00\s€$/);
-  assert.match(voci.find(([e]) => e === 'Risultato settimana')[1], /12,50\s€$/);
-  const piena = vociRiquadro(b, { giocate: [{ puntata: fissa }] }).find(([e]) => e === 'In gioco oggi / tetto')[1];
-  assert.match(piena, /^7,00\s€ \/ 24,00\s€ · tetto tolto oggi \(puntate fisse da 1 €\)$/);
+test('riquadro: saldo da 0 dal giorno di inizio dei conti, settimana e in gioco oggi; niente bankroll né tetto', () => {
+  const b = { ...bankrollOk, saldo: 4.5, risultatoSettimana: -12.5, inGiocoOggi: 7 };
+  const voci = vociRiquadro(b, '2026-10-30');
+  assert.deepEqual(voci.map(([e]) => e), ['Saldo dal 30/10', 'Questa settimana', 'In gioco oggi']);
+  assert.match(voci[0][1], /^\+4,50\s€$/);
+  assert.match(voci[1][1], /12,50\s€$/);
+  assert.match(voci[2][1], /^7,00\s€$/);
+  assert.ok(!voci.some(([e, v]) => /stop|tetto|bankroll/i.test(`${e} ${v}`)));
+  assert.equal(vociRiquadro({}, null)[0][0], 'Saldo');
 });
 
 test('erroriDati: un avviso "Dati non validi in <file>: <errore>" per ciascuno', () => {

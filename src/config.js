@@ -7,6 +7,11 @@ const congela = (o) => {
 export const CONFIG = congela({
   fusoOrario: 'Europe/Rome',
   bankrollIniziale: 200,
+  // Saldo [utente, 29/10/2026]: non esiste un bankroll vero. Guadagni e perdite delle giocate fatte si contano da 0
+  // a partire da questo giorno (giornata di inizio della giocata); quelle prima restano solo nello storico.
+  inizioConti: '2026-10-30',
+  // Giocate ancora aperte dopo tanti giorni: esito definitivo dal registro, se c'è (src/registro/registro.js).
+  giorniEsitoDalRegistro: 2,
   // Stop settimanale (−50 €) tolto dall'utente il 21/10/2026: nessun limite settimanale.
   sogliaValue: 0.05,
   sogliaValueSpeciali: 0.10,
@@ -198,6 +203,7 @@ export const CONFIG = congela({
   // Uno sport senza partite oggi non fa richieste. Al massimo 13 × 30 = 390 richieste in 30 giorni (sotto le 440
   // spendibili); consumo atteso più basso (README, "Budget di odss-api").
   odss: {
+    // La quota di chiusura delle partite di coppie e multiple [29/10/2026] usa le stesse richieste dei controlli.
     richiesteGiorno: 13,
     tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 4 },
     riserva: 60,
@@ -213,6 +219,15 @@ export const CONFIG = congela({
     lineeOu: [1.5, 2.5, 3.5],
     // Bookmaker su cui l'utente ha un conto (Betfair non c'è su odss-api; bet365 di solito senza prematch).
     miei: ['bet365', 'snai', 'goldbet', 'sportium', 'daznbet'],
+    // Bookmaker con licenza italiana presenti su odss-api (collaudo del 23/10/2026) [utente, 29/10/2026]: per ogni
+    // partita di coppie e multiple si salvano le loro quote migliori (al massimo `bookmakerPerEsito`), per scegliere
+    // dove giocare.
+    italiani: ['888sport', '888sport_it', 'admiralbet', 'bet365', 'betflag', 'betitaly', 'betpassion', 'betsson', 'betwin360',
+      'bgame', 'bwin', 'casinosanremo', 'codere', 'daznbet', 'domusbet', 'elabet', 'eplay24', 'eurobet', 'fastbet', 'gioca7',
+      'giocodigitale', 'goldbet', 'leovegas', 'lottomatica', 'marathonbet', 'netbet', 'netwin', 'perlaplay', 'planetwin365',
+      'pokerstars', 'quigioco', 'sisal', 'snai', 'sportbet', 'sportium', 'stake', 'stanleybet', 'starcasino', 'starvegas',
+      'staryes', 'sunbet', 'totosi', 'vincitu', 'williamhill', 'winamax', 'winbet', 'zonagioco'],
+    bookmakerPerEsito: 12,
     // Partita odss ↔ partita della giornata: stesse squadre e inizio entro tante ore.
     toleranzaOre: 2,
     // Quote dei bookmaker dell'utente aggiornate da più di tante ore (al momento del download): ignorate.

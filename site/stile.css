@@ -110,6 +110,10 @@ main > section > .meta, .giocate > .meta { grid-column: 1 / -1; margin: 0 0 4px;
 .biglietto .piede::after { right: -8px; }
 .biglietto.esito-vinta .piede { color: var(--ok); }
 .biglietto.esito-persa .piede { color: var(--errore); }
+/* Segnare il biglietto come giocato: sotto il piede, sulla carta. */
+.segna-biglietto { padding: 0 16px 14px; }
+.segna-biglietto .segnatura { margin-top: 0; }
+.segna-biglietto .segnata { color: var(--ok); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Tutto il resto: chiuso in fondo. */
@@ -211,3 +215,10 @@ th:first-child, td:first-child { overflow-wrap: normal; }
   .tabella-mercati thead th:first-child { display: none; }
   .tabella-mercati tbody tr:last-child { border-bottom: 0; }
 }
+
+/* Bookmaker: le tre quote migliori sotto la giocata, e dove giocare il biglietto intero. */
+.partita .libri { font-size: .8rem; color: var(--inchiostro-tenue); line-height: 1.3; }
+.biglietto .dove { margin: 0; padding: 8px 16px 10px; border-top: 1px solid var(--carta-bordo); font-size: .88rem; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.dove-titolo { font-weight: 600; color: var(--inchiostro-tenue); }
+.dove-voce { white-space: nowrap; }
+.dove-voce.migliore { font-weight: 700; color: var(--ok); }

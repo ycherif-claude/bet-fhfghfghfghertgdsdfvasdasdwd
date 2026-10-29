@@ -8,8 +8,9 @@ import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { giornataDi } from '../bankroll/settimana.js';
 import { riepiloga } from '../storico/riepiloghi.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
+import { bigliettiGiornata, profittoReale } from '../storico/biglietti.js';
 import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
-import { confrontoModello, storicoMercati } from '../regole/mercati-partite.js';
+import { chiusuraPartite, confrontoModello, storicoMercati } from '../regole/mercati-partite.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
 
@@ -65,20 +66,19 @@ function ultimeSegnature(segnature) {
   return ultima;
 }
 
-// Un punto per giornata con almeno una giocata fatta e chiusa.
+// Saldo da 0 [utente, 29/10/2026]: un punto per giornata (da CONFIG.inizioConti) con almeno una giocata fatta e chiusa.
 function calcolaAndamento(righe) {
   const perGiorno = new Map();
   for (const { giocata, segnatura } of righe) {
     if (!giocata.esito || !segnatura?.fatta || giocata.prova === true) continue;
     const giorno = giornataDi(new Date(giocata.inizio));
-    const { puntataReale: p, quotaReale: q } = segnatura;
-    const profitto = giocata.esito === 'vinta' ? p * (q - 1) : giocata.esito === 'persa' ? -p : 0;
-    perGiorno.set(giorno, (perGiorno.get(giorno) ?? 0) + profitto);
+    if (giorno < CONFIG.inizioConti) continue;
+    perGiorno.set(giorno, (perGiorno.get(giorno) ?? 0) + profittoReale(giocata, segnatura));
   }
-  let bankroll = CONFIG.bankrollIniziale;
+  let saldo = 0;
   return [...perGiorno.keys()].sort().map((data) => {
-    bankroll += perGiorno.get(data);
-    return { data, bankroll: cent(bankroll) };
+    saldo += perGiorno.get(data);
+    return { data, saldo: cent(saldo) };
   });
 }
 
@@ -132,7 +132,9 @@ export function costruisciDati(dirData, adesso) {
     giornataOggi = { ...g, giocate: giocateValide({ file: oggiV.file, g }) };
   }
 
-  const tutte = [...giocateAltre, ...(giornataOggi?.giocate ?? [])];
+  // Coppie e multiple che l'utente gioca davvero: righe da segnare come le giocate (mai "da segnare").
+  const biglietti = giornate.flatMap((x) => bigliettiGiornata(x.g)).filter((b) => b.inizio);
+  const tutte = [...giocateAltre, ...(giornataOggi?.giocate ?? []), ...biglietti];
   const ids = new Set(tutte.map((g) => g.id));
   for (const { file, sig } of segnature) {
     if (!ids.has(sig.idGiocata)) errore(file, `Segnatura senza giocata: ${sig.idGiocata}`);
@@ -159,6 +161,7 @@ export function costruisciDati(dirData, adesso) {
     generatoAlle: adesso.toISOString(),
     oggi: { data, disponibile: giornataOggi !== null, giornata: giornataOggi },
     bankroll: statoBankroll(tutte, tutteSegnature, adesso),
+    inizioConti: CONFIG.inizioConti,
     storico: { righe, riepiloghi: { fatte: per('fatte'), proposte: per('proposte') }, andamento: calcolaAndamento(righe) },
     segnature: tutteSegnature,
     bilancioPronostici: conPronostici ? { data: conPronostici.g.data, ...bilancioPronostici(conPronostici.g) } : null,
@@ -168,6 +171,8 @@ export function costruisciDati(dirData, adesso) {
     storicoMercati: storicoMercati(giornate.map((x) => x.g)),
     // Modello contro mercato sulle stesse partite (dal 30/10/2026).
     confrontoModello: confrontoModello(giornate.map((x) => x.g)),
+    // Quota di chiusura delle partite di coppie e multiple (dal 30/10/2026).
+    chiusura: chiusuraPartite(giornate.map((x) => x.g)),
     erroriDati,
   };
 }

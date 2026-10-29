@@ -44,6 +44,17 @@ export function lineaComune(evento, mercato) {
   return candidate[0];
 }
 
+// Quote dei bookmaker italiani (CONFIG.odss.italiani) per una selezione: [[bookmaker, quota], …] dalla più alta, o null.
+export function bookmakerItaliani(evento, mercato, selezione, linea) {
+  const lista = (evento?.bookmaker ?? [])
+    .filter((b) => CONFIG.odss.italiani.includes(String(b.chiave ?? '').toLowerCase()))
+    .map((b) => [String(b.chiave).toLowerCase(), quotaDi(b, mercato, selezione, linea)])
+    .filter(([, q]) => q !== null)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, CONFIG.odss.bookmakerPerEsito);
+  return lista.length ? lista : null;
+}
+
 export function quotaMedianaNba(evento, mercato, selezione, linea, minBookmaker = CONFIG.nba.minBookmaker) {
   const quote = evento.bookmaker
     .map((b) => quotaDi(b, mercato, selezione, linea))

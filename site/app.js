@@ -4,7 +4,6 @@ import { BOOKMAKER, costruisciSegnatura, salvaSegnatura, cancellaSegnatura, legg
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
 
 // Stesso valore di CONFIG.tettoGiornaliero in src/config.js (la pagina non può importare src/).
-const TETTO_GIORNALIERO = 0.12;
 
 const FUSO = 'Europe/Rome';
 const SPORT = [
@@ -159,7 +158,7 @@ export function valoriCampi(giocata, digitati) {
   return {
     quota: digitati?.quota ?? (giocata.quota ? virgola(giocata.quota) : ''),
     // Giocata di prova: nessun importo proposto.
-    puntata: digitati?.puntata ?? (giocata.prova === true ? '' : giocata.puntata.euro.toFixed(2).replace('.', ',')),
+    puntata: digitati?.puntata ?? (giocata.prova === true || !giocata.puntata ? '' : giocata.puntata.euro.toFixed(2).replace('.', ',')),
     bookmaker: digitati?.bookmaker ?? BOOKMAKER[0],
   };
 }
@@ -233,7 +232,9 @@ function renderSegnatura(giocata, iniziale) {
           el('label', { for: `${id}-puntata` }, 'Puntata reale (€)', puntata),
           el('label', { for: `${id}-bookmaker` }, 'Bookmaker', bookmaker),
         ),
-        el('p', { class: 'nota' }, 'Betfair: scrivi la quota al netto della commissione.'),
+        el('p', { class: 'nota' }, numero(giocata.incremento)
+          ? 'Scrivi la quota senza il bonus: il bonus bet365 lo aggiungo io se vince.'
+          : 'Betfair: scrivi la quota al netto della commissione.'),
         el('div', { class: 'azioni' }, bottone('Giocata', 'primario', true), bottone('Saltata', 'secondario', false)),
       );
     }
@@ -299,8 +300,27 @@ export function esitoPartitaPronostici(p) {
 export const testoProbPronostico = (x) => `${percento(x.prob)}${numero(x.n) ? ` su ${String(x.n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} partite` : ''}`;
 
 // Bookmaker dell'utente (stessi nomi di src/calcio/odss.js).
-const NOMI_BOOKMAKER = { bet365: 'bet365', snai: 'Snai', goldbet: 'Goldbet', sportium: 'Sportium', daznbet: 'DAZN Bet' };
-const nomeBookmaker = (k) => NOMI_BOOKMAKER[k] ?? String(k ?? '');
+const NOMI_BOOKMAKER = {
+  bet365: 'bet365', snai: 'Snai', goldbet: 'Goldbet', sportium: 'Sportium', daznbet: 'DAZN Bet',
+  // Gli altri bookmaker italiani di odss-api [29/10/2026].
+  sisal: 'Sisal', eurobet: 'Eurobet', lottomatica: 'Lottomatica', planetwin365: 'Planetwin365', betflag: 'Betflag',
+  williamhill: 'William Hill', leovegas: 'LeoVegas', starcasino: 'StarCasinò', starvegas: 'StarVegas', netbet: 'NetBet',
+  admiralbet: 'AdmiralBet', betsson: 'Betsson', bwin: 'bwin', pokerstars: 'PokerStars', codere: 'Codere',
+  '888sport': '888sport', '888sport_it': '888sport', stanleybet: 'Stanleybet', betitaly: 'Betitaly', betpassion: 'Betpassion',
+  casinosanremo: 'Casinò Sanremo', giocodigitale: 'Giocodigitale', winamax: 'Winamax', marathonbet: 'Marathonbet',
+  domusbet: 'Domusbet', vincitu: 'Vincitù', eplay24: 'Eplay24', quigioco: 'Quigioco', stake: 'Stake',
+};
+const nomeBookmaker = (k) => NOMI_BOOKMAKER[k] ?? String(k ?? '').replace(/^./, (c) => c.toUpperCase());
+
+// Dove giocare un biglietto [utente, 29/10/2026]: i bookmaker che hanno tutte le partite, con la quota totale, dal
+// più alto; al massimo `quanti`. [] se nessun bookmaker le ha tutte (o le partite non hanno le quote).
+export function doveGiocare(gambe, quanti = 5) {
+  const liste = gambe.map((g) => (Array.isArray(g.bookmaker) ? new Map(g.bookmaker) : null));
+  if (!liste.length || liste.some((m) => !m || !m.size)) return [];
+  const comuni = [...liste[0].keys()].filter((k) => liste.every((m) => m.has(k)));
+  return comuni.map((k) => [k, Math.round(liste.reduce((a, m) => a * m.get(k), 1) * 100) / 100])
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, quanti);
+}
 
 // Idea 1: "quota migliore 1,31 su Sportium (minima 1,24), quota delle 07:40" e ✅ o "solo da tenere d'occhio".
 const quotaMigliorePronostico = (x) => ` · quota migliore ${fmtQuota.format(x.quotaMigliore)} su ${nomeBookmaker(x.bookmakerMigliore)} (minima ${fmtQuota.format(x.quotaMinima)})`
@@ -362,10 +382,14 @@ const NOME_ESITO = { vinta: 'Vinta', persa: 'Persa', rimborsata: 'Rimborsata' };
 
 // Biglietto (coppie e multiple bonus): quota grande in alto, una riga per partita (ora, partita, giocata,
 // quota, esito) e in fondo l'esito con quanto rende 1 €.
-function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = true }) {
+// `segna`: { giocata, segnatura } per segnare il biglietto come giocato (quota presa, puntata, bookmaker).
+function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = true, segna = null }) {
   const righe = el('ol', { class: 'partite' }, gambe.map((g) => el('li', { class: `partita${g.esito ? ` esito-${g.esito}` : ''}` },
     el('span', { class: 'ora' }, ora(g.inizio)),
-    el('span', { class: 'chi' }, el('span', { class: 'incontro' }, g.partita), el('span', { class: 'scelta' }, testoScelta(g))),
+    el('span', { class: 'chi' }, el('span', { class: 'incontro' }, g.partita), el('span', { class: 'scelta' }, testoScelta(g)),
+      Array.isArray(g.bookmaker) && g.bookmaker.length
+        ? el('span', { class: 'libri' }, g.bookmaker.slice(0, 3).map(([k, q]) => `${nomeBookmaker(k)} ${fmtQuota.format(q)}`).join(' · '))
+        : null),
     el('span', { class: 'quota-gamba' }, fmtQuota.format(g.quota)),
     el('span', { class: 'segno-esito', 'aria-label': NOME_ESITO[g.esito] ?? 'in attesa' }, SEGNO_ESITO[g.esito] ?? ''),
   )));
@@ -379,12 +403,22 @@ function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = 
     ),
     nota ? el('p', { class: 'nota-biglietto' }, nota) : null,
     aperto ? righe : el('details', {}, el('summary', {}, `Le ${gambe.length} partite`), righe),
+    renderDove(gambe),
     el('p', { class: 'piede' }, piede),
+    segna ? el('div', { class: 'segna-biglietto' }, renderSegnatura(segna.giocata, segna.segnatura)) : null,
   );
 }
 
+// Quota totale del biglietto sui bookmaker che hanno tutte le partite.
+function renderDove(gambe) {
+  const dove = doveGiocare(gambe);
+  if (!dove.length) return null;
+  return el('p', { class: 'dove' }, el('span', { class: 'dove-titolo' }, 'Dove giocarla: '),
+    dove.map(([k, q], i) => el('span', { class: i === 0 ? 'dove-voce migliore' : 'dove-voce' }, `${nomeBookmaker(k)} ${fmtQuota.format(q)}`)));
+}
+
 // Multipla bonus bet365 (prova): quota con l'incremento, partite (aperte per quelle più probabili) ed esito.
-export function renderMultiplaBonus(mb) {
+export function renderMultiplaBonus(mb, segnatura = null, { segnabile = false } = {}) {
   return renderBiglietto({
     titolo: mb.nome.replace('Multipla bonus bet365 ', 'Multipla ').replace(' (le più probabili)', ''),
     quota: mb.quota,
@@ -393,11 +427,12 @@ export function renderMultiplaBonus(mb) {
     esito: mb.esito,
     ritorno: mb.ritorno,
     aperto: mb.criterio === 'probabilita',
+    segna: segnabile ? { giocata: { id: mb.id, quota: mb.quota, incremento: mb.incremento }, segnatura } : null,
   });
 }
 
 // Coppie a quota 2 (prova): due partite della multipla bonus, quota totale ed esito.
-export function renderCoppia(c, n) {
+export function renderCoppia(c, n, segnatura = null, { segnabile = false } = {}) {
   return renderBiglietto({
     titolo: `Coppia ${n}`,
     quota: c.quota,
@@ -405,6 +440,7 @@ export function renderCoppia(c, n) {
     gambe: c.gambe,
     esito: c.esito,
     ritorno: c.ritorno,
+    segna: segnabile ? { giocata: { id: c.id, quota: c.quota }, segnatura } : null,
   });
 }
 
@@ -443,19 +479,20 @@ export function schedaSicura(id, crea) {
   }
 }
 
-// Voci del riquadro in alto: [etichetta, valore]. Lo stop settimanale non c'è più [utente, 21/10/2026].
-export function vociRiquadro(b, giornata) {
-  const tetto = `${euro(b.inGiocoOggi)} / ${euro(TETTO_GIORNALIERO * b.bankroll)}`;
+// Voci del riquadro in alto: [etichetta, valore]. Niente bankroll [utente, 29/10/2026]: il saldo delle giocate
+// fatte parte da 0 il giorno `inizioConti`; niente tetto giornaliero.
+const conSegno = (n) => `${segno(n ?? 0)}${euro(n ?? 0)}`;
+export function vociRiquadro(b, inizioConti) {
   return [
-    ['Bankroll', euro(b.bankroll)],
-    ['Risultato settimana', `${segno(b.risultatoSettimana)}${euro(b.risultatoSettimana)}`],
-    ['In gioco oggi / tetto', giornataPiena(giornata) ? `${tetto} · tetto tolto oggi (puntate fisse da 1 €)` : tetto],
+    [inizioConti ? `Saldo dal ${inizioConti.slice(8, 10)}/${inizioConti.slice(5, 7)}` : 'Saldo', conSegno(b.saldo)],
+    ['Questa settimana', conSegno(b.risultatoSettimana)],
+    ['In gioco oggi', euro(b.inGiocoOggi ?? 0)],
   ];
 }
 
-function renderRiquadro(b, giornata) {
+function renderRiquadro(b, inizioConti) {
   const voce = ([etichetta, valore]) => el('div', { class: 'voce' }, el('span', { class: 'etichetta' }, etichetta), el('span', { class: 'valore' }, valore));
-  return el('section', { class: 'riquadro', 'aria-label': 'Situazione bankroll' }, ...vociRiquadro(b, giornata).map(voce));
+  return el('section', { class: 'riquadro', 'aria-label': 'Saldo delle giocate' }, ...vociRiquadro(b, inizioConti).map(voce));
 }
 
 function avviaImpostazioni() {
@@ -494,7 +531,7 @@ function avvia(dati) {
   const avvisi = document.getElementById('avvisi');
   const lista = document.getElementById('giocate');
 
-  riquadro.replaceChildren(renderRiquadro(dati.bankroll, dati.oggi?.giornata));
+  riquadro.replaceChildren(renderRiquadro(dati.bankroll ?? {}, dati.inizioConti));
   avvisi.replaceChildren(...testoAvvisi(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   const sottotitolo = document.getElementById('data-giornata');
   if (sottotitolo) sottotitolo.textContent = dataLunga(dati.oggi.data).replace(/^./, (c) => c.toUpperCase());
@@ -535,14 +572,14 @@ function avvia(dati) {
       el('h2', {}, 'Coppie a quota 2'),
       el('p', { class: 'meta' }, 'Quota totale fra 1,90 e 2,15. Ogni partita è in una coppia sola; prima quelle pagate meglio.'),
       ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
-      ...lc.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, i + 1))),
+      ...lc.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, i + 1, ultime.get(x?.id) ?? null, { segnabile: true }))),
     ] : []));
   }
   // Multiple con le partite più probabili in alto; le altre (per margine) nella sezione chiusa.
   const tutteMb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   const perProb = tutteMb.filter((x) => x?.criterio === 'probabilita');
   const mp = document.getElementById('multiple-probabili');
-  if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));
+  if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x, ultime.get(x?.id) ?? null, { segnabile: true })))] : []));
   if (cq && !lc.length && !perProb.length) cq.append(el('p', { class: 'vuoto' }, 'Oggi nessuna coppia a quota 2 e nessuna multipla con le partite più probabili.'));
   const bonus = document.getElementById('multiple-bonus');
   const mb = tutteMb.filter((x) => x?.criterio !== 'probabilita');

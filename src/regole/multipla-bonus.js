@@ -47,6 +47,8 @@ export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false }
       quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle,
       // Probabilità del nostro modello [utente, 29/10/2026]; per la pallavolo l'Elo "di studio", che non entra nelle giocate.
       probModello: num(m.probModello) ? m.probModello : num(m.probModelloStudio) ? m.probModelloStudio : null, resa, esito: null,
+      // Bookmaker italiani con la loro quota (NBA, basket, pallavolo dalla raccolta; il calcio li aggiunge il giro).
+      ...(Array.isArray(m.bookmaker) && m.bookmaker.length ? { bookmaker: m.bookmaker } : {}),
     };
     const cur = migliori.get(partita.idPartita);
     if (!cur || resa > cur.resa + EPS || (Math.abs(resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);

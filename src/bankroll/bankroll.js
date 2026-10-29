@@ -1,13 +1,9 @@
 import { CONFIG } from '../config.js';
 import { inizioSettimana, giornataDi } from './settimana.js';
+import { profittoReale } from '../storico/biglietti.js';
 
 const ORA_MS = 3600000;
 
-function profitto(sig, esito) {
-  if (esito === 'vinta') return sig.puntataReale * (sig.quotaReale - 1);
-  if (esito === 'persa') return -sig.puntataReale;
-  return 0; // rimborsata
-}
 
 // Arrotonda ai centesimi per evitare errori di virgola mobile.
 const cent = (n) => Math.round(n * 100) / 100;
@@ -20,6 +16,9 @@ export function giocateConProva(giornata, giocate = giornata?.giocate) {
 }
 
 // Le giocate di prova (`prova: true`) non contano mai: né da segnare, né bankroll, né tetto, né settimana.
+// `saldo` [utente, 29/10/2026]: guadagni e perdite delle giocate fatte dal giorno CONFIG.inizioConti, partendo da 0
+// (non esiste un bankroll vero); `bankroll` resta solo per le puntate proposte delle giocate di prova.
+// I biglietti (coppie e multiple, `biglietto: true`) non si chiedono mai da segnare.
 // Se una è segnata come fatta per errore, `avvisi` lo dice.
 export function statoBankroll(giocate, segnature, adesso) {
   const ultima = new Map();
@@ -32,6 +31,7 @@ export function statoBankroll(giocate, segnature, adesso) {
   const oggi = giornataDi(adesso);
 
   let bankroll = CONFIG.bankrollIniziale;
+  let saldo = 0;
   let risultatoSettimana = 0;
   let inGiocoOggi = 0;
   const daSegnare = [];
@@ -46,16 +46,18 @@ export function statoBankroll(giocate, segnature, adesso) {
     const inizio = Date.parse(g.inizio);
     if (!sig) {
       const trascorso = t - inizio;
-      if (g.stato !== 'annullata' && trascorso >= 0 && trascorso < CONFIG.oreScadenzaSegnatura * ORA_MS) {
+      if (g.biglietto !== true && g.stato !== 'annullata' && trascorso >= 0 && trascorso < CONFIG.oreScadenzaSegnatura * ORA_MS) {
         daSegnare.push(g.id);
       }
       continue;
     }
     if (!sig.fatta) continue;
     const inSettimana = inizioSettimana(new Date(inizio)) === settimana;
+    const neiConti = giornataDi(new Date(inizio)) >= CONFIG.inizioConti;
     if (g.esito) {
-      const p = profitto(sig, g.esito);
+      const p = profittoReale(g, sig);
       bankroll += p;
+      if (neiConti) saldo += p;
       if (inSettimana) risultatoSettimana += p;
     } else if (giornataDi(new Date(inizio)) === oggi) {
       // In corso: conta per il tetto giornaliero, non per il risultato della settimana (solo chiuse).
@@ -65,6 +67,7 @@ export function statoBankroll(giocate, segnature, adesso) {
 
   return {
     bankroll: cent(bankroll),
+    saldo: cent(saldo),
     risultatoSettimana: cent(risultatoSettimana),
     inGiocoOggi: cent(inGiocoOggi),
     daSegnare,

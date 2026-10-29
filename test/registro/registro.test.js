@@ -73,3 +73,30 @@ test('pre-partita: solo le partite che iniziano entro 90 minuti, tutti i mercati
   ]);
   assert.equal(m['basket-2026-10-21-real-madrid-fc-barcelona|Vincente|Real Madrid'].quota, 1.7);
 });
+
+test('recupero: giocata aperta da 2 giorni prende l\'esito definitivo dal registro (anche nelle multiple)', async () => {
+  const { esitiDalRegistro } = await import('../../src/registro/registro.js');
+  const { mkdtempSync, mkdirSync, writeFileSync, readFileSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const d = mkdtempSync(join(tmpdir(), 'bet-rec-'));
+  mkdirSync(join(d, 'giornate'));
+  const t = (id, inizio) => ({ idPartita: id, sport: 'tennis', mercato: 'Vincente incontro', selezione: `${id}1`, inizio, esito: null });
+  const singola = { id: 's', ...t('a', '2026-10-26T17:30:00+01:00') };
+  const multipla = { id: 'm', esito: null, gambe: [t('a', '2026-10-26T17:30:00+01:00'), t('b', '2026-10-26T19:00:00+01:00')] };
+  const recente = { id: 'r', ...t('c', '2026-10-29T17:30:00+01:00') };
+  writeFileSync(join(d, 'giornate', '2026-10-26.json'), JSON.stringify({ data: '2026-10-26', giocate: [singola, multipla, recente] }));
+  const reg = { righe: [
+    { idPartita: 'a', mercato: 'Vincente incontro', selezione: 'a1', esito: 'rimborsata', esitoProvvisorio: false },
+    { idPartita: 'b', mercato: 'Vincente incontro', selezione: 'b1', esito: 'vinta', esitoProvvisorio: true },
+    { idPartita: 'c', mercato: 'Vincente incontro', selezione: 'c1', esito: 'vinta', esitoProvvisorio: false },
+  ] };
+  assert.equal(esitiDalRegistro(d, '2026-10-26', reg, new Date('2026-10-30T08:00:00+01:00')), 2);
+  const g = JSON.parse(readFileSync(join(d, 'giornate', '2026-10-26.json'), 'utf8'));
+  assert.equal(g.giocate[0].esito, 'rimborsata');
+  // Multipla: una gamba ancora aperta (registro solo provvisorio) → resta aperta.
+  assert.deepEqual(g.giocate[1].gambe.map((x) => x.esito), ['rimborsata', null]);
+  assert.equal(g.giocate[1].esito, null);
+  // Meno di 2 giorni: si aspetta la fonte dello sport.
+  assert.equal(g.giocate[2].esito, null);
+});

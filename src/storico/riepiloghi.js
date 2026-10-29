@@ -7,9 +7,10 @@ function valuta({ giocata, segnatura }, vista) {
   if (vista === 'fatte') {
     // Giocata segnata fatta: i soldi sono reali anche se poi annullata. Le giocate di prova mai.
     if (!segnatura || segnatura.fatta !== true || giocata.prova === true) return null;
-    return { puntata: segnatura.puntataReale, quota: segnatura.quotaReale };
+    return { puntata: segnatura.puntataReale, quota: segnatura.quotaReale * (giocata.moltiplicatore ?? 1) };
   }
-  if (giocata.stato === 'annullata') return null;
+  // Coppie e multiple (biglietti) solo quando giocate davvero.
+  if (giocata.stato === 'annullata' || giocata.biglietto === true) return null;
   return { puntata: giocata.puntata.euro, quota: giocata.quota ?? giocata.quotaMinima };
 }
 

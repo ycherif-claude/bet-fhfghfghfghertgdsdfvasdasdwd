@@ -14,6 +14,7 @@ import { bilancioPronostici } from '../regole/pronostici.js';
 import { CONFIG } from '../config.js';
 import { nomeBookmaker } from '../calcio/odss.js';
 import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
+import { bigliettiGiornata, profittoReale } from '../storico/biglietti.js';
 
 const GIORNI_STATO = 14;
 const SIMBOLO = { calcio: '⚽', tennis: '🎾', nba: '🏀', basket: '🏀', pallavolo: '🏐' };
@@ -469,18 +470,20 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
     if (!prec || Date.parse(sg.ora) >= Date.parse(prec.ora)) ultima.set(sg.idGiocata, sg);
   }
   // Giornate di prova: tutte le loro giocate sono di prova (fuori dal bankroll).
-  const tutte = tutteGiornate.flatMap((x) => giocateConProva(x, valide(x)));
+  // Anche coppie e multiple (biglietti) segnate come giocate [utente, 29/10/2026].
+  const conBiglietti = (x) => [...giocateConProva(x, valide(x)), ...bigliettiGiornata(x)];
+  const tutte = tutteGiornate.flatMap(conBiglietti);
   const out = [];
   for (const x of giornate) {
-    for (const g of giocateConProva(x, valide(x))) {
+    for (const g of conBiglietti(x)) {
       const sg = ultima.get(g.id);
       if (!ESITO[g.esito] || !sg?.fatta) continue;
       const chiave = `${x.data}|esito|${g.id}|${g.esito}`;
       if (inviate.has(chiave)) continue;
-      const profitto = g.esito === 'vinta' ? sg.puntataReale * (sg.quotaReale - 1) : g.esito === 'persa' ? -sg.puntataReale : 0;
+      const profitto = profittoReale(g, sg);
       const gambaRimborsata = g.esito === 'vinta' && Array.isArray(g.gambe) && g.gambe.some((y) => y.esito === 'rimborsata');
       const titolo = Array.isArray(g.gambe) && g.gambe.length
-        ? `<b>${g.tipo === 'builder' ? 'Builder' : 'Multipla'} (${g.gambe.length} gambe)</b>: ${g.gambe.map((y) => html(y.partita)).join(' + ')}`
+        ? `<b>${g.biglietto ? html(g.mercato) : g.tipo === 'builder' ? 'Builder' : 'Multipla'} (${g.gambe.length} ${g.biglietto ? 'partite' : 'gambe'})</b>: ${g.gambe.map((y) => html(y.partita)).join(' + ')}`
         : `${SIMBOLO[g.sport] ?? '•'} <b>${html(g.partita)}</b>\n${html(g.mercato)} → ${html(g.selezione)}`;
       out.push({ chiave, giocata: g, testo: [
         `${ESITO[g.esito]} · ${titolo}`,
@@ -492,7 +495,7 @@ export function messaggiEsiti({ giornate, segnature, inviate, adesso, tutteGiorn
   if (out.length) {
     // Bankroll dopo questi esiti, con le stesse regole del sito.
     const b = statoBankroll(tutte, segnature, adesso);
-    out.at(-1).testo += `\n\nBankroll: <b>${b.bankroll.toFixed(2).replace('.', ',')} €</b> · settimana ${euro(b.risultatoSettimana)}`;
+    out.at(-1).testo += `\n\nSaldo dal ${giornoMese(CONFIG.inizioConti)}: <b>${euro(b.saldo)}</b> · settimana ${euro(b.risultatoSettimana)}`;
   }
   return out;
 }

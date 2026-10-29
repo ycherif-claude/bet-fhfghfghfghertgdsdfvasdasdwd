@@ -18,7 +18,7 @@ import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronostic
 import { costruisciSchedinePronostici, rivediSchedine } from '../regole/schedine-pronostici.js';
 import { leggiRaccolte } from './raccolte.js';
 import { leggiAvvisiFonti } from '../registro/avvisi-fonti.js';
-import { leggiQuoteOdss } from '../calcio/odss.js';
+import { abbinaEventiOdss, bookmakerCalcio, leggiQuoteOdss } from '../calcio/odss.js';
 
 const PARTITE_ANTEPRIMA = 5;
 
@@ -171,7 +171,14 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const voci = prova && raccolta ? valutaMercati(raccolta, notizie, { adesso }).voci : [];
   // Taratura automatica del modello (solo studio): dalle partite chiuse delle giornate passate, per sport.
   const taraturaModello = calcolaTaratura(giornatePassate(dirData, oggi));
-  const taraGambe = (gambe) => gambe.map((g) => ({ ...g, probModelloTarato: tara(taraturaModello, g.sport, g.probModello) }));
+  // Calcio: le quote dei bookmaker italiani dall'evento odss della partita [utente, 29/10/2026].
+  const eventiCalcio = prova && raccolta ? abbinaEventiOdss(raccolta.partite ?? [], leggiQuoteOdss(dirData, oggi).eventi ?? []) : new Map();
+  const conBookmaker = (g) => {
+    if (g.sport !== 'calcio' || g.bookmaker) return g;
+    const lista = bookmakerCalcio(eventiCalcio.get(g.idPartita), g.mercato, g.selezione);
+    return lista ? { ...g, bookmaker: lista } : g;
+  };
+  const taraGambe = (gambe) => gambe.map((g) => conBookmaker({ ...g, probModelloTarato: tara(taraturaModello, g.sport, g.probModello) }));
   const gambeBonus = taraGambe(gambePossibili(voci, { escluse }));
   // Coppie e multiple per probabilità (quelle che l'utente vede): senza Under 2.5 e 3.5 [utente, 29/10/2026].
   // Le multiple per margine restano come prima, anche per continuare a misurare gli Under.

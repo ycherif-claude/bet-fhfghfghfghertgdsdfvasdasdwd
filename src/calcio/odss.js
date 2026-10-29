@@ -150,7 +150,23 @@ export function riassuntoMercato(riga, { adesso = null } = {}) {
     const quote = libri.filter((b) => !eExchange(b) && !sospesi(b).has(e) && quotaValida(b.outcomes?.[e])).map((b) => b.outcomes[e]);
     if (quote.length >= CONFIG.calcio.minBookmaker) mediane[e] = { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n: quote.length };
   }
-  return { miei, prob, fonteProb, mediana: mediane };
+  // Bookmaker italiani: per esito le quote più alte, [[bookmaker, quota], …] (stesso filtro di freschezza dei miei).
+  const italiani = {};
+  for (const e of esiti) {
+    const lista = libri.filter((b) => O.italiani.includes(b.key.toLowerCase()) && fresca(b) && !sospesi(b).has(e) && quotaValida(b.outcomes?.[e]))
+      .map((b) => [b.key.toLowerCase(), b.outcomes[e]])
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, O.bookmakerPerEsito);
+    if (lista.length) italiani[e] = lista;
+  }
+  return { miei, prob, fonteProb, mediana: mediane, ...(Object.keys(italiani).length ? { italiani } : {}) };
+}
+
+// Quote dei bookmaker italiani per una partita della raccolta calcio: [[bookmaker, quota], …] dalla più alta, o null.
+export function bookmakerCalcio(evento, mercato, selezione) {
+  const k = mercatoOdss(mercato, selezione);
+  const r = k ? evento?.mercati?.[k.chiave] : null;
+  return Array.isArray(r?.italiani?.[k.esito]) && r.italiani[k.esito].length ? r.italiani[k.esito] : null;
 }
 
 const chiaveMercato = (r) => (r.market === 'ou' ? `ou|${Number(r.line)}` : r.market);

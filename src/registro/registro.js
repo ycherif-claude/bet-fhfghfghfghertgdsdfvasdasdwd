@@ -24,6 +24,7 @@ import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { footballDataUk } from '../calcio/fonti/football-data-uk.js';
 import { esitoMultiplaBonus } from '../regole/multipla-bonus.js';
 import { esitoCoppia, tutteLeCoppie } from '../regole/coppie-quota2.js';
+import { chiusura, gambeDi } from '../esiti/comune.js';
 import { leggiIstantanea, fileIstantanea, GIORNI_ESITO_PRONOSTICI } from '../regole/pronostici.js';
 import { aggiornaEsitiSchedine } from '../regole/schedine-pronostici.js';
 
@@ -164,6 +165,7 @@ export async function aggiornaRegistro({ dirData, adesso, fonti = fontiDefault()
     reg.aggiornatoAlle = isoRoma(adesso);
     scrivi(fileRegistro(dirData, data), reg);
     aggiornaMultipleBonus(dirData, data, reg, adesso);
+    esitiDalRegistro(dirData, data, reg, adesso);
     riepilogo.push({ data, righe: reg.righe.length, conEsito: reg.righe.filter((r) => r.esito).length, nuovi });
   }
   if (espn.bloccato) {
@@ -237,6 +239,29 @@ export function aggiornaMultipleBonus(dirData, data, reg, adesso = null) {
   }
   if (cambiato) scrivi(file, g);
   return cambiato;
+}
+
+// Recupero [29/10/2026]: una giocata (o gamba) ancora senza esito `CONFIG.giorniEsitoDalRegistro` giorni dopo l'inizio
+// prende l'esito definitivo della stessa partita e mercato dal registro (per esempio il tennis quando lo storico di
+// tennis-data è fermo). Le multiple si chiudono con la regola solita. Il file si riscrive solo se cambia qualcosa.
+export function esitiDalRegistro(dirData, data, reg, adesso) {
+  const file = path.join(dirData, 'giornate', `${data}.json`);
+  const g = leggi(file, null);
+  if (!g || !Array.isArray(g.giocate)) return 0;
+  const esiti = new Map(reg.righe.filter((r) => r.esito && !r.esitoProvvisorio).map((r) => [chiaveMercato(r.idPartita, r.mercato, r.selezione), r.esito]));
+  const limite = adesso.getTime() - CONFIG.giorniEsitoDalRegistro * 86400000;
+  let n = 0;
+  for (const x of g.giocate) {
+    if (!x || x.esito != null) continue;
+    for (const gamba of gambeDi(x)) {
+      if (gamba.esito != null || !(Date.parse(gamba.inizio) <= limite)) continue;
+      const e = esiti.get(chiaveMercato(gamba.idPartita ?? x.idPartita, gamba.mercato, gamba.selezione));
+      if (e) { gamba.esito = e; gamba.esitoDalRegistro = true; n++; }
+    }
+    if (Array.isArray(x.gambe) && x.gambe.length) { const e = chiusura(x); if (e) x.esito = e; }
+  }
+  if (n) scrivi(file, g);
+  return n;
 }
 
 // Esiti dei pronostici sì/no della giornata `data` dalle righe della loro istantanea (solo esiti definitivi).

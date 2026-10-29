@@ -52,6 +52,11 @@ export function quotaCalcio(evento, mercato, selezione) {
     if (!lato) return null;
     leggi = (b) => b.mercati?.h2h?.[lato];
     tutte = (b) => (b.mercati?.h2h ? ['casa', 'pareggio', 'trasferta'].map((k) => b.mercati.h2h[k]) : null);
+  } else if (mercato === 'Doppia chance') {
+    // Doppia chance: quota dal mercato dc; probabilità di Pinnacle dall'1X2 senza margine (somma dei due esiti).
+    if (!['1X', 'X2', '12'].includes(selezione)) return null;
+    leggi = (b) => b.mercati?.dc?.[selezione];
+    tutte = null;
   } else {
     const m = /^Under\/Over (\d+\.5)$/.exec(mercato);
     const s = /^(Over|Under) (\d+\.5)$/.exec(selezione);
@@ -67,11 +72,21 @@ export function quotaCalcio(evento, mercato, selezione) {
   const quote = libri.map(leggi).filter((q) => num(q) && q > 1);
   if (quote.length < CONFIG.calcio.minBookmaker) return { saltata: 'meno di 3 bookmaker con la quota' };
   const pin = libri.find((b) => b.chiave === 'pinnacle');
-  const coppia = pin ? tutte(pin) : null;
   let prob = null;
-  if (coppia && coppia.every((q) => num(q) && q > 1)) {
-    const somma = coppia.reduce((a, q) => a + 1 / q, 0);
-    prob = 1 / leggi(pin) / somma;
+  if (mercato === 'Doppia chance') {
+    const h = pin?.mercati?.h2h;
+    const tre = h ? [h.casa, h.pareggio, h.trasferta] : null;
+    if (tre && tre.every((q) => num(q) && q > 1)) {
+      const somma = tre.reduce((a, q) => a + 1 / q, 0);
+      const [p1, px, p2] = tre.map((q) => 1 / q / somma);
+      prob = { '1X': p1 + px, X2: px + p2, 12: p1 + p2 }[selezione];
+    }
+  } else {
+    const coppia = pin ? tutte(pin) : null;
+    if (coppia && coppia.every((q) => num(q) && q > 1)) {
+      const somma = coppia.reduce((a, q) => a + 1 / q, 0);
+      prob = 1 / leggi(pin) / somma;
+    }
   }
   return { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n: quote.length, prob };
 }
@@ -120,11 +135,13 @@ const gruppo = (voci, chiave) => {
 // servono al registro della taratura come quote pre-partita, senza richieste in più.
 // Prima odss-api (fonte principale, una richiesta per passaggio, tetto dei controlli): le voci con una quota odss
 // non toccano le fonti di prima; le altre seguono il giro di sempre. `dirData`, `data` e `adesso` servono al budget.
-export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {}, dirData = null, data = null, adesso = null }) {
+// `soloOdss`: voci in più (la chiusura delle partite di coppie e multiple) che si chiedono solo a odss-api, nella
+// stessa richiesta: senza quota restano senza, mai alle fonti di prima.
+export async function quoteFresche(voci, { fonti, chiavi, finestra, errore, registra = () => {}, dirData = null, data = null, adesso = null, soloOdss = [] }) {
   const out = new Map();
   if (Object.hasOwn(chiavi ?? {}, 'odss') && dirData && data && adesso) {
     try {
-      const o = await quoteOdssControlli(voci, { chiave: chiavi.odss, dirData, data, adesso, fetch: fonti.fetchOdss, errore, registra, attesaMs: fonti.attesaOdssMs });
+      const o = await quoteOdssControlli([...voci, ...soloOdss], { chiave: chiavi.odss, dirData, data, adesso, fetch: fonti.fetchOdss, errore, registra, attesaMs: fonti.attesaOdssMs });
       for (const [id, q] of o) out.set(id, q);
     } catch (e) {
       errore('odss-api', e);

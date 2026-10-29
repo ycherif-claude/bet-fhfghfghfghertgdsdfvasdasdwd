@@ -42,7 +42,8 @@ function idOdssVoce(v, dirData, data, cache) {
 
 // Sport delle voci → sport e mercati di odss-api.
 const SPORT = {
-  calcio: { odss: 'calcio', mercati: ['1x2', 'ou'] },
+  // dc: Doppia chance (giocate e chiusura delle partite di coppie e multiple).
+  calcio: { odss: 'calcio', mercati: ['1x2', 'dc', 'ou'] },
   tennis: { odss: 'tennis', mercati: ['moneyline'] },
   nba: { odss: 'basket', mercati: ['moneyline', 'ah', 'ou'] },
   basket: { odss: 'basket', mercati: ['moneyline', 'ah', 'ou'] },

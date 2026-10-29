@@ -192,7 +192,8 @@ test('esiti: solo le giocate segnate come fatte, con quota e puntata reali e il 
   assert.equal(ms.length, 2);
   assert.match(ms[0].testo, /^✅ <b>VINTA<\/b> · ⚽ <b>Inter - Roma<\/b>\n1X2 → 1\nquota 2,65 · puntata 2,00 € → <b>\+3,30 €<\/b>$/);
   assert.match(ms[1].testo, /^❌ <b>PERSA<\/b> · ⚽ <b>Milan - Juventus<\/b>/);
-  assert.match(ms[1].testo, /→ <b>−4,00 €<\/b>\n\nBankroll: <b>199,30 €<\/b>/);
+  // Giocate del 20/10, prima dei conti (30/10): il saldo resta 0.
+  assert.match(ms[1].testo, /→ <b>−4,00 €<\/b>\n\nSaldo dal 30\/10: <b>0,00 €<\/b>/);
   assert.ok(!ms.some((m) => m.testo.includes('Saltata')));
   const inviate = new Set(ms.map((m) => m.chiave));
   assert.deepEqual(messaggiEsiti({ giornate: [ieri], segnature, inviate, adesso: mattina }), []);
@@ -311,7 +312,7 @@ test('A4 esito di una giocata di prova segnata fatta: detto che non conta nel ba
   const segnature = [{ idGiocata: 'a', fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-21T18:00:00Z' }];
   const [m] = messaggiEsiti({ giornate: [ieri], segnature, inviate: new Set(), adesso: mattina });
   assert.match(m.testo, /PROVA: non conta nel bankroll/);
-  assert.match(m.testo, /Bankroll: <b>200,00 €<\/b>/);
+  assert.match(m.testo, /Saldo dal 30\/10: <b>0,00 €<\/b>/);
 });
 
 test('storico diviso: pronostici dall\'80% e partite della multipla da 20, una volta al giorno dopo le 9', async () => {

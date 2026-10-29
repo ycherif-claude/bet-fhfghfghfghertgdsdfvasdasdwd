@@ -46,19 +46,24 @@ test('costruisciDati: se la giornata non ha "giocate", applica selezionaGiocate 
   assert.equal(fs.readFileSync(path.join(d, 'giornate', '2026-10-19.json'), 'utf8'), prima);
 });
 
-test('andamento: un punto per giorno con giocate chiuse', () => {
-  const g1 = giocata('a', '2026-10-13T20:00:00+02:00', 'vinta');
-  const g2 = giocata('b', '2026-10-13T21:00:00+02:00', 'persa');
-  const g3 = giocata('c', '2026-10-14T20:00:00+02:00', 'vinta');
-  const g4 = giocata('d', '2026-10-15T20:00:00+02:00', null);
+test('andamento: saldo da 0 dal giorno di inizio dei conti, un punto per giorno con giocate chiuse', () => {
+  const g0 = giocata('z', '2026-10-29T20:00:00+01:00', 'vinta'); // prima dei conti: solo nello storico
+  const g1 = giocata('a', '2026-10-30T20:00:00+01:00', 'vinta');
+  const g2 = giocata('b', '2026-10-30T21:00:00+01:00', 'persa');
+  const g3 = giocata('c', '2026-10-31T20:00:00+01:00', 'vinta');
+  const g4 = giocata('d', '2026-11-01T20:00:00+01:00', null);
   const d = dirTemp(
-    [{ data: '2026-10-13', candidati: [], giocate: [g1, g2] }, { data: '2026-10-14', candidati: [], giocate: [g3, g4] }],
-    ['a', 'b', 'c', 'd'].map((id) => ({ idGiocata: id, fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-13T09:00:00+02:00' })));
-  const r = costruisciDati(d, new Date('2026-10-20T10:00:00Z'));
+    [{ data: '2026-10-29', candidati: [], giocate: [g0] }, { data: '2026-10-30', candidati: [], giocate: [g1, g2] }, { data: '2026-10-31', candidati: [], giocate: [g3, g4] }],
+    ['z', 'a', 'b', 'c', 'd'].map((id) => ({ idGiocata: id, fatta: true, quotaReale: 2, puntataReale: 10, ora: '2026-10-29T09:00:00+01:00' })));
+  const r = costruisciDati(d, new Date('2026-11-02T10:00:00Z'));
   assert.deepEqual(r.storico.andamento, [
-    { data: '2026-10-13', bankroll: 200 },
-    { data: '2026-10-14', bankroll: 210 },
+    { data: '2026-10-30', saldo: 0 },
+    { data: '2026-10-31', saldo: 10 },
   ]);
+  assert.equal(r.bankroll.saldo, 10);
+  r.storico.righe = r.storico.righe.filter((x) => x.giocata.id !== 'z');
+  r.segnature = r.segnature.filter((x) => x.idGiocata !== 'z');
+  r.storico.riepiloghi.fatte.sport[0].n -= 1;
   assert.equal(r.storico.righe.length, 4);
   assert.equal(r.storico.righe[0].giocata.id, 'd');
   assert.equal(r.segnature.length, 4);

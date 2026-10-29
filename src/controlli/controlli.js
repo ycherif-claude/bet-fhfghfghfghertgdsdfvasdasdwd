@@ -21,6 +21,7 @@ import { CAMPIONATI_ESPN, espn, inElenco } from './espn.js';
 import { quoteFresche, squadreDi, trovaEvento } from './quote.js';
 import { eseguiEsitiRapidi } from '../esiti/rapidi.js';
 import { raccoglitorePrePartita } from '../registro/chiusure.js';
+import { applicaChiusura, vociChiusura } from './chiusura.js';
 import { bloccoEspn } from '../calcio/fonti/http.js';
 
 const K = CONFIG.controlli;
@@ -330,11 +331,14 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   // solo per le competizioni con una giocata).
   let chiusure = null;
   try { chiusure = raccoglitorePrePartita({ dirData, data, adesso }); } catch (e) { errore('Registro (pre-partita)', e); }
-  const quote = pronte.length ? await quoteFresche(pronte.map((x) => x.v), {
-    fonti, chiavi, finestra: finestraGiornata(data), errore, dirData, data, adesso,
+  // Quota di chiusura delle partite di coppie e multiple (solo odss-api, nella stessa richiesta).
+  const perChiusura = vociChiusura(giornata, adesso);
+  const quote = pronte.length || perChiusura.length ? await quoteFresche(pronte.map((x) => x.v), {
+    fonti, chiavi, finestra: finestraGiornata(data), errore, dirData, data, adesso, soloOdss: perChiusura,
     registra: (...a) => { try { chiusure?.registra(...a); } catch (e) { errore('Registro (pre-partita)', e); } },
   }) : new Map();
   try { chiusure?.salva(); } catch (e) { errore('Registro (pre-partita)', e); }
+  const conChiusura = perChiusura.length ? applicaChiusura(giornata, quote, adesso) : 0;
 
   // 3. Esiti; le revisioni nuove vanno a Claude se c'è posto, altrimenti regole fisse.
   const nuoveRevisioni = [];
@@ -399,7 +403,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
 
   const erroriGiro = Array.isArray(giornata.erroriGiro) ? giornata.erroriGiro : [];
   const nuoviErrori = errori.filter((e) => !erroriGiro.includes(e));
-  if (cambiate || nuoviErrori.length || avvisiPronostici.size) {
+  if (cambiate || conChiusura || nuoviErrori.length || avvisiPronostici.size) {
     scrivi(f.giornata, {
       ...giornata, ...(Array.isArray(giornata.giocate) ? { giocate } : {}), ...(conPronostici ? { pronostici } : {}), erroriGiro: [...erroriGiro, ...nuoviErrori],
     });

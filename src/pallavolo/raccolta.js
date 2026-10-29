@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { CONFIG } from '../config.js';
 import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/testo.js';
-import { quotaMedianaNba } from '../nba/quote.js';
+import { bookmakerItaliani, quotaMedianaNba } from '../nba/quote.js';
 import { riferimento } from '../basket/raccolta.js';
 import { thesportsdb } from '../basket/fonti/thesportsdb.js';
 import { aggiornaStorico, stagioneBasket } from '../basket/storico.js';
@@ -122,6 +122,8 @@ export function costruisciMercati({ bookmaker, probCasa, nomi, ora, conta, fonte
       frequenzaCampionato: null,
       ...(rif.etichetta === 'Pinnacle' ? {} : { etichettaMercato: rif.etichetta }),
       spiegazione: spiegazioni[v.mercato](v.selezione, nomi),
+      // Bookmaker italiani con la loro quota, per scegliere dove giocare [utente, 29/10/2026].
+      ...(bookmakerItaliani(evento, v.tipo, v.sel, v.linea) ? { bookmaker: bookmakerItaliani(evento, v.tipo, v.sel, v.linea) } : {}),
     });
   }
   return mercati;

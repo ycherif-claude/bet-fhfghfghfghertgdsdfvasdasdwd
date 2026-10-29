@@ -7,7 +7,7 @@ import { dataRoma, finestraGiornata, isoRoma, oraRoma, slug } from '../calcio/te
 import { balldontlie } from './fonti/balldontlie.js';
 import { sportsgameodds } from './fonti/sportsgameodds.js';
 import { backToBack, formattaLinea, mercatiNba, pesoModelloPartita, puntiAttesi, stimaForzeNba } from './modello.js';
-import { consensoNba, lineaComune, quotaMedianaNba, riferimentoMercato } from './quote.js';
+import { bookmakerItaliani, consensoNba, lineaComune, quotaMedianaNba, riferimentoMercato } from './quote.js';
 import { squadraNba } from './squadre.js';
 import { eventiOdssSport } from '../odss/sport.js';
 import { femminile, inFormatoNba, legaAmmessa, unisciEventi } from '../odss/eventi.js';
@@ -285,6 +285,8 @@ export async function eseguiRaccoltaNba({ data, adesso, fonti, chiavi, dirData =
         frequenzaCampionato: null,
         ...(rif.etichetta === 'Pinnacle' ? {} : { etichettaMercato: rif.etichetta }),
         spiegazione: spiegazioneMercato(m.mercato, m.selezione, nomi, linee),
+        // Bookmaker italiani con la loro quota, per scegliere dove giocare [utente, 29/10/2026].
+        ...(bookmakerItaliani(ev, tipo, sel, linea) ? { bookmaker: bookmakerItaliani(ev, tipo, sel, linea) } : {}),
       });
     }
     if (!mercati.length) {
