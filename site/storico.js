@@ -149,7 +149,10 @@ const MODI_COPPIE = [
   ['probabilita', 'Per probabilità del mercato'],
   ['modello', 'Solo il nostro modello'],
   ['confermate', 'Confermate da modello e mercato'],
-  ['tutte', 'Per margine con tutte le partite'],
+  ['tutte', 'Per margine, con tutte le partite'],
+  ['probabilitaTutte', 'Per probabilità del mercato, con tutte le partite'],
+  ['modelloTutte', 'Solo il nostro modello, con tutte le partite'],
+  ['confermateTutte', 'Confermate da modello e mercato, con tutte le partite'],
 ];
 const fmtErrore = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
 // Bookmaker migliore (dati.bookmakerMigliore): quanto si guadagna in quota scegliendo dove giocare la coppia.
@@ -202,7 +205,7 @@ export function renderConfronto(bilancio, confronto) {
   ));
   return [
     el('h2', {}, 'Coppie a quota 2: i modi a confronto'),
-    el('p', { class: 'meta' }, 'Le migliori 20 partite del giorno abbinate in quattro modi, più le coppie fatte con tutte le partite. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
+    el('p', { class: 'meta' }, 'I quattro modi con le migliori 20 partite del giorno e gli stessi quattro con tutte le partite adatte. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
     el('table', { class: 'tabella-modi' },
       el('thead', {}, el('tr', {}, ['Modo', 'Coppie', 'Vinte', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
       el('tbody', {}, righeModi)),

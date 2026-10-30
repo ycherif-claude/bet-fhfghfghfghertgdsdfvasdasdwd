@@ -2129,7 +2129,7 @@
             "probMercato": 0.6901,
             "probModello": 0.6113049288661339,
             "esito": "vinta",
-            "probModelloTarato": 0.6759
+            "probModelloTarato": 0.6692
           },
           {
             "sport": "nba",
@@ -2149,7 +2149,7 @@
         ],
         "quota": 2.03,
         "prob": 0.46133058608058614,
-        "probModello": 0.37108866165477933,
+        "probModello": 0.36741016774578833,
         "valueAtteso": -0.06349891025641019,
         "esito": "vinta",
         "ritorno": 2.03,
@@ -2232,12 +2232,12 @@
             "probMercato": 0.7077,
             "probModello": 0.720780487848291,
             "esito": "vinta",
-            "probModelloTarato": 0.7656
+            "probModelloTarato": 0.7589
           }
         ],
         "quota": 1.94,
         "prob": 0.4528936583763474,
-        "probModello": 0.3810490120507494,
+        "probModello": 0.37771433548238476,
         "valueAtteso": -0.12120514528653548,
         "esito": "persa",
         "ritorno": 0,
@@ -2250,18 +2250,18 @@
         "gambe": [
           {
             "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "KuPS - Gnistan",
-            "idPartita": "calcio-2026-10-29-kups-gnistan",
-            "inizio": "2026-10-29T18:00:00+01:00",
-            "mercato": "1X2",
-            "selezione": "1",
-            "quota": 1.44,
+            "competizione": "Allsvenskan (Svezia)",
+            "partita": "Kalmar FF - GAIS",
+            "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
+            "inizio": "2026-10-29T19:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "1X",
+            "quota": 1.35,
             "quotaBet365": null,
-            "probMercato": 0.6431,
-            "probModello": 0.5858372538936008,
+            "probMercato": 0.6849,
+            "probModello": 0.49782931376391704,
             "esito": "persa",
-            "probModelloTarato": 0.6546
+            "probModelloTarato": 0.5727
           },
           {
             "sport": "calcio",
@@ -2276,13 +2276,13 @@
             "probMercato": 0.6315,
             "probModello": 0.5716661987714835,
             "esito": "vinta",
-            "probModelloTarato": 0.6426
+            "probModelloTarato": 0.636
           }
         ],
-        "quota": 2.13,
-        "prob": 0.40611765,
-        "probModello": 0.42064595999999993,
-        "valueAtteso": -0.1344820643200001,
+        "quota": 2,
+        "prob": 0.43251434999999994,
+        "probModello": 0.3642372,
+        "valueAtteso": -0.13583632870000018,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
@@ -2310,50 +2310,6 @@
           {
             "sport": "calcio",
             "competizione": "Allsvenskan (Svezia)",
-            "partita": "Kalmar FF - GAIS",
-            "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
-            "inizio": "2026-10-29T19:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "1X",
-            "quota": 1.35,
-            "quotaBet365": null,
-            "probMercato": 0.6849,
-            "probModello": 0.49782931376391704,
-            "esito": "persa",
-            "probModelloTarato": 0.5787
-          }
-        ],
-        "quota": 1.93,
-        "prob": 0.43799777777777776,
-        "probModello": null,
-        "valueAtteso": -0.15444528999999996,
-        "esito": "persa",
-        "ritorno": 0,
-        "ricostruita": true
-      },
-      {
-        "id": "Q2M6-2026-10-29",
-        "criterio": "margine",
-        "prova": true,
-        "gambe": [
-          {
-            "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "Inter Turku - HJK",
-            "idPartita": "calcio-2026-10-29-inter-turku-hjk",
-            "inizio": "2026-10-29T17:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "X2",
-            "quota": 1.5,
-            "quotaBet365": null,
-            "probMercato": 0.6088,
-            "probModello": 0.571866941366341,
-            "esito": "vinta",
-            "probModelloTarato": 0.6427
-          },
-          {
-            "sport": "calcio",
-            "competizione": "Allsvenskan (Svezia)",
             "partita": "Örgryte IS - Mjällby AIF",
             "idPartita": "calcio-2026-10-29-orgryte-is-mjallby-aif",
             "inizio": "2026-10-29T19:00:00+01:00",
@@ -2364,15 +2320,15 @@
             "probMercato": 0.6784,
             "probModello": 0.6837730901204764,
             "esito": "vinta",
-            "probModelloTarato": 0.7356
+            "probModelloTarato": 0.7288
           }
         ],
-        "quota": 2.03,
-        "prob": 0.41300992000000003,
-        "probModello": 0.47277012000000007,
-        "valueAtteso": -0.16365491199999982,
-        "esito": "vinta",
-        "ritorno": 2.03,
+        "quota": 1.93,
+        "prob": 0.433840987654321,
+        "probModello": null,
+        "valueAtteso": -0.16246997333333324,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       }
     ],
@@ -2454,12 +2410,12 @@
             "probMercato": 0.7077,
             "probModello": 0.720780487848291,
             "esito": "vinta",
-            "probModelloTarato": 0.7656
+            "probModelloTarato": 0.7589
           }
         ],
         "quota": 1.91,
         "prob": 0.46417427969079406,
-        "probModello": 0.4553780243662902,
+        "probModello": 0.4513928718542028,
         "valueAtteso": -0.11157042867182021,
         "esito": "vinta",
         "ritorno": 1.91,
@@ -2483,7 +2439,7 @@
             "probMercato": 0.6901,
             "probModello": 0.6113049288661339,
             "esito": "vinta",
-            "probModelloTarato": 0.6759
+            "probModelloTarato": 0.6692
           },
           {
             "sport": "pallavolo",
@@ -2516,21 +2472,6 @@
         "gambe": [
           {
             "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "KuPS - Gnistan",
-            "idPartita": "calcio-2026-10-29-kups-gnistan",
-            "inizio": "2026-10-29T18:00:00+01:00",
-            "mercato": "1X2",
-            "selezione": "1",
-            "quota": 1.44,
-            "quotaBet365": null,
-            "probMercato": 0.6431,
-            "probModello": 0.5858372538936008,
-            "esito": "persa",
-            "probModelloTarato": 0.6546
-          },
-          {
-            "sport": "calcio",
             "competizione": "Allsvenskan (Svezia)",
             "partita": "Kalmar FF - GAIS",
             "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
@@ -2542,36 +2483,7 @@
             "probMercato": 0.6849,
             "probModello": 0.49782931376391704,
             "esito": "persa",
-            "probModelloTarato": 0.5787
-          }
-        ],
-        "quota": 1.94,
-        "prob": 0.44045919,
-        "probModello": 0.37881701999999995,
-        "valueAtteso": -0.14374733464,
-        "esito": "persa",
-        "ritorno": 0,
-        "ricostruita": true
-      },
-      {
-        "id": "Q2P5-2026-10-29",
-        "criterio": "probabilita",
-        "prova": true,
-        "gambe": [
-          {
-            "sport": "calcio",
-            "competizione": "Allsvenskan (Svezia)",
-            "partita": "Örgryte IS - Mjällby AIF",
-            "idPartita": "calcio-2026-10-29-orgryte-is-mjallby-aif",
-            "inizio": "2026-10-29T19:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "X2",
-            "quota": 1.35,
-            "quotaBet365": null,
-            "probMercato": 0.6784,
-            "probModello": 0.6837730901204764,
-            "esito": "vinta",
-            "probModelloTarato": 0.7356
+            "probModelloTarato": 0.5727
           },
           {
             "sport": "basket",
@@ -2590,15 +2502,15 @@
           }
         ],
         "quota": 1.98,
-        "prob": 0.4341430801787679,
-        "probModello": 0.366117624431206,
-        "valueAtteso": -0.138443057385235,
+        "prob": 0.43830276476184865,
+        "probModello": 0.2850401896570849,
+        "valueAtteso": -0.1301881633301113,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
       },
       {
-        "id": "Q2P6-2026-10-29",
+        "id": "Q2P5-2026-10-29",
         "criterio": "probabilita",
         "prova": true,
         "gambe": [
@@ -2619,24 +2531,24 @@
           },
           {
             "sport": "calcio",
-            "competizione": "Serie A (Brasile)",
-            "partita": "Atlético-MG - Cruzeiro",
-            "idPartita": "calcio-2026-10-29-atletico-mg-cruzeiro",
-            "inizio": "2026-10-29T23:30:00+01:00",
+            "competizione": "Allsvenskan (Svezia)",
+            "partita": "Örgryte IS - Mjällby AIF",
+            "idPartita": "calcio-2026-10-29-orgryte-is-mjallby-aif",
+            "inizio": "2026-10-29T19:00:00+01:00",
             "mercato": "Doppia chance",
             "selezione": "X2",
-            "quota": 1.48,
+            "quota": 1.35,
             "quotaBet365": null,
-            "probMercato": 0.6315,
-            "probModello": 0.5716661987714835,
+            "probMercato": 0.6784,
+            "probModello": 0.6837730901204764,
             "esito": "vinta",
-            "probModelloTarato": 0.6426
+            "probModelloTarato": 0.7288
           }
         ],
-        "quota": 2.12,
-        "prob": 0.4038481481481481,
+        "quota": 1.93,
+        "prob": 0.433840987654321,
         "probModello": null,
-        "valueAtteso": -0.1452957792592593,
+        "valueAtteso": -0.16246997333333324,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
@@ -2650,18 +2562,18 @@
         "gambe": [
           {
             "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "KuPS - Gnistan",
-            "idPartita": "calcio-2026-10-29-kups-gnistan",
-            "inizio": "2026-10-29T18:00:00+01:00",
-            "mercato": "1X2",
-            "selezione": "1",
-            "quota": 1.44,
+            "competizione": "Serie A (Brasile)",
+            "partita": "Atlético-MG - Cruzeiro",
+            "idPartita": "calcio-2026-10-29-atletico-mg-cruzeiro",
+            "inizio": "2026-10-29T23:30:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.48,
             "quotaBet365": null,
-            "probMercato": 0.6431,
-            "probModello": 0.5858372538936008,
-            "esito": "persa",
-            "probModelloTarato": 0.6546
+            "probMercato": 0.6315,
+            "probModello": 0.5716661987714835,
+            "esito": "vinta",
+            "probModelloTarato": 0.636
           },
           {
             "sport": "nba",
@@ -2679,10 +2591,10 @@
             "probModelloTarato": null
           }
         ],
-        "quota": 1.92,
-        "prob": 0.45642007672634277,
-        "probModello": 0.5166380087264391,
-        "valueAtteso": -0.1258642690537083,
+        "quota": 1.97,
+        "prob": 0.4481873401534527,
+        "probModello": 0.5019581019706923,
+        "valueAtteso": -0.11778803964194362,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
@@ -2693,19 +2605,19 @@
         "prova": true,
         "gambe": [
           {
-            "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "Inter Turku - HJK",
-            "idPartita": "calcio-2026-10-29-inter-turku-hjk",
-            "inizio": "2026-10-29T17:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "X2",
-            "quota": 1.5,
+            "sport": "basket",
+            "competizione": "Eurolega",
+            "partita": "Real Madrid - Fenerbahce SK",
+            "idPartita": "basket-2026-10-29-real-madrid-fenerbahce-sk",
+            "inizio": "2026-10-29T20:45:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Real Madrid",
+            "quota": 1.45,
             "quotaBet365": null,
-            "probMercato": 0.6088,
-            "probModello": 0.571866941366341,
+            "probMercato": 0.6558913094401498,
+            "probModello": 0.5947988824011106,
             "esito": "vinta",
-            "probModelloTarato": 0.6427
+            "probModelloTarato": null
           },
           {
             "sport": "calcio",
@@ -2720,15 +2632,15 @@
             "probMercato": 0.7077,
             "probModello": 0.720780487848291,
             "esito": "vinta",
-            "probModelloTarato": 0.7656
+            "probModelloTarato": 0.7589
           }
         ],
-        "quota": 1.98,
-        "prob": 0.43084776,
-        "probModello": 0.49205112,
-        "valueAtteso": -0.1469214352,
+        "quota": 1.91,
+        "prob": 0.46417427969079406,
+        "probModello": 0.4513928718542028,
+        "valueAtteso": -0.11157042867182021,
         "esito": "vinta",
-        "ritorno": 1.98,
+        "ritorno": 1.91,
         "ricostruita": true
       },
       {
@@ -2749,30 +2661,30 @@
             "probMercato": 0.6784,
             "probModello": 0.6837730901204764,
             "esito": "vinta",
-            "probModelloTarato": 0.7356
+            "probModelloTarato": 0.7288
           },
           {
-            "sport": "calcio",
-            "competizione": "Serie A (Brasile)",
-            "partita": "Atlético-MG - Cruzeiro",
-            "idPartita": "calcio-2026-10-29-atletico-mg-cruzeiro",
-            "inizio": "2026-10-29T23:30:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "X2",
-            "quota": 1.48,
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "New Orleans Pelicans - Sacramento Kings",
+            "idPartita": "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
+            "inizio": "2026-10-30T01:00:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "New Orleans Pelicans",
+            "quota": 1.45,
             "quotaBet365": null,
-            "probMercato": 0.6315,
-            "probModello": 0.5716661987714835,
+            "probMercato": 0.6684981684981686,
+            "probModello": 0.5490289416404488,
             "esito": "vinta",
-            "probModelloTarato": 0.6426
+            "probModelloTarato": null
           }
         ],
-        "quota": 2,
-        "prob": 0.42840959999999995,
-        "probModello": 0.47269656,
-        "valueAtteso": -0.14403761920000013,
+        "quota": 1.96,
+        "prob": 0.45350915750915755,
+        "probModello": 0.40013229266755906,
+        "valueAtteso": -0.11225582417582414,
         "esito": "vinta",
-        "ritorno": 2,
+        "ritorno": 1.96,
         "ricostruita": true
       },
       {
@@ -2793,72 +2705,28 @@
             "probMercato": 0.6901,
             "probModello": 0.6113049288661339,
             "esito": "vinta",
-            "probModelloTarato": 0.6759
+            "probModelloTarato": 0.6692
           },
           {
             "sport": "basket",
             "competizione": "Eurolega",
-            "partita": "Real Madrid - Fenerbahce SK",
-            "idPartita": "basket-2026-10-29-real-madrid-fenerbahce-sk",
-            "inizio": "2026-10-29T20:45:00+01:00",
+            "partita": "Maccabi Tel Aviv - Paris Basketball",
+            "idPartita": "basket-2026-10-29-maccabi-tel-aviv-paris-basketball",
+            "inizio": "2026-10-29T20:05:00+01:00",
             "mercato": "Vincente",
-            "selezione": "Real Madrid",
-            "quota": 1.45,
+            "selezione": "Maccabi Tel Aviv",
+            "quota": 1.47,
             "quotaBet365": null,
-            "probMercato": 0.6558913094401498,
-            "probModello": 0.5947988824011106,
-            "esito": "vinta",
-            "probModelloTarato": null
-          }
-        ],
-        "quota": 2.03,
-        "prob": 0.45263059264464744,
-        "probModello": 0.4020245646149106,
-        "valueAtteso": -0.08115989693136583,
-        "esito": "vinta",
-        "ritorno": 2.03,
-        "ricostruita": true
-      },
-      {
-        "id": "Q2O5-2026-10-29",
-        "criterio": "modello",
-        "prova": true,
-        "gambe": [
-          {
-            "sport": "calcio",
-            "competizione": "Allsvenskan (Svezia)",
-            "partita": "Kalmar FF - GAIS",
-            "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
-            "inizio": "2026-10-29T19:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "1X",
-            "quota": 1.35,
-            "quotaBet365": null,
-            "probMercato": 0.6849,
-            "probModello": 0.49782931376391704,
+            "probMercato": 0.6399514743201178,
+            "probModello": 0.4977129206514491,
             "esito": "persa",
-            "probModelloTarato": 0.5787
-          },
-          {
-            "sport": "nba",
-            "competizione": "NBA",
-            "partita": "New Orleans Pelicans - Sacramento Kings",
-            "idPartita": "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
-            "inizio": "2026-10-30T01:00:00+01:00",
-            "mercato": "Vincente",
-            "selezione": "New Orleans Pelicans",
-            "quota": 1.45,
-            "quotaBet365": null,
-            "probMercato": 0.6684981684981686,
-            "probModello": 0.5490289416404488,
-            "esito": "vinta",
             "probModelloTarato": null
           }
         ],
-        "quota": 1.96,
-        "prob": 0.4578543956043956,
-        "probModello": 0.3177230485273277,
-        "valueAtteso": -0.10375002060439553,
+        "quota": 2.06,
+        "prob": 0.4416305124283133,
+        "probModello": 0.3330694864999498,
+        "valueAtteso": -0.09112440542253131,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
@@ -2883,7 +2751,7 @@
             "probMercato": 0.6901,
             "probModello": 0.6113049288661339,
             "esito": "vinta",
-            "probModelloTarato": 0.6759
+            "probModelloTarato": 0.6692
           },
           {
             "sport": "calcio",
@@ -2898,12 +2766,12 @@
             "probMercato": 0.6315,
             "probModello": 0.5716661987714835,
             "esito": "vinta",
-            "probModelloTarato": 0.6426
+            "probModelloTarato": 0.636
           }
         ],
         "quota": 2.07,
         "prob": 0.43579815,
-        "probModello": 0.43433333999999996,
+        "probModello": 0.4256112,
         "valueAtteso": -0.09702623320000003,
         "esito": "vinta",
         "ritorno": 2.07,
@@ -2929,7 +2797,7 @@
             "probMercato": 0.6901,
             "probModello": 0.6113049288661339,
             "esito": "vinta",
-            "probModelloTarato": 0.6759
+            "probModelloTarato": 0.6692
           },
           {
             "sport": "nba",
@@ -2949,7 +2817,7 @@
         ],
         "quota": 2.03,
         "prob": 0.46133058608058614,
-        "probModello": 0.37108866165477933,
+        "probModello": 0.36741016774578833,
         "valueAtteso": -0.06349891025641019,
         "esito": "vinta",
         "ritorno": 2.03,
@@ -3032,12 +2900,12 @@
             "probMercato": 0.7077,
             "probModello": 0.720780487848291,
             "esito": "vinta",
-            "probModelloTarato": 0.7656
+            "probModelloTarato": 0.7589
           }
         ],
         "quota": 1.94,
         "prob": 0.4528936583763474,
-        "probModello": 0.3810490120507494,
+        "probModello": 0.37771433548238476,
         "valueAtteso": -0.12120514528653548,
         "esito": "persa",
         "ritorno": 0,
@@ -3050,18 +2918,18 @@
         "gambe": [
           {
             "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "KuPS - Gnistan",
-            "idPartita": "calcio-2026-10-29-kups-gnistan",
-            "inizio": "2026-10-29T18:00:00+01:00",
-            "mercato": "1X2",
-            "selezione": "1",
-            "quota": 1.44,
+            "competizione": "Allsvenskan (Svezia)",
+            "partita": "Kalmar FF - GAIS",
+            "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
+            "inizio": "2026-10-29T19:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "1X",
+            "quota": 1.35,
             "quotaBet365": null,
-            "probMercato": 0.6431,
-            "probModello": 0.5858372538936008,
+            "probMercato": 0.6849,
+            "probModello": 0.49782931376391704,
             "esito": "persa",
-            "probModelloTarato": 0.6546
+            "probModelloTarato": 0.5727
           },
           {
             "sport": "calcio",
@@ -3076,13 +2944,13 @@
             "probMercato": 0.6315,
             "probModello": 0.5716661987714835,
             "esito": "vinta",
-            "probModelloTarato": 0.6426
+            "probModelloTarato": 0.636
           }
         ],
-        "quota": 2.13,
-        "prob": 0.40611765,
-        "probModello": 0.42064595999999993,
-        "valueAtteso": -0.1344820643200001,
+        "quota": 2,
+        "prob": 0.43251434999999994,
+        "probModello": 0.3642372,
+        "valueAtteso": -0.13583632870000018,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
@@ -3110,6 +2978,169 @@
           {
             "sport": "calcio",
             "competizione": "Allsvenskan (Svezia)",
+            "partita": "Örgryte IS - Mjällby AIF",
+            "idPartita": "calcio-2026-10-29-orgryte-is-mjallby-aif",
+            "inizio": "2026-10-29T19:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.35,
+            "quotaBet365": null,
+            "probMercato": 0.6784,
+            "probModello": 0.6837730901204764,
+            "esito": "vinta",
+            "probModelloTarato": 0.7288
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.433840987654321,
+        "probModello": null,
+        "valueAtteso": -0.16246997333333324,
+        "esito": "persa",
+        "ritorno": 0,
+        "ricostruita": true
+      }
+    ],
+    "probabilitaTutte": [
+      {
+        "id": "Q2PT1-2026-10-29",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "New Orleans Pelicans - Sacramento Kings",
+            "idPartita": "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
+            "inizio": "2026-10-30T01:00:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "New Orleans Pelicans",
+            "quota": 1.45,
+            "quotaBet365": null,
+            "probMercato": 0.6684981684981686,
+            "probModello": 0.5490289416404488,
+            "esito": "vinta",
+            "probModelloTarato": null
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Portland Trail Blazers - Memphis Grizzlies",
+            "idPartita": "nba-2026-10-29-portland-trail-blazers-memphis-grizzlies",
+            "inizio": "2026-10-30T03:00:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Portland Trail Blazers",
+            "quota": 1.33,
+            "quotaBet365": null,
+            "probMercato": 0.7097186700767264,
+            "probModello": 0.7892422986960572,
+            "esito": "persa",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.47444563109524757,
+        "probModello": 0.43331686395097124,
+        "valueAtteso": -0.08503160043281499,
+        "esito": "persa",
+        "ritorno": 0,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2PT2-2026-10-29",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "basket",
+            "competizione": "Eurolega",
+            "partita": "Real Madrid - Fenerbahce SK",
+            "idPartita": "basket-2026-10-29-real-madrid-fenerbahce-sk",
+            "inizio": "2026-10-29T20:45:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Real Madrid",
+            "quota": 1.45,
+            "quotaBet365": null,
+            "probMercato": 0.6558913094401498,
+            "probModello": 0.5947988824011106,
+            "esito": "vinta",
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Grêmio - Athletico-PR",
+            "idPartita": "calcio-2026-10-29-gremio-athletico-pr",
+            "inizio": "2026-10-30T01:30:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "12",
+            "quota": 1.32,
+            "quotaBet365": null,
+            "probMercato": 0.7077,
+            "probModello": 0.720780487848291,
+            "esito": "vinta",
+            "probModelloTarato": 0.7589
+          }
+        ],
+        "quota": 1.91,
+        "prob": 0.46417427969079406,
+        "probModello": 0.4513928718542028,
+        "valueAtteso": -0.11157042867182021,
+        "esito": "vinta",
+        "ritorno": 1.91,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2PT3-2026-10-29",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A",
+            "partita": "Frosinone - Lecce",
+            "idPartita": "calcio-2026-10-29-frosinone-lecce",
+            "inizio": "2026-10-29T18:30:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6901,
+            "probModello": 0.6113049288661339,
+            "esito": "vinta",
+            "probModelloTarato": 0.6692
+          },
+          {
+            "sport": "pallavolo",
+            "competizione": "PlusLiga",
+            "partita": "Resovia Rzeszow - Trefl Gdansk",
+            "idPartita": "pallavolo-2026-10-29-resovia-rzeszow-trefl-gdansk",
+            "inizio": "2026-10-29T20:30:00+01:00",
+            "mercato": "Handicap set -1.5",
+            "selezione": "casa",
+            "quota": 1.39,
+            "quotaBet365": null,
+            "probMercato": 0.6539113586824897,
+            "probModello": null,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45126422862678617,
+        "probModello": null,
+        "valueAtteso": -0.12183981109227426,
+        "esito": "vinta",
+        "ritorno": 1.95,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2PT4-2026-10-29",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Allsvenskan (Svezia)",
             "partita": "Kalmar FF - GAIS",
             "idPartita": "calcio-2026-10-29-kalmar-ff-gais",
             "inizio": "2026-10-29T19:00:00+01:00",
@@ -3120,36 +3151,51 @@
             "probMercato": 0.6849,
             "probModello": 0.49782931376391704,
             "esito": "persa",
-            "probModelloTarato": 0.5787
+            "probModelloTarato": 0.5727
+          },
+          {
+            "sport": "basket",
+            "competizione": "Eurolega",
+            "partita": "Maccabi Tel Aviv - Paris Basketball",
+            "idPartita": "basket-2026-10-29-maccabi-tel-aviv-paris-basketball",
+            "inizio": "2026-10-29T20:05:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Maccabi Tel Aviv",
+            "quota": 1.47,
+            "quotaBet365": null,
+            "probMercato": 0.6399514743201178,
+            "probModello": 0.4977129206514491,
+            "esito": "persa",
+            "probModelloTarato": null
           }
         ],
-        "quota": 1.93,
-        "prob": 0.43799777777777776,
-        "probModello": null,
-        "valueAtteso": -0.15444528999999996,
+        "quota": 1.98,
+        "prob": 0.43830276476184865,
+        "probModello": 0.2850401896570849,
+        "valueAtteso": -0.1301881633301113,
         "esito": "persa",
         "ritorno": 0,
         "ricostruita": true
       },
       {
-        "id": "Q2T6-2026-10-29",
-        "criterio": "tutte",
+        "id": "Q2PT5-2026-10-29",
+        "criterio": "probabilitaTutte",
         "prova": true,
         "gambe": [
           {
-            "sport": "calcio",
-            "competizione": "Veikkausliiga (Finlandia)",
-            "partita": "Inter Turku - HJK",
-            "idPartita": "calcio-2026-10-29-inter-turku-hjk",
-            "inizio": "2026-10-29T17:00:00+01:00",
-            "mercato": "Doppia chance",
-            "selezione": "X2",
-            "quota": 1.5,
+            "sport": "pallavolo",
+            "competizione": "PlusLiga",
+            "partita": "AZS Olsztyn - ZAKSA Kedzierzyn-Kozle",
+            "idPartita": "pallavolo-2026-10-29-azs-olsztyn-zaksa-kedzierzyn-kozle",
+            "inizio": "2026-10-29T17:30:00+01:00",
+            "mercato": "Totale set 3.5",
+            "selezione": "Over 3.5",
+            "quota": 1.43,
             "quotaBet365": null,
-            "probMercato": 0.6088,
-            "probModello": 0.571866941366341,
-            "esito": "vinta",
-            "probModelloTarato": 0.6427
+            "probMercato": 0.6395061728395062,
+            "probModello": null,
+            "esito": "persa",
+            "probModelloTarato": null
           },
           {
             "sport": "calcio",
@@ -3164,24 +3210,248 @@
             "probMercato": 0.6784,
             "probModello": 0.6837730901204764,
             "esito": "vinta",
-            "probModelloTarato": 0.7356
+            "probModelloTarato": 0.7288
           }
         ],
-        "quota": 2.03,
-        "prob": 0.41300992000000003,
-        "probModello": 0.47277012000000007,
-        "valueAtteso": -0.16365491199999982,
+        "quota": 1.93,
+        "prob": 0.433840987654321,
+        "probModello": null,
+        "valueAtteso": -0.16246997333333324,
+        "esito": "persa",
+        "ritorno": 0,
+        "ricostruita": true
+      }
+    ],
+    "modelloTutte": [
+      {
+        "id": "Q2OT1-2026-10-29",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Atlético-MG - Cruzeiro",
+            "idPartita": "calcio-2026-10-29-atletico-mg-cruzeiro",
+            "inizio": "2026-10-29T23:30:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.48,
+            "quotaBet365": null,
+            "probMercato": 0.6315,
+            "probModello": 0.5716661987714835,
+            "esito": "vinta",
+            "probModelloTarato": 0.636
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Portland Trail Blazers - Memphis Grizzlies",
+            "idPartita": "nba-2026-10-29-portland-trail-blazers-memphis-grizzlies",
+            "inizio": "2026-10-30T03:00:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Portland Trail Blazers",
+            "quota": 1.33,
+            "quotaBet365": null,
+            "probMercato": 0.7097186700767264,
+            "probModello": 0.7892422986960572,
+            "esito": "persa",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.97,
+        "prob": 0.4481873401534527,
+        "probModello": 0.5019581019706923,
+        "valueAtteso": -0.11778803964194362,
+        "esito": "persa",
+        "ritorno": 0,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2OT2-2026-10-29",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "basket",
+            "competizione": "Eurolega",
+            "partita": "Real Madrid - Fenerbahce SK",
+            "idPartita": "basket-2026-10-29-real-madrid-fenerbahce-sk",
+            "inizio": "2026-10-29T20:45:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Real Madrid",
+            "quota": 1.45,
+            "quotaBet365": null,
+            "probMercato": 0.6558913094401498,
+            "probModello": 0.5947988824011106,
+            "esito": "vinta",
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Grêmio - Athletico-PR",
+            "idPartita": "calcio-2026-10-29-gremio-athletico-pr",
+            "inizio": "2026-10-30T01:30:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "12",
+            "quota": 1.32,
+            "quotaBet365": null,
+            "probMercato": 0.7077,
+            "probModello": 0.720780487848291,
+            "esito": "vinta",
+            "probModelloTarato": 0.7589
+          }
+        ],
+        "quota": 1.91,
+        "prob": 0.46417427969079406,
+        "probModello": 0.4513928718542028,
+        "valueAtteso": -0.11157042867182021,
         "esito": "vinta",
-        "ritorno": 2.03,
+        "ritorno": 1.91,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2OT3-2026-10-29",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Allsvenskan (Svezia)",
+            "partita": "Örgryte IS - Mjällby AIF",
+            "idPartita": "calcio-2026-10-29-orgryte-is-mjallby-aif",
+            "inizio": "2026-10-29T19:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.35,
+            "quotaBet365": null,
+            "probMercato": 0.6784,
+            "probModello": 0.6837730901204764,
+            "esito": "vinta",
+            "probModelloTarato": 0.7288
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "New Orleans Pelicans - Sacramento Kings",
+            "idPartita": "nba-2026-10-29-new-orleans-pelicans-sacramento-kings",
+            "inizio": "2026-10-30T01:00:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "New Orleans Pelicans",
+            "quota": 1.45,
+            "quotaBet365": null,
+            "probMercato": 0.6684981684981686,
+            "probModello": 0.5490289416404488,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.96,
+        "prob": 0.45350915750915755,
+        "probModello": 0.40013229266755906,
+        "valueAtteso": -0.11225582417582414,
+        "esito": "vinta",
+        "ritorno": 1.96,
+        "ricostruita": true
+      },
+      {
+        "id": "Q2OT4-2026-10-29",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A",
+            "partita": "Frosinone - Lecce",
+            "idPartita": "calcio-2026-10-29-frosinone-lecce",
+            "inizio": "2026-10-29T18:30:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6901,
+            "probModello": 0.6113049288661339,
+            "esito": "vinta",
+            "probModelloTarato": 0.6692
+          },
+          {
+            "sport": "basket",
+            "competizione": "Eurolega",
+            "partita": "Maccabi Tel Aviv - Paris Basketball",
+            "idPartita": "basket-2026-10-29-maccabi-tel-aviv-paris-basketball",
+            "inizio": "2026-10-29T20:05:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Maccabi Tel Aviv",
+            "quota": 1.47,
+            "quotaBet365": null,
+            "probMercato": 0.6399514743201178,
+            "probModello": 0.4977129206514491,
+            "esito": "persa",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 2.06,
+        "prob": 0.4416305124283133,
+        "probModello": 0.3330694864999498,
+        "valueAtteso": -0.09112440542253131,
+        "esito": "persa",
+        "ritorno": 0,
+        "ricostruita": true
+      }
+    ],
+    "confermateTutte": [
+      {
+        "id": "Q2CT1-2026-10-29",
+        "criterio": "confermateTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A",
+            "partita": "Frosinone - Lecce",
+            "idPartita": "calcio-2026-10-29-frosinone-lecce",
+            "inizio": "2026-10-29T18:30:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6901,
+            "probModello": 0.6113049288661339,
+            "esito": "vinta",
+            "probModelloTarato": 0.6692
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Atlético-MG - Cruzeiro",
+            "idPartita": "calcio-2026-10-29-atletico-mg-cruzeiro",
+            "inizio": "2026-10-29T23:30:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.48,
+            "quotaBet365": null,
+            "probMercato": 0.6315,
+            "probModello": 0.5716661987714835,
+            "esito": "vinta",
+            "probModelloTarato": 0.636
+          }
+        ],
+        "quota": 2.07,
+        "prob": 0.43579815,
+        "probModello": 0.4256112,
+        "valueAtteso": -0.09702623320000003,
+        "esito": "vinta",
+        "ritorno": 2.07,
         "ricostruita": true
       }
     ]
   },
   "taraturaModello": {
     "calcio": {
-      "a": 0.3253,
-      "b": 0.905,
-      "partite": 229
+      "a": 0.3008,
+      "b": 0.8918,
+      "partite": 258
     }
   }
 }

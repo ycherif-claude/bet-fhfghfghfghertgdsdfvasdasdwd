@@ -3155,7 +3155,7 @@
             "probMercato": 0.7053,
             "probModello": 0.5780634418591871,
             "esito": "vinta",
-            "probModelloTarato": 0.6333
+            "probModelloTarato": 0.6221
           },
           {
             "sport": "nba",
@@ -3175,7 +3175,7 @@
         ],
         "quota": 1.99,
         "prob": 0.4628997882851094,
-        "probModello": 0.3883926500609419,
+        "probModello": 0.38152387115571135,
         "valueAtteso": -0.08086618038108673,
         "esito": "vinta",
         "ritorno": 1.99,
@@ -3201,7 +3201,7 @@
             "probMercato": 0.7053,
             "probModello": 0.5780634418591871,
             "esito": "vinta",
-            "probModelloTarato": 0.6333
+            "probModelloTarato": 0.6221
           },
           {
             "sport": "nba",
@@ -3221,7 +3221,7 @@
         ],
         "quota": 1.99,
         "prob": 0.4628997882851094,
-        "probModello": 0.3883926500609419,
+        "probModello": 0.38152387115571135,
         "valueAtteso": -0.08086618038108673,
         "esito": "vinta",
         "ritorno": 1.99,
@@ -3247,7 +3247,7 @@
             "probMercato": 0.6981,
             "probModello": 0.7416072416502201,
             "esito": "vinta",
-            "probModelloTarato": 0.7768
+            "probModelloTarato": 0.7648
           },
           {
             "sport": "nba",
@@ -3267,7 +3267,7 @@
         ],
         "quota": 1.96,
         "prob": 0.45817431192660557,
-        "probModello": 0.4763988797842093,
+        "probModello": 0.4690394738143193,
         "valueAtteso": -0.10362777614678875,
         "esito": "vinta",
         "ritorno": 1.96,
@@ -3293,7 +3293,7 @@
             "probMercato": 0.7053,
             "probModello": 0.6628567763506104,
             "esito": "vinta",
-            "probModelloTarato": 0.7086
+            "probModelloTarato": 0.6965
           },
           {
             "sport": "nba",
@@ -3313,7 +3313,7 @@
         ],
         "quota": 1.93,
         "prob": 0.4628997882851094,
-        "probModello": 0.4345729225220014,
+        "probModello": 0.427152188169029,
         "valueAtteso": -0.10789952801693714,
         "esito": "vinta",
         "ritorno": 1.93,
@@ -3339,7 +3339,7 @@
             "probMercato": 0.7053,
             "probModello": 0.5780634418591871,
             "esito": "vinta",
-            "probModelloTarato": 0.6333
+            "probModelloTarato": 0.6221
           },
           {
             "sport": "nba",
@@ -3359,19 +3359,157 @@
         ],
         "quota": 1.99,
         "prob": 0.4628997882851094,
-        "probModello": 0.3883926500609419,
+        "probModello": 0.38152387115571135,
         "valueAtteso": -0.08086618038108673,
         "esito": "vinta",
         "ritorno": 1.99,
+        "ricostruita": true
+      }
+    ],
+    "probabilitaTutte": [
+      {
+        "id": "Q2PT1-2026-10-26",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 1",
+            "partita": "Paris Saint Germain - Lyon",
+            "idPartita": "calcio-2026-10-26-paris-saint-germain-lyon",
+            "inizio": "2026-10-26T20:30:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.5780634418591871,
+            "esito": "vinta",
+            "probModelloTarato": 0.6221
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.4628997882851094,
+        "probModello": 0.38152387115571135,
+        "valueAtteso": -0.08086618038108673,
+        "esito": "vinta",
+        "ritorno": 1.99,
+        "ricostruita": true
+      }
+    ],
+    "modelloTutte": [
+      {
+        "id": "Q2OT1-2026-10-26",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 2",
+            "partita": "Boulogne - Stade de Reims",
+            "idPartita": "calcio-2026-10-26-boulogne-stade-de-reims",
+            "inizio": "2026-10-26T20:45:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.34,
+            "quotaBet365": null,
+            "probMercato": 0.6981,
+            "probModello": 0.7416072416502201,
+            "esito": "vinta",
+            "probModelloTarato": 0.7648
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.96,
+        "prob": 0.45817431192660557,
+        "probModello": 0.4690394738143193,
+        "valueAtteso": -0.10362777614678875,
+        "esito": "vinta",
+        "ritorno": 1.96,
+        "ricostruita": true
+      }
+    ],
+    "confermateTutte": [
+      {
+        "id": "Q2CT1-2026-10-26",
+        "criterio": "confermateTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Liga Profesional (Argentina)",
+            "partita": "Instituto (Córdoba) - Deportivo Riestra",
+            "idPartita": "calcio-2026-10-26-instituto-cordoba-deportivo-riestra",
+            "inizio": "2026-10-27T01:15:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "12",
+            "quota": 1.32,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.6628567763506104,
+            "esito": "vinta",
+            "probModelloTarato": 0.6965
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.4628997882851094,
+        "probModello": 0.427152188169029,
+        "valueAtteso": -0.10789952801693714,
+        "esito": "vinta",
+        "ritorno": 1.93,
         "ricostruita": true
       }
     ]
   },
   "taraturaModello": {
     "calcio": {
-      "a": 0.2485,
-      "b": 0.9469,
-      "partite": 146
+      "a": 0.2088,
+      "b": 0.9202,
+      "partite": 172
     }
   }
 }

@@ -21,8 +21,11 @@ export const CRITERI = Object.freeze({
   modello: (a, b) => pm(a) * pm(b),
   confermate: resa,
   tutte: resa,
+  probabilitaTutte: (a, b) => a.probMercato * b.probMercato,
+  modelloTutte: (a, b) => pm(a) * pm(b),
+  confermateTutte: resa,
 });
-const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C', tutte: 'T' };
+const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C', tutte: 'T', probabilitaTutte: 'PT', modelloTutte: 'OT', confermateTutte: 'CT' };
 // Probabilità del modello di una partita: quella corretta dalla taratura automatica, se c'è, altrimenti la grezza.
 const numero = (v) => typeof v === 'number' && Number.isFinite(v);
 export const pm = (g) => (numero(g.probModelloTarato) ? g.probModelloTarato : g.probModello);
@@ -33,7 +36,7 @@ export const confermata = (g) => conModello(g) && Math.abs(pm(g) - g.probMercato
 export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
   const punteggio = CRITERI[criterio];
   if (!punteggio) throw new Error(`Criterio delle coppie non valido: ${criterio}`);
-  const altro = CRITERI[criterio === 'probabilita' || criterio === 'modello' ? 'margine' : 'probabilita'];
+  const altro = CRITERI[['probabilita', 'modello', 'probabilitaTutte', 'modelloTutte'].includes(criterio) ? 'margine' : 'probabilita'];
   const possibili = [];
   for (let i = 0; i < gambe.length; i++) {
     for (let j = i + 1; j < gambe.length; j++) {
@@ -73,9 +76,9 @@ export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
 // dalle prime 20 hanno vinto il 63%, quelle da tutte le partite il 52% (le ultime dell'elenco vincono meno).
 export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMercato - a.quota * a.probMercato).slice(0, C.migliori);
 
-// Le coppie dei cinque modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite;
-// "tutte": come margine ma con tutte le partite adatte, per confronto.
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'tutte']);
+// Le coppie degli otto modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite; gli altri
+// quattro uguali ma con tutte le partite adatte, per confronto ("tutte" è il margine) [utente, 30/10/2026].
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
 export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
   const top = migliori(gambe);
   return {
@@ -84,6 +87,9 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     modello: costruisciCoppie(top.filter(conModello), { data, criterio: 'modello' }),
     confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
+    probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
+    modelloTutte: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modelloTutte' }),
+    confermateTutte: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'confermateTutte' }),
   };
 };
 // Tutte le coppie di una giornata, di qualunque modo.
