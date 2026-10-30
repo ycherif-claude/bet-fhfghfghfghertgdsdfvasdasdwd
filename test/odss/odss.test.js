@@ -194,7 +194,7 @@ test('formati: NBA/basket (vincente, handicap della casa, totale), tennis per no
 test('documentazione: fonti per sport, budget unico e riserva nel README e nelle routine', () => {
   const r = readFileSync('README.md', 'utf8');
   assert.match(r, /odss-api è la fonte principale di tutti gli sport/);
-  assert.match(r, /13 × 30 = 390/);
+  assert.match(r, /16 × 30 = 480/);
   for (const riserva of ['The Odds API', 'SportsGameOdds', 'OddsPapi']) assert.ok(r.includes(riserva));
   assert.match(readFileSync('docs/routine/giro-del-mattino.md', 'utf8'), /mediana di N bookmaker \(odss-api\)/);
   assert.match(readFileSync('docs/routine/controllo-pre-partita.md', 'utf8'), /prima odss-api/);
