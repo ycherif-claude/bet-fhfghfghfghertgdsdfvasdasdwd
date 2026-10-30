@@ -22,11 +22,50 @@
       "dettagli": [],
       "alle": "2026-10-30T16:26:24+01:00",
       "regola": true
+    },
+    "calcio-2026-10-30-fc-energie-cottbus-vfl-bochum-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 1,70 ≥ minima 1,65",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 1,70 ≥ minima 1,65"
+      ],
+      "alle": "2026-10-30T17:57:18+01:00"
+    },
+    "basket-2026-10-30-zalgiris-kk-partizan-nis-totale-punti-164-5-under-164-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,87 sotto la minima 1,94",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,87 sotto la minima 1,94"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-10-30T17:57:18+01:00"
+    },
+    "calcio-2026-10-30-konyaspor-galatasaray-1x2-x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,33 sotto la minima 4,60",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,33 sotto la minima 4,60"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-30T17:57:18+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "basket-2026-10-30-zalgiris-kk-partizan-nis-totale-punti-164-5-under-164-5"
+    ]
   },
   "pronostici": {
     "calcio-2026-10-30-konyaspor-galatasaray|Under/Over trasferta 0.5|Over 0.5": {
@@ -34,6 +73,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over trasferta 0.5|Over 0.5",
       "alle": "2026-10-30T17:13:10+01:00"
+    },
+    "calcio-2026-10-30-le-havre-paris-saint-germain|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-30T17:57:18+01:00"
+    },
+    "calcio-2026-10-30-bodo-glimt-viking-fk|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-30T17:57:18+01:00"
     }
   }
 }

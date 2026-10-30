@@ -2755,9 +2755,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 1,70 ≥ minima 1,65",
+      "oraUltimoControllo": "2026-10-30T17:57:18+01:00",
       "esito": null,
       "prova": true
     },
@@ -3203,9 +3203,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 1,87 sotto la minima 1,94",
+      "oraUltimoControllo": "2026-10-30T17:57:18+01:00",
       "esito": null,
       "prova": true
     },
@@ -3365,9 +3365,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 4,33 sotto la minima 4,60",
+      "oraUltimoControllo": "2026-10-30T17:57:18+01:00",
       "esito": null,
       "prova": true
     },
@@ -3477,7 +3477,13 @@
               "planetwin365",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.4,
+            "prob": 0.6405950095969289,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "calcio",
@@ -4137,7 +4143,13 @@
               "planetwin365",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.4,
+            "prob": 0.6405950095969289,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "basket",
@@ -4202,7 +4214,13 @@
               1.36
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.6933097814086995,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "basket",
@@ -5391,7 +5409,13 @@
               "starvegas",
               1.5
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.55,
+            "prob": 0.5958613812016954,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 3
+          }
         },
         {
           "sport": "calcio",
@@ -5452,7 +5476,13 @@
               "planetwin365",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.4,
+            "prob": 0.6405950095969289,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "basket",
@@ -5517,7 +5547,13 @@
               1.36
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.6933097814086995,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "basket",
@@ -7610,7 +7646,13 @@
               1.36
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.6933097814086995,
+            "alle": "2026-10-30T17:57:18+01:00",
+            "minutiPrima": 33
+          }
         },
         {
           "sport": "basket",
@@ -10475,7 +10517,13 @@
                 1.36
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6933097814086995,
+              "alle": "2026-10-30T17:57:18+01:00",
+              "minutiPrima": 33
+            }
           },
           {
             "sport": "basket",
@@ -11827,7 +11875,13 @@
                 1.36
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6933097814086995,
+              "alle": "2026-10-30T17:57:18+01:00",
+              "minutiPrima": 33
+            }
           },
           {
             "sport": "calcio",
@@ -13282,7 +13336,13 @@
                 1.36
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6933097814086995,
+              "alle": "2026-10-30T17:57:18+01:00",
+              "minutiPrima": 33
+            }
           },
           {
             "sport": "calcio",
@@ -13824,7 +13884,13 @@
                 1.36
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6933097814086995,
+              "alle": "2026-10-30T17:57:18+01:00",
+              "minutiPrima": 33
+            }
           },
           {
             "sport": "calcio",
