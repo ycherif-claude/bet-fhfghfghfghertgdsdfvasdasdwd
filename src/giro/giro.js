@@ -168,11 +168,14 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const scelta = selezionaGiocate(candidati.filter((c) => !fuori.has(c.id)), stato, { prova });
   // Multiple bonus bet365 (in prova): dai mercati con quota, senza le partite escluse dalle notizie.
   const escluse = new Set((notizie?.esclusioni ?? []).filter((x) => !x.idCandidato).map((x) => x.idPartita));
-  const voci = prova && raccolta ? valutaMercati(raccolta, notizie, { adesso }).voci : [];
+  // Coppie e multiple dal primo giorno della prova in poi, anche quando la prova finisce [30/10/2026]: sono quelle
+  // che l'utente gioca. Prima di quel giorno (dati vecchi) niente.
+  const conBiglietti = Boolean(raccolta) && oggi >= CONFIG.prova.da;
+  const voci = conBiglietti ? valutaMercati(raccolta, notizie, { adesso }).voci : [];
   // Taratura automatica del modello (solo studio): dalle partite chiuse delle giornate passate, per sport.
   const taraturaModello = calcolaTaratura(giornatePassate(dirData, oggi));
   // Calcio: le quote dei bookmaker italiani dall'evento odss della partita [utente, 29/10/2026].
-  const eventiCalcio = prova && raccolta ? abbinaEventiOdss(raccolta.partite ?? [], leggiQuoteOdss(dirData, oggi).eventi ?? []) : new Map();
+  const eventiCalcio = conBiglietti ? abbinaEventiOdss(raccolta.partite ?? [], leggiQuoteOdss(dirData, oggi).eventi ?? []) : new Map();
   const conBookmaker = (g) => {
     if (g.sport !== 'calcio' || g.bookmaker) return g;
     const lista = bookmakerCalcio(eventiCalcio.get(g.idPartita), g.mercato, g.selezione);
@@ -183,7 +186,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   // Coppie e multiple per probabilità (quelle che l'utente vede): senza Under 2.5 e 3.5 [utente, 29/10/2026].
   // Le multiple per margine restano come prima, anche per continuare a misurare gli Under.
   const gambeSenzaUnder = taraGambe(gambePossibili(voci, { escluse, senzaUnder: true }));
-  const multipleBonus = prova && raccolta ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
+  const multipleBonus = conBiglietti ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
   // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
   const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi });
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
@@ -207,7 +210,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     ...(Object.values(coppie).some((l) => l.length) ? { coppieQuota2: coppie } : {}),
-    ...(prova && raccolta ? { taraturaModello } : {}),
+    ...(conBiglietti ? { taraturaModello } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [
       ...(Array.isArray(raccolta?.erroriGiro) ? raccolta.erroriGiro : []),

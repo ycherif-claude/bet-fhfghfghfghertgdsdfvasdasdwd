@@ -1,6 +1,6 @@
 // Pagina storico. Modulo ES usato dal browser e dai test in Node:
 // le funzioni pure sono esportate, il codice DOM parte solo se esiste `document`.
-import { el, euro, percento, segno, NOME_TIPO, avvisiDati, testoAggiornamento, schedaSicura } from './app.js';
+import { el, euro, percento, segno, NOME_TIPO, avvisiDati, testoAggiornamento, schedaSicura, nomeBookmaker } from './app.js';
 
 const VISTE = [
   { valore: 'fatte', etichetta: 'Giocate fatte' },
@@ -152,6 +152,18 @@ const MODI_COPPIE = [
   ['tutte', 'Per margine con tutte le partite'],
 ];
 const fmtErrore = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+// Bookmaker migliore (dati.bookmakerMigliore): quanto si guadagna in quota scegliendo dove giocare la coppia.
+export function renderBookmaker(b) {
+  if (!b?.coppie) return [];
+  return [
+    el('h2', {}, 'Dove conviene giocare'),
+    el('p', { class: 'meta' }, `Su ${b.coppie} coppie, il bookmaker migliore pagava in media il ${percento(b.guadagnoMedio)} in più della quota della coppia (la mediana dei bookmaker). Più spesso il migliore è stato:`),
+    el('table', { class: 'tabella-modi' },
+      el('thead', {}, el('tr', {}, ['Bookmaker', 'Volte migliore'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, b.migliori.map((x) => el('tr', {}, el('td', {}, nomeBookmaker(x.bookmaker)), el('td', {}, x.volte))))),
+  ];
+}
+
 // Quota di chiusura (dati.chiusura): il mercato si è mosso verso le nostre partite?
 export function renderChiusura(righe) {
   const lista = Array.isArray(righe) ? righe.filter((r) => r && r.partite > 0) : [];
@@ -223,7 +235,7 @@ function avvia(dati) {
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
   document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
-  document.getElementById('confronto')?.replaceChildren(...[...renderChiusura(dati.chiusura), ...renderConfronto(dati.bilancioCoppie, dati.confrontoModello)].filter(Boolean));
+  document.getElementById('confronto')?.replaceChildren(...[...renderChiusura(dati.chiusura), ...renderBookmaker(dati.bookmakerMigliore), ...renderConfronto(dati.bilancioCoppie, dati.confrontoModello)].filter(Boolean));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));
 
   const interruttore = document.getElementById('vista');

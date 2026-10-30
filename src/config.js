@@ -151,7 +151,10 @@ export const CONFIG = congela({
   },
   // Modalità prova [utente, 22/10/2026]: 3-4 settimane di giocate da non giocare, solo per creare il
   // database della taratura. Ogni value positivo diventa una giocata di prova, senza lo scarto dal mercato.
-  prova: { da: '2026-10-22', fino: '2026-11-18', sogliaValue: 0.000001, massimiSingole: 60 },
+  // Prova senza scadenza [utente, 30/10/2026]: le giocate singole, i pronostici e le altre proposte restano di prova
+  // (servono allo studio) finché l'utente non decide altrimenti; non esiste più un bankroll su cui puntare.
+  // Coppie e multiple per probabilità, che l'utente gioca, non dipendono dalla prova.
+  prova: { da: '2026-10-22', fino: '2099-12-31', sogliaValue: 0.000001, massimiSingole: 60 },
   // Coppe europee (modello Elo europeo) [correzione B3]: le giocate del modello coppe restano solo in modalità
   // prova. Dopo la prova non diventano giocate vere finché l'utente non mette giocateVere: true.
   coppe: { giocateVere: false },
@@ -229,7 +232,8 @@ export const CONFIG = congela({
       'giocodigitale', 'goldbet', 'leovegas', 'lottomatica', 'marathonbet', 'netbet', 'netwin', 'perlaplay', 'planetwin365',
       'pokerstars', 'quigioco', 'sisal', 'snai', 'sportbet', 'sportium', 'stake', 'stanleybet', 'starcasino', 'starvegas',
       'staryes', 'sunbet', 'totosi', 'vincitu', 'williamhill', 'winamax', 'winbet', 'zonagioco'],
-    bookmakerPerEsito: 12,
+    // Tutti [30/10/2026]: con solo i primi 12 per partita nessun bookmaker aveva tutte le partite di una multipla.
+    bookmakerPerEsito: 50,
     // Partita odss ↔ partita della giornata: stesse squadre e inizio entro tante ore.
     toleranzaOre: 2,
     // Quote dei bookmaker dell'utente aggiornate da più di tante ore (al momento del download): ignorate.
@@ -244,6 +248,9 @@ export const CONFIG = congela({
     // ≥ 1,30 (margine per arrivare a 1,25 su bet365); con la quota bet365 basta che quella sia ≥ 1,25.
     quotaMinMediana: 1.3,
     quotaMinBet365: 1.25,
+    // Competizioni senza risultati in tempo (né ESPN né football-data nei giorni dopo) [30/10/2026]: le loro partite
+    // resterebbero senza esito e dopo 3 giorni finirebbero rimborsate. Fuori da multiple e coppie.
+    competizioniEscluse: ['Veikkausliiga (Finlandia)'],
     // Gamba senza risultato dopo 3 giorni (partita rinviata o sospesa): rimborsata, come fa bet365.
     giorniRimborso: 3,
     lunghezze: [10, 20],

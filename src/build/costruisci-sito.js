@@ -10,7 +10,7 @@ import { riepiloga } from '../storico/riepiloghi.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
 import { bigliettiGiornata, profittoReale } from '../storico/biglietti.js';
 import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
-import { chiusuraPartite, confrontoModello, storicoMercati } from '../regole/mercati-partite.js';
+import { chiusuraPartite, confrontoModello, guadagnoBookmaker, storicoMercati } from '../regole/mercati-partite.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
 
@@ -173,6 +173,8 @@ export function costruisciDati(dirData, adesso) {
     confrontoModello: confrontoModello(giornate.map((x) => x.g)),
     // Quota di chiusura delle partite di coppie e multiple (dal 30/10/2026).
     chiusura: chiusuraPartite(giornate.map((x) => x.g)),
+    // Quanto paga in più il bookmaker migliore sulle coppie mostrate (dal 30/10/2026).
+    bookmakerMigliore: guadagnoBookmaker(giornate.map((x) => x.g)),
     erroriDati,
   };
 }

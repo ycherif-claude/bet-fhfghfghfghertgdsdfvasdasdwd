@@ -140,3 +140,30 @@ export function chiusuraPartite(giornate) {
     valore: arrotonda(sommaValore / r.partite, 4),
   }));
 }
+
+// Bookmaker migliore [utente, 30/10/2026]: per le coppie mostrate (per margine) con un bookmaker che ha entrambe le
+// partite, quanto paga in più la quota totale del bookmaker migliore rispetto alla quota della coppia (mediana dei
+// bookmaker), e quali bookmaker sono più spesso i migliori.
+export function guadagnoBookmaker(giornate) {
+  let coppie = 0;
+  let sommaGuadagno = 0;
+  const migliori = new Map();
+  for (const giornata of giornate) {
+    for (const c of giornata?.coppieQuota2?.margine ?? []) {
+      const liste = (c.gambe ?? []).map((g) => (Array.isArray(g.bookmaker) ? new Map(g.bookmaker) : null));
+      if (liste.length < 2 || liste.some((m) => !m || !m.size) || !(c.quota > 1)) continue;
+      const comuni = [...liste[0].keys()].filter((k) => liste.every((m) => m.has(k)));
+      if (!comuni.length) continue;
+      const [k, q] = comuni.map((b) => [b, liste.reduce((a, m) => a * m.get(b), 1)]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+      coppie++;
+      sommaGuadagno += q / c.quota - 1;
+      migliori.set(k, (migliori.get(k) ?? 0) + 1);
+    }
+  }
+  return {
+    coppie,
+    guadagnoMedio: coppie ? arrotonda(sommaGuadagno / coppie, 4) : null,
+    migliori: [...migliori.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8)
+      .map(([bookmaker, volte]) => ({ bookmaker, volte })),
+  };
+}

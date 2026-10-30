@@ -30,3 +30,23 @@ test('dove giocare: solo i bookmaker con tutte le partite, quota totale dalla pi
   assert.deepEqual(doveGiocare(gambe), [['sisal', 2.03], ['snai', 2.03]]);
   assert.deepEqual(doveGiocare([{ bookmaker: [['snai', 1.4]] }, {}]), []);
 });
+
+test('bookmaker migliore delle coppie: guadagno medio sulla quota della coppia e chi è più spesso il migliore', async () => {
+  const { guadagnoBookmaker } = await import('../../src/regole/mercati-partite.js');
+  const coppia = (quota, a, b) => ({ quota, gambe: [{ bookmaker: a }, { bookmaker: b }] });
+  const r = guadagnoBookmaker([{ coppieQuota2: { margine: [
+    coppia(2, [['snai', 1.45], ['sisal', 1.5]], [['snai', 1.45], ['sisal', 1.4]]), // snai 2,1025, sisal 2,10 → snai +5,1%
+    coppia(2, [['sisal', 1.5]], [['sisal', 1.4]]), // sisal 2,10 → +5%
+    coppia(2, [['snai', 1.5]], [['sisal', 1.4]]), // nessuno in comune: fuori
+  ] } }]);
+  assert.equal(r.coppie, 2);
+  assert.equal(r.guadagnoMedio, Math.round(((1.45 * 1.45 / 2 - 1 + 1.5 * 1.4 / 2 - 1) / 2) * 10000) / 10000);
+  assert.deepEqual(r.migliori, [{ bookmaker: 'sisal', volte: 1 }, { bookmaker: 'snai', volte: 1 }]);
+  assert.deepEqual(guadagnoBookmaker([]), { coppie: 0, guadagnoMedio: null, migliori: [] });
+});
+
+test('competizioni senza risultati in tempo fuori da coppie e multiple', async () => {
+  const { gambePossibili } = await import('../../src/regole/multipla-bonus.js');
+  const p = (id, competizione) => ({ partita: { idPartita: id, sport: 'calcio', competizione, partita: `${id} - x`, inizio: '2026-10-30T18:00:00+01:00' }, m: { mercato: '1X2', selezione: '1', quota: 1.4, probPinnacle: 0.7 } });
+  assert.deepEqual(gambePossibili([p('a', 'Veikkausliiga (Finlandia)'), p('b', 'Serie A')]).map((g) => g.idPartita), ['b']);
+});

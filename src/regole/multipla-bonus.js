@@ -36,7 +36,7 @@ const quotaBet365Ok = (m) => (num(m.quotaBet365) ? m.quotaBet365 >= C.quotaMinBe
 export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false } = {}) {
   const migliori = new Map();
   for (const { partita, m } of voci) {
-    if (escluse.has(partita.idPartita)) continue;
+    if (escluse.has(partita.idPartita) || C.competizioniEscluse.includes(partita.competizione)) continue;
     if (senzaUnder && giocataUnder(m)) continue;
     if (!num(m.quota) || m.quota < C.quotaMin - EPS || m.quota > C.quotaMax + EPS) continue;
     if (!num(m.probPinnacle) || !mercatoAmmesso(m.mercato, m.selezione, partita.sport ?? 'calcio') || !quotaBet365Ok(m)) continue;

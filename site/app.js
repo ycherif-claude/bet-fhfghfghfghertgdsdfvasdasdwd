@@ -310,7 +310,7 @@ const NOMI_BOOKMAKER = {
   casinosanremo: 'Casinò Sanremo', giocodigitale: 'Giocodigitale', winamax: 'Winamax', marathonbet: 'Marathonbet',
   domusbet: 'Domusbet', vincitu: 'Vincitù', eplay24: 'Eplay24', quigioco: 'Quigioco', stake: 'Stake',
 };
-const nomeBookmaker = (k) => NOMI_BOOKMAKER[k] ?? String(k ?? '').replace(/^./, (c) => c.toUpperCase());
+export const nomeBookmaker = (k) => NOMI_BOOKMAKER[k] ?? String(k ?? '').replace(/^./, (c) => c.toUpperCase());
 
 // Dove giocare un biglietto [utente, 29/10/2026]: i bookmaker che hanno tutte le partite, con la quota totale, dal
 // più alto; al massimo `quanti`. [] se nessun bookmaker le ha tutte (o le partite non hanno le quote).
