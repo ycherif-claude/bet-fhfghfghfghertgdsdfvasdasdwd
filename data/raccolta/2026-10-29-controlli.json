@@ -138,6 +138,29 @@
       ],
       "alle": "2026-10-30T00:05:00+01:00",
       "regola": true
+    },
+    "calcio-2026-10-29-gremio-athletico-pr-1x2-2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-10-30T01:09:27+01:00"
+    },
+    "tennis-2026-10-29-kamilla-rakhimova-maya-joint-vincente-incontro-kamilla-rakhimova": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,10 sotto la minima 2,15",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,10 sotto la minima 2,15"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-10-30T01:09:27+01:00",
+      "regola": true
     }
   },
   "claude": {
