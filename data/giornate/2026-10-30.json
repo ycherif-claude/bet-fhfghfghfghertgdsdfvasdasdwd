@@ -2996,9 +2996,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,75 ≥ minima 2,66",
+      "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -3119,9 +3119,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 1,66 sotto la minima 1,70",
+      "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -3285,9 +3285,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,25 sotto la minima 2,53",
+      "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -3690,7 +3690,13 @@
               "daznbet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.39,
+            "prob": 0.6970034010630591,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "nba",
@@ -4663,7 +4669,13 @@
               "daznbet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.39,
+            "prob": 0.6970034010630591,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "calcio",
@@ -4728,7 +4740,13 @@
               "bgame",
               1.31
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.29,
+            "prob": 0.7471490365709792,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "calcio",
@@ -6404,7 +6422,13 @@
               "casinosanremo",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.42,
+            "prob": 0.6647874089734555,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 7
+          }
         },
         {
           "sport": "calcio",
@@ -6469,7 +6493,13 @@
               "lottomatica",
               1.35
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.31,
+            "prob": 0.7170294494238156,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 7
+          }
         },
         {
           "sport": "calcio",
@@ -6534,7 +6564,13 @@
               "daznbet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.39,
+            "prob": 0.6970034010630591,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "calcio",
@@ -6599,7 +6635,13 @@
               "bgame",
               1.31
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.29,
+            "prob": 0.7471490365709792,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "calcio",
@@ -8321,7 +8363,13 @@
               "casinosanremo",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.42,
+            "prob": 0.6647874089734555,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 7
+          }
         },
         {
           "sport": "calcio",
@@ -8386,7 +8434,13 @@
               "daznbet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.39,
+            "prob": 0.6970034010630591,
+            "alle": "2026-10-30T20:38:08+01:00",
+            "minutiPrima": 22
+          }
         },
         {
           "sport": "calcio",
@@ -10268,7 +10322,13 @@
                 "daznbet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -10560,7 +10620,13 @@
                 "winbet",
                 1.53
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -11044,7 +11110,13 @@
                 "casinosanremo",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.94,
@@ -11535,7 +11607,13 @@
                 "daznbet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -12252,7 +12330,13 @@
                 "casinosanremo",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           },
           {
             "sport": "calcio",
@@ -12434,7 +12518,13 @@
                 "winbet",
                 1.53
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.95,
@@ -12960,7 +13050,13 @@
                 "daznbet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.92,
@@ -13038,7 +13134,13 @@
                 "winbet",
                 1.53
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "calcio",
@@ -13665,7 +13767,13 @@
                 "casinosanremo",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.97,
@@ -14231,7 +14339,13 @@
                 "daznbet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.96,
@@ -14523,7 +14637,13 @@
                 "winbet",
                 1.53
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.97,
@@ -14644,7 +14764,13 @@
                 "casinosanremo",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.94,
@@ -14818,7 +14944,13 @@
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
             "esito": null,
-            "probModelloTarato": 0.6834
+            "probModelloTarato": 0.6834,
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -15012,7 +15144,13 @@
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
             "esito": null,
-            "probModelloTarato": 0.6246
+            "probModelloTarato": 0.6246,
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -15321,7 +15459,13 @@
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
             "esito": null,
-            "probModelloTarato": 0.6092
+            "probModelloTarato": 0.6092,
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.94,
@@ -15684,7 +15828,13 @@
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
             "esito": null,
-            "probModelloTarato": 0.6834
+            "probModelloTarato": 0.6834,
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "nba",
@@ -16072,7 +16222,13 @@
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
             "esito": null,
-            "probModelloTarato": 0.6092
+            "probModelloTarato": 0.6092,
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           },
           {
             "sport": "calcio",
@@ -16137,7 +16293,13 @@
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
             "esito": null,
-            "probModelloTarato": 0.6246
+            "probModelloTarato": 0.6246,
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.95,
@@ -16400,7 +16562,13 @@
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
             "esito": null,
-            "probModelloTarato": 0.6246
+            "probModelloTarato": 0.6246,
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           },
           {
             "sport": "calcio",
@@ -16465,7 +16633,13 @@
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
             "esito": null,
-            "probModelloTarato": 0.6834
+            "probModelloTarato": 0.6834,
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.92,
@@ -16747,7 +16921,13 @@
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
             "esito": null,
-            "probModelloTarato": 0.6092
+            "probModelloTarato": 0.6092,
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.94,
@@ -17193,7 +17373,13 @@
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
             "esito": null,
-            "probModelloTarato": 0.6834
+            "probModelloTarato": 0.6834,
+            "chiusura": {
+              "quota": 1.39,
+              "prob": 0.6970034010630591,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.96,
@@ -17331,7 +17517,13 @@
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
             "esito": null,
-            "probModelloTarato": 0.6246
+            "probModelloTarato": 0.6246,
+            "chiusura": {
+              "quota": 1.61,
+              "prob": 0.5875,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 22
+            }
           }
         ],
         "quota": 1.97,
@@ -17381,7 +17573,13 @@
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
             "esito": null,
-            "probModelloTarato": 0.6092
+            "probModelloTarato": 0.6092,
+            "chiusura": {
+              "quota": 1.42,
+              "prob": 0.6647874089734555,
+              "alle": "2026-10-30T20:38:08+01:00",
+              "minutiPrima": 7
+            }
           }
         ],
         "quota": 1.94,

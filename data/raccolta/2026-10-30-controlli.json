@@ -199,6 +199,46 @@
       ],
       "alle": "2026-10-30T19:57:47+01:00",
       "regola": true
+    },
+    "calcio-2026-10-30-villarreal-espanyol-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,75 ≥ minima 2,66",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,75 ≥ minima 2,66"
+      ],
+      "alle": "2026-10-30T20:38:08+01:00"
+    },
+    "calcio-2026-10-30-afc-fylde-afc-hornchurch-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,66 sotto la minima 1,70",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,66 sotto la minima 1,70"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-30T20:38:08+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-30-sheffield-united-wrexham-afc-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,25 sotto la minima 2,53",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,25 sotto la minima 2,53"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-30T20:38:08+01:00",
+      "regola": true
     }
   },
   "claude": {
