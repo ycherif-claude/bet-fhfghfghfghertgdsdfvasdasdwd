@@ -1556,15 +1556,87 @@
     },
     "nba-2026-10-30-washington-wizards-charlotte-hornets|Vincente|Washington Wizards": {
       "quota": 1.95,
-      "prob": 0.48968878263382937,
-      "alle": "2026-10-30T22:58:05+01:00",
-      "minutiPrima": 62
+      "prob": 0.49054999133340416,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 33
     },
     "nba-2026-10-30-washington-wizards-charlotte-hornets|Vincente|Charlotte Hornets": {
       "quota": 1.87,
-      "prob": 0.5103112173661706,
-      "alle": "2026-10-30T22:58:05+01:00",
-      "minutiPrima": 62
+      "prob": 0.5094500086665958,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 33
+    },
+    "nba-2026-10-30-brooklyn-nets-detroit-pistons|Vincente|Brooklyn Nets": {
+      "quota": 3.4,
+      "prob": 0.279945115954625,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-brooklyn-nets-detroit-pistons|Vincente|Detroit Pistons": {
+      "quota": 1.33,
+      "prob": 0.7200548840453749,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-brooklyn-nets-detroit-pistons|Totale punti 221.5|Over 221.5": {
+      "quota": 1.9,
+      "prob": 0.5041884816753927,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-brooklyn-nets-detroit-pistons|Totale punti 221.5|Under 221.5": {
+      "quota": 1.91,
+      "prob": 0.49581151832460735,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-philadelphia-76ers-new-york-knicks|Vincente|Philadelphia 76ers": {
+      "quota": 2.3,
+      "prob": 0.4208836580168176,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-philadelphia-76ers-new-york-knicks|Vincente|New York Knicks": {
+      "quota": 1.67,
+      "prob": 0.5791163419831824,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-boston-celtics-chicago-bulls|Vincente|Boston Celtics": {
+      "quota": 1.11,
+      "prob": 0.861146772806441,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-boston-celtics-chicago-bulls|Vincente|Chicago Bulls": {
+      "quota": 7,
+      "prob": 0.13885322719355903,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-toronto-raptors-orlando-magic|Vincente|Toronto Raptors": {
+      "quota": 1.46,
+      "prob": 0.6564340640896169,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-toronto-raptors-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 2.76,
+      "prob": 0.3435659359103831,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-toronto-raptors-orlando-magic|Handicap -5.5|casa": {
+      "quota": 1.89,
+      "prob": 0.5050500886342086,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
+    },
+    "nba-2026-10-30-toronto-raptors-orlando-magic|Handicap -5.5|trasferta": {
+      "quota": 1.92,
+      "prob": 0.49494991136579136,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "minutiPrima": 63
     }
   },
   "copertura": {
@@ -1686,10 +1758,14 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-10-30T22:58:05+01:00",
-      "partite": 1,
+      "alle": "2026-10-30T23:27:26+01:00",
+      "partite": 5,
       "idPartite": [
-        "nba-2026-10-30-washington-wizards-charlotte-hornets"
+        "nba-2026-10-30-washington-wizards-charlotte-hornets",
+        "nba-2026-10-30-brooklyn-nets-detroit-pistons",
+        "nba-2026-10-30-philadelphia-76ers-new-york-knicks",
+        "nba-2026-10-30-boston-celtics-chicago-bulls",
+        "nba-2026-10-30-toronto-raptors-orlando-magic"
       ]
     }
   }
