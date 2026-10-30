@@ -3134,5 +3134,244 @@
       "esito": "vinta",
       "quotaFinale": 1.5
     }
-  ]
+  ],
+  "coppieQuota2": {
+    "margine": [
+      {
+        "id": "Q2M1-2026-10-26",
+        "criterio": "margine",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 1",
+            "partita": "Paris Saint Germain - Lyon",
+            "idPartita": "calcio-2026-10-26-paris-saint-germain-lyon",
+            "inizio": "2026-10-26T20:30:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.5780634418591871,
+            "esito": "vinta",
+            "probModelloTarato": 0.6333
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.4628997882851094,
+        "probModello": 0.3883926500609419,
+        "valueAtteso": -0.08086618038108673,
+        "esito": "vinta",
+        "ritorno": 1.99,
+        "ricostruita": true
+      }
+    ],
+    "probabilita": [
+      {
+        "id": "Q2P1-2026-10-26",
+        "criterio": "probabilita",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 1",
+            "partita": "Paris Saint Germain - Lyon",
+            "idPartita": "calcio-2026-10-26-paris-saint-germain-lyon",
+            "inizio": "2026-10-26T20:30:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.5780634418591871,
+            "esito": "vinta",
+            "probModelloTarato": 0.6333
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.4628997882851094,
+        "probModello": 0.3883926500609419,
+        "valueAtteso": -0.08086618038108673,
+        "esito": "vinta",
+        "ritorno": 1.99,
+        "ricostruita": true
+      }
+    ],
+    "modello": [
+      {
+        "id": "Q2O1-2026-10-26",
+        "criterio": "modello",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 2",
+            "partita": "Boulogne - Stade de Reims",
+            "idPartita": "calcio-2026-10-26-boulogne-stade-de-reims",
+            "inizio": "2026-10-26T20:45:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "X2",
+            "quota": 1.34,
+            "quotaBet365": null,
+            "probMercato": 0.6981,
+            "probModello": 0.7416072416502201,
+            "esito": "vinta",
+            "probModelloTarato": 0.7768
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.96,
+        "prob": 0.45817431192660557,
+        "probModello": 0.4763988797842093,
+        "valueAtteso": -0.10362777614678875,
+        "esito": "vinta",
+        "ritorno": 1.96,
+        "ricostruita": true
+      }
+    ],
+    "confermate": [
+      {
+        "id": "Q2C1-2026-10-26",
+        "criterio": "confermate",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Liga Profesional (Argentina)",
+            "partita": "Instituto (Córdoba) - Deportivo Riestra",
+            "idPartita": "calcio-2026-10-26-instituto-cordoba-deportivo-riestra",
+            "inizio": "2026-10-27T01:15:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "12",
+            "quota": 1.32,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.6628567763506104,
+            "esito": "vinta",
+            "probModelloTarato": 0.7086
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.4628997882851094,
+        "probModello": 0.4345729225220014,
+        "valueAtteso": -0.10789952801693714,
+        "esito": "vinta",
+        "ritorno": 1.93,
+        "ricostruita": true
+      }
+    ],
+    "tutte": [
+      {
+        "id": "Q2T1-2026-10-26",
+        "criterio": "tutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Ligue 1",
+            "partita": "Paris Saint Germain - Lyon",
+            "idPartita": "calcio-2026-10-26-paris-saint-germain-lyon",
+            "inizio": "2026-10-26T20:30:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7053,
+            "probModello": 0.5780634418591871,
+            "esito": "vinta",
+            "probModelloTarato": 0.6333
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Houston Rockets - Atlanta Hawks",
+            "idPartita": "nba-2026-10-26-houston-rockets-atlanta-hawks",
+            "inizio": "2026-10-27T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Houston Rockets",
+            "quota": 1.46,
+            "quotaBet365": null,
+            "probMercato": 0.6563161609033169,
+            "probModello": 0.6132838308241623,
+            "esito": "vinta",
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.4628997882851094,
+        "probModello": 0.3883926500609419,
+        "valueAtteso": -0.08086618038108673,
+        "esito": "vinta",
+        "ritorno": 1.99,
+        "ricostruita": true
+      }
+    ]
+  },
+  "taraturaModello": {
+    "calcio": {
+      "a": 0.2485,
+      "b": 0.9469,
+      "partite": 146
+    }
+  }
 }

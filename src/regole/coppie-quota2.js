@@ -20,8 +20,9 @@ export const CRITERI = Object.freeze({
   probabilita: (a, b) => a.probMercato * b.probMercato,
   modello: (a, b) => pm(a) * pm(b),
   confermate: resa,
+  tutte: resa,
 });
-const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C' };
+const SIGLA = { margine: 'M', probabilita: 'P', modello: 'O', confermate: 'C', tutte: 'T' };
 // Probabilità del modello di una partita: quella corretta dalla taratura automatica, se c'è, altrimenti la grezza.
 const numero = (v) => typeof v === 'number' && Number.isFinite(v);
 export const pm = (g) => (numero(g.probModelloTarato) ? g.probModelloTarato : g.probModello);
@@ -68,14 +69,23 @@ export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
   return out;
 }
 
-// Le coppie dei quattro modi (si mostrano solo quelle per margine).
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate']);
-export const costruisciCoppieQuota2 = (gambe, { data } = {}) => ({
-  margine: costruisciCoppie(gambe, { data, criterio: 'margine' }),
-  probabilita: costruisciCoppie(gambe, { data, criterio: 'probabilita' }),
-  modello: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modello' }),
-  confermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'confermate' }),
-});
+// Solo le migliori `C.migliori` partite del giorno per margine [utente, 30/10/2026]: dal 23 al 29/10 le coppie
+// dalle prime 20 hanno vinto il 63%, quelle da tutte le partite il 52% (le ultime dell'elenco vincono meno).
+export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMercato - a.quota * a.probMercato).slice(0, C.migliori);
+
+// Le coppie dei cinque modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite;
+// "tutte": come margine ma con tutte le partite adatte, per confronto.
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'tutte']);
+export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
+  const top = migliori(gambe);
+  return {
+    margine: costruisciCoppie(top, { data, criterio: 'margine' }),
+    probabilita: costruisciCoppie(top, { data, criterio: 'probabilita' }),
+    modello: costruisciCoppie(top.filter(conModello), { data, criterio: 'modello' }),
+    confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
+    tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
+  };
+};
 // Tutte le coppie di una giornata, di qualunque modo.
 export const tutteLeCoppie = (giornata) => Object.values(giornata?.coppieQuota2 ?? {}).flatMap((l) => (Array.isArray(l) ? l : []));
 

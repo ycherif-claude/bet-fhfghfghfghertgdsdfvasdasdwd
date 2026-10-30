@@ -292,3 +292,14 @@ test('sito storico: i quattro modi delle coppie e il confronto col modello', asy
   assert.match(t, /errore medio del modello 0,230, del mercato 0,200/);
   assert.match(testi({ figli: renderConfronto(null, null).filter(Boolean) }), /Ancora nessuna partita chiusa/);
 });
+
+test('coppie solo dalle migliori 20 partite per margine; "tutte" con tutte le partite', () => {
+  // 24 partite: le prime 20 per margine (quota × probabilità) hanno probMercato 0,70, le ultime 4 0,60.
+  const gambe = Array.from({ length: 24 }, (_, i) => gamba(`p${i}`, 1.4 + (i % 2) * 0.02, i < 20 ? 0.7 : 0.6));
+  const c = costruisciCoppieQuota2(gambe, { data: 'x' });
+  const usate = (l) => l.flatMap((k) => k.gambe.map((g) => g.idPartita));
+  assert.ok(usate(c.margine).every((id) => Number(id.slice(1)) < 20));
+  assert.ok(usate(c.tutte).some((id) => Number(id.slice(1)) >= 20));
+  assert.match(c.tutte[0].id, /^Q2T1-x$/);
+  assert.equal(c.tutte[0].criterio, 'tutte');
+});

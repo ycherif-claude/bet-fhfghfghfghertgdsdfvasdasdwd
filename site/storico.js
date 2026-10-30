@@ -149,6 +149,7 @@ const MODI_COPPIE = [
   ['probabilita', 'Per probabilità del mercato'],
   ['modello', 'Solo il nostro modello'],
   ['confermate', 'Confermate da modello e mercato'],
+  ['tutte', 'Per margine con tutte le partite'],
 ];
 const fmtErrore = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
 // Quota di chiusura (dati.chiusura): il mercato si è mosso verso le nostre partite?
@@ -188,8 +189,8 @@ export function renderConfronto(bilancio, confronto) {
     el('td', { class: classeProfitto(g.profitto) }, g.partite ? euroConSegno(g.profitto) : '–'),
   ));
   return [
-    el('h2', {}, 'Coppie a quota 2: i quattro modi'),
-    el('p', { class: 'meta' }, 'Stesse partite, abbinate in quattro modi. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
+    el('h2', {}, 'Coppie a quota 2: i modi a confronto'),
+    el('p', { class: 'meta' }, 'Le migliori 20 partite del giorno abbinate in quattro modi, più le coppie fatte con tutte le partite. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
     el('table', { class: 'tabella-modi' },
       el('thead', {}, el('tr', {}, ['Modo', 'Coppie', 'Vinte', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
       el('tbody', {}, righeModi)),
