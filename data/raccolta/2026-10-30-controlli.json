@@ -256,8 +256,8 @@
       "regola": true
     },
     "nba-2026-10-30-washington-wizards-charlotte-hornets-vincente-charlotte-hornets": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,87 sotto la minima 2,01",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 1,87 sotto la minima 2,01 e nessun fatto concreto che alzi la probabilità: il 52% del mattino poggiava su un modello al 66% contro Pinnacle al 48% (quota equa circa 2,09), quindi a 1,87 il value sparisce (controlli quote odss-api, 22:58)",
       "problemi": [
         {
           "tipo": "quota",
@@ -267,7 +267,8 @@
       "dettagli": [
         "giocatori chiave non indicati dal giro del mattino"
       ],
-      "alle": "2026-10-30T22:58:05+01:00"
+      "alle": "2026-10-30T22:58:43+01:00",
+      "claude": true
     }
   },
   "claude": {
