@@ -2345,9 +2345,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,86 sotto la minima 2,95",
+      "oraUltimoControllo": "2026-10-30T18:32:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -2835,9 +2835,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,75 ≥ minima 4,71",
+      "oraUltimoControllo": "2026-10-30T18:32:04+01:00",
       "esito": null,
       "prova": true
     },
@@ -4285,7 +4285,13 @@
               1.31
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.7126143373750266,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -5618,7 +5624,13 @@
               1.31
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.7126143373750266,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -5683,7 +5695,13 @@
               "williamhill",
               1.51
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6243926141885325,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -5748,7 +5766,13 @@
               "elabet",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.6726354453627181,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -7717,7 +7741,13 @@
               1.31
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.7126143373750266,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -7782,7 +7812,13 @@
               "elabet",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.6726354453627181,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -9309,7 +9345,13 @@
               1.31
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.7126143373750266,
+            "alle": "2026-10-30T18:32:04+01:00",
+            "minutiPrima": 28
+          }
         },
         {
           "sport": "calcio",
@@ -10924,7 +10966,13 @@
                 "elabet",
                 1.36
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6726354453627181,
+              "alle": "2026-10-30T18:32:04+01:00",
+              "minutiPrima": 28
+            }
           },
           {
             "sport": "calcio",
@@ -11732,7 +11780,13 @@
                 "elabet",
                 1.36
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6726354453627181,
+              "alle": "2026-10-30T18:32:04+01:00",
+              "minutiPrima": 28
+            }
           },
           {
             "sport": "calcio",
@@ -12278,7 +12332,13 @@
                 "zonagioco",
                 1.35
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.33,
+              "prob": 0.7034393743831144,
+              "alle": "2026-10-30T18:32:04+01:00",
+              "minutiPrima": 28
+            }
           },
           {
             "sport": "calcio",
@@ -13193,7 +13253,13 @@
                 "zonagioco",
                 1.35
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.33,
+              "prob": 0.7034393743831144,
+              "alle": "2026-10-30T18:32:04+01:00",
+              "minutiPrima": 28
+            }
           },
           {
             "sport": "nba",
@@ -14176,7 +14242,13 @@
                 1.31
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.36,
+              "prob": 0.7126143373750266,
+              "alle": "2026-10-30T18:32:04+01:00",
+              "minutiPrima": 28
+            }
           },
           {
             "sport": "calcio",
