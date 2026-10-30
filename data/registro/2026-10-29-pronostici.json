@@ -33,7 +33,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -50,7 +50,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -67,7 +67,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -84,7 +84,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     }
   ],
@@ -107,7 +107,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-29-vasco-da-gama-flamengo",
@@ -123,7 +123,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.51,
@@ -131,8 +131,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.51
     },
     {
       "id": "sp-2026-10-29-1sanwg1",
@@ -168,7 +168,7 @@
           "prob": 0.8512,
           "limite": 0.8324,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-29-hammarby-if-ik-sirius",
@@ -184,7 +184,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.59,
@@ -195,5 +195,6 @@
       "esito": null,
       "quotaFinale": null
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-10-30T07:24:50+01:00"
 }

@@ -1,0 +1,2811 @@
+{
+  "data": "2026-10-30",
+  "generataAlle": "2026-10-30T07:22:44+01:00",
+  "crediti": {
+    "usati": 3,
+    "rimasti": 265
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api (NBL (Australia)) alle 07:22: budget insufficiente (tetto di 1 richieste al giorno per basket raggiunto; basket oggi 1 su 1, giornata 6 su 13, rimaste 403, riserva 60): quote di NBL (Australia) dalla fonte di prima",
+    "Quote NBL (Australia): nessuna partita su odss-api, quote da The Odds API"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "6b8b2b85fb2c800f",
+        "901f2f8146c7a263",
+        "a4d2e4b969fb6feb",
+        "de84e9a070817590"
+      ],
+      "idPartita": "basket-2026-10-30-dubai-basketball-hapoel-tel-aviv",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Dubai Basketball - Hapoel Tel Aviv",
+      "casa": "Dubai Basketball",
+      "trasferta": "Hapoel Tel Aviv",
+      "inizio": "2026-10-30T17:00:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 88.2,
+        "trasferta": 90
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Dubai Basketball 88 – Hapoel Tel Aviv 90 (stagione in corso e precedente)",
+        "Hapoel Tel Aviv alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Dubai Basketball",
+          "probModello": 0.43151852756627307,
+          "probPinnacle": 0.5682976554536187,
+          "quota": 1.63,
+          "fonteQuota": "mediana di 166 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Dubai Basketball vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              1.67
+            ],
+            [
+              "betsson",
+              1.66
+            ],
+            [
+              "starcasino",
+              1.66
+            ],
+            [
+              "williamhill",
+              1.66
+            ],
+            [
+              "betflag",
+              1.65
+            ],
+            [
+              "betwin360",
+              1.65
+            ],
+            [
+              "casinosanremo",
+              1.65
+            ],
+            [
+              "daznbet",
+              1.65
+            ],
+            [
+              "domusbet",
+              1.65
+            ],
+            [
+              "eplay24",
+              1.65
+            ],
+            [
+              "gioca7",
+              1.65
+            ],
+            [
+              "goldbet",
+              1.65
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Hapoel Tel Aviv",
+          "probModello": 0.5684814724337269,
+          "probPinnacle": 0.43170234454638123,
+          "quota": 2.2,
+          "fonteQuota": "mediana di 166 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Hapoel Tel Aviv vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betsson",
+              2.23
+            ],
+            [
+              "starcasino",
+              2.23
+            ],
+            [
+              "williamhill",
+              2.23
+            ],
+            [
+              "daznbet",
+              2.21
+            ],
+            [
+              "domusbet",
+              2.21
+            ],
+            [
+              "marathonbet",
+              2.21
+            ],
+            [
+              "sunbet",
+              2.21
+            ],
+            [
+              "totosi",
+              2.21
+            ],
+            [
+              "admiralbet",
+              2.2
+            ],
+            [
+              "betflag",
+              2.2
+            ],
+            [
+              "betwin360",
+              2.2
+            ],
+            [
+              "casinosanremo",
+              2.2
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "casa",
+          "probModello": 0.3457832143580375,
+          "probPinnacle": 0.5131476178078626,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Dubai Basketball vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Dubai Basketball -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.87
+            ],
+            [
+              "888sport_it",
+              1.87
+            ],
+            [
+              "betsson",
+              1.86
+            ],
+            [
+              "starcasino",
+              1.86
+            ],
+            [
+              "pokerstars",
+              1.85
+            ],
+            [
+              "sisal",
+              1.85
+            ],
+            [
+              "snai",
+              1.85
+            ],
+            [
+              "domusbet",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "totosi",
+              1.83
+            ],
+            [
+              "williamhill",
+              1.83
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "trasferta",
+          "probModello": 0.6542167856419625,
+          "probPinnacle": 0.4868523821921375,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Hapoel Tel Aviv perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su Hapoel Tel Aviv +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "starcasino",
+              1.95
+            ],
+            [
+              "betflag",
+              1.92
+            ],
+            [
+              "goldbet",
+              1.92
+            ],
+            [
+              "lottomatica",
+              1.92
+            ],
+            [
+              "planetwin365",
+              1.92
+            ],
+            [
+              "quigioco",
+              1.92
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "marathonbet",
+              1.91
+            ],
+            [
+              "stanleybet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 174.5",
+          "selezione": "Over 174.5",
+          "probModello": 0.5897336666444188,
+          "probPinnacle": 0.5111514522821577,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 135 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 174.5: Over vince se le due squadre segnano almeno 175 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (174.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.86
+            ],
+            [
+              "starcasino",
+              1.86
+            ],
+            [
+              "pokerstars",
+              1.85
+            ],
+            [
+              "sisal",
+              1.85
+            ],
+            [
+              "snai",
+              1.85
+            ],
+            [
+              "betflag",
+              1.83
+            ],
+            [
+              "goldbet",
+              1.83
+            ],
+            [
+              "lottomatica",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "planetwin365",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "totosi",
+              1.83
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 174.5",
+          "selezione": "Under 174.5",
+          "probModello": 0.4102663333555812,
+          "probPinnacle": 0.4888485477178423,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 135 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 174.5: Under vince se le due squadre segnano al massimo 174 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (174.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.96
+            ],
+            [
+              "888sport_it",
+              1.96
+            ],
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "starcasino",
+              1.95
+            ],
+            [
+              "marathonbet",
+              1.91
+            ],
+            [
+              "stanleybet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "casinosanremo",
+              1.9
+            ],
+            [
+              "daznbet",
+              1.9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "746335bd0af8bc14",
+        "a2547b8f0d405216",
+        "a909892b534ca547",
+        "c0423ce9856abd96"
+      ],
+      "idPartita": "basket-2026-10-30-anadolu-efes-panathinaikos",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Anadolu Efes - Panathinaikos",
+      "casa": "Anadolu Efes",
+      "trasferta": "Panathinaikos",
+      "inizio": "2026-10-30T18:30:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 78,
+        "trasferta": 83.8
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Anadolu Efes 78 – Panathinaikos 84 (stagione in corso e precedente)",
+        "Anadolu Efes alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Anadolu Efes",
+          "probModello": 0.2892338441228446,
+          "probPinnacle": 0.3136597361949475,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Anadolu Efes vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              3.15
+            ],
+            [
+              "betflag",
+              3.1
+            ],
+            [
+              "betsson",
+              3.1
+            ],
+            [
+              "goldbet",
+              3.1
+            ],
+            [
+              "lottomatica",
+              3.1
+            ],
+            [
+              "planetwin365",
+              3.1
+            ],
+            [
+              "pokerstars",
+              3.1
+            ],
+            [
+              "sisal",
+              3.1
+            ],
+            [
+              "snai",
+              3.1
+            ],
+            [
+              "starcasino",
+              3.1
+            ],
+            [
+              "williamhill",
+              3.1
+            ],
+            [
+              "betwin360",
+              3.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Panathinaikos",
+          "probModello": 0.7107661558771554,
+          "probPinnacle": 0.6863402638050526,
+          "quota": 1.38,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Panathinaikos vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              1.42
+            ],
+            [
+              "fastbet",
+              1.385
+            ],
+            [
+              "zonagioco",
+              1.385
+            ],
+            [
+              "winamax",
+              1.38
+            ],
+            [
+              "betsson",
+              1.37
+            ],
+            [
+              "starcasino",
+              1.37
+            ],
+            [
+              "williamhill",
+              1.37
+            ],
+            [
+              "888sport",
+              1.36
+            ],
+            [
+              "888sport_it",
+              1.36
+            ],
+            [
+              "betwin360",
+              1.36
+            ],
+            [
+              "casinosanremo",
+              1.36
+            ],
+            [
+              "daznbet",
+              1.36
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +5.5",
+          "selezione": "casa",
+          "probModello": 0.488073802174422,
+          "probPinnacle": 0.4912692207453739,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 141 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Anadolu Efes perdono con meno di 6 punti di scarto o vincono, supplementari compresi. Gioca solo su Anadolu Efes +5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              2.03
+            ],
+            [
+              "starcasino",
+              2.03
+            ],
+            [
+              "betflag",
+              2
+            ],
+            [
+              "goldbet",
+              2
+            ],
+            [
+              "lottomatica",
+              2
+            ],
+            [
+              "planetwin365",
+              2
+            ],
+            [
+              "pokerstars",
+              2
+            ],
+            [
+              "sisal",
+              2
+            ],
+            [
+              "snai",
+              2
+            ],
+            [
+              "domusbet",
+              1.99
+            ],
+            [
+              "marathonbet",
+              1.99
+            ],
+            [
+              "stanleybet",
+              1.99
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +5.5",
+          "selezione": "trasferta",
+          "probModello": 0.511926197825578,
+          "probPinnacle": 0.508730779254626,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 141 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Panathinaikos vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su Panathinaikos -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.818
+            ],
+            [
+              "zonagioco",
+              1.818
+            ],
+            [
+              "888sport",
+              1.81
+            ],
+            [
+              "888sport_it",
+              1.81
+            ],
+            [
+              "betsson",
+              1.79
+            ],
+            [
+              "starcasino",
+              1.79
+            ],
+            [
+              "domusbet",
+              1.76
+            ],
+            [
+              "marathonbet",
+              1.76
+            ],
+            [
+              "stanleybet",
+              1.76
+            ],
+            [
+              "totosi",
+              1.76
+            ],
+            [
+              "williamhill",
+              1.76
+            ],
+            [
+              "admiralbet",
+              1.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 164.5",
+          "selezione": "Over 164.5",
+          "probModello": 0.43495040580199706,
+          "probPinnacle": 0.5155440414507771,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 164.5: Over vince se le due squadre segnano almeno 165 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (164.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.9
+            ],
+            [
+              "starcasino",
+              1.9
+            ],
+            [
+              "betflag",
+              1.87
+            ],
+            [
+              "goldbet",
+              1.87
+            ],
+            [
+              "lottomatica",
+              1.87
+            ],
+            [
+              "marathonbet",
+              1.87
+            ],
+            [
+              "planetwin365",
+              1.87
+            ],
+            [
+              "pokerstars",
+              1.87
+            ],
+            [
+              "sisal",
+              1.87
+            ],
+            [
+              "snai",
+              1.87
+            ],
+            [
+              "stanleybet",
+              1.87
+            ],
+            [
+              "totosi",
+              1.87
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 164.5",
+          "selezione": "Under 164.5",
+          "probModello": 0.5650495941980029,
+          "probPinnacle": 0.4844559585492228,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 164.5: Under vince se le due squadre segnano al massimo 164 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (164.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.9
+            ],
+            [
+              "starcasino",
+              1.9
+            ],
+            [
+              "fastbet",
+              1.889
+            ],
+            [
+              "zonagioco",
+              1.889
+            ],
+            [
+              "betflag",
+              1.87
+            ],
+            [
+              "goldbet",
+              1.87
+            ],
+            [
+              "lottomatica",
+              1.87
+            ],
+            [
+              "marathonbet",
+              1.87
+            ],
+            [
+              "planetwin365",
+              1.87
+            ],
+            [
+              "pokerstars",
+              1.87
+            ],
+            [
+              "sisal",
+              1.87
+            ],
+            [
+              "snai",
+              1.87
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "07ed65be14687cdd",
+        "28c6f49f82dd1ffc",
+        "43ea6abe2e010f21",
+        "622e201e9d6f4900",
+        "655c5aa7d070bafd",
+        "8c8355f885846835",
+        "99afa4e9be882635",
+        "9d245ae4036cec00",
+        "a6f15925edb86288",
+        "b61c22b652cf5f09"
+      ],
+      "idPartita": "basket-2026-10-30-zalgiris-kk-partizan-nis",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Žalgiris - KK Partizan NIS",
+      "casa": "Žalgiris",
+      "trasferta": "KK Partizan NIS",
+      "inizio": "2026-10-30T19:00:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 83.7,
+        "trasferta": 77.5
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Žalgiris 84 – KK Partizan NIS 77 (stagione in corso e precedente)",
+        "Žalgiris alla seconda partita in 3 giorni",
+        "KK Partizan NIS alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Žalgiris",
+          "probModello": 0.7234041600581339,
+          "probPinnacle": 0.7217355027117229,
+          "quota": 1.31,
+          "fonteQuota": "mediana di 161 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Žalgiris vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              1.33
+            ],
+            [
+              "betsson",
+              1.32
+            ],
+            [
+              "fastbet",
+              1.32
+            ],
+            [
+              "starcasino",
+              1.32
+            ],
+            [
+              "williamhill",
+              1.32
+            ],
+            [
+              "winamax",
+              1.32
+            ],
+            [
+              "zonagioco",
+              1.32
+            ],
+            [
+              "betwin360",
+              1.31
+            ],
+            [
+              "casinosanremo",
+              1.31
+            ],
+            [
+              "daznbet",
+              1.31
+            ],
+            [
+              "domusbet",
+              1.31
+            ],
+            [
+              "eplay24",
+              1.31
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "KK Partizan NIS",
+          "probModello": 0.27659583994186604,
+          "probPinnacle": 0.278264497288277,
+          "quota": 3.3,
+          "fonteQuota": "mediana di 161 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KK Partizan NIS vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              3.45
+            ],
+            [
+              "betsson",
+              3.4
+            ],
+            [
+              "goldbet",
+              3.4
+            ],
+            [
+              "lottomatica",
+              3.4
+            ],
+            [
+              "planetwin365",
+              3.4
+            ],
+            [
+              "starcasino",
+              3.4
+            ],
+            [
+              "williamhill",
+              3.4
+            ],
+            [
+              "888sport",
+              3.35
+            ],
+            [
+              "888sport_it",
+              3.35
+            ],
+            [
+              "betflag",
+              3.35
+            ],
+            [
+              "betwin360",
+              3.35
+            ],
+            [
+              "casinosanremo",
+              3.35
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "casa",
+          "probModello": 0.4896170885770621,
+          "probPinnacle": 0.5100077982843775,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 137 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Žalgiris vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Žalgiris -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "starcasino",
+              1.85
+            ],
+            [
+              "totosi",
+              1.82
+            ],
+            [
+              "quigioco",
+              1.81
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "casinosanremo",
+              1.8
+            ],
+            [
+              "domusbet",
+              1.8
+            ],
+            [
+              "fastbet",
+              1.8
+            ],
+            [
+              "goldbet",
+              1.8
+            ],
+            [
+              "lottomatica",
+              1.8
+            ],
+            [
+              "marathonbet",
+              1.8
+            ],
+            [
+              "netbet",
+              1.8
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "trasferta",
+          "probModello": 0.5103829114229379,
+          "probPinnacle": 0.48999220171562247,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 137 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i KK Partizan NIS perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su KK Partizan NIS +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.97
+            ],
+            [
+              "888sport_it",
+              1.97
+            ],
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "goldbet",
+              1.95
+            ],
+            [
+              "lottomatica",
+              1.95
+            ],
+            [
+              "marathonbet",
+              1.95
+            ],
+            [
+              "planetwin365",
+              1.95
+            ],
+            [
+              "domusbet",
+              1.94
+            ],
+            [
+              "quigioco",
+              1.94
+            ],
+            [
+              "stanleybet",
+              1.94
+            ],
+            [
+              "williamhill",
+              1.94
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 164.5",
+          "selezione": "Over 164.5",
+          "probModello": 0.4190564901308822,
+          "probPinnacle": 0.49338178043083303,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 141 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 164.5: Over vince se le due squadre segnano almeno 165 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (164.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.889
+            ],
+            [
+              "zonagioco",
+              1.889
+            ],
+            [
+              "eurobet",
+              1.88
+            ],
+            [
+              "888sport_it",
+              1.87
+            ],
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "888sport",
+              1.85
+            ],
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "starcasino",
+              1.85
+            ],
+            [
+              "marathonbet",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "totosi",
+              1.81
+            ],
+            [
+              "williamhill",
+              1.81
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 164.5",
+          "selezione": "Under 164.5",
+          "probModello": 0.5809435098691178,
+          "probPinnacle": 0.5066182195691669,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 141 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 164.5: Under vince se le due squadre segnano al massimo 164 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (164.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.97
+            ],
+            [
+              "starcasino",
+              1.97
+            ],
+            [
+              "goldbet",
+              1.93
+            ],
+            [
+              "lottomatica",
+              1.93
+            ],
+            [
+              "marathonbet",
+              1.93
+            ],
+            [
+              "planetwin365",
+              1.93
+            ],
+            [
+              "stanleybet",
+              1.93
+            ],
+            [
+              "totosi",
+              1.93
+            ],
+            [
+              "williamhill",
+              1.93
+            ],
+            [
+              "casinosanremo",
+              1.91
+            ],
+            [
+              "daznbet",
+              1.91
+            ],
+            [
+              "gioca7",
+              1.91
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "38dc591ba74863ff",
+        "62f70008bfcc6e9b",
+        "8fcf13c372f7d6af",
+        "94459df63ff47ebe",
+        "aaa8d87bd7f0b052",
+        "c527530975848dcb"
+      ],
+      "idPartita": "basket-2026-10-30-asvel-lyon-villeurbanne-saski-baskonia",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "ASVEL Lyon Villeurbanne - Saski Baskonia",
+      "casa": "ASVEL Lyon Villeurbanne",
+      "trasferta": "Saski Baskonia",
+      "inizio": "2026-10-30T20:00:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 91.7,
+        "trasferta": 88.2
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: ASVEL Lyon Villeurbanne 92 – Saski Baskonia 88 (stagione in corso e precedente)",
+        "ASVEL Lyon Villeurbanne alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "ASVEL Lyon Villeurbanne",
+          "probModello": 0.6318097025485033,
+          "probPinnacle": 0.6234778373112518,
+          "quota": 1.55,
+          "fonteQuota": "mediana di 158 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se ASVEL Lyon Villeurbanne vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.56
+            ],
+            [
+              "fastbet",
+              1.556
+            ],
+            [
+              "zonagioco",
+              1.556
+            ],
+            [
+              "888sport",
+              1.55
+            ],
+            [
+              "888sport_it",
+              1.55
+            ],
+            [
+              "betsson",
+              1.55
+            ],
+            [
+              "eurobet",
+              1.55
+            ],
+            [
+              "starcasino",
+              1.55
+            ],
+            [
+              "williamhill",
+              1.55
+            ],
+            [
+              "domusbet",
+              1.54
+            ],
+            [
+              "marathonbet",
+              1.54
+            ],
+            [
+              "quigioco",
+              1.54
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Saski Baskonia",
+          "probModello": 0.3681902974514967,
+          "probPinnacle": 0.37652216268874816,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 158 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Saski Baskonia vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betsson",
+              2.46
+            ],
+            [
+              "starcasino",
+              2.46
+            ],
+            [
+              "williamhill",
+              2.46
+            ],
+            [
+              "winamax",
+              2.45
+            ],
+            [
+              "domusbet",
+              2.43
+            ],
+            [
+              "marathonbet",
+              2.43
+            ],
+            [
+              "totosi",
+              2.43
+            ],
+            [
+              "quigioco",
+              2.42
+            ],
+            [
+              "admiralbet",
+              2.4
+            ],
+            [
+              "betflag",
+              2.4
+            ],
+            [
+              "eurobet",
+              2.4
+            ],
+            [
+              "goldbet",
+              2.4
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -4.5",
+          "selezione": "casa",
+          "probModello": 0.4642193443952195,
+          "probPinnacle": 0.482444733420026,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i ASVEL Lyon Villeurbanne vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su ASVEL Lyon Villeurbanne -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.02
+            ],
+            [
+              "888sport_it",
+              2.02
+            ],
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "starcasino",
+              1.95
+            ],
+            [
+              "leovegas",
+              1.94
+            ],
+            [
+              "marathonbet",
+              1.93
+            ],
+            [
+              "quigioco",
+              1.93
+            ],
+            [
+              "stanleybet",
+              1.93
+            ],
+            [
+              "williamhill",
+              1.93
+            ],
+            [
+              "admiralbet",
+              1.92
+            ],
+            [
+              "starvegas",
+              1.92
+            ],
+            [
+              "winamax",
+              1.92
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -4.5",
+          "selezione": "trasferta",
+          "probModello": 0.5357806556047805,
+          "probPinnacle": 0.517555266579974,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Saski Baskonia perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Saski Baskonia +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.83
+            ],
+            [
+              "starcasino",
+              1.83
+            ],
+            [
+              "fastbet",
+              1.818
+            ],
+            [
+              "zonagioco",
+              1.818
+            ],
+            [
+              "marathonbet",
+              1.81
+            ],
+            [
+              "quigioco",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "williamhill",
+              1.81
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "daznbet",
+              1.8
+            ],
+            [
+              "domusbet",
+              1.8
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 176.5",
+          "selezione": "Over 176.5",
+          "probModello": 0.5843031077921941,
+          "probPinnacle": 0.4976635514018692,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 153 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 176.5: Over vince se le due squadre segnano almeno 177 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (176.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "888sport",
+              1.94
+            ],
+            [
+              "888sport_it",
+              1.94
+            ],
+            [
+              "marathonbet",
+              1.93
+            ],
+            [
+              "stanleybet",
+              1.93
+            ],
+            [
+              "williamhill",
+              1.93
+            ],
+            [
+              "daznbet",
+              1.91
+            ],
+            [
+              "sunbet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 176.5",
+          "selezione": "Under 176.5",
+          "probModello": 0.41569689220780587,
+          "probPinnacle": 0.5023364485981309,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 153 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 176.5: Under vince se le due squadre segnano al massimo 176 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (176.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "eurobet",
+              1.85
+            ],
+            [
+              "starcasino",
+              1.85
+            ],
+            [
+              "fastbet",
+              1.846
+            ],
+            [
+              "zonagioco",
+              1.846
+            ],
+            [
+              "marathonbet",
+              1.82
+            ],
+            [
+              "stanleybet",
+              1.82
+            ],
+            [
+              "williamhill",
+              1.82
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "daznbet",
+              1.8
+            ],
+            [
+              "goldbet",
+              1.8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "19b47911371cd526",
+        "250ec001c4ca94de",
+        "36b8472f5fb01d2f",
+        "6fc1a3cb2db7e438",
+        "b399a92e73d5fbc7",
+        "bce92e05d910d016",
+        "dcb5028b18e4fb6d",
+        "fa9c2947f480331e"
+      ],
+      "idPartita": "basket-2026-10-30-olympiacos-pallacanestro-olimpia-milano",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Olympiacos - Pallacanestro Olimpia Milano",
+      "casa": "Olympiacos",
+      "trasferta": "Pallacanestro Olimpia Milano",
+      "inizio": "2026-10-30T20:15:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 94.9,
+        "trasferta": 81.7
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Olympiacos 95 – Pallacanestro Olimpia Milano 82 (stagione in corso e precedente)",
+        "Olympiacos alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Olympiacos",
+          "probModello": 0.8939057893473065,
+          "probPinnacle": 0.8239192649495406,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 159 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Olympiacos vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              1.19
+            ],
+            [
+              "betsson",
+              1.17
+            ],
+            [
+              "betwin360",
+              1.17
+            ],
+            [
+              "casinosanremo",
+              1.17
+            ],
+            [
+              "domusbet",
+              1.17
+            ],
+            [
+              "eplay24",
+              1.17
+            ],
+            [
+              "gioca7",
+              1.17
+            ],
+            [
+              "marathonbet",
+              1.17
+            ],
+            [
+              "netbet",
+              1.17
+            ],
+            [
+              "netwin",
+              1.17
+            ],
+            [
+              "quigioco",
+              1.17
+            ],
+            [
+              "sportium",
+              1.17
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Pallacanestro Olimpia Milano",
+          "probModello": 0.10609421065269357,
+          "probPinnacle": 0.1760807350504594,
+          "quota": 4.75,
+          "fonteQuota": "mediana di 159 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Pallacanestro Olimpia Milano vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              5.2
+            ],
+            [
+              "888sport",
+              5.1
+            ],
+            [
+              "888sport_it",
+              5.1
+            ],
+            [
+              "betsson",
+              5.1
+            ],
+            [
+              "starcasino",
+              5.1
+            ],
+            [
+              "betflag",
+              5
+            ],
+            [
+              "fastbet",
+              5
+            ],
+            [
+              "goldbet",
+              5
+            ],
+            [
+              "lottomatica",
+              5
+            ],
+            [
+              "planetwin365",
+              5
+            ],
+            [
+              "williamhill",
+              5
+            ],
+            [
+              "zonagioco",
+              5
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -10.5",
+          "selezione": "casa",
+          "probModello": 0.5964967724167696,
+          "probPinnacle": 0.4889294087001824,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 151 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Olympiacos vincono con almeno 11 punti di scarto, supplementari compresi. Gioca solo su Olympiacos -10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.92
+            ],
+            [
+              "starcasino",
+              1.92
+            ],
+            [
+              "marathonbet",
+              1.9
+            ],
+            [
+              "williamhill",
+              1.9
+            ],
+            [
+              "admiralbet",
+              1.88
+            ],
+            [
+              "betflag",
+              1.88
+            ],
+            [
+              "casinosanremo",
+              1.88
+            ],
+            [
+              "daznbet",
+              1.88
+            ],
+            [
+              "domusbet",
+              1.88
+            ],
+            [
+              "gioca7",
+              1.88
+            ],
+            [
+              "goldbet",
+              1.88
+            ],
+            [
+              "lottomatica",
+              1.88
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -10.5",
+          "selezione": "trasferta",
+          "probModello": 0.4035032275832304,
+          "probPinnacle": 0.5110705912998177,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 151 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Pallacanestro Olimpia Milano perdono con meno di 11 punti di scarto o vincono, supplementari compresi. Gioca solo su Pallacanestro Olimpia Milano +10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "quigioco",
+              1.88
+            ],
+            [
+              "888sport",
+              1.87
+            ],
+            [
+              "888sport_it",
+              1.87
+            ],
+            [
+              "betsson",
+              1.86
+            ],
+            [
+              "starcasino",
+              1.86
+            ],
+            [
+              "marathonbet",
+              1.84
+            ],
+            [
+              "williamhill",
+              1.84
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "admiralbet",
+              1.82
+            ],
+            [
+              "betflag",
+              1.82
+            ],
+            [
+              "casinosanremo",
+              1.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 167.5",
+          "selezione": "Over 167.5",
+          "probModello": 0.7132404774292308,
+          "probPinnacle": 0.5089494163424125,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 167.5: Over vince se le due squadre segnano almeno 168 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (167.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "betsson",
+              1.81
+            ],
+            [
+              "starcasino",
+              1.81
+            ],
+            [
+              "marathonbet",
+              1.78
+            ],
+            [
+              "williamhill",
+              1.78
+            ],
+            [
+              "admiralbet",
+              1.77
+            ],
+            [
+              "starvegas",
+              1.77
+            ],
+            [
+              "casinosanremo",
+              1.76
+            ],
+            [
+              "daznbet",
+              1.76
+            ],
+            [
+              "gioca7",
+              1.76
+            ],
+            [
+              "netbet",
+              1.76
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 167.5",
+          "selezione": "Under 167.5",
+          "probModello": 0.2867595225707692,
+          "probPinnacle": 0.4910505836575875,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 167.5: Under vince se le due squadre segnano al massimo 167 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (167.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              2.01
+            ],
+            [
+              "starcasino",
+              2.01
+            ],
+            [
+              "888sport",
+              1.98
+            ],
+            [
+              "888sport_it",
+              1.98
+            ],
+            [
+              "marathonbet",
+              1.97
+            ],
+            [
+              "williamhill",
+              1.97
+            ],
+            [
+              "admiralbet",
+              1.95
+            ],
+            [
+              "betflag",
+              1.95
+            ],
+            [
+              "casinosanremo",
+              1.95
+            ],
+            [
+              "daznbet",
+              1.95
+            ],
+            [
+              "gioca7",
+              1.95
+            ],
+            [
+              "goldbet",
+              1.95
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "153dc497e256a766",
+        "26848b9957fe9101",
+        "5886cd32d1f6c337",
+        "92c86f3e3c31d5c6",
+        "d5a41b5c4904d90d"
+      ],
+      "idPartita": "basket-2026-10-30-virtus-segafredo-bologna-besiktas-j-k",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "Virtus Segafredo Bologna - Beşiktaş J.K.",
+      "casa": "Virtus Segafredo Bologna",
+      "trasferta": "Beşiktaş J.K.",
+      "inizio": "2026-10-30T20:30:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 85.2,
+        "trasferta": 84.8
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Virtus Segafredo Bologna 85 – Beşiktaş J.K. 85 (stagione in corso e precedente)",
+        "Virtus Segafredo Bologna alla seconda partita in 3 giorni",
+        "Beşiktaş J.K. alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Virtus Segafredo Bologna",
+          "probModello": 0.5168317674808462,
+          "probPinnacle": 0.679040289723857,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Virtus Segafredo Bologna vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.43
+            ],
+            [
+              "starcasino",
+              1.43
+            ],
+            [
+              "williamhill",
+              1.43
+            ],
+            [
+              "winamax",
+              1.43
+            ],
+            [
+              "888sport",
+              1.42
+            ],
+            [
+              "888sport_it",
+              1.42
+            ],
+            [
+              "betwin360",
+              1.42
+            ],
+            [
+              "casinosanremo",
+              1.42
+            ],
+            [
+              "domusbet",
+              1.42
+            ],
+            [
+              "eplay24",
+              1.42
+            ],
+            [
+              "gioca7",
+              1.42
+            ],
+            [
+              "netbet",
+              1.42
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Beşiktaş J.K.",
+          "probModello": 0.48316823251915375,
+          "probPinnacle": 0.32095971027614306,
+          "quota": 2.83,
+          "fonteQuota": "mediana di 175 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Beşiktaş J.K. vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              2.9
+            ],
+            [
+              "fastbet",
+              2.857
+            ],
+            [
+              "zonagioco",
+              2.857
+            ],
+            [
+              "betsson",
+              2.85
+            ],
+            [
+              "marathonbet",
+              2.85
+            ],
+            [
+              "starcasino",
+              2.85
+            ],
+            [
+              "williamhill",
+              2.85
+            ],
+            [
+              "betwin360",
+              2.82
+            ],
+            [
+              "casinosanremo",
+              2.82
+            ],
+            [
+              "eplay24",
+              2.82
+            ],
+            [
+              "gioca7",
+              2.82
+            ],
+            [
+              "netbet",
+              2.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "casa",
+          "probModello": 0.3205770487770283,
+          "probPinnacle": 0.5131476178078626,
+          "quota": 1.84,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Virtus Segafredo Bologna vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su Virtus Segafredo Bologna -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.91
+            ],
+            [
+              "888sport_it",
+              1.91
+            ],
+            [
+              "betsson",
+              1.88
+            ],
+            [
+              "starcasino",
+              1.88
+            ],
+            [
+              "quigioco",
+              1.86
+            ],
+            [
+              "stanleybet",
+              1.86
+            ],
+            [
+              "williamhill",
+              1.86
+            ],
+            [
+              "admiralbet",
+              1.85
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "casinosanremo",
+              1.85
+            ],
+            [
+              "gioca7",
+              1.85
+            ],
+            [
+              "goldbet",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "trasferta",
+          "probModello": 0.6794229512229717,
+          "probPinnacle": 0.4868523821921375,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Beşiktaş J.K. perdono con meno di 6 punti di scarto o vincono, supplementari compresi. Gioca solo su Beşiktaş J.K. +5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.909
+            ],
+            [
+              "zonagioco",
+              1.909
+            ],
+            [
+              "betsson",
+              1.9
+            ],
+            [
+              "marathonbet",
+              1.9
+            ],
+            [
+              "pokerstars",
+              1.9
+            ],
+            [
+              "sisal",
+              1.9
+            ],
+            [
+              "snai",
+              1.9
+            ],
+            [
+              "starcasino",
+              1.9
+            ],
+            [
+              "stanleybet",
+              1.88
+            ],
+            [
+              "williamhill",
+              1.88
+            ],
+            [
+              "admiralbet",
+              1.87
+            ],
+            [
+              "quigioco",
+              1.87
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 175.5",
+          "selezione": "Over 175.5",
+          "probModello": 0.36739853237803954,
+          "probPinnacle": 0.5,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 170 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 175.5: Over vince se le due squadre segnano almeno 176 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.88
+            ],
+            [
+              "starcasino",
+              1.88
+            ],
+            [
+              "fastbet",
+              1.857
+            ],
+            [
+              "zonagioco",
+              1.857
+            ],
+            [
+              "eurobet",
+              1.85
+            ],
+            [
+              "marathonbet",
+              1.85
+            ],
+            [
+              "pokerstars",
+              1.85
+            ],
+            [
+              "sisal",
+              1.85
+            ],
+            [
+              "snai",
+              1.85
+            ],
+            [
+              "888sport",
+              1.84
+            ],
+            [
+              "888sport_it",
+              1.84
+            ],
+            [
+              "stanleybet",
+              1.84
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 175.5",
+          "selezione": "Under 175.5",
+          "probModello": 0.6326014676219605,
+          "probPinnacle": 0.5,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 170 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 175.5: Under vince se le due squadre segnano al massimo 175 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (175.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.93
+            ],
+            [
+              "starcasino",
+              1.93
+            ],
+            [
+              "pokerstars",
+              1.9
+            ],
+            [
+              "sisal",
+              1.9
+            ],
+            [
+              "snai",
+              1.9
+            ],
+            [
+              "marathonbet",
+              1.89
+            ],
+            [
+              "stanleybet",
+              1.89
+            ],
+            [
+              "williamhill",
+              1.89
+            ],
+            [
+              "888sport",
+              1.88
+            ],
+            [
+              "888sport_it",
+              1.88
+            ],
+            [
+              "admiralbet",
+              1.88
+            ],
+            [
+              "betflag",
+              1.88
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "25c61fa1d1e2a36b",
+        "4e8eff1d06722365",
+        "9a991a38d4fa8783",
+        "b62b76a3359dea39"
+      ],
+      "idPartita": "basket-2026-10-30-fc-barcelona-basquet-valencia-basket",
+      "sport": "basket",
+      "competizione": "Eurolega",
+      "partita": "FC Barcelona Bàsquet - Valencia Basket",
+      "casa": "FC Barcelona Bàsquet",
+      "trasferta": "Valencia Basket",
+      "inizio": "2026-10-30T20:30:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 88.6,
+        "trasferta": 90.7
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: FC Barcelona Bàsquet 89 – Valencia Basket 91 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "FC Barcelona Bàsquet",
+          "probModello": 0.4198715300230098,
+          "probPinnacle": 0.5725190839694657,
+          "quota": 1.62,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se FC Barcelona Bàsquet vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betwin360",
+              1.66
+            ],
+            [
+              "casinosanremo",
+              1.66
+            ],
+            [
+              "eplay24",
+              1.66
+            ],
+            [
+              "gioca7",
+              1.66
+            ],
+            [
+              "netbet",
+              1.66
+            ],
+            [
+              "netwin",
+              1.66
+            ],
+            [
+              "sportium",
+              1.66
+            ],
+            [
+              "staryes",
+              1.66
+            ],
+            [
+              "fastbet",
+              1.636
+            ],
+            [
+              "zonagioco",
+              1.636
+            ],
+            [
+              "888sport",
+              1.61
+            ],
+            [
+              "888sport_it",
+              1.61
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Valencia Basket",
+          "probModello": 0.5801284699769902,
+          "probPinnacle": 0.4274809160305344,
+          "quota": 2.2,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Valencia Basket vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.2
+            ],
+            [
+              "888sport_it",
+              2.2
+            ],
+            [
+              "fastbet",
+              2.2
+            ],
+            [
+              "zonagioco",
+              2.2
+            ],
+            [
+              "betwin360",
+              2.18
+            ],
+            [
+              "casinosanremo",
+              2.18
+            ],
+            [
+              "eplay24",
+              2.18
+            ],
+            [
+              "gioca7",
+              2.18
+            ],
+            [
+              "netbet",
+              2.18
+            ],
+            [
+              "netwin",
+              2.18
+            ],
+            [
+              "sportium",
+              2.18
+            ],
+            [
+              "staryes",
+              2.18
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "casa",
+          "probModello": 0.33527303935230157,
+          "probPinnacle": 0.5142857142857141,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 116 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i FC Barcelona Bàsquet vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su FC Barcelona Bàsquet -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "casinosanremo",
+              1.83
+            ],
+            [
+              "gioca7",
+              1.83
+            ],
+            [
+              "netbet",
+              1.83
+            ],
+            [
+              "netwin",
+              1.83
+            ],
+            [
+              "staryes",
+              1.83
+            ],
+            [
+              "888sport",
+              1.82
+            ],
+            [
+              "888sport_it",
+              1.82
+            ],
+            [
+              "fastbet",
+              1.8
+            ],
+            [
+              "zonagioco",
+              1.8
+            ],
+            [
+              "leovegas",
+              1.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -2.5",
+          "selezione": "trasferta",
+          "probModello": 0.6647269606476984,
+          "probPinnacle": 0.4857142857142857,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 116 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Valencia Basket perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su Valencia Basket +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.909
+            ],
+            [
+              "zonagioco",
+              1.909
+            ],
+            [
+              "888sport",
+              1.89
+            ],
+            [
+              "888sport_it",
+              1.89
+            ],
+            [
+              "casinosanremo",
+              1.87
+            ],
+            [
+              "gioca7",
+              1.87
+            ],
+            [
+              "netbet",
+              1.87
+            ],
+            [
+              "netwin",
+              1.87
+            ],
+            [
+              "staryes",
+              1.87
+            ],
+            [
+              "leovegas",
+              1.81
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 182.5",
+          "selezione": "Over 182.5",
+          "probModello": 0.4215685620286064,
+          "probPinnacle": 0.4976635514018692,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 182.5: Over vince se le due squadre segnano almeno 183 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (182.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.867
+            ],
+            [
+              "zonagioco",
+              1.867
+            ],
+            [
+              "888sport",
+              1.84
+            ],
+            [
+              "888sport_it",
+              1.84
+            ],
+            [
+              "casinosanremo",
+              1.81
+            ],
+            [
+              "gioca7",
+              1.81
+            ],
+            [
+              "netbet",
+              1.81
+            ],
+            [
+              "netwin",
+              1.81
+            ],
+            [
+              "staryes",
+              1.81
+            ],
+            [
+              "leovegas",
+              1.76
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 182.5",
+          "selezione": "Under 182.5",
+          "probModello": 0.5784314379713936,
+          "probPinnacle": 0.5023364485981309,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 182.5: Under vince se le due squadre segnano al massimo 182 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (182.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "casinosanremo",
+              1.9
+            ],
+            [
+              "gioca7",
+              1.9
+            ],
+            [
+              "netbet",
+              1.9
+            ],
+            [
+              "netwin",
+              1.9
+            ],
+            [
+              "staryes",
+              1.9
+            ],
+            [
+              "888sport",
+              1.89
+            ],
+            [
+              "888sport_it",
+              1.89
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "leovegas",
+              1.81
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "basket-2026-10-30-tasmania-jackjumpers-sydney-kings",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Tasmania JackJumpers - Sydney Kings",
+      "casa": "Tasmania JackJumpers",
+      "trasferta": "Sydney Kings",
+      "inizio": "2026-10-30T09:30:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 91.4,
+        "trasferta": 95.9
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Tasmania JackJumpers 91 – Sydney Kings 96 (stagione in corso e precedente)",
+        "Sydney Kings alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Tasmania JackJumpers",
+          "probModello": 0.37003534812089545,
+          "probPinnacle": 0.4934383202099738,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Tasmania JackJumpers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.86
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Sydney Kings",
+          "probModello": 0.6299646518791046,
+          "probPinnacle": 0.5065616797900262,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 5 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-30T07:22:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Sydney Kings vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.86
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

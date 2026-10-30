@@ -1,0 +1,729 @@
+{
+  "data": "2026-10-30",
+  "generataAlle": "2026-10-30T07:22:56+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 214
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Quote pallavolo: 1 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "0ba96da582de2bd3",
+        "89b7b773c50a1dbd"
+      ],
+      "idPartita": "pallavolo-2026-10-30-swd-powervolleys-duren-sv-warnemunde",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SWD Powervolleys Duren - SV Warnemünde",
+      "casa": "SWD Powervolleys Duren",
+      "trasferta": "SV Warnemünde",
+      "inizio": "2026-10-30T19:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SWD Powervolleys Duren",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8928136462744336,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SWD Powervolleys Duren vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.04
+            ],
+            [
+              "bgame",
+              1.04
+            ],
+            [
+              "codere",
+              1.04
+            ],
+            [
+              "fastbet",
+              1.04
+            ],
+            [
+              "marathonbet",
+              1.04
+            ],
+            [
+              "perlaplay",
+              1.04
+            ],
+            [
+              "sportbet",
+              1.04
+            ],
+            [
+              "starcasino",
+              1.04
+            ],
+            [
+              "sunbet",
+              1.04
+            ],
+            [
+              "totosi",
+              1.04
+            ],
+            [
+              "williamhill",
+              1.04
+            ],
+            [
+              "winamax",
+              1.04
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SV Warnemünde",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.10718635372556626,
+          "quota": 8.5,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SV Warnemünde vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              11
+            ],
+            [
+              "starcasino",
+              11
+            ],
+            [
+              "williamhill",
+              11
+            ],
+            [
+              "winamax",
+              10
+            ],
+            [
+              "bgame",
+              9.4
+            ],
+            [
+              "codere",
+              9.4
+            ],
+            [
+              "marathonbet",
+              9.4
+            ],
+            [
+              "perlaplay",
+              9.4
+            ],
+            [
+              "sportbet",
+              9.4
+            ],
+            [
+              "sunbet",
+              9.4
+            ],
+            [
+              "totosi",
+              9.4
+            ],
+            [
+              "admiralbet",
+              8.8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "106ec2c54adbd1a7",
+        "295a2d48e532ef82",
+        "a79ba65c5cea45a2"
+      ],
+      "idPartita": "pallavolo-2026-10-30-barock-volleys-mtv-ludwigsburg-ssc-karlsruhe",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Barock Volleys MTV Ludwigsburg - SSC Karlsruhe",
+      "casa": "Barock Volleys MTV Ludwigsburg",
+      "trasferta": "SSC Karlsruhe",
+      "inizio": "2026-10-30T19:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Barock Volleys MTV Ludwigsburg",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.7143054559450273,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 109 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Barock Volleys MTV Ludwigsburg vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.35
+            ],
+            [
+              "starcasino",
+              1.35
+            ],
+            [
+              "williamhill",
+              1.35
+            ],
+            [
+              "winamax",
+              1.34
+            ],
+            [
+              "bgame",
+              1.33
+            ],
+            [
+              "codere",
+              1.33
+            ],
+            [
+              "marathonbet",
+              1.33
+            ],
+            [
+              "perlaplay",
+              1.33
+            ],
+            [
+              "sportbet",
+              1.33
+            ],
+            [
+              "sunbet",
+              1.33
+            ],
+            [
+              "totosi",
+              1.33
+            ],
+            [
+              "admiralbet",
+              1.32
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SSC Karlsruhe",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.28569454405497235,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 109 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SSC Karlsruhe vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.333
+            ],
+            [
+              "zonagioco",
+              3.333
+            ],
+            [
+              "betsson",
+              3.25
+            ],
+            [
+              "starcasino",
+              3.25
+            ],
+            [
+              "williamhill",
+              3.25
+            ],
+            [
+              "bgame",
+              3.15
+            ],
+            [
+              "codere",
+              3.15
+            ],
+            [
+              "marathonbet",
+              3.15
+            ],
+            [
+              "perlaplay",
+              3.15
+            ],
+            [
+              "sportbet",
+              3.15
+            ],
+            [
+              "sunbet",
+              3.15
+            ],
+            [
+              "totosi",
+              3.15
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-10-30-mks-slepsk-suwalki-ks-norwid-czestochowa",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "MKS Slepsk Suwalki - KS Norwid Czestochowa",
+      "casa": "MKS Slepsk Suwalki",
+      "trasferta": "KS Norwid Czestochowa",
+      "inizio": "2026-10-30T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "MKS Slepsk Suwalki": 1443,
+        "KS Norwid Czestochowa": 1396
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: MKS Slepsk Suwalki 1443 – KS Norwid Czestochowa 1396, vantaggio campo compreso: vittoria della casa 65% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "MKS Slepsk Suwalki",
+          "probModello": null,
+          "probModelloStudio": 0.6490430680318875,
+          "probPinnacle": 0.6859205776173285,
+          "quota": 1.33,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,36 su 143 bookmaker",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "quotaBet365": 1.33,
+          "oraQuotaBet365": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se MKS Slepsk Suwalki vince la partita.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.42
+            ],
+            [
+              "admiralbet",
+              1.37
+            ],
+            [
+              "888sport",
+              1.364
+            ],
+            [
+              "starcasino",
+              1.364
+            ],
+            [
+              "betflag",
+              1.36
+            ],
+            [
+              "bwin",
+              1.36
+            ],
+            [
+              "eurobet",
+              1.36
+            ],
+            [
+              "goldbet",
+              1.36
+            ],
+            [
+              "lottomatica",
+              1.36
+            ],
+            [
+              "netbet",
+              1.36
+            ],
+            [
+              "planetwin365",
+              1.36
+            ],
+            [
+              "stake",
+              1.36
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "KS Norwid Czestochowa",
+          "probModello": null,
+          "probModelloStudio": 0.3509569319681125,
+          "probPinnacle": 0.3140794223826715,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 143 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "quotaBet365": 3,
+          "oraQuotaBet365": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KS Norwid Czestochowa vince la partita.",
+          "bookmaker": [
+            [
+              "888sport",
+              3
+            ],
+            [
+              "bet365",
+              3
+            ],
+            [
+              "pokerstars",
+              3
+            ],
+            [
+              "sisal",
+              3
+            ],
+            [
+              "snai",
+              3
+            ],
+            [
+              "admiralbet",
+              2.95
+            ],
+            [
+              "bwin",
+              2.95
+            ],
+            [
+              "winamax",
+              2.95
+            ],
+            [
+              "marathonbet",
+              2.92
+            ],
+            [
+              "betflag",
+              2.91
+            ],
+            [
+              "goldbet",
+              2.91
+            ],
+            [
+              "lottomatica",
+              2.91
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.44246272653588153,
+          "probPinnacle": 0.535143769968051,
+          "quota": 1.69,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,76 su 113 bookmaker",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "quotaBet365": 1.69,
+          "oraQuotaBet365": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki -1,5 vince se MKS Slepsk Suwalki vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.86
+            ],
+            [
+              "888sport",
+              1.8
+            ],
+            [
+              "winbet",
+              1.8
+            ],
+            [
+              "bwin",
+              1.77
+            ],
+            [
+              "netbet",
+              1.77
+            ],
+            [
+              "stake",
+              1.77
+            ],
+            [
+              "marathonbet",
+              1.76
+            ],
+            [
+              "winamax",
+              1.76
+            ],
+            [
+              "starcasino",
+              1.7
+            ],
+            [
+              "bet365",
+              1.69
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.5575372734641184,
+          "probPinnacle": 0.46485623003194887,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 113 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "quotaBet365": 1.97,
+          "oraQuotaBet365": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Norwid Czestochowa +1,5 vince se KS Norwid Czestochowa vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "starcasino",
+              2.05
+            ],
+            [
+              "winbet",
+              2
+            ],
+            [
+              "bet365",
+              1.97
+            ],
+            [
+              "bwin",
+              1.95
+            ],
+            [
+              "netbet",
+              1.95
+            ],
+            [
+              "stake",
+              1.95
+            ],
+            [
+              "marathonbet",
+              1.93
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "888sport",
+              1.909
+            ],
+            [
+              "leovegas",
+              1.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.7980900482115267,
+          "probPinnacle": 0.7954109043115526,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki +1,5 vince se MKS Slepsk Suwalki vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.17
+            ],
+            [
+              "bwin",
+              1.16
+            ],
+            [
+              "netbet",
+              1.16
+            ],
+            [
+              "marathonbet",
+              1.15
+            ],
+            [
+              "winamax",
+              1.14
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.20190995178847326,
+          "probPinnacle": 0.20458909568844735,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: KS Norwid Czestochowa -1,5 vince se KS Norwid Czestochowa vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              4.75
+            ],
+            [
+              "winbet",
+              4.75
+            ],
+            [
+              "marathonbet",
+              4.6
+            ],
+            [
+              "netbet",
+              4.55
+            ],
+            [
+              "winamax",
+              4.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.7303704419768559,
+          "probPinnacle": 0.602255253716043,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 63 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "marathonbet",
+              1.45
+            ],
+            [
+              "winbet",
+              1.44
+            ],
+            [
+              "bwin",
+              1.42
+            ],
+            [
+              "stake",
+              1.42
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "netbet",
+              1.4
+            ],
+            [
+              "winamax",
+              1.4
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.26962955802314414,
+          "probPinnacle": 0.397744746283957,
+          "quota": 2.4,
+          "fonteQuota": "mediana di 63 bookmaker (OddsPapi)",
+          "oraQuota": "2026-10-30T07:22:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.75
+            ],
+            [
+              "stake",
+              2.75
+            ],
+            [
+              "winbet",
+              2.75
+            ],
+            [
+              "bwin",
+              2.7
+            ],
+            [
+              "netbet",
+              2.6
+            ],
+            [
+              "marathonbet",
+              2.51
+            ],
+            [
+              "winamax",
+              2.5
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

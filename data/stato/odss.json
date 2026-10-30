@@ -1,22 +1,10 @@
 {
-  "aggiornatoAlle": "2026-10-29T19:03:34.840Z",
-  "rimaste": 409,
+  "aggiornatoAlle": "2026-10-30T06:22:56.518Z",
+  "rimaste": 402,
   "limite": 500,
   "reset": "2026-11-21T17:35:58.000Z",
   "limiteRaggiuntoFino": null,
   "giornate": {
-    "2026-10-23": {
-      "usate": 10,
-      "controlli": 3,
-      "perSport": {
-        "calcio": 6,
-        "nba": 2,
-        "tennis": 2
-      },
-      "avvisi": [
-        "budget insufficiente (tetto di # richieste al giorno per i controlli raggiunto; controlli oggi # su #, rimaste #, riserva #): quote dei controlli dalle fonti di prima"
-      ]
-    },
     "2026-10-24": {
       "usate": 10,
       "controlli": 3,
@@ -97,6 +85,18 @@
       "avvisi": [
         "budget insufficiente (tetto di # richieste al giorno per i controlli raggiunto; controlli oggi # su #, giornata # su #, rimaste #, riserva #): quote dei controlli dalle fonti di prima"
       ]
+    },
+    "2026-10-30": {
+      "usate": 7,
+      "controlli": 0,
+      "perSport": {
+        "calcio": 3,
+        "nba": 1,
+        "tennis": 1,
+        "basket": 1,
+        "pallavolo": 1
+      },
+      "avvisi": []
     }
   }
 }

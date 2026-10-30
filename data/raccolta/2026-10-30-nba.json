@@ -1,0 +1,3969 @@
+{
+  "data": "2026-10-30",
+  "generataAlle": "2026-10-30T07:16:44+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 0
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "odss-api alle 07:16: 10 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Charlotte Hornets - Washington Wizards, Chicago Bulls - Boston Celtics, Orlando Magic - Toronto Raptors, Detroit Pistons - Brooklyn Nets, New York Knicks - Philadelphia 76ers, Indiana Pacers - Miami Heat, Houston Rockets - Dallas Mavericks, LA Clippers - Minnesota Timberwolves, Denver Nuggets - Phoenix Suns, Los Angeles Lakers - Golden State Warriors"
+  ],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-30-washington-wizards-charlotte-hornets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Charlotte Hornets",
+      "casa": "Washington Wizards",
+      "trasferta": "Charlotte Hornets",
+      "inizio": "2026-10-31T00:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 108.3,
+        "trasferta": 114.3
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Washington Wizards 108 – Charlotte Hornets 114 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Washington Wizards",
+          "probModello": 0.3356458820151267,
+          "probPinnacle": 0.5215827338129496,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Washington Wizards vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "williamhill",
+              1.85
+            ],
+            [
+              "betsson",
+              1.83
+            ],
+            [
+              "betwin360",
+              1.83
+            ],
+            [
+              "bwin",
+              1.83
+            ],
+            [
+              "casinosanremo",
+              1.83
+            ],
+            [
+              "domusbet",
+              1.83
+            ],
+            [
+              "eplay24",
+              1.83
+            ],
+            [
+              "gioca7",
+              1.83
+            ],
+            [
+              "giocodigitale",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "netbet",
+              1.83
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Charlotte Hornets",
+          "probModello": 0.6643541179848733,
+          "probPinnacle": 0.47841726618705044,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Charlotte Hornets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.04
+            ],
+            [
+              "888sport_it",
+              2.04
+            ],
+            [
+              "leovegas",
+              2
+            ],
+            [
+              "winamax",
+              1.98
+            ],
+            [
+              "williamhill",
+              1.96
+            ],
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "betwin360",
+              1.95
+            ],
+            [
+              "bwin",
+              1.95
+            ],
+            [
+              "casinosanremo",
+              1.95
+            ],
+            [
+              "domusbet",
+              1.95
+            ],
+            [
+              "eplay24",
+              1.95
+            ],
+            [
+              "eurobet",
+              1.95
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "casa",
+          "probModello": 0.3024730312699011,
+          "probPinnacle": 0.5,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 49 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Washington Wizards vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Washington Wizards -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.93
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "betsson",
+              1.91
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "marathonbet",
+              1.91
+            ],
+            [
+              "quigioco",
+              1.91
+            ],
+            [
+              "stanleybet",
+              1.91
+            ],
+            [
+              "starcasino",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.6975269687300989,
+          "probPinnacle": 0.5,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 49 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Charlotte Hornets perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Charlotte Hornets +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.85
+            ],
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "betflag",
+              1.83
+            ],
+            [
+              "betsson",
+              1.83
+            ],
+            [
+              "domusbet",
+              1.83
+            ],
+            [
+              "goldbet",
+              1.83
+            ],
+            [
+              "lottomatica",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "planetwin365",
+              1.83
+            ],
+            [
+              "quigioco",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "starcasino",
+              1.83
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 223.5",
+          "selezione": "Over 223.5",
+          "probModello": 0.4816879623206869,
+          "probPinnacle": 0.4313009096730345,
+          "quota": 2.13,
+          "fonteQuota": "mediana di 54 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 223.5: Over vince se le due squadre segnano almeno 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.23
+            ],
+            [
+              "888sport_it",
+              2.23
+            ],
+            [
+              "bwin",
+              2.15
+            ],
+            [
+              "giocodigitale",
+              2.15
+            ],
+            [
+              "leovegas",
+              2.14
+            ],
+            [
+              "betsson",
+              2.13
+            ],
+            [
+              "domusbet",
+              2.13
+            ],
+            [
+              "marathonbet",
+              2.13
+            ],
+            [
+              "stanleybet",
+              2.13
+            ],
+            [
+              "starcasino",
+              2.13
+            ],
+            [
+              "williamhill",
+              2.13
+            ],
+            [
+              "betflag",
+              2.1
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 223.5",
+          "selezione": "Under 223.5",
+          "probModello": 0.5183120376793131,
+          "probPinnacle": 0.5686990903269658,
+          "quota": 1.65,
+          "fonteQuota": "mediana di 54 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 223.5: Under vince se le due squadre segnano al massimo 223 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.67
+            ],
+            [
+              "bwin",
+              1.67
+            ],
+            [
+              "domusbet",
+              1.67
+            ],
+            [
+              "giocodigitale",
+              1.67
+            ],
+            [
+              "marathonbet",
+              1.67
+            ],
+            [
+              "stanleybet",
+              1.67
+            ],
+            [
+              "starcasino",
+              1.67
+            ],
+            [
+              "williamhill",
+              1.67
+            ],
+            [
+              "winamax",
+              1.66
+            ],
+            [
+              "betflag",
+              1.65
+            ],
+            [
+              "casinosanremo",
+              1.65
+            ],
+            [
+              "daznbet",
+              1.65
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "7914417ca3d27227",
+        "bb8b12a8db63028d"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-brooklyn-nets-detroit-pistons",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Brooklyn Nets - Detroit Pistons",
+      "casa": "Brooklyn Nets",
+      "trasferta": "Detroit Pistons",
+      "inizio": "2026-10-31T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 106.2,
+        "trasferta": 119.5
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Brooklyn Nets 106 – Detroit Pistons 120 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Brooklyn Nets",
+          "probModello": 0.17293423830025498,
+          "probPinnacle": 0.26592517694641055,
+          "quota": 3.3,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Brooklyn Nets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              3.5
+            ],
+            [
+              "888sport_it",
+              3.5
+            ],
+            [
+              "bwin",
+              3.4
+            ],
+            [
+              "giocodigitale",
+              3.4
+            ],
+            [
+              "leovegas",
+              3.4
+            ],
+            [
+              "winamax",
+              3.3
+            ],
+            [
+              "eurobet",
+              3.25
+            ],
+            [
+              "williamhill",
+              3.25
+            ],
+            [
+              "betflag",
+              3.2
+            ],
+            [
+              "betsson",
+              3.2
+            ],
+            [
+              "betwin360",
+              3.2
+            ],
+            [
+              "casinosanremo",
+              3.2
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Detroit Pistons",
+          "probModello": 0.827065761699745,
+          "probPinnacle": 0.7340748230535896,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Detroit Pistons vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.35
+            ],
+            [
+              "betsson",
+              1.34
+            ],
+            [
+              "betwin360",
+              1.34
+            ],
+            [
+              "casinosanremo",
+              1.34
+            ],
+            [
+              "domusbet",
+              1.34
+            ],
+            [
+              "eplay24",
+              1.34
+            ],
+            [
+              "gioca7",
+              1.34
+            ],
+            [
+              "marathonbet",
+              1.34
+            ],
+            [
+              "netbet",
+              1.34
+            ],
+            [
+              "netwin",
+              1.34
+            ],
+            [
+              "quigioco",
+              1.34
+            ],
+            [
+              "sportium",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "casa",
+          "probModello": 0.3194901323169501,
+          "probPinnacle": 0.45571245186136067,
+          "quota": 1.97,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Brooklyn Nets perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su Brooklyn Nets +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.12
+            ],
+            [
+              "888sport_it",
+              2.12
+            ],
+            [
+              "leovegas",
+              2.04
+            ],
+            [
+              "sunbet",
+              1.97
+            ],
+            [
+              "winamax",
+              1.96
+            ],
+            [
+              "betflag",
+              1.95
+            ],
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "domusbet",
+              1.95
+            ],
+            [
+              "goldbet",
+              1.95
+            ],
+            [
+              "lottomatica",
+              1.95
+            ],
+            [
+              "marathonbet",
+              1.95
+            ],
+            [
+              "planetwin365",
+              1.95
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "trasferta",
+          "probModello": 0.6805098676830499,
+          "probPinnacle": 0.5442875481386393,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Detroit Pistons vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Detroit Pistons -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.81
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "goldbet",
+              1.8
+            ],
+            [
+              "lottomatica",
+              1.8
+            ],
+            [
+              "planetwin365",
+              1.8
+            ],
+            [
+              "winamax",
+              1.8
+            ],
+            [
+              "betsson",
+              1.79
+            ],
+            [
+              "domusbet",
+              1.79
+            ],
+            [
+              "marathonbet",
+              1.79
+            ],
+            [
+              "stanleybet",
+              1.79
+            ],
+            [
+              "starcasino",
+              1.79
+            ],
+            [
+              "williamhill",
+              1.79
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 221.5",
+          "selezione": "Over 221.5",
+          "probModello": 0.5905842682847393,
+          "probPinnacle": 0.5233160621761658,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 60 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 221.5: Over vince se le due squadre segnano almeno 222 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (221.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.89
+            ],
+            [
+              "winamax",
+              1.88
+            ],
+            [
+              "betsson",
+              1.87
+            ],
+            [
+              "domusbet",
+              1.87
+            ],
+            [
+              "marathonbet",
+              1.87
+            ],
+            [
+              "stanleybet",
+              1.87
+            ],
+            [
+              "starcasino",
+              1.87
+            ],
+            [
+              "williamhill",
+              1.87
+            ],
+            [
+              "admiralbet",
+              1.85
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "casinosanremo",
+              1.85
+            ],
+            [
+              "daznbet",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 221.5",
+          "selezione": "Under 221.5",
+          "probModello": 0.40941573171526074,
+          "probPinnacle": 0.4766839378238342,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 60 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 221.5: Under vince se le due squadre segnano al massimo 221 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (221.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.04
+            ],
+            [
+              "888sport_it",
+              2.04
+            ],
+            [
+              "leovegas",
+              1.98
+            ],
+            [
+              "bwin",
+              1.95
+            ],
+            [
+              "giocodigitale",
+              1.95
+            ],
+            [
+              "sunbet",
+              1.89
+            ],
+            [
+              "winamax",
+              1.88
+            ],
+            [
+              "betsson",
+              1.87
+            ],
+            [
+              "domusbet",
+              1.87
+            ],
+            [
+              "marathonbet",
+              1.87
+            ],
+            [
+              "stanleybet",
+              1.87
+            ],
+            [
+              "starcasino",
+              1.87
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "0f90dd2fab924460",
+        "36f984b9c6a2c9bc"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-philadelphia-76ers-new-york-knicks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Philadelphia 76ers - New York Knicks",
+      "casa": "Philadelphia 76ers",
+      "trasferta": "New York Knicks",
+      "inizio": "2026-10-31T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 109.9,
+        "trasferta": 109.4
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Philadelphia 76ers 110 – New York Knicks 109 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "probModello": 0.5160762909561893,
+          "probPinnacle": 0.4645144760440687,
+          "quota": 2.04,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Philadelphia 76ers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.1
+            ],
+            [
+              "888sport_it",
+              2.1
+            ],
+            [
+              "leovegas",
+              2.04
+            ],
+            [
+              "bwin",
+              2
+            ],
+            [
+              "giocodigitale",
+              2
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "williamhill",
+              1.98
+            ],
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "betwin360",
+              1.96
+            ],
+            [
+              "casinosanremo",
+              1.96
+            ],
+            [
+              "domusbet",
+              1.96
+            ],
+            [
+              "eplay24",
+              1.96
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "New York Knicks",
+          "probModello": 0.48392370904381066,
+          "probPinnacle": 0.5354855239559313,
+          "quota": 1.78,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se New York Knicks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "williamhill",
+              1.83
+            ],
+            [
+              "betsson",
+              1.82
+            ],
+            [
+              "betwin360",
+              1.82
+            ],
+            [
+              "casinosanremo",
+              1.82
+            ],
+            [
+              "domusbet",
+              1.82
+            ],
+            [
+              "eplay24",
+              1.82
+            ],
+            [
+              "gioca7",
+              1.82
+            ],
+            [
+              "marathonbet",
+              1.82
+            ],
+            [
+              "netbet",
+              1.82
+            ],
+            [
+              "netwin",
+              1.82
+            ],
+            [
+              "quigioco",
+              1.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +2.5",
+          "selezione": "casa",
+          "probModello": 0.5842306150479903,
+          "probPinnacle": 0.5212903225806451,
+          "quota": 1.75,
+          "fonteQuota": "mediana di 42 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Philadelphia 76ers perdono con meno di 3 punti di scarto o vincono, supplementari compresi. Gioca solo su Philadelphia 76ers +2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.76
+            ],
+            [
+              "betflag",
+              1.75
+            ],
+            [
+              "betsson",
+              1.75
+            ],
+            [
+              "domusbet",
+              1.75
+            ],
+            [
+              "goldbet",
+              1.75
+            ],
+            [
+              "lottomatica",
+              1.75
+            ],
+            [
+              "marathonbet",
+              1.75
+            ],
+            [
+              "planetwin365",
+              1.75
+            ],
+            [
+              "stanleybet",
+              1.75
+            ],
+            [
+              "starcasino",
+              1.75
+            ],
+            [
+              "williamhill",
+              1.75
+            ],
+            [
+              "winamax",
+              1.74
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +2.5",
+          "selezione": "trasferta",
+          "probModello": 0.4157693849520096,
+          "probPinnacle": 0.47870967741935483,
+          "quota": 2,
+          "fonteQuota": "mediana di 42 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i New York Knicks vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su New York Knicks -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              2.03
+            ],
+            [
+              "betsson",
+              2.01
+            ],
+            [
+              "domusbet",
+              2.01
+            ],
+            [
+              "marathonbet",
+              2.01
+            ],
+            [
+              "stanleybet",
+              2.01
+            ],
+            [
+              "starcasino",
+              2.01
+            ],
+            [
+              "williamhill",
+              2.01
+            ],
+            [
+              "admiralbet",
+              2
+            ],
+            [
+              "betflag",
+              2
+            ],
+            [
+              "casinosanremo",
+              2
+            ],
+            [
+              "daznbet",
+              2
+            ],
+            [
+              "gioca7",
+              2
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 228.5",
+          "selezione": "Over 228.5",
+          "probModello": 0.3098581896912024,
+          "probPinnacle": 0.4887683965917893,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 228.5: Over vince se le due squadre segnano almeno 229 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (228.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.92
+            ],
+            [
+              "888sport_it",
+              1.92
+            ],
+            [
+              "bwin",
+              1.9
+            ],
+            [
+              "giocodigitale",
+              1.9
+            ],
+            [
+              "leovegas",
+              1.85
+            ],
+            [
+              "sunbet",
+              1.85
+            ],
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "betsson",
+              1.83
+            ],
+            [
+              "domusbet",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "starcasino",
+              1.83
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 228.5",
+          "selezione": "Under 228.5",
+          "probModello": 0.6901418103087976,
+          "probPinnacle": 0.5112316034082107,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 228.5: Under vince se le due squadre segnano al massimo 228 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (228.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.93
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "betsson",
+              1.91
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "marathonbet",
+              1.91
+            ],
+            [
+              "stanleybet",
+              1.91
+            ],
+            [
+              "starcasino",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "bwin",
+              1.9
+            ],
+            [
+              "casinosanremo",
+              1.9
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "23364447db57a863",
+        "66525b2e08cc5efc",
+        "4f0ca54e89be2dba"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-boston-celtics-chicago-bulls",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Boston Celtics - Chicago Bulls",
+      "casa": "Boston Celtics",
+      "trasferta": "Chicago Bulls",
+      "inizio": "2026-10-31T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 126.6,
+        "trasferta": 109.8
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Boston Celtics 127 – Chicago Bulls 110 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Boston Celtics",
+          "probModello": 0.883467406383788,
+          "probPinnacle": 0.8842887473460722,
+          "quota": 1.09,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Boston Celtics vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.09
+            ],
+            [
+              "888sport_it",
+              1.09
+            ],
+            [
+              "admiralbet",
+              1.09
+            ],
+            [
+              "betsson",
+              1.09
+            ],
+            [
+              "betwin360",
+              1.09
+            ],
+            [
+              "bgame",
+              1.09
+            ],
+            [
+              "bwin",
+              1.09
+            ],
+            [
+              "casinosanremo",
+              1.09
+            ],
+            [
+              "codere",
+              1.09
+            ],
+            [
+              "domusbet",
+              1.09
+            ],
+            [
+              "eplay24",
+              1.09
+            ],
+            [
+              "eurobet",
+              1.09
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Chicago Bulls",
+          "probModello": 0.11653259361621199,
+          "probPinnacle": 0.11571125265392782,
+          "quota": 6.75,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chicago Bulls vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "williamhill",
+              7.4
+            ],
+            [
+              "betflag",
+              7.25
+            ],
+            [
+              "goldbet",
+              7.25
+            ],
+            [
+              "lottomatica",
+              7.25
+            ],
+            [
+              "planetwin365",
+              7.25
+            ],
+            [
+              "betsson",
+              7
+            ],
+            [
+              "betwin360",
+              7
+            ],
+            [
+              "bwin",
+              7
+            ],
+            [
+              "casinosanremo",
+              7
+            ],
+            [
+              "domusbet",
+              7
+            ],
+            [
+              "eplay24",
+              7
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -16.5",
+          "selezione": "casa",
+          "probModello": 0.508377789523708,
+          "probPinnacle": 0.4478527607361963,
+          "quota": 1.98,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Boston Celtics vincono con almeno 17 punti di scarto, supplementari compresi. Gioca solo su Boston Celtics -16.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betflag",
+              2.05
+            ],
+            [
+              "goldbet",
+              2.05
+            ],
+            [
+              "lottomatica",
+              2.05
+            ],
+            [
+              "planetwin365",
+              2.05
+            ],
+            [
+              "sunbet",
+              2.04
+            ],
+            [
+              "betsson",
+              2.02
+            ],
+            [
+              "domusbet",
+              2.02
+            ],
+            [
+              "marathonbet",
+              2.02
+            ],
+            [
+              "stanleybet",
+              2.02
+            ],
+            [
+              "starcasino",
+              2.02
+            ],
+            [
+              "williamhill",
+              2.02
+            ],
+            [
+              "admiralbet",
+              2
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -16.5",
+          "selezione": "trasferta",
+          "probModello": 0.491622210476292,
+          "probPinnacle": 0.5521472392638037,
+          "quota": 1.74,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Chicago Bulls perdono con meno di 17 punti di scarto o vincono, supplementari compresi. Gioca solo su Chicago Bulls +16.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.81
+            ],
+            [
+              "888sport_it",
+              1.81
+            ],
+            [
+              "sunbet",
+              1.75
+            ],
+            [
+              "betsson",
+              1.74
+            ],
+            [
+              "domusbet",
+              1.74
+            ],
+            [
+              "leovegas",
+              1.74
+            ],
+            [
+              "marathonbet",
+              1.74
+            ],
+            [
+              "stanleybet",
+              1.74
+            ],
+            [
+              "starcasino",
+              1.74
+            ],
+            [
+              "williamhill",
+              1.74
+            ],
+            [
+              "winamax",
+              1.74
+            ],
+            [
+              "betflag",
+              1.73
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 232.5",
+          "selezione": "Over 232.5",
+          "probModello": 0.5844804178165426,
+          "probPinnacle": 0.5564102564102563,
+          "quota": 1.69,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 232.5: Over vince se le due squadre segnano almeno 233 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (232.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.74
+            ],
+            [
+              "888sport_it",
+              1.74
+            ],
+            [
+              "bwin",
+              1.72
+            ],
+            [
+              "giocodigitale",
+              1.72
+            ],
+            [
+              "betsson",
+              1.68
+            ],
+            [
+              "domusbet",
+              1.68
+            ],
+            [
+              "marathonbet",
+              1.68
+            ],
+            [
+              "stanleybet",
+              1.68
+            ],
+            [
+              "starcasino",
+              1.68
+            ],
+            [
+              "williamhill",
+              1.68
+            ],
+            [
+              "winamax",
+              1.68
+            ],
+            [
+              "casinosanremo",
+              1.67
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 232.5",
+          "selezione": "Under 232.5",
+          "probModello": 0.41551958218345736,
+          "probPinnacle": 0.4435897435897435,
+          "quota": 2.07,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 232.5: Under vince se le due squadre segnano al massimo 232 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (232.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betflag",
+              2.1
+            ],
+            [
+              "betsson",
+              2.1
+            ],
+            [
+              "bwin",
+              2.1
+            ],
+            [
+              "daznbet",
+              2.1
+            ],
+            [
+              "domusbet",
+              2.1
+            ],
+            [
+              "giocodigitale",
+              2.1
+            ],
+            [
+              "goldbet",
+              2.1
+            ],
+            [
+              "lottomatica",
+              2.1
+            ],
+            [
+              "marathonbet",
+              2.1
+            ],
+            [
+              "planetwin365",
+              2.1
+            ],
+            [
+              "stanleybet",
+              2.1
+            ],
+            [
+              "starcasino",
+              2.1
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "4c2dfb81befba22f",
+        "7c9f2339591911a8"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-toronto-raptors-orlando-magic",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Toronto Raptors - Orlando Magic",
+      "casa": "Toronto Raptors",
+      "trasferta": "Orlando Magic",
+      "inizio": "2026-10-31T00:30:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 116.3,
+        "trasferta": 108
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Toronto Raptors 116 – Orlando Magic 108 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Toronto Raptors",
+          "probModello": 0.7228569890165992,
+          "probPinnacle": 0.6816143497757848,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Toronto Raptors vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.47
+            ],
+            [
+              "williamhill",
+              1.46
+            ],
+            [
+              "admiralbet",
+              1.45
+            ],
+            [
+              "betflag",
+              1.45
+            ],
+            [
+              "betsson",
+              1.45
+            ],
+            [
+              "betwin360",
+              1.45
+            ],
+            [
+              "casinosanremo",
+              1.45
+            ],
+            [
+              "domusbet",
+              1.45
+            ],
+            [
+              "eplay24",
+              1.45
+            ],
+            [
+              "gioca7",
+              1.45
+            ],
+            [
+              "goldbet",
+              1.45
+            ],
+            [
+              "lottomatica",
+              1.45
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Orlando Magic",
+          "probModello": 0.2771430109834007,
+          "probPinnacle": 0.3183856502242153,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 85 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Orlando Magic vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              2.8
+            ],
+            [
+              "bwin",
+              2.75
+            ],
+            [
+              "giocodigitale",
+              2.75
+            ],
+            [
+              "winamax",
+              2.75
+            ],
+            [
+              "888sport",
+              2.7
+            ],
+            [
+              "888sport_it",
+              2.7
+            ],
+            [
+              "betsson",
+              2.7
+            ],
+            [
+              "domusbet",
+              2.7
+            ],
+            [
+              "marathonbet",
+              2.7
+            ],
+            [
+              "starcasino",
+              2.7
+            ],
+            [
+              "sunbet",
+              2.7
+            ],
+            [
+              "williamhill",
+              2.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "casa",
+          "probModello": 0.5770831708758055,
+          "probPinnacle": 0.5236007222078927,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Toronto Raptors vincono con almeno 6 punti di scarto, supplementari compresi. Gioca solo su Toronto Raptors -5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.87
+            ],
+            [
+              "888sport",
+              1.86
+            ],
+            [
+              "888sport_it",
+              1.86
+            ],
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "domusbet",
+              1.85
+            ],
+            [
+              "goldbet",
+              1.85
+            ],
+            [
+              "lottomatica",
+              1.85
+            ],
+            [
+              "marathonbet",
+              1.85
+            ],
+            [
+              "planetwin365",
+              1.85
+            ],
+            [
+              "quigioco",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -5.5",
+          "selezione": "trasferta",
+          "probModello": 0.4229168291241944,
+          "probPinnacle": 0.47639927779210733,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Orlando Magic perdono con meno di 6 punti di scarto o vincono, supplementari compresi. Gioca solo su Orlando Magic +5.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "sunbet",
+              1.9
+            ],
+            [
+              "winamax",
+              1.9
+            ],
+            [
+              "betsson",
+              1.89
+            ],
+            [
+              "domusbet",
+              1.89
+            ],
+            [
+              "marathonbet",
+              1.89
+            ],
+            [
+              "quigioco",
+              1.89
+            ],
+            [
+              "stanleybet",
+              1.89
+            ],
+            [
+              "starcasino",
+              1.89
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 224.5",
+          "selezione": "Over 224.5",
+          "probModello": 0.4952677439254145,
+          "probPinnacle": 0.550694801852805,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 224.5: Over vince se le due squadre segnano almeno 225 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (224.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.75
+            ],
+            [
+              "giocodigitale",
+              1.75
+            ],
+            [
+              "888sport",
+              1.74
+            ],
+            [
+              "888sport_it",
+              1.74
+            ],
+            [
+              "winamax",
+              1.74
+            ],
+            [
+              "betsson",
+              1.73
+            ],
+            [
+              "domusbet",
+              1.73
+            ],
+            [
+              "marathonbet",
+              1.73
+            ],
+            [
+              "stanleybet",
+              1.73
+            ],
+            [
+              "starcasino",
+              1.73
+            ],
+            [
+              "williamhill",
+              1.73
+            ],
+            [
+              "casinosanremo",
+              1.71
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 224.5",
+          "selezione": "Under 224.5",
+          "probModello": 0.5047322560745855,
+          "probPinnacle": 0.44930519814719505,
+          "quota": 2.03,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 224.5: Under vince se le due squadre segnano al massimo 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (224.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "bwin",
+              2.05
+            ],
+            [
+              "giocodigitale",
+              2.05
+            ],
+            [
+              "winamax",
+              2.05
+            ],
+            [
+              "betsson",
+              2.03
+            ],
+            [
+              "domusbet",
+              2.03
+            ],
+            [
+              "marathonbet",
+              2.03
+            ],
+            [
+              "stanleybet",
+              2.03
+            ],
+            [
+              "starcasino",
+              2.03
+            ],
+            [
+              "williamhill",
+              2.03
+            ],
+            [
+              "888sport",
+              2.02
+            ],
+            [
+              "888sport_it",
+              2.02
+            ],
+            [
+              "casinosanremo",
+              2.02
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "cb6dc04836c4ec47",
+        "cd37168ea9d0d9a1"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-miami-heat-indiana-pacers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Miami Heat - Indiana Pacers",
+      "casa": "Miami Heat",
+      "trasferta": "Indiana Pacers",
+      "inizio": "2026-10-31T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 124,
+        "trasferta": 117.8
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Miami Heat 124 – Indiana Pacers 118 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Miami Heat",
+          "probModello": 0.6704705698606366,
+          "probPinnacle": 0.7318560683065662,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Miami Heat vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "lottomatica",
+              1.35
+            ],
+            [
+              "williamhill",
+              1.35
+            ],
+            [
+              "betsson",
+              1.34
+            ],
+            [
+              "betwin360",
+              1.34
+            ],
+            [
+              "casinosanremo",
+              1.34
+            ],
+            [
+              "domusbet",
+              1.34
+            ],
+            [
+              "eplay24",
+              1.34
+            ],
+            [
+              "gioca7",
+              1.34
+            ],
+            [
+              "marathonbet",
+              1.34
+            ],
+            [
+              "netbet",
+              1.34
+            ],
+            [
+              "netwin",
+              1.34
+            ],
+            [
+              "quigioco",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Indiana Pacers",
+          "probModello": 0.32952943013936337,
+          "probPinnacle": 0.2681439316934336,
+          "quota": 3.3,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Indiana Pacers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              3.7
+            ],
+            [
+              "888sport_it",
+              3.7
+            ],
+            [
+              "winamax",
+              3.65
+            ],
+            [
+              "bwin",
+              3.6
+            ],
+            [
+              "giocodigitale",
+              3.6
+            ],
+            [
+              "leovegas",
+              3.6
+            ],
+            [
+              "eurobet",
+              3.25
+            ],
+            [
+              "williamhill",
+              3.25
+            ],
+            [
+              "betflag",
+              3.2
+            ],
+            [
+              "betsson",
+              3.2
+            ],
+            [
+              "betwin360",
+              3.2
+            ],
+            [
+              "casinosanremo",
+              3.2
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "casa",
+          "probModello": 0.49141563907862085,
+          "probPinnacle": 0.5501535312180142,
+          "quota": 1.72,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Miami Heat vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Miami Heat -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "lottomatica",
+              1.8
+            ],
+            [
+              "sunbet",
+              1.77
+            ],
+            [
+              "betflag",
+              1.75
+            ],
+            [
+              "betsson",
+              1.75
+            ],
+            [
+              "domusbet",
+              1.75
+            ],
+            [
+              "goldbet",
+              1.75
+            ],
+            [
+              "marathonbet",
+              1.75
+            ],
+            [
+              "planetwin365",
+              1.75
+            ],
+            [
+              "stanleybet",
+              1.75
+            ],
+            [
+              "starcasino",
+              1.75
+            ],
+            [
+              "williamhill",
+              1.75
+            ],
+            [
+              "daznbet",
+              1.74
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "trasferta",
+          "probModello": 0.5085843609213792,
+          "probPinnacle": 0.44984646878198564,
+          "quota": 2.02,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Indiana Pacers perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su Indiana Pacers +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.16
+            ],
+            [
+              "888sport_it",
+              2.16
+            ],
+            [
+              "winamax",
+              2.1
+            ],
+            [
+              "leovegas",
+              2.08
+            ],
+            [
+              "sunbet",
+              2.02
+            ],
+            [
+              "betflag",
+              2
+            ],
+            [
+              "betsson",
+              2
+            ],
+            [
+              "domusbet",
+              2
+            ],
+            [
+              "goldbet",
+              2
+            ],
+            [
+              "marathonbet",
+              2
+            ],
+            [
+              "planetwin365",
+              2
+            ],
+            [
+              "stanleybet",
+              2
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 237.5",
+          "selezione": "Over 237.5",
+          "probModello": 0.5928483489458438,
+          "probPinnacle": 0.4745016826300803,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 57 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 237.5: Over vince se le due squadre segnano almeno 238 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (237.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.94
+            ],
+            [
+              "winamax",
+              1.94
+            ],
+            [
+              "betsson",
+              1.92
+            ],
+            [
+              "domusbet",
+              1.92
+            ],
+            [
+              "marathonbet",
+              1.92
+            ],
+            [
+              "stanleybet",
+              1.92
+            ],
+            [
+              "starcasino",
+              1.92
+            ],
+            [
+              "williamhill",
+              1.92
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "casinosanremo",
+              1.9
+            ],
+            [
+              "daznbet",
+              1.9
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 237.5",
+          "selezione": "Under 237.5",
+          "probModello": 0.4071516510541562,
+          "probPinnacle": 0.5254983173699197,
+          "quota": 1.82,
+          "fonteQuota": "mediana di 57 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 237.5: Under vince se le due squadre segnano al massimo 237 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (237.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.89
+            ],
+            [
+              "888sport_it",
+              1.89
+            ],
+            [
+              "sunbet",
+              1.83
+            ],
+            [
+              "betsson",
+              1.82
+            ],
+            [
+              "domusbet",
+              1.82
+            ],
+            [
+              "leovegas",
+              1.82
+            ],
+            [
+              "marathonbet",
+              1.82
+            ],
+            [
+              "stanleybet",
+              1.82
+            ],
+            [
+              "starcasino",
+              1.82
+            ],
+            [
+              "williamhill",
+              1.82
+            ],
+            [
+              "winamax",
+              1.82
+            ],
+            [
+              "admiralbet",
+              1.8
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "097554ac61d7913b",
+        "ad573105f743b629"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-dallas-mavericks-houston-rockets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Dallas Mavericks - Houston Rockets",
+      "casa": "Dallas Mavericks",
+      "trasferta": "Houston Rockets",
+      "inizio": "2026-10-31T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 111.9,
+        "trasferta": 118.4
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Dallas Mavericks 112 – Houston Rockets 118 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Dallas Mavericks",
+          "probModello": 0.3225108905905178,
+          "probPinnacle": 0.32472241105823707,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Dallas Mavericks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              2.8
+            ],
+            [
+              "888sport",
+              2.75
+            ],
+            [
+              "888sport_it",
+              2.75
+            ],
+            [
+              "bwin",
+              2.75
+            ],
+            [
+              "giocodigitale",
+              2.75
+            ],
+            [
+              "williamhill",
+              2.75
+            ],
+            [
+              "winamax",
+              2.75
+            ],
+            [
+              "betflag",
+              2.7
+            ],
+            [
+              "betsson",
+              2.7
+            ],
+            [
+              "betwin360",
+              2.7
+            ],
+            [
+              "casinosanremo",
+              2.7
+            ],
+            [
+              "domusbet",
+              2.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Houston Rockets",
+          "probModello": 0.6774891094094823,
+          "probPinnacle": 0.675277588941763,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Houston Rockets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "williamhill",
+              1.46
+            ],
+            [
+              "winamax",
+              1.46
+            ],
+            [
+              "betsson",
+              1.45
+            ],
+            [
+              "betwin360",
+              1.45
+            ],
+            [
+              "casinosanremo",
+              1.45
+            ],
+            [
+              "domusbet",
+              1.45
+            ],
+            [
+              "eplay24",
+              1.45
+            ],
+            [
+              "gioca7",
+              1.45
+            ],
+            [
+              "marathonbet",
+              1.45
+            ],
+            [
+              "netbet",
+              1.45
+            ],
+            [
+              "netwin",
+              1.45
+            ],
+            [
+              "quigioco",
+              1.45
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "casa",
+          "probModello": 0.5010064745956868,
+          "probPinnacle": 0.5167958656330749,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Dallas Mavericks perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su Dallas Mavericks +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.93
+            ],
+            [
+              "888sport_it",
+              1.93
+            ],
+            [
+              "leovegas",
+              1.86
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "goldbet",
+              1.8
+            ],
+            [
+              "lottomatica",
+              1.8
+            ],
+            [
+              "planetwin365",
+              1.8
+            ],
+            [
+              "sunbet",
+              1.8
+            ],
+            [
+              "winamax",
+              1.8
+            ],
+            [
+              "betsson",
+              1.79
+            ],
+            [
+              "domusbet",
+              1.79
+            ],
+            [
+              "marathonbet",
+              1.79
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +6.5",
+          "selezione": "trasferta",
+          "probModello": 0.49899352540431313,
+          "probPinnacle": 0.4832041343669251,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Houston Rockets vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Houston Rockets -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.98
+            ],
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "domusbet",
+              1.96
+            ],
+            [
+              "marathonbet",
+              1.96
+            ],
+            [
+              "stanleybet",
+              1.96
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "williamhill",
+              1.96
+            ],
+            [
+              "winamax",
+              1.96
+            ],
+            [
+              "betflag",
+              1.95
+            ],
+            [
+              "goldbet",
+              1.95
+            ],
+            [
+              "lottomatica",
+              1.95
+            ],
+            [
+              "planetwin365",
+              1.95
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Over 227.5",
+          "probModello": 0.5599470218306742,
+          "probPinnacle": 0.4821336095287415,
+          "quota": 1.96,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 227.5: Over vince se le due squadre segnano almeno 228 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.06
+            ],
+            [
+              "888sport_it",
+              2.06
+            ],
+            [
+              "leovegas",
+              1.98
+            ],
+            [
+              "sunbet",
+              1.98
+            ],
+            [
+              "winamax",
+              1.98
+            ],
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "domusbet",
+              1.96
+            ],
+            [
+              "marathonbet",
+              1.96
+            ],
+            [
+              "stanleybet",
+              1.96
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "williamhill",
+              1.96
+            ],
+            [
+              "admiralbet",
+              1.95
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 227.5",
+          "selezione": "Under 227.5",
+          "probModello": 0.44005297816932576,
+          "probPinnacle": 0.5178663904712584,
+          "quota": 1.75,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 227.5: Under vince se le due squadre segnano al massimo 227 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (227.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.83
+            ],
+            [
+              "giocodigitale",
+              1.83
+            ],
+            [
+              "sunbet",
+              1.8
+            ],
+            [
+              "betsson",
+              1.78
+            ],
+            [
+              "domusbet",
+              1.78
+            ],
+            [
+              "marathonbet",
+              1.78
+            ],
+            [
+              "stanleybet",
+              1.78
+            ],
+            [
+              "starcasino",
+              1.78
+            ],
+            [
+              "williamhill",
+              1.78
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "admiralbet",
+              1.77
+            ],
+            [
+              "casinosanremo",
+              1.77
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "39e9dbb0b7f7d51f",
+        "6b72a8e6a9c249e1"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-minnesota-timberwolves-la-clippers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Minnesota Timberwolves - LA Clippers",
+      "casa": "Minnesota Timberwolves",
+      "trasferta": "LA Clippers",
+      "inizio": "2026-10-31T01:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 113.5,
+        "trasferta": 107.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Minnesota Timberwolves 113 – LA Clippers 108 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Minnesota Timberwolves",
+          "probModello": 0.6537133387905191,
+          "probPinnacle": 0.7124681933842238,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Minnesota Timberwolves vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "williamhill",
+              1.38
+            ],
+            [
+              "winamax",
+              1.38
+            ],
+            [
+              "betsson",
+              1.37
+            ],
+            [
+              "betwin360",
+              1.37
+            ],
+            [
+              "casinosanremo",
+              1.37
+            ],
+            [
+              "domusbet",
+              1.37
+            ],
+            [
+              "eplay24",
+              1.37
+            ],
+            [
+              "gioca7",
+              1.37
+            ],
+            [
+              "marathonbet",
+              1.37
+            ],
+            [
+              "netbet",
+              1.37
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "LA Clippers",
+          "probModello": 0.346286661209481,
+          "probPinnacle": 0.2875318066157761,
+          "quota": 3.04,
+          "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se LA Clippers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "bwin",
+              3.1
+            ],
+            [
+              "giocodigitale",
+              3.1
+            ],
+            [
+              "williamhill",
+              3.1
+            ],
+            [
+              "winamax",
+              3.1
+            ],
+            [
+              "betflag",
+              3.05
+            ],
+            [
+              "betsson",
+              3.05
+            ],
+            [
+              "betwin360",
+              3.05
+            ],
+            [
+              "casinosanremo",
+              3.05
+            ],
+            [
+              "domusbet",
+              3.05
+            ],
+            [
+              "eplay24",
+              3.05
+            ],
+            [
+              "eurobet",
+              3.05
+            ],
+            [
+              "gioca7",
+              3.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "casa",
+          "probModello": 0.4460576642940324,
+          "probPinnacle": 0.47870967741935483,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 69 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Minnesota Timberwolves vincono con almeno 8 punti di scarto, supplementari compresi. Gioca solo su Minnesota Timberwolves -7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "sunbet",
+              1.96
+            ],
+            [
+              "betflag",
+              1.95
+            ],
+            [
+              "goldbet",
+              1.95
+            ],
+            [
+              "lottomatica",
+              1.95
+            ],
+            [
+              "planetwin365",
+              1.95
+            ],
+            [
+              "betsson",
+              1.94
+            ],
+            [
+              "domusbet",
+              1.94
+            ],
+            [
+              "marathonbet",
+              1.94
+            ],
+            [
+              "stanleybet",
+              1.94
+            ],
+            [
+              "starcasino",
+              1.94
+            ],
+            [
+              "williamhill",
+              1.94
+            ],
+            [
+              "winamax",
+              1.94
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -7.5",
+          "selezione": "trasferta",
+          "probModello": 0.5539423357059676,
+          "probPinnacle": 0.5212903225806451,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 69 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i LA Clippers perdono con meno di 8 punti di scarto o vincono, supplementari compresi. Gioca solo su LA Clippers +7.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.85
+            ],
+            [
+              "888sport_it",
+              1.85
+            ],
+            [
+              "sunbet",
+              1.82
+            ],
+            [
+              "winamax",
+              1.82
+            ],
+            [
+              "betsson",
+              1.81
+            ],
+            [
+              "domusbet",
+              1.81
+            ],
+            [
+              "marathonbet",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "starcasino",
+              1.81
+            ],
+            [
+              "williamhill",
+              1.81
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "betflag",
+              1.8
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 221.5",
+          "selezione": "Over 221.5",
+          "probModello": 0.49712994800109866,
+          "probPinnacle": 0.541097655243494,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 221.5: Over vince se le due squadre segnano almeno 222 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (221.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.78
+            ],
+            [
+              "giocodigitale",
+              1.78
+            ],
+            [
+              "sunbet",
+              1.78
+            ],
+            [
+              "betsson",
+              1.76
+            ],
+            [
+              "domusbet",
+              1.76
+            ],
+            [
+              "marathonbet",
+              1.76
+            ],
+            [
+              "stanleybet",
+              1.76
+            ],
+            [
+              "starcasino",
+              1.76
+            ],
+            [
+              "williamhill",
+              1.76
+            ],
+            [
+              "winamax",
+              1.76
+            ],
+            [
+              "admiralbet",
+              1.75
+            ],
+            [
+              "betflag",
+              1.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 221.5",
+          "selezione": "Under 221.5",
+          "probModello": 0.5028700519989013,
+          "probPinnacle": 0.45890234475650604,
+          "quota": 1.99,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 221.5: Under vince se le due squadre segnano al massimo 221 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (221.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.02
+            ],
+            [
+              "888sport_it",
+              2.02
+            ],
+            [
+              "sunbet",
+              2.01
+            ],
+            [
+              "bwin",
+              2
+            ],
+            [
+              "giocodigitale",
+              2
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "betsson",
+              1.99
+            ],
+            [
+              "domusbet",
+              1.99
+            ],
+            [
+              "marathonbet",
+              1.99
+            ],
+            [
+              "stanleybet",
+              1.99
+            ],
+            [
+              "starcasino",
+              1.99
+            ],
+            [
+              "williamhill",
+              1.99
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "74d230612a35eae0",
+        "930e9b138379f24f",
+        "5b10fb6351d3de76"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-phoenix-suns-denver-nuggets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Phoenix Suns - Denver Nuggets",
+      "casa": "Phoenix Suns",
+      "trasferta": "Denver Nuggets",
+      "inizio": "2026-10-31T03:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 113.7,
+        "trasferta": 113.9
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Phoenix Suns 114 – Denver Nuggets 114 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Phoenix Suns",
+          "probModello": 0.4922723053785745,
+          "probPinnacle": 0.38169425511197663,
+          "quota": 2.4,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Phoenix Suns vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "williamhill",
+              2.46
+            ],
+            [
+              "bwin",
+              2.45
+            ],
+            [
+              "giocodigitale",
+              2.45
+            ],
+            [
+              "lottomatica",
+              2.45
+            ],
+            [
+              "winamax",
+              2.45
+            ],
+            [
+              "betsson",
+              2.43
+            ],
+            [
+              "domusbet",
+              2.43
+            ],
+            [
+              "starcasino",
+              2.43
+            ],
+            [
+              "quigioco",
+              2.42
+            ],
+            [
+              "betflag",
+              2.4
+            ],
+            [
+              "betwin360",
+              2.4
+            ],
+            [
+              "casinosanremo",
+              2.4
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Denver Nuggets",
+          "probModello": 0.5077276946214254,
+          "probPinnacle": 0.6183057448880234,
+          "quota": 1.54,
+          "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Denver Nuggets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.56
+            ],
+            [
+              "888sport",
+              1.55
+            ],
+            [
+              "888sport_it",
+              1.55
+            ],
+            [
+              "eurobet",
+              1.55
+            ],
+            [
+              "williamhill",
+              1.55
+            ],
+            [
+              "betsson",
+              1.54
+            ],
+            [
+              "domusbet",
+              1.54
+            ],
+            [
+              "quigioco",
+              1.54
+            ],
+            [
+              "starcasino",
+              1.54
+            ],
+            [
+              "betflag",
+              1.53
+            ],
+            [
+              "betwin360",
+              1.53
+            ],
+            [
+              "bwin",
+              1.53
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "casa",
+          "probModello": 0.6154206148617357,
+          "probPinnacle": 0.5124903425186712,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 62 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Phoenix Suns perdono con meno di 5 punti di scarto o vincono, supplementari compresi. Gioca solo su Phoenix Suns +4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "domusbet",
+              1.85
+            ],
+            [
+              "goldbet",
+              1.85
+            ],
+            [
+              "marathonbet",
+              1.85
+            ],
+            [
+              "planetwin365",
+              1.85
+            ],
+            [
+              "quigioco",
+              1.85
+            ],
+            [
+              "stanleybet",
+              1.85
+            ],
+            [
+              "starcasino",
+              1.85
+            ],
+            [
+              "williamhill",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +4.5",
+          "selezione": "trasferta",
+          "probModello": 0.3845793851382643,
+          "probPinnacle": 0.48750965748132885,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 62 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Denver Nuggets vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Denver Nuggets -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.91
+            ],
+            [
+              "888sport_it",
+              1.91
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "winamax",
+              1.9
+            ],
+            [
+              "betsson",
+              1.89
+            ],
+            [
+              "domusbet",
+              1.89
+            ],
+            [
+              "marathonbet",
+              1.89
+            ],
+            [
+              "quigioco",
+              1.89
+            ],
+            [
+              "stanleybet",
+              1.89
+            ],
+            [
+              "starcasino",
+              1.89
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 229.5",
+          "selezione": "Over 229.5",
+          "probModello": 0.4588932354108979,
+          "probPinnacle": 0.5318874257681384,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 229.5: Over vince se le due squadre segnano almeno 230 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (229.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.82
+            ],
+            [
+              "888sport_it",
+              1.82
+            ],
+            [
+              "bwin",
+              1.78
+            ],
+            [
+              "giocodigitale",
+              1.78
+            ],
+            [
+              "betsson",
+              1.76
+            ],
+            [
+              "domusbet",
+              1.76
+            ],
+            [
+              "leovegas",
+              1.76
+            ],
+            [
+              "marathonbet",
+              1.76
+            ],
+            [
+              "stanleybet",
+              1.76
+            ],
+            [
+              "starcasino",
+              1.76
+            ],
+            [
+              "williamhill",
+              1.76
+            ],
+            [
+              "winamax",
+              1.76
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 229.5",
+          "selezione": "Under 229.5",
+          "probModello": 0.5411067645891021,
+          "probPinnacle": 0.46811257423186164,
+          "quota": 1.96,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 229.5: Under vince se le due squadre segnano al massimo 229 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (229.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              2
+            ],
+            [
+              "bwin",
+              2
+            ],
+            [
+              "domusbet",
+              2
+            ],
+            [
+              "giocodigitale",
+              2
+            ],
+            [
+              "marathonbet",
+              2
+            ],
+            [
+              "stanleybet",
+              2
+            ],
+            [
+              "starcasino",
+              2
+            ],
+            [
+              "williamhill",
+              2
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "admiralbet",
+              1.98
+            ],
+            [
+              "betflag",
+              1.98
+            ],
+            [
+              "casinosanremo",
+              1.98
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "77480a37139c9c47",
+        "e32df57c581b38e7"
+      ]
+    },
+    {
+      "idPartita": "nba-2026-10-30-golden-state-warriors-los-angeles-lakers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Golden State Warriors - Los Angeles Lakers",
+      "casa": "Golden State Warriors",
+      "trasferta": "Los Angeles Lakers",
+      "inizio": "2026-10-31T03:00:00+01:00",
+      "modello": "nba",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 116.7,
+        "trasferta": 121
+      },
+      "pesoModello": 0.25,
+      "backToBack": {
+        "casa": false,
+        "trasferta": false
+      },
+      "ragionamentoBase": [
+        "Punti attesi: Golden State Warriors 117 – Los Angeles Lakers 121 (stagione in corso e precedente)"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Golden State Warriors",
+          "probModello": 0.380511073742729,
+          "probPinnacle": 0.43726235741444863,
+          "quota": 2.07,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Golden State Warriors vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "bwin",
+              2.1
+            ],
+            [
+              "giocodigitale",
+              2.1
+            ],
+            [
+              "winamax",
+              2.1
+            ],
+            [
+              "williamhill",
+              2.09
+            ],
+            [
+              "betsson",
+              2.07
+            ],
+            [
+              "domusbet",
+              2.07
+            ],
+            [
+              "marathonbet",
+              2.07
+            ],
+            [
+              "starcasino",
+              2.07
+            ],
+            [
+              "quigioco",
+              2.06
+            ],
+            [
+              "admiralbet",
+              2.05
+            ],
+            [
+              "betflag",
+              2.05
+            ],
+            [
+              "eurobet",
+              2.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Los Angeles Lakers",
+          "probModello": 0.619488926257271,
+          "probPinnacle": 0.5627376425855514,
+          "quota": 1.72,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Los Angeles Lakers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "williamhill",
+              1.75
+            ],
+            [
+              "betsson",
+              1.74
+            ],
+            [
+              "domusbet",
+              1.74
+            ],
+            [
+              "quigioco",
+              1.74
+            ],
+            [
+              "starcasino",
+              1.74
+            ],
+            [
+              "winamax",
+              1.74
+            ],
+            [
+              "888sport",
+              1.73
+            ],
+            [
+              "888sport_it",
+              1.73
+            ],
+            [
+              "betflag",
+              1.72
+            ],
+            [
+              "betwin360",
+              1.72
+            ],
+            [
+              "casinosanremo",
+              1.72
+            ],
+            [
+              "eplay24",
+              1.72
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +3.5",
+          "selezione": "casa",
+          "probModello": 0.47882671603423765,
+          "probPinnacle": 0.5372750642673522,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Golden State Warriors perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Golden State Warriors +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.74
+            ],
+            [
+              "domusbet",
+              1.74
+            ],
+            [
+              "marathonbet",
+              1.74
+            ],
+            [
+              "stanleybet",
+              1.74
+            ],
+            [
+              "starcasino",
+              1.74
+            ],
+            [
+              "williamhill",
+              1.74
+            ],
+            [
+              "winamax",
+              1.74
+            ],
+            [
+              "betflag",
+              1.73
+            ],
+            [
+              "goldbet",
+              1.73
+            ],
+            [
+              "lottomatica",
+              1.73
+            ],
+            [
+              "planetwin365",
+              1.73
+            ],
+            [
+              "admiralbet",
+              1.72
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +3.5",
+          "selezione": "trasferta",
+          "probModello": 0.5211732839657623,
+          "probPinnacle": 0.46272493573264784,
+          "quota": 2.02,
+          "fonteQuota": "mediana di 53 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Los Angeles Lakers vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Los Angeles Lakers -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.06
+            ],
+            [
+              "888sport_it",
+              2.06
+            ],
+            [
+              "betflag",
+              2.05
+            ],
+            [
+              "goldbet",
+              2.05
+            ],
+            [
+              "lottomatica",
+              2.05
+            ],
+            [
+              "planetwin365",
+              2.05
+            ],
+            [
+              "betsson",
+              2.02
+            ],
+            [
+              "domusbet",
+              2.02
+            ],
+            [
+              "marathonbet",
+              2.02
+            ],
+            [
+              "stanleybet",
+              2.02
+            ],
+            [
+              "starcasino",
+              2.02
+            ],
+            [
+              "williamhill",
+              2.02
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 235.5",
+          "selezione": "Over 235.5",
+          "probModello": 0.5466197339608281,
+          "probPinnacle": 0.48538919058701835,
+          "quota": 1.93,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 235.5: Over vince se le due squadre segnano almeno 236 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (235.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.98
+            ],
+            [
+              "betsson",
+              1.96
+            ],
+            [
+              "domusbet",
+              1.96
+            ],
+            [
+              "marathonbet",
+              1.96
+            ],
+            [
+              "stanleybet",
+              1.96
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "williamhill",
+              1.96
+            ],
+            [
+              "admiralbet",
+              1.95
+            ],
+            [
+              "betflag",
+              1.95
+            ],
+            [
+              "casinosanremo",
+              1.95
+            ],
+            [
+              "gioca7",
+              1.95
+            ],
+            [
+              "goldbet",
+              1.95
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 235.5",
+          "selezione": "Under 235.5",
+          "probModello": 0.4533802660391719,
+          "probPinnacle": 0.5146108094129817,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-10-30T07:16:44+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 235.5: Under vince se le due squadre segnano al massimo 235 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (235.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.85
+            ],
+            [
+              "888sport_it",
+              1.85
+            ],
+            [
+              "eurobet",
+              1.8
+            ],
+            [
+              "betsson",
+              1.78
+            ],
+            [
+              "domusbet",
+              1.78
+            ],
+            [
+              "leovegas",
+              1.78
+            ],
+            [
+              "marathonbet",
+              1.78
+            ],
+            [
+              "stanleybet",
+              1.78
+            ],
+            [
+              "starcasino",
+              1.78
+            ],
+            [
+              "williamhill",
+              1.78
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "admiralbet",
+              1.77
+            ]
+          ]
+        }
+      ],
+      "idOdss": [
+        "ea0c64846455aa13",
+        "bf5ac0f0c961c2b1"
+      ]
+    }
+  ]
+}
