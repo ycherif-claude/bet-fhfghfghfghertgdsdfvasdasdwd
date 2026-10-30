@@ -1,0 +1,67 @@
+{
+  "data": "2026-10-30",
+  "generataAlle": "2026-10-30T21:53:56+01:00",
+  "crediti": {
+    "usati": 1,
+    "rimasti": 259
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis WTA fermo al 18/10/2026: ricarica il file in data/storico-tennis/wta/2026.xlsx"
+  ],
+  "partite": [
+    {
+      "idPartita": "tennis-2026-10-30-diana-shnaider-mia-pohankova",
+      "sport": "tennis",
+      "competizione": "WTA Pan Pacific Open",
+      "partita": "Diana Shnaider - Mia Pohánková",
+      "casa": "Diana Shnaider",
+      "trasferta": "Mia Pohánková",
+      "inizio": "2026-10-31T05:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Diana Shnaider": {
+          "tot": 1810,
+          "superficie": 1777
+        },
+        "Mia Pohánková": {
+          "tot": 1618,
+          "superficie": 1590
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Diana Shnaider 1810/1777 – Mia Pohánková 1618/1590 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set",
+        "Meno di 20 partite negli ultimi 12 mesi per almeno un giocatore: peso del modello 25%"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Diana Shnaider",
+          "probModello": 0.7504668473752196,
+          "probPinnacle": 0.6923076923076924,
+          "quota": 1.36,
+          "fonteQuota": "mediana di 17 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-30T21:53:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Diana Shnaider vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Mia Pohánková",
+          "probModello": 0.24953315262478037,
+          "probPinnacle": 0.3076923076923077,
+          "quota": 3.07,
+          "fonteQuota": "mediana di 17 bookmaker (The Odds API)",
+          "oraQuota": "2026-10-30T21:53:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Mia Pohánková vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}
