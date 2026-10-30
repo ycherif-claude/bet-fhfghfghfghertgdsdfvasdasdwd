@@ -79,14 +79,14 @@ test('controlli: una richiesta con i soli event_id delle partite del passaggio, 
   assert.equal(stato.giornate[DATA].controlli, 1);
 });
 
-test('controlli: nessun event_id noto → nessuna richiesta a odss; tetto di 4 al giorno', async () => {
+test('controlli: nessun event_id noto → nessuna richiesta a odss; tetto di 7 al giorno', async () => {
   const d = cartella();
   let f = fetchEventi(RIGHE);
   await quoteFresche([voceTennis], opz(fonti(f), d));
   assert.equal(f.chiamate.length, 0);
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 8; i++) {
     f = fetchEventi(RIGHE);
     await quoteFresche([voceNba], opz(fonti(f), d));
-    assert.equal(f.chiamate.length, i < 4 ? 1 : 0, `passaggio ${i + 1}`);
+    assert.equal(f.chiamate.length, i < 7 ? 1 : 0, `passaggio ${i + 1}`);
   }
 });

@@ -64,14 +64,14 @@ test('controlli con odss: una richiesta per calcio e NBA, quote e probabilità d
 test('controlli: tetto dei controlli raggiunto → nessuna richiesta a odss, fonti di prima; partita non su odss → fonti di prima', async () => {
   const d = temp();
   mkdirSync(join(d, 'stato'), { recursive: true });
-  writeFileSync(join(d, 'stato', 'odss.json'), JSON.stringify({ giorno: DATA, rimaste: 300, controlliOggi: 4 }));
+  writeFileSync(join(d, 'stato', 'odss.json'), JSON.stringify({ giorno: DATA, rimaste: 300, controlliOggi: 7 }));
   let f = fetchOdss({ 'calcio|1x2,ou': [RIGHE] });
   let fo = fonti(f);
   const errori = [];
   await quoteFresche([voceCalcio], opz(fo, { dirData: d, errore: (a, b) => errori.push(`${a}: ${b?.message ?? b}`) }));
   assert.equal(f.chiamate.length, 0);
   assert.ok(fo.chiamate.includes('odds eventi'));
-  assert.ok(errori.some((e) => /odss-api.*tetto di 4 richieste al giorno per i controlli/.test(e)), errori.join(' | '));
+  assert.ok(errori.some((e) => /odss-api.*tetto di 7 richieste al giorno per i controlli/.test(e)), errori.join(' | '));
   f = fetchOdss({ 'calcio|1x2,ou': [[RIGHE[1]]] });
   fo = fonti(f);
   await quoteFresche([voceCalcio], opz(fo));

@@ -204,9 +204,10 @@ export const CONFIG = congela({
   // Uno sport senza partite oggi non fa richieste. Al massimo 13 × 30 = 390 richieste in 30 giorni (sotto le 440
   // spendibili); consumo atteso più basso (README, "Budget di odss-api").
   odss: {
-    // La quota di chiusura delle partite di coppie e multiple [29/10/2026] usa le stesse richieste dei controlli.
-    richiesteGiorno: 13,
-    tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 4 },
+    // Controlli da 4 a 7 [utente, 30/10/2026]: servono anche alla quota di chiusura delle partite di coppie e multiple
+    // (il 30/10 le 4 richieste finivano nel pomeriggio). Al massimo 16 × 30 = 480 in 30 giorni; consumo reale ~11-14.
+    richiesteGiorno: 16,
+    tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 7 },
     riserva: 60,
     // Righe per pagina: 5000, il massimo dell'API, per tutti gli sport (con 1000 NBA e tennis finivano in 2 pagine e
     // il 23/10 l'NBA è rimasta con le quote incomplete).

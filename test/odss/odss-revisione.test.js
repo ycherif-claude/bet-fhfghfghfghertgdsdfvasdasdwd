@@ -203,7 +203,7 @@ test('controlli: la linea della giocata, una riga per motivo per giornata (non a
   assert.equal(out.get('v').quota, 2.05);
   // Tetto raggiunto: la riga esce una volta sola nella giornata.
   const errori = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 7; i++) {
     await quoteFresche([voce], { fonti: fonti(fetchOdss({ 'basket|moneyline,ah,ou': [righe] })), chiavi: { sportsgameodds: 'S', odss: CHIAVE }, finestra: FIN, errore: (a, b) => errori.push(`${a}: ${b?.message ?? b}`), dirData: d, data: '2026-10-23', adesso });
   }
   assert.equal(errori.filter((e) => /odss-api.*tetto/.test(e)).length, 1, errori.join(' | '));

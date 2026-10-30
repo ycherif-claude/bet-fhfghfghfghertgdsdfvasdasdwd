@@ -24,11 +24,11 @@ const intere = MOCK.odds.map((r) => ({ ...r, scope: 'match', period: 'full_time'
 test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli a parte, riserva fissa', () => {
   const O = CONFIG.odss;
   assert.equal(O.riserva, 60);
-  assert.equal(O.richiesteGiorno, 13);
+  assert.equal(O.richiesteGiorno, 16);
   assert.equal(O.tetti.calcio, 4);
-  assert.equal(O.tetti.controlli, 4);
-  // Al massimo ~400 richieste in 30 giorni anche usando tutti i tetti.
-  assert.ok(O.richiesteGiorno * 30 <= 400);
+  assert.equal(O.tetti.controlli, 7);
+  // Al massimo 480 richieste in 30 giorni anche usando tutti i tetti (la riserva protegge la fine del mese).
+  assert.ok(O.richiesteGiorno * 30 <= 500);
   // 7 richieste già fatte oggi dalle altre raccolte: il tennis ne può fare una sola (il suo tetto).
   let b = creaBudgetOdss({ stato: { rimaste: 300, giorno: DATA, usateOggi: 7, perSport: { calcio: 4, nba: 2, basket: 1 } }, data: DATA, adesso: ADESSO, sport: 'tennis' });
   assert.equal(b.puo(0), true);
@@ -44,12 +44,12 @@ test('budget: tetto del mattino fra tutti gli sport, tetto per sport, controlli 
   // I controlli hanno il loro tetto e non toccano quello del mattino.
   // (alle 12:00 la giornata in corso dei controlli è quella del 23, la stessa della raccolta del 23).
   const MEZZOGIORNO = new Date('2026-10-23T10:00:00Z');
-  b = creaBudgetOdss({ stato: { rimaste: 300, giornate: { [DATA]: { usate: 9, controlli: 3 } } }, data: DATA, adesso: MEZZOGIORNO, tipo: 'controlli' });
+  b = creaBudgetOdss({ stato: { rimaste: 300, giornate: { [DATA]: { usate: 9, controlli: 6 } } }, data: DATA, adesso: MEZZOGIORNO, tipo: 'controlli' });
   assert.equal(b.puo(0), true);
   b.conta();
   assert.equal(b.puo(0), false);
   assert.equal(b.stato().giornate[DATA].usate, 9);
-  assert.equal(b.stato().giornate[DATA].controlli, 4);
+  assert.equal(b.stato().giornate[DATA].controlli, 7);
   // Riserva: con 61 rimaste nessuna richiesta che lasci meno di 60.
   b = creaBudgetOdss({ stato: { rimaste: 61, giorno: DATA }, data: DATA, adesso: ADESSO, sport: 'nba' });
   assert.equal(b.puo(0), true);
