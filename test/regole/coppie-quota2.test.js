@@ -303,3 +303,12 @@ test('coppie solo dalle migliori 20 partite per margine; "tutte" con tutte le pa
   assert.match(c.tutte[0].id, /^Q2T1-x$/);
   assert.equal(c.tutte[0].criterio, 'tutte');
 });
+
+test('modello contro mercato: solo le migliori 20 partite del giorno (senza Under) o tutte', async () => {
+  const { confrontoModello } = await import('../../src/regole/mercati-partite.js');
+  const g = (i, extra = {}) => ({ idPartita: `p${i}`, sport: 'calcio', competizione: 'Serie A', partita: `p${i} - x`, mercato: '1X2', selezione: '1', quota: 1.4, probMercato: i < 20 ? 0.72 : 0.6, probModello: 0.7, esito: 'vinta', ...extra });
+  const gambe = [...Array.from({ length: 24 }, (_, i) => g(i)), g(30, { mercato: 'Under/Over 2.5', selezione: 'Under 2.5', probMercato: 0.9 })];
+  const giornate = [{ multipleBonus: [{ gambe }] }];
+  assert.equal(confrontoModello(giornate).partite, 25);
+  assert.equal(confrontoModello(giornate, { soloMigliori: true }).partite, 20);
+});

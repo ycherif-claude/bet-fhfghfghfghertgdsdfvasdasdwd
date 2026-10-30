@@ -170,7 +170,11 @@ export function costruisciDati(dirData, adesso) {
     // Mercati delle partite di multiple bonus e coppie: vinte, quota media e guadagno a 1 € per mercato.
     storicoMercati: storicoMercati(giornate.map((x) => x.g)),
     // Modello contro mercato sulle stesse partite (dal 30/10/2026).
-    confrontoModello: confrontoModello(giornate.map((x) => x.g)),
+    // Due versioni [utente, 30/10/2026]: le migliori 20 partite di ogni giorno e tutte le partite.
+    confrontoModello: {
+      migliori: confrontoModello(giornate.map((x) => x.g), { soloMigliori: true }),
+      tutte: confrontoModello(giornate.map((x) => x.g)),
+    },
     // Quota di chiusura delle partite di coppie e multiple (dal 30/10/2026).
     chiusura: chiusuraPartite(giornate.map((x) => x.g)),
     // Quanto paga in più il bookmaker migliore sulle coppie mostrate (dal 30/10/2026).

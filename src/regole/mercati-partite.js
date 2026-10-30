@@ -2,7 +2,8 @@
 // vincono di più, con la quota media e quanto si sarebbe vinto giocando ogni partita da sola con 1 €.
 // Ogni partita conta una volta per giorno e mercato, anche se è in più multiple o coppie.
 import { CONFIG } from '../config.js';
-import { pm, tutteLeCoppie } from './coppie-quota2.js';
+import { migliori, pm, tutteLeCoppie } from './coppie-quota2.js';
+import { giocataUnder } from './multipla-bonus.js';
 
 const SPORT = { calcio: 'Calcio', nba: 'NBA', basket: 'Basket', pallavolo: 'Pallavolo', tennis: 'Tennis' };
 const arrotonda = (x, cifre = 2) => Math.round(x * 10 ** cifre) / 10 ** cifre;
@@ -66,7 +67,12 @@ export function storicoMercati(giornate) {
 // Modello contro mercato [utente, 29/10/2026], sulle stesse partite (solo quelle con la probabilità del modello):
 // errore medio (Brier: più basso è meglio) del modello grezzo, del modello corretto dalla taratura automatica (dove
 // non c'è ancora la correzione vale il grezzo) e del mercato; partite divise per quanto il modello corretto si scosta.
-export function confrontoModello(giornate) {
+// `soloMigliori` [utente, 30/10/2026]: per ogni giorno solo le migliori partite per margine (come le coppie mostrate:
+// niente Under 2.5 e 3.5, niente competizioni escluse, le prime CONFIG.coppieQuota2.migliori).
+const miglioriDelGiorno = (giornata) => migliori(gambeDelGiorno(giornata)
+  .filter((g) => !giocataUnder(g) && !CONFIG.multiplaBonus.competizioniEscluse.includes(g.competizione) && typeof g.quota === 'number' && typeof g.probMercato === 'number'));
+
+export function confrontoModello(giornate, { soloMigliori = false } = {}) {
   const scarto = CONFIG.coppieQuota2.scartoConferma;
   const gruppi = [
     { gruppo: 'sopra', nome: `modello sopra il mercato di ${Math.round(scarto * 100)} punti o più` },
@@ -80,7 +86,7 @@ export function confrontoModello(giornate) {
   let conCorrezione = 0;
   let erroreMercato = 0;
   for (const giornata of giornate) {
-    for (const g of gambeDelGiorno(giornata)) {
+    for (const g of soloMigliori ? miglioriDelGiorno(giornata) : gambeDelGiorno(giornata)) {
       if (typeof g.probModello !== 'number' || (g.esito !== 'vinta' && g.esito !== 'persa')) continue;
       const v = g.esito === 'vinta' ? 1 : 0;
       partite++;

@@ -196,13 +196,10 @@ export function renderConfronto(bilancio, confronto) {
       el('td', { class: classeProfitto(b?.profitto ?? 0) }, b?.chiuse ? euroConSegno(b.profitto) : '–'),
     );
   });
-  const c = confronto ?? { partite: 0, gruppi: [] };
-  const righeGruppi = (c.gruppi ?? []).map((g) => el('tr', {},
-    el('td', {}, g.nome),
-    el('td', {}, g.partite),
-    el('td', {}, g.partite ? `${percento(g.percentuale)} (${percento(g.probMercato)})` : '–'),
-    el('td', { class: classeProfitto(g.profitto) }, g.partite ? euroConSegno(g.profitto) : '–'),
-  ));
+  // Due versioni (migliori 20 del giorno e tutte le partite); i dati vecchi avevano una sola versione.
+  const versioni = confronto?.migliori || confronto?.tutte
+    ? [['Le migliori 20 partite del giorno', confronto.migliori], ['Tutte le partite', confronto.tutte]]
+    : [[null, confronto]];
   return [
     el('h2', {}, 'Coppie a quota 2: i modi a confronto'),
     el('p', { class: 'meta' }, 'I quattro modi con le migliori 20 partite del giorno e gli stessi quattro con tutte le partite adatte. Vedi solo le prime; le altre servono a capire quale funziona meglio. Guadagno con 1 € a coppia.'),
@@ -210,6 +207,19 @@ export function renderConfronto(bilancio, confronto) {
       el('thead', {}, el('tr', {}, ['Modo', 'Coppie', 'Vinte', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
       el('tbody', {}, righeModi)),
     el('h2', {}, 'Il nostro modello contro il mercato'),
+    ...versioni.flatMap(([titolo, c]) => renderModello(titolo, c ?? { partite: 0, gruppi: [] })),
+  ];
+}
+
+function renderModello(titolo, c) {
+  const righeGruppi = (c.gruppi ?? []).map((g) => el('tr', {},
+    el('td', {}, g.nome),
+    el('td', {}, g.partite),
+    el('td', {}, g.partite ? `${percento(g.percentuale)} (${percento(g.probMercato)})` : '–'),
+    el('td', { class: classeProfitto(g.profitto) }, g.partite ? euroConSegno(g.profitto) : '–'),
+  ));
+  return [
+    titolo ? el('h3', { class: 'sottotitolo' }, titolo) : null,
     el('p', { class: 'meta' }, c.partite
       ? `Sulle stesse ${c.partite} partite, errore medio del modello ${fmtErrore.format(c.erroreModello)}${c.conCorrezione ? `, del modello corretto da solo sui risultati ${fmtErrore.format(c.erroreCorretto)} (${c.conCorrezione} partite corrette)` : ''}, del mercato ${fmtErrore.format(c.erroreMercato)}: vince chi ha il numero più basso. Sotto, le partite divise per quanto il modello si scosta dal mercato (tra parentesi quante ne dava il mercato); guadagno giocando ogni partita da sola con 1 €.`
       : 'Ancora nessuna partita chiusa con la probabilità del modello.'),
