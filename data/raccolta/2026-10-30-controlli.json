@@ -122,6 +122,83 @@
         "quota 1,97 ≥ minima 1,95"
       ],
       "alle": "2026-10-30T19:14:28+01:00"
+    },
+    "M-calcio-2026-10-30-nantes-clermont-doppia-chance-x2+calcio-2026-10-30-kyoto-sanga-shimizu-s-pulse-1x2-1#0": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,30",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,30"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "calcio-2026-10-30-stenhousemuir-livingston-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,75 ≥ minima 3,89",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 4,75 ≥ minima 3,89"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "basket-2026-10-30-virtus-segafredo-bologna-besiktas-j-k-vincente-besiktas-j-k": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,57 sotto la minima 2,62",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,57 sotto la minima 2,62"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-10-30T19:57:47+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-30-nantes-clermont-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,30 ≥ minima 2,12",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,30 ≥ minima 2,12"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "basket-2026-10-30-fc-barcelona-basquet-valencia-basket-vincente-valencia-basket": {
+      "esito": "confermata",
+      "motivo": "quota 2,20 ≥ minima 2,09",
+      "problemi": [],
+      "dettagli": [
+        "quota 2,20 ≥ minima 2,09"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "calcio-2026-10-30-elversberg-fsv-mainz-05-cartellini-under-over-5-5-over-5-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (mercato senza quote nella fonte gratuita)"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "calcio-2026-10-30-grenoble-dijon-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,25 sotto la minima 3,38",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,25 sotto la minima 3,38"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-30T19:57:47+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -154,6 +231,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-10-30T19:14:28+01:00"
+    },
+    "calcio-2026-10-30-afc-fylde-afc-hornchurch|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-30T19:57:47+01:00"
+    },
+    "calcio-2026-10-30-villarreal-espanyol|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-10-30T19:57:47+01:00"
     }
   }
 }
