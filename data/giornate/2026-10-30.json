@@ -3079,9 +3079,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata nelle ricerche (nessun report infortuni aggiornato reperibile) (ricerca web, 22:00)",
-      "oraUltimoControllo": "2026-10-30T21:55:07+01:00",
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 1,87 sotto la minima 2,01",
+      "oraUltimoControllo": "2026-10-30T22:58:05+01:00",
       "esito": null,
       "prova": true
     },
@@ -17857,7 +17857,8 @@
     "Quote pallavolo: 1 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "odss-api alle 07:16: 6 partite senza righe a tempo intero (full_time), senza quote: Jf Khroub (F) - CE Athletique Setif, Tevi Cocle FC (F) - CD Origen Women, Jf Khroub (W) - CE Athletique Setif, Erbil - Ghaz Al Shamal, Flandria - Deportivo Armenio, JF Khroub (W) - CEA Setif (W)",
-    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers"
+    "Pronostici del 24/10 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Barrow - Forest Green Rovers",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 7 richieste al giorno per i controlli raggiunto; controlli oggi 7 su 7, giornata 14 su 16, rimaste 395, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {

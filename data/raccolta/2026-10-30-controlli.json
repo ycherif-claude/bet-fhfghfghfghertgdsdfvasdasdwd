@@ -254,12 +254,27 @@
       ],
       "alle": "2026-10-30T22:24:27+01:00",
       "regola": true
+    },
+    "nba-2026-10-30-washington-wizards-charlotte-hornets-vincente-charlotte-hornets": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,87 sotto la minima 2,01",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,87 sotto la minima 2,01"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-10-30T22:58:05+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "basket-2026-10-30-zalgiris-kk-partizan-nis-totale-punti-164-5-under-164-5"
+      "basket-2026-10-30-zalgiris-kk-partizan-nis-totale-punti-164-5-under-164-5",
+      "nba-2026-10-30-washington-wizards-charlotte-hornets-vincente-charlotte-hornets"
     ]
   },
   "pronostici": {
