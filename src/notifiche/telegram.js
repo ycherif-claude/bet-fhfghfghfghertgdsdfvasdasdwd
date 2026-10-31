@@ -89,7 +89,8 @@ const COPPIE_MOSTRATE = [
   ['triple', 'Triple a quota circa 2', 'le stesse 10 partite'],
 ];
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).
-const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash(COPPIE_MOSTRATE.flatMap(([modo]) => coppieDi(giornata, modo).map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+'))).join(','))}`;
+const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash([...COPPIE_MOSTRATE.flatMap(([modo]) => coppieDi(giornata, modo)),
+  ...multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate')].map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+')).join(','))}`;
 export function testoCoppie(giornata) {
   const sezioni = [];
   for (const [modo, titolo, nota] of COPPIE_MOSTRATE) {
@@ -436,7 +437,8 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   } else {
     // Coppie rifatte dopo il messaggio del mattino [utente, 31/10/2026]: si manda il nuovo elenco una volta.
     const coppieOra = testoCoppie(delGiorno);
-    if (coppieOra) aggiungi(chiaveCoppie(delGiorno, oggi), `🔄 <b>Schedine di oggi aggiornate</b> (sostituiscono quelle di stamattina)\n\n${coppieOra}${piede}`);
+    const multipleOra = multipleBonus(delGiorno).filter((m) => m.criterio === 'probabilitaConfermate').map(testoMultiplaBonus);
+    if (coppieOra || multipleOra.length) aggiungi(chiaveCoppie(delGiorno, oggi), [`🔄 <b>Schedine di oggi aggiornate</b> (sostituiscono quelle di stamattina)`, ...(coppieOra ? [coppieOra] : []), ...multipleOra].join('\n\n') + piede);
     // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).
     if (Array.isArray(delGiorno.pronostici) && !inviate.has(`${oggi}|pronostici`)) {
       out.push({ chiave: `${oggi}|pronostici`, testo: testoPronostici(delGiorno, oggi) + piede, segna: pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`) });
