@@ -1,0 +1,190 @@
+{
+  "data": "2026-10-31",
+  "scaricateAlle": "2026-10-31T21:49:04+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 7
+    }
+  },
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idPartita": "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves",
+      "id": "LfbFERKd3fKR0dLhaITZ",
+      "casa": "San Antonio Spurs",
+      "trasferta": "Minnesota Timberwolves",
+      "inizio": "2026-11-01T01:00:00+01:00",
+      "bookmaker": [
+        {
+          "chiave": "fanduel",
+          "mercati": {
+            "vincente": {
+              "casa": 1.18,
+              "trasferta": 5.1
+            },
+            "handicap": {
+              "-11.5": {
+                "casa": 1.88,
+                "trasferta": 1.94
+              }
+            },
+            "totale": {
+              "227.5": {
+                "over": 1.88,
+                "under": 1.94
+              }
+            }
+          }
+        },
+        {
+          "chiave": "unibet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.17,
+              "trasferta": 5.1
+            },
+            "handicap": {
+              "-12.5": {
+                "casa": 1.93,
+                "trasferta": 1.89
+              }
+            }
+          }
+        },
+        {
+          "chiave": "williamhill",
+          "mercati": {
+            "vincente": {
+              "casa": 1.15,
+              "trasferta": 5.2
+            }
+          }
+        },
+        {
+          "chiave": "pointsbet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.18,
+              "trasferta": 5
+            },
+            "totale": {
+              "227.5": {
+                "over": 1.9,
+                "under": 1.9
+              }
+            }
+          }
+        },
+        {
+          "chiave": "betmgm",
+          "mercati": {
+            "vincente": {
+              "casa": 1.17,
+              "trasferta": 5.25
+            },
+            "handicap": {
+              "-12.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "227.5": {
+                "over": 1.87,
+                "under": 1.95
+              }
+            }
+          }
+        },
+        {
+          "chiave": "caesars",
+          "mercati": {
+            "vincente": {
+              "casa": 1.18,
+              "trasferta": 5
+            },
+            "totale": {
+              "227.5": {
+                "over": 1.87,
+                "under": 1.95
+              }
+            }
+          }
+        },
+        {
+          "chiave": "draftkings",
+          "mercati": {
+            "vincente": {
+              "casa": 1.17,
+              "trasferta": 5.4
+            },
+            "handicap": {
+              "-12.5": {
+                "casa": 1.91,
+                "trasferta": 1.91
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.95,
+                "under": 1.87
+              }
+            }
+          }
+        },
+        {
+          "chiave": "bovada",
+          "mercati": {
+            "vincente": {
+              "casa": 1.17,
+              "trasferta": 5
+            },
+            "handicap": {
+              "-12": {
+                "casa": 1.91,
+                "trasferta": 1.91
+              }
+            },
+            "totale": {
+              "227.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "espnbet",
+          "mercati": {
+            "vincente": {
+              "casa": 1.14,
+              "trasferta": 5.5
+            },
+            "handicap": {
+              "-12.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "228.5": {
+                "over": 1.95,
+                "under": 1.87
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "giocate": [
+    {
+      "idGiocata": "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves-handicap-meno-12-5-trasferta",
+      "idPartita": "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves",
+      "mercato": "Handicap -12.5",
+      "selezione": "trasferta",
+      "consensoFresco": 0.506544502617801,
+      "quotaFresca": 1.88
+    }
+  ]
+}
