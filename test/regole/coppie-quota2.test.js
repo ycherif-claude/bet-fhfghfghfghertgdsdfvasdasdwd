@@ -97,6 +97,8 @@ test('Telegram: coppie per margine confermate da modello e mercato nel mattino, 
   const conf = (g) => ({ ...g, probModello: g.probMercato });
   const coppie = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18))], { data: '2026-10-30' });
   assert.equal(coppie.confermate.length, 1);
+  assert.equal(coppie.probabilitaConfermate.length, 1);
+  assert.match(testoCoppie({ coppieQuota2: coppie }), /Coppie a quota 2 per margine<\/b>[\s\S]*Coppie a quota 2 per probabilità<\/b>/);
   // Senza il modello d'accordo con il mercato nessuna coppia mostrata, anche se quella per margine c'è.
   const soloMercato = costruisciCoppieQuota2([gamba('a', 1.4, 0.7, 15), gamba('b', 1.42, 0.69, 18)], { data: '2026-10-30' });
   assert.equal(testoCoppie({ coppieQuota2: soloMercato }), null);
@@ -113,7 +115,8 @@ test('Telegram: coppie per margine confermate da modello e mercato nel mattino, 
   assert.equal(r.coppie.margine.tutte.vinte, 1);
   assert.equal(r.coppie.probabilita.ieri.perse, 1);
   const s = messaggioStorico({ giornate: [chiuse], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
-  assert.match(s[0].testo, /confermate da modello e mercato \(quelle mostrate dal 31\/10\): <b>1 su 1 vinte, \+1,05 €<\/b>/);
+  assert.match(s[0].testo, /per margine, confermate \(mostrate dal 31\/10\): <b>1 su 1 vinte, \+1,05 €<\/b>/);
+  assert.match(s[0].testo, /per probabilità, confermate \(mostrate dal 31\/10\): <b>nessuna chiusa<\/b>/);
   assert.match(s[0].testo, /per margine \(mostrate fino al 30\/10\): <b>1 su 1 vinte, \+0,99 €<\/b>/);
   assert.match(s[0].testo, /per probabilità \(confronto\): <b>0 su 1 vinte, −1,00 €<\/b>/);
 });

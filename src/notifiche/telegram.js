@@ -81,15 +81,21 @@ export function testoMultiplaBonus(mb) {
 
 // Coppie a quota 2 mostrate [utente, 31/10/2026]: per margine, ma solo partite su cui modello e mercato sono
 // d'accordo ("confermate"); gli altri modi si calcolano per confronto e restano nascosti.
-const coppieMargine = (giornata) => (Array.isArray(giornata?.coppieQuota2?.confermate) ? giornata.coppieQuota2.confermate.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+const coppieDi = (giornata, modo) => (Array.isArray(giornata?.coppieQuota2?.[modo]) ? giornata.coppieQuota2[modo].filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+// Mostrate [utente, 31/10/2026]: per margine e per probabilità, solo partite confermate da modello e mercato.
+const COPPIE_MOSTRATE = [['confermate', 'per margine'], ['probabilitaConfermate', 'per probabilità']];
 export function testoCoppie(giornata) {
-  const coppie = coppieMargine(giornata);
-  if (!coppie.length) return null;
-  const blocchi = coppie.map((c, i) => [
-    `${i + 1}. quota <b>${virgola(c.quota)}</b> · mercato ${percentuale(c.prob)}`,
-    ...c.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`),
-  ].join('\n'));
-  return [`🎲 <b>Coppie a quota 2</b> (per margine, confermate da modello e mercato)`, ...blocchi].join('\n\n');
+  const sezioni = [];
+  for (const [modo, nome] of COPPIE_MOSTRATE) {
+    const coppie = coppieDi(giornata, modo);
+    if (!coppie.length) continue;
+    const blocchi = coppie.map((c, i) => [
+      `${i + 1}. quota <b>${virgola(c.quota)}</b> · mercato ${percentuale(c.prob)}`,
+      ...c.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`),
+    ].join('\n'));
+    sezioni.push([`🎲 <b>Coppie a quota 2 ${nome}</b> (confermate da modello e mercato)`, ...blocchi].join('\n\n'));
+  }
+  return sezioni.length ? sezioni.join('\n\n') : null;
 }
 const percentuale = (p) => `${Math.round(p * 100)}%`;
 const migliaia = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -259,7 +265,7 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
   // Su Telegram niente modello [utente, 29/10/2026]: solo margine e probabilità del mercato (gli altri modi sul sito).
-  const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0 || r.coppie.confermate.tutte.chiuse > 0;
+  const conCoppie = ['margine', 'probabilita', 'confermate', 'probabilitaConfermate'].some((k) => r.coppie[k].tutte.chiuse > 0);
   const lunghezzeProb = [...new Set([...Object.keys(r.multipleProb), ...Object.keys(r.multipleProbConf)])].map(Number).sort((a, b) => a - b);
   const vuoto = { chiuse: 0, vinte: 0, profitto: 0 };
   const altri = !essenziale && (r.pronostici.chiusi || r.multipla.chiusi);
@@ -282,7 +288,8 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
     ...(conCoppie ? [
       '',
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
-      `   confermate da modello e mercato (quelle mostrate dal 31/10): <b>${rigaCoppie(r.coppie.confermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.confermate.ieri)}`,
+      `   per margine, confermate (mostrate dal 31/10): <b>${rigaCoppie(r.coppie.confermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.confermate.ieri)}`,
+      `   per probabilità, confermate (mostrate dal 31/10): <b>${rigaCoppie(r.coppie.probabilitaConfermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilitaConfermate.ieri)}`,
       `   per margine (mostrate fino al 30/10): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
       `   per probabilità (confronto): <b>${rigaCoppie(r.coppie.probabilita.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilita.ieri)}`,
     ] : []),
