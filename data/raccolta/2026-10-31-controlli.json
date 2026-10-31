@@ -626,6 +626,31 @@
       ],
       "alle": "2026-10-31T20:12:40+01:00",
       "regola": true
+    },
+    "calcio-2026-10-31-barcelona-alaves-handicap-asiatico-meno-1-5-casa": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (mercato senza quote nella fonte gratuita)"
+      ],
+      "alle": "2026-10-31T20:47:42+01:00"
+    },
+    "calcio-2026-10-31-ajax-az-alkmaar-1x2-x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,10 sotto la minima 4,83",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,10 sotto la minima 4,83"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T20:47:42+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -1013,6 +1038,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|1X",
       "alle": "2026-10-31T20:12:40+01:00"
+    },
+    "calcio-2026-10-31-la-galaxy-austin-fc|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-31T20:47:42+01:00"
+    },
+    "calcio-2026-10-31-san-jose-earthquakes-real-salt-lake|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-10-31T20:47:42+01:00"
     }
   }
 }
