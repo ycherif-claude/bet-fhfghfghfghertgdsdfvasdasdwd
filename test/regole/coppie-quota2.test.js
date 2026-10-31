@@ -382,9 +382,24 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   const v = messaggioIeri({ giornate: [vecchio], inviate: new Set(), oggi: '2026-10-30', adesso: new Date('2026-10-30T08:30:00Z') });
   assert.match(v[0].testo, /Coppie: <b>1 vinte su 1<\/b>/);
   assert.match(v[0].testo, /Multipla da 1: <b>1 partite giuste su 1<\/b> · VINTA/);
-  // Partite ancora senza esito: si manda lo stesso e lo dice.
+  // Partite ancora senza esito: si manda lo stesso e lo dice; poi l'aggiornamento quando sono chiuse (o alle 20).
   const aperto = { ...g, coppieQuota2: { probabilitaConfermate: [{ id: 'c', gambe: [gg(null), gg('vinta')], esito: null }] }, multipleBonus: [] };
-  assert.match(messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') })[0].testo, /\(1 senza esito\)/);
+  const primo = messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') });
+  assert.match(primo[0].testo, /\(1 senza esito\)/);
+  assert.deepEqual(primo[0].segna, ['2026-11-01|ieri|aperte']);
+  const dopo = new Set([primo[0].chiave, ...primo[0].segna]);
+  assert.deepEqual(messaggioIeri({ giornate: [aperto], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T13:00:00Z') }), []);
+  const chiuso = { ...aperto, coppieQuota2: { probabilitaConfermate: [{ id: 'c', gambe: [gg('vinta'), gg('vinta')], esito: 'vinta', ritorno: 1.69 }] } };
+  const agg = messaggioIeri({ giornate: [chiuso], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T13:00:00Z') });
+  assert.equal(agg[0].chiave, '2026-11-01|ieri|completo');
+  assert.match(agg[0].testo, /aggiornamento<\/b>, tutte chiuse[\s\S]*Coppie: <b>1 vinte su 1<\/b>/);
+  assert.deepEqual(messaggioIeri({ giornate: [chiuso], inviate: new Set([...dopo, agg[0].chiave]), oggi: '2026-11-01', adesso: new Date('2026-11-01T14:00:00Z') }), []);
+  const tardi = messaggioIeri({ giornate: [aperto], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T19:30:00Z') });
+  assert.match(tardi[0].testo, /ultimo controllo di oggi[\s\S]*\(1 senza esito\)/);
+  // Tutto chiuso già al mattino: nessun aggiornamento.
+  const subito = messaggioIeri({ giornate: [chiuso], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') });
+  assert.equal(subito[0].segna, undefined);
+  assert.deepEqual(messaggioIeri({ giornate: [chiuso], inviate: new Set([subito[0].chiave]), oggi: '2026-11-01', adesso: new Date('2026-11-01T19:30:00Z') }), []);
   // Passa anche il filtro "solo l'essenziale".
   assert.equal(soloEssenziale(m, { giornata: {}, oggi: '2026-11-01' }).manda.length, 1);
 });

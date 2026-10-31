@@ -305,9 +305,14 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
 
 // Bilancio di ieri [utente, 31/10/2026]: solo quello che si è mandato (coppie per probabilità confermate e
 // multiple per probabilità confermate). Un messaggio al giorno dopo le 9, quando il registro ha chiuso gli esiti.
+// Se al mattino qualche partita era senza risultato, si rimanda il bilancio quando sono tutte chiuse (dopo i
+// ricontrolli delle 12, 15 e 18) oppure, al più tardi, alle 20 con quelle ancora aperte [utente, 31/10/2026].
 export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   const chiave = `${oggi}|ieri`;
-  if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
+  const ora = partiRoma(adesso).ora;
+  const aggiornamento = inviate.has(chiave);
+  if (aggiornamento && (!inviate.has(`${chiave}|aperte`) || inviate.has(`${chiave}|completo`))) return [];
+  if (ora < 9) return [];
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const g = giornate.find((x) => x.data === ieri);
   // Quello mandato quel giorno: fino al 30/10 coppie per margine e multiple per probabilità; dal 31/10 le confermate.
@@ -316,8 +321,10 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate'));
   if (!coppie.length && !multiple.length) return [];
   // Si manda anche con partite ancora senza risultato [utente, 31/10/2026]: lo dice la riga stessa.
+  const aperte = [...coppie, ...multiple].flatMap((x) => x.gambe).some((x) => !x.esito);
+  if (aggiornamento && aperte && ora < 20) return [];
   const conta = (lista, esito) => lista.filter((x) => x.esito === esito).length;
-  const righe = [`📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
+  const righe = [aggiornamento ? `📅 <b>Ieri, ${giornoMese(ieri)}: aggiornamento</b>${aperte ? ' (ultimo controllo di oggi)' : ', tutte chiuse'}` : `📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
   if (coppie.length) {
     const vinte = conta(coppie, 'vinta');
     const aperte = coppie.filter((c) => !c.esito).length;
@@ -330,7 +337,8 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
     const esito = mb.esito === 'vinta' ? `VINTA, 1 € → ${virgola(mb.ritorno)} €` : mb.esito === 'persa' ? 'persa' : 'in attesa';
     righe.push(`🧪 Multipla da ${mb.gambe.length}: <b>${giuste} partite giuste su ${mb.gambe.length}</b>${aperte ? ` (${aperte} senza esito)` : ''} · ${esito}`);
   }
-  return [{ chiave, testo: righe.join('\n') }];
+  if (aggiornamento) return [{ chiave: `${chiave}|completo`, testo: righe.join('\n') }];
+  return [{ chiave, testo: righe.join('\n'), ...(aperte ? { segna: [`${chiave}|aperte`] } : {}) }];
 }
 
 // Esito delle multiple bonus, una volta per multipla.

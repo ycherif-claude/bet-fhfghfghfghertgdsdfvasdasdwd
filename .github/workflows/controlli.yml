@@ -43,6 +43,13 @@ jobs:
           ids=$( { grep '^AVVIA_CLAUDE ' controlli.log || true; } | tail -n 1 | cut -d' ' -f2)
           echo "claude=$ids" >> "$GITHUB_OUTPUT"
           rm controlli.log
+      # Ricontrollo dei risultati alle 12, alle 15 e alle 18 (ora di Roma) [utente, 31/10/2026]: chiude le partite
+      # di coppie e multiple rimaste senza esito al mattino (il registro è lo stesso della raccolta del mattino).
+      - name: Ricontrollo dei risultati
+        continue-on-error: true
+        run: |
+          ora=$(TZ=Europe/Rome date +%H)
+          if [ "$ora" = "12" ] || [ "$ora" = "15" ] || [ "$ora" = "18" ]; then npm run registro; else echo "Ricontrollo solo alle 12, 15 e 18 (ora $ora)"; fi
       # Anche se i controlli falliscono a metà: quello che hanno già scritto si salva.
       - name: Salva
         if: always()
