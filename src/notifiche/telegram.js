@@ -657,7 +657,7 @@ export async function manda(testo, { token, chat, fetch = globalThis.fetch, atte
   for (const pezzo of dividi(testo)) await mandaPezzo(pezzo, { token, chat, fetch, attendi });
 }
 
-export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi, errori = ERRORI_SU_TELEGRAM, essenziale = SOLO_ESSENZIALE }) {
+export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito, fetch, attendi, errori = ERRORI_SU_TELEGRAM, essenziale = SOLO_ESSENZIALE, storico = false }) {
   const oggi = giornataDi(adesso);
   const fileStato = join(dirData, 'stato', 'telegram.json');
   const inviate = leggiInviate(fileStato);
@@ -679,7 +679,8 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
-  lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso, essenziale }));
+  // Storico solo sul sito [utente, 31/10/2026]: su Telegram non si manda più.
+  if (storico) lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso, essenziale }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
   }));
