@@ -416,3 +416,17 @@ test('coppie per probabilità confermate: da tutte le partite confermate, non so
   assert.ok(ids(c.probabilitaConfermate).includes('g20'));
   assert.ok(!ids(c.confermate).includes('g20'));
 });
+
+test('Telegram: coppie rifatte dopo il messaggio del mattino, il nuovo elenco una volta sola', () => {
+  const conf = (g) => ({ ...g, probModello: g.probMercato });
+  const prima = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18))], { data: '2026-10-31' });
+  const giornata = { data: '2026-10-31', prova: true, giocate: [], pronostici: [], coppieQuota2: prima };
+  const m = messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T07:30:00Z'), inviate: new Set() });
+  const mattino = m.find((x) => x.chiave === '2026-10-31|giornata');
+  const inviate = new Set([mattino.chiave, ...mattino.segna]);
+  assert.deepEqual(messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave)), []);
+  const dopo = costruisciCoppieQuota2([conf(gamba('c', 1.4, 0.7, 15)), conf(gamba('d', 1.42, 0.69, 18))], { data: '2026-10-31' });
+  const nuove = messaggi({ giornata: { ...giornata, coppieQuota2: dopo }, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave));
+  assert.equal(nuove.length, 1);
+  assert.match(nuove[0].testo, /Coppie di oggi aggiornate[\s\S]*Casac - Ospitec/);
+});

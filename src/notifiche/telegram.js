@@ -85,6 +85,8 @@ const coppieDi = (giornata, modo) => (Array.isArray(giornata?.coppieQuota2?.[mod
 // Mostrate [utente, 31/10/2026]: solo per probabilità, con partite confermate da modello e mercato. Quelle per
 // margine (confermate e non) si calcolano in background per studiarle.
 const COPPIE_MOSTRATE = [['probabilitaConfermate', 'per probabilità']];
+// Chiave delle coppie mostrate: cambia se le coppie cambiano (per mandare l'elenco aggiornato una volta sola).
+const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash(COPPIE_MOSTRATE.flatMap(([modo]) => coppieDi(giornata, modo).map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+'))).join(','))}`;
 export function testoCoppie(giornata) {
   const sezioni = [];
   for (const [modo, nome] of COPPIE_MOSTRATE) {
@@ -375,7 +377,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   const manda = [];
   const tacere = [];
   const piede = sito ? `\n\n${sito}` : '';
-  const sempre = /\|(run|mancante|esito|provvisorio|storico|ieri)(\||$)/;
+  const sempre = /\|(run|mancante|esito|provvisorio|storico|ieri|coppie)(\||$)/;
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
@@ -424,8 +426,11 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       : testo;
     const coppie = testoCoppie(delGiorno);
     const conBonus = [base, ...(coppie ? [coppie] : []), ...bonus].join('\n\n');
-    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`)] });
+    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`), chiaveCoppie(delGiorno, oggi)] });
   } else {
+    // Coppie rifatte dopo il messaggio del mattino [utente, 31/10/2026]: si manda il nuovo elenco una volta.
+    const coppieOra = testoCoppie(delGiorno);
+    if (coppieOra) aggiungi(chiaveCoppie(delGiorno, oggi), `🔄 <b>Coppie di oggi aggiornate</b> (sostituiscono quelle di stamattina)\n\n${coppieOra}${piede}`);
     // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).
     if (Array.isArray(delGiorno.pronostici) && !inviate.has(`${oggi}|pronostici`)) {
       out.push({ chiave: `${oggi}|pronostici`, testo: testoPronostici(delGiorno, oggi) + piede, segna: pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`) });
