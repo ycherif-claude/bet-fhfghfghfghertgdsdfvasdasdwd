@@ -382,10 +382,9 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   const v = messaggioIeri({ giornate: [vecchio], inviate: new Set(), oggi: '2026-10-30', adesso: new Date('2026-10-30T08:30:00Z') });
   assert.match(v[0].testo, /Coppie: <b>1 vinte su 1<\/b>/);
   assert.match(v[0].testo, /Multipla da 1: <b>1 partite giuste su 1<\/b> · VINTA/);
-  // Partite ancora senza esito: si aspetta fino alle 18.
+  // Partite ancora senza esito: si manda lo stesso e lo dice.
   const aperto = { ...g, coppieQuota2: { probabilitaConfermate: [{ id: 'c', gambe: [gg(null), gg('vinta')], esito: null }] }, multipleBonus: [] };
-  assert.deepEqual(messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T10:00:00Z') }), []);
-  assert.match(messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T17:30:00Z') })[0].testo, /\(1 senza esito\)/);
+  assert.match(messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') })[0].testo, /\(1 senza esito\)/);
   // Passa anche il filtro "solo l'essenziale".
   assert.equal(soloEssenziale(m, { giornata: {}, oggi: '2026-11-01' }).manda.length, 1);
 });

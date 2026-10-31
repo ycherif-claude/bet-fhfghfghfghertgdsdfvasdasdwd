@@ -315,9 +315,7 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   const coppie = coppieDi(g, prima ? 'margine' : 'probabilitaConfermate');
   const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate'));
   if (!coppie.length && !multiple.length) return [];
-  // Si aspetta che il registro chiuda gli esiti: con partite ancora aperte si manda solo dalle 18.
-  const aperte = [...coppie, ...multiple].flatMap((x) => x.gambe).some((x) => !x.esito);
-  if (aperte && partiRoma(adesso).ora < 18) return [];
+  // Si manda anche con partite ancora senza risultato [utente, 31/10/2026]: lo dice la riga stessa.
   const conta = (lista, esito) => lista.filter((x) => x.esito === esito).length;
   const righe = [`📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
   if (coppie.length) {
