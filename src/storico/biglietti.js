@@ -33,9 +33,10 @@ function biglietto(x, { tipo, nome }) {
 }
 
 export function bigliettiGiornata(giornata) {
-  const coppie = (giornata?.coppieQuota2?.margine ?? []).filter((c) => c?.id)
+  // Mostrate fino al 30/10: coppie per margine e multiple per probabilità; dal 31/10 le "confermate" [utente].
+  const coppie = [...(giornata?.coppieQuota2?.margine ?? []), ...(giornata?.coppieQuota2?.confermate ?? [])].filter((c) => c?.id)
     .map((c) => biglietto(c, { tipo: 'coppia', nome: 'Coppia a quota 2' }));
-  const multiple = (giornata?.multipleBonus ?? []).filter((m) => m?.id && m.criterio === 'probabilita')
+  const multiple = (giornata?.multipleBonus ?? []).filter((m) => m?.id && (m.criterio === 'probabilita' || m.criterio === 'probabilitaConfermate'))
     .map((m) => biglietto(m, { tipo: 'multipla', nome: `Multipla da ${m.gambe?.length ?? '?'}` }));
   return [...coppie, ...multiple];
 }

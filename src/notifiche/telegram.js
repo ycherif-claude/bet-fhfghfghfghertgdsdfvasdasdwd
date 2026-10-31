@@ -79,8 +79,9 @@ export function testoMultiplaBonus(mb) {
   return [`🧪 <b>${html(mb.nome)}</b> (prova, non giocare)`, `   quota ${virgola(mb.quota)} · incremento ${Math.round(mb.incremento * 1000) / 10}% → <b>${virgola(mb.quotaConBonus)}</b>`, ...gambe].join('\n');
 }
 
-// Coppie a quota 2 del giorno (solo quelle per margine; quelle per probabilità servono al confronto).
-const coppieMargine = (giornata) => (Array.isArray(giornata?.coppieQuota2?.margine) ? giornata.coppieQuota2.margine.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
+// Coppie a quota 2 mostrate [utente, 31/10/2026]: per margine, ma solo partite su cui modello e mercato sono
+// d'accordo ("confermate"); gli altri modi si calcolano per confronto e restano nascosti.
+const coppieMargine = (giornata) => (Array.isArray(giornata?.coppieQuota2?.confermate) ? giornata.coppieQuota2.confermate.filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
 export function testoCoppie(giornata) {
   const coppie = coppieMargine(giornata);
   if (!coppie.length) return null;
@@ -88,7 +89,7 @@ export function testoCoppie(giornata) {
     `${i + 1}. quota <b>${virgola(c.quota)}</b> · mercato ${percentuale(c.prob)}`,
     ...c.gambe.map((x) => `   ${SIMBOLO[x.sport] ?? '•'} ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: ${html(x.mercato)} → ${html(x.selezione)} @${virgola(x.quota)}${num(x.quotaBet365) ? ` (bet365 ${virgola(x.quotaBet365)})` : ''}`),
   ].join('\n'));
-  return [`🎲 <b>Coppie a quota 2</b> (prova, partite della multipla)`, ...blocchi].join('\n\n');
+  return [`🎲 <b>Coppie a quota 2</b> (per margine, confermate da modello e mercato)`, ...blocchi].join('\n\n');
 }
 const percentuale = (p) => `${Math.round(p * 100)}%`;
 const migliaia = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -235,10 +236,12 @@ export function contaStorico(giornate, ieri) {
   r.coppie = Object.fromEntries(MODI.map((k) => [k, { tutte: bilancioCoppie(giornate, k), ieri: bilancioCoppie(diIeri, k) }]));
   // Multiple con le partite più probabili, per lunghezza: chiuse, vinte e profitto con 1 € (bonus compreso).
   r.multipleProb = {};
+  r.multipleProbConf = {};
   for (const g of giornate) {
-    for (const mb of multipleBonus(g).filter((m) => m.criterio === 'probabilita')) {
+    for (const mb of multipleBonus(g).filter((m) => m.criterio === 'probabilita' || m.criterio === 'probabilitaConfermate')) {
       if (mb.esito !== 'vinta' && mb.esito !== 'persa') continue;
-      const c = (r.multipleProb[mb.gambe.length] ??= { chiuse: 0, vinte: 0, profitto: 0 });
+      const dove = mb.criterio === 'probabilita' ? r.multipleProb : r.multipleProbConf;
+      const c = (dove[mb.gambe.length] ??= { chiuse: 0, vinte: 0, profitto: 0 });
       c.chiuse++;
       if (mb.esito === 'vinta') { c.vinte++; c.profitto += mb.ritorno - 1; } else c.profitto -= 1;
     }
@@ -256,8 +259,9 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
   // Su Telegram niente modello [utente, 29/10/2026]: solo margine e probabilità del mercato (gli altri modi sul sito).
-  const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0;
-  const lunghezzeProb = Object.keys(r.multipleProb).map(Number).sort((a, b) => a - b);
+  const conCoppie = r.coppie.margine.tutte.chiuse > 0 || r.coppie.probabilita.tutte.chiuse > 0 || r.coppie.confermate.tutte.chiuse > 0;
+  const lunghezzeProb = [...new Set([...Object.keys(r.multipleProb), ...Object.keys(r.multipleProbConf)])].map(Number).sort((a, b) => a - b);
+  const vuoto = { chiuse: 0, vinte: 0, profitto: 0 };
   const altri = !essenziale && (r.pronostici.chiusi || r.multipla.chiusi);
   if (!altri && !conCoppie && !lunghezzeProb.length) return [];
   const riga = (c) => (c.chiusi ? `${c.giusti} su ${c.chiusi} (${percentuale(c.giusti / c.chiusi)})` : 'nessuno chiuso');
@@ -278,13 +282,14 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
     ...(conCoppie ? [
       '',
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
-      `   per margine (quelle mostrate): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
+      `   confermate da modello e mercato (quelle mostrate dal 31/10): <b>${rigaCoppie(r.coppie.confermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.confermate.ieri)}`,
+      `   per margine (mostrate fino al 30/10): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
       `   per probabilità (confronto): <b>${rigaCoppie(r.coppie.probabilita.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilita.ieri)}`,
     ] : []),
     ...(lunghezzeProb.length ? [
       '',
       '🧪 <b>Multiple con le partite più probabili</b> (1 € a multipla, bonus compreso)',
-      ...lunghezzeProb.map((n) => `   da ${n}: <b>${rigaCoppie(r.multipleProb[n])}</b>`),
+      ...lunghezzeProb.map((n) => `   da ${n}: confermate (mostrate dal 31/10) <b>${rigaCoppie(r.multipleProbConf[n] ?? vuoto)}</b> · tutte <b>${rigaCoppie(r.multipleProb[n] ?? vuoto)}</b>`),
     ] : []),
   ].join('\n');
   return [{ chiave, testo }];
@@ -308,7 +313,8 @@ export function messaggiMultipleBonus({ giornate, inviate }) {
 }
 
 // Messaggio del mattino essenziale: coppie a quota 2 e multiple con le partite più probabili.
-const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilita');
+// Multiple mostrate [utente, 31/10/2026]: per probabilità, solo partite confermate da modello e mercato.
+const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate');
 export function testoMattinoEssenziale(giornata, oggi) {
   const coppie = testoCoppie(giornata);
   const multiple = multipleProb(giornata).map(testoMultiplaBonus);
@@ -327,7 +333,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
-    else if (/\|bonus\|MBP/.test(m.chiave)) manda.push(m);
+    else if (/\|bonus\|MBPC/.test(m.chiave)) manda.push(m);
     else tacere.push(m);
   }
   return { manda, tacere };

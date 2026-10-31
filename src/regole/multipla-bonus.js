@@ -2,6 +2,7 @@
 // Prova sul passato (22/10/2026): le favorite di bet365 a 1,25–1,50 perdono circa il 2,3% a partita;
 // con l'incremento la multipla da 10 rende circa +7%, quella da 20 circa +26% (con molta varianza).
 import { CONFIG } from '../config.js';
+import { confermata } from './coppie-quota2.js';
 
 const C = CONFIG.multiplaBonus;
 const EPS = 1e-9;
@@ -95,18 +96,21 @@ export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePoss
   const senza = senzaUnder(gambe, data);
   if (senza && gambe.length > corta) out.push(senza);
   out.push(...multiplePerProbabilita(gambeProbabilita, data));
+  out.push(...multiplePerProbabilita(gambeProbabilita.filter(confermata), data, { confermate: true }));
   return out;
 }
 
 // Multiple con le partite più probabili [utente, 29/10/2026]: stesse gambe e regole del bonus, ma le prime n
 // per probabilità di Pinnacle invece che per margine, da confrontare con quelle per margine.
-export function multiplePerProbabilita(gambe, data) {
+// `confermate` [utente, 31/10/2026]: solo partite su cui modello e mercato sono d'accordo (come le coppie
+// "confermate"); sono quelle mostrate, le altre restano per confronto.
+export function multiplePerProbabilita(gambe, data, { confermate = false } = {}) {
   const ordinate = [...gambe].sort((a, b) => b.probMercato - a.probMercato || b.resa - a.resa);
   return C.lunghezzeProbabilita.filter((n) => ordinate.length >= n).map((n) => ({
     ...multipla(ordinate.slice(0, n), data),
-    id: `MBP${n}-${data}`,
-    nome: `Multipla bonus bet365 da ${n} (le più probabili)`,
-    criterio: 'probabilita',
+    id: `${confermate ? 'MBPC' : 'MBP'}${n}-${data}`,
+    nome: `Multipla bonus bet365 da ${n} (le più probabili${confermate ? ', confermate da modello e mercato' : ''})`,
+    criterio: confermate ? 'probabilitaConfermate' : 'probabilita',
   }));
 }
 

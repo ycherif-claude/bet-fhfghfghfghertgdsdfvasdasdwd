@@ -93,8 +93,13 @@ test('bilancio delle coppie: 1 € a coppia per modo', () => {
   assert.deepEqual(bilancioCoppie(giornate, 'probabilita'), { chiuse: 1, vinte: 0, perse: 0, rimborsate: 1, aperte: 0, profitto: 0 });
 });
 
-test('Telegram: coppie per margine nel messaggio del mattino e confronto nello storico', () => {
-  const coppie = costruisciCoppieQuota2([gamba('a', 1.4, 0.7, 15), gamba('b', 1.42, 0.69, 18)], { data: '2026-10-30' });
+test('Telegram: coppie per margine confermate da modello e mercato nel mattino, confronto nello storico', () => {
+  const conf = (g) => ({ ...g, probModello: g.probMercato });
+  const coppie = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18))], { data: '2026-10-30' });
+  assert.equal(coppie.confermate.length, 1);
+  // Senza il modello d'accordo con il mercato nessuna coppia mostrata, anche se quella per margine c'è.
+  const soloMercato = costruisciCoppieQuota2([gamba('a', 1.4, 0.7, 15), gamba('b', 1.42, 0.69, 18)], { data: '2026-10-30' });
+  assert.equal(testoCoppie({ coppieQuota2: soloMercato }), null);
   const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie };
   assert.match(testoCoppie(giornata), /Coppie a quota 2/);
   assert.match(testoCoppie(giornata), /quota <b>1,99<\/b>/);
@@ -103,12 +108,13 @@ test('Telegram: coppie per margine nel messaggio del mattino e confronto nello s
   const m = messaggi({ giornata, oggi: '2026-10-30', adesso: new Date('2026-10-30T07:30:00Z'), inviate: new Set() });
   assert.match(m.find((x) => x.chiave === '2026-10-30|giornata').testo, /Coppie a quota 2/);
 
-  const chiuse = { data: '2026-10-30', coppieQuota2: { margine: [{ id: 'm', esito: 'vinta', ritorno: 1.99 }], probabilita: [{ id: 'p', esito: 'persa', ritorno: 0 }] } };
+  const chiuse = { data: '2026-10-30', coppieQuota2: { margine: [{ id: 'm', esito: 'vinta', ritorno: 1.99 }], probabilita: [{ id: 'p', esito: 'persa', ritorno: 0 }], confermate: [{ id: 'c', esito: 'vinta', ritorno: 2.05 }] } };
   const r = contaStorico([chiuse], '2026-10-30');
   assert.equal(r.coppie.margine.tutte.vinte, 1);
   assert.equal(r.coppie.probabilita.ieri.perse, 1);
   const s = messaggioStorico({ giornate: [chiuse], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
-  assert.match(s[0].testo, /per margine \(quelle mostrate\): <b>1 su 1 vinte, \+0,99 €<\/b>/);
+  assert.match(s[0].testo, /confermate da modello e mercato \(quelle mostrate dal 31\/10\): <b>1 su 1 vinte, \+1,05 €<\/b>/);
+  assert.match(s[0].testo, /per margine \(mostrate fino al 30\/10\): <b>1 su 1 vinte, \+0,99 €<\/b>/);
   assert.match(s[0].testo, /per probabilità \(confronto\): <b>0 su 1 vinte, −1,00 €<\/b>/);
 });
 
@@ -144,24 +150,27 @@ test('Telegram storico: multiple per probabilità per lunghezza', () => {
     { id: 'MBP5-a', criterio: 'probabilita', gambe: Array(5).fill({}), esito: 'vinta', ritorno: 4.4 },
     { id: 'MBP10-a', criterio: 'probabilita', gambe: Array(10).fill({}), esito: 'persa', ritorno: 0 },
     { id: 'MB10-a', gambe: Array(10).fill({}), esito: 'persa', ritorno: 0 },
+    { id: 'MBPC5-a', criterio: 'probabilitaConfermate', gambe: Array(5).fill({}), esito: 'persa', ritorno: 0 },
   ] };
   const r = contaStorico([g], '2026-10-30');
   assert.deepEqual(r.multipleProb[5], { chiuse: 1, vinte: 1, profitto: 3.4000000000000004 });
   assert.equal(r.multipleProb[10].chiuse, 1);
   const s = messaggioStorico({ giornate: [g], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
-  assert.match(s[0].testo, /da 5: <b>1 su 1 vinte, \+3,40 €<\/b>/);
-  assert.match(s[0].testo, /da 10: <b>0 su 1 vinte, −1,00 €<\/b>/);
+  assert.match(s[0].testo, /da 5: confermate \(mostrate dal 31\/10\) <b>0 su 1 vinte, −1,00 €<\/b> · tutte <b>1 su 1 vinte, \+3,40 €<\/b>/);
+  assert.match(s[0].testo, /da 10: confermate \(mostrate dal 31\/10\) <b>nessuna chiusa<\/b> · tutte <b>0 su 1 vinte, −1,00 €<\/b>/);
 });
 
 test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il resto taciuto', async () => {
   const { soloEssenziale, testoMattinoEssenziale } = await import('../../src/notifiche/telegram.js');
-  const coppie = costruisciCoppieQuota2([gamba('a', 1.4, 0.7), gamba('b', 1.42, 0.69)], { data: '2026-10-30' });
-  const mbp = { id: 'MBP5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili)', criterio: 'probabilita', quota: 4.5, incremento: 0.1, quotaConBonus: 4.95, gambe: [gamba('c', 1.3, 0.75)] };
+  const coppie = costruisciCoppieQuota2([{ ...gamba('a', 1.4, 0.7), probModello: 0.7 }, { ...gamba('b', 1.42, 0.69), probModello: 0.7 }], { data: '2026-10-30' });
+  const mbp = { id: 'MBPC5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili, confermate da modello e mercato)', criterio: 'probabilitaConfermate', quota: 4.5, incremento: 0.1, quotaConBonus: 4.95, gambe: [gamba('c', 1.3, 0.75)] };
+  const mbpTutte = { id: 'MBP5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili)', criterio: 'probabilita', quota: 4.4, incremento: 0.1, quotaConBonus: 4.84, gambe: [gamba('e', 1.3, 0.75)] };
   const mbm = { id: 'MB10-2026-10-30', nome: 'Multipla bonus bet365 da 10', quota: 25, incremento: 0.35, quotaConBonus: 33.75, gambe: [gamba('d', 1.4, 0.7)] };
-  const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie, multipleBonus: [mbm, mbp] };
+  const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie, multipleBonus: [mbm, mbpTutte, mbp] };
   const mattino = testoMattinoEssenziale(giornata, '2026-10-30');
   assert.match(mattino, /Coppie a quota 2/);
-  assert.match(mattino, /da 5 \(le più probabili\)/);
+  assert.match(mattino, /da 5 \(le più probabili, confermate da modello e mercato\)/);
+  assert.doesNotMatch(mattino, /da 5 \(le più probabili\)</);
   assert.doesNotMatch(mattino, /Multipla bonus bet365 da 10</);
   assert.match(testoMattinoEssenziale({}, '2026-10-30'), /nessuna coppia/);
 
@@ -171,6 +180,7 @@ test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il res
     { chiave: '2026-10-30|schedine-pronostici', testo: 'doppie' },
     { chiave: '2026-10-29|bonus|MB10-2026-10-29|persa', testo: 'margine' },
     { chiave: '2026-10-29|bonus|MBP5-2026-10-29|vinta', testo: 'probabilità' },
+    { chiave: '2026-10-29|bonus|MBPC5-2026-10-29|vinta', testo: 'probabilità confermate' },
     { chiave: '2026-10-29|pronostici-esito', testo: 'esiti pronostici' },
     { chiave: '2026-10-29|schedina-esito|s|vinta', testo: 'esito doppia' },
     { chiave: '2026-10-30|storico', testo: 'storico' },
@@ -179,9 +189,9 @@ test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il res
     { chiave: '2026-10-30|stato|g2|annullata|', testo: 'stato' },
   ];
   const { manda, tacere } = soloEssenziale(lista, { giornata, oggi: '2026-10-30', sito: 'https://sito' });
-  assert.deepEqual(manda.map((m) => m.chiave), ['2026-10-30|giornata', '2026-10-29|bonus|MBP5-2026-10-29|vinta', '2026-10-30|storico', '2026-10-29|esito|g1|vinta', '2026-10-29|provvisorio|g1|0']);
+  assert.deepEqual(manda.map((m) => m.chiave), ['2026-10-30|giornata', '2026-10-29|bonus|MBPC5-2026-10-29|vinta', '2026-10-30|storico', '2026-10-29|esito|g1|vinta', '2026-10-29|provvisorio|g1|0']);
   assert.match(manda[0].testo, /Coppie a quota 2[\s\S]*https:\/\/sito$/);
-  assert.equal(tacere.length, 6);
+  assert.equal(tacere.length, 7);
 
   // Storico essenziale: niente pronostici né multipla lunga.
   const g = { data: '2026-10-29', pronostici: [{ pronostici: [{ prob: 0.85, esito: 'vinta' }] }], coppieQuota2: { margine: [{ esito: 'vinta', ritorno: 2 }], probabilita: [] } };
@@ -311,4 +321,16 @@ test('modello contro mercato: solo le migliori 20 partite del giorno (senza Unde
   const giornate = [{ multipleBonus: [{ gambe }] }];
   assert.equal(confrontoModello(giornate).partite, 25);
   assert.equal(confrontoModello(giornate, { soloMigliori: true }).partite, 20);
+});
+
+test('multiple per probabilità confermate: solo partite su cui modello e mercato sono d\'accordo', async () => {
+  const { costruisciMultipleBonus } = await import('../../src/regole/multipla-bonus.js');
+  const gg = Array.from({ length: 12 }, (_, i) => ({ ...gamba(`g${i}`, 1.3, 0.75 - i * 0.002), probModello: i % 2 ? 0.6 : 0.75 - i * 0.002 }));
+  const mb = costruisciMultipleBonus(null, { data: 'x', gambe: gg, gambeProbabilita: gg });
+  const conf = mb.filter((m) => m.criterio === 'probabilitaConfermate');
+  assert.deepEqual(conf.map((m) => [m.id, m.gambe.length]), [['MBPC5-x', 5]]);
+  assert.ok(conf[0].gambe.every((g) => Math.abs(g.probModello - g.probMercato) < 0.05));
+  // Le altre restano uguali (per probabilità senza conferma, per margine).
+  assert.deepEqual(mb.filter((m) => m.criterio === 'probabilita').map((m) => m.id), ['MBP5-x', 'MBP10-x']);
+  assert.ok(mb.some((m) => m.id === 'MB10-x'));
 });
