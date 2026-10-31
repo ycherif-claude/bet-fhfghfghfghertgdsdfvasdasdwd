@@ -337,3 +337,18 @@ test('multiple per probabilità confermate: solo partite su cui modello e mercat
   assert.deepEqual(mb.filter((m) => m.criterio === 'probabilita').map((m) => m.id), ['MBP5-x', 'MBP10-x']);
   assert.ok(mb.some((m) => m.id === 'MB10-x'));
 });
+
+test('multiple confermate con poche partite: il massimo che c\'è, senza doppioni', async () => {
+  const { lunghezzeConfermate, costruisciMultipleBonus } = await import('../../src/regole/multipla-bonus.js');
+  assert.deepEqual(lunghezzeConfermate(12), [5, 10]);
+  assert.deepEqual(lunghezzeConfermate(10), [5, 10]);
+  assert.deepEqual(lunghezzeConfermate(7), [5, 7]);
+  assert.deepEqual(lunghezzeConfermate(5), [5]);
+  assert.deepEqual(lunghezzeConfermate(3), [3]);
+  assert.deepEqual(lunghezzeConfermate(1), []);
+  const gg = Array.from({ length: 3 }, (_, i) => ({ ...gamba(`g${i}`, 1.3, 0.75), probModello: 0.75 }));
+  const mb = costruisciMultipleBonus(null, { data: 'x', gambe: gg, gambeProbabilita: gg });
+  assert.deepEqual(mb.filter((m) => m.criterio === 'probabilitaConfermate').map((m) => m.id), ['MBPC3-x']);
+  // Quelle non mostrate restano come prima: con 3 partite niente.
+  assert.deepEqual(mb.filter((m) => m.criterio === 'probabilita'), []);
+});

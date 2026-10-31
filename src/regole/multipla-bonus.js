@@ -104,9 +104,21 @@ export function costruisciMultipleBonus(voci, { data, escluse, gambe = gambePoss
 // per probabilità di Pinnacle invece che per margine, da confrontare con quelle per margine.
 // `confermate` [utente, 31/10/2026]: solo partite su cui modello e mercato sono d'accordo (come le coppie
 // "confermate"); sono quelle mostrate, le altre restano per confronto.
+// Con le confermate, se le partite non bastano si prende il massimo che c'è [utente, 31/10/2026]: per esempio con
+// 7 partite la da 5 e una da 7, con 3 partite una da 3 (almeno 2 partite).
+export function lunghezzeConfermate(disponibili) {
+  const out = [];
+  for (const n of C.lunghezzeProbabilita) {
+    const k = Math.min(n, disponibili);
+    if (k >= 2 && !out.includes(k)) out.push(k);
+  }
+  return out;
+}
+
 export function multiplePerProbabilita(gambe, data, { confermate = false } = {}) {
   const ordinate = [...gambe].sort((a, b) => b.probMercato - a.probMercato || b.resa - a.resa);
-  return C.lunghezzeProbabilita.filter((n) => ordinate.length >= n).map((n) => ({
+  const lunghezze = confermate ? lunghezzeConfermate(ordinate.length) : C.lunghezzeProbabilita.filter((n) => ordinate.length >= n);
+  return lunghezze.map((n) => ({
     ...multipla(ordinate.slice(0, n), data),
     id: `${confermate ? 'MBPC' : 'MBP'}${n}-${data}`,
     nome: `Multipla bonus bet365 da ${n} (le più probabili${confermate ? ', confermate da modello e mercato' : ''})`,
