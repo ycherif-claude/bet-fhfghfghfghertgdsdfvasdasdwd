@@ -123,6 +123,53 @@
       ],
       "alle": "2026-10-31T12:47:13+01:00",
       "regola": true
+    },
+    "M-calcio-2026-10-31-kocaelispor-caykur-rizespor-1x2-1+basket-2026-10-31-cairns-taipans-melbourne-united-totale-punti-194-5-under-194-5#0": {
+      "esito": "confermata",
+      "motivo": "regola automatica (Claude non disponibile): mercato contro: da 63% a 31%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 63% a 31%"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quota 2,90"
+      ],
+      "alle": "2026-10-31T13:18:30+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-kocaelispor-caykur-rizespor-1x2-1": {
+      "esito": "confermata",
+      "motivo": "regola automatica (Claude non disponibile): mercato contro: da 63% a 31%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 63% a 31%"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quota 2,90 ≥ minima 2,00"
+      ],
+      "alle": "2026-10-31T13:18:30+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-annecy-fc-montpellier-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,85 sotto la minima 1,87",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,85 sotto la minima 1,87"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T13:18:30+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -159,6 +206,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-10-31T12:10:19+01:00"
+    },
+    "calcio-2026-10-31-wieczysta-krakow-jagiellonia|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-10-31T13:18:30+01:00"
     }
   }
 }
