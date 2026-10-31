@@ -82,8 +82,9 @@ export function testoMultiplaBonus(mb) {
 // Coppie a quota 2 mostrate [utente, 31/10/2026]: per margine, ma solo partite su cui modello e mercato sono
 // d'accordo ("confermate"); gli altri modi si calcolano per confronto e restano nascosti.
 const coppieDi = (giornata, modo) => (Array.isArray(giornata?.coppieQuota2?.[modo]) ? giornata.coppieQuota2[modo].filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
-// Mostrate [utente, 31/10/2026]: per margine e per probabilità, solo partite confermate da modello e mercato.
-const COPPIE_MOSTRATE = [['confermate', 'per margine'], ['probabilitaConfermate', 'per probabilità']];
+// Mostrate [utente, 31/10/2026]: solo per probabilità, con partite confermate da modello e mercato. Quelle per
+// margine (confermate e non) si calcolano in background per studiarle.
+const COPPIE_MOSTRATE = [['probabilitaConfermate', 'per probabilità']];
 export function testoCoppie(giornata) {
   const sezioni = [];
   for (const [modo, nome] of COPPIE_MOSTRATE) {
@@ -288,8 +289,8 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
     ...(conCoppie ? [
       '',
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
-      `   per margine, confermate (mostrate dal 31/10): <b>${rigaCoppie(r.coppie.confermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.confermate.ieri)}`,
-      `   per probabilità, confermate (mostrate dal 31/10): <b>${rigaCoppie(r.coppie.probabilitaConfermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilitaConfermate.ieri)}`,
+      `   per probabilità, confermate (quelle mostrate): <b>${rigaCoppie(r.coppie.probabilitaConfermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilitaConfermate.ieri)}`,
+      `   per margine, confermate (studio): <b>${rigaCoppie(r.coppie.confermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.confermate.ieri)}`,
       `   per margine (mostrate fino al 30/10): <b>${rigaCoppie(r.coppie.margine.tutte)}</b> · ieri ${rigaCoppie(r.coppie.margine.ieri)}`,
       `   per probabilità (confronto): <b>${rigaCoppie(r.coppie.probabilita.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilita.ieri)}`,
     ] : []),
