@@ -310,9 +310,14 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const g = giornate.find((x) => x.data === ieri);
-  const coppie = coppieDi(g, 'probabilitaConfermate');
-  const multiple = multipleBonus(g).filter((m) => m.criterio === 'probabilitaConfermate');
+  // Quello mandato quel giorno: fino al 30/10 coppie per margine e multiple per probabilità; dal 31/10 le confermate.
+  const prima = ieri < '2026-10-31';
+  const coppie = coppieDi(g, prima ? 'margine' : 'probabilitaConfermate');
+  const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate'));
   if (!coppie.length && !multiple.length) return [];
+  // Si aspetta che il registro chiuda gli esiti: con partite ancora aperte si manda solo dalle 18.
+  const aperte = [...coppie, ...multiple].flatMap((x) => x.gambe).some((x) => !x.esito);
+  if (aperte && partiRoma(adesso).ora < 18) return [];
   const conta = (lista, esito) => lista.filter((x) => x.esito === esito).length;
   const righe = [`📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
   if (coppie.length) {
