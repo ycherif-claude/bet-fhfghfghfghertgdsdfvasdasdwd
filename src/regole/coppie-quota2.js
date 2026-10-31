@@ -80,7 +80,7 @@ export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMer
 
 // Le coppie degli otto modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite; gli altri
 // quattro uguali ma con tutte le partite adatte, per confronto ("tutte" è il margine) [utente, 30/10/2026].
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'triple', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
 export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
   const top = migliori(gambe);
   return {
@@ -90,12 +90,56 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
     // Come le multiple per probabilità: fra tutte le partite confermate, non solo le migliori 20 per margine [utente, 31/10/2026].
     probabilitaConfermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
+    triple: costruisciTriple(gambe, { data }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
     probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
     modelloTutte: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modelloTutte' }),
     confermateTutte: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'confermateTutte' }),
   };
 };
+// Triple [utente, 31/10/2026]: dalle `partite` più probabili confermate da modello e mercato, al massimo `max`,
+// quota totale fra quotaMin e quotaMax; prima le più probabili, ogni partita in una tripla sola. Bonus bet365 della tripla.
+export function costruisciTriple(gambe, { data } = {}) {
+  const T = C.triple;
+  const top = gambe.filter(confermata).sort((a, b) => b.probMercato - a.probMercato || b.quota * b.probMercato - a.quota * a.probMercato).slice(0, T.partite);
+  const possibili = [];
+  for (let i = 0; i < top.length; i++) {
+    for (let j = i + 1; j < top.length; j++) {
+      for (let k = j + 1; k < top.length; k++) {
+        const t = [top[i], top[j], top[k]];
+        if (new Set(t.map((g) => g.idPartita)).size < 3) continue;
+        const quota = t.reduce((a, g) => a * g.quota, 1);
+        if (quota < T.quotaMin - EPS || quota > T.quotaMax + EPS) continue;
+        possibili.push({ t, quota, p: t.reduce((a, g) => a * g.probMercato, 1), chiave: t.map((g) => g.idPartita).sort().join('|') });
+      }
+    }
+  }
+  possibili.sort((x, y) => y.p - x.p || Math.abs(x.quota - 2) - Math.abs(y.quota - 2) || x.chiave.localeCompare(y.chiave));
+  const usate = new Set();
+  const out = [];
+  const incremento = CONFIG.multiplaBonus.incremento[3] ?? 0;
+  for (const c of possibili) {
+    if (out.length >= T.max) break;
+    if (c.t.some((g) => usate.has(g.idPartita))) continue;
+    c.t.forEach((g) => usate.add(g.idPartita));
+    out.push({
+      id: `T3P${out.length + 1}-${data}`,
+      criterio: 'triple',
+      prova: true,
+      gambe: [...c.t].sort((x, y) => Date.parse(x.inizio) - Date.parse(y.inizio)).map(({ resa, ...g }) => ({ ...g, esito: null })),
+      quota: arrotonda(c.quota),
+      incremento,
+      quotaConBonus: arrotonda(c.quota * (1 + incremento)),
+      prob: c.p,
+      probModello: c.t.every(conModello) ? c.t.reduce((a, g) => a * pm(g), 1) : null,
+      valueAtteso: c.p * c.quota * (1 + incremento) - 1,
+      esito: null,
+      ritorno: null,
+    });
+  }
+  return out;
+}
+
 // Tutte le coppie di una giornata, di qualunque modo.
 export const tutteLeCoppie = (giornata) => Object.values(giornata?.coppieQuota2 ?? {}).flatMap((l) => (Array.isArray(l) ? l : []));
 
@@ -107,7 +151,9 @@ export function esitoCoppia(c) {
   if (esiti.some((e) => e !== 'vinta' && e !== 'rimborsata')) return { esito: null, ritorno: null };
   const vinte = c.gambe.filter((g) => g.esito === 'vinta');
   if (!vinte.length) return { esito: 'rimborsata', ritorno: 1 };
-  return { esito: 'vinta', ritorno: arrotonda(vinte.reduce((a, g) => a * g.quota, 1)) };
+  // Triple: bonus bet365 sul numero di partite vinte (una rimborsata la fa diventare una doppia).
+  const bonus = c.incremento != null ? CONFIG.multiplaBonus.incremento[vinte.length] ?? 0 : 0;
+  return { esito: 'vinta', ritorno: arrotonda(vinte.reduce((a, g) => a * g.quota, 1) * (1 + bonus)) };
 }
 
 // Bilancio delle coppie chiuse di un modo su più giornate: 1 € a coppia.

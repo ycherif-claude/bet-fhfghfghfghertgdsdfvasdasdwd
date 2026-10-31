@@ -21,6 +21,9 @@ function nodo(tag) {
 globalThis.document = { createElement: nodo, createTextNode: (text) => ({ text }), getElementById: () => nodo('div') };
 const testi = (n) => [n.text ?? '', ...(n.figli ?? []).flatMap((f) => (f && typeof f === 'object' ? [testi(f)] : [String(f ?? '')]))].join(' ');
 
+const conferma = (g) => ({ ...g, probModello: g.probMercato });
+// Tre partite a 1,30 confermate (quota 2,20): una tripla.
+const tre = (p) => [conferma(gamba(`${p}1`, 1.3, 0.73, 15)), conferma(gamba(`${p}2`, 1.3, 0.72, 16)), conferma(gamba(`${p}3`, 1.3, 0.72, 17))];
 const gamba = (id, quota, probMercato, ora = 15) => ({
   sport: 'calcio', competizione: 'Serie A', partita: `Casa${id} - Ospite${id}`, idPartita: id,
   inizio: `2026-10-30T${String(ora).padStart(2, '0')}:00:00+01:00`, mercato: '1X2', selezione: '1',
@@ -95,21 +98,21 @@ test('bilancio delle coppie: 1 € a coppia per modo', () => {
 
 test('Telegram: coppie per margine confermate da modello e mercato nel mattino, confronto nello storico', () => {
   const conf = (g) => ({ ...g, probModello: g.probMercato });
-  const coppie = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18))], { data: '2026-10-30' });
+  const coppie = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18)), ...tre('t')], { data: '2026-10-30' });
   assert.equal(coppie.confermate.length, 1);
   assert.equal(coppie.probabilitaConfermate.length, 1);
-  assert.match(testoCoppie({ coppieQuota2: coppie }), /Coppie a quota 2 per probabilità<\/b>/);
-  assert.doesNotMatch(testoCoppie({ coppieQuota2: coppie }), /per margine/);
+  assert.equal(coppie.triple.length, 1);
+  assert.match(testoCoppie({ coppieQuota2: coppie }), /Triple a quota circa 2<\/b>/);
+  assert.doesNotMatch(testoCoppie({ coppieQuota2: coppie }), /Coppie a quota 2/);
   // Senza il modello d'accordo con il mercato nessuna coppia mostrata, anche se quella per margine c'è.
   const soloMercato = costruisciCoppieQuota2([gamba('a', 1.4, 0.7, 15), gamba('b', 1.42, 0.69, 18)], { data: '2026-10-30' });
   assert.equal(testoCoppie({ coppieQuota2: soloMercato }), null);
   const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie };
-  assert.match(testoCoppie(giornata), /Coppie a quota 2/);
-  assert.match(testoCoppie(giornata), /quota <b>1,99<\/b>/);
-  assert.match(testoCoppie(giornata), /15:00 Casaa - Ospitea/);
+  assert.match(testoCoppie(giornata), /quota <b>2,20<\/b> \(con bonus 2,31\)/);
+  assert.match(testoCoppie(giornata), /15:00 Casat1 - Ospitet1/);
   assert.equal(testoCoppie({}), null);
   const m = messaggi({ giornata, oggi: '2026-10-30', adesso: new Date('2026-10-30T07:30:00Z'), inviate: new Set() });
-  assert.match(m.find((x) => x.chiave === '2026-10-30|giornata').testo, /Coppie a quota 2/);
+  assert.match(m.find((x) => x.chiave === '2026-10-30|giornata').testo, /Triple a quota circa 2/);
 
   const chiuse = { data: '2026-10-30', coppieQuota2: { margine: [{ id: 'm', esito: 'vinta', ritorno: 1.99 }], probabilita: [{ id: 'p', esito: 'persa', ritorno: 0 }], confermate: [{ id: 'c', esito: 'vinta', ritorno: 2.05 }] } };
   const r = contaStorico([chiuse], '2026-10-30');
@@ -166,13 +169,13 @@ test('Telegram storico: multiple per probabilità per lunghezza', () => {
 
 test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il resto taciuto', async () => {
   const { soloEssenziale, testoMattinoEssenziale } = await import('../../src/notifiche/telegram.js');
-  const coppie = costruisciCoppieQuota2([{ ...gamba('a', 1.4, 0.7), probModello: 0.7 }, { ...gamba('b', 1.42, 0.69), probModello: 0.7 }], { data: '2026-10-30' });
+  const coppie = costruisciCoppieQuota2(tre('t'), { data: '2026-10-30' });
   const mbp = { id: 'MBPC5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili, confermate da modello e mercato)', criterio: 'probabilitaConfermate', quota: 4.5, incremento: 0.1, quotaConBonus: 4.95, gambe: [gamba('c', 1.3, 0.75)] };
   const mbpTutte = { id: 'MBP5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili)', criterio: 'probabilita', quota: 4.4, incremento: 0.1, quotaConBonus: 4.84, gambe: [gamba('e', 1.3, 0.75)] };
   const mbm = { id: 'MB10-2026-10-30', nome: 'Multipla bonus bet365 da 10', quota: 25, incremento: 0.35, quotaConBonus: 33.75, gambe: [gamba('d', 1.4, 0.7)] };
   const giornata = { data: '2026-10-30', prova: true, giocate: [], pronostici: [], coppieQuota2: coppie, multipleBonus: [mbm, mbpTutte, mbp] };
   const mattino = testoMattinoEssenziale(giornata, '2026-10-30');
-  assert.match(mattino, /Coppie a quota 2/);
+  assert.match(mattino, /Triple a quota circa 2/);
   assert.match(mattino, /da 5 \(le più probabili, confermate da modello e mercato\)/);
   assert.doesNotMatch(mattino, /da 5 \(le più probabili\)</);
   assert.doesNotMatch(mattino, /Multipla bonus bet365 da 10</);
@@ -194,7 +197,7 @@ test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il res
   ];
   const { manda, tacere } = soloEssenziale(lista, { giornata, oggi: '2026-10-30', sito: 'https://sito' });
   assert.deepEqual(manda.map((m) => m.chiave), ['2026-10-30|giornata', '2026-10-29|bonus|MBPC5-2026-10-29|vinta', '2026-10-30|storico', '2026-10-29|esito|g1|vinta', '2026-10-29|provvisorio|g1|0']);
-  assert.match(manda[0].testo, /Coppie a quota 2[\s\S]*https:\/\/sito$/);
+  assert.match(manda[0].testo, /Triple a quota circa 2[\s\S]*https:\/\/sito$/);
   assert.equal(tacere.length, 7);
 
   // Storico essenziale: niente pronostici né multipla lunga.
@@ -359,7 +362,7 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   const { messaggioIeri, soloEssenziale } = await import('../../src/notifiche/telegram.js');
   const gg = (e) => ({ ...gamba('x', 1.3, 0.75), esito: e });
   const g = { data: '2026-10-31', coppieQuota2: {
-    probabilitaConfermate: [
+    triple: [
       { id: 'a', gambe: [gg('vinta'), gg('vinta')], esito: 'vinta', ritorno: 2 },
       { id: 'b', gambe: [gg('vinta'), gg('persa')], esito: 'persa', ritorno: 0 },
     ],
@@ -372,7 +375,7 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   const m = messaggioIeri({ giornate: [g], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') });
   assert.equal(m.length, 1);
   assert.match(m[0].testo, /Ieri, 31\/10/);
-  assert.match(m[0].testo, /Coppie: <b>1 vinte su 2<\/b> · con 1 € a coppia 0,00 €/);
+  assert.match(m[0].testo, /Triple: <b>1 vinte su 2<\/b> · con 1 € a schedina 0,00 €/);
   assert.match(m[0].testo, /Multipla da 5: <b>4 partite giuste su 5<\/b> · persa/);
   assert.doesNotMatch(m[0].testo, /MBP5/);
   assert.equal(m[0].testo.match(/Multipla da/g).length, 1);
@@ -383,16 +386,16 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   assert.match(v[0].testo, /Coppie: <b>1 vinte su 1<\/b>/);
   assert.match(v[0].testo, /Multipla da 1: <b>1 partite giuste su 1<\/b> · VINTA/);
   // Partite ancora senza esito: si manda lo stesso e lo dice; poi l'aggiornamento quando sono chiuse (o alle 20).
-  const aperto = { ...g, coppieQuota2: { probabilitaConfermate: [{ id: 'c', gambe: [gg(null), gg('vinta')], esito: null }] }, multipleBonus: [] };
+  const aperto = { ...g, coppieQuota2: { triple: [{ id: 'c', gambe: [gg(null), gg('vinta')], esito: null }] }, multipleBonus: [] };
   const primo = messaggioIeri({ giornate: [aperto], inviate: new Set(), oggi: '2026-11-01', adesso: new Date('2026-11-01T08:30:00Z') });
   assert.match(primo[0].testo, /\(1 senza esito\)/);
   assert.deepEqual(primo[0].segna, ['2026-11-01|ieri|aperte']);
   const dopo = new Set([primo[0].chiave, ...primo[0].segna]);
   assert.deepEqual(messaggioIeri({ giornate: [aperto], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T13:00:00Z') }), []);
-  const chiuso = { ...aperto, coppieQuota2: { probabilitaConfermate: [{ id: 'c', gambe: [gg('vinta'), gg('vinta')], esito: 'vinta', ritorno: 1.69 }] } };
+  const chiuso = { ...aperto, coppieQuota2: { triple: [{ id: 'c', gambe: [gg('vinta'), gg('vinta')], esito: 'vinta', ritorno: 1.69 }] } };
   const agg = messaggioIeri({ giornate: [chiuso], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T13:00:00Z') });
   assert.equal(agg[0].chiave, '2026-11-01|ieri|completo');
-  assert.match(agg[0].testo, /aggiornamento<\/b>, tutte chiuse[\s\S]*Coppie: <b>1 vinte su 1<\/b>/);
+  assert.match(agg[0].testo, /aggiornamento<\/b>, tutte chiuse[\s\S]*Triple: <b>1 vinte su 1<\/b>/);
   assert.deepEqual(messaggioIeri({ giornate: [chiuso], inviate: new Set([...dopo, agg[0].chiave]), oggi: '2026-11-01', adesso: new Date('2026-11-01T14:00:00Z') }), []);
   const tardi = messaggioIeri({ giornate: [aperto], inviate: dopo, oggi: '2026-11-01', adesso: new Date('2026-11-01T19:30:00Z') });
   assert.match(tardi[0].testo, /ultimo controllo di oggi[\s\S]*\(1 senza esito\)/);
@@ -419,14 +422,30 @@ test('coppie per probabilità confermate: da tutte le partite confermate, non so
 
 test('Telegram: coppie rifatte dopo il messaggio del mattino, il nuovo elenco una volta sola', () => {
   const conf = (g) => ({ ...g, probModello: g.probMercato });
-  const prima = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18))], { data: '2026-10-31' });
+  const prima = costruisciCoppieQuota2(tre('a'), { data: '2026-10-31' });
   const giornata = { data: '2026-10-31', prova: true, giocate: [], pronostici: [], coppieQuota2: prima };
   const m = messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T07:30:00Z'), inviate: new Set() });
   const mattino = m.find((x) => x.chiave === '2026-10-31|giornata');
   const inviate = new Set([mattino.chiave, ...mattino.segna]);
   assert.deepEqual(messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave)), []);
-  const dopo = costruisciCoppieQuota2([conf(gamba('c', 1.4, 0.7, 15)), conf(gamba('d', 1.42, 0.69, 18))], { data: '2026-10-31' });
+  const dopo = costruisciCoppieQuota2(tre('c'), { data: '2026-10-31' });
   const nuove = messaggi({ giornata: { ...giornata, coppieQuota2: dopo }, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave));
   assert.equal(nuove.length, 1);
-  assert.match(nuove[0].testo, /Coppie di oggi aggiornate[\s\S]*Casac - Ospitec/);
+  assert.match(nuove[0].testo, /Schedine di oggi aggiornate[\s\S]*Casac1 - Ospitec1/);
+});
+
+test('triple: dalle 10 partite più probabili confermate, quota 1,90-2,50, al massimo 3, bonus della tripla', async () => {
+  const { costruisciTriple, esitoCoppia } = await import('../../src/regole/coppie-quota2.js');
+  const gg = [...tre('a'), ...tre('b'), ...tre('c'), conferma(gamba('d1', 1.3, 0.72)), conferma(gamba('e1', 1.3, 0.6))];
+  const t = costruisciTriple(gg, { data: 'x' });
+  assert.equal(t.length, 3);
+  assert.ok(t.every((x) => x.gambe.length === 3 && x.quota === 2.2 && x.incremento === 0.05));
+  const ids = t.flatMap((x) => x.gambe.map((g) => g.idPartita));
+  assert.equal(new Set(ids).size, 9);
+  assert.ok(!ids.includes('e1'));
+  // Esito: tutte vinte con il bonus +5%; una rimborsata diventa doppia (+2,5%).
+  const v = (x) => x.gambe.map((g) => ({ ...g, esito: 'vinta' }));
+  assert.deepEqual(esitoCoppia({ ...t[0], gambe: v(t[0]) }), { esito: 'vinta', ritorno: Math.round(1.3 ** 3 * 1.05 * 100) / 100 });
+  const r = v(t[0]); r[0].esito = 'rimborsata';
+  assert.deepEqual(esitoCoppia({ ...t[0], gambe: r }), { esito: 'vinta', ritorno: Math.round(1.3 ** 2 * 1.025 * 100) / 100 });
 });

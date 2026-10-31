@@ -570,16 +570,17 @@ function avvia(dati) {
   if (sch) sch.replaceChildren(...(ls.length ? [el('h2', {}, 'Doppie e triple'), el('p', { class: 'meta' }, 'Dai pronostici migliori di partite diverse, quota totale fra 1,50 e 2,00. Senza quota si usa la quota minima: controllala su bet365.'), ...ls.map((x) => schedaSicura(x?.id, () => renderSchedinaPronostici(x)))] : []));
   const cq = document.getElementById('coppie-quota2');
   const coppieDi = (modo) => (Array.isArray(dati.oggi.giornata?.coppieQuota2?.[modo]) ? dati.oggi.giornata.coppieQuota2[modo] : []);
-  const lcp = coppieDi('probabilitaConfermate');
+  // Mostrate [utente, 31/10/2026]: triple dalle 10 partite più probabili confermate; le coppie restano in background.
+  const lcp = coppieDi('triple');
   const bilCoppie = testoBilancioCoppie(dati.bilancioCoppie);
   if (cq) {
     const sezione = (titolo, lista, sigla) => (lista.length ? [el('h3', {}, titolo), ...lista.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, `${sigla}${i + 1}`, ultime.get(x?.id) ?? null, { segnabile: true })))] : []);
     cq.replaceChildren(...(lcp.length || bilCoppie ? [
-      el('h2', {}, 'Coppie a quota 2'),
-      el('p', { class: 'meta' }, 'Quota totale fra 1,90 e 2,15. Solo partite su cui modello e mercato sono d\'accordo; in ogni elenco una partita è in una coppia sola.'),
+      el('h2', {}, 'Triple a quota circa 2'),
+      el('p', { class: 'meta' }, 'Dalle 10 partite più probabili su cui modello e mercato sono d\'accordo; quota fra 1,90 e 2,50, ogni partita in una tripla sola, bonus bet365 +5%.'),
       ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
       // Solo per probabilità [utente, 31/10/2026]; quelle per margine restano in background per studio.
-      ...sezione('Per probabilità (prima le più probabili)', lcp, ''),
+      ...sezione('Prima le più probabili', lcp, 'T'),
     ] : []));
   }
   // Multiple con le partite più probabili in alto; le altre (per margine) nella sezione chiusa.

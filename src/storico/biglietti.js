@@ -36,9 +36,11 @@ export function bigliettiGiornata(giornata) {
   // Mostrate fino al 30/10: coppie per margine e multiple per probabilità; dal 31/10 le "confermate" [utente].
   const coppie = [...(giornata?.coppieQuota2?.margine ?? []), ...(giornata?.coppieQuota2?.confermate ?? []), ...(giornata?.coppieQuota2?.probabilitaConfermate ?? [])].filter((c) => c?.id)
     .map((c) => biglietto(c, { tipo: 'coppia', nome: 'Coppia a quota 2' }));
+  const triple = (giornata?.coppieQuota2?.triple ?? []).filter((c) => c?.id)
+    .map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla' }));
   const multiple = (giornata?.multipleBonus ?? []).filter((m) => m?.id && (m.criterio === 'probabilita' || m.criterio === 'probabilitaConfermate'))
     .map((m) => biglietto(m, { tipo: 'multipla', nome: `Multipla da ${m.gambe?.length ?? '?'}` }));
-  return [...coppie, ...multiple];
+  return [...coppie, ...triple, ...multiple];
 }
 
 // Profitto reale di una segnatura fatta su una giocata o un biglietto chiuso.
