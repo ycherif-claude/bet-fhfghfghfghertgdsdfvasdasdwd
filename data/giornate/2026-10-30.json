@@ -1740,7 +1740,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1764,7 +1764,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1788,7 +1788,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1819,7 +1819,7 @@
           "fonteConsenso": "mediana di 11 bookmaker",
           "probMercato": 0.8186,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -1834,7 +1834,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -1858,7 +1858,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1882,7 +1882,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": false
         },
         {
@@ -1920,7 +1920,7 @@
           "fonteConsenso": "mediana di 153 bookmaker",
           "probMercato": 0.8313,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         }
       ]
@@ -1944,7 +1944,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         }
       ]
@@ -2194,7 +2194,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,86 · quota 1,79",
       "oraUltimoControllo": "2026-10-30T19:14:28+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "calcio-2026-10-30-le-havre-paris-saint-germain-under-over-2-5-under-2-5",
@@ -2229,7 +2229,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa"
         },
         {
           "id": "basket-2026-10-30-olympiacos-pallacanestro-olimpia-milano-totale-punti-167-5-over-167-5",
@@ -2308,7 +2308,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,75 ≥ minima 3,89",
       "oraUltimoControllo": "2026-10-30T19:57:47+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2348,7 +2348,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,86 sotto la minima 2,95",
       "oraUltimoControllo": "2026-10-30T18:32:04+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2391,7 +2391,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,57 sotto la minima 2,62",
       "oraUltimoControllo": "2026-10-30T19:57:47+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2431,7 +2431,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,30 ≥ minima 2,12",
       "oraUltimoControllo": "2026-10-30T19:57:47+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2511,7 +2511,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-30T23:27:26+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2552,7 +2552,7 @@
       "stato": "confermata",
       "motivoStato": "quota 2,20 ≥ minima 2,09",
       "oraUltimoControllo": "2026-10-30T19:57:47+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2594,7 +2594,7 @@
       "stato": "confermata",
       "motivoStato": "quota 1,79 ≥ minima 1,72",
       "oraUltimoControllo": "2026-10-30T19:14:28+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2636,7 +2636,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,05 sotto la minima 2,10",
       "oraUltimoControllo": "2026-10-30T16:26:24+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2718,7 +2718,7 @@
       "stato": "confermata",
       "motivoStato": "quota 1,85 ≥ minima 1,85",
       "oraUltimoControllo": "2026-10-30T08:47:30+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2758,7 +2758,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 1,70 ≥ minima 1,65",
       "oraUltimoControllo": "2026-10-30T17:57:18+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2838,7 +2838,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,75 ≥ minima 4,71",
       "oraUltimoControllo": "2026-10-30T18:32:04+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2918,7 +2918,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-31T01:59:09+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -2959,7 +2959,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
       "oraUltimoControllo": "2026-10-30T23:27:26+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -2999,7 +2999,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,75 ≥ minima 2,66",
       "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -3082,7 +3082,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota 1,87 sotto la minima 2,01 e nessun fatto concreto che alzi la probabilità: il 52% del mattino poggiava su un modello al 66% contro Pinnacle al 48% (quota equa circa 2,09), quindi a 1,87 il value sparisce (controlli quote odss-api, 22:58)",
       "oraUltimoControllo": "2026-10-30T22:58:43+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3122,7 +3122,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 1,66 sotto la minima 1,70",
       "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3163,7 +3163,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
       "oraUltimoControllo": "2026-10-30T23:27:26+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -3206,7 +3206,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota 1,87 sotto la minima 1,94 e nessun fatto concreto che alzi la probabilità rispetto al mattino (value già sottile, 1,7%): si annulla con prudenza (controlli quote odss-api, 17:57)",
       "oraUltimoControllo": "2026-10-30T17:58:34+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3248,7 +3248,7 @@
       "stato": "confermata",
       "motivoStato": "quota 1,97 ≥ minima 1,95",
       "oraUltimoControllo": "2026-10-30T19:14:28+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3288,7 +3288,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,25 sotto la minima 2,53",
       "oraUltimoControllo": "2026-10-30T20:38:08+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -3328,7 +3328,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 3,25 sotto la minima 3,38",
       "oraUltimoControllo": "2026-10-30T19:57:47+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3368,7 +3368,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 4,33 sotto la minima 4,60",
       "oraUltimoControllo": "2026-10-30T17:57:18+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -3408,7 +3408,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,85 sotto la minima 3,09",
       "oraUltimoControllo": "2026-10-30T22:24:27+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     }
   ],
@@ -3430,7 +3430,7 @@
           "quotaBet365": null,
           "probMercato": 0.6571,
           "probModello": 0.654389229092956,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7365,
           "bookmaker": [
             [
@@ -3497,7 +3497,7 @@
           "quotaBet365": null,
           "probMercato": 0.6505,
           "probModello": 0.40834585891273706,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.4779,
           "bookmaker": [
             [
@@ -3568,7 +3568,7 @@
           "quotaBet365": null,
           "probMercato": 0.679040289723857,
           "probModello": 0.5168317674808462,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "betsson",
@@ -3639,7 +3639,7 @@
           "quotaBet365": null,
           "probMercato": 0.6839,
           "probModello": 0.6312306700941738,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7143,
           "bookmaker": [
             [
@@ -3710,7 +3710,7 @@
           "quotaBet365": null,
           "probMercato": 0.6816143497757848,
           "probModello": 0.7228569890165992,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "winamax",
@@ -3775,7 +3775,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -3840,7 +3840,7 @@
           "quotaBet365": null,
           "probMercato": 0.675277588941763,
           "probModello": 0.6774891094094823,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "williamhill",
@@ -3905,7 +3905,7 @@
           "quotaBet365": null,
           "probMercato": 0.7124681933842238,
           "probModello": 0.6537133387905191,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "888sport",
@@ -3970,7 +3970,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -4094,8 +4094,8 @@
       "quotaConBonus": 38.35,
       "prob": 0.025711354906804817,
       "valueAtteso": -0.013842393550180798,
-      "esito": null,
-      "ritorno": null
+      "esito": "persa",
+      "ritorno": 0
     },
     {
       "id": "MB20-2026-10-30",
@@ -4114,7 +4114,7 @@
           "quotaBet365": null,
           "probMercato": 0.6571,
           "probModello": 0.654389229092956,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7365,
           "bookmaker": [
             [
@@ -4181,7 +4181,7 @@
           "quotaBet365": null,
           "probMercato": 0.6863402638050526,
           "probModello": 0.7107661558771554,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "eurobet",
@@ -4252,7 +4252,7 @@
           "quotaBet365": null,
           "probMercato": 0.7217355027117229,
           "probModello": 0.7234041600581339,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "eurobet",
@@ -4323,7 +4323,7 @@
           "quotaBet365": null,
           "probMercato": 0.6505,
           "probModello": 0.40834585891273706,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.4779,
           "bookmaker": [
             [
@@ -4394,7 +4394,7 @@
           "quotaBet365": null,
           "probMercato": 0.7106,
           "probModello": 0.6116665566309445,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.6952,
           "bookmaker": [
             [
@@ -4465,7 +4465,7 @@
           "quotaBet365": null,
           "probMercato": 0.7226,
           "probModello": 0.7587679921224345,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8306,
           "bookmaker": [
             [
@@ -4504,7 +4504,7 @@
           "quotaBet365": null,
           "probMercato": 0.679040289723857,
           "probModello": 0.5168317674808462,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "betsson",
@@ -4575,7 +4575,7 @@
           "quotaBet365": null,
           "probMercato": 0.6946,
           "probModello": 0.6298671384079282,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.713,
           "bookmaker": [
             [
@@ -4618,7 +4618,7 @@
           "quotaBet365": null,
           "probMercato": 0.6839,
           "probModello": 0.6312306700941738,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7143,
           "bookmaker": [
             [
@@ -4689,7 +4689,7 @@
           "quotaBet365": null,
           "probMercato": 0.7144,
           "probModello": 0.6763330180936504,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7572,
           "bookmaker": [
             [
@@ -4760,7 +4760,7 @@
           "quotaBet365": null,
           "probMercato": 0.667,
           "probModello": 0.6264373726525186,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7097,
           "bookmaker": [
             [
@@ -4831,7 +4831,7 @@
           "quotaBet365": null,
           "probMercato": 0.6816143497757848,
           "probModello": 0.7228569890165992,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "winamax",
@@ -4896,7 +4896,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -4961,7 +4961,7 @@
           "quotaBet365": null,
           "probMercato": 0.675277588941763,
           "probModello": 0.6774891094094823,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "williamhill",
@@ -5026,7 +5026,7 @@
           "quotaBet365": null,
           "probMercato": 0.7124681933842238,
           "probModello": 0.6537133387905191,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "888sport",
@@ -5091,7 +5091,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -5156,7 +5156,7 @@
           "quotaBet365": null,
           "probMercato": 0.7196,
           "probModello": 0.6788418560377416,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7595,
           "bookmaker": [
             [
@@ -5221,7 +5221,7 @@
           "quotaBet365": null,
           "probMercato": 0.7221,
           "probModello": 0.7081084900578847,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7862,
           "bookmaker": [
             [
@@ -5410,8 +5410,8 @@
       "quotaConBonus": 1094.88,
       "prob": 0.0007489714157429859,
       "valueAtteso": -0.17996500216693945,
-      "esito": null,
-      "ritorno": null
+      "esito": "persa",
+      "ritorno": 0
     },
     {
       "id": "MB36-2026-10-30",
@@ -5430,7 +5430,7 @@
           "quotaBet365": null,
           "probMercato": 0.6154,
           "probModello": 0.7004257538239016,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7793,
           "bookmaker": [
             [
@@ -5501,7 +5501,7 @@
           "quotaBet365": null,
           "probMercato": 0.6571,
           "probModello": 0.654389229092956,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7365,
           "bookmaker": [
             [
@@ -5568,7 +5568,7 @@
           "quotaBet365": null,
           "probMercato": 0.6863402638050526,
           "probModello": 0.7107661558771554,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "eurobet",
@@ -5639,7 +5639,7 @@
           "quotaBet365": null,
           "probMercato": 0.7217355027117229,
           "probModello": 0.7234041600581339,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "eurobet",
@@ -5710,7 +5710,7 @@
           "quotaBet365": null,
           "probMercato": 0.6233,
           "probModello": 0.6746616508171522,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7556,
           "bookmaker": [
             [
@@ -5781,7 +5781,7 @@
           "quotaBet365": null,
           "probMercato": 0.6907,
           "probModello": 0.5627606184067042,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.6459,
           "bookmaker": [
             [
@@ -5852,7 +5852,7 @@
           "quotaBet365": null,
           "probMercato": 0.6505,
           "probModello": 0.40834585891273706,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.4779,
           "bookmaker": [
             [
@@ -5923,7 +5923,7 @@
           "quotaBet365": null,
           "probMercato": 0.7106,
           "probModello": 0.6116665566309445,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.6952,
           "bookmaker": [
             [
@@ -5994,7 +5994,7 @@
           "quotaBet365": null,
           "probMercato": 0.7226,
           "probModello": 0.7587679921224345,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8306,
           "bookmaker": [
             [
@@ -6068,7 +6068,7 @@
           "quotaBet365": null,
           "probMercato": 0.6793,
           "probModello": 0.6696767915976249,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7509,
           "bookmaker": [
             [
@@ -6127,7 +6127,7 @@
           "quotaBet365": null,
           "probMercato": 0.679040289723857,
           "probModello": 0.5168317674808462,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "betsson",
@@ -6198,7 +6198,7 @@
           "quotaBet365": null,
           "probMercato": 0.6946,
           "probModello": 0.6298671384079282,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.713,
           "bookmaker": [
             [
@@ -6241,7 +6241,7 @@
           "quotaBet365": null,
           "probMercato": 0.6875,
           "probModello": 0.8566348131558594,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.9088,
           "bookmaker": [
             [
@@ -6312,7 +6312,7 @@
           "quotaBet365": 1.33,
           "probMercato": 0.6859205776173285,
           "probModello": 0.6490430680318875,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "leovegas",
@@ -6377,7 +6377,7 @@
           "quotaBet365": null,
           "probMercato": 0.6514,
           "probModello": 0.543243177735889,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.6257,
           "bookmaker": [
             [
@@ -6448,7 +6448,7 @@
           "quotaBet365": null,
           "probMercato": 0.6846,
           "probModello": 0.7267481592507504,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.8028,
           "bookmaker": [
             [
@@ -6519,7 +6519,7 @@
           "quotaBet365": null,
           "probMercato": 0.6839,
           "probModello": 0.6312306700941738,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7143,
           "bookmaker": [
             [
@@ -6590,7 +6590,7 @@
           "quotaBet365": null,
           "probMercato": 0.7144,
           "probModello": 0.6763330180936504,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7572,
           "bookmaker": [
             [
@@ -6661,7 +6661,7 @@
           "quotaBet365": null,
           "probMercato": 0.667,
           "probModello": 0.6264373726525186,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7097,
           "bookmaker": [
             [
@@ -6732,7 +6732,7 @@
           "quotaBet365": null,
           "probMercato": 0.6746,
           "probModello": 0.7536509859291782,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8262,
           "bookmaker": [
             [
@@ -6803,7 +6803,7 @@
           "quotaBet365": null,
           "probMercato": 0.6816143497757848,
           "probModello": 0.7228569890165992,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "winamax",
@@ -6868,7 +6868,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -6933,7 +6933,7 @@
           "quotaBet365": null,
           "probMercato": 0.675277588941763,
           "probModello": 0.6774891094094823,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "williamhill",
@@ -6998,7 +6998,7 @@
           "quotaBet365": null,
           "probMercato": 0.7124681933842238,
           "probModello": 0.6537133387905191,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "888sport",
@@ -7063,7 +7063,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -7128,7 +7128,7 @@
           "quotaBet365": null,
           "probMercato": 0.7196,
           "probModello": 0.6788418560377416,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7595,
           "bookmaker": [
             [
@@ -7193,7 +7193,7 @@
           "quotaBet365": null,
           "probMercato": 0.7221,
           "probModello": 0.7081084900578847,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7862,
           "bookmaker": [
             [
@@ -7258,7 +7258,7 @@
           "quotaBet365": null,
           "probMercato": 0.6905,
           "probModello": 0.728020700091687,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.8039,
           "bookmaker": [
             [
@@ -7323,7 +7323,7 @@
           "quotaBet365": null,
           "probMercato": 0.6363,
           "probModello": 0.7072864116868428,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7855,
           "bookmaker": [
             [
@@ -7364,7 +7364,7 @@
           "quotaBet365": null,
           "probMercato": 0.6769,
           "probModello": 0.7096641959704941,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7876,
           "bookmaker": [
             [
@@ -7748,8 +7748,8 @@
       "quotaConBonus": 233923.03,
       "prob": 0.0000010483007626191294,
       "valueAtteso": -0.7547783053220622,
-      "esito": null,
-      "ritorno": null,
+      "esito": "persa",
+      "ritorno": 0,
       "lunga": true
     },
     {
@@ -7769,7 +7769,7 @@
           "quotaBet365": null,
           "probMercato": 0.6863402638050526,
           "probModello": 0.7107661558771554,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "eurobet",
@@ -7840,7 +7840,7 @@
           "quotaBet365": null,
           "probMercato": 0.7217355027117229,
           "probModello": 0.7234041600581339,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "eurobet",
@@ -7911,7 +7911,7 @@
           "quotaBet365": null,
           "probMercato": 0.6907,
           "probModello": 0.5627606184067042,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.6459,
           "bookmaker": [
             [
@@ -7982,7 +7982,7 @@
           "quotaBet365": null,
           "probMercato": 0.6505,
           "probModello": 0.40834585891273706,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.4779,
           "bookmaker": [
             [
@@ -8053,7 +8053,7 @@
           "quotaBet365": null,
           "probMercato": 0.7226,
           "probModello": 0.7587679921224345,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8306,
           "bookmaker": [
             [
@@ -8092,7 +8092,7 @@
           "quotaBet365": null,
           "probMercato": 0.6793,
           "probModello": 0.6696767915976249,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7509,
           "bookmaker": [
             [
@@ -8151,7 +8151,7 @@
           "quotaBet365": null,
           "probMercato": 0.679040289723857,
           "probModello": 0.5168317674808462,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "betsson",
@@ -8222,7 +8222,7 @@
           "quotaBet365": null,
           "probMercato": 0.6946,
           "probModello": 0.6298671384079282,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.713,
           "bookmaker": [
             [
@@ -8265,7 +8265,7 @@
           "quotaBet365": 1.33,
           "probMercato": 0.6859205776173285,
           "probModello": 0.6490430680318875,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "leovegas",
@@ -8330,7 +8330,7 @@
           "quotaBet365": null,
           "probMercato": 0.6514,
           "probModello": 0.543243177735889,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.6257,
           "bookmaker": [
             [
@@ -8401,7 +8401,7 @@
           "quotaBet365": null,
           "probMercato": 0.6839,
           "probModello": 0.6312306700941738,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7143,
           "bookmaker": [
             [
@@ -8472,7 +8472,7 @@
           "quotaBet365": null,
           "probMercato": 0.667,
           "probModello": 0.6264373726525186,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7097,
           "bookmaker": [
             [
@@ -8543,7 +8543,7 @@
           "quotaBet365": null,
           "probMercato": 0.6816143497757848,
           "probModello": 0.7228569890165992,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "winamax",
@@ -8608,7 +8608,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -8673,7 +8673,7 @@
           "quotaBet365": null,
           "probMercato": 0.675277588941763,
           "probModello": 0.6774891094094823,
-          "esito": null,
+          "esito": "persa",
           "bookmaker": [
             [
               "williamhill",
@@ -8738,7 +8738,7 @@
           "quotaBet365": null,
           "probMercato": 0.7124681933842238,
           "probModello": 0.6537133387905191,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "888sport",
@@ -8803,7 +8803,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -8868,7 +8868,7 @@
           "quotaBet365": null,
           "probMercato": 0.7196,
           "probModello": 0.6788418560377416,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7595,
           "bookmaker": [
             [
@@ -8933,7 +8933,7 @@
           "quotaBet365": null,
           "probMercato": 0.7221,
           "probModello": 0.7081084900578847,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7862,
           "bookmaker": [
             [
@@ -8998,7 +8998,7 @@
           "quotaBet365": null,
           "probMercato": 0.6363,
           "probModello": 0.7072864116868428,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7855,
           "bookmaker": [
             [
@@ -9163,8 +9163,8 @@
       "quotaConBonus": 2102.2,
       "prob": 0.00029950336559550993,
       "valueAtteso": -0.3703839194437557,
-      "esito": null,
-      "ritorno": null,
+      "esito": "persa",
+      "ritorno": 0,
       "senzaUnder": true
     },
     {
@@ -9184,7 +9184,7 @@
           "quotaBet365": null,
           "probMercato": 0.7226,
           "probModello": 0.7587679921224345,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8306,
           "bookmaker": [
             [
@@ -9223,7 +9223,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -9288,7 +9288,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -9353,7 +9353,7 @@
           "quotaBet365": null,
           "probMercato": 0.7221,
           "probModello": 0.7081084900578847,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7862,
           "bookmaker": [
             [
@@ -9498,7 +9498,7 @@
           "quotaBet365": null,
           "probMercato": 0.7217355027117229,
           "probModello": 0.7234041600581339,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "eurobet",
@@ -9569,7 +9569,7 @@
           "quotaBet365": null,
           "probMercato": 0.7226,
           "probModello": 0.7587679921224345,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.8306,
           "bookmaker": [
             [
@@ -9608,7 +9608,7 @@
           "quotaBet365": null,
           "probMercato": 0.707,
           "probModello": 0.7077753547602521,
-          "esito": null,
+          "esito": "persa",
           "probModelloTarato": 0.7859,
           "bookmaker": [
             [
@@ -9679,7 +9679,7 @@
           "quotaBet365": null,
           "probMercato": 0.7340748230535896,
           "probModello": 0.827065761699745,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "winamax",
@@ -9744,7 +9744,7 @@
           "quotaBet365": null,
           "probMercato": 0.7318560683065662,
           "probModello": 0.6704705698606366,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "lottomatica",
@@ -9809,7 +9809,7 @@
           "quotaBet365": null,
           "probMercato": 0.7124681933842238,
           "probModello": 0.6537133387905191,
-          "esito": null,
+          "esito": "vinta",
           "bookmaker": [
             [
               "888sport",
@@ -9874,7 +9874,7 @@
           "quotaBet365": null,
           "probMercato": 0.7221,
           "probModello": 0.7081084900578847,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7862,
           "bookmaker": [
             [
@@ -9939,7 +9939,7 @@
           "quotaBet365": null,
           "probMercato": 0.7196,
           "probModello": 0.6788418560377416,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7595,
           "bookmaker": [
             [
@@ -10004,7 +10004,7 @@
           "quotaBet365": null,
           "probMercato": 0.7134,
           "probModello": 0.7193353844870156,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7962,
           "bookmaker": [
             [
@@ -10128,8 +10128,8 @@
       "quotaConBonus": 20.53,
       "prob": 0.038463963285931095,
       "valueAtteso": -0.2102028134161723,
-      "esito": null,
-      "ritorno": null,
+      "esito": "persa",
+      "ritorno": 0,
       "criterio": "probabilita"
     }
   ],
@@ -10152,7 +10152,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -10217,7 +10217,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -10275,8 +10275,8 @@
         "prob": 0.4602788947046995,
         "probModello": 0.4897277377192757,
         "valueAtteso": -0.03226362388336923,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M2-2026-10-30",
@@ -10295,7 +10295,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7143,
             "bookmaker": [
               [
@@ -10366,7 +10366,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -10424,8 +10424,8 @@
         "prob": 0.48725699745547063,
         "probModello": 0.4669474378980678,
         "valueAtteso": -0.052090237150127394,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M3-2026-10-30",
@@ -10444,7 +10444,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4779,
             "bookmaker": [
               [
@@ -10515,7 +10515,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -10573,8 +10573,8 @@
         "prob": 0.47751567239636,
         "probModello": 0.39525472751630814,
         "valueAtteso": -0.06712538240647115,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M4-2026-10-30",
@@ -10593,7 +10593,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6444,
             "bookmaker": [
               [
@@ -10664,7 +10664,7 @@
             "quotaBet365": null,
             "probMercato": 0.7318560683065662,
             "probModello": 0.6704705698606366,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "lottomatica",
@@ -10722,8 +10722,8 @@
         "prob": 0.45704411465745065,
         "probModello": 0.4320512352181942,
         "valueAtteso": -0.09505265297824772,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M5-2026-10-30",
@@ -10742,7 +10742,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -10813,7 +10813,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -10877,8 +10877,8 @@
         "prob": 0.4660526915833314,
         "probModello": 0.3673465286075569,
         "valueAtteso": -0.09958619986100381,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M6-2026-10-30",
@@ -10897,7 +10897,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7097,
             "bookmaker": [
               [
@@ -11046,7 +11046,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.713,
             "bookmaker": [
               [
@@ -11089,7 +11089,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6257,
             "bookmaker": [
               [
@@ -11153,8 +11153,8 @@
         "prob": 0.45246243999999997,
         "probModello": 0.4461241,
         "valueAtteso": -0.12005104668800004,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2M8-2026-10-30",
@@ -11173,7 +11173,7 @@
             "quotaBet365": null,
             "probMercato": 0.6907,
             "probModello": 0.5627606184067042,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6459,
             "bookmaker": [
               [
@@ -11244,7 +11244,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7855,
             "bookmaker": [
               [
@@ -11278,8 +11278,8 @@
         "prob": 0.43949240999999994,
         "probModello": 0.50735445,
         "valueAtteso": -0.14606624737000007,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilita": [
@@ -11300,7 +11300,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -11365,7 +11365,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -11423,8 +11423,8 @@
         "prob": 0.5003559332024468,
         "probModello": 0.5978502662209978,
         "valueAtteso": -0.04231874385051693,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P2-2026-10-30",
@@ -11443,7 +11443,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -11508,7 +11508,7 @@
             "quotaBet365": null,
             "probMercato": 0.7318560683065662,
             "probModello": 0.6704705698606366,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "lottomatica",
@@ -11566,8 +11566,8 @@
         "prob": 0.4942060012584563,
         "probModello": 0.45423650926015074,
         "valueAtteso": -0.05408971359131465,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P3-2026-10-30",
@@ -11586,7 +11586,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7143,
             "bookmaker": [
               [
@@ -11657,7 +11657,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -11715,8 +11715,8 @@
         "prob": 0.48725699745547063,
         "probModello": 0.4669474378980678,
         "valueAtteso": -0.052090237150127394,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P4-2026-10-30",
@@ -11735,7 +11735,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4779,
             "bookmaker": [
               [
@@ -11864,8 +11864,8 @@
         "prob": 0.47824759999999994,
         "probModello": 0.39770838000000003,
         "valueAtteso": -0.07985161760000015,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P5-2026-10-30",
@@ -11884,7 +11884,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -11955,7 +11955,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.713,
             "bookmaker": [
               [
@@ -11991,8 +11991,8 @@
         "prob": 0.4716613852421911,
         "probModello": 0.3685010502138434,
         "valueAtteso": -0.10195672249886822,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P6-2026-10-30",
@@ -12011,7 +12011,7 @@
             "quotaBet365": null,
             "probMercato": 0.6907,
             "probModello": 0.5627606184067042,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6459,
             "bookmaker": [
               [
@@ -12082,7 +12082,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7097,
             "bookmaker": [
               [
@@ -12146,8 +12146,8 @@
         "prob": 0.4606969,
         "probModello": 0.45839523000000004,
         "valueAtteso": -0.12338593867999992,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.9
       },
       {
         "id": "Q2P7-2026-10-30",
@@ -12166,7 +12166,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -12295,8 +12295,8 @@
         "prob": 0.4570339816677846,
         "probModello": 0.5057101199065961,
         "valueAtteso": -0.10439620952380946,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P8-2026-10-30",
@@ -12315,7 +12315,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6257,
             "bookmaker": [
               [
@@ -12386,7 +12386,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.71375352210171,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7913,
             "bookmaker": [
               [
@@ -12444,8 +12444,8 @@
         "prob": 0.45259271999999995,
         "probModello": 0.49511641,
         "valueAtteso": -0.1392139058320001,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.9
       },
       {
         "id": "Q2P9-2026-10-30",
@@ -12464,7 +12464,7 @@
             "quotaBet365": null,
             "probMercato": 0.7226,
             "probModello": 0.7587679921224345,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.8306,
             "bookmaker": [
               [
@@ -12503,7 +12503,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6444,
             "bookmaker": [
               [
@@ -12567,8 +12567,8 @@
         "prob": 0.45126370000000005,
         "probModello": 0.53523864,
         "valueAtteso": -0.12003578499999978,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2P10-2026-10-30",
@@ -12587,7 +12587,7 @@
             "quotaBet365": null,
             "probMercato": 0.6876,
             "probModello": 0.6570171447466228,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.739,
             "bookmaker": [
               [
@@ -12658,7 +12658,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7855,
             "bookmaker": [
               [
@@ -12692,8 +12692,8 @@
         "prob": 0.43751987999999997,
         "probModello": 0.5804845,
         "valueAtteso": -0.15624291142000002,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "modello": [
@@ -12714,7 +12714,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -12779,7 +12779,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7855,
             "bookmaker": [
               [
@@ -12813,8 +12813,8 @@
         "prob": 0.46709180990899907,
         "probModello": 0.6496601558151497,
         "valueAtteso": -0.10598627583417586,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O2-2026-10-30",
@@ -12833,7 +12833,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -12898,7 +12898,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.71375352210171,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7913,
             "bookmaker": [
               [
@@ -12956,8 +12956,8 @@
         "prob": 0.4735856502242153,
         "probModello": 0.571996735408835,
         "valueAtteso": -0.08669007354260083,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O3-2026-10-30",
@@ -12976,7 +12976,7 @@
             "quotaBet365": null,
             "probMercato": 0.6793,
             "probModello": 0.6696767915976249,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7509,
             "bookmaker": [
               [
@@ -13035,7 +13035,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7143,
             "bookmaker": [
               [
@@ -13099,8 +13099,8 @@
         "prob": 0.46457327,
         "probModello": 0.5363678700000001,
         "valueAtteso": -0.10941304140999997,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O4-2026-10-30",
@@ -13119,7 +13119,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6444,
             "bookmaker": [
               [
@@ -13248,8 +13248,8 @@
         "prob": 0.4591324,
         "probModello": 0.53626968,
         "valueAtteso": -0.10469181999999988,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O5-2026-10-30",
@@ -13268,7 +13268,7 @@
             "quotaBet365": null,
             "probMercato": 0.6736,
             "probModello": 0.6435522830626424,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7262,
             "bookmaker": [
               [
@@ -13417,7 +13417,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.713,
             "bookmaker": [
               [
@@ -13460,7 +13460,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7097,
             "bookmaker": [
               [
@@ -13524,8 +13524,8 @@
         "prob": 0.46329820000000005,
         "probModello": 0.5060161,
         "valueAtteso": -0.10527851615999995,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O7-2026-10-30",
@@ -13544,7 +13544,7 @@
             "quotaBet365": null,
             "probMercato": 0.6876,
             "probModello": 0.6570171447466228,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.739,
             "bookmaker": [
               [
@@ -13615,7 +13615,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -13673,8 +13673,8 @@
         "prob": 0.46432087015635626,
         "probModello": 0.5006644518536074,
         "valueAtteso": -0.10455720190346696,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O8-2026-10-30",
@@ -13693,7 +13693,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -13764,7 +13764,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6257,
             "bookmaker": [
               [
@@ -13828,8 +13828,8 @@
         "prob": 0.4470820478426113,
         "probModello": 0.4447263837323362,
         "valueAtteso": -0.117728286787391,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O9-2026-10-30",
@@ -13848,7 +13848,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4779,
             "bookmaker": [
               [
@@ -13919,7 +13919,7 @@
             "quotaBet365": null,
             "probMercato": 0.7226,
             "probModello": 0.7587679921224345,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.8306,
             "bookmaker": [
               [
@@ -13951,8 +13951,8 @@
         "prob": 0.4700513,
         "probModello": 0.39694374,
         "valueAtteso": -0.09562129880000003,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2O10-2026-10-30",
@@ -13971,7 +13971,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -14042,7 +14042,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -14100,8 +14100,8 @@
         "prob": 0.4837946084546563,
         "probModello": 0.33785982031290923,
         "valueAtteso": -0.07208194098396925,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "confermate": [
@@ -14122,7 +14122,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -14187,7 +14187,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -14245,8 +14245,8 @@
         "prob": 0.4602788947046995,
         "probModello": 0.4897277377192757,
         "valueAtteso": -0.03226362388336923,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2C2-2026-10-30",
@@ -14265,7 +14265,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -14336,7 +14336,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7143,
             "bookmaker": [
               [
@@ -14400,8 +14400,8 @@
         "prob": 0.4693881064162755,
         "probModello": 0.5077002651430521,
         "valueAtteso": -0.08018706666666664,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2C3-2026-10-30",
@@ -14420,7 +14420,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7097,
             "bookmaker": [
               [
@@ -14569,7 +14569,7 @@
             "quotaBet365": null,
             "probMercato": 0.7217355027117229,
             "probModello": 0.7234041600581339,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "eurobet",
@@ -14640,7 +14640,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6444,
             "bookmaker": [
               [
@@ -14704,8 +14704,8 @@
         "prob": 0.450723821443471,
         "probModello": 0.4661616407414615,
         "valueAtteso": -0.11432769086357941,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       },
       {
         "id": "Q2C5-2026-10-30",
@@ -14724,7 +14724,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.713,
             "bookmaker": [
               [
@@ -14767,7 +14767,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6257,
             "bookmaker": [
               [
@@ -14831,8 +14831,8 @@
         "prob": 0.45246243999999997,
         "probModello": 0.4461241,
         "valueAtteso": -0.12005104668800004,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "tutte": [
@@ -14853,7 +14853,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -14918,7 +14918,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -14976,8 +14976,8 @@
         "prob": 0.4602788947046995,
         "probModello": 0.4897277377192757,
         "valueAtteso": -0.03226362388336923,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -14997,7 +14997,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6834,
             "chiusura": {
               "quota": 1.39,
@@ -15018,7 +15018,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -15076,8 +15076,8 @@
         "prob": 0.48725699745547063,
         "probModello": 0.44674769572944073,
         "valueAtteso": -0.052090237150127394,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15097,7 +15097,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4892,
             "chiusura": {
               "quota": 1.44,
@@ -15118,7 +15118,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -15176,8 +15176,8 @@
         "prob": 0.47751567239636,
         "probModello": 0.4046005706235153,
         "valueAtteso": -0.06712538240647115,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15197,7 +15197,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6246,
             "chiusura": {
               "quota": 1.61,
@@ -15218,7 +15218,7 @@
             "quotaBet365": null,
             "probMercato": 0.7318560683065662,
             "probModello": 0.6704705698606366,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "lottomatica",
@@ -15276,8 +15276,8 @@
         "prob": 0.45704411465745065,
         "probModello": 0.4187759179349536,
         "valueAtteso": -0.09505265297824772,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15297,7 +15297,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -15362,7 +15362,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -15426,8 +15426,8 @@
         "prob": 0.4660526915833314,
         "probModello": 0.3673465286075569,
         "valueAtteso": -0.09958619986100381,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15447,7 +15447,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6794,
             "chiusura": {
               "quota": 1.42,
@@ -15497,7 +15497,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6823,
             "chiusura": {
               "quota": 1.3,
@@ -15518,7 +15518,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6092,
             "chiusura": {
               "quota": 1.42,
@@ -15532,8 +15532,8 @@
         "prob": 0.45246243999999997,
         "probModello": 0.41565715999999997,
         "valueAtteso": -0.12005104668800004,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15553,7 +15553,7 @@
             "quotaBet365": null,
             "probMercato": 0.6907,
             "probModello": 0.5627606184067042,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6258
           },
           {
@@ -15568,7 +15568,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7461
           }
         ],
@@ -15576,8 +15576,8 @@
         "prob": 0.43949240999999994,
         "probModello": 0.46690938,
         "valueAtteso": -0.14606624737000007,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       }
     ],
@@ -15599,7 +15599,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -15664,7 +15664,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -15722,8 +15722,8 @@
         "prob": 0.5003559332024468,
         "probModello": 0.5978502662209978,
         "valueAtteso": -0.04231874385051693,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15743,7 +15743,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -15808,7 +15808,7 @@
             "quotaBet365": null,
             "probMercato": 0.7318560683065662,
             "probModello": 0.6704705698606366,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "lottomatica",
@@ -15866,8 +15866,8 @@
         "prob": 0.4942060012584563,
         "probModello": 0.45423650926015074,
         "valueAtteso": -0.05408971359131465,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15887,7 +15887,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6834,
             "chiusura": {
               "quota": 1.39,
@@ -15908,7 +15908,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -15966,8 +15966,8 @@
         "prob": 0.48725699745547063,
         "probModello": 0.44674769572944073,
         "valueAtteso": -0.052090237150127394,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -15987,7 +15987,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4892,
             "chiusura": {
               "quota": 1.44,
@@ -16016,8 +16016,8 @@
         "prob": 0.47824759999999994,
         "probModello": 0.38637016,
         "valueAtteso": -0.07985161760000015,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16037,7 +16037,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -16108,7 +16108,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6823,
             "chiusura": {
               "quota": 1.3,
@@ -16122,8 +16122,8 @@
         "prob": 0.4716613852421911,
         "probModello": 0.3526343149521814,
         "valueAtteso": -0.10195672249886822,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16143,7 +16143,7 @@
             "quotaBet365": null,
             "probMercato": 0.6907,
             "probModello": 0.5627606184067042,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6258
           },
           {
@@ -16158,7 +16158,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6794,
             "chiusura": {
               "quota": 1.42,
@@ -16172,8 +16172,8 @@
         "prob": 0.4606969,
         "probModello": 0.42516852,
         "valueAtteso": -0.12338593867999992,
-        "esito": null,
-        "ritorno": null,
+        "esito": "vinta",
+        "ritorno": 1.9,
         "ricostruita": true
       },
       {
@@ -16193,7 +16193,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -16266,8 +16266,8 @@
         "prob": 0.4570339816677846,
         "probModello": 0.4840317521523429,
         "valueAtteso": -0.10439620952380946,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16287,7 +16287,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6092,
             "chiusura": {
               "quota": 1.42,
@@ -16308,7 +16308,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.71375352210171,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7514
           }
         ],
@@ -16316,8 +16316,8 @@
         "prob": 0.45259271999999995,
         "probModello": 0.45775288,
         "valueAtteso": -0.1392139058320001,
-        "esito": null,
-        "ritorno": null,
+        "esito": "vinta",
+        "ritorno": 1.9,
         "ricostruita": true
       },
       {
@@ -16337,7 +16337,7 @@
             "quotaBet365": null,
             "probMercato": 0.7226,
             "probModello": 0.7587679921224345,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7882,
             "chiusura": {
               "quota": 1.3,
@@ -16358,7 +16358,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6246,
             "chiusura": {
               "quota": 1.61,
@@ -16372,8 +16372,8 @@
         "prob": 0.45126370000000005,
         "probModello": 0.49230972000000006,
         "valueAtteso": -0.12003578499999978,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16393,7 +16393,7 @@
             "quotaBet365": null,
             "probMercato": 0.6876,
             "probModello": 0.6570171447466228,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7048
           },
           {
@@ -16408,7 +16408,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7461
           }
         ],
@@ -16416,8 +16416,8 @@
         "prob": 0.43751987999999997,
         "probModello": 0.5258512799999999,
         "valueAtteso": -0.15624291142000002,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       }
     ],
@@ -16439,7 +16439,7 @@
             "quotaBet365": null,
             "probMercato": 0.7340748230535896,
             "probModello": 0.827065761699745,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "winamax",
@@ -16504,7 +16504,7 @@
             "quotaBet365": null,
             "probMercato": 0.6363,
             "probModello": 0.7072864116868428,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.7461
           }
         ],
@@ -16512,8 +16512,8 @@
         "prob": 0.46709180990899907,
         "probModello": 0.6170737648041797,
         "valueAtteso": -0.10598627583417586,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16533,7 +16533,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -16598,7 +16598,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.71375352210171,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7514
           }
         ],
@@ -16606,8 +16606,8 @@
         "prob": 0.4735856502242153,
         "probModello": 0.5431547415470727,
         "valueAtteso": -0.08669007354260083,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16627,7 +16627,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6246,
             "chiusura": {
               "quota": 1.61,
@@ -16656,8 +16656,8 @@
         "prob": 0.4591324,
         "probModello": 0.49330908,
         "valueAtteso": -0.10469181999999988,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16677,7 +16677,7 @@
             "quotaBet365": null,
             "probMercato": 0.6793,
             "probModello": 0.6696767915976249,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7153,
             "chiusura": {
               "quota": 1.37,
@@ -16698,7 +16698,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6834,
             "chiusura": {
               "quota": 1.39,
@@ -16712,8 +16712,8 @@
         "prob": 0.46457327,
         "probModello": 0.48883602000000004,
         "valueAtteso": -0.10941304140999997,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16733,7 +16733,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -16806,8 +16806,8 @@
         "prob": 0.4570339816677846,
         "probModello": 0.4840317521523429,
         "valueAtteso": -0.10439620952380946,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16827,7 +16827,7 @@
             "quotaBet365": null,
             "probMercato": 0.6876,
             "probModello": 0.6570171447466228,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7048
           },
           {
@@ -16842,7 +16842,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -16900,8 +16900,8 @@
         "prob": 0.46432087015635626,
         "probModello": 0.4774943243118031,
         "valueAtteso": -0.10455720190346696,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -16921,7 +16921,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6794,
             "chiusura": {
               "quota": 1.42,
@@ -16942,7 +16942,7 @@
             "quotaBet365": null,
             "probMercato": 0.6736,
             "probModello": 0.6435522830626424,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6937,
             "chiusura": {
               "quota": 1.37,
@@ -16956,8 +16956,8 @@
         "prob": 0.4492912,
         "probModello": 0.47129978,
         "valueAtteso": -0.12594889952,
-        "esito": null,
-        "ritorno": null,
+        "esito": "vinta",
+        "ritorno": 1.95,
         "ricostruita": true
       },
       {
@@ -16977,7 +16977,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6823,
             "chiusura": {
               "quota": 1.3,
@@ -16998,7 +16998,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6092,
             "chiusura": {
               "quota": 1.42,
@@ -17012,8 +17012,8 @@
         "prob": 0.45246243999999997,
         "probModello": 0.41565715999999997,
         "valueAtteso": -0.12005104668800004,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -17033,7 +17033,7 @@
             "quotaBet365": null,
             "probMercato": 0.6505,
             "probModello": 0.40834585891273706,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.4892,
             "chiusura": {
               "quota": 1.44,
@@ -17054,7 +17054,7 @@
             "quotaBet365": null,
             "probMercato": 0.7226,
             "probModello": 0.7587679921224345,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7882,
             "chiusura": {
               "quota": 1.3,
@@ -17068,8 +17068,8 @@
         "prob": 0.4700513,
         "probModello": 0.38558744,
         "valueAtteso": -0.09562129880000003,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -17089,7 +17089,7 @@
             "quotaBet365": null,
             "probMercato": 0.679040289723857,
             "probModello": 0.5168317674808462,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "betsson",
@@ -17160,7 +17160,7 @@
             "quotaBet365": null,
             "probMercato": 0.7124681933842238,
             "probModello": 0.6537133387905191,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "888sport",
@@ -17218,8 +17218,8 @@
         "prob": 0.4837946084546563,
         "probModello": 0.33785982031290923,
         "valueAtteso": -0.07208194098396925,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       }
     ],
@@ -17241,7 +17241,7 @@
             "quotaBet365": null,
             "probMercato": 0.6816143497757848,
             "probModello": 0.7228569890165992,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "winamax",
@@ -17306,7 +17306,7 @@
             "quotaBet365": null,
             "probMercato": 0.675277588941763,
             "probModello": 0.6774891094094823,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "williamhill",
@@ -17364,8 +17364,8 @@
         "prob": 0.4602788947046995,
         "probModello": 0.4897277377192757,
         "valueAtteso": -0.03226362388336923,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -17385,7 +17385,7 @@
             "quotaBet365": null,
             "probMercato": 0.6863402638050526,
             "probModello": 0.7107661558771554,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "eurobet",
@@ -17450,7 +17450,7 @@
             "quotaBet365": null,
             "probMercato": 0.6839,
             "probModello": 0.6312306700941738,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6834,
             "chiusura": {
               "quota": 1.39,
@@ -17464,8 +17464,8 @@
         "prob": 0.4693881064162755,
         "probModello": 0.485737590926448,
         "valueAtteso": -0.08018706666666664,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -17485,7 +17485,7 @@
             "quotaBet365": null,
             "probMercato": 0.667,
             "probModello": 0.6264373726525186,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6794,
             "chiusura": {
               "quota": 1.42,
@@ -17535,7 +17535,7 @@
             "quotaBet365": null,
             "probMercato": 0.7217355027117229,
             "probModello": 0.7234041600581339,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "eurobet",
@@ -17600,7 +17600,7 @@
             "quotaBet365": null,
             "probMercato": 0.6245,
             "probModello": 0.5612804882731116,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6246,
             "chiusura": {
               "quota": 1.61,
@@ -17614,8 +17614,8 @@
         "prob": 0.450723821443471,
         "probModello": 0.45183823837231046,
         "valueAtteso": -0.11432769086357941,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       },
       {
@@ -17635,7 +17635,7 @@
             "quotaBet365": null,
             "probMercato": 0.6946,
             "probModello": 0.6298671384079282,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6823,
             "chiusura": {
               "quota": 1.3,
@@ -17656,7 +17656,7 @@
             "quotaBet365": null,
             "probMercato": 0.6514,
             "probModello": 0.543243177735889,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.6092,
             "chiusura": {
               "quota": 1.42,
@@ -17670,8 +17670,8 @@
         "prob": 0.45246243999999997,
         "probModello": 0.41565715999999997,
         "valueAtteso": -0.12005104668800004,
-        "esito": null,
-        "ritorno": null,
+        "esito": "persa",
+        "ritorno": 0,
         "ricostruita": true
       }
     ]
@@ -17879,7 +17879,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-bodo-glimt-viking-fk",
@@ -17895,7 +17895,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -17903,8 +17903,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-10-30-1iiuk1c",
@@ -17924,7 +17924,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-villarreal-espanyol",
@@ -17941,7 +17941,7 @@
           "prob": 0.899,
           "limite": 0.8759,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "idPartita": "calcio-2026-10-30-kashima-antlers-cerezo-osaka",
@@ -17965,8 +17965,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     },
     {
       "id": "sp-2026-10-30-1ilsfms",
@@ -17986,7 +17986,7 @@
           "prob": 0.8739,
           "limite": 0.8446,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-elversberg-fsv-mainz-05",
@@ -18003,7 +18003,7 @@
           "prob": 0.8581,
           "limite": 0.8368,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-atletico-de-san-luis-atlas",
@@ -18019,7 +18019,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         }
       ],
       "quota": 1.59,
@@ -18027,8 +18027,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     }
   ]
 }

@@ -1,0 +1,1602 @@
+{
+  "data": "2026-10-31",
+  "generataAlle": "2026-10-31T07:20:41+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 1,
+      "rimaste": 213
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Efeler Ligi non riconosciute: Gebze Genclik, Sultanbeyli Bld",
+    "Squadre SuperLega non riconosciute: VV Monza",
+    "Quote pallavolo: 17 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "0a8ac58d315f6db0",
+        "3c697a9b2fbc5ae8",
+        "b6692e4f9b8dd67a",
+        "f65cd6b0eb647cfa"
+      ],
+      "idPartita": "pallavolo-2026-10-31-halkbank-ankara-onikisubat-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Halkbank Ankara - Onikisubat Bld",
+      "casa": "Halkbank Ankara",
+      "trasferta": "Onikisubat Bld",
+      "inizio": "2026-10-31T11:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Halkbank Ankara",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8822889469103568,
+          "quota": 1.11,
+          "fonteQuota": "mediana di 93 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Halkbank Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.111
+            ],
+            [
+              "zonagioco",
+              1.111
+            ],
+            [
+              "betwin360",
+              1.09
+            ],
+            [
+              "casinosanremo",
+              1.09
+            ],
+            [
+              "eplay24",
+              1.09
+            ],
+            [
+              "gioca7",
+              1.09
+            ],
+            [
+              "netbet",
+              1.09
+            ],
+            [
+              "netwin",
+              1.09
+            ],
+            [
+              "sportium",
+              1.09
+            ],
+            [
+              "staryes",
+              1.09
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Onikisubat Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.11771105308964318,
+          "quota": 5.5,
+          "fonteQuota": "mediana di 93 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Onikisubat Bld vince la partita.",
+          "bookmaker": [
+            [
+              "betwin360",
+              6.15
+            ],
+            [
+              "casinosanremo",
+              6.15
+            ],
+            [
+              "eplay24",
+              6.15
+            ],
+            [
+              "gioca7",
+              6.15
+            ],
+            [
+              "netbet",
+              6.15
+            ],
+            [
+              "netwin",
+              6.15
+            ],
+            [
+              "sportium",
+              6.15
+            ],
+            [
+              "staryes",
+              6.15
+            ],
+            [
+              "fastbet",
+              5.5
+            ],
+            [
+              "zonagioco",
+              5.5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "0163510b5a510485",
+        "acc9ee957500755d",
+        "dd8c64d041d96d8e"
+      ],
+      "idPartita": "pallavolo-2026-10-31-alanya-belediye-ziraat-bankasi-ankara",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Alanya Belediye - Ziraat Bankasi Ankara",
+      "casa": "Alanya Belediye",
+      "trasferta": "Ziraat Bankasi Ankara",
+      "inizio": "2026-10-31T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Alanya Belediye": 1400,
+        "Ziraat Bankasi Ankara": 1776
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Alanya Belediye 1400 – Ziraat Bankasi Ankara 1776, vantaggio campo compreso: vittoria della casa 14% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Alanya Belediye",
+          "probModello": null,
+          "probModelloStudio": 0.13974644661733981,
+          "probPinnacle": 0.2765778989305934,
+          "quota": 3.4,
+          "fonteQuota": "mediana di 113 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Alanya Belediye vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.45
+            ],
+            [
+              "marathonbet",
+              3.45
+            ],
+            [
+              "starcasino",
+              3.45
+            ],
+            [
+              "williamhill",
+              3.45
+            ],
+            [
+              "betwin360",
+              3.4
+            ],
+            [
+              "casinosanremo",
+              3.4
+            ],
+            [
+              "eplay24",
+              3.4
+            ],
+            [
+              "fastbet",
+              3.4
+            ],
+            [
+              "gioca7",
+              3.4
+            ],
+            [
+              "netbet",
+              3.4
+            ],
+            [
+              "netwin",
+              3.4
+            ],
+            [
+              "sportium",
+              3.4
+            ],
+            [
+              "stanleybet",
+              3.4
+            ],
+            [
+              "staryes",
+              3.4
+            ],
+            [
+              "zonagioco",
+              3.4
+            ],
+            [
+              "admiralbet",
+              3.35
+            ],
+            [
+              "betflag",
+              3.35
+            ],
+            [
+              "daznbet",
+              3.35
+            ],
+            [
+              "eurobet",
+              3.35
+            ],
+            [
+              "goldbet",
+              3.35
+            ],
+            [
+              "lottomatica",
+              3.35
+            ],
+            [
+              "planetwin365",
+              3.35
+            ],
+            [
+              "quigioco",
+              3.35
+            ],
+            [
+              "starvegas",
+              3.35
+            ],
+            [
+              "totosi",
+              3.35
+            ],
+            [
+              "domusbet",
+              3.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Ziraat Bankasi Ankara",
+          "probModello": null,
+          "probModelloStudio": 0.8602535533826602,
+          "probPinnacle": 0.7234221010694066,
+          "quota": 1.27,
+          "fonteQuota": "mediana di 113 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Ziraat Bankasi Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.28
+            ],
+            [
+              "marathonbet",
+              1.28
+            ],
+            [
+              "starcasino",
+              1.28
+            ],
+            [
+              "williamhill",
+              1.28
+            ],
+            [
+              "fastbet",
+              1.273
+            ],
+            [
+              "zonagioco",
+              1.273
+            ],
+            [
+              "admiralbet",
+              1.27
+            ],
+            [
+              "betflag",
+              1.27
+            ],
+            [
+              "betwin360",
+              1.27
+            ],
+            [
+              "casinosanremo",
+              1.27
+            ],
+            [
+              "daznbet",
+              1.27
+            ],
+            [
+              "eplay24",
+              1.27
+            ],
+            [
+              "eurobet",
+              1.27
+            ],
+            [
+              "gioca7",
+              1.27
+            ],
+            [
+              "goldbet",
+              1.27
+            ],
+            [
+              "lottomatica",
+              1.27
+            ],
+            [
+              "netbet",
+              1.27
+            ],
+            [
+              "netwin",
+              1.27
+            ],
+            [
+              "planetwin365",
+              1.27
+            ],
+            [
+              "sportium",
+              1.27
+            ],
+            [
+              "stanleybet",
+              1.27
+            ],
+            [
+              "starvegas",
+              1.27
+            ],
+            [
+              "staryes",
+              1.27
+            ],
+            [
+              "totosi",
+              1.27
+            ],
+            [
+              "domusbet",
+              1.26
+            ],
+            [
+              "quigioco",
+              1.25
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "1eead0b7705ac155",
+        "6cb1eb949fac1e37",
+        "779140b4f4fd1da7",
+        "ff52ecf91b61a744"
+      ],
+      "idPartita": "pallavolo-2026-10-31-spor-toto-sk-ankara-corum-sungurlu-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Spor Toto SK Ankara - Corum Sungurlu Bld",
+      "casa": "Spor Toto SK Ankara",
+      "trasferta": "Corum Sungurlu Bld",
+      "inizio": "2026-10-31T14:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Spor Toto SK Ankara",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8051200936519065,
+          "quota": 1.14,
+          "fonteQuota": "mediana di 29 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Spor Toto SK Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.15
+            ],
+            [
+              "betwin360",
+              1.15
+            ],
+            [
+              "casinosanremo",
+              1.15
+            ],
+            [
+              "eplay24",
+              1.15
+            ],
+            [
+              "gioca7",
+              1.15
+            ],
+            [
+              "marathonbet",
+              1.15
+            ],
+            [
+              "netbet",
+              1.15
+            ],
+            [
+              "netwin",
+              1.15
+            ],
+            [
+              "sportium",
+              1.15
+            ],
+            [
+              "stanleybet",
+              1.15
+            ],
+            [
+              "starcasino",
+              1.15
+            ],
+            [
+              "staryes",
+              1.15
+            ],
+            [
+              "williamhill",
+              1.15
+            ],
+            [
+              "admiralbet",
+              1.14
+            ],
+            [
+              "betflag",
+              1.14
+            ],
+            [
+              "daznbet",
+              1.14
+            ],
+            [
+              "domusbet",
+              1.14
+            ],
+            [
+              "eurobet",
+              1.14
+            ],
+            [
+              "goldbet",
+              1.14
+            ],
+            [
+              "lottomatica",
+              1.14
+            ],
+            [
+              "planetwin365",
+              1.14
+            ],
+            [
+              "starvegas",
+              1.14
+            ],
+            [
+              "totosi",
+              1.14
+            ],
+            [
+              "quigioco",
+              1.13
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Corum Sungurlu Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.19487990634809318,
+          "quota": 4.7,
+          "fonteQuota": "mediana di 29 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Corum Sungurlu Bld vince la partita.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              5
+            ],
+            [
+              "williamhill",
+              5
+            ],
+            [
+              "betsson",
+              4.95
+            ],
+            [
+              "starcasino",
+              4.95
+            ],
+            [
+              "betwin360",
+              4.8
+            ],
+            [
+              "casinosanremo",
+              4.8
+            ],
+            [
+              "eplay24",
+              4.8
+            ],
+            [
+              "gioca7",
+              4.8
+            ],
+            [
+              "netbet",
+              4.8
+            ],
+            [
+              "netwin",
+              4.8
+            ],
+            [
+              "sportium",
+              4.8
+            ],
+            [
+              "stanleybet",
+              4.8
+            ],
+            [
+              "staryes",
+              4.8
+            ],
+            [
+              "admiralbet",
+              4.7
+            ],
+            [
+              "betflag",
+              4.7
+            ],
+            [
+              "daznbet",
+              4.7
+            ],
+            [
+              "eurobet",
+              4.7
+            ],
+            [
+              "goldbet",
+              4.7
+            ],
+            [
+              "lottomatica",
+              4.7
+            ],
+            [
+              "planetwin365",
+              4.7
+            ],
+            [
+              "quigioco",
+              4.7
+            ],
+            [
+              "starvegas",
+              4.7
+            ],
+            [
+              "totosi",
+              4.7
+            ],
+            [
+              "domusbet",
+              4.5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "250bfc92dfadbf50",
+        "d7b92e27a2862dd2"
+      ],
+      "idPartita": "pallavolo-2026-10-31-gaziantep-genclik-spor-tfl-altekma",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Gaziantep Genclik Spor - TFL Altekma",
+      "casa": "Gaziantep Genclik Spor",
+      "trasferta": "TFL Altekma",
+      "inizio": "2026-10-31T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Gaziantep Genclik Spor": 1378,
+        "TFL Altekma": 1469
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Gaziantep Genclik Spor 1378 – TFL Altekma 1469, vantaggio campo compreso: vittoria della casa 45% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Gaziantep Genclik Spor",
+          "probModello": null,
+          "probModelloStudio": 0.45465857348556354,
+          "probPinnacle": 0.31406290239156276,
+          "quota": 3,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Gaziantep Genclik Spor vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3
+            ],
+            [
+              "zonagioco",
+              3
+            ],
+            [
+              "betsson",
+              2.85
+            ],
+            [
+              "marathonbet",
+              2.85
+            ],
+            [
+              "stanleybet",
+              2.85
+            ],
+            [
+              "starcasino",
+              2.85
+            ],
+            [
+              "williamhill",
+              2.85
+            ],
+            [
+              "betwin360",
+              2.82
+            ],
+            [
+              "casinosanremo",
+              2.82
+            ],
+            [
+              "eplay24",
+              2.82
+            ],
+            [
+              "gioca7",
+              2.82
+            ],
+            [
+              "netbet",
+              2.82
+            ],
+            [
+              "netwin",
+              2.82
+            ],
+            [
+              "sportium",
+              2.82
+            ],
+            [
+              "staryes",
+              2.82
+            ],
+            [
+              "admiralbet",
+              2.8
+            ],
+            [
+              "betflag",
+              2.8
+            ],
+            [
+              "daznbet",
+              2.8
+            ],
+            [
+              "eurobet",
+              2.8
+            ],
+            [
+              "goldbet",
+              2.8
+            ],
+            [
+              "lottomatica",
+              2.8
+            ],
+            [
+              "planetwin365",
+              2.8
+            ],
+            [
+              "starvegas",
+              2.8
+            ],
+            [
+              "totosi",
+              2.8
+            ],
+            [
+              "quigioco",
+              2.77
+            ],
+            [
+              "domusbet",
+              2.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "TFL Altekma",
+          "probModello": null,
+          "probModelloStudio": 0.5453414265144365,
+          "probPinnacle": 0.6859370976084368,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TFL Altekma vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.39
+            ],
+            [
+              "marathonbet",
+              1.39
+            ],
+            [
+              "starcasino",
+              1.39
+            ],
+            [
+              "williamhill",
+              1.39
+            ],
+            [
+              "betwin360",
+              1.38
+            ],
+            [
+              "casinosanremo",
+              1.38
+            ],
+            [
+              "eplay24",
+              1.38
+            ],
+            [
+              "gioca7",
+              1.38
+            ],
+            [
+              "netbet",
+              1.38
+            ],
+            [
+              "netwin",
+              1.38
+            ],
+            [
+              "sportium",
+              1.38
+            ],
+            [
+              "stanleybet",
+              1.38
+            ],
+            [
+              "staryes",
+              1.38
+            ],
+            [
+              "admiralbet",
+              1.37
+            ],
+            [
+              "betflag",
+              1.37
+            ],
+            [
+              "daznbet",
+              1.37
+            ],
+            [
+              "eurobet",
+              1.37
+            ],
+            [
+              "goldbet",
+              1.37
+            ],
+            [
+              "lottomatica",
+              1.37
+            ],
+            [
+              "planetwin365",
+              1.37
+            ],
+            [
+              "starvegas",
+              1.37
+            ],
+            [
+              "totosi",
+              1.37
+            ],
+            [
+              "domusbet",
+              1.36
+            ],
+            [
+              "quigioco",
+              1.35
+            ],
+            [
+              "fastbet",
+              1.333
+            ],
+            [
+              "zonagioco",
+              1.333
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4b0d82214b6510c5",
+        "4e4911042e48b8d9",
+        "83040774dae90c66"
+      ],
+      "idPartita": "pallavolo-2026-10-31-ibb-spor-fenerbahce-sk-istanbul",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Ibb Spor - Fenerbahce SK Istanbul",
+      "casa": "Ibb Spor",
+      "trasferta": "Fenerbahce SK Istanbul",
+      "inizio": "2026-10-31T14:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Ibb Spor": 1376,
+        "Fenerbahce SK Istanbul": 1549
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Ibb Spor 1376 – Fenerbahce SK Istanbul 1549, vantaggio campo compreso: vittoria della casa 34% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Ibb Spor",
+          "probModello": null,
+          "probModelloStudio": 0.34330640944563406,
+          "probPinnacle": 0.31286677319671136,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ibb Spor vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3
+            ],
+            [
+              "marathonbet",
+              3
+            ],
+            [
+              "starcasino",
+              3
+            ],
+            [
+              "williamhill",
+              3
+            ],
+            [
+              "betwin360",
+              2.95
+            ],
+            [
+              "casinosanremo",
+              2.95
+            ],
+            [
+              "eplay24",
+              2.95
+            ],
+            [
+              "gioca7",
+              2.95
+            ],
+            [
+              "netbet",
+              2.95
+            ],
+            [
+              "netwin",
+              2.95
+            ],
+            [
+              "sportium",
+              2.95
+            ],
+            [
+              "stanleybet",
+              2.95
+            ],
+            [
+              "staryes",
+              2.95
+            ],
+            [
+              "admiralbet",
+              2.9
+            ],
+            [
+              "betflag",
+              2.9
+            ],
+            [
+              "daznbet",
+              2.9
+            ],
+            [
+              "eurobet",
+              2.9
+            ],
+            [
+              "goldbet",
+              2.9
+            ],
+            [
+              "lottomatica",
+              2.9
+            ],
+            [
+              "planetwin365",
+              2.9
+            ],
+            [
+              "quigioco",
+              2.9
+            ],
+            [
+              "starvegas",
+              2.9
+            ],
+            [
+              "totosi",
+              2.9
+            ],
+            [
+              "domusbet",
+              2.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Fenerbahce SK Istanbul",
+          "probModello": null,
+          "probModelloStudio": 0.6566935905543659,
+          "probPinnacle": 0.6871332268032888,
+          "quota": 1.34,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Fenerbahce SK Istanbul vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.36
+            ],
+            [
+              "marathonbet",
+              1.36
+            ],
+            [
+              "starcasino",
+              1.36
+            ],
+            [
+              "williamhill",
+              1.36
+            ],
+            [
+              "betwin360",
+              1.35
+            ],
+            [
+              "casinosanremo",
+              1.35
+            ],
+            [
+              "eplay24",
+              1.35
+            ],
+            [
+              "gioca7",
+              1.35
+            ],
+            [
+              "netbet",
+              1.35
+            ],
+            [
+              "netwin",
+              1.35
+            ],
+            [
+              "sportium",
+              1.35
+            ],
+            [
+              "stanleybet",
+              1.35
+            ],
+            [
+              "staryes",
+              1.35
+            ],
+            [
+              "betflag",
+              1.34
+            ],
+            [
+              "daznbet",
+              1.34
+            ],
+            [
+              "eurobet",
+              1.34
+            ],
+            [
+              "goldbet",
+              1.34
+            ],
+            [
+              "lottomatica",
+              1.34
+            ],
+            [
+              "planetwin365",
+              1.34
+            ],
+            [
+              "totosi",
+              1.34
+            ],
+            [
+              "admiralbet",
+              1.33
+            ],
+            [
+              "domusbet",
+              1.33
+            ],
+            [
+              "starvegas",
+              1.33
+            ],
+            [
+              "quigioco",
+              1.32
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "9df47c317ce45f96"
+      ],
+      "idPartita": "pallavolo-2026-10-31-cuprum-stilon-gorzow-projekt-warsaw",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Cuprum Stilon Gorzow - Projekt Warsaw",
+      "casa": "Cuprum Stilon Gorzow",
+      "trasferta": "Projekt Warsaw",
+      "inizio": "2026-10-31T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cuprum Stilon Gorzow": 1364,
+        "Projekt Warsaw": 1583
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Cuprum Stilon Gorzow 1364 – Projekt Warsaw 1583, vantaggio campo compreso: vittoria della casa 29% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuprum Stilon Gorzow",
+          "probModello": null,
+          "probModelloStudio": 0.28553528157481295,
+          "probPinnacle": 0.18196457326892104,
+          "quota": 5.08,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Cuprum Stilon Gorzow vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              5.08
+            ],
+            [
+              "goldbet",
+              5.08
+            ],
+            [
+              "lottomatica",
+              5.08
+            ],
+            [
+              "planetwin365",
+              5.08
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probModelloStudio": 0.7144647184251871,
+          "probPinnacle": 0.8180354267310789,
+          "quota": 1.13,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "f04152bcf9752e2c"
+      ],
+      "idPartita": "pallavolo-2026-10-31-skra-belchatow-warta-zawiercie",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Skra Belchatow - Warta Zawiercie",
+      "casa": "Skra Belchatow",
+      "trasferta": "Warta Zawiercie",
+      "inizio": "2026-10-31T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Skra Belchatow": 1539,
+        "Warta Zawiercie": 1666
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Skra Belchatow 1539 – Warta Zawiercie 1666, vantaggio campo compreso: vittoria della casa 41% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Skra Belchatow",
+          "probModello": null,
+          "probModelloStudio": 0.4053579398780021,
+          "probPinnacle": 0.25515403372481066,
+          "quota": 3.61,
+          "fonteQuota": "mediana di 19 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Skra Belchatow vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.7
+            ],
+            [
+              "marathonbet",
+              3.7
+            ],
+            [
+              "starcasino",
+              3.7
+            ],
+            [
+              "sunbet",
+              3.7
+            ],
+            [
+              "totosi",
+              3.7
+            ],
+            [
+              "williamhill",
+              3.7
+            ],
+            [
+              "betflag",
+              3.61
+            ],
+            [
+              "goldbet",
+              3.61
+            ],
+            [
+              "lottomatica",
+              3.61
+            ],
+            [
+              "planetwin365",
+              3.61
+            ],
+            [
+              "admiralbet",
+              3.6
+            ],
+            [
+              "eurobet",
+              3.6
+            ],
+            [
+              "stanleybet",
+              3.6
+            ],
+            [
+              "starvegas",
+              3.6
+            ],
+            [
+              "vincitu",
+              3.6
+            ],
+            [
+              "daznbet",
+              3.55
+            ],
+            [
+              "domusbet",
+              3.55
+            ],
+            [
+              "quigioco",
+              3.55
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Warta Zawiercie",
+          "probModello": null,
+          "probModelloStudio": 0.5946420601219979,
+          "probPinnacle": 0.7448459662751893,
+          "quota": 1.24,
+          "fonteQuota": "mediana di 19 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Warta Zawiercie vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.25
+            ],
+            [
+              "betsson",
+              1.25
+            ],
+            [
+              "marathonbet",
+              1.25
+            ],
+            [
+              "starcasino",
+              1.25
+            ],
+            [
+              "starvegas",
+              1.25
+            ],
+            [
+              "sunbet",
+              1.25
+            ],
+            [
+              "totosi",
+              1.25
+            ],
+            [
+              "williamhill",
+              1.25
+            ],
+            [
+              "betflag",
+              1.24
+            ],
+            [
+              "daznbet",
+              1.24
+            ],
+            [
+              "domusbet",
+              1.24
+            ],
+            [
+              "eurobet",
+              1.24
+            ],
+            [
+              "goldbet",
+              1.24
+            ],
+            [
+              "lottomatica",
+              1.24
+            ],
+            [
+              "planetwin365",
+              1.24
+            ],
+            [
+              "stanleybet",
+              1.24
+            ],
+            [
+              "vincitu",
+              1.24
+            ],
+            [
+              "quigioco",
+              1.22
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "25c9e4c8ac1ca1ac"
+      ],
+      "idPartita": "pallavolo-2026-10-31-lkps-lublin-gks-katowice",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "LKPS Lublin - GKS Katowice",
+      "casa": "LKPS Lublin",
+      "trasferta": "GKS Katowice",
+      "inizio": "2026-10-31T20:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "LKPS Lublin",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8802708485544307,
+          "quota": 1.05,
+          "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se LKPS Lublin vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.05
+            ],
+            [
+              "betwin360",
+              1.05
+            ],
+            [
+              "casinosanremo",
+              1.05
+            ],
+            [
+              "eplay24",
+              1.05
+            ],
+            [
+              "gioca7",
+              1.05
+            ],
+            [
+              "goldbet",
+              1.05
+            ],
+            [
+              "lottomatica",
+              1.05
+            ],
+            [
+              "netbet",
+              1.05
+            ],
+            [
+              "netwin",
+              1.05
+            ],
+            [
+              "planetwin365",
+              1.05
+            ],
+            [
+              "sportium",
+              1.05
+            ],
+            [
+              "staryes",
+              1.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.11972915144556935,
+          "quota": 7.75,
+          "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:20:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita.",
+          "bookmaker": [
+            [
+              "betwin360",
+              7.75
+            ],
+            [
+              "casinosanremo",
+              7.75
+            ],
+            [
+              "eplay24",
+              7.75
+            ],
+            [
+              "gioca7",
+              7.75
+            ],
+            [
+              "netbet",
+              7.75
+            ],
+            [
+              "netwin",
+              7.75
+            ],
+            [
+              "sportium",
+              7.75
+            ],
+            [
+              "staryes",
+              7.75
+            ],
+            [
+              "betflag",
+              7.66
+            ],
+            [
+              "goldbet",
+              7.66
+            ],
+            [
+              "lottomatica",
+              7.66
+            ],
+            [
+              "planetwin365",
+              7.66
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

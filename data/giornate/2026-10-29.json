@@ -657,7 +657,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -1340,7 +1340,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota scesa a 4,00, sotto la minima 4,46 del mattino; il value era già sottile (1,2%) e non c'è nessun fatto nuovo che alzi la probabilità del 25% usata al mattino (controllo quote odss-api, 16:07)",
       "oraUltimoControllo": "2026-10-29T16:08:29+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -1418,7 +1418,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (Claude non disponibile): quota 2,10 sotto la minima 2,15",
       "oraUltimoControllo": "2026-10-30T01:09:27+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     }
   ],
@@ -2065,7 +2065,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-29-frosinone-lecce",
@@ -2105,8 +2105,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.59
     }
   ],
   "coppieQuota2": {

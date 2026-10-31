@@ -16,7 +16,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -33,7 +33,7 @@
       "n": 587,
       "limite": 0.8446,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -50,7 +50,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -67,7 +67,7 @@
       "n": 1156,
       "limite": 0.8368,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.13
     },
@@ -85,7 +85,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -102,7 +102,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -119,7 +119,7 @@
       "n": 1187,
       "limite": 0.8813,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "persa",
       "migliore": false
     },
     {
@@ -136,7 +136,7 @@
       "n": 782,
       "limite": 0.8759,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "persa",
       "migliore": true,
       "quota": 1.11,
       "bookmaker": "sportium"
@@ -155,7 +155,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "persa",
       "migliore": true
     },
     {
@@ -248,7 +248,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-bodo-glimt-viking-fk",
@@ -264,7 +264,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -272,8 +272,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-10-30-1iiuk1c",
@@ -293,7 +293,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-villarreal-espanyol",
@@ -310,7 +310,7 @@
           "prob": 0.899,
           "limite": 0.8759,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "idPartita": "calcio-2026-10-30-kashima-antlers-cerezo-osaka",
@@ -334,8 +334,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     },
     {
       "id": "sp-2026-10-30-1ilsfms",
@@ -355,7 +355,7 @@
           "prob": 0.8739,
           "limite": 0.8446,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-elversberg-fsv-mainz-05",
@@ -372,7 +372,7 @@
           "prob": 0.8581,
           "limite": 0.8368,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-10-30-atletico-de-san-luis-atlas",
@@ -388,7 +388,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         }
       ],
       "quota": 1.59,
@@ -396,8 +396,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-10-31T07:23:21+01:00"
 }

@@ -1,0 +1,222 @@
+{
+  "data": "2026-10-31",
+  "generataAlle": "2026-10-31T07:19:30+01:00",
+  "crediti": {
+    "usati": 2,
+    "rimasti": 252
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Swiss Indoors Basel: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "0848cc45309c49af",
+        "37cc3099e04403ba",
+        "94601d43cca5fd33"
+      ],
+      "idPartita": "tennis-2026-10-31-taylor-fritz-valentin-vacherot",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Valentin Vacherot - Taylor Fritz",
+      "casa": "Valentin Vacherot",
+      "trasferta": "Taylor Fritz",
+      "inizio": "2026-10-31T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Valentin Vacherot",
+          "probModello": null,
+          "probPinnacle": 0.26618415761962205,
+          "quota": 3.45,
+          "fonteQuota": "mediana di 186 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Valentin Vacherot vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Taylor Fritz",
+          "probModello": null,
+          "probPinnacle": 0.733815842380378,
+          "quota": 1.3,
+          "fonteQuota": "mediana di 186 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Taylor Fritz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "81eaab94feba67a6",
+        "f6709ee4d7f3a247"
+      ],
+      "idPartita": "tennis-2026-10-31-jan-lennard-struff-jiri-lehecka",
+      "sport": "tennis",
+      "competizione": "ATP Swiss Indoors Basel",
+      "partita": "Jiri Lehecka - Jan-Lennard Struff",
+      "casa": "Jiri Lehecka",
+      "trasferta": "Jan-Lennard Struff",
+      "inizio": "2026-10-31T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Jiri Lehecka",
+          "probModello": null,
+          "probPinnacle": 0.6602031394275162,
+          "quota": 1.43,
+          "fonteQuota": "mediana di 177 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Jiri Lehecka vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Jan-Lennard Struff",
+          "probModello": null,
+          "probPinnacle": 0.33979686057248387,
+          "quota": 2.7,
+          "fonteQuota": "mediana di 177 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Jan-Lennard Struff vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "96400be3346df41d",
+        "9a413bc1d9adbf85",
+        "e3f431f774dd6276",
+        "e529b89388ffb531"
+      ],
+      "idPartita": "tennis-2026-10-31-carlos-alcaraz-daniil-medvedev",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Daniil Medvedev - Carlos Alcaraz",
+      "casa": "Daniil Medvedev",
+      "trasferta": "Carlos Alcaraz",
+      "inizio": "2026-10-31T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Daniil Medvedev": {
+          "tot": 1836,
+          "superficie": 1858
+        },
+        "Carlos Alcaraz": {
+          "tot": 2124,
+          "superficie": 2046
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Daniil Medvedev 1836/1858 – Carlos Alcaraz 2124/2046 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Daniil Medvedev",
+          "probModello": 0.20661926467604955,
+          "probPinnacle": 0.3422880963408986,
+          "quota": 2.66,
+          "fonteQuota": "mediana di 183 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Daniil Medvedev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Carlos Alcaraz",
+          "probModello": 0.7933807353239505,
+          "probPinnacle": 0.6577119036591014,
+          "quota": 1.47,
+          "fonteQuota": "mediana di 183 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Carlos Alcaraz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "52ba02e4db9fdca0",
+        "559b953bc46e832e"
+      ],
+      "idPartita": "tennis-2026-10-31-alex-de-minaur-alexander-zverev",
+      "sport": "tennis",
+      "competizione": "ATP Vienna Open",
+      "partita": "Alexander Zverev - Alex de Minaur",
+      "casa": "Alexander Zverev",
+      "trasferta": "Alex de Minaur",
+      "inizio": "2026-10-31T16:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Alexander Zverev": {
+          "tot": 1982,
+          "superficie": 1937
+        },
+        "Alex de Minaur": {
+          "tot": 1810,
+          "superficie": 1806
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Alexander Zverev 1982/1937 – Alex de Minaur 1810/1806 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alexander Zverev",
+          "probModello": 0.7050646966757803,
+          "probPinnacle": 0.6904133685136323,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 188 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alexander Zverev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alex de Minaur",
+          "probModello": 0.2949353033242197,
+          "probPinnacle": 0.30958663148636756,
+          "quota": 3.05,
+          "fonteQuota": "mediana di 188 bookmaker (odss-api)",
+          "oraQuota": "2026-10-31T07:19:30+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alex de Minaur vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}
