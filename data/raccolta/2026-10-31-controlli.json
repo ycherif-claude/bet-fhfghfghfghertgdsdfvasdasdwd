@@ -18,6 +18,111 @@
         "quota 1,95 ≥ minima 1,65"
       ],
       "alle": "2026-10-31T08:26:38+01:00"
+    },
+    "calcio-2026-10-31-levante-atletico-madrid-doppia-chance-1x": {
+      "esito": "confermata",
+      "motivo": "formazioni non disponibili (ESPN non raggiungibile); quota 2,28 ≥ minima 2,22",
+      "problemi": [],
+      "dettagli": [
+        "formazioni non disponibili (ESPN non raggiungibile)",
+        "quota 2,28 ≥ minima 2,22"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00"
+    },
+    "calcio-2026-10-31-chelsea-manchester-united-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,10 sotto la minima 3,64",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,10 sotto la minima 3,64"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-bradford-city-huddersfield-town-under-over-1-5-under-1-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,60 sotto la minima 3,77",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,60 sotto la minima 3,77"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-1-fc-kaiserslautern-hertha-berlin-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,83 ≥ minima 2,80",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,83 ≥ minima 2,80"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00"
+    },
+    "calcio-2026-10-31-leyton-orient-cambridge-united-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,50 sotto la minima 2,53",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,50 sotto la minima 2,53"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-sv-darmstadt-98-1-fc-magdeburg-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,90 ≥ minima 2,89",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,90 ≥ minima 2,89"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00"
+    },
+    "calcio-2026-10-31-stoke-city-preston-north-end-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 4,40 sotto la minima 4,49",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,40 sotto la minima 4,49"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00",
+      "regola": true
+    },
+    "calcio-2026-10-31-port-vale-rochdale-under-over-1-5-under-1-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 3,45 sotto la minima 3,78",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,45 sotto la minima 3,78"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino"
+      ],
+      "alle": "2026-10-31T12:47:13+01:00",
+      "regola": true
     }
   },
   "claude": {

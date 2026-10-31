@@ -7357,9 +7357,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non disponibili (ESPN non raggiungibile); quota 2,28 ≥ minima 2,22",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -7479,9 +7479,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,10 sotto la minima 3,64",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -7599,9 +7599,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,60 sotto la minima 3,77",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -7799,9 +7799,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,83 ≥ minima 2,80",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -7839,9 +7839,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,50 sotto la minima 2,53",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -7999,9 +7999,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,90 ≥ minima 2,89",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -8079,9 +8079,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 4,40 sotto la minima 4,49",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -9003,9 +9003,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 3,45 sotto la minima 3,78",
+      "oraUltimoControllo": "2026-10-31T12:47:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -9566,7 +9566,13 @@
               "betflag",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7024793388429752,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -10808,7 +10814,13 @@
               "betflag",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7024793388429752,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -10893,7 +10905,13 @@
               "sportbet",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7151979565772669,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13167,7 +13185,13 @@
           "probMercato": 0.6281,
           "probModello": 0.7393051481212267,
           "esito": null,
-          "probModelloTarato": 0.7652
+          "probModelloTarato": 0.7652,
+          "chiusura": {
+            "quota": 1.6,
+            "prob": null,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 13
+          }
         },
         {
           "sport": "calcio",
@@ -13224,7 +13248,13 @@
               "stake",
               1.364
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6890620879603857,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 13
+          }
         },
         {
           "sport": "calcio",
@@ -13361,7 +13391,13 @@
               "betflag",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7024793388429752,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13446,7 +13482,13 @@
               "sportbet",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7151979565772669,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13555,7 +13597,13 @@
               "leovegas",
               1.42
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.48,
+            "prob": 0.6306748466257669,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13644,7 +13692,13 @@
               "planetwin365",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.31,
+            "prob": 0.7159500105909765,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13789,7 +13843,13 @@
               "winbet",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7121277514026758,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -13926,7 +13986,13 @@
               "leovegas",
               1.47
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.5906006534305102,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -14063,7 +14129,13 @@
               "leovegas",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7076390391690112,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -14132,7 +14204,13 @@
               "888sport_it",
               1.46
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.47,
+            "prob": 0.5768062368011925,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -14265,7 +14343,13 @@
               "leovegas",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.42,
+            "prob": 0.6434446057087566,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -22571,7 +22655,13 @@
               "stake",
               1.364
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6890620879603857,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 13
+          }
         },
         {
           "sport": "calcio",
@@ -22708,7 +22798,13 @@
               "leovegas",
               1.47
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.5906006534305102,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -22777,7 +22873,13 @@
               "888sport_it",
               1.46
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.47,
+            "prob": 0.5768062368011925,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -28390,7 +28492,13 @@
               "planetwin365",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7153158350158639,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -29310,7 +29418,13 @@
               "planetwin365",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7153158350158639,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -29822,7 +29936,13 @@
               "planetwin365",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7153158350158639,
+            "alle": "2026-10-31T12:47:13+01:00",
+            "minutiPrima": 43
+          }
         },
         {
           "sport": "calcio",
@@ -39010,7 +39130,13 @@
                 "888sport_it",
                 1.46
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.5768062368011925,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "basket",
@@ -39579,7 +39705,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -39953,7 +40085,13 @@
                 "leovegas",
                 1.47
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5906006534305102,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -40785,7 +40923,13 @@
                 "leovegas",
                 1.5
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5471233087725604,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -44374,7 +44518,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -44511,7 +44661,13 @@
                 "leovegas",
                 1.47
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5906006534305102,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           }
         ],
         "quota": 1.95,
@@ -45584,7 +45740,13 @@
                 "888sport_it",
                 1.46
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.5768062368011925,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -46113,7 +46275,13 @@
                 "leovegas",
                 1.45
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.616751625122761,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -46332,7 +46500,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.6478171092592521,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -47064,7 +47238,13 @@
                 "leovegas",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": 0.6626511976104792,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -47271,7 +47451,13 @@
                 "leovegas",
                 1.5
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5471233087725604,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -51060,7 +51246,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -51129,7 +51321,13 @@
                 "888sport_it",
                 1.46
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.5768062368011925,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           }
         ],
         "quota": 1.91,
@@ -52307,7 +52505,13 @@
                 "leovegas",
                 1.45
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.616751625122761,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -53051,7 +53255,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.6478171092592521,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -53614,7 +53824,13 @@
                 "leovegas",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": 0.6626511976104792,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -53733,7 +53949,13 @@
                 "stake",
                 1.364
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.36,
+              "prob": 0.6890620879603857,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 13
+            }
           },
           {
             "sport": "calcio",
@@ -53870,7 +54092,13 @@
                 "leovegas",
                 1.47
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5906006534305102,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           }
         ],
         "quota": 2.04,
@@ -53912,7 +54140,13 @@
                 "stake",
                 1.364
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.36,
+              "prob": null,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 13
+            }
           },
           {
             "sport": "calcio",
@@ -54031,7 +54265,13 @@
                 "leovegas",
                 1.5
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5471233087725604,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -54196,7 +54436,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.6478171092592521,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -54899,7 +55145,13 @@
                 "leovegas",
                 1.45
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.616751625122761,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -55110,7 +55362,13 @@
                 "leovegas",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": 0.6626511976104792,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -56125,7 +56383,13 @@
                 "leovegas",
                 1.47
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5906006534305102,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -56835,7 +57099,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -58413,7 +58683,13 @@
                 "leovegas",
                 1.5
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5471233087725604,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -59098,7 +59374,13 @@
                 "888sport_it",
                 1.46
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.5768062368011925,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "basket",
@@ -60552,7 +60834,13 @@
                 "stake",
                 1.364
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.36,
+              "prob": 0.6890620879603857,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 13
+            }
           },
           {
             "sport": "calcio",
@@ -63166,7 +63454,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -63303,7 +63597,13 @@
                 "leovegas",
                 1.47
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5906006534305102,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           }
         ],
         "quota": 1.95,
@@ -63642,7 +63942,13 @@
                 "888sport_it",
                 1.46
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.5768062368011925,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -64558,7 +64864,13 @@
                 "leovegas",
                 1.5
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.5471233087725604,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -65033,7 +65345,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -66061,7 +66379,13 @@
                 "planetwin365",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7153158350158639,
+              "alle": "2026-10-31T12:47:13+01:00",
+              "minutiPrima": 43
+            }
           },
           {
             "sport": "calcio",
@@ -66898,7 +67222,8 @@
     "1 partita già iniziata esclusa",
     "odss-api alle 07:12: 8 partite senza righe a tempo intero (full_time), senza quote: Tobol Kostanai - Aktobe Lento, Ulytau FC - Atyrau, US Sassuolo Calcio W-Parma Calcio W, Fk Kaspii Aktau - Fc Kyzylzhar Sk, Kairat Almaty - Fc Altai Oskemen, Fc Yelimai - Okzhetpes Kokshetau, Vitoria Sc - Rp Fc, Gyor ETO (W) - Diosgyori VTK (W)",
     "odss-api alle 07:12: budget insufficiente (tetto di 4 richieste al giorno per calcio raggiunto; calcio oggi 4 su 4, giornata 4 su 16, rimaste 391, riserva 60): doppia chance e under/over solo per le partite già completate",
-    "odss-api alle 07:12: 56 partite senza doppia chance e under/over (budget del calcio finito o errore: solo l'1x2 del mattino)"
+    "odss-api alle 07:12: 56 partite senza doppia chance e under/over (budget del calcio finito o errore: solo l'1x2 del mattino)",
+    "Controlli prima delle partite (ESPN): site.api.espn.com: risposta non valida"
   ],
   "schedinePronostici": [
     {
