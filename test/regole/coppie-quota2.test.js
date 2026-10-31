@@ -449,3 +449,15 @@ test('triple: dalle 10 partite più probabili confermate, quota 1,90-2,50, al ma
   const r = v(t[0]); r[0].esito = 'rimborsata';
   assert.deepEqual(esitoCoppia({ ...t[0], gambe: r }), { esito: 'vinta', ritorno: Math.round(1.3 ** 2 * 1.025 * 100) / 100 });
 });
+
+test('doppie dalle stesse 10 partite: al massimo 5, bonus della doppia; mostrate con le triple', async () => {
+  const { costruisciDoppie } = await import('../../src/regole/coppie-quota2.js');
+  const gg = [...tre('a'), ...tre('b'), ...tre('c'), conferma(gamba('d1', 1.3, 0.72)), conferma(gamba('e1', 1.3, 0.6))];
+  const d = costruisciDoppie(gg, { data: 'x' });
+  assert.equal(d.length, 5);
+  assert.ok(d.every((x) => x.gambe.length === 2 && x.quota === 1.69 && x.incremento === 0.025));
+  assert.ok(!d.flatMap((x) => x.gambe.map((g) => g.idPartita)).includes('e1'));
+  const c = costruisciCoppieQuota2(gg, { data: 'x' });
+  const t = testoCoppie({ coppieQuota2: c });
+  assert.match(t, /Doppie<\/b>[\s\S]*Triple a quota circa 2<\/b>/);
+});

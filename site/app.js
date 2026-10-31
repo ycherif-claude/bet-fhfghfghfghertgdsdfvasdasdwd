@@ -572,15 +572,17 @@ function avvia(dati) {
   const coppieDi = (modo) => (Array.isArray(dati.oggi.giornata?.coppieQuota2?.[modo]) ? dati.oggi.giornata.coppieQuota2[modo] : []);
   // Mostrate [utente, 31/10/2026]: triple dalle 10 partite più probabili confermate; le coppie restano in background.
   const lcp = coppieDi('triple');
+  const ldp = coppieDi('doppie');
   const bilCoppie = testoBilancioCoppie(dati.bilancioCoppie);
   if (cq) {
     const sezione = (titolo, lista, sigla) => (lista.length ? [el('h3', {}, titolo), ...lista.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, `${sigla}${i + 1}`, ultime.get(x?.id) ?? null, { segnabile: true })))] : []);
-    cq.replaceChildren(...(lcp.length || bilCoppie ? [
-      el('h2', {}, 'Triple a quota circa 2'),
-      el('p', { class: 'meta' }, 'Dalle 10 partite più probabili su cui modello e mercato sono d\'accordo; quota fra 1,90 e 2,50, ogni partita in una tripla sola, bonus bet365 +5%.'),
+    cq.replaceChildren(...(lcp.length || ldp.length || bilCoppie ? [
+      el('h2', {}, 'Doppie e triple'),
+      el('p', { class: 'meta' }, 'Dalle 10 partite più probabili su cui modello e mercato sono d\'accordo; in ogni elenco una partita è in una schedina sola. Bonus bet365: +2,5% la doppia, +5% la tripla.'),
       ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
       // Solo per probabilità [utente, 31/10/2026]; quelle per margine restano in background per studio.
-      ...sezione('Prima le più probabili', lcp, 'T'),
+      ...sezione('Doppie (quota circa 1,70)', ldp, 'D'),
+      ...sezione('Triple (quota circa 2,20)', lcp, 'T'),
     ] : []));
   }
   // Multiple con le partite più probabili in alto; le altre (per margine) nella sezione chiusa.
@@ -588,7 +590,7 @@ function avvia(dati) {
   const perProb = tutteMb.filter((x) => x?.criterio === 'probabilitaConfermate');
   const mp = document.getElementById('multiple-probabili');
   if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili (confermate da modello e mercato)'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x, ultime.get(x?.id) ?? null, { segnabile: true })))] : []));
-  if (cq && !lcp.length && !perProb.length) cq.append(el('p', { class: 'vuoto' }, 'Oggi nessuna coppia a quota 2 e nessuna multipla con le partite più probabili.'));
+  if (cq && !lcp.length && !ldp.length && !perProb.length) cq.append(el('p', { class: 'vuoto' }, 'Oggi nessuna coppia a quota 2 e nessuna multipla con le partite più probabili.'));
   const bonus = document.getElementById('multiple-bonus');
   const mb = tutteMb.filter((x) => x?.criterio !== 'probabilita' && x?.criterio !== 'probabilitaConfermate');
   if (bonus) bonus.replaceChildren(...(mb.length ? [el('h2', {}, 'Multiple bonus bet365'), ...mb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x)))] : []));

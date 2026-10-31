@@ -266,6 +266,8 @@ export const CONFIG = congela({
     // Triple [utente, 31/10/2026]: dalle 10 partite più probabili confermate da modello e mercato, al massimo 3,
     // quota totale intorno a 2 (le più probabili sono a 1,30: due insieme non arrivano a 1,90).
     triple: { partite: 10, max: 3, quotaMin: 1.9, quotaMax: 2.5 },
+    // Doppie [utente, 31/10/2026]: dalle stesse 10 partite, al massimo 5, quota intorno a 1,70 (due partite a 1,30).
+    doppie: { partite: 10, max: 5, quotaMin: 1.5, quotaMax: 2.15 },
   },
   // Taratura automatica del modello (solo studio) [utente, 29/10/2026]: da 50 partite chiuse per sport; `forza`
   // = quanto la correzione è trattenuta verso "nessuna correzione" (circa come 20 partite che dicono il contrario).

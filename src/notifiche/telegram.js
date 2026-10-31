@@ -84,7 +84,10 @@ export function testoMultiplaBonus(mb) {
 const coppieDi = (giornata, modo) => (Array.isArray(giornata?.coppieQuota2?.[modo]) ? giornata.coppieQuota2[modo].filter((x) => x && x.id && Array.isArray(x.gambe)) : []);
 // Mostrate [utente, 31/10/2026]: le triple dalle 10 partite più probabili confermate da modello e mercato. Le coppie
 // (per probabilità e per margine, confermate e non) si calcolano in background per studiarle.
-const COPPIE_MOSTRATE = [['triple', 'Triple a quota circa 2', 'le 10 partite più probabili, confermate da modello e mercato']];
+const COPPIE_MOSTRATE = [
+  ['doppie', 'Doppie', 'le 10 partite più probabili, confermate da modello e mercato'],
+  ['triple', 'Triple a quota circa 2', 'le stesse 10 partite'],
+];
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).
 const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash(COPPIE_MOSTRATE.flatMap(([modo]) => coppieDi(giornata, modo).map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+'))).join(','))}`;
 export function testoCoppie(giornata) {
@@ -319,8 +322,8 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   const g = giornate.find((x) => x.data === ieri);
   // Quello mandato quel giorno: fino al 30/10 coppie per margine e multiple per probabilità; dal 31/10 le confermate.
   const prima = ieri < '2026-10-31';
-  const coppie = coppieDi(g, prima ? 'margine' : 'triple');
-  const nomeSchedine = prima ? 'Coppie' : 'Triple';
+  const schedine = prima ? [['Coppie', coppieDi(g, 'margine')]] : [['Doppie', coppieDi(g, 'doppie')], ['Triple', coppieDi(g, 'triple')]];
+  const coppie = schedine.flatMap(([, l]) => l);
   const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate'));
   if (!coppie.length && !multiple.length) return [];
   // Si manda anche con partite ancora senza risultato [utente, 31/10/2026]: lo dice la riga stessa.
@@ -328,11 +331,13 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   if (aggiornamento && aperte && ora < 20) return [];
   const conta = (lista, esito) => lista.filter((x) => x.esito === esito).length;
   const righe = [aggiornamento ? `📅 <b>Ieri, ${giornoMese(ieri)}: aggiornamento</b>${aperte ? ' (ultimo controllo di oggi)' : ', tutte chiuse'}` : `📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
-  if (coppie.length) {
-    const vinte = conta(coppie, 'vinta');
-    const aperte = coppie.filter((c) => !c.esito).length;
-    const profitto = coppie.reduce((a, c) => a + (c.esito === 'vinta' ? c.ritorno - 1 : c.esito === 'persa' ? -1 : 0), 0);
-    righe.push('', `🎲 ${nomeSchedine}: <b>${vinte} vinte su ${coppie.length}</b>${aperte ? ` (${aperte} senza esito)` : ''} · con 1 € a schedina ${euroSegno(Math.round(profitto * 100) / 100)}`);
+  if (coppie.length) righe.push('');
+  for (const [nome, lista] of schedine) {
+    if (!lista.length) continue;
+    const vinte = conta(lista, 'vinta');
+    const aperteS = lista.filter((c) => !c.esito).length;
+    const profitto = lista.reduce((a, c) => a + (c.esito === 'vinta' ? c.ritorno - 1 : c.esito === 'persa' ? -1 : 0), 0);
+    righe.push(`🎲 ${nome}: <b>${vinte} vinte su ${lista.length}</b>${aperteS ? ` (${aperteS} senza esito)` : ''} · con 1 € a schedina ${euroSegno(Math.round(profitto * 100) / 100)}`);
   }
   for (const mb of multiple) {
     const giuste = conta(mb.gambe, 'vinta');

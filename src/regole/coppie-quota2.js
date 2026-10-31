@@ -80,7 +80,7 @@ export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMer
 
 // Le coppie degli otto modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite; gli altri
 // quattro uguali ma con tutte le partite adatte, per confronto ("tutte" è il margine) [utente, 30/10/2026].
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'triple', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'doppie', 'triple', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
 export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
   const top = migliori(gambe);
   return {
@@ -90,6 +90,7 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
     // Come le multiple per probabilità: fra tutte le partite confermate, non solo le migliori 20 per margine [utente, 31/10/2026].
     probabilitaConfermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
+    doppie: costruisciDoppie(gambe, { data }),
     triple: costruisciTriple(gambe, { data }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
     probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
@@ -97,34 +98,39 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     confermateTutte: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'confermateTutte' }),
   };
 };
-// Triple [utente, 31/10/2026]: dalle `partite` più probabili confermate da modello e mercato, al massimo `max`,
-// quota totale fra quotaMin e quotaMax; prima le più probabili, ogni partita in una tripla sola. Bonus bet365 della tripla.
-export function costruisciTriple(gambe, { data } = {}) {
-  const T = C.triple;
+// Doppie e triple [utente, 31/10/2026]: dalle `partite` più probabili confermate da modello e mercato, al massimo `max`,
+// quota totale fra quotaMin e quotaMax; prima le più probabili, ogni partita in una schedina sola. Bonus bet365.
+// Gruppi di `n` partite fra `top` (combinazioni).
+function gruppi(top, n, da = 0, corrente = [], out = []) {
+  if (corrente.length === n) { out.push([...corrente]); return out; }
+  for (let i = da; i < top.length; i++) { corrente.push(top[i]); gruppi(top, n, i + 1, corrente, out); corrente.pop(); }
+  return out;
+}
+
+export const costruisciTriple = (gambe, { data } = {}) => schedineMigliori(gambe, { data, n: 3, regole: C.triple, sigla: 'T3P', criterio: 'triple' });
+export const costruisciDoppie = (gambe, { data } = {}) => schedineMigliori(gambe, { data, n: 2, regole: C.doppie, sigla: 'D2P', criterio: 'doppie' });
+
+// Schedine da `n` partite dalle più probabili confermate (doppie e triple): prima le più probabili, ogni partita una volta.
+function schedineMigliori(gambe, { data, n, regole: T, sigla, criterio }) {
   const top = gambe.filter(confermata).sort((a, b) => b.probMercato - a.probMercato || b.quota * b.probMercato - a.quota * a.probMercato).slice(0, T.partite);
   const possibili = [];
-  for (let i = 0; i < top.length; i++) {
-    for (let j = i + 1; j < top.length; j++) {
-      for (let k = j + 1; k < top.length; k++) {
-        const t = [top[i], top[j], top[k]];
-        if (new Set(t.map((g) => g.idPartita)).size < 3) continue;
-        const quota = t.reduce((a, g) => a * g.quota, 1);
-        if (quota < T.quotaMin - EPS || quota > T.quotaMax + EPS) continue;
-        possibili.push({ t, quota, p: t.reduce((a, g) => a * g.probMercato, 1), chiave: t.map((g) => g.idPartita).sort().join('|') });
-      }
-    }
+  for (const t of gruppi(top, n)) {
+    if (new Set(t.map((g) => g.idPartita)).size < n) continue;
+    const quota = t.reduce((a, g) => a * g.quota, 1);
+    if (quota < T.quotaMin - EPS || quota > T.quotaMax + EPS) continue;
+    possibili.push({ t, quota, p: t.reduce((a, g) => a * g.probMercato, 1), chiave: t.map((g) => g.idPartita).sort().join('|') });
   }
   possibili.sort((x, y) => y.p - x.p || Math.abs(x.quota - 2) - Math.abs(y.quota - 2) || x.chiave.localeCompare(y.chiave));
   const usate = new Set();
   const out = [];
-  const incremento = CONFIG.multiplaBonus.incremento[3] ?? 0;
+  const incremento = CONFIG.multiplaBonus.incremento[n] ?? 0;
   for (const c of possibili) {
     if (out.length >= T.max) break;
     if (c.t.some((g) => usate.has(g.idPartita))) continue;
     c.t.forEach((g) => usate.add(g.idPartita));
     out.push({
-      id: `T3P${out.length + 1}-${data}`,
-      criterio: 'triple',
+      id: `${sigla}${out.length + 1}-${data}`,
+      criterio,
       prova: true,
       gambe: [...c.t].sort((x, y) => Date.parse(x.inizio) - Date.parse(y.inizio)).map(({ resa, ...g }) => ({ ...g, esito: null })),
       quota: arrotonda(c.quota),
