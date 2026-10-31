@@ -354,3 +354,29 @@ test('multiple confermate con poche partite: il massimo che c\'è, senza doppion
   // Quelle non mostrate restano come prima: con 3 partite niente.
   assert.deepEqual(mb.filter((m) => m.criterio === 'probabilita'), []);
 });
+
+test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per probabilità confermate)', async () => {
+  const { messaggioIeri, soloEssenziale } = await import('../../src/notifiche/telegram.js');
+  const gg = (e) => ({ ...gamba('x', 1.3, 0.75), esito: e });
+  const g = { data: '2026-10-30', coppieQuota2: {
+    probabilitaConfermate: [
+      { id: 'a', gambe: [gg('vinta'), gg('vinta')], esito: 'vinta', ritorno: 2 },
+      { id: 'b', gambe: [gg('vinta'), gg('persa')], esito: 'persa', ritorno: 0 },
+    ],
+    margine: [{ id: 'm', gambe: [gg('vinta')], esito: 'vinta', ritorno: 2 }],
+  }, multipleBonus: [
+    { id: 'MBPC5-2026-10-30', criterio: 'probabilitaConfermate', gambe: [gg('vinta'), gg('vinta'), gg('vinta'), gg('vinta'), gg('persa')], esito: 'persa', ritorno: 0 },
+    { id: 'MBP5-2026-10-30', criterio: 'probabilita', gambe: [gg('vinta')], esito: 'vinta', ritorno: 4 },
+  ] };
+  assert.deepEqual(messaggioIeri({ giornate: [g], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T07:30:00Z') }), []);
+  const m = messaggioIeri({ giornate: [g], inviate: new Set(), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') });
+  assert.equal(m.length, 1);
+  assert.match(m[0].testo, /Ieri, 30\/10/);
+  assert.match(m[0].testo, /Coppie: <b>1 vinte su 2<\/b> · con 1 € a coppia 0,00 €/);
+  assert.match(m[0].testo, /Multipla da 5: <b>4 partite giuste su 5<\/b> · persa/);
+  assert.doesNotMatch(m[0].testo, /MBP5/);
+  assert.equal(m[0].testo.match(/Multipla da/g).length, 1);
+  assert.deepEqual(messaggioIeri({ giornate: [g], inviate: new Set([m[0].chiave]), oggi: '2026-10-31', adesso: new Date('2026-10-31T08:30:00Z') }), []);
+  // Passa anche il filtro "solo l'essenziale".
+  assert.equal(soloEssenziale(m, { giornata: {}, oggi: '2026-10-31' }).manda.length, 1);
+});

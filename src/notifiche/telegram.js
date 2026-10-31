@@ -303,6 +303,33 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
   return [{ chiave, testo }];
 }
 
+// Bilancio di ieri [utente, 31/10/2026]: solo quello che si è mandato (coppie per probabilità confermate e
+// multiple per probabilità confermate). Un messaggio al giorno dopo le 9, quando il registro ha chiuso gli esiti.
+export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
+  const chiave = `${oggi}|ieri`;
+  if (inviate.has(chiave) || partiRoma(adesso).ora < 9) return [];
+  const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
+  const g = giornate.find((x) => x.data === ieri);
+  const coppie = coppieDi(g, 'probabilitaConfermate');
+  const multiple = multipleBonus(g).filter((m) => m.criterio === 'probabilitaConfermate');
+  if (!coppie.length && !multiple.length) return [];
+  const conta = (lista, esito) => lista.filter((x) => x.esito === esito).length;
+  const righe = [`📅 <b>Ieri, ${giornoMese(ieri)}</b>`];
+  if (coppie.length) {
+    const vinte = conta(coppie, 'vinta');
+    const aperte = coppie.filter((c) => !c.esito).length;
+    const profitto = coppie.reduce((a, c) => a + (c.esito === 'vinta' ? c.ritorno - 1 : c.esito === 'persa' ? -1 : 0), 0);
+    righe.push('', `🎲 Coppie: <b>${vinte} vinte su ${coppie.length}</b>${aperte ? ` (${aperte} senza esito)` : ''} · con 1 € a coppia ${euroSegno(Math.round(profitto * 100) / 100)}`);
+  }
+  for (const mb of multiple) {
+    const giuste = conta(mb.gambe, 'vinta');
+    const aperte = mb.gambe.filter((x) => !x.esito).length;
+    const esito = mb.esito === 'vinta' ? `VINTA, 1 € → ${virgola(mb.ritorno)} €` : mb.esito === 'persa' ? 'persa' : 'in attesa';
+    righe.push(`🧪 Multipla da ${mb.gambe.length}: <b>${giuste} partite giuste su ${mb.gambe.length}</b>${aperte ? ` (${aperte} senza esito)` : ''} · ${esito}`);
+  }
+  return [{ chiave, testo: righe.join('\n') }];
+}
+
 // Esito delle multiple bonus, una volta per multipla.
 export function messaggiMultipleBonus({ giornate, inviate }) {
   const out = [];
@@ -337,7 +364,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   const manda = [];
   const tacere = [];
   const piede = sito ? `\n\n${sito}` : '';
-  const sempre = /\|(run|mancante|esito|provvisorio|storico)(\||$)/;
+  const sempre = /\|(run|mancante|esito|provvisorio|storico|ieri)(\||$)/;
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
@@ -680,6 +707,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));
   // Storico solo sul sito [utente, 31/10/2026]: su Telegram non si manda più.
+  lista.push(...messaggioIeri({ giornate: recenti, inviate, oggi, adesso }));
   if (storico) lista.push(...messaggioStorico({ giornate: leggiGiornateRecenti(dirData, oggi, 100000), inviate, oggi, adesso, essenziale }));
   lista.push(...messaggiEsiti({
     giornate: recenti, tutteGiornate: leggiGiornateRecenti(dirData, oggi, 100000), segnature, inviate, adesso,
