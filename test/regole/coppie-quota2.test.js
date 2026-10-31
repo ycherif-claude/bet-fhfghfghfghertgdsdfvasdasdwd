@@ -331,7 +331,8 @@ test('multiple per probabilità confermate: solo partite su cui modello e mercat
   const gg = Array.from({ length: 12 }, (_, i) => ({ ...gamba(`g${i}`, 1.3, 0.75 - i * 0.002), probModello: i % 2 ? 0.6 : 0.75 - i * 0.002 }));
   const mb = costruisciMultipleBonus(null, { data: 'x', gambe: gg, gambeProbabilita: gg });
   const conf = mb.filter((m) => m.criterio === 'probabilitaConfermate');
-  assert.deepEqual(conf.map((m) => [m.id, m.gambe.length]), [['MBPC5-x', 5]]);
+  // 6 partite confermate: la da 5 e, al posto della da 10, una con tutte e 6.
+  assert.deepEqual(conf.map((m) => [m.id, m.gambe.length]), [['MBPC5-x', 5], ['MBPC6-x', 6]]);
   assert.ok(conf[0].gambe.every((g) => Math.abs(g.probModello - g.probMercato) < 0.05));
   // Le altre restano uguali (per probabilità senza conferma, per margine).
   assert.deepEqual(mb.filter((m) => m.criterio === 'probabilita').map((m) => m.id), ['MBP5-x', 'MBP10-x']);
