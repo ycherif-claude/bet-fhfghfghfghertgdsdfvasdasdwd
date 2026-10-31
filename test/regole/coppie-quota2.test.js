@@ -403,3 +403,16 @@ test('Telegram: bilancio di ieri solo di quello mandato (coppie e multiple per p
   // Passa anche il filtro "solo l'essenziale".
   assert.equal(soloEssenziale(m, { giornata: {}, oggi: '2026-11-01' }).manda.length, 1);
 });
+
+test('coppie per probabilità confermate: da tutte le partite confermate, non solo le migliori 20 per margine', () => {
+  // 22 partite: le ultime due (peggiori per margine, fuori dalle migliori 20) sono le più probabili.
+  const gg = Array.from({ length: 22 }, (_, i) => {
+    const prob = i >= 20 ? 0.7 : 0.68;
+    const quota = i >= 20 ? 1.38 : 1.45 + i * 0.001;
+    return { ...gamba(`g${i}`, quota, prob), probModello: prob };
+  });
+  const c = costruisciCoppieQuota2(gg, { data: 'x' });
+  const ids = (l) => l.flatMap((x) => x.gambe.map((y) => y.idPartita));
+  assert.ok(ids(c.probabilitaConfermate).includes('g20'));
+  assert.ok(!ids(c.confermate).includes('g20'));
+});

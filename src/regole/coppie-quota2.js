@@ -88,7 +88,8 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     probabilita: costruisciCoppie(top, { data, criterio: 'probabilita' }),
     modello: costruisciCoppie(top.filter(conModello), { data, criterio: 'modello' }),
     confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
-    probabilitaConfermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
+    // Come le multiple per probabilità: fra tutte le partite confermate, non solo le migliori 20 per margine [utente, 31/10/2026].
+    probabilitaConfermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
     probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
     modelloTutte: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modelloTutte' }),
