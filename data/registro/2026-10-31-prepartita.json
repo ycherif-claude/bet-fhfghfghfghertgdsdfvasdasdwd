@@ -2795,6 +2795,78 @@
       "prob": null,
       "alle": "2026-10-31T20:47:42+01:00",
       "minutiPrima": 12
+    },
+    "nba-2026-10-31-new-orleans-pelicans-atlanta-hawks|Vincente|New Orleans Pelicans": {
+      "quota": 2.66,
+      "prob": 0.3592162417446411,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 10
+    },
+    "nba-2026-10-31-new-orleans-pelicans-atlanta-hawks|Vincente|Atlanta Hawks": {
+      "quota": 1.5,
+      "prob": 0.6407837582553589,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 10
+    },
+    "nba-2026-10-31-new-orleans-pelicans-atlanta-hawks|Totale punti 239.5|Over 239.5": {
+      "quota": 1.91,
+      "prob": 0.4985041136873597,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 10
+    },
+    "nba-2026-10-31-new-orleans-pelicans-atlanta-hawks|Totale punti 239.5|Under 239.5": {
+      "quota": 1.91,
+      "prob": 0.5014958863126402,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 10
+    },
+    "nba-2026-10-31-memphis-grizzlies-sacramento-kings|Vincente|Memphis Grizzlies": {
+      "quota": 1.28,
+      "prob": 0.7490540273368744,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-memphis-grizzlies-sacramento-kings|Vincente|Sacramento Kings": {
+      "quota": 3.8,
+      "prob": 0.2509459726631255,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-milwaukee-bucks-cleveland-cavaliers|Vincente|Milwaukee Bucks": {
+      "quota": 4,
+      "prob": 0.24419907665333865,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-milwaukee-bucks-cleveland-cavaliers|Vincente|Cleveland Cavaliers": {
+      "quota": 1.27,
+      "prob": 0.7558009233466614,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves|Vincente|San Antonio Spurs": {
+      "quota": 1.17,
+      "prob": 0.813647360199791,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves|Vincente|Minnesota Timberwolves": {
+      "quota": 5.2,
+      "prob": 0.186352639800209,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves|Handicap -12.5|casa": {
+      "quota": 1.95,
+      "prob": 0.49233992942384947,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves|Handicap -12.5|trasferta": {
+      "quota": 1.87,
+      "prob": 0.5076600705761506,
+      "alle": "2026-10-31T23:50:10+01:00",
+      "minutiPrima": 70
     }
   },
   "copertura": {
@@ -2971,6 +3043,16 @@
       "idPartite": [
         "calcio-2026-10-31-ajax-az-alkmaar",
         "calcio-2026-10-31-sc-cambuur-go-ahead-eagles"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-10-31T23:50:10+01:00",
+      "partite": 4,
+      "idPartite": [
+        "nba-2026-10-31-new-orleans-pelicans-atlanta-hawks",
+        "nba-2026-10-31-memphis-grizzlies-sacramento-kings",
+        "nba-2026-10-31-milwaukee-bucks-cleveland-cavaliers",
+        "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves"
       ]
     }
   }
