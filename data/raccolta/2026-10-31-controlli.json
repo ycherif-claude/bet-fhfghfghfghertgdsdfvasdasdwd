@@ -197,8 +197,8 @@
       "regola": true
     },
     "calcio-2026-10-31-airdrie-utd-cove-rangers-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,80 sotto la minima 4,03",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 3,80 sotto la minima 4,03 e nessun fatto concreto che alzi la probabilità rispetto all'analisi del mattino (notizie non controllate al mattino, nessuna ricerca che smentisca il controllo): nel dubbio annullata (controlli quote odss-api, 14:48)",
       "problemi": [
         {
           "tipo": "quota",
@@ -206,7 +206,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-31T14:48:17+01:00"
+      "alle": "2026-10-31T14:48:54+01:00",
+      "claude": true
     },
     "calcio-2026-10-31-peterhead-alloa-1x2-2": {
       "esito": "confermata",
@@ -263,8 +264,8 @@
       "regola": true
     },
     "calcio-2026-10-31-stirling-forfar-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,33 sotto la minima 3,59",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 3,33 sotto la minima 3,59 (value quasi nullo al mattino, +2%) e nessun fatto concreto che alzi la probabilità: nel dubbio annullata (controlli quote odss-api, 14:48)",
       "problemi": [
         {
           "tipo": "quota",
@@ -272,7 +273,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-10-31T14:48:17+01:00"
+      "alle": "2026-10-31T14:48:54+01:00",
+      "claude": true
     }
   },
   "claude": {

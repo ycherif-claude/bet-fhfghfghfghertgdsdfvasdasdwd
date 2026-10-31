@@ -7117,9 +7117,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 3,80 sotto la minima 4,03",
-      "oraUltimoControllo": "2026-10-31T14:48:17+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 3,80 sotto la minima 4,03 e nessun fatto concreto che alzi la probabilità rispetto all'analisi del mattino (notizie non controllate al mattino, nessuna ricerca che smentisca il controllo): nel dubbio annullata (controlli quote odss-api, 14:48)",
+      "oraUltimoControllo": "2026-10-31T14:48:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -9163,9 +9163,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 3,33 sotto la minima 3,59",
-      "oraUltimoControllo": "2026-10-31T14:48:17+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 3,33 sotto la minima 3,59 (value quasi nullo al mattino, +2%) e nessun fatto concreto che alzi la probabilità: nel dubbio annullata (controlli quote odss-api, 14:48)",
+      "oraUltimoControllo": "2026-10-31T14:48:54+01:00",
       "esito": null,
       "prova": true
     },
