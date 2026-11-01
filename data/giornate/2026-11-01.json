@@ -6164,9 +6164,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 2,58 sotto la minima 2,61",
-      "oraUltimoControllo": "2026-11-01T15:04:41+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 2,58 sotto la minima 2,61: il value del mattino era solo +1,9% (consenso bookmaker 36% contro 40% usato) e non c'è alcun fatto concreto che alzi la probabilità: nel dubbio annullata (controlli quote odss-api, 15:04)",
+      "oraUltimoControllo": "2026-11-01T15:05:44+01:00",
       "esito": null,
       "prova": true
     },
@@ -60270,7 +60270,9 @@
     "Squadre SuperLega non riconosciute: Power Volley Milano",
     "Quote pallavolo: 8 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
-    "odss-api alle 07:16: 6 partite senza righe a tempo intero (full_time), senza quote: IK Uppsala Fotboll (donne) - Hammarby (donne), Club America W-Atlante FC, Shabana - Kenya Police, IK Uppsala Fotboll (Women) - Hammarby IF (Women), Naegohyang FC Wom. - Ayeyawady FC Wom., Club America Wom. - Atlante Wom."
+    "odss-api alle 07:16: 6 partite senza righe a tempo intero (full_time), senza quote: IK Uppsala Fotboll (donne) - Hammarby (donne), Club America W-Atlante FC, Shabana - Kenya Police, IK Uppsala Fotboll (Women) - Hammarby IF (Women), Naegohyang FC Wom. - Ayeyawady FC Wom., Club America Wom. - Atlante Wom.",
+    "Decisione di Claude per calcio-2026-11-01-young-boys-zurich-doppia-chance-x2 arrivata dopo l'inizio della partita (15:05): non applicata",
+    "Decisione di Claude per calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1 arrivata dopo l'inizio della partita (15:05): non applicata"
   ],
   "schedinePronostici": [
     {

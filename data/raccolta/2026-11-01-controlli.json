@@ -238,8 +238,8 @@
       "regola": true
     },
     "calcio-2026-11-01-lausanne-thun-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,58 sotto la minima 2,61",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 2,58 sotto la minima 2,61: il value del mattino era solo +1,9% (consenso bookmaker 36% contro 40% usato) e non c'è alcun fatto concreto che alzi la probabilità: nel dubbio annullata (controlli quote odss-api, 15:04)",
       "problemi": [
         {
           "tipo": "quota",
@@ -247,7 +247,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-11-01T15:04:41+01:00"
+      "alle": "2026-11-01T15:05:44+01:00",
+      "claude": true
     },
     "calcio-2026-11-01-union-berlin-1-fc-koln-1x2-1": {
       "esito": "annullata",
