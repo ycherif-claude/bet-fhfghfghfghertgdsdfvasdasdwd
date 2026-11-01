@@ -10,11 +10,68 @@
         "quota 3,05 ≥ minima 2,83"
       ],
       "alle": "2026-11-01T11:50:44+01:00"
+    },
+    "calcio-2026-11-01-young-boys-zurich-doppia-chance-x2": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 3,60 sotto la minima 3,68",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,60 sotto la minima 3,68"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,00 sotto la minima 2,04",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,00 sotto la minima 2,04"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-fc-st-pauli-1-fc-nurnberg-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,16 sotto la minima 2,19",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,16 sotto la minima 2,19"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T12:56:23+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-hannover-96-dynamo-dresden-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,43 sotto la minima 2,56",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,43 sotto la minima 2,56"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T12:56:23+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "calcio-2026-11-01-young-boys-zurich-doppia-chance-x2",
+      "calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1"
+    ]
   },
   "pronostici": {
     "calcio-2026-11-01-amed-sfk-eyupspor|Doppia chance|1X": {
@@ -40,6 +97,54 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T12:21:35+01:00"
+    },
+    "calcio-2026-11-01-falkirk-celtic|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-istanbul-basaksehir-samsunspor|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-trabzonspor-gaziantep-fk|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-odense-boldklub-silkeborg-if|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-viborg-ff-ac-horsens|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-young-boys-zurich|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-djurgarden-degerfors-if|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-otelul-sepsi-sf-gheorghe|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T12:56:23+01:00"
     }
   }
 }
