@@ -12,8 +12,8 @@
       "alle": "2026-11-01T11:50:44+01:00"
     },
     "calcio-2026-11-01-young-boys-zurich-doppia-chance-x2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,60 sotto la minima 3,68",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 3,60 sotto la minima 3,68 (value del mattino +7%) e nessun fatto concreto che alzi la probabilità rispetto all'analisi del mattino: nel dubbio annullata (controlli quote odss-api, 12:56)",
       "problemi": [
         {
           "tipo": "quota",
@@ -21,11 +21,12 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-11-01T12:56:23+01:00"
+      "alle": "2026-11-01T12:57:17+01:00",
+      "claude": true
     },
     "calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,00 sotto la minima 2,04",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 2,00 sotto la minima 2,04 (value del mattino +6%, consenso bookmaker 45% contro 52% usato) e nessun fatto concreto che alzi la probabilità: nel dubbio annullata (controlli quote odss-api, 12:56)",
       "problemi": [
         {
           "tipo": "quota",
@@ -33,7 +34,8 @@
         }
       ],
       "dettagli": [],
-      "alle": "2026-11-01T12:56:23+01:00"
+      "alle": "2026-11-01T12:57:17+01:00",
+      "claude": true
     },
     "calcio-2026-11-01-fc-st-pauli-1-fc-nurnberg-under-over-2-5-under-2-5": {
       "esito": "annullata",
