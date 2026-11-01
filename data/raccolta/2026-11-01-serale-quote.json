@@ -1,0 +1,202 @@
+{
+  "data": "2026-11-01",
+  "scaricateAlle": "2026-11-01T19:57:22+01:00",
+  "crediti": {
+    "sportsgameodds": {
+      "oggetti": 4
+    }
+  },
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idPartita": "nba-2026-11-01-orlando-magic-boston-celtics",
+      "id": "2Di3i9y9aQ0E79QYVI6n",
+      "casa": "Orlando Magic",
+      "trasferta": "Boston Celtics",
+      "inizio": "2026-11-01T21:30:00+01:00",
+      "bookmaker": [
+        {
+          "chiave": "betmgm",
+          "mercati": {
+            "vincente": {
+              "casa": 3.4,
+              "trasferta": 1.33
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "bovada",
+          "mercati": {
+            "vincente": {
+              "casa": 3.35,
+              "trasferta": 1.35
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "caesars",
+          "mercati": {
+            "vincente": {
+              "casa": 3.35,
+              "trasferta": 1.34
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.95,
+                "trasferta": 1.87
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.95,
+                "under": 1.87
+              }
+            }
+          }
+        },
+        {
+          "chiave": "draftkings",
+          "mercati": {
+            "vincente": {
+              "casa": 3.4,
+              "trasferta": 1.34
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.93,
+                "trasferta": 1.89
+              }
+            },
+            "totale": {
+              "221.5": {
+                "over": 1.93,
+                "under": 1.89
+              }
+            }
+          }
+        },
+        {
+          "chiave": "pointsbet",
+          "mercati": {
+            "vincente": {
+              "casa": 3.4,
+              "trasferta": 1.33
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.9,
+                "trasferta": 1.9
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.9,
+                "under": 1.9
+              }
+            }
+          }
+        },
+        {
+          "chiave": "unibet",
+          "mercati": {
+            "vincente": {
+              "casa": 3.4,
+              "trasferta": 1.33
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.93,
+                "trasferta": 1.89
+              }
+            }
+          }
+        },
+        {
+          "chiave": "williamhill",
+          "mercati": {
+            "vincente": {
+              "casa": 3.3,
+              "trasferta": 1.33
+            }
+          }
+        },
+        {
+          "chiave": "espnbet",
+          "mercati": {
+            "vincente": {
+              "casa": 3.4,
+              "trasferta": 1.34
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.91,
+                "trasferta": 1.91
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.91,
+                "under": 1.91
+              }
+            }
+          }
+        },
+        {
+          "chiave": "fanduel",
+          "mercati": {
+            "vincente": {
+              "casa": 3.5,
+              "trasferta": 1.32
+            },
+            "handicap": {
+              "7.5": {
+                "casa": 1.94,
+                "trasferta": 1.88
+              }
+            },
+            "totale": {
+              "222.5": {
+                "over": 1.94,
+                "under": 1.88
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "giocate": [
+    {
+      "idGiocata": "nba-2026-11-01-orlando-magic-boston-celtics-vincente-orlando-magic",
+      "idPartita": "nba-2026-11-01-orlando-magic-boston-celtics",
+      "mercato": "Vincente",
+      "selezione": "Orlando Magic",
+      "consensoFresco": 0.28255743442108594,
+      "quotaFresca": 3.4
+    }
+  ]
+}
