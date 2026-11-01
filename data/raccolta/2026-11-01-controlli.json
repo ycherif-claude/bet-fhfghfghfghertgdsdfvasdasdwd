@@ -483,6 +483,41 @@
       ],
       "alle": "2026-11-01T20:12:23+01:00",
       "regola": true
+    },
+    "calcio-2026-11-01-tenerife-andorra-cf-1x2-2": {
+      "esito": "revisione",
+      "motivo": "regola automatica (Claude non disponibile): partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso): resta in revisione, controlla su bet365 prima di giocarla",
+      "problemi": [
+        {
+          "tipo": "assente",
+          "testo": "partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso)"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino"
+      ],
+      "alle": "2026-11-01T20:49:00+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-vancouver-whitecaps-seattle-sounders-fc-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-01T20:49:00+01:00"
+    },
+    "nba-2026-11-01-orlando-magic-boston-celtics-vincente-orlando-magic": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 3,40 ≥ minima 2,96",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 3,40 ≥ minima 2,96"
+      ],
+      "alle": "2026-11-01T20:49:00+01:00"
     }
   },
   "claude": {

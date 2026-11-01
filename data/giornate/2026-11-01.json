@@ -5123,9 +5123,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "regola automatica (Claude non disponibile): partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso): resta in revisione, controlla su bet365 prima di giocarla",
+      "oraUltimoControllo": "2026-11-01T20:49:00+01:00",
       "esito": null,
       "prova": true
     },
@@ -5483,9 +5483,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-01T20:49:00+01:00",
       "esito": null,
       "prova": true
     },
@@ -5845,8 +5845,8 @@
         }
       },
       "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata su infortuni o riposi; la ricerca web non ha restituito un report aggiornato per questa partita (ricerca web, 20:00)",
-      "oraUltimoControllo": "2026-11-01T19:58:25+01:00",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 3,40 ≥ minima 2,96",
+      "oraUltimoControllo": "2026-11-01T20:49:00+01:00",
       "esito": null,
       "prova": true
     },
