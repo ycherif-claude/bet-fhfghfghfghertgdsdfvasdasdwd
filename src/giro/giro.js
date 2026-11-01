@@ -217,7 +217,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     ...(Object.values(coppie).some((l) => l.length) ? { coppieQuota2: coppie } : {}),
-    ...(schedinaDelGiorno ? { schedinaDelGiorno } : {}),
+    ...(schedinaDelGiorno ? (CONFIG.schedinaDelGiorno.mostra ? { schedinaDelGiorno } : { schedinaDelGiornoStudio: schedinaDelGiorno }) : {}),
     ...(conBiglietti ? { taraturaModello } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [

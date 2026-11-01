@@ -53,7 +53,7 @@ export function scegliSchedina(oggi, giornate, ricostruite = {}) {
 export function bilancioSchedineScelte(giornate) {
   const r = { chiuse: 0, vinte: 0, perse: 0, profitto: 0 };
   for (const g of giornate) {
-    const f = FORMATI.find((x) => x.chiave === g?.schedinaDelGiorno?.formato);
+    const f = FORMATI.find((x) => x.chiave === (g?.schedinaDelGiorno ?? g?.schedinaDelGiornoStudio)?.formato);
     const s = f?.prendi(g);
     const v = guadagno(s);
     if (v === null) continue;

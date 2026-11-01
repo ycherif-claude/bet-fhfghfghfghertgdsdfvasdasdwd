@@ -263,7 +263,9 @@ export const CONFIG = congela({
   // migliori: partite usate per le coppie, le prime per margine [utente, 30/10/2026].
   // Schedina del giorno scelta dal sistema [utente, 01/11/2026]: conta solo un tipo con almeno `minGiorni` giorni chiusi;
   // `pesoMercato`: quanti giorni di risultati vale il guadagno atteso secondo il mercato (con pochi giorni pesa di più lui).
-  schedinaDelGiorno: { minGiorni: 5, pesoMercato: 30 },
+  // `mostra: false` [utente, 01/11/2026]: si torna alle 10 partite migliori divise fra doppie, triple e multiple;
+  // la scelta del sistema si calcola ancora per studio (schedinaDelGiornoStudio nella giornata).
+  schedinaDelGiorno: { minGiorni: 5, pesoMercato: 30, mostra: false },
   coppieQuota2: {
     quotaMin: 1.9, quotaMax: 2.15, scartoConferma: 0.05, migliori: 20,
     // Multiple, doppie e triple mostrate: solo calcio [utente, 01/11/2026]. Gli altri sport restano nei modi nascosti, per studio.
