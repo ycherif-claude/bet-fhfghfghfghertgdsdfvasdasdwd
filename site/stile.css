@@ -81,7 +81,7 @@ main > section > .meta, .giocate > .meta { grid-column: 1 / -1; margin: 0 0 4px;
 }
 .biglietto .testa { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 16px 0; }
 .biglietto h3 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--inchiostro-tenue); }
-.quota-totale { margin: 0; font-family: var(--condensato); font-weight: 700; font-size: 2.6rem; line-height: .9; letter-spacing: -0.01em; }
+.quota-totale { margin: 0; white-space: nowrap; font-family: var(--condensato); font-weight: 700; font-size: 2.6rem; line-height: .9; letter-spacing: -0.01em; }
 .nota-biglietto { margin: 2px 16px 10px; font-size: .85rem; color: var(--inchiostro-tenue); }
 .biglietto details { margin: 0 16px 8px; }
 .biglietto summary { color: var(--inchiostro); font-weight: 600; padding: 4px 0; }

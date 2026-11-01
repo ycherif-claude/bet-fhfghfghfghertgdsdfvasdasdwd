@@ -89,13 +89,21 @@ const COPPIE_MOSTRATE = [
   ['doppie', 'Doppie', 'le 10 partite di calcio più probabili, confermate da modello e mercato'],
   ['triple', 'Triple a quota circa 2', 'le stesse 10 partite'],
 ];
+// Con la schedina del giorno [utente, 01/11/2026] si manda solo quella scelta dal sistema: uno di questi tipi o una multipla.
+const COPPIE_SCELTA = [
+  ['triple', 'Tripla', 'la schedina di oggi'],
+  ['doppie', 'Doppia', 'la schedina di oggi'],
+  ['over15', 'Tripla Over 1.5', 'la schedina di oggi'],
+  ['doppieOver15', 'Doppia Over 1.5', 'la schedina di oggi'],
+];
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).
-const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash([...COPPIE_MOSTRATE.flatMap(([modo]) => coppieDi(giornata, modo)),
-  ...multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate')].map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+')).join(','))}`;
+const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash([...(giornata?.schedinaDelGiorno ? COPPIE_SCELTA : COPPIE_MOSTRATE).flatMap(([modo]) => coppieDi(giornata, modo)).filter((c) => !giornata?.schedinaDelGiorno || c.id === giornata.schedinaDelGiorno.id),
+  ...multipleProb(giornata)].map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+')).join(','))}`;
 export function testoCoppie(giornata) {
   const sezioni = [];
-  for (const [modo, titolo, nota] of COPPIE_MOSTRATE) {
-    const lista = coppieDi(giornata, modo);
+  const scelta = giornata?.schedinaDelGiorno;
+  for (const [modo, titolo, nota] of scelta ? COPPIE_SCELTA : COPPIE_MOSTRATE) {
+    const lista = coppieDi(giornata, modo).filter((c) => !scelta || c.id === scelta.id);
     if (!lista.length) continue;
     const blocchi = lista.map((c, i) => [
       `${i + 1}. quota <b>${virgola(c.quota)}</b>${num(c.quotaConBonus) && c.quotaConBonus !== c.quota ? ` (con bonus ${virgola(c.quotaConBonus)})` : ''} · mercato ${percentuale(c.prob)}`,
@@ -324,9 +332,12 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   const g = giornate.find((x) => x.data === ieri);
   // Quello mandato quel giorno: fino al 30/10 coppie per margine e multiple per probabilità; dal 31/10 le confermate.
   const prima = ieri < '2026-10-31';
-  const schedine = prima ? [['Coppie', coppieDi(g, 'margine')]] : [['Tripla Over 1.5', coppieDi(g, 'over15')], ['Doppie', coppieDi(g, 'doppie')], ['Triple', coppieDi(g, 'triple')]];
+  const scelta = g?.schedinaDelGiorno;
+  const schedine = prima ? [['Coppie', coppieDi(g, 'margine')]] : scelta
+    ? COPPIE_SCELTA.map(([modo, titolo]) => [titolo, coppieDi(g, modo).filter((c) => c.id === scelta.id)])
+    : [['Tripla Over 1.5', coppieDi(g, 'over15')], ['Doppie', coppieDi(g, 'doppie')], ['Triple', coppieDi(g, 'triple')]];
   const coppie = schedine.flatMap(([, l]) => l);
-  const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate'));
+  const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate') && (!scelta || m.id === scelta.id));
   if (!coppie.length && !multiple.length) return [];
   // Si manda anche con partite ancora senza risultato [utente, 31/10/2026]: lo dice la riga stessa.
   const aperte = [...coppie, ...multiple].flatMap((x) => x.gambe).some((x) => !x.esito);
@@ -370,12 +381,15 @@ export function messaggiMultipleBonus({ giornate, inviate }) {
 
 // Messaggio del mattino essenziale: coppie a quota 2 e multiple con le partite più probabili.
 // Multiple mostrate [utente, 31/10/2026]: per probabilità, solo partite confermate da modello e mercato.
-const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate');
+const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate' && (!giornata?.schedinaDelGiorno || m.id === giornata.schedinaDelGiorno.id));
 export function testoMattinoEssenziale(giornata, oggi) {
   const coppie = testoCoppie(giornata);
   const multiple = multipleProb(giornata).map(testoMultiplaBonus);
   if (!coppie && !multiple.length) return `🎲 <b>Oggi, ${giornoMese(oggi)}</b>: nessuna coppia a quota 2 e nessuna multipla (poche partite adatte).`;
-  return [...(coppie ? [coppie] : []), ...multiple].join('\n\n');
+  const s = giornata?.schedinaDelGiorno;
+  const motivo = s?.classifica?.find((r) => r.formato === s.formato);
+  const intro = motivo ? [`🧠 <b>Oggi ti do: ${html(s.nome)}</b>. È la migliore fra risultati e quote: ${motivo.vinte} vinte su ${motivo.giorni} giorni, ${motivo.profitto >= 0 ? '+' : ''}${virgola(motivo.profitto)} € con 1 € al giorno.${num(motivo.prob) ? ` Per il mercato entra il ${percentuale(motivo.prob)} delle volte.` : ''}`] : [];
+  return [...intro, ...(coppie ? [coppie] : []), ...multiple].join('\n\n');
 }
 
 // Divide i messaggi in da mandare e da tacere (SOLO_ESSENZIALE). Il messaggio del mattino diventa quello essenziale.
@@ -389,7 +403,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
-    else if (/\|bonus\|MBPC/.test(m.chiave)) manda.push(m);
+    else if (/\|bonus\|MBPC/.test(m.chiave) && (!giornata?.schedinaDelGiorno || m.chiave.includes(giornata.schedinaDelGiorno.id))) manda.push(m);
     else tacere.push(m);
   }
   return { manda, tacere };
@@ -438,7 +452,7 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
   } else {
     // Coppie rifatte dopo il messaggio del mattino [utente, 31/10/2026]: si manda il nuovo elenco una volta.
     const coppieOra = testoCoppie(delGiorno);
-    const multipleOra = multipleBonus(delGiorno).filter((m) => m.criterio === 'probabilitaConfermate').map(testoMultiplaBonus);
+    const multipleOra = multipleProb(delGiorno).map(testoMultiplaBonus);
     if (coppieOra || multipleOra.length) aggiungi(chiaveCoppie(delGiorno, oggi), [`🔄 <b>Schedine di oggi aggiornate</b> (sostituiscono quelle di stamattina)`, ...(coppieOra ? [coppieOra] : []), ...multipleOra].join('\n\n') + piede);
     // Pronostici aggiunti dopo il messaggio del mattino (giornata scritta prima che esistessero).
     if (Array.isArray(delGiorno.pronostici) && !inviate.has(`${oggi}|pronostici`)) {

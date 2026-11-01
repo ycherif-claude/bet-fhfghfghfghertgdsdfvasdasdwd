@@ -11,6 +11,7 @@ import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
+import { scegliSchedina } from '../regole/schedina-del-giorno.js';
 import { costruisciMultipleBonus, gambeOver15, gambePossibili } from '../regole/multipla-bonus.js';
 import { costruisciCoppieQuota2 } from '../regole/coppie-quota2.js';
 import { calcolaTaratura, tara } from '../regole/taratura-modello.js';
@@ -32,6 +33,11 @@ function giornatePassate(dirData, oggi) {
   return fs.readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) < oggi).flatMap((f) => {
     try { return [JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))]; } catch { return []; }
   });
+}
+
+// Punto di partenza per la schedina del giorno: le schedine ricostruite sui giorni prima che esistessero.
+function schedineRicostruite(dirData) {
+  try { return JSON.parse(fs.readFileSync(path.join(dirData, 'studio', 'schedine-ricostruite.json'), 'utf8')).giorni ?? {}; } catch { return {}; }
 }
 
 // Si può scrivere il file della giornata? No se è in uso: una giocata segnata o una partita iniziata.
@@ -189,6 +195,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const multipleBonus = conBiglietti ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
   // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
   const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi, gambeOver15: taraGambe(gambeOver15(voci, { escluse })) });
+  const schedinaDelGiorno = conBiglietti ? scegliSchedina({ coppieQuota2: coppie, multipleBonus }, giornatePassate(dirData, oggi), schedineRicostruite(dirData)) : null;
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
   // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).
   const quoteOdss = leggiQuoteOdss(dirData, oggi);
@@ -210,6 +217,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
     giocate: prova ? scelta.giocate.map((g) => ({ ...g, prova: true })) : scelta.giocate,
     ...(multipleBonus.length ? { multipleBonus } : {}),
     ...(Object.values(coppie).some((l) => l.length) ? { coppieQuota2: coppie } : {}),
+    ...(schedinaDelGiorno ? { schedinaDelGiorno } : {}),
     ...(conBiglietti ? { taraturaModello } : {}),
     scartate: [...preScartate, ...scelta.scartate],
     erroriGiro: [

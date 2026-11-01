@@ -435,10 +435,26 @@ export function renderMultiplaBonus(mb, segnatura = null, { segnabile = false } 
 // Orari delle partite accanto al titolo [utente, 29/10/2026]: "18:30 e 01:00", in ordine di inizio.
 export const orariCoppia = (gambe) => gambe.map((g) => ora(g.inizio)).filter(Boolean).join(' e ');
 
+// La schedina scelta dal sistema, con il motivo e il bilancio delle scelte fatte finora.
+export function renderSchedinaDelGiorno(s, giornata, ultime, bilancio) {
+  const coppie = Object.values(giornata?.coppieQuota2 ?? {}).flatMap((l) => (Array.isArray(l) ? l : []));
+  const c = coppie.find((x) => x?.id === s.id);
+  const m = (giornata?.multipleBonus ?? []).find((x) => x?.id === s.id);
+  const r = s.classifica?.find((x) => x.formato === s.formato);
+  const segno = (v) => `${v >= 0 ? '+' : ''}${String(v).replace('.', ',')} €`;
+  return [
+    el('h2', {}, `Oggi ti do: ${s.nome}`),
+    ...(r ? [el('p', { class: 'meta' }, `È la migliore fra risultati e quote: ${r.vinte} vinte su ${r.giorni} giorni, ${segno(r.profitto)} con 1 € al giorno.${typeof r.prob === 'number' ? ` Per il mercato entra il ${Math.round(r.prob * 100)}% delle volte.` : ''}`)] : []),
+    ...(bilancio?.chiuse ? [el('p', { class: 'meta' }, `Schedine scelte dal sistema finora: ${bilancio.vinte} vinte su ${bilancio.chiuse}, ${segno(bilancio.profitto)}.`)] : []),
+    ...(c ? [schedaSicura(c.id, () => renderCoppia(c, '', ultime.get(c.id) ?? null, { segnabile: true }))] : []),
+    ...(m ? [schedaSicura(m.id, () => renderMultiplaBonus(m, ultime.get(m.id) ?? null, { segnabile: true }))] : []),
+  ];
+}
+
 export function renderCoppia(c, n, segnatura = null, { segnabile = false } = {}) {
   const orari = orariCoppia(c.gambe);
   return renderBiglietto({
-    titolo: orari ? `Coppia ${n} · ${orari}` : `Coppia ${n}`,
+    titolo: `${c.gambe?.length === 3 ? 'Tripla' : 'Coppia'}${n ? ` ${n}` : ''}${orari ? ` · ${orari}` : ''}`,
     quota: c.quota,
     nota: `Pinnacle la dà al ${percento(c.prob)}`,
     gambe: c.gambe,
@@ -574,7 +590,15 @@ function avvia(dati) {
   const lcp = coppieDi('triple');
   const ldp = coppieDi('doppie');
   const lo15 = coppieDi('over15');
+  const scelta = dati.oggi.giornata?.schedinaDelGiorno ?? null;
+  const sdg = document.getElementById('schedina-del-giorno');
+  if (sdg) sdg.replaceChildren(...(scelta ? renderSchedinaDelGiorno(scelta, dati.oggi.giornata, ultime, dati.bilancioSchedineScelte) : []));
   const bilCoppie = testoBilancioCoppie(dati.bilancioCoppie);
+  // Con la schedina del giorno il resto delle schedine finisce nella sezione chiusa [utente, 01/11/2026].
+  if (scelta) {
+    const altro = document.getElementById('altro');
+    for (const id of ['multiple-bonus', 'multiple-probabili', 'coppie-quota2']) { const s = document.getElementById(id); if (s && altro) altro.querySelector('summary')?.after(s); }
+  }
   if (cq) {
     const sezione = (titolo, lista, sigla) => (lista.length ? [el('h3', {}, titolo), ...lista.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, `${sigla}${i + 1}`, ultime.get(x?.id) ?? null, { segnabile: true })))] : []);
     cq.replaceChildren(...(lo15.length ? [

@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { bilancioCoppie, costruisciCoppie, costruisciCoppieQuota2, esitoCoppia } from '../../src/regole/coppie-quota2.js';
 import { costruisciMultipleBonus, gambeOver15 } from '../../src/regole/multipla-bonus.js';
 import { aggiornaMultipleBonus } from '../../src/registro/registro.js';
-import { contaStorico, messaggi, messaggioStorico, testoCoppie } from '../../src/notifiche/telegram.js';
+import { contaStorico, messaggi, messaggioStorico, testoCoppie, testoMattinoEssenziale } from '../../src/notifiche/telegram.js';
+import { scegliSchedina } from '../../src/regole/schedina-del-giorno.js';
 import { renderCoppia, testoBilancioCoppie } from '../../site/app.js';
 
 function nodo(tag) {
@@ -42,6 +43,40 @@ test('schedine mostrate solo di calcio; gli altri sport restano nei modi nascost
   assert.ok(confermate.length);
   for (const m of confermate) for (const g of m.gambe) assert.equal(g.sport, 'calcio');
   assert.ok(multiple.filter((m) => m.criterio === 'probabilita').flatMap((m) => m.gambe).some((g) => g.sport !== 'calcio'));
+});
+
+test('schedina del giorno: voto fra risultati e mercato, servono abbastanza giorni, multipla fortunata non basta', () => {
+  const s = (esito, ritorno = 2) => ({ esito, ritorno: esito === 'vinta' ? ritorno : 0, quota: ritorno });
+  const giorni = (f) => Object.fromEntries(Array.from({ length: 8 }, (_, i) => [`2026-10-${23 + i}`, f(i)]));
+  const ricostruite = giorni((i) => ({
+    tripla: s(i % 4 === 3 ? 'persa' : 'vinta', 2.2),
+    doppia: s(i % 2 ? 'persa' : 'vinta', 1.7),
+    multipla10: s(i === 0 ? 'vinta' : 'persa', 30),
+  }));
+  const oggi = {
+    coppieQuota2: { triple: [{ id: 'T', valueAtteso: -0.05 }], doppie: [{ id: 'D', valueAtteso: -0.05 }] },
+    multipleBonus: [{ id: 'M10', criterio: 'probabilitaConfermate', gambe: Array(10).fill({}), valueAtteso: -0.3 }],
+  };
+  const r = scegliSchedina(oggi, [], ricostruite);
+  assert.equal(r.formato, 'tripla');
+  assert.equal(r.id, 'T');
+  assert.equal(scegliSchedina({ coppieQuota2: { doppie: [{ id: 'D', valueAtteso: -0.05 }] } }, [], ricostruite).formato, 'doppia');
+  // A parità di risultati vince la schedina che il mercato dà meno svantaggiosa.
+  const pari = giorni((i) => ({ tripla: s(i % 2 ? 'persa' : 'vinta', 2.2), doppia: s(i % 2 ? 'persa' : 'vinta', 2.2) }));
+  assert.equal(scegliSchedina({ coppieQuota2: { triple: [{ id: 'T', valueAtteso: -0.2 }], doppie: [{ id: 'D', valueAtteso: -0.02 }] } }, [], pari).formato, 'doppia');
+  assert.equal(scegliSchedina({}, [], ricostruite), null);
+  // Una schedina vera del giorno vale più di quella ricostruita.
+  const vera = [{ data: '2026-10-23', coppieQuota2: { triple: [{ id: 'X', esito: 'persa', ritorno: 0 }] } }];
+  assert.equal(scegliSchedina(oggi, vera, ricostruite).classifica.find((x) => x.formato === 'tripla').vinte, 5);
+});
+
+test('schedina del giorno: Telegram manda solo quella scelta', () => {
+  const c = (id) => ({ id, quota: 2, prob: 0.5, gambe: [{ ...gamba(id, 1.4, 0.7), esito: null }] });
+  const g = { coppieQuota2: { triple: [c('T')], doppie: [c('D')] }, schedinaDelGiorno: { formato: 'tripla', nome: 'Tripla', id: 'T', classifica: [{ formato: 'tripla', vinte: 5, giorni: 8, profitto: 3.5 }] } };
+  const testo = testoMattinoEssenziale(g, '2026-11-02');
+  assert.match(testo, /Oggi ti do: Tripla/);
+  assert.match(testo, /CasaT/);
+  assert.doesNotMatch(testo, /CasaD/);
 });
 
 test('tripla Over 1.5: una al giorno, le 3 più probabili confermate con quota da 1,25, solo calcio', () => {
