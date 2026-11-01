@@ -1,0 +1,1718 @@
+{
+  "data": "2026-11-01",
+  "generataAlle": "2026-11-01T07:23:45+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 248
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre SuperLega non riconosciute: Power Volley Milano",
+    "Quote pallavolo: 8 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "5cc3fe15db6a1ce1",
+        "89f379e6060c33c5",
+        "c7f5dc37248da388",
+        "e76cdc610bc67a96",
+        "f7019f5d4dee3570"
+      ],
+      "idPartita": "pallavolo-2026-11-01-modena-volley-volley-verona",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Modena Volley - Volley Verona",
+      "casa": "Modena Volley",
+      "trasferta": "Volley Verona",
+      "inizio": "2026-11-01T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Modena Volley": 1529,
+        "Volley Verona": 1554
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Modena Volley 1529 – Volley Verona 1554, vantaggio campo compreso: vittoria della casa 55% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Modena Volley",
+          "probModello": null,
+          "probModelloStudio": 0.5492850408429166,
+          "probPinnacle": 0.507607555089192,
+          "quota": 1.92,
+          "fonteQuota": "mediana di 158 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Modena Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.93
+            ],
+            [
+              "starcasino",
+              1.93
+            ],
+            [
+              "williamhill",
+              1.93
+            ],
+            [
+              "fastbet",
+              1.923
+            ],
+            [
+              "zonagioco",
+              1.923
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "bgame",
+              1.9
+            ],
+            [
+              "codere",
+              1.9
+            ],
+            [
+              "eurobet",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "marathonbet",
+              1.9
+            ],
+            [
+              "perlaplay",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "sportbet",
+              1.9
+            ],
+            [
+              "sunbet",
+              1.9
+            ],
+            [
+              "totosi",
+              1.9
+            ],
+            [
+              "winamax",
+              1.9
+            ],
+            [
+              "leovegas",
+              1.89
+            ],
+            [
+              "admiralbet",
+              1.88
+            ],
+            [
+              "betwin360",
+              1.88
+            ],
+            [
+              "casinosanremo",
+              1.88
+            ],
+            [
+              "eplay24",
+              1.88
+            ],
+            [
+              "gioca7",
+              1.88
+            ],
+            [
+              "netbet",
+              1.88
+            ],
+            [
+              "netwin",
+              1.88
+            ],
+            [
+              "sportium",
+              1.88
+            ],
+            [
+              "stanleybet",
+              1.88
+            ],
+            [
+              "starvegas",
+              1.88
+            ],
+            [
+              "staryes",
+              1.88
+            ],
+            [
+              "vincitu",
+              1.88
+            ],
+            [
+              "888sport",
+              1.86
+            ],
+            [
+              "888sport_it",
+              1.86
+            ],
+            [
+              "daznbet",
+              1.86
+            ],
+            [
+              "domusbet",
+              1.86
+            ],
+            [
+              "quigioco",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Verona",
+          "probModello": null,
+          "probModelloStudio": 0.4507149591570834,
+          "probPinnacle": 0.49239244491080797,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 158 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Volley Verona vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.88
+            ],
+            [
+              "starcasino",
+              1.88
+            ],
+            [
+              "williamhill",
+              1.88
+            ],
+            [
+              "betflag",
+              1.84
+            ],
+            [
+              "bgame",
+              1.84
+            ],
+            [
+              "codere",
+              1.84
+            ],
+            [
+              "eurobet",
+              1.84
+            ],
+            [
+              "goldbet",
+              1.84
+            ],
+            [
+              "lottomatica",
+              1.84
+            ],
+            [
+              "marathonbet",
+              1.84
+            ],
+            [
+              "perlaplay",
+              1.84
+            ],
+            [
+              "planetwin365",
+              1.84
+            ],
+            [
+              "sportbet",
+              1.84
+            ],
+            [
+              "sunbet",
+              1.84
+            ],
+            [
+              "totosi",
+              1.84
+            ],
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "admiralbet",
+              1.82
+            ],
+            [
+              "betwin360",
+              1.82
+            ],
+            [
+              "casinosanremo",
+              1.82
+            ],
+            [
+              "eplay24",
+              1.82
+            ],
+            [
+              "gioca7",
+              1.82
+            ],
+            [
+              "netbet",
+              1.82
+            ],
+            [
+              "netwin",
+              1.82
+            ],
+            [
+              "sportium",
+              1.82
+            ],
+            [
+              "stanleybet",
+              1.82
+            ],
+            [
+              "starvegas",
+              1.82
+            ],
+            [
+              "staryes",
+              1.82
+            ],
+            [
+              "vincitu",
+              1.82
+            ],
+            [
+              "fastbet",
+              1.818
+            ],
+            [
+              "zonagioco",
+              1.818
+            ],
+            [
+              "daznbet",
+              1.81
+            ],
+            [
+              "domusbet",
+              1.81
+            ],
+            [
+              "leovegas",
+              1.79
+            ],
+            [
+              "quigioco",
+              1.79
+            ],
+            [
+              "888sport",
+              1.76
+            ],
+            [
+              "888sport_it",
+              1.76
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "01458cf9c714686d",
+        "0f161f91cdbd2d2a",
+        "5ea8fb161b943689",
+        "691272ae092b56e5",
+        "9a67322e1d3054f7",
+        "9d523322dc5b7c33",
+        "b457f3e303cb5da1"
+      ],
+      "idPartita": "pallavolo-2026-11-01-tinet-prata-di-pordenone-trentino-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Tinet Prata Di Pordenone - Trentino Volley",
+      "casa": "Tinet Prata Di Pordenone",
+      "trasferta": "Trentino Volley",
+      "inizio": "2026-11-01T18:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Tinet Prata Di Pordenone",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.11362255679623368,
+          "quota": 8,
+          "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Tinet Prata Di Pordenone vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              9.4
+            ],
+            [
+              "starcasino",
+              9.4
+            ],
+            [
+              "williamhill",
+              9.4
+            ],
+            [
+              "winamax",
+              8.5
+            ],
+            [
+              "betflag",
+              8.4
+            ],
+            [
+              "bgame",
+              8.4
+            ],
+            [
+              "codere",
+              8.4
+            ],
+            [
+              "eurobet",
+              8.4
+            ],
+            [
+              "goldbet",
+              8.4
+            ],
+            [
+              "lottomatica",
+              8.4
+            ],
+            [
+              "marathonbet",
+              8.4
+            ],
+            [
+              "perlaplay",
+              8.4
+            ],
+            [
+              "planetwin365",
+              8.4
+            ],
+            [
+              "sportbet",
+              8.4
+            ],
+            [
+              "sunbet",
+              8.4
+            ],
+            [
+              "totosi",
+              8.4
+            ],
+            [
+              "888sport",
+              8
+            ],
+            [
+              "888sport_it",
+              8
+            ],
+            [
+              "betwin360",
+              8
+            ],
+            [
+              "casinosanremo",
+              8
+            ],
+            [
+              "eplay24",
+              8
+            ],
+            [
+              "gioca7",
+              8
+            ],
+            [
+              "leovegas",
+              8
+            ],
+            [
+              "netbet",
+              8
+            ],
+            [
+              "netwin",
+              8
+            ],
+            [
+              "sportium",
+              8
+            ],
+            [
+              "stanleybet",
+              8
+            ],
+            [
+              "staryes",
+              8
+            ],
+            [
+              "vincitu",
+              8
+            ],
+            [
+              "admiralbet",
+              7.9
+            ],
+            [
+              "starvegas",
+              7.9
+            ],
+            [
+              "quigioco",
+              7.8
+            ],
+            [
+              "daznbet",
+              7.5
+            ],
+            [
+              "domusbet",
+              7.4
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Trentino Volley",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8863774432037663,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Trentino Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.06
+            ],
+            [
+              "starcasino",
+              1.06
+            ],
+            [
+              "williamhill",
+              1.06
+            ],
+            [
+              "admiralbet",
+              1.05
+            ],
+            [
+              "betflag",
+              1.05
+            ],
+            [
+              "betwin360",
+              1.05
+            ],
+            [
+              "bgame",
+              1.05
+            ],
+            [
+              "casinosanremo",
+              1.05
+            ],
+            [
+              "codere",
+              1.05
+            ],
+            [
+              "daznbet",
+              1.05
+            ],
+            [
+              "domusbet",
+              1.05
+            ],
+            [
+              "eplay24",
+              1.05
+            ],
+            [
+              "eurobet",
+              1.05
+            ],
+            [
+              "gioca7",
+              1.05
+            ],
+            [
+              "goldbet",
+              1.05
+            ],
+            [
+              "lottomatica",
+              1.05
+            ],
+            [
+              "marathonbet",
+              1.05
+            ],
+            [
+              "netbet",
+              1.05
+            ],
+            [
+              "netwin",
+              1.05
+            ],
+            [
+              "perlaplay",
+              1.05
+            ],
+            [
+              "planetwin365",
+              1.05
+            ],
+            [
+              "sportbet",
+              1.05
+            ],
+            [
+              "sportium",
+              1.05
+            ],
+            [
+              "stanleybet",
+              1.05
+            ],
+            [
+              "starvegas",
+              1.05
+            ],
+            [
+              "staryes",
+              1.05
+            ],
+            [
+              "sunbet",
+              1.05
+            ],
+            [
+              "totosi",
+              1.05
+            ],
+            [
+              "vincitu",
+              1.05
+            ],
+            [
+              "winamax",
+              1.05
+            ],
+            [
+              "leovegas",
+              1.04
+            ],
+            [
+              "quigioco",
+              1.03
+            ],
+            [
+              "888sport",
+              1.02
+            ],
+            [
+              "888sport_it",
+              1.02
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "06d8ad7be5707b61",
+        "147b4f2e2eb57d48",
+        "3358cf337a9fe672",
+        "98b80b53ab007fba",
+        "9c564ac5ebc1bb1e",
+        "a3d634f9832c14ca",
+        "b1d9d91ba2164f36",
+        "d382e2d2f132c197"
+      ],
+      "idPartita": "pallavolo-2026-11-01-cuneo-volley-volley-civitanova",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Cuneo Volley - Volley Civitanova",
+      "casa": "Cuneo Volley",
+      "trasferta": "Volley Civitanova",
+      "inizio": "2026-11-01T18:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuneo Volley",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.1531874405328259,
+          "quota": 6.3,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cuneo Volley vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              6.333
+            ],
+            [
+              "zonagioco",
+              6.333
+            ],
+            [
+              "leovegas",
+              5.8
+            ],
+            [
+              "williamhill",
+              5.8
+            ],
+            [
+              "betsson",
+              5.7
+            ],
+            [
+              "starcasino",
+              5.7
+            ],
+            [
+              "888sport",
+              5.6
+            ],
+            [
+              "888sport_it",
+              5.6
+            ],
+            [
+              "winamax",
+              5.5
+            ],
+            [
+              "betflag",
+              5.4
+            ],
+            [
+              "bgame",
+              5.4
+            ],
+            [
+              "codere",
+              5.4
+            ],
+            [
+              "eurobet",
+              5.4
+            ],
+            [
+              "goldbet",
+              5.4
+            ],
+            [
+              "lottomatica",
+              5.4
+            ],
+            [
+              "marathonbet",
+              5.4
+            ],
+            [
+              "perlaplay",
+              5.4
+            ],
+            [
+              "planetwin365",
+              5.4
+            ],
+            [
+              "sportbet",
+              5.4
+            ],
+            [
+              "sunbet",
+              5.4
+            ],
+            [
+              "totosi",
+              5.4
+            ],
+            [
+              "admiralbet",
+              5.2
+            ],
+            [
+              "betwin360",
+              5.2
+            ],
+            [
+              "casinosanremo",
+              5.2
+            ],
+            [
+              "eplay24",
+              5.2
+            ],
+            [
+              "gioca7",
+              5.2
+            ],
+            [
+              "netbet",
+              5.2
+            ],
+            [
+              "netwin",
+              5.2
+            ],
+            [
+              "sportium",
+              5.2
+            ],
+            [
+              "stanleybet",
+              5.2
+            ],
+            [
+              "starvegas",
+              5.2
+            ],
+            [
+              "staryes",
+              5.2
+            ],
+            [
+              "vincitu",
+              5.2
+            ],
+            [
+              "quigioco",
+              5.1
+            ],
+            [
+              "daznbet",
+              5
+            ],
+            [
+              "domusbet",
+              5
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Civitanova",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8468125594671742,
+          "quota": 1.1,
+          "fonteQuota": "mediana di 143 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Volley Civitanova vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.14
+            ],
+            [
+              "starcasino",
+              1.14
+            ],
+            [
+              "williamhill",
+              1.14
+            ],
+            [
+              "admiralbet",
+              1.13
+            ],
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "betwin360",
+              1.13
+            ],
+            [
+              "bgame",
+              1.13
+            ],
+            [
+              "casinosanremo",
+              1.13
+            ],
+            [
+              "codere",
+              1.13
+            ],
+            [
+              "eplay24",
+              1.13
+            ],
+            [
+              "eurobet",
+              1.13
+            ],
+            [
+              "gioca7",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "marathonbet",
+              1.13
+            ],
+            [
+              "netbet",
+              1.13
+            ],
+            [
+              "netwin",
+              1.13
+            ],
+            [
+              "perlaplay",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ],
+            [
+              "sportbet",
+              1.13
+            ],
+            [
+              "sportium",
+              1.13
+            ],
+            [
+              "stanleybet",
+              1.13
+            ],
+            [
+              "starvegas",
+              1.13
+            ],
+            [
+              "staryes",
+              1.13
+            ],
+            [
+              "sunbet",
+              1.13
+            ],
+            [
+              "totosi",
+              1.13
+            ],
+            [
+              "vincitu",
+              1.13
+            ],
+            [
+              "winamax",
+              1.13
+            ],
+            [
+              "daznbet",
+              1.12
+            ],
+            [
+              "domusbet",
+              1.12
+            ],
+            [
+              "quigioco",
+              1.11
+            ],
+            [
+              "fastbet",
+              1.1
+            ],
+            [
+              "zonagioco",
+              1.1
+            ],
+            [
+              "leovegas",
+              1.09
+            ],
+            [
+              "888sport",
+              1.08
+            ],
+            [
+              "888sport_it",
+              1.08
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4957617b4b9f9478",
+        "547c84d84839a1e4",
+        "81944a56ea67ae88",
+        "88e1555dc93f2c32",
+        "cb027486e642e4fe",
+        "d926463084b0f98a",
+        "fba5618d41a21114"
+      ],
+      "idPartita": "pallavolo-2026-11-01-cisterna-volley-gas-sales-piacenza",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Cisterna Volley - Gas Sales Piacenza",
+      "casa": "Cisterna Volley",
+      "trasferta": "Gas Sales Piacenza",
+      "inizio": "2026-11-01T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cisterna Volley": 1369,
+        "Gas Sales Piacenza": 1612
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Cisterna Volley 1369 – Gas Sales Piacenza 1612, vantaggio campo compreso: vittoria della casa 26% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cisterna Volley",
+          "probModello": null,
+          "probModelloStudio": 0.2576518290470393,
+          "probPinnacle": 0.29728546409807355,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cisterna Volley vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.333
+            ],
+            [
+              "zonagioco",
+              3.333
+            ],
+            [
+              "winamax",
+              3.25
+            ],
+            [
+              "betflag",
+              3.2
+            ],
+            [
+              "eurobet",
+              3.2
+            ],
+            [
+              "goldbet",
+              3.2
+            ],
+            [
+              "lottomatica",
+              3.2
+            ],
+            [
+              "planetwin365",
+              3.2
+            ],
+            [
+              "betwin360",
+              3.15
+            ],
+            [
+              "casinosanremo",
+              3.15
+            ],
+            [
+              "eplay24",
+              3.15
+            ],
+            [
+              "gioca7",
+              3.15
+            ],
+            [
+              "netbet",
+              3.15
+            ],
+            [
+              "netwin",
+              3.15
+            ],
+            [
+              "sportium",
+              3.15
+            ],
+            [
+              "staryes",
+              3.15
+            ],
+            [
+              "leovegas",
+              3.1
+            ],
+            [
+              "888sport",
+              3.05
+            ],
+            [
+              "888sport_it",
+              3.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Gas Sales Piacenza",
+          "probModello": null,
+          "probModelloStudio": 0.7423481709529607,
+          "probPinnacle": 0.7027145359019265,
+          "quota": 1.3,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Gas Sales Piacenza vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.32
+            ],
+            [
+              "eurobet",
+              1.32
+            ],
+            [
+              "goldbet",
+              1.32
+            ],
+            [
+              "lottomatica",
+              1.32
+            ],
+            [
+              "planetwin365",
+              1.32
+            ],
+            [
+              "winamax",
+              1.32
+            ],
+            [
+              "betwin360",
+              1.31
+            ],
+            [
+              "casinosanremo",
+              1.31
+            ],
+            [
+              "eplay24",
+              1.31
+            ],
+            [
+              "gioca7",
+              1.31
+            ],
+            [
+              "netbet",
+              1.31
+            ],
+            [
+              "netwin",
+              1.31
+            ],
+            [
+              "sportium",
+              1.31
+            ],
+            [
+              "staryes",
+              1.31
+            ],
+            [
+              "fastbet",
+              1.3
+            ],
+            [
+              "leovegas",
+              1.3
+            ],
+            [
+              "zonagioco",
+              1.3
+            ],
+            [
+              "888sport",
+              1.29
+            ],
+            [
+              "888sport_it",
+              1.29
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-01-jastrzebie-barkom-chks-chelm",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Jastrzebie Barkom - Chks Chelm",
+      "casa": "Jastrzebie Barkom",
+      "trasferta": "Chks Chelm",
+      "inizio": "2026-11-01T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Jastrzebie Barkom": 1422,
+        "Chks Chelm": 1313
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Jastrzebie Barkom 1422 – Chks Chelm 1313, vantaggio campo compreso: vittoria della casa 72% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Jastrzebie Barkom",
+          "probModello": null,
+          "probModelloStudio": 0.7247276872481014,
+          "probPinnacle": 0.6787020109689214,
+          "quota": 1.33,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,35 su 142 bookmaker",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "quotaBet365": 1.33,
+          "oraQuotaBet365": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Jastrzebie Barkom vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.37
+            ],
+            [
+              "netbet",
+              1.37
+            ],
+            [
+              "888sport",
+              1.364
+            ],
+            [
+              "marathonbet",
+              1.36
+            ],
+            [
+              "betflag",
+              1.35
+            ],
+            [
+              "bwin",
+              1.35
+            ],
+            [
+              "eurobet",
+              1.35
+            ],
+            [
+              "goldbet",
+              1.35
+            ],
+            [
+              "lottomatica",
+              1.35
+            ],
+            [
+              "planetwin365",
+              1.35
+            ],
+            [
+              "stake",
+              1.35
+            ],
+            [
+              "winamax",
+              1.35
+            ],
+            [
+              "winbet",
+              1.35
+            ],
+            [
+              "starcasino",
+              1.333
+            ],
+            [
+              "bet365",
+              1.33
+            ],
+            [
+              "pokerstars",
+              1.33
+            ],
+            [
+              "sisal",
+              1.33
+            ],
+            [
+              "snai",
+              1.33
+            ],
+            [
+              "quigioco",
+              1.32
+            ],
+            [
+              "leovegas",
+              1.3
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Chks Chelm",
+          "probModello": null,
+          "probModelloStudio": 0.27527231275189856,
+          "probPinnacle": 0.32129798903107853,
+          "quota": 3,
+          "fonteQuota": "mediana di 142 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "quotaBet365": 3,
+          "oraQuotaBet365": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chks Chelm vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              3.05
+            ],
+            [
+              "leovegas",
+              3.05
+            ],
+            [
+              "888sport",
+              3
+            ],
+            [
+              "bet365",
+              3
+            ],
+            [
+              "bwin",
+              3
+            ],
+            [
+              "pokerstars",
+              3
+            ],
+            [
+              "sisal",
+              3
+            ],
+            [
+              "snai",
+              3
+            ],
+            [
+              "starcasino",
+              3
+            ],
+            [
+              "winamax",
+              3
+            ],
+            [
+              "betflag",
+              2.96
+            ],
+            [
+              "goldbet",
+              2.96
+            ],
+            [
+              "lottomatica",
+              2.96
+            ],
+            [
+              "planetwin365",
+              2.96
+            ],
+            [
+              "eurobet",
+              2.95
+            ],
+            [
+              "stake",
+              2.95
+            ],
+            [
+              "winbet",
+              2.95
+            ],
+            [
+              "quigioco",
+              2.9
+            ],
+            [
+              "marathonbet",
+              2.875
+            ],
+            [
+              "netbet",
+              2.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.518729718979074,
+          "probPinnacle": 0.5344323318266418,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 113 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "quotaBet365": 1.77,
+          "oraQuotaBet365": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Jastrzebie Barkom -1,5 vince se Jastrzebie Barkom vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "starcasino",
+              1.8
+            ],
+            [
+              "marathonbet",
+              1.78
+            ],
+            [
+              "bet365",
+              1.77
+            ],
+            [
+              "winbet",
+              1.75
+            ],
+            [
+              "stake",
+              1.74
+            ],
+            [
+              "bwin",
+              1.73
+            ],
+            [
+              "888sport",
+              1.727
+            ],
+            [
+              "winamax",
+              1.72
+            ],
+            [
+              "netbet",
+              1.71
+            ],
+            [
+              "leovegas",
+              1.65
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.48127028102092595,
+          "probPinnacle": 0.4655676681733581,
+          "quota": 1.87,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,97 su 113 bookmaker",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "quotaBet365": 1.87,
+          "oraQuotaBet365": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm +1,5 vince se Chks Chelm vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "leovegas",
+              2.08
+            ],
+            [
+              "888sport",
+              2
+            ],
+            [
+              "winbet",
+              2
+            ],
+            [
+              "bwin",
+              1.98
+            ],
+            [
+              "stake",
+              1.98
+            ],
+            [
+              "netbet",
+              1.97
+            ],
+            [
+              "winamax",
+              1.96
+            ],
+            [
+              "marathonbet",
+              1.9
+            ],
+            [
+              "starcasino",
+              1.9
+            ],
+            [
+              "bet365",
+              1.87
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.8483472029094432,
+          "probPinnacle": 0.7970512194798097,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 48 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Jastrzebie Barkom +1,5 vince se Jastrzebie Barkom vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.17
+            ],
+            [
+              "bwin",
+              1.16
+            ],
+            [
+              "marathonbet",
+              1.156
+            ],
+            [
+              "winamax",
+              1.13
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.1516527970905568,
+          "probPinnacle": 0.20294878052018997,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 48 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Chks Chelm -1,5 vince se Chks Chelm vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              4.8
+            ],
+            [
+              "winbet",
+              4.75
+            ],
+            [
+              "marathonbet",
+              4.5
+            ],
+            [
+              "winamax",
+              4.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.7031544822409609,
+          "probPinnacle": 0.6037349705807112,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 62 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "netbet",
+              1.52
+            ],
+            [
+              "888sport",
+              1.444
+            ],
+            [
+              "marathonbet",
+              1.444
+            ],
+            [
+              "bwin",
+              1.44
+            ],
+            [
+              "stake",
+              1.44
+            ],
+            [
+              "winbet",
+              1.44
+            ],
+            [
+              "winamax",
+              1.42
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.2968455177590391,
+          "probPinnacle": 0.3962650294192889,
+          "quota": 2.36,
+          "fonteQuota": "mediana di 62 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-01T07:23:45+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              2.65
+            ],
+            [
+              "winbet",
+              2.65
+            ],
+            [
+              "888sport",
+              2.625
+            ],
+            [
+              "bwin",
+              2.6
+            ],
+            [
+              "marathonbet",
+              2.53
+            ],
+            [
+              "winamax",
+              2.5
+            ],
+            [
+              "netbet",
+              2.3
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
