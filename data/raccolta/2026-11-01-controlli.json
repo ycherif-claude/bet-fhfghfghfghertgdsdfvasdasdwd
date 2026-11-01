@@ -350,6 +350,66 @@
         "quota 5,40 ≥ minima 4,87"
       ],
       "alle": "2026-11-01T16:13:25+01:00"
+    },
+    "M-calcio-2026-11-01-lanus-gimnasia-mendoza-under-over-1-5-under-1-5+calcio-2026-11-01-lyon-angers-under-over-3-5-under-3-5#1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-01T16:46:26+01:00"
+    },
+    "calcio-2026-11-01-lyon-angers-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-01T16:46:26+01:00"
+    },
+    "calcio-2026-11-01-hellas-verona-carrarese-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-01T16:46:26+01:00"
+    },
+    "calcio-2026-11-01-eintracht-frankfurt-hamburger-sv-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,75 sotto la minima 1,84",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,75 sotto la minima 1,84"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino"
+      ],
+      "alle": "2026-11-01T16:46:26+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-liverpool-arsenal-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,30 sotto la minima 2,58",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,30 sotto la minima 2,58"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T16:46:26+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -564,6 +624,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T16:13:25+01:00"
+    },
+    "calcio-2026-11-01-paok-asteras-tripoli|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T16:46:26+01:00"
     }
   }
 }
