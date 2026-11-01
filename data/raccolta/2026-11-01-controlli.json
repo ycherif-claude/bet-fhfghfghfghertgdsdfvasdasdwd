@@ -66,6 +66,46 @@
       ],
       "alle": "2026-11-01T12:56:23+01:00",
       "regola": true
+    },
+    "calcio-2026-11-01-malmo-ff-hammarby-if-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,85 ≥ minima 2,33",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,85 ≥ minima 2,33"
+      ],
+      "alle": "2026-11-01T13:29:37+01:00"
+    },
+    "calcio-2026-11-01-viborg-ff-ac-horsens-doppia-chance-x2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,15 sotto la minima 2,27",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,15 sotto la minima 2,27"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T13:29:37+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-djurgarden-degerfors-if-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,60 sotto la minima 1,68",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,60 sotto la minima 1,68"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T13:29:37+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -147,6 +187,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T12:56:23+01:00"
+    },
+    "calcio-2026-11-01-rb-salzburg-austria-lustenau|1X2|1": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "1X2|1",
+      "alle": "2026-11-01T13:29:37+01:00"
+    },
+    "calcio-2026-11-01-sk-brann-molde|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-01T13:29:37+01:00"
     }
   }
 }
