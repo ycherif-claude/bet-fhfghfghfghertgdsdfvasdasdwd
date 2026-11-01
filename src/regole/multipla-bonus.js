@@ -32,6 +32,16 @@ export function mercatoAmmesso(mercato, selezione, sport = null) {
 // mediana deve essere ≥ quotaMinMediana (bet365 di solito paga un po' meno della mediana).
 const quotaBet365Ok = (m) => (num(m.quotaBet365) ? m.quotaBet365 >= C.quotaMinBet365 - EPS : m.quota >= C.quotaMinMediana - EPS);
 
+const creaGamba = (partita, m) => ({
+  sport: partita.sport ?? 'calcio', competizione: partita.competizione, partita: partita.partita,
+  idPartita: partita.idPartita, inizio: partita.inizio, mercato: m.mercato, selezione: m.selezione,
+  quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle,
+  // Probabilità del nostro modello [utente, 29/10/2026]; per la pallavolo l'Elo "di studio", che non entra nelle giocate.
+  probModello: num(m.probModello) ? m.probModello : num(m.probModelloStudio) ? m.probModelloStudio : null, resa: m.quota * m.probPinnacle, esito: null,
+  // Bookmaker italiani con la loro quota (NBA, basket, pallavolo dalla raccolta; il calcio li aggiunge il giro).
+  ...(Array.isArray(m.bookmaker) && m.bookmaker.length ? { bookmaker: m.bookmaker } : {}),
+});
+
 // `senzaUnder` [utente, 29/10/2026]: niente Under 2.5 e 3.5 (coppie e multiple per probabilità); la partita
 // resta con la sua selezione migliore fra le altre.
 export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false } = {}) {
@@ -41,20 +51,23 @@ export function gambePossibili(voci, { escluse = new Set(), senzaUnder = false }
     if (senzaUnder && giocataUnder(m)) continue;
     if (!num(m.quota) || m.quota < C.quotaMin - EPS || m.quota > C.quotaMax + EPS) continue;
     if (!num(m.probPinnacle) || !mercatoAmmesso(m.mercato, m.selezione, partita.sport ?? 'calcio') || !quotaBet365Ok(m)) continue;
-    const resa = m.quota * m.probPinnacle;
-    const g = {
-      sport: partita.sport ?? 'calcio', competizione: partita.competizione, partita: partita.partita,
-      idPartita: partita.idPartita, inizio: partita.inizio, mercato: m.mercato, selezione: m.selezione,
-      quota: m.quota, quotaBet365: num(m.quotaBet365) ? m.quotaBet365 : null, probMercato: m.probPinnacle,
-      // Probabilità del nostro modello [utente, 29/10/2026]; per la pallavolo l'Elo "di studio", che non entra nelle giocate.
-      probModello: num(m.probModello) ? m.probModello : num(m.probModelloStudio) ? m.probModelloStudio : null, resa, esito: null,
-      // Bookmaker italiani con la loro quota (NBA, basket, pallavolo dalla raccolta; il calcio li aggiunge il giro).
-      ...(Array.isArray(m.bookmaker) && m.bookmaker.length ? { bookmaker: m.bookmaker } : {}),
-    };
+    const g = creaGamba(partita, m);
     const cur = migliori.get(partita.idPartita);
-    if (!cur || resa > cur.resa + EPS || (Math.abs(resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);
+    if (!cur || g.resa > cur.resa + EPS || (Math.abs(g.resa - cur.resa) <= EPS && g.probMercato > cur.probMercato)) migliori.set(partita.idPartita, g);
   }
   return [...migliori.values()].sort((a, b) => b.resa - a.resa || b.probMercato - a.probMercato);
+}
+
+// Le Over 1.5 di calcio del giorno, per la tripla [utente, 01/11/2026]: anche dove non è la selezione migliore della partita.
+export function gambeOver15(voci, { escluse = new Set() } = {}) {
+  const out = new Map();
+  for (const { partita, m } of voci) {
+    if ((partita.sport ?? 'calcio') !== 'calcio' || m.mercato !== 'Under/Over 1.5' || m.selezione !== 'Over 1.5') continue;
+    if (escluse.has(partita.idPartita) || C.competizioniEscluse.includes(partita.competizione)) continue;
+    if (!num(m.quota) || m.quota < CONFIG.coppieQuota2.over15.quotaMin - EPS || !num(m.probPinnacle)) continue;
+    if (!out.has(partita.idPartita)) out.set(partita.idPartita, creaGamba(partita, m));
+  }
+  return [...out.values()];
 }
 
 const arrotonda = (x) => Math.round(x * 100) / 100;

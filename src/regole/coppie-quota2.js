@@ -81,8 +81,8 @@ export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMer
 
 // Le coppie degli otto modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite; gli altri
 // quattro uguali ma con tutte le partite adatte, per confronto ("tutte" è il margine) [utente, 30/10/2026].
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'doppie', 'triple', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
-export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
+export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'doppie', 'triple', 'over15', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
+export const costruisciCoppieQuota2 = (gambe, { data, gambeOver15 = [] } = {}) => {
   const top = migliori(gambe);
   return {
     margine: costruisciCoppie(top, { data, criterio: 'margine' }),
@@ -93,6 +93,7 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     probabilitaConfermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
     doppie: costruisciDoppie(gambe.filter(sportMostrato), { data }),
     triple: costruisciTriple(gambe.filter(sportMostrato), { data }),
+    over15: costruisciTriplaOver15(gambeOver15, { data }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
     probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
     modelloTutte: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modelloTutte' }),
@@ -109,6 +110,8 @@ function gruppi(top, n, da = 0, corrente = [], out = []) {
 }
 
 export const costruisciTriple = (gambe, { data } = {}) => schedineMigliori(gambe, { data, n: 3, regole: C.triple, sigla: 'T3P', criterio: 'triple' });
+// Tripla Over 1.5 [utente, 01/11/2026]: le 3 più probabili confermate, una al giorno, qualunque sia la quota totale.
+export const costruisciTriplaOver15 = (gambe, { data } = {}) => schedineMigliori(gambe, { data, n: 3, regole: { partite: 3, max: 1, quotaMin: 1, quotaMax: Infinity }, sigla: 'O15', criterio: 'over15' });
 export const costruisciDoppie = (gambe, { data } = {}) => schedineMigliori(gambe, { data, n: 2, regole: C.doppie, sigla: 'D2P', criterio: 'doppie' });
 
 // Schedine da `n` partite dalle più probabili confermate (doppie e triple): prima le più probabili, ogni partita una volta.

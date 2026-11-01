@@ -37,7 +37,8 @@ export function bigliettiGiornata(giornata) {
   const coppie = [...(giornata?.coppieQuota2?.margine ?? []), ...(giornata?.coppieQuota2?.confermate ?? []), ...(giornata?.coppieQuota2?.probabilitaConfermate ?? [])].filter((c) => c?.id)
     .map((c) => biglietto(c, { tipo: 'coppia', nome: 'Coppia a quota 2' }));
   const triple = [...(giornata?.coppieQuota2?.doppie ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'coppia', nome: 'Doppia' })),
-    ...(giornata?.coppieQuota2?.triple ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla' }))];
+    ...(giornata?.coppieQuota2?.triple ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla' })),
+    ...(giornata?.coppieQuota2?.over15 ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla Over 1.5' }))];
   const multiple = (giornata?.multipleBonus ?? []).filter((m) => m?.id && (m.criterio === 'probabilita' || m.criterio === 'probabilitaConfermate'))
     .map((m) => biglietto(m, { tipo: 'multipla', nome: `Multipla da ${m.gambe?.length ?? '?'}` }));
   return [...coppie, ...triple, ...multiple];

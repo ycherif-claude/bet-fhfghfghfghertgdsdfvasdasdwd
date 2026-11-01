@@ -58755,6 +58755,68 @@
         "esito": null,
         "ritorno": null
       }
+    ],
+    "over15": [
+      {
+        "id": "O151-2026-11-01",
+        "criterio": "over15",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie B",
+            "partita": "Arezzo - Ascoli",
+            "idPartita": "calcio-2026-11-01-arezzo-ascoli",
+            "inizio": "2026-11-01T15:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.26,
+            "quotaBet365": null,
+            "probMercato": 0.7471,
+            "probModello": 0.7860488092354783,
+            "esito": null,
+            "probModelloTarato": 0.7812
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Segunda División",
+            "partita": "AD Ceuta FC - Sporting Gijón",
+            "idPartita": "calcio-2026-11-01-ad-ceuta-fc-sporting-gijon",
+            "inizio": "2026-11-01T16:15:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.25,
+            "quotaBet365": null,
+            "probMercato": 0.753,
+            "probModello": 0.7675807874394132,
+            "esito": null,
+            "probModelloTarato": 0.766
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Premier League",
+            "partita": "Liverpool - Arsenal",
+            "idPartita": "calcio-2026-11-01-liverpool-arsenal",
+            "inizio": "2026-11-01T17:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.26,
+            "quotaBet365": null,
+            "probMercato": 0.7517,
+            "probModello": 0.7297070102407228,
+            "esito": null,
+            "probModelloTarato": 0.7352
+          }
+        ],
+        "quota": 1.98,
+        "incremento": 0.05,
+        "quotaConBonus": 2.08,
+        "prob": 0.42288108771,
+        "probModello": 0.43994309183999997,
+        "valueAtteso": -0.11883210551148027,
+        "esito": null,
+        "ritorno": null
+      }
     ]
   },
   "taraturaModello": {

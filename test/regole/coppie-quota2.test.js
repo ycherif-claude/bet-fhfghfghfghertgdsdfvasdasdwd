@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { bilancioCoppie, costruisciCoppie, costruisciCoppieQuota2, esitoCoppia } from '../../src/regole/coppie-quota2.js';
-import { costruisciMultipleBonus } from '../../src/regole/multipla-bonus.js';
+import { costruisciMultipleBonus, gambeOver15 } from '../../src/regole/multipla-bonus.js';
 import { aggiornaMultipleBonus } from '../../src/registro/registro.js';
 import { contaStorico, messaggi, messaggioStorico, testoCoppie } from '../../src/notifiche/telegram.js';
 import { renderCoppia, testoBilancioCoppie } from '../../site/app.js';
@@ -42,6 +42,18 @@ test('schedine mostrate solo di calcio; gli altri sport restano nei modi nascost
   assert.ok(confermate.length);
   for (const m of confermate) for (const g of m.gambe) assert.equal(g.sport, 'calcio');
   assert.ok(multiple.filter((m) => m.criterio === 'probabilita').flatMap((m) => m.gambe).some((g) => g.sport !== 'calcio'));
+});
+
+test('tripla Over 1.5: una al giorno, le 3 più probabili confermate con quota da 1,25, solo calcio', () => {
+  const voce = (id, quota, probPinnacle, probModello, extra = {}) => ({ partita: { idPartita: id, partita: `${id} - X`, competizione: 'Serie A', inizio: '2026-11-01T15:00:00+01:00', sport: 'calcio', ...extra }, m: { mercato: 'Under/Over 1.5', selezione: 'Over 1.5', quota, probPinnacle, probModello } });
+  const voci = [voce('a', 1.25, 0.75, 0.76), voce('b', 1.3, 0.74, 0.75), voce('c', 1.26, 0.73, 0.74), voce('d', 1.3, 0.72, 0.72),
+    voce('bassa', 1.2, 0.8, 0.8), voce('lontana', 1.3, 0.76, 0.9), voce('nba', 1.3, 0.77, 0.77, { sport: 'nba' }),
+    { ...voce('altro', 1.3, 0.78, 0.78), m: { mercato: 'Under/Over 2.5', selezione: 'Over 2.5', quota: 1.3, probPinnacle: 0.78, probModello: 0.78 } }];
+  const { over15 } = costruisciCoppieQuota2([], { data: '2026-11-01', gambeOver15: gambeOver15(voci) });
+  assert.equal(over15.length, 1);
+  assert.deepEqual(over15[0].gambe.map((g) => g.idPartita).sort(), ['a', 'b', 'c']);
+  assert.equal(over15[0].id, 'O151-2026-11-01');
+  assert.equal(costruisciCoppieQuota2([], { data: '2026-11-01', gambeOver15: gambeOver15(voci.slice(0, 2)) }).over15.length, 0);
 });
 
 test('coppie: quota totale fra 1,90 e 2,15, partite diverse, ogni partita una volta sola', () => {

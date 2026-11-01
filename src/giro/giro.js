@@ -11,7 +11,7 @@ import { isoRoma, oraRoma } from '../calcio/testo.js';
 import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-sito.js';
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
-import { costruisciMultipleBonus, gambePossibili } from '../regole/multipla-bonus.js';
+import { costruisciMultipleBonus, gambeOver15, gambePossibili } from '../regole/multipla-bonus.js';
 import { costruisciCoppieQuota2 } from '../regole/coppie-quota2.js';
 import { calcolaTaratura, tara } from '../regole/taratura-modello.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
@@ -188,7 +188,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const gambeSenzaUnder = taraGambe(gambePossibili(voci, { escluse, senzaUnder: true }));
   const multipleBonus = conBiglietti ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
   // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
-  const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi });
+  const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi, gambeOver15: taraGambe(gambeOver15(voci, { escluse })) });
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
   // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).
   const quoteOdss = leggiQuoteOdss(dirData, oggi);

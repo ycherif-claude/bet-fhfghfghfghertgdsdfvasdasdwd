@@ -149,6 +149,7 @@ const MODI_COPPIE = [
   ['probabilita', 'Per probabilità del mercato'],
   ['modello', 'Solo il nostro modello'],
   ['confermate', 'Confermate da modello e mercato'],
+  ['over15', 'Tripla Over 1.5 del giorno'],
   ['tutte', 'Per margine, con tutte le partite'],
   ['probabilitaTutte', 'Per probabilità del mercato, con tutte le partite'],
   ['modelloTutte', 'Solo il nostro modello, con tutte le partite'],
