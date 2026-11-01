@@ -284,6 +284,72 @@
         "quota 2,90 ≥ minima 2,85"
       ],
       "alle": "2026-11-01T15:38:14+01:00"
+    },
+    "calcio-2026-11-01-sarpsborg-fk-kristiansund-bk-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,85 ≥ minima 2,77",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,85 ≥ minima 2,77"
+      ],
+      "alle": "2026-11-01T16:13:25+01:00"
+    },
+    "calcio-2026-11-01-kasimpasa-besiktas-doppia-chance-1x": {
+      "esito": "confermata",
+      "motivo": "regola automatica (Claude non disponibile): mercato contro: da 44% a 39%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 44% a 39%"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,08 ≥ minima 2,05"
+      ],
+      "alle": "2026-11-01T16:13:25+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-austria-vienna-rapid-vienna-doppia-chance-1x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,12 sotto la minima 2,18",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,12 sotto la minima 2,18"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T16:13:25+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-if-elfsborg-orgryte-is-doppia-chance-x2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,89 sotto la minima 2,96",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,89 sotto la minima 2,96"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T16:13:25+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-arouca-nacional-1x2-2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 5,40 ≥ minima 4,87",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 5,40 ≥ minima 4,87"
+      ],
+      "alle": "2026-11-01T16:13:25+01:00"
     }
   },
   "claude": {
@@ -486,6 +552,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T15:38:14+01:00"
+    },
+    "calcio-2026-11-01-lyon-angers|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-01T16:13:25+01:00"
+    },
+    "calcio-2026-11-01-eintracht-frankfurt-hamburger-sv|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T16:13:25+01:00"
     }
   }
 }
