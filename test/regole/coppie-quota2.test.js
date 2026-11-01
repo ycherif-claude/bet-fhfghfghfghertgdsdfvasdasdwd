@@ -4,6 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { bilancioCoppie, costruisciCoppie, costruisciCoppieQuota2, esitoCoppia } from '../../src/regole/coppie-quota2.js';
+import { costruisciMultipleBonus } from '../../src/regole/multipla-bonus.js';
 import { aggiornaMultipleBonus } from '../../src/registro/registro.js';
 import { contaStorico, messaggi, messaggioStorico, testoCoppie } from '../../src/notifiche/telegram.js';
 import { renderCoppia, testoBilancioCoppie } from '../../site/app.js';
@@ -28,6 +29,19 @@ const gamba = (id, quota, probMercato, ora = 15) => ({
   sport: 'calcio', competizione: 'Serie A', partita: `Casa${id} - Ospite${id}`, idPartita: id,
   inizio: `2026-10-30T${String(ora).padStart(2, '0')}:00:00+01:00`, mercato: '1X2', selezione: '1',
   quota, quotaBet365: null, probMercato, resa: quota * probMercato, esito: null,
+});
+
+test('schedine mostrate solo di calcio; gli altri sport restano nei modi nascosti', () => {
+  const altri = ['nba', 'basket', 'pallavolo'].map((sport, i) => ({ ...conferma(gamba(`x${i}`, 1.4, 0.76 - i / 100, 15)), sport }));
+  const modi = costruisciCoppieQuota2([...altri, ...tre('a'), ...tre('b')], { data: '2026-11-01' });
+  assert.ok(modi.triple.length && modi.doppie.length);
+  for (const c of [...modi.triple, ...modi.doppie]) for (const g of c.gambe) assert.equal(g.sport, 'calcio');
+  assert.ok(modi.probabilitaTutte.flatMap((c) => c.gambe).some((g) => g.sport !== 'calcio') || modi.tutte.flatMap((c) => c.gambe).some((g) => g.sport !== 'calcio'));
+  const multiple = costruisciMultipleBonus(null, { data: '2026-11-01', gambe: [...altri, ...tre('a'), ...tre('b')] });
+  const confermate = multiple.filter((m) => m.criterio === 'probabilitaConfermate');
+  assert.ok(confermate.length);
+  for (const m of confermate) for (const g of m.gambe) assert.equal(g.sport, 'calcio');
+  assert.ok(multiple.filter((m) => m.criterio === 'probabilita').flatMap((m) => m.gambe).some((g) => g.sport !== 'calcio'));
 });
 
 test('coppie: quota totale fra 1,90 e 2,15, partite diverse, ogni partita una volta sola', () => {

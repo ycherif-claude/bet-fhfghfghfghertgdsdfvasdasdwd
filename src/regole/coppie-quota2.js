@@ -33,6 +33,7 @@ const numero = (v) => typeof v === 'number' && Number.isFinite(v);
 export const pm = (g) => (numero(g.probModelloTarato) ? g.probModelloTarato : g.probModello);
 const conModello = (g) => numero(pm(g));
 export const confermata = (g) => conModello(g) && Math.abs(pm(g) - g.probMercato) < C.scartoConferma + EPS;
+export const sportMostrato = (g) => C.sportMostrati.includes(g.sport);
 
 // Coppie del giorno con `criterio` dalle gambe di gambePossibili (con quota e probMercato).
 export function costruisciCoppie(gambe, { data, criterio = 'margine' } = {}) {
@@ -90,8 +91,8 @@ export const costruisciCoppieQuota2 = (gambe, { data } = {}) => {
     confermate: costruisciCoppie(top.filter(confermata), { data, criterio: 'confermate' }),
     // Come le multiple per probabilità: fra tutte le partite confermate, non solo le migliori 20 per margine [utente, 31/10/2026].
     probabilitaConfermate: costruisciCoppie(gambe.filter(confermata), { data, criterio: 'probabilitaConfermate' }),
-    doppie: costruisciDoppie(gambe, { data }),
-    triple: costruisciTriple(gambe, { data }),
+    doppie: costruisciDoppie(gambe.filter(sportMostrato), { data }),
+    triple: costruisciTriple(gambe.filter(sportMostrato), { data }),
     tutte: costruisciCoppie(gambe, { data, criterio: 'tutte' }),
     probabilitaTutte: costruisciCoppie(gambe, { data, criterio: 'probabilitaTutte' }),
     modelloTutte: costruisciCoppie(gambe.filter(conModello), { data, criterio: 'modelloTutte' }),

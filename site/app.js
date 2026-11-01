@@ -578,7 +578,7 @@ function avvia(dati) {
     const sezione = (titolo, lista, sigla) => (lista.length ? [el('h3', {}, titolo), ...lista.map((x, i) => schedaSicura(x?.id, () => renderCoppia(x, `${sigla}${i + 1}`, ultime.get(x?.id) ?? null, { segnabile: true })))] : []);
     cq.replaceChildren(...(lcp.length || ldp.length || bilCoppie ? [
       el('h2', {}, 'Doppie e triple'),
-      el('p', { class: 'meta' }, 'Dalle 10 partite più probabili su cui modello e mercato sono d\'accordo; in ogni elenco una partita è in una schedina sola. Bonus bet365: +2,5% la doppia, +5% la tripla.'),
+      el('p', { class: 'meta' }, 'Dalle 10 partite di calcio più probabili su cui modello e mercato sono d\'accordo; in ogni elenco una partita è in una schedina sola. Bonus bet365: +2,5% la doppia, +5% la tripla.'),
       ...(bilCoppie ? [el('p', { class: 'meta' }, bilCoppie)] : []),
       // Solo per probabilità [utente, 31/10/2026]; quelle per margine restano in background per studio.
       ...sezione('Doppie (quota circa 1,70)', ldp, 'D'),
@@ -589,7 +589,7 @@ function avvia(dati) {
   const tutteMb = Array.isArray(dati.oggi.giornata?.multipleBonus) ? dati.oggi.giornata.multipleBonus : [];
   const perProb = tutteMb.filter((x) => x?.criterio === 'probabilitaConfermate');
   const mp = document.getElementById('multiple-probabili');
-  if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple con le partite più probabili (confermate da modello e mercato)'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x, ultime.get(x?.id) ?? null, { segnabile: true })))] : []));
+  if (mp) mp.replaceChildren(...(perProb.length ? [el('h2', {}, 'Multiple di calcio con le partite più probabili (confermate da modello e mercato)'), ...perProb.map((x) => schedaSicura(x?.id, () => renderMultiplaBonus(x, ultime.get(x?.id) ?? null, { segnabile: true })))] : []));
   if (cq && !lcp.length && !ldp.length && !perProb.length) cq.append(el('p', { class: 'vuoto' }, 'Oggi nessuna coppia a quota 2 e nessuna multipla con le partite più probabili.'));
   const bonus = document.getElementById('multiple-bonus');
   const mb = tutteMb.filter((x) => x?.criterio !== 'probabilita' && x?.criterio !== 'probabilitaConfermate');

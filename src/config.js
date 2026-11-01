@@ -263,6 +263,8 @@ export const CONFIG = congela({
   // migliori: partite usate per le coppie, le prime per margine [utente, 30/10/2026].
   coppieQuota2: {
     quotaMin: 1.9, quotaMax: 2.15, scartoConferma: 0.05, migliori: 20,
+    // Multiple, doppie e triple mostrate: solo calcio [utente, 01/11/2026]. Gli altri sport restano nei modi nascosti, per studio.
+    sportMostrati: ['calcio'],
     // Triple [utente, 31/10/2026]: dalle 10 partite più probabili confermate da modello e mercato, al massimo 3,
     // quota totale intorno a 2 (le più probabili sono a 1,30: due insieme non arrivano a 1,90).
     triple: { partite: 10, max: 3, quotaMin: 1.9, quotaMax: 2.5 },

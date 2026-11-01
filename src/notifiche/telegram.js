@@ -85,7 +85,7 @@ const coppieDi = (giornata, modo) => (Array.isArray(giornata?.coppieQuota2?.[mod
 // Mostrate [utente, 31/10/2026]: le triple dalle 10 partite più probabili confermate da modello e mercato. Le coppie
 // (per probabilità e per margine, confermate e non) si calcolano in background per studiarle.
 const COPPIE_MOSTRATE = [
-  ['doppie', 'Doppie', 'le 10 partite più probabili, confermate da modello e mercato'],
+  ['doppie', 'Doppie', 'le 10 partite di calcio più probabili, confermate da modello e mercato'],
   ['triple', 'Triple a quota circa 2', 'le stesse 10 partite'],
 ];
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).
