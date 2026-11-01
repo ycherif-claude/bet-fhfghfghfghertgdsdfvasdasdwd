@@ -6164,9 +6164,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 2,58 sotto la minima 2,61",
+      "oraUltimoControllo": "2026-11-01T15:04:41+01:00",
       "esito": null,
       "prova": true
     },
@@ -6364,9 +6364,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,55 sotto la minima 2,70",
+      "oraUltimoControllo": "2026-11-01T15:04:41+01:00",
       "esito": null,
       "prova": true
     },
@@ -7585,7 +7585,13 @@
           "probMercato": 0.6568,
           "probModello": 0.670944804961572,
           "esito": null,
-          "probModelloTarato": 0.6882
+          "probModelloTarato": 0.6882,
+          "chiusura": {
+            "quota": 1.48,
+            "prob": 0.652888680131517,
+            "alle": "2026-11-01T15:04:41+01:00",
+            "minutiPrima": 25
+          }
         },
         {
           "sport": "calcio",
@@ -8888,7 +8894,13 @@
           "probMercato": 0.6568,
           "probModello": 0.670944804961572,
           "esito": null,
-          "probModelloTarato": 0.6882
+          "probModelloTarato": 0.6882,
+          "chiusura": {
+            "quota": 1.48,
+            "prob": 0.652888680131517,
+            "alle": "2026-11-01T15:04:41+01:00",
+            "minutiPrima": 25
+          }
         },
         {
           "sport": "calcio",
@@ -12555,7 +12567,13 @@
           "probMercato": 0.6568,
           "probModello": 0.670944804961572,
           "esito": null,
-          "probModelloTarato": 0.6882
+          "probModelloTarato": 0.6882,
+          "chiusura": {
+            "quota": 1.48,
+            "prob": 0.652888680131517,
+            "alle": "2026-11-01T15:04:41+01:00",
+            "minutiPrima": 25
+          }
         },
         {
           "sport": "calcio",
@@ -26653,7 +26671,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           },
           {
             "sport": "calcio",
@@ -29660,7 +29684,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.98,
@@ -30062,7 +30092,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.97,
@@ -41338,7 +41374,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           },
           {
             "sport": "calcio",
@@ -48777,7 +48819,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           },
           {
             "sport": "calcio",
@@ -51565,7 +51613,13 @@
             "probMercato": 0.6326,
             "probModello": 0.6878867117548569,
             "esito": null,
-            "probModelloTarato": 0.7017
+            "probModelloTarato": 0.7017,
+            "chiusura": {
+              "quota": 1.49,
+              "prob": 0.6329391584188475,
+              "alle": "2026-11-01T15:04:41+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.94,

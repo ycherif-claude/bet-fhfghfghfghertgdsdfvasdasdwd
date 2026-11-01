@@ -236,13 +236,41 @@
       ],
       "alle": "2026-11-01T14:22:13+01:00",
       "regola": true
+    },
+    "calcio-2026-11-01-lausanne-thun-1x2-2": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,58 sotto la minima 2,61",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,58 sotto la minima 2,61"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-union-berlin-1-fc-koln-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,55 sotto la minima 2,70",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,55 sotto la minima 2,70"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T15:04:41+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
       "calcio-2026-11-01-young-boys-zurich-doppia-chance-x2",
-      "calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1"
+      "calcio-2026-11-01-otelul-sepsi-sf-gheorghe-1x2-1",
+      "calcio-2026-11-01-lausanne-thun-1x2-2"
     ]
   },
   "pronostici": {
@@ -353,6 +381,60 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T14:22:13+01:00"
+    },
+    "calcio-2026-11-01-st-truiden-oud-heverlee-leuven|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-real-racing-club-de-santander-real-madrid|Doppia chance|12": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|12",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-arouca-nacional|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-lausanne-thun|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-lugano-basel|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-bk-hacken-ifk-goteborg|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-if-elfsborg-orgryte-is|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-vasteras-sk-if-brommapojkarna|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T15:04:41+01:00"
+    },
+    "calcio-2026-11-01-univ-craiova-fc-botosani|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-01T15:04:41+01:00"
     }
   }
 }
