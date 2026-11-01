@@ -2795,6 +2795,66 @@
       "prob": null,
       "alle": "2026-11-01T16:46:26+01:00",
       "minutiPrima": 44
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon|1X2|1": {
+      "quota": 3.5,
+      "prob": 0.25242544403731565,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon|1X2|X": {
+      "quota": 3.25,
+      "prob": 0.29462422647516473,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon|1X2|2": {
+      "quota": 2.01,
+      "prob": 0.4529503294875196,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon|Under/Over 2.5|Over 2.5": {
+      "quota": 1.85,
+      "prob": 0.5038560411311055,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon|Under/Over 2.5|Under 2.5": {
+      "quota": 1.87,
+      "prob": 0.4961439588688946,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-elche-cf-valencia|1X2|1": {
+      "quota": 2.3,
+      "prob": 0.41215195539061183,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-elche-cf-valencia|1X2|X": {
+      "quota": 3.28,
+      "prob": 0.3005538874694616,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-elche-cf-valencia|1X2|2": {
+      "quota": 3.14,
+      "prob": 0.2872941571399265,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-elche-cf-valencia|Under/Over 2.5|Over 2.5": {
+      "quota": 1.94,
+      "prob": 0.4642857142857143,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
+    },
+    "calcio-2026-11-01-elche-cf-valencia|Under/Over 2.5|Under 2.5": {
+      "quota": 1.83,
+      "prob": 0.5357142857142857,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "minutiPrima": 37
     }
   },
   "copertura": {
@@ -2877,19 +2937,21 @@
       ]
     },
     "calcio|LaLiga": {
-      "alle": "2026-11-01T15:38:14+01:00",
-      "partite": 2,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "partite": 3,
       "idPartite": [
         "calcio-2026-11-01-getafe-sevilla",
-        "calcio-2026-11-01-real-racing-club-de-santander-real-madrid"
+        "calcio-2026-11-01-real-racing-club-de-santander-real-madrid",
+        "calcio-2026-11-01-elche-cf-valencia"
       ]
     },
     "calcio|Segunda División": {
-      "alle": "2026-11-01T15:38:14+01:00",
-      "partite": 2,
+      "alle": "2026-11-01T17:53:12+01:00",
+      "partite": 3,
       "idPartite": [
         "calcio-2026-11-01-cd-eldense-granada-cf",
-        "calcio-2026-11-01-ad-ceuta-fc-sporting-gijon"
+        "calcio-2026-11-01-ad-ceuta-fc-sporting-gijon",
+        "calcio-2026-11-01-burgos-cf-cd-castellon"
       ]
     },
     "calcio|Scottish Premiership": {

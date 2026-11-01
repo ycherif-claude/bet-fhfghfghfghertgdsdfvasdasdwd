@@ -428,6 +428,46 @@
         "quote non controllate (competizione sconosciuta alle quote)"
       ],
       "alle": "2026-11-01T17:18:17+01:00"
+    },
+    "calcio-2026-11-01-burgos-cf-cd-castellon-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,87 sotto la minima 1,91",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,87 sotto la minima 1,91"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T17:53:12+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-elche-cf-valencia-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,30 sotto la minima 2,38",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,30 sotto la minima 2,38"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-01T17:53:12+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-01-panathinaikos-aek-athens-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-01T17:53:12+01:00"
     }
   },
   "claude": {
@@ -648,6 +688,24 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-01T16:46:26+01:00"
+    },
+    "calcio-2026-11-01-academico-de-viseu-rio-ave-fc|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-01T17:53:12+01:00"
+    },
+    "calcio-2026-11-01-charleroi-raal-la-louviere|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-01T17:53:12+01:00"
+    },
+    "calcio-2026-11-01-valerenga-tromso|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-01T17:53:12+01:00"
     }
   }
 }
