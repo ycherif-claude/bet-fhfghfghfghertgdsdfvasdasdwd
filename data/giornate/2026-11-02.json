@@ -2404,9 +2404,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 3,17 sotto la minima 3,30",
-      "oraUltimoControllo": "2026-11-02T19:15:24+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 3,17 sotto la minima 3,30 e nessun fatto nuovo che alzi la probabilità rispetto al mattino (nessuna notizia su formazioni o infortuni trovata) (ricerca web su formazioni/notizie Rakow - Pogon Szczecin, nessun risultato utile, 19:20)",
+      "oraUltimoControllo": "2026-11-02T19:16:17+01:00",
       "esito": null,
       "prova": true
     },
@@ -34997,7 +34997,10 @@
     "odss-api alle 07:33: 15 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Oklahoma City Thunder - Cleveland Cavaliers, Atlanta Hawks - Indiana Pacers, Brooklyn Nets - New York Knicks, Washington Wizards - Orlando Magic, Detroit Pistons - Charlotte Hornets, Chicago Bulls - Philadelphia 76ers, Sacramento Kings - Dallas Mavericks, New Orleans Pelicans - Memphis Grizzlies, Milwaukee Bucks - Minnesota Timberwolves, Boston Celtics - Houston Rockets, Utah Jazz - San Antonio Spurs, Portland Trail Blazers - Denver Nuggets, Miami Heat - Los Angeles Lakers, Toronto Raptors - LA Clippers, Phoenix Suns - Golden State Warriors",
     "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
     "Superficie sconosciuta per ATP Paris Masters: solo Pinnacle",
-    "odss-api alle 07:39: 2 partite senza quota utilizzabile (ATP Paris Masters)"
+    "odss-api alle 07:39: 2 partite senza quota utilizzabile (ATP Paris Masters)",
+    "Decisione di Claude per calcio-2026-11-02-vps-hjk-doppia-chance-1x arrivata dopo l'inizio della partita (19:16): non applicata",
+    "Decisione di Claude per calcio-2026-11-02-inter-turku-gnistan-doppia-chance-x2 arrivata dopo l'inizio della partita (19:16): non applicata",
+    "Decisione di Claude per calcio-2026-11-02-fc-voluntari-farul-constanta-under-over-2-5-over-2-5 arrivata dopo l'inizio della partita (19:16): non applicata"
   ],
   "schedinePronostici": [
     {
