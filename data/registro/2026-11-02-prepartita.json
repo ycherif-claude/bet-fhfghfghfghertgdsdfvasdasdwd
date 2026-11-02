@@ -1103,6 +1103,78 @@
       "prob": null,
       "alle": "2026-11-02T20:09:08+01:00",
       "minutiPrima": 36
+    },
+    "calcio-2026-11-02-benfica-alverca|1X2|1": {
+      "quota": 1.1,
+      "prob": 0.8453146343684547,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|1X2|X": {
+      "quota": 8.5,
+      "prob": 0.09793279300610144,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|1X2|2": {
+      "quota": 16,
+      "prob": 0.05675257262544395,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|Under/Over 2.5|Over 2.5": {
+      "quota": 1.21,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|Under/Over 2.5|Under 2.5": {
+      "quota": 3.95,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|Under/Over 3.5|Over 3.5": {
+      "quota": 1.66,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-benfica-alverca|Under/Over 3.5|Under 3.5": {
+      "quota": 2.02,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-gil-vicente-vitoria-sc|1X2|1": {
+      "quota": 2.86,
+      "prob": 0.3121218893778371,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-gil-vicente-vitoria-sc|1X2|X": {
+      "quota": 3,
+      "prob": 0.2995984802361337,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-gil-vicente-vitoria-sc|1X2|2": {
+      "quota": 2.4,
+      "prob": 0.38827963038602936,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-gil-vicente-vitoria-sc|Under/Over 2.5|Over 2.5": {
+      "quota": 2.08,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
+    },
+    "calcio-2026-11-02-gil-vicente-vitoria-sc|Under/Over 2.5|Under 2.5": {
+      "quota": 1.7,
+      "prob": null,
+      "alle": "2026-11-02T20:55:54+01:00",
+      "minutiPrima": 19
     }
   },
   "copertura": {
@@ -1183,6 +1255,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-11-02-lorient-brest"
+      ]
+    },
+    "calcio|Primeira Liga": {
+      "alle": "2026-11-02T20:55:54+01:00",
+      "partite": 2,
+      "idPartite": [
+        "calcio-2026-11-02-benfica-alverca",
+        "calcio-2026-11-02-gil-vicente-vitoria-sc"
       ]
     }
   }
