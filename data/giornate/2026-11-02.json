@@ -2204,9 +2204,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-11-02T20:09:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -2324,9 +2324,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-11-02T20:09:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -2645,9 +2645,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (Claude non disponibile): quota 2,45 sotto la minima 2,52",
+      "oraUltimoControllo": "2026-11-02T20:09:08+01:00",
       "esito": null,
       "prova": true
     },
@@ -35000,7 +35000,8 @@
     "odss-api alle 07:39: 2 partite senza quota utilizzabile (ATP Paris Masters)",
     "Decisione di Claude per calcio-2026-11-02-vps-hjk-doppia-chance-1x arrivata dopo l'inizio della partita (19:16): non applicata",
     "Decisione di Claude per calcio-2026-11-02-inter-turku-gnistan-doppia-chance-x2 arrivata dopo l'inizio della partita (19:16): non applicata",
-    "Decisione di Claude per calcio-2026-11-02-fc-voluntari-farul-constanta-under-over-2-5-over-2-5 arrivata dopo l'inizio della partita (19:16): non applicata"
+    "Decisione di Claude per calcio-2026-11-02-fc-voluntari-farul-constanta-under-over-2-5-over-2-5 arrivata dopo l'inizio della partita (19:16): non applicata",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 7 richieste al giorno per i controlli raggiunto; controlli oggi 7 su 7, giornata 12 su 16, rimaste 354, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {

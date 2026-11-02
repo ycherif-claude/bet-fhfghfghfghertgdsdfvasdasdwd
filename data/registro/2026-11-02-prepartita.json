@@ -1001,6 +1001,108 @@
       "prob": null,
       "alle": "2026-11-02T19:15:24+01:00",
       "minutiPrima": 75
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|1X2|1": {
+      "quota": 1.41,
+      "prob": 0.6760471471104041,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|1X2|X": {
+      "quota": 5,
+      "prob": 0.18663077613279494,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|1X2|2": {
+      "quota": 6.75,
+      "prob": 0.13732207675680083,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|Under/Over 2.5|Over 2.5": {
+      "quota": 1.44,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|Under/Over 2.5|Under 2.5": {
+      "quota": 2.75,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|Under/Over 3.5|Over 3.5": {
+      "quota": 2.1,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-atalanta-bc-parma|Under/Over 3.5|Under 3.5": {
+      "quota": 1.69,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf|1X2|1": {
+      "quota": 1.43,
+      "prob": 0.6562895885140524,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 51
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf|1X2|X": {
+      "quota": 4.2,
+      "prob": 0.21438793224792377,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 51
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf|1X2|2": {
+      "quota": 6.4,
+      "prob": 0.12932247923802373,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 51
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf|Under/Over 2.5|Over 2.5": {
+      "quota": 1.82,
+      "prob": 0.517948717948718,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 51
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf|Under/Over 2.5|Under 2.5": {
+      "quota": 1.92,
+      "prob": 0.48205128205128206,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 51
+    },
+    "calcio-2026-11-02-lorient-brest|1X2|1": {
+      "quota": 2.45,
+      "prob": 0.3825665859564165,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-lorient-brest|1X2|X": {
+      "quota": 3.15,
+      "prob": 0.3087167070217917,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-lorient-brest|1X2|2": {
+      "quota": 3,
+      "prob": 0.3087167070217917,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-lorient-brest|Under/Over 2.5|Over 2.5": {
+      "quota": 2.17,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
+    },
+    "calcio-2026-11-02-lorient-brest|Under/Over 2.5|Under 2.5": {
+      "quota": 1.69,
+      "prob": null,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "minutiPrima": 36
     }
   },
   "copertura": {
@@ -1012,12 +1114,13 @@
       ]
     },
     "calcio|Segunda División": {
-      "alle": "2026-11-02T18:24:02+01:00",
-      "partite": 3,
+      "alle": "2026-11-02T20:09:08+01:00",
+      "partite": 4,
       "idPartite": [
         "calcio-2026-11-02-tenerife-andorra-cf",
         "calcio-2026-11-02-oviedo-las-palmas",
-        "calcio-2026-11-02-real-valladolid-cf-leganes"
+        "calcio-2026-11-02-real-valladolid-cf-leganes",
+        "calcio-2026-11-02-mallorca-cadiz-cf"
       ]
     },
     "calcio|Veikkausliiga (Finlandia)": {
@@ -1068,10 +1171,18 @@
       ]
     },
     "calcio|Serie A": {
-      "alle": "2026-11-02T18:24:02+01:00",
+      "alle": "2026-11-02T20:09:08+01:00",
+      "partite": 2,
+      "idPartite": [
+        "calcio-2026-11-02-sassuolo-fiorentina",
+        "calcio-2026-11-02-atalanta-bc-parma"
+      ]
+    },
+    "calcio|Ligue 1": {
+      "alle": "2026-11-02T20:09:08+01:00",
       "partite": 1,
       "idPartite": [
-        "calcio-2026-11-02-sassuolo-fiorentina"
+        "calcio-2026-11-02-lorient-brest"
       ]
     }
   }

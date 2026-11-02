@@ -183,6 +183,41 @@
       "dettagli": [],
       "alle": "2026-11-02T19:16:17+01:00",
       "claude": true
+    },
+    "calcio-2026-11-02-atalanta-bc-parma-under-over-1-5-under-1-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-02T20:09:08+01:00"
+    },
+    "calcio-2026-11-02-mallorca-cadiz-cf-under-over-1-5-under-1-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-02T20:09:08+01:00"
+    },
+    "calcio-2026-11-02-lorient-brest-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 2,45 sotto la minima 2,52",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,45 sotto la minima 2,52"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-02T20:09:08+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -236,6 +271,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|1X",
       "alle": "2026-11-02T19:15:24+01:00"
+    },
+    "calcio-2026-11-02-benfica-alverca|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-02T20:09:08+01:00"
     }
   }
 }
