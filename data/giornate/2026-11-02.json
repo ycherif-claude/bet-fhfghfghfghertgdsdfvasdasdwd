@@ -2404,9 +2404,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 3,17 sotto la minima 3,30",
+      "oraUltimoControllo": "2026-11-02T19:15:24+01:00",
       "esito": null,
       "prova": true
     },
@@ -7623,7 +7623,13 @@
               "fastbet",
               1.488
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.46,
+            "prob": null,
+            "alle": "2026-11-02T19:15:24+01:00",
+            "minutiPrima": 15
+          }
         },
         {
           "sport": "calcio",
@@ -10201,7 +10207,13 @@
               "fastbet",
               1.488
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.46,
+            "prob": null,
+            "alle": "2026-11-02T19:15:24+01:00",
+            "minutiPrima": 15
+          }
         },
         {
           "sport": "calcio",
@@ -28824,7 +28836,13 @@
                 "fastbet",
                 1.488
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.46,
+              "prob": null,
+              "alle": "2026-11-02T19:15:24+01:00",
+              "minutiPrima": 15
+            }
           }
         ],
         "quota": 1.9,
@@ -31000,7 +31018,13 @@
                 "fastbet",
                 1.488
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.46,
+              "prob": null,
+              "alle": "2026-11-02T19:15:24+01:00",
+              "minutiPrima": 15
+            }
           }
         ],
         "quota": 1.9,
@@ -33351,7 +33375,13 @@
                 "fastbet",
                 1.488
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.46,
+              "prob": null,
+              "alle": "2026-11-02T19:15:24+01:00",
+              "minutiPrima": 15
+            }
           }
         ],
         "quota": 1.92,

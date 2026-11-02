@@ -591,50 +591,50 @@
     "calcio-2026-11-02-u-cluj-fcsb|1X2|1": {
       "quota": 2.5,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|1X2|X": {
       "quota": 3.4,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|1X2|2": {
       "quota": 2.66,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|Doppia chance|1X": {
       "quota": 1.41,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|Doppia chance|12": {
       "quota": 1.26,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|Doppia chance|X2": {
       "quota": 1.46,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|Under/Over 2.5|Over 2.5": {
       "quota": 1.62,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-u-cluj-fcsb|Under/Over 2.5|Under 2.5": {
       "quota": 2.2,
       "prob": null,
-      "alle": "2026-11-02T18:24:02+01:00",
-      "minutiPrima": 66
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 15
     },
     "calcio-2026-11-02-gais-aik|1X2|1": {
       "quota": 1.83,
@@ -971,6 +971,36 @@
       "prob": 0.742436305732484,
       "alle": "2026-11-02T18:24:02+01:00",
       "minutiPrima": 6
+    },
+    "calcio-2026-11-02-rakow-pogon-szczecin|1X2|1": {
+      "quota": 2.15,
+      "prob": null,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 75
+    },
+    "calcio-2026-11-02-rakow-pogon-szczecin|1X2|X": {
+      "quota": 3.5,
+      "prob": null,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 75
+    },
+    "calcio-2026-11-02-rakow-pogon-szczecin|1X2|2": {
+      "quota": 3.17,
+      "prob": null,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 75
+    },
+    "calcio-2026-11-02-rakow-pogon-szczecin|Under/Over 2.5|Over 2.5": {
+      "quota": 1.67,
+      "prob": null,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 75
+    },
+    "calcio-2026-11-02-rakow-pogon-szczecin|Under/Over 2.5|Under 2.5": {
+      "quota": 2.1,
+      "prob": null,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "minutiPrima": 75
     }
   },
   "copertura": {
@@ -999,7 +1029,7 @@
       ]
     },
     "calcio|Superliga (Romania)": {
-      "alle": "2026-11-02T18:24:02+01:00",
+      "alle": "2026-11-02T19:15:24+01:00",
       "partite": 2,
       "idPartite": [
         "calcio-2026-11-02-fc-voluntari-farul-constanta",
@@ -1007,11 +1037,12 @@
       ]
     },
     "calcio|Ekstraklasa (Polonia)": {
-      "alle": "2026-11-02T17:28:07+01:00",
-      "partite": 2,
+      "alle": "2026-11-02T19:15:24+01:00",
+      "partite": 3,
       "idPartite": [
         "calcio-2026-11-02-radomiak-radom-slask-wroclaw",
-        "calcio-2026-11-02-zaglebie-korona-kielce"
+        "calcio-2026-11-02-zaglebie-korona-kielce",
+        "calcio-2026-11-02-rakow-pogon-szczecin"
       ]
     },
     "calcio|Süper Lig (Turchia)": {
