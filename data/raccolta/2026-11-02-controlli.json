@@ -89,6 +89,19 @@
       ],
       "alle": "2026-11-02T15:34:08+01:00",
       "regola": true
+    },
+    "calcio-2026-11-02-zaglebie-korona-kielce-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (Claude non disponibile): quota 1,83 sotto la minima 1,87",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,83 sotto la minima 1,87"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-02T17:28:07+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -111,6 +124,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over trasferta 0.5|Over 0.5",
       "alle": "2026-11-02T15:34:08+01:00"
+    },
+    "calcio-2026-11-02-radomiak-radom-slask-wroclaw|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-02T17:28:07+01:00"
+    },
+    "calcio-2026-11-02-kalamata-iraklis|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-02T17:28:07+01:00"
     }
   }
 }
