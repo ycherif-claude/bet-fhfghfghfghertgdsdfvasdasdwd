@@ -243,7 +243,7 @@ test('controllo con Claude: in revisione, un solo avvio, decisione applicata; se
   await eseguiControlli({ dirData: d2, adesso: ore('20:05'), fonti: fonti(), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
   const g2 = leggi(d2).giocate[0];
   assert.equal(g2.stato, 'annullata');
-  assert.match(g2.motivoStato, /regola automatica.*quota 1,80 sotto la minima 1,85/);
+  assert.match(g2.motivoStato, /regola automatica \(Claude non ha risposto in tempo\).*quota 1,80 sotto la minima 1,85/);
 });
 
 test('controllo: tetto di 2 avvii di Claude al giorno, poi regole fisse', async () => {
@@ -513,4 +513,14 @@ test('nome parziale nella formazione: il cognome in una parola non finale → in
   assert.equal(inElenco('João Pedro', ['Cole Palmer']), false);
   // Il report infortuni NBA resta com'era.
   assert.equal(inElenco('Franz Wagner', ['Moritz Wagner'], { infortuni: true }), false);
+});
+
+test('controllo: la regola automatica dice perché non ha deciso Claude', async () => {
+  const tardi = cartella();
+  await eseguiControlli({ dirData: tardi, adesso: ore('20:10'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  assert.match(leggi(tardi).giocate[0].motivoStato, /^regola automatica \(troppo tardi per Claude\): quota 1,80 sotto la minima 1,85/);
+  const finiti = cartella();
+  writeFileSync(join(finiti, 'raccolta', `${OGGI}-controlli.json`), JSON.stringify({ data: OGGI, voci: {}, claude: { avvii: 2, richieste: ['a', 'b'] } }));
+  await eseguiControlli({ dirData: finiti, adesso: ore('19:30'), fonti: fonti({ quote: [1.8, 3.6, 4.4] }), chiavi: { oddsApi: 'K' }, claudeDisponibile: true });
+  assert.match(leggi(finiti).giocate[0].motivoStato, /^regola automatica \(avvii di Claude finiti per oggi\): quota 1,80/);
 });

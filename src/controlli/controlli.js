@@ -235,19 +235,19 @@ export function valuta(voce, formazioni, quote) {
 // Regole fisse senza Claude [utente]: giocatore chiave fuori o quota sotto la minima → annullata;
 // partita non trovata nelle quote o giocatore chiave non identificabile con certezza (omonimi) → resta in revisione
 // (da controllare a mano, mai annullata né confermata da sola);
-// il solo movimento del mercato non annulla (confermata con l'avviso).
-export function regolaFissa(problemi) {
+// il solo movimento del mercato non annulla (confermata con l'avviso). `perche`: perché non ha deciso Claude.
+export function regolaFissa(problemi, perche = 'Claude non disponibile') {
   const annulla = problemi.filter((p) => p.tipo === 'chiave' || p.tipo === 'quota');
-  if (annulla.length) return { esito: 'annullata', motivo: `regola automatica (Claude non disponibile): ${annulla.map((p) => p.testo).join('; ')}` };
+  if (annulla.length) return { esito: 'annullata', motivo: `regola automatica (${perche}): ${annulla.map((p) => p.testo).join('; ')}` };
   const assente = problemi.filter((p) => p.tipo === 'assente');
   const incerto = problemi.filter((p) => p.tipo === 'incerto');
   if (assente.length || incerto.length) {
     const parti = [];
     if (assente.length) parti.push(`${assente.map((p) => p.testo).join('; ')}: resta in revisione, controlla su bet365 prima di giocarla`);
     if (incerto.length) parti.push(`${incerto.map((p) => p.testo).join('; ')}: controlla su bet365 prima di giocarla`);
-    return { esito: 'revisione', motivo: `regola automatica (Claude non disponibile): ${parti.join('; ')}` };
+    return { esito: 'revisione', motivo: `regola automatica (${perche}): ${parti.join('; ')}` };
   }
-  return { esito: 'confermata', motivo: `regola automatica (Claude non disponibile): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
+  return { esito: 'confermata', motivo: `regola automatica (${perche}): ${problemi.map((p) => p.testo).join('; ')}, confermata con l'avviso` };
 }
 
 // Stato della giocata dagli esiti delle sue voci (le gambe di una multipla).
@@ -304,7 +304,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
         continue;
       }
       if (r?.esito === 'revisione' && !r.regola && Date.parse(v.inizio) - adesso.getTime() < K.minutiRegoleFisse * MIN) {
-        const x = regolaFissa(r.problemi);
+        const x = regolaFissa(r.problemi, 'Claude non ha risposto in tempo');
         reg.voci[v.id] = { ...r, esito: x.esito, motivo: x.motivo, alle: ora, regola: true };
         continue;
       }
@@ -351,7 +351,8 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
         if (!nuoveRevisioni.includes(v.idGiocata) && !reg.claude.richieste.includes(v.idGiocata)) nuoveRevisioni.push(v.idGiocata);
         continue;
       }
-      const x = regolaFissa(r.problemi);
+      const perche = !claudeDisponibile ? 'Claude non disponibile' : !tempo ? 'troppo tardi per Claude' : 'avvii di Claude finiti per oggi';
+      const x = regolaFissa(r.problemi, perche);
       reg.voci[v.id] = { esito: x.esito, motivo: x.motivo, problemi: r.problemi, dettagli: r.dettagli, alle: ora, regola: true };
       continue;
     }
