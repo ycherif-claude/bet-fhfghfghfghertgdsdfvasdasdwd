@@ -4087,7 +4087,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -5262,7 +5262,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -5310,7 +5310,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -5325,7 +5325,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -5340,7 +5340,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -6032,7 +6032,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         }
       ]
@@ -6056,7 +6056,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": true
         },
         {
@@ -6071,7 +6071,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         }
       ]
@@ -8324,8 +8324,9 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-31T16:57:10+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "nba-2026-10-31-san-antonio-spurs-minnesota-timberwolves-handicap-meno-12-5-trasferta",
@@ -8608,8 +8609,9 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-31T19:26:35+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "calcio-2026-10-31-swansea-city-blackburn-rovers-under-over-1-5-under-1-5",
@@ -8728,8 +8730,9 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-10-31T16:24:22+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "vinta",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "calcio-2026-10-31-southampton-queens-park-rangers-1x2-1",
@@ -67703,7 +67706,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,

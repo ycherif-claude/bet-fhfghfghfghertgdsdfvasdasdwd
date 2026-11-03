@@ -263,7 +263,7 @@
       "n": 1190,
       "limite": 0.8961,
       "quotaMinima": 1.1,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -280,7 +280,7 @@
       "n": 446,
       "limite": 0.8018,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.01
     },
@@ -334,7 +334,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -680,7 +680,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -697,7 +697,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -765,7 +765,7 @@
       "n": 656,
       "limite": 0.9026,
       "quotaMinima": 1.09,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.06,
       "bookmaker": "sportium"
@@ -784,7 +784,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -1132,7 +1132,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.11
     },
@@ -1150,7 +1150,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -1461,7 +1461,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -1469,8 +1469,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-11-01-1mmxivl",
@@ -1490,7 +1490,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-01-austria-vienna-rapid-vienna",
@@ -1514,9 +1514,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     }
   ],
-  "aggiornataAlle": "2026-11-02T12:28:05+01:00"
+  "aggiornataAlle": "2026-11-03T12:21:36+01:00"
 }
