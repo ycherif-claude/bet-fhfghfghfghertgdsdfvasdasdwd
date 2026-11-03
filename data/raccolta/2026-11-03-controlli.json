@@ -147,8 +147,8 @@
       "regola": true
     },
     "calcio-2026-11-03-birmingham-city-millwall-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 3,65 sotto la minima 3,89",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 3,65 sotto la minima 3,89 e il value del mattino era minimo (0,4%): nessun fatto nuovo che alzi la probabilità, quindi si annulla (controlli quote odss-api, 20:06)",
       "problemi": [
         {
           "tipo": "quota",
@@ -158,7 +158,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-11-03T20:06:22+01:00"
+      "alle": "2026-11-03T20:08:31+01:00",
+      "claude": true
     }
   },
   "claude": {
