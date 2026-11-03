@@ -451,6 +451,19 @@ export function renderSchedinaDelGiorno(s, giornata, ultime, bilancio) {
   ];
 }
 
+// Una giocata della lista del giorno [utente, 03/11/2026]: singola, da segnare come le schedine.
+export function renderGiocataLista(c, n, segnatura = null) {
+  return renderBiglietto({
+    titolo: `Giocata ${n}`,
+    quota: c.quota,
+    nota: `Pinnacle la dà al ${percento(c.prob)}`,
+    gambe: c.gambe,
+    esito: c.esito,
+    ritorno: c.ritorno,
+    segna: { giocata: { id: c.id, quota: c.quota }, segnatura },
+  });
+}
+
 export function renderCoppia(c, n, segnatura = null, { segnabile = false } = {}) {
   const orari = orariCoppia(c.gambe);
   return renderBiglietto({
@@ -594,8 +607,18 @@ function avvia(dati) {
   const sdg = document.getElementById('schedina-del-giorno');
   if (sdg) sdg.replaceChildren(...(scelta ? renderSchedinaDelGiorno(scelta, dati.oggi.giornata, ultime, dati.bilancioSchedineScelte) : []));
   const bilCoppie = testoBilancioCoppie(dati.bilancioCoppie);
+  // Lista del giorno [utente, 03/11/2026]: è l'unica cosa aperta; dai giorni precedenti resta quello che c'era.
+  const listaGiorno = dati.oggi.giornata?.coppieQuota2?.lista;
+  const sezLista = document.getElementById('lista-del-giorno');
+  if (sezLista && Array.isArray(listaGiorno)) {
+    sezLista.replaceChildren(
+      el('h2', {}, 'Giocate di oggi'),
+      el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Controlla la quota su bet365: sotto 1,25 salta la giocata."),
+      ...(listaGiorno.length ? listaGiorno.map((x, i) => schedaSicura(x?.id, () => renderGiocataLista(x, i + 1, ultime.get(x?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Oggi nessuna giocata adatta.')]),
+    );
+  }
   // Con la schedina del giorno il resto delle schedine finisce nella sezione chiusa [utente, 01/11/2026].
-  if (scelta) {
+  if (scelta || Array.isArray(listaGiorno)) {
     const altro = document.getElementById('altro');
     for (const id of ['multiple-bonus', 'multiple-probabili', 'coppie-quota2']) { const s = document.getElementById(id); if (s && altro) altro.querySelector('summary')?.after(s); }
   }

@@ -20,7 +20,7 @@ function biglietto(x, { tipo, nome }) {
     partita: gambe.map((g) => g.partita).join(' + '),
     inizio: inizi.length ? new Date(Math.min(...inizi)).toISOString() : null,
     mercato: nome,
-    selezione: `${gambe.length} partite`,
+    selezione: gambe.length === 1 ? gambe[0].selezione : `${gambe.length} partite`,
     quota: x.quota,
     // Multipla bonus: l'incremento di bet365 si aggiunge alla quota presa.
     ...(num(x.incremento) ? { incremento: x.incremento } : {}),
@@ -40,9 +40,10 @@ export function bigliettiGiornata(giornata) {
     ...(giornata?.coppieQuota2?.triple ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla' })),
     ...(giornata?.coppieQuota2?.over15 ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'tripla', nome: 'Tripla Over 1.5' })),
     ...(giornata?.coppieQuota2?.doppieOver15 ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'coppia', nome: 'Doppia Over 1.5' }))];
+  const lista = (giornata?.coppieQuota2?.lista ?? []).filter((c) => c?.id).map((c) => biglietto(c, { tipo: 'singola', nome: 'Lista del giorno' }));
   const multiple = (giornata?.multipleBonus ?? []).filter((m) => m?.id && (m.criterio === 'probabilita' || m.criterio === 'probabilitaConfermate'))
     .map((m) => biglietto(m, { tipo: 'multipla', nome: `Multipla da ${m.gambe?.length ?? '?'}` }));
-  return [...coppie, ...triple, ...multiple];
+  return [...lista, ...coppie, ...triple, ...multiple];
 }
 
 // Profitto reale di una segnatura fatta su una giocata o un biglietto chiuso.

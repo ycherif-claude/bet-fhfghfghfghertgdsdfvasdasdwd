@@ -10,6 +10,9 @@ import { contaStorico, messaggi, messaggioStorico, testoCoppie, testoMattinoEsse
 import { scegliSchedina } from '../../src/regole/schedina-del-giorno.js';
 import { renderCoppia, testoBilancioCoppie } from '../../site/app.js';
 
+// I giorni prima della lista del giorno: la giornata non ha la chiave e il messaggio resta quello di allora.
+const senzaLista = ({ lista, ...coppie }) => coppie;
+
 function nodo(tag) {
   return {
     tag, attrs: {}, figli: [], className: '',
@@ -159,7 +162,7 @@ test('bilancio delle coppie: 1 € a coppia per modo', () => {
 
 test('Telegram: coppie per margine confermate da modello e mercato nel mattino, confronto nello storico', () => {
   const conf = (g) => ({ ...g, probModello: g.probMercato });
-  const coppie = costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18)), ...tre('t')], { data: '2026-10-30' });
+  const coppie = senzaLista(costruisciCoppieQuota2([conf(gamba('a', 1.4, 0.7, 15)), conf(gamba('b', 1.42, 0.69, 18)), ...tre('t')], { data: '2026-10-30' }));
   assert.equal(coppie.confermate.length, 1);
   assert.equal(coppie.probabilitaConfermate.length, 1);
   assert.equal(coppie.triple.length, 1);
@@ -230,7 +233,7 @@ test('Telegram storico: multiple per probabilità per lunghezza', () => {
 
 test('solo l\'essenziale: mattino con coppie e multiple per probabilità, il resto taciuto', async () => {
   const { soloEssenziale, testoMattinoEssenziale } = await import('../../src/notifiche/telegram.js');
-  const coppie = costruisciCoppieQuota2(tre('t'), { data: '2026-10-30' });
+  const coppie = senzaLista(costruisciCoppieQuota2(tre('t'), { data: '2026-10-30' }));
   const mbp = { id: 'MBPC5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili, confermate da modello e mercato)', criterio: 'probabilitaConfermate', quota: 4.5, incremento: 0.1, quotaConBonus: 4.95, gambe: [gamba('c', 1.3, 0.75)] };
   const mbpTutte = { id: 'MBP5-2026-10-30', nome: 'Multipla bonus bet365 da 5 (le più probabili)', criterio: 'probabilita', quota: 4.4, incremento: 0.1, quotaConBonus: 4.84, gambe: [gamba('e', 1.3, 0.75)] };
   const mbm = { id: 'MB10-2026-10-30', nome: 'Multipla bonus bet365 da 10', quota: 25, incremento: 0.35, quotaConBonus: 33.75, gambe: [gamba('d', 1.4, 0.7)] };
@@ -483,13 +486,13 @@ test('coppie per probabilità confermate: da tutte le partite confermate, non so
 
 test('Telegram: coppie rifatte dopo il messaggio del mattino, il nuovo elenco una volta sola', () => {
   const conf = (g) => ({ ...g, probModello: g.probMercato });
-  const prima = costruisciCoppieQuota2(tre('a'), { data: '2026-10-31' });
+  const prima = senzaLista(costruisciCoppieQuota2(tre('a'), { data: '2026-10-31' }));
   const giornata = { data: '2026-10-31', prova: true, giocate: [], pronostici: [], coppieQuota2: prima };
   const m = messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T07:30:00Z'), inviate: new Set() });
   const mattino = m.find((x) => x.chiave === '2026-10-31|giornata');
   const inviate = new Set([mattino.chiave, ...mattino.segna]);
   assert.deepEqual(messaggi({ giornata, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave)), []);
-  const dopo = costruisciCoppieQuota2(tre('c'), { data: '2026-10-31' });
+  const dopo = senzaLista(costruisciCoppieQuota2(tre('c'), { data: '2026-10-31' }));
   const nuove = messaggi({ giornata: { ...giornata, coppieQuota2: dopo }, oggi: '2026-10-31', adesso: new Date('2026-10-31T09:00:00Z'), inviate }).filter((x) => /\|coppie\|/.test(x.chiave));
   assert.equal(nuove.length, 1);
   assert.match(nuove[0].testo, /Schedine di oggi aggiornate[\s\S]*Casac1 - Ospitec1/);
@@ -518,7 +521,7 @@ test('doppie dalle stesse 10 partite: al massimo 5, bonus della doppia; mostrate
   assert.equal(d.length, 5);
   assert.ok(d.every((x) => x.gambe.length === 2 && x.quota === 1.69 && x.incremento === 0.025));
   assert.ok(!d.flatMap((x) => x.gambe.map((g) => g.idPartita)).includes('e1'));
-  const c = costruisciCoppieQuota2(gg, { data: 'x' });
+  const c = senzaLista(costruisciCoppieQuota2(gg, { data: 'x' }));
   const t = testoCoppie({ coppieQuota2: c });
   assert.match(t, /Doppie<\/b>[\s\S]*Triple a quota circa 2<\/b>/);
 });

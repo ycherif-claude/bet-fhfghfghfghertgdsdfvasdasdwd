@@ -272,6 +272,10 @@ export const CONFIG = congela({
     sportMostrati: ['calcio'],
     // Tripla Over 1.5 del giorno [utente, 01/11/2026]: quota almeno 1,25, partite su cui modello e mercato sono d'accordo.
     over15: { quotaMin: 1.25 },
+    // Lista del giorno [utente, 03/11/2026], l'unica cosa mostrata: 1 e Over 1.5 di calcio, singole, al massimo 20, una per partita,
+    // prima le più probabili per il mercato. Sullo storico di 6 stagioni gli 1 oltre quota 1,70 perdono molto di più.
+    // `scarto` confronta il modello grezzo col mercato (senza taratura), come nella prova sui giorni dal 23/10 al 02/11.
+    lista: { sport: 'calcio', quotaMin: 1.25, quotaMax: 1.7, scarto: 0.05, massimo: 20 },
     // Triple [utente, 31/10/2026]: dalle 10 partite più probabili confermate da modello e mercato, al massimo 3,
     // quota totale intorno a 2 (le più probabili sono a 1,30: due insieme non arrivano a 1,90).
     triple: { partite: 10, max: 3, quotaMin: 1.9, quotaMax: 2.5 },

@@ -81,10 +81,11 @@ export const migliori = (gambe) => [...gambe].sort((a, b) => b.quota * b.probMer
 
 // Le coppie degli otto modi (si mostrano solo quelle per margine). I primi quattro sulle migliori partite; gli altri
 // quattro uguali ma con tutte le partite adatte, per confronto ("tutte" è il margine) [utente, 30/10/2026].
-export const MODI = Object.freeze(['margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'doppie', 'triple', 'over15', 'doppieOver15', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
-export const costruisciCoppieQuota2 = (gambe, { data, gambeOver15 = [] } = {}) => {
+export const MODI = Object.freeze(['lista', 'margine', 'probabilita', 'modello', 'confermate', 'probabilitaConfermate', 'doppie', 'triple', 'over15', 'doppieOver15', 'tutte', 'probabilitaTutte', 'modelloTutte', 'confermateTutte']);
+export const costruisciCoppieQuota2 = (gambe, { data, gambeOver15 = [], gambeLista = [] } = {}) => {
   const top = migliori(gambe);
   return {
+    lista: costruisciLista(gambeLista),
     margine: costruisciCoppie(top, { data, criterio: 'margine' }),
     probabilita: costruisciCoppie(top, { data, criterio: 'probabilita' }),
     modello: costruisciCoppie(top.filter(conModello), { data, criterio: 'modello' }),
@@ -150,6 +151,38 @@ function schedineMigliori(gambe, { data, n, regole: T, sigla, criterio }) {
     });
   }
   return out;
+}
+
+// Le giocate della lista del giorno [utente, 03/11/2026] fra righe con sport, mercato, selezione, quota, probMercato e
+// probModello (gambe o righe del registro): la regola è una sola, anche per il confronto settimanale.
+export function scegliLista(righe, L = C.lista) {
+  const voto = (x) => x[L.ordine ?? 'probMercato'];
+  const migliore = new Map();
+  for (const x of righe) {
+    const adatta = (x.mercato === '1X2' && x.selezione === '1') || (x.mercato === 'Under/Over 1.5' && x.selezione === 'Over 1.5');
+    if (!adatta || x.sport !== L.sport || !numero(x.quota) || !numero(x.probMercato) || !numero(x.probModello)) continue;
+    if (x.quota < L.quotaMin - EPS || x.quota > L.quotaMax + EPS || Math.abs(x.probModello - x.probMercato) >= L.scarto) continue;
+    const c = migliore.get(x.idPartita);
+    if (!c || voto(x) > voto(c)) migliore.set(x.idPartita, x);
+  }
+  return [...migliore.values()].sort((a, b) => voto(b) - voto(a)).slice(0, L.massimo);
+}
+
+// Ogni giocata è una schedina da una partita: così esiti, storico e segnature sono quelli delle coppie. L'id viene dalla
+// partita: se il giro riparte a giornata iniziata, una giocata già segnata resta la stessa.
+export function costruisciLista(gambe) {
+  return [...gambe].sort((a, b) => Date.parse(a.inizio) - Date.parse(b.inizio) || b.probMercato - a.probMercato).map(({ resa, ...g }) => ({
+    id: `L-${g.idPartita}`,
+    criterio: 'lista',
+    prova: true,
+    gambe: [{ ...g, esito: null }],
+    quota: g.quota,
+    prob: g.probMercato,
+    probModello: numero(g.probModello) ? g.probModello : null,
+    valueAtteso: g.probMercato * g.quota - 1,
+    esito: null,
+    ritorno: null,
+  }));
 }
 
 // Tutte le coppie di una giornata, di qualunque modo.

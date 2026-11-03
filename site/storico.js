@@ -145,7 +145,8 @@ export function renderMercati(righe) {
 
 // Coppie a quota 2 nei quattro modi (dati.bilancioCoppie) e modello contro mercato (dati.confrontoModello).
 const MODI_COPPIE = [
-  ['margine', 'Per margine (quelle che vedi)'],
+  ['lista', 'Lista del giorno (quella che vedi)'],
+  ['margine', 'Per margine'],
   ['probabilita', 'Per probabilità del mercato'],
   ['modello', 'Solo il nostro modello'],
   ['confermate', 'Confermate da modello e mercato'],

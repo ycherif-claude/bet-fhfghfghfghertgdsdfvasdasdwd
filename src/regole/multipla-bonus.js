@@ -2,7 +2,7 @@
 // Prova sul passato (22/10/2026): le favorite di bet365 a 1,25–1,50 perdono circa il 2,3% a partita;
 // con l'incremento la multipla da 10 rende circa +7%, quella da 20 circa +26% (con molta varianza).
 import { CONFIG } from '../config.js';
-import { confermata, sportMostrato } from './coppie-quota2.js';
+import { confermata, scegliLista, sportMostrato } from './coppie-quota2.js';
 
 const C = CONFIG.multiplaBonus;
 const EPS = 1e-9;
@@ -68,6 +68,12 @@ export function gambeOver15(voci, { escluse = new Set() } = {}) {
     if (!out.has(partita.idPartita)) out.set(partita.idPartita, creaGamba(partita, m));
   }
   return [...out.values()];
+}
+
+// Le gambe della lista del giorno [utente, 03/11/2026], senza le partite escluse.
+export function gambeLista(voci, { escluse = new Set() } = {}) {
+  const buone = voci.filter(({ partita }) => !escluse.has(partita.idPartita) && !C.competizioniEscluse.includes(partita.competizione));
+  return scegliLista(buone.map(({ partita, m }) => creaGamba(partita, m)));
 }
 
 const arrotonda = (x) => Math.round(x * 100) / 100;

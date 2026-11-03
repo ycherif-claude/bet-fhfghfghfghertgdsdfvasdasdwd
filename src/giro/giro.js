@@ -12,7 +12,7 @@ import { leggiJson, erroreGiocata, erroreSegnatura } from '../build/costruisci-s
 import { validaNotizie } from './notizie.js';
 import { costruisciCandidati, valutaMercati } from './candidati.js';
 import { scegliSchedina } from '../regole/schedina-del-giorno.js';
-import { costruisciMultipleBonus, gambeOver15, gambePossibili } from '../regole/multipla-bonus.js';
+import { costruisciMultipleBonus, gambeLista, gambeOver15, gambePossibili } from '../regole/multipla-bonus.js';
 import { costruisciCoppieQuota2 } from '../regole/coppie-quota2.js';
 import { calcolaTaratura, tara } from '../regole/taratura-modello.js';
 import { leggiCalibrazione, pronosticiGiornata, salvaIstantanea, avvisiPronosticiSenzaEsito } from '../regole/pronostici.js';
@@ -194,7 +194,7 @@ export function eseguiGiro({ dirData, adesso, modo, anteprima = false }) {
   const gambeSenzaUnder = taraGambe(gambePossibili(voci, { escluse, senzaUnder: true }));
   const multipleBonus = conBiglietti ? costruisciMultipleBonus(null, { data: oggi, gambe: gambeBonus, gambeProbabilita: gambeSenzaUnder }) : [];
   // Coppie a quota 2 (prova): dalle partite della multipla, per margine e, per confronto, per probabilità.
-  const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi, gambeOver15: taraGambe(gambeOver15(voci, { escluse })) });
+  const coppie = costruisciCoppieQuota2(gambeSenzaUnder, { data: oggi, gambeOver15: taraGambe(gambeOver15(voci, { escluse })), gambeLista: taraGambe(gambeLista(voci, { escluse })) });
   const schedinaDelGiorno = conBiglietti ? scegliSchedina({ coppieQuota2: coppie, multipleBonus }, giornatePassate(dirData, oggi), schedineRicostruite(dirData)) : null;
   // Pronostici sì/no dal solo modello (la quota serve dopo, per decidere se giocare). Quote dei bookmaker
   // italiani (idea 1): dal file scaricato dalla raccolta su GitHub (data/raccolta/<oggi>-odss.json).

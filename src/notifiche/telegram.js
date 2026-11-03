@@ -96,10 +96,25 @@ const COPPIE_SCELTA = [
   ['over15', 'Tripla Over 1.5', 'la schedina di oggi'],
   ['doppieOver15', 'Doppia Over 1.5', 'la schedina di oggi'],
 ];
+// Dal giorno della lista [utente, 03/11/2026] si manda solo lei: doppie, triple e multiple restano in background.
+const haLista = (giornata) => Array.isArray(giornata?.coppieQuota2?.lista);
+const testoLista = (giornata) => {
+  const lista = coppieDi(giornata, 'lista');
+  if (!lista.length) return null;
+  return [
+    `📋 <b>Giocate di oggi</b> (singole, quota 1,25-1,70, modello e mercato d'accordo)`,
+    ...lista.map((c, i) => {
+      const x = c.gambe[0];
+      return `${i + 1}. ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: <b>${html(x.selezione)}</b> @${virgola(x.quota)} · mercato ${percentuale(c.prob)}`;
+    }),
+    'Controlla la quota su bet365: sotto 1,25 salta la giocata.',
+  ].join('\n');
+};
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).
-const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash([...(giornata?.schedinaDelGiorno ? COPPIE_SCELTA : COPPIE_MOSTRATE).flatMap(([modo]) => coppieDi(giornata, modo)).filter((c) => !giornata?.schedinaDelGiorno || c.id === giornata.schedinaDelGiorno.id),
+const chiaveCoppie = (giornata, oggi) => `${oggi}|coppie|${hash([...(haLista(giornata) ? [['lista']] : giornata?.schedinaDelGiorno ? COPPIE_SCELTA : COPPIE_MOSTRATE).flatMap(([modo]) => coppieDi(giornata, modo)).filter((c) => !giornata?.schedinaDelGiorno || c.id === giornata.schedinaDelGiorno.id),
   ...multipleProb(giornata)].map((c) => c.id + c.gambe.map((g) => g.idPartita).join('+')).join(','))}`;
 export function testoCoppie(giornata) {
+  if (haLista(giornata)) return testoLista(giornata);
   const sezioni = [];
   const scelta = giornata?.schedinaDelGiorno;
   for (const [modo, titolo, nota] of scelta ? COPPIE_SCELTA : COPPIE_MOSTRATE) {
@@ -281,7 +296,7 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
   const ieri = new Date(Date.parse(`${oggi}T12:00:00Z`) - 86400000).toISOString().slice(0, 10);
   const r = contaStorico(giornate.filter((g) => g.data < oggi), ieri);
   // Su Telegram niente modello [utente, 29/10/2026]: solo margine e probabilità del mercato (gli altri modi sul sito).
-  const conCoppie = ['margine', 'probabilita', 'confermate', 'probabilitaConfermate'].some((k) => r.coppie[k].tutte.chiuse > 0);
+  const conCoppie = ['lista', 'margine', 'probabilita', 'confermate', 'probabilitaConfermate'].some((k) => r.coppie[k].tutte.chiuse > 0);
   const lunghezzeProb = [...new Set([...Object.keys(r.multipleProb), ...Object.keys(r.multipleProbConf)])].map(Number).sort((a, b) => a - b);
   const vuoto = { chiuse: 0, vinte: 0, profitto: 0 };
   const altri = !essenziale && (r.pronostici.chiusi || r.multipla.chiusi);
@@ -302,6 +317,8 @@ export function messaggioStorico({ giornate, inviate, oggi, adesso, essenziale =
     `   multiple lunghe vinte: ${r.multipleVinte} su ${r.multipleChiuse}`,
     ]),
     ...(conCoppie ? [
+      '',
+      `📋 <b>Lista del giorno</b> (1 € a giocata): <b>${rigaCoppie(r.coppie.lista.tutte)}</b> · ieri ${rigaCoppie(r.coppie.lista.ieri)}`,
       '',
       '🎲 <b>Coppie a quota 2</b> (1 € a coppia)',
       `   per probabilità, confermate (quelle mostrate): <b>${rigaCoppie(r.coppie.probabilitaConfermate.tutte)}</b> · ieri ${rigaCoppie(r.coppie.probabilitaConfermate.ieri)}`,
@@ -333,11 +350,11 @@ export function messaggioIeri({ giornate, inviate, oggi, adesso }) {
   // Quello mandato quel giorno: fino al 30/10 coppie per margine e multiple per probabilità; dal 31/10 le confermate.
   const prima = ieri < '2026-10-31';
   const scelta = g?.schedinaDelGiorno;
-  const schedine = prima ? [['Coppie', coppieDi(g, 'margine')]] : scelta
+  const schedine = prima ? [['Coppie', coppieDi(g, 'margine')]] : haLista(g) ? [['Giocate della lista', coppieDi(g, 'lista')]] : scelta
     ? COPPIE_SCELTA.map(([modo, titolo]) => [titolo, coppieDi(g, modo).filter((c) => c.id === scelta.id)])
     : [['Tripla Over 1.5', coppieDi(g, 'over15')], ['Doppie', coppieDi(g, 'doppie')], ['Triple', coppieDi(g, 'triple')]];
   const coppie = schedine.flatMap(([, l]) => l);
-  const multiple = multipleBonus(g).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate') && (!scelta || m.id === scelta.id));
+  const multiple = (haLista(g) ? [] : multipleBonus(g)).filter((m) => m.criterio === (prima ? 'probabilita' : 'probabilitaConfermate') && (!scelta || m.id === scelta.id));
   if (!coppie.length && !multiple.length) return [];
   // Si manda anche con partite ancora senza risultato [utente, 31/10/2026]: lo dice la riga stessa.
   const aperte = [...coppie, ...multiple].flatMap((x) => x.gambe).some((x) => !x.esito);
@@ -381,10 +398,11 @@ export function messaggiMultipleBonus({ giornate, inviate }) {
 
 // Messaggio del mattino essenziale: coppie a quota 2 e multiple con le partite più probabili.
 // Multiple mostrate [utente, 31/10/2026]: per probabilità, solo partite confermate da modello e mercato.
-const multipleProb = (giornata) => multipleBonus(giornata).filter((m) => m.criterio === 'probabilitaConfermate' && (!giornata?.schedinaDelGiorno || m.id === giornata.schedinaDelGiorno.id));
+const multipleProb = (giornata) => (haLista(giornata) ? [] : multipleBonus(giornata)).filter((m) => m.criterio === 'probabilitaConfermate' && (!giornata?.schedinaDelGiorno || m.id === giornata.schedinaDelGiorno.id));
 export function testoMattinoEssenziale(giornata, oggi) {
   const coppie = testoCoppie(giornata);
   const multiple = multipleProb(giornata).map(testoMultiplaBonus);
+  if (haLista(giornata) && !coppie) return `📋 <b>Oggi, ${giornoMese(oggi)}</b>: nessuna giocata adatta (1 e Over 1.5 a quota 1,25-1,70, modello e mercato d'accordo).`;
   if (!coppie && !multiple.length) return `🎲 <b>Oggi, ${giornoMese(oggi)}</b>: nessuna coppia a quota 2 e nessuna multipla (poche partite adatte).`;
   const s = giornata?.schedinaDelGiorno;
   const motivo = s?.classifica?.find((r) => r.formato === s.formato);
@@ -403,7 +421,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
-    else if (/\|bonus\|MBPC/.test(m.chiave) && (!giornata?.schedinaDelGiorno || m.chiave.includes(giornata.schedinaDelGiorno.id))) manda.push(m);
+    else if (/\|bonus\|MBPC/.test(m.chiave) && !haLista(giornata) && (!giornata?.schedinaDelGiorno || m.chiave.includes(giornata.schedinaDelGiorno.id))) manda.push(m);
     else tacere.push(m);
   }
   return { manda, tacere };
