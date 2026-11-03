@@ -1367,6 +1367,90 @@
       "prob": 0.493891797556719,
       "alle": "2026-11-03T00:55:57+01:00",
       "minutiPrima": 64
+    },
+    "nba-2026-11-02-denver-nuggets-portland-trail-blazers|Vincente|Denver Nuggets": {
+      "quota": 1.58,
+      "prob": 0.6060146743093333,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 18
+    },
+    "nba-2026-11-02-denver-nuggets-portland-trail-blazers|Vincente|Portland Trail Blazers": {
+      "quota": 2.45,
+      "prob": 0.3939853256906668,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 18
+    },
+    "nba-2026-11-02-los-angeles-lakers-miami-heat|Vincente|Los Angeles Lakers": {
+      "quota": 1.74,
+      "prob": 0.5467013692404762,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-los-angeles-lakers-miami-heat|Vincente|Miami Heat": {
+      "quota": 2.1,
+      "prob": 0.4532986307595238,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-golden-state-warriors-phoenix-suns|Vincente|Golden State Warriors": {
+      "quota": 1.7,
+      "prob": 0.5620640519030344,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-golden-state-warriors-phoenix-suns|Vincente|Phoenix Suns": {
+      "quota": 2.18,
+      "prob": 0.4379359480969656,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-golden-state-warriors-phoenix-suns|Totale punti 227.5|Over 227.5": {
+      "quota": 1.91,
+      "prob": 0.4967237406842469,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-golden-state-warriors-phoenix-suns|Totale punti 227.5|Under 227.5": {
+      "quota": 1.9,
+      "prob": 0.503276259315753,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Vincente|LA Clippers": {
+      "quota": 2.51,
+      "prob": 0.38080309620038677,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Vincente|Toronto Raptors": {
+      "quota": 1.55,
+      "prob": 0.6191969037996132,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Handicap +4.5|casa": {
+      "quota": 1.91,
+      "prob": 0.49803378635262213,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Handicap +4.5|trasferta": {
+      "quota": 1.9,
+      "prob": 0.5019662136473778,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Totale punti 219.5|Over 219.5": {
+      "quota": 1.91,
+      "prob": 0.4991273996509598,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
+    },
+    "nba-2026-11-02-la-clippers-toronto-raptors|Totale punti 219.5|Under 219.5": {
+      "quota": 1.91,
+      "prob": 0.5008726003490401,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "minutiPrima": 78
     }
   },
   "copertura": {
@@ -1458,8 +1542,8 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-03T00:55:57+01:00",
-      "partite": 9,
+      "alle": "2026-11-03T02:41:34+01:00",
+      "partite": 13,
       "idPartite": [
         "nba-2026-11-02-cleveland-cavaliers-oklahoma-city-thunder",
         "nba-2026-11-02-indiana-pacers-atlanta-hawks",
@@ -1469,7 +1553,11 @@
         "nba-2026-11-02-charlotte-hornets-detroit-pistons",
         "nba-2026-11-02-dallas-mavericks-sacramento-kings",
         "nba-2026-11-02-minnesota-timberwolves-milwaukee-bucks",
-        "nba-2026-11-02-memphis-grizzlies-new-orleans-pelicans"
+        "nba-2026-11-02-memphis-grizzlies-new-orleans-pelicans",
+        "nba-2026-11-02-denver-nuggets-portland-trail-blazers",
+        "nba-2026-11-02-los-angeles-lakers-miami-heat",
+        "nba-2026-11-02-golden-state-warriors-phoenix-suns",
+        "nba-2026-11-02-la-clippers-toronto-raptors"
       ]
     }
   }
