@@ -1,0 +1,1634 @@
+{
+  "data": "2026-11-03",
+  "generataAlle": "2026-11-03T07:34:51+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 1,
+      "rimaste": 246
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: VCO Berlin",
+    "Quote pallavolo: 3 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "58235ab01aa31eb8",
+        "aab6a90671ac2e68"
+      ],
+      "idPartita": "pallavolo-2026-11-03-istanbul-genclik-spor-gaziantep-genclik-spor",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Istanbul Genclik Spor - Gaziantep Genclik Spor",
+      "casa": "Istanbul Genclik Spor",
+      "trasferta": "Gaziantep Genclik Spor",
+      "inizio": "2026-11-03T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Istanbul Genclik Spor": 1519,
+        "Gaziantep Genclik Spor": 1337
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Istanbul Genclik Spor 1519 – Gaziantep Genclik Spor 1337, vantaggio campo compreso: vittoria della casa 80% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Istanbul Genclik Spor",
+          "probModello": null,
+          "probModelloStudio": 0.8008412264254092,
+          "probPinnacle": 0.7356967449722353,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Istanbul Genclik Spor vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.29
+            ],
+            [
+              "marathonbet",
+              1.29
+            ],
+            [
+              "starcasino",
+              1.29
+            ],
+            [
+              "williamhill",
+              1.29
+            ],
+            [
+              "betwin360",
+              1.28
+            ],
+            [
+              "casinosanremo",
+              1.28
+            ],
+            [
+              "eplay24",
+              1.28
+            ],
+            [
+              "gioca7",
+              1.28
+            ],
+            [
+              "netbet",
+              1.28
+            ],
+            [
+              "netwin",
+              1.28
+            ],
+            [
+              "sportium",
+              1.28
+            ],
+            [
+              "stanleybet",
+              1.28
+            ],
+            [
+              "staryes",
+              1.28
+            ],
+            [
+              "vincitu",
+              1.28
+            ],
+            [
+              "admiralbet",
+              1.27
+            ],
+            [
+              "betflag",
+              1.27
+            ],
+            [
+              "bgame",
+              1.27
+            ],
+            [
+              "codere",
+              1.27
+            ],
+            [
+              "daznbet",
+              1.27
+            ],
+            [
+              "domusbet",
+              1.27
+            ],
+            [
+              "eurobet",
+              1.27
+            ],
+            [
+              "goldbet",
+              1.27
+            ],
+            [
+              "lottomatica",
+              1.27
+            ],
+            [
+              "perlaplay",
+              1.27
+            ],
+            [
+              "planetwin365",
+              1.27
+            ],
+            [
+              "sportbet",
+              1.27
+            ],
+            [
+              "starvegas",
+              1.27
+            ],
+            [
+              "sunbet",
+              1.27
+            ],
+            [
+              "totosi",
+              1.27
+            ],
+            [
+              "quigioco",
+              1.26
+            ],
+            [
+              "fastbet",
+              1.25
+            ],
+            [
+              "zonagioco",
+              1.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Gaziantep Genclik Spor",
+          "probModello": null,
+          "probModelloStudio": 0.19915877357459078,
+          "probPinnacle": 0.2643032550277628,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Gaziantep Genclik Spor vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.6
+            ],
+            [
+              "zonagioco",
+              3.6
+            ],
+            [
+              "betsson",
+              3.4
+            ],
+            [
+              "marathonbet",
+              3.4
+            ],
+            [
+              "starcasino",
+              3.4
+            ],
+            [
+              "williamhill",
+              3.4
+            ],
+            [
+              "betwin360",
+              3.35
+            ],
+            [
+              "casinosanremo",
+              3.35
+            ],
+            [
+              "eplay24",
+              3.35
+            ],
+            [
+              "gioca7",
+              3.35
+            ],
+            [
+              "netbet",
+              3.35
+            ],
+            [
+              "netwin",
+              3.35
+            ],
+            [
+              "sportium",
+              3.35
+            ],
+            [
+              "stanleybet",
+              3.35
+            ],
+            [
+              "staryes",
+              3.35
+            ],
+            [
+              "vincitu",
+              3.35
+            ],
+            [
+              "admiralbet",
+              3.3
+            ],
+            [
+              "betflag",
+              3.3
+            ],
+            [
+              "bgame",
+              3.3
+            ],
+            [
+              "codere",
+              3.3
+            ],
+            [
+              "daznbet",
+              3.3
+            ],
+            [
+              "eurobet",
+              3.3
+            ],
+            [
+              "goldbet",
+              3.3
+            ],
+            [
+              "lottomatica",
+              3.3
+            ],
+            [
+              "perlaplay",
+              3.3
+            ],
+            [
+              "planetwin365",
+              3.3
+            ],
+            [
+              "quigioco",
+              3.3
+            ],
+            [
+              "sportbet",
+              3.3
+            ],
+            [
+              "starvegas",
+              3.3
+            ],
+            [
+              "sunbet",
+              3.3
+            ],
+            [
+              "totosi",
+              3.3
+            ],
+            [
+              "domusbet",
+              3.2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "2504436d20eab797",
+        "5f73e05545de7d6c",
+        "afd376ce340a075d",
+        "def14e03efbdd5c3",
+        "ee80a847a02f1533"
+      ],
+      "idPartita": "pallavolo-2026-11-03-ziraat-bankasi-ankara-corum-sungurlu-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Ziraat Bankasi Ankara - Corum Sungurlu Bld",
+      "casa": "Ziraat Bankasi Ankara",
+      "trasferta": "Corum Sungurlu Bld",
+      "inizio": "2026-11-03T17:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Ziraat Bankasi Ankara",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.879832931315839,
+          "quota": 1.04,
+          "fonteQuota": "mediana di 117 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ziraat Bankasi Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.08
+            ],
+            [
+              "betwin360",
+              1.08
+            ],
+            [
+              "casinosanremo",
+              1.08
+            ],
+            [
+              "eplay24",
+              1.08
+            ],
+            [
+              "gioca7",
+              1.08
+            ],
+            [
+              "marathonbet",
+              1.08
+            ],
+            [
+              "netbet",
+              1.08
+            ],
+            [
+              "netwin",
+              1.08
+            ],
+            [
+              "sportium",
+              1.08
+            ],
+            [
+              "starcasino",
+              1.08
+            ],
+            [
+              "staryes",
+              1.08
+            ],
+            [
+              "vincitu",
+              1.08
+            ],
+            [
+              "admiralbet",
+              1.07
+            ],
+            [
+              "betflag",
+              1.07
+            ],
+            [
+              "bgame",
+              1.07
+            ],
+            [
+              "codere",
+              1.07
+            ],
+            [
+              "daznbet",
+              1.07
+            ],
+            [
+              "domusbet",
+              1.07
+            ],
+            [
+              "eurobet",
+              1.07
+            ],
+            [
+              "goldbet",
+              1.07
+            ],
+            [
+              "lottomatica",
+              1.07
+            ],
+            [
+              "perlaplay",
+              1.07
+            ],
+            [
+              "planetwin365",
+              1.07
+            ],
+            [
+              "sportbet",
+              1.07
+            ],
+            [
+              "starvegas",
+              1.07
+            ],
+            [
+              "sunbet",
+              1.07
+            ],
+            [
+              "totosi",
+              1.07
+            ],
+            [
+              "quigioco",
+              1.06
+            ],
+            [
+              "fastbet",
+              1.04
+            ],
+            [
+              "zonagioco",
+              1.04
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Corum Sungurlu Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.12016706868416094,
+          "quota": 8.5,
+          "fonteQuota": "mediana di 117 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Corum Sungurlu Bld vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              8.5
+            ],
+            [
+              "zonagioco",
+              8.5
+            ],
+            [
+              "betsson",
+              6.85
+            ],
+            [
+              "starcasino",
+              6.85
+            ],
+            [
+              "marathonbet",
+              6.8
+            ],
+            [
+              "betwin360",
+              6.6
+            ],
+            [
+              "casinosanremo",
+              6.6
+            ],
+            [
+              "eplay24",
+              6.6
+            ],
+            [
+              "gioca7",
+              6.6
+            ],
+            [
+              "netbet",
+              6.6
+            ],
+            [
+              "netwin",
+              6.6
+            ],
+            [
+              "sportium",
+              6.6
+            ],
+            [
+              "staryes",
+              6.6
+            ],
+            [
+              "vincitu",
+              6.6
+            ],
+            [
+              "quigioco",
+              6.4
+            ],
+            [
+              "admiralbet",
+              6.3
+            ],
+            [
+              "daznbet",
+              6.3
+            ],
+            [
+              "starvegas",
+              6.3
+            ],
+            [
+              "betflag",
+              6.2
+            ],
+            [
+              "bgame",
+              6.2
+            ],
+            [
+              "codere",
+              6.2
+            ],
+            [
+              "eurobet",
+              6.2
+            ],
+            [
+              "goldbet",
+              6.2
+            ],
+            [
+              "lottomatica",
+              6.2
+            ],
+            [
+              "perlaplay",
+              6.2
+            ],
+            [
+              "planetwin365",
+              6.2
+            ],
+            [
+              "sportbet",
+              6.2
+            ],
+            [
+              "sunbet",
+              6.2
+            ],
+            [
+              "totosi",
+              6.2
+            ],
+            [
+              "domusbet",
+              6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "7329131f34807b31"
+      ],
+      "idPartita": "pallavolo-2026-11-03-trefl-gdansk-cuprum-lubin-sa",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Trefl Gdansk - Cuprum Lubin SA",
+      "casa": "Trefl Gdansk",
+      "trasferta": "Cuprum Lubin SA",
+      "inizio": "2026-11-03T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Trefl Gdansk": 1411,
+        "Cuprum Lubin SA": 1338
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Trefl Gdansk 1411 – Cuprum Lubin SA 1338, vantaggio campo compreso: vittoria della casa 68% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Trefl Gdansk",
+          "probModello": null,
+          "probModelloStudio": 0.6829641921808253,
+          "probPinnacle": 0.609254498714653,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Trefl Gdansk vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.52
+            ],
+            [
+              "goldbet",
+              1.52
+            ],
+            [
+              "lottomatica",
+              1.52
+            ],
+            [
+              "planetwin365",
+              1.52
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuprum Lubin SA",
+          "probModello": null,
+          "probModelloStudio": 0.31703580781917473,
+          "probPinnacle": 0.390745501285347,
+          "quota": 2.37,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Cuprum Lubin SA vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              2.37
+            ],
+            [
+              "goldbet",
+              2.37
+            ],
+            [
+              "lottomatica",
+              2.37
+            ],
+            [
+              "planetwin365",
+              2.37
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "5c4196a27323f7b8",
+        "660d74a8b8c4d62b",
+        "730e3628a543b57b",
+        "a3e638b2923217ad"
+      ],
+      "idPartita": "pallavolo-2026-11-03-netzhoppers-konigs-wusterhausen-swd-powervolleys-duren",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Netzhoppers Konigs Wusterhausen - SWD Powervolleys Duren",
+      "casa": "Netzhoppers Konigs Wusterhausen",
+      "trasferta": "SWD Powervolleys Duren",
+      "inizio": "2026-11-03T19:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Netzhoppers Konigs Wusterhausen",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.23379629602263852,
+          "quota": 4,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Netzhoppers Konigs Wusterhausen vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              4.1
+            ],
+            [
+              "starcasino",
+              4.1
+            ],
+            [
+              "williamhill",
+              4.1
+            ],
+            [
+              "fastbet",
+              4
+            ],
+            [
+              "winamax",
+              4
+            ],
+            [
+              "zonagioco",
+              4
+            ],
+            [
+              "bgame",
+              3.95
+            ],
+            [
+              "codere",
+              3.95
+            ],
+            [
+              "marathonbet",
+              3.95
+            ],
+            [
+              "perlaplay",
+              3.95
+            ],
+            [
+              "sportbet",
+              3.95
+            ],
+            [
+              "sunbet",
+              3.95
+            ],
+            [
+              "totosi",
+              3.95
+            ],
+            [
+              "admiralbet",
+              3.85
+            ],
+            [
+              "betflag",
+              3.85
+            ],
+            [
+              "betwin360",
+              3.85
+            ],
+            [
+              "casinosanremo",
+              3.85
+            ],
+            [
+              "eplay24",
+              3.85
+            ],
+            [
+              "eurobet",
+              3.85
+            ],
+            [
+              "gioca7",
+              3.85
+            ],
+            [
+              "goldbet",
+              3.85
+            ],
+            [
+              "lottomatica",
+              3.85
+            ],
+            [
+              "netbet",
+              3.85
+            ],
+            [
+              "netwin",
+              3.85
+            ],
+            [
+              "planetwin365",
+              3.85
+            ],
+            [
+              "sportium",
+              3.85
+            ],
+            [
+              "starvegas",
+              3.85
+            ],
+            [
+              "staryes",
+              3.85
+            ],
+            [
+              "vincitu",
+              3.85
+            ],
+            [
+              "quigioco",
+              3.8
+            ],
+            [
+              "daznbet",
+              3.75
+            ],
+            [
+              "domusbet",
+              3.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SWD Powervolleys Duren",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.7662037039773612,
+          "quota": 1.2,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SWD Powervolleys Duren vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.24
+            ],
+            [
+              "starcasino",
+              1.24
+            ],
+            [
+              "williamhill",
+              1.24
+            ],
+            [
+              "bgame",
+              1.23
+            ],
+            [
+              "codere",
+              1.23
+            ],
+            [
+              "marathonbet",
+              1.23
+            ],
+            [
+              "perlaplay",
+              1.23
+            ],
+            [
+              "sportbet",
+              1.23
+            ],
+            [
+              "sunbet",
+              1.23
+            ],
+            [
+              "totosi",
+              1.23
+            ],
+            [
+              "winamax",
+              1.23
+            ],
+            [
+              "admiralbet",
+              1.22
+            ],
+            [
+              "betflag",
+              1.22
+            ],
+            [
+              "betwin360",
+              1.22
+            ],
+            [
+              "casinosanremo",
+              1.22
+            ],
+            [
+              "eplay24",
+              1.22
+            ],
+            [
+              "eurobet",
+              1.22
+            ],
+            [
+              "gioca7",
+              1.22
+            ],
+            [
+              "goldbet",
+              1.22
+            ],
+            [
+              "lottomatica",
+              1.22
+            ],
+            [
+              "netbet",
+              1.22
+            ],
+            [
+              "netwin",
+              1.22
+            ],
+            [
+              "planetwin365",
+              1.22
+            ],
+            [
+              "sportium",
+              1.22
+            ],
+            [
+              "starvegas",
+              1.22
+            ],
+            [
+              "staryes",
+              1.22
+            ],
+            [
+              "vincitu",
+              1.22
+            ],
+            [
+              "daznbet",
+              1.21
+            ],
+            [
+              "domusbet",
+              1.21
+            ],
+            [
+              "fastbet",
+              1.2
+            ],
+            [
+              "quigioco",
+              1.2
+            ],
+            [
+              "zonagioco",
+              1.2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "12df2b369c08ef72",
+        "4fc2d16a87aa8170"
+      ],
+      "idPartita": "pallavolo-2026-11-03-sv-warnemunde-barock-volleys-mtv-ludwigsburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SV Warnemünde - Barock Volleys MTV Ludwigsburg",
+      "casa": "SV Warnemünde",
+      "trasferta": "Barock Volleys MTV Ludwigsburg",
+      "inizio": "2026-11-03T19:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SV Warnemünde",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.2472536691009375,
+          "quota": 3.8,
+          "fonteQuota": "mediana di 119 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SV Warnemünde vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.85
+            ],
+            [
+              "starcasino",
+              3.85
+            ],
+            [
+              "williamhill",
+              3.85
+            ],
+            [
+              "fastbet",
+              3.8
+            ],
+            [
+              "zonagioco",
+              3.8
+            ],
+            [
+              "winamax",
+              3.75
+            ],
+            [
+              "bgame",
+              3.7
+            ],
+            [
+              "codere",
+              3.7
+            ],
+            [
+              "marathonbet",
+              3.7
+            ],
+            [
+              "perlaplay",
+              3.7
+            ],
+            [
+              "sportbet",
+              3.7
+            ],
+            [
+              "sunbet",
+              3.7
+            ],
+            [
+              "totosi",
+              3.7
+            ],
+            [
+              "betflag",
+              3.61
+            ],
+            [
+              "goldbet",
+              3.61
+            ],
+            [
+              "lottomatica",
+              3.61
+            ],
+            [
+              "planetwin365",
+              3.61
+            ],
+            [
+              "admiralbet",
+              3.6
+            ],
+            [
+              "betwin360",
+              3.6
+            ],
+            [
+              "casinosanremo",
+              3.6
+            ],
+            [
+              "eplay24",
+              3.6
+            ],
+            [
+              "eurobet",
+              3.6
+            ],
+            [
+              "gioca7",
+              3.6
+            ],
+            [
+              "netbet",
+              3.6
+            ],
+            [
+              "netwin",
+              3.6
+            ],
+            [
+              "sportium",
+              3.6
+            ],
+            [
+              "starvegas",
+              3.6
+            ],
+            [
+              "staryes",
+              3.6
+            ],
+            [
+              "vincitu",
+              3.6
+            ],
+            [
+              "daznbet",
+              3.55
+            ],
+            [
+              "domusbet",
+              3.55
+            ],
+            [
+              "quigioco",
+              3.55
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Barock Volleys MTV Ludwigsburg",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.7527463308990622,
+          "quota": 1.22,
+          "fonteQuota": "mediana di 119 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Barock Volleys MTV Ludwigsburg vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.27
+            ],
+            [
+              "starcasino",
+              1.27
+            ],
+            [
+              "williamhill",
+              1.27
+            ],
+            [
+              "admiralbet",
+              1.25
+            ],
+            [
+              "betflag",
+              1.25
+            ],
+            [
+              "betwin360",
+              1.25
+            ],
+            [
+              "bgame",
+              1.25
+            ],
+            [
+              "casinosanremo",
+              1.25
+            ],
+            [
+              "codere",
+              1.25
+            ],
+            [
+              "eplay24",
+              1.25
+            ],
+            [
+              "eurobet",
+              1.25
+            ],
+            [
+              "gioca7",
+              1.25
+            ],
+            [
+              "goldbet",
+              1.25
+            ],
+            [
+              "lottomatica",
+              1.25
+            ],
+            [
+              "marathonbet",
+              1.25
+            ],
+            [
+              "netbet",
+              1.25
+            ],
+            [
+              "netwin",
+              1.25
+            ],
+            [
+              "perlaplay",
+              1.25
+            ],
+            [
+              "planetwin365",
+              1.25
+            ],
+            [
+              "sportbet",
+              1.25
+            ],
+            [
+              "sportium",
+              1.25
+            ],
+            [
+              "starvegas",
+              1.25
+            ],
+            [
+              "staryes",
+              1.25
+            ],
+            [
+              "sunbet",
+              1.25
+            ],
+            [
+              "totosi",
+              1.25
+            ],
+            [
+              "vincitu",
+              1.25
+            ],
+            [
+              "winamax",
+              1.25
+            ],
+            [
+              "daznbet",
+              1.24
+            ],
+            [
+              "domusbet",
+              1.24
+            ],
+            [
+              "fastbet",
+              1.222
+            ],
+            [
+              "zonagioco",
+              1.222
+            ],
+            [
+              "quigioco",
+              1.22
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "7c8bcd38fb13eeaf",
+        "f036a75847550e60",
+        "f6c16fbf8da5cb6a"
+      ],
+      "idPartita": "pallavolo-2026-11-03-ssc-karlsruhe-tv-rottenburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SSC Karlsruhe - TV Rottenburg",
+      "casa": "SSC Karlsruhe",
+      "trasferta": "TV Rottenburg",
+      "inizio": "2026-11-03T20:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SSC Karlsruhe",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8023255813953488,
+          "quota": 1.13,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se SSC Karlsruhe vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.15
+            ],
+            [
+              "starcasino",
+              1.15
+            ],
+            [
+              "williamhill",
+              1.15
+            ],
+            [
+              "bgame",
+              1.14
+            ],
+            [
+              "codere",
+              1.14
+            ],
+            [
+              "marathonbet",
+              1.14
+            ],
+            [
+              "perlaplay",
+              1.14
+            ],
+            [
+              "sportbet",
+              1.14
+            ],
+            [
+              "sunbet",
+              1.14
+            ],
+            [
+              "totosi",
+              1.14
+            ],
+            [
+              "winamax",
+              1.14
+            ],
+            [
+              "fastbet",
+              1.133
+            ],
+            [
+              "zonagioco",
+              1.133
+            ],
+            [
+              "admiralbet",
+              1.13
+            ],
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "betwin360",
+              1.13
+            ],
+            [
+              "casinosanremo",
+              1.13
+            ],
+            [
+              "daznbet",
+              1.13
+            ],
+            [
+              "domusbet",
+              1.13
+            ],
+            [
+              "eplay24",
+              1.13
+            ],
+            [
+              "eurobet",
+              1.13
+            ],
+            [
+              "gioca7",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "netbet",
+              1.13
+            ],
+            [
+              "netwin",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ],
+            [
+              "sportium",
+              1.13
+            ],
+            [
+              "starvegas",
+              1.13
+            ],
+            [
+              "staryes",
+              1.13
+            ],
+            [
+              "vincitu",
+              1.13
+            ],
+            [
+              "quigioco",
+              1.11
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "TV Rottenburg",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.19767441860465115,
+          "quota": 5,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:51+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se TV Rottenburg vince la partita.",
+          "bookmaker": [
+            [
+              "williamhill",
+              5.6
+            ],
+            [
+              "betsson",
+              5.55
+            ],
+            [
+              "starcasino",
+              5.55
+            ],
+            [
+              "winamax",
+              5.3
+            ],
+            [
+              "bgame",
+              5.2
+            ],
+            [
+              "codere",
+              5.2
+            ],
+            [
+              "marathonbet",
+              5.2
+            ],
+            [
+              "perlaplay",
+              5.2
+            ],
+            [
+              "sportbet",
+              5.2
+            ],
+            [
+              "sunbet",
+              5.2
+            ],
+            [
+              "totosi",
+              5.2
+            ],
+            [
+              "betflag",
+              5.05
+            ],
+            [
+              "goldbet",
+              5.05
+            ],
+            [
+              "lottomatica",
+              5.05
+            ],
+            [
+              "planetwin365",
+              5.05
+            ],
+            [
+              "admiralbet",
+              5
+            ],
+            [
+              "betwin360",
+              5
+            ],
+            [
+              "casinosanremo",
+              5
+            ],
+            [
+              "eplay24",
+              5
+            ],
+            [
+              "eurobet",
+              5
+            ],
+            [
+              "fastbet",
+              5
+            ],
+            [
+              "gioca7",
+              5
+            ],
+            [
+              "netbet",
+              5
+            ],
+            [
+              "netwin",
+              5
+            ],
+            [
+              "sportium",
+              5
+            ],
+            [
+              "starvegas",
+              5
+            ],
+            [
+              "staryes",
+              5
+            ],
+            [
+              "vincitu",
+              5
+            ],
+            [
+              "zonagioco",
+              5
+            ],
+            [
+              "quigioco",
+              4.95
+            ],
+            [
+              "daznbet",
+              4.9
+            ],
+            [
+              "domusbet",
+              4.9
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

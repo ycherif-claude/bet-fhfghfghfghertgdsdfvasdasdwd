@@ -1,0 +1,248 @@
+{
+  "data": "2026-11-03",
+  "generataAlle": "2026-11-03T07:34:38+01:00",
+  "crediti": {
+    "usati": 0,
+    "rimasti": 460
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Paris Masters: solo Pinnacle",
+    "odss-api alle 07:34: 8 partite senza quota utilizzabile (ATP Paris Masters)"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "8079aef5dd8135a7"
+      ],
+      "idPartita": "tennis-2026-11-03-alejandro-davidovich-fokina-moise-kouame",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Alejandro Davidovich Fokina - Moise Kouame",
+      "casa": "Alejandro Davidovich Fokina",
+      "trasferta": "Moise Kouame",
+      "inizio": "2026-11-03T10:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alejandro Davidovich Fokina",
+          "probModello": null,
+          "probPinnacle": 0.7216708023159636,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 148 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alejandro Davidovich Fokina vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Moise Kouame",
+          "probModello": null,
+          "probPinnacle": 0.2783291976840364,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 148 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Moise Kouame vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "136826e7a7b5aac0"
+      ],
+      "idPartita": "tennis-2026-11-03-novak-djokovic-valentin-vacherot",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Novak Djokovic - Valentin Vacherot",
+      "casa": "Novak Djokovic",
+      "trasferta": "Valentin Vacherot",
+      "inizio": "2026-11-03T10:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Novak Djokovic",
+          "probModello": null,
+          "probPinnacle": 0.6636050516647531,
+          "quota": 1.44,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Novak Djokovic vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Valentin Vacherot",
+          "probModello": null,
+          "probPinnacle": 0.33639494833524686,
+          "quota": 2.8,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Valentin Vacherot vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "272dedb24703a7fd"
+      ],
+      "idPartita": "tennis-2026-11-03-andrey-rublev-tomas-martin-etcheverry",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Andrey Rublev - Tomas Martin Etcheverry",
+      "casa": "Andrey Rublev",
+      "trasferta": "Tomas Martin Etcheverry",
+      "inizio": "2026-11-03T11:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Andrey Rublev",
+          "probModello": null,
+          "probPinnacle": 0.6814119749776586,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Andrey Rublev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Tomas Martin Etcheverry",
+          "probModello": null,
+          "probPinnacle": 0.3185880250223414,
+          "quota": 3.1,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Tomas Martin Etcheverry vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "ef3ec496adfe8042",
+        "25e5d57fa67b7aa0",
+        "2efa03f1c4fd97e8",
+        "929689eac45be3ba",
+        "b0a42c0501720600"
+      ],
+      "idPartita": "tennis-2026-11-03-arthur-fery-quentin-halys",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Quentin Halys - Arthur Fery",
+      "casa": "Quentin Halys",
+      "trasferta": "Arthur Fery",
+      "inizio": "2026-11-03T11:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Quentin Halys",
+          "probModello": null,
+          "probPinnacle": 0.5886754801696182,
+          "quota": 1.62,
+          "fonteQuota": "mediana di 194 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Quentin Halys vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Arthur Fery",
+          "probModello": null,
+          "probPinnacle": 0.41132451983038165,
+          "quota": 2.28,
+          "fonteQuota": "mediana di 194 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Arthur Fery vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "a9c8c0421fb1f4af",
+        "06b54df2124d5a67",
+        "3175934cfa09c818",
+        "68f3a9fbfc2f6d11"
+      ],
+      "idPartita": "tennis-2026-11-03-arthur-rinderknech-francisco-cerundolo",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Arthur Rinderknech - Francisco Cerundolo",
+      "casa": "Arthur Rinderknech",
+      "trasferta": "Francisco Cerundolo",
+      "inizio": "2026-11-03T11:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Arthur Rinderknech",
+          "probModello": null,
+          "probPinnacle": 0.37939393939393945,
+          "quota": 2.54,
+          "fonteQuota": "mediana di 194 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Arthur Rinderknech vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Francisco Cerundolo",
+          "probModello": null,
+          "probPinnacle": 0.6206060606060607,
+          "quota": 1.5,
+          "fonteQuota": "mediana di 194 bookmaker (odss-api)",
+          "oraQuota": "2026-11-03T07:34:38+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Francisco Cerundolo vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}
