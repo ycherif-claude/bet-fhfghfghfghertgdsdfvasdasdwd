@@ -1660,9 +1660,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,35 · formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "gambe": [
         {
@@ -1772,9 +1772,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,35 ≥ minima 2,87",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     },
@@ -1812,9 +1812,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,75 ≥ minima 2,98",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     },
@@ -2013,9 +2013,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,38 ≥ minima 3,29",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     },
@@ -2255,9 +2255,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 2,47 sotto la minima 2,59",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     },
@@ -2376,9 +2376,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,40 sotto la minima 3,56",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     },
@@ -2620,9 +2620,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,95 sotto la minima 2,00",
+      "oraUltimoControllo": "2026-11-04T20:45:45+01:00",
       "esito": null,
       "prova": true
     }
@@ -3007,7 +3007,13 @@
           "probMercato": 0.7303,
           "probModello": 0.5312793199850078,
           "esito": null,
-          "probModelloTarato": 0.5878
+          "probModelloTarato": 0.5878,
+          "chiusura": {
+            "quota": 1.27,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -3148,7 +3154,13 @@
               "totosi",
               1.41
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6020812685827551,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -3185,7 +3197,13 @@
               "winamax",
               1.39
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6431833286881204,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -3338,7 +3356,13 @@
               "leovegas",
               1.37
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.37,
+            "prob": 0.6962442345706128,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -3415,7 +3439,13 @@
               "leovegas",
               1.26
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.32,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "nba",
@@ -4517,7 +4547,13 @@
           "probMercato": 0.7303,
           "probModello": 0.5312793199850078,
           "esito": null,
-          "probModelloTarato": 0.5878
+          "probModelloTarato": 0.5878,
+          "chiusura": {
+            "quota": 1.27,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -4658,7 +4694,13 @@
               "totosi",
               1.41
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6020812685827551,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -4695,7 +4737,13 @@
               "winamax",
               1.39
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6431833286881204,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -4848,7 +4896,13 @@
               "leovegas",
               1.37
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.37,
+            "prob": 0.6962442345706128,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -4925,7 +4979,13 @@
               "leovegas",
               1.26
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.32,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -4982,7 +5042,13 @@
               "zonagioco",
               1.235
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -6303,7 +6369,13 @@
           "probMercato": 0.7303,
           "probModello": 0.5312793199850078,
           "esito": null,
-          "probModelloTarato": 0.5878
+          "probModelloTarato": 0.5878,
+          "chiusura": {
+            "quota": 1.27,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -6444,7 +6516,13 @@
               "totosi",
               1.41
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6020812685827551,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -6481,7 +6559,13 @@
               "winamax",
               1.39
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6431833286881204,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -6558,7 +6642,13 @@
               "leovegas",
               1.26
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.32,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -6615,7 +6705,13 @@
               "zonagioco",
               1.235
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -7490,7 +7586,13 @@
           "probMercato": 0.7303,
           "probModello": 0.5312793199850078,
           "esito": null,
-          "probModelloTarato": 0.5878
+          "probModelloTarato": 0.5878,
+          "chiusura": {
+            "quota": 1.27,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -7547,7 +7649,13 @@
               "zonagioco",
               1.235
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -7624,7 +7732,13 @@
               "leovegas",
               1.26
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.32,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -7921,7 +8035,13 @@
           "probMercato": 0.7303,
           "probModello": 0.5312793199850078,
           "esito": null,
-          "probModelloTarato": 0.5878
+          "probModelloTarato": 0.5878,
+          "chiusura": {
+            "quota": 1.27,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -7978,7 +8098,13 @@
               "zonagioco",
               1.235
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -8055,7 +8181,13 @@
               "leovegas",
               1.26
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.32,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -8092,7 +8224,13 @@
               "winamax",
               1.39
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6431833286881204,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         },
         {
           "sport": "calcio",
@@ -8828,7 +8966,13 @@
               "zonagioco",
               1.235
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": null,
+            "alle": "2026-11-04T20:45:45+01:00",
+            "minutiPrima": 14
+          }
         }
       ],
       "quota": 3.77,
@@ -8891,7 +9035,13 @@
                 "leovegas",
                 1.2
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.24,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.25,
@@ -8959,7 +9109,13 @@
             "probMercato": 0.7303,
             "probModello": 0.5312793199850078,
             "esito": null,
-            "probModelloTarato": 0.5878
+            "probModelloTarato": 0.5878,
+            "chiusura": {
+              "quota": 1.27,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "calcio",
@@ -9100,7 +9256,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.97,
@@ -9419,7 +9581,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -10068,7 +10236,13 @@
                 "leovegas",
                 1.26
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.94,
@@ -10285,7 +10459,13 @@
             "probMercato": 0.7303,
             "probModello": 0.5312793199850078,
             "esito": null,
-            "probModelloTarato": 0.5878
+            "probModelloTarato": 0.5878,
+            "chiusura": {
+              "quota": 1.27,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -10608,7 +10788,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -10896,7 +11082,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.92,
@@ -11173,7 +11365,13 @@
                 "leovegas",
                 1.26
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.93,
@@ -11243,7 +11441,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -11732,7 +11936,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -12298,7 +12508,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.91,
@@ -12521,7 +12737,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 2.03,
@@ -13541,7 +13763,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.91,
@@ -13652,7 +13880,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.91,
@@ -14044,7 +14278,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.78,
@@ -14211,7 +14451,13 @@
                 "leovegas",
                 1.2
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.24,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "calcio",
@@ -14268,7 +14514,13 @@
             "probMercato": 0.7303,
             "probModello": 0.5312793199850078,
             "esito": null,
-            "probModelloTarato": 0.5878
+            "probModelloTarato": 0.5878,
+            "chiusura": {
+              "quota": 1.27,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "calcio",
@@ -14409,7 +14661,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.97,
@@ -14728,7 +14986,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -15377,7 +15641,13 @@
                 "leovegas",
                 1.26
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.94,
@@ -15594,7 +15864,13 @@
             "probMercato": 0.7303,
             "probModello": 0.5312793199850078,
             "esito": null,
-            "probModelloTarato": 0.5878
+            "probModelloTarato": 0.5878,
+            "chiusura": {
+              "quota": 1.27,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -15917,7 +16193,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -16205,7 +16487,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.92,
@@ -16482,7 +16770,13 @@
                 "leovegas",
                 1.26
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.32,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.93,
@@ -16552,7 +16846,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -17041,7 +17341,13 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6431833286881204,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           },
           {
             "sport": "nba",
@@ -17607,7 +17913,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.91,
@@ -17830,7 +18142,13 @@
                 "totosi",
                 1.41
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6020812685827551,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 2.03,
@@ -18850,7 +19168,13 @@
                 "zonagioco",
                 1.235
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": null,
+              "alle": "2026-11-04T20:45:45+01:00",
+              "minutiPrima": 14
+            }
           }
         ],
         "quota": 1.91,
