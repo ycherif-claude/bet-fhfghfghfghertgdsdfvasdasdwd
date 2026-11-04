@@ -13,6 +13,41 @@
       "dettagli": [],
       "alle": "2026-11-04T09:39:23+01:00",
       "regola": true
+    },
+    "M-basket-2026-11-04-real-madrid-panathinaikos-vincente-real-madrid+calcio-2026-11-04-aek-athens-real-madrid-under-over-3-5-under-3-5#1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,05",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,05"
+      ],
+      "alle": "2026-11-04T18:15:01+01:00"
+    },
+    "calcio-2026-11-04-fenerbahce-liverpool-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 2,80 sotto la minima 2,84",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,80 sotto la minima 2,84"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-04T18:15:01+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-04-aek-athens-real-madrid-under-over-3-5-under-3-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,05 ≥ minima 1,92",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,05 ≥ minima 1,92"
+      ],
+      "alle": "2026-11-04T18:15:01+01:00"
     }
   },
   "claude": {

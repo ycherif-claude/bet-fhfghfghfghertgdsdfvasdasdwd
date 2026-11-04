@@ -1893,9 +1893,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 2,80 sotto la minima 2,84",
+      "oraUltimoControllo": "2026-11-04T18:15:01+01:00",
       "esito": null,
       "prova": true
     },
@@ -1933,9 +1933,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,05 ≥ minima 1,92",
+      "oraUltimoControllo": "2026-11-04T18:15:01+01:00",
       "esito": null,
       "prova": true
     },
@@ -2812,7 +2812,13 @@
               "leovegas",
               1.38
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.55,
+            "prob": 0.6134401787698758,
+            "alle": "2026-11-04T18:15:01+01:00",
+            "minutiPrima": 30
+          }
         },
         {
           "sport": "calcio",
@@ -3977,7 +3983,13 @@
               "leovegas",
               1.38
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.55,
+            "prob": 0.6134401787698758,
+            "alle": "2026-11-04T18:15:01+01:00",
+            "minutiPrima": 30
+          }
         },
         {
           "sport": "calcio",
@@ -5999,7 +6011,13 @@
               "leovegas",
               1.38
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.55,
+            "prob": 0.6134401787698758,
+            "alle": "2026-11-04T18:15:01+01:00",
+            "minutiPrima": 30
+          }
         },
         {
           "sport": "calcio",
@@ -9246,7 +9264,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
@@ -11030,7 +11054,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
@@ -12637,7 +12667,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
@@ -14495,7 +14531,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
@@ -16279,7 +16321,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
@@ -17886,7 +17934,13 @@
                 "leovegas",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.55,
+              "prob": 0.6134401787698758,
+              "alle": "2026-11-04T18:15:01+01:00",
+              "minutiPrima": 30
+            }
           },
           {
             "sport": "calcio",
