@@ -2417,9 +2417,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,65 sotto la minima 1,74",
-      "oraUltimoControllo": "2026-11-04T23:58:08+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota scesa a 1,65 sotto la minima 1,74 e nessuna notizia concreta trovata che alzi la probabilità di Atlanta: il value non c'è più (ricerca web report infortuni NBA del 4 novembre, nessun risultato utile, 23:59)",
+      "oraUltimoControllo": "2026-11-04T23:58:59+01:00",
       "esito": null,
       "prova": true
     },
@@ -2499,9 +2499,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,71 sotto la minima 1,78",
-      "oraUltimoControllo": "2026-11-04T23:58:08+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota scesa a 1,71 sotto la minima 1,78 e nessuna notizia concreta trovata che alzi la probabilità di Detroit: il value non c'è più (ricerca web report infortuni NBA del 4 novembre, nessun risultato utile, 23:59)",
+      "oraUltimoControllo": "2026-11-04T23:58:59+01:00",
       "esito": null,
       "prova": true
     },
@@ -19483,7 +19483,8 @@
     "Squadre SuperLega non riconosciute: Power Volley Milano, VV Monza",
     "Quote pallavolo: 15 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
     "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi",
-    "odss-api alle 07:30: 6 partite senza righe a tempo intero (full_time), senza quote: Sportivo Ameliano - Club Guarani, Club Libertad - Cerro Porteno, Kaya FC - Melbourne City FC (F), April Wom. - Ho Chi Minh Wom., Bam Khatoon Wom. - Naegohyang FC Wom., Kaya FC Wom. - Melbourne City Wom."
+    "odss-api alle 07:30: 6 partite senza righe a tempo intero (full_time), senza quote: Sportivo Ameliano - Club Guarani, Club Libertad - Cerro Porteno, Kaya FC - Melbourne City FC (F), April Wom. - Ho Chi Minh Wom., Bam Khatoon Wom. - Naegohyang FC Wom., Kaya FC Wom. - Melbourne City Wom.",
+    "Decisione di Claude per pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza-vincente-gas-sales-piacenza arrivata dopo l'inizio della partita (23:58): non applicata"
   ],
   "schedinePronostici": []
 }

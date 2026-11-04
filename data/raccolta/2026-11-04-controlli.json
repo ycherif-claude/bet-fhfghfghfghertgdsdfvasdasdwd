@@ -216,8 +216,8 @@
       "alle": "2026-11-04T23:10:19+01:00"
     },
     "nba-2026-11-04-washington-wizards-atlanta-hawks-vincente-atlanta-hawks": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,65 sotto la minima 1,74",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 1,65 sotto la minima 1,74 e nessuna notizia concreta trovata che alzi la probabilità di Atlanta: il value non c'è più (ricerca web report infortuni NBA del 4 novembre, nessun risultato utile, 23:59)",
       "problemi": [
         {
           "tipo": "quota",
@@ -227,11 +227,12 @@
       "dettagli": [
         "giocatori chiave non indicati dal giro del mattino"
       ],
-      "alle": "2026-11-04T23:58:08+01:00"
+      "alle": "2026-11-04T23:58:59+01:00",
+      "claude": true
     },
     "nba-2026-11-04-detroit-pistons-philadelphia-76ers-vincente-detroit-pistons": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,71 sotto la minima 1,78",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 1,71 sotto la minima 1,78 e nessuna notizia concreta trovata che alzi la probabilità di Detroit: il value non c'è più (ricerca web report infortuni NBA del 4 novembre, nessun risultato utile, 23:59)",
       "problemi": [
         {
           "tipo": "quota",
@@ -241,7 +242,8 @@
       "dettagli": [
         "giocatori chiave non indicati dal giro del mattino"
       ],
-      "alle": "2026-11-04T23:58:08+01:00"
+      "alle": "2026-11-04T23:58:59+01:00",
+      "claude": true
     }
   },
   "claude": {
