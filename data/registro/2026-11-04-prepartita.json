@@ -929,6 +929,42 @@
       "prob": 0.47080291970802923,
       "alle": "2026-11-04T23:10:19+01:00",
       "minutiPrima": 20
+    },
+    "nba-2026-11-04-detroit-pistons-philadelphia-76ers|Vincente|Detroit Pistons": {
+      "quota": 1.71,
+      "prob": 0.5562547193556506,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
+    },
+    "nba-2026-11-04-detroit-pistons-philadelphia-76ers|Vincente|Philadelphia 76ers": {
+      "quota": 2.15,
+      "prob": 0.4437452806443493,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
+    },
+    "nba-2026-11-04-detroit-pistons-philadelphia-76ers|Handicap -2.5|casa": {
+      "quota": 1.87,
+      "prob": 0.509342206296391,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
+    },
+    "nba-2026-11-04-detroit-pistons-philadelphia-76ers|Handicap -2.5|trasferta": {
+      "quota": 1.88,
+      "prob": 0.49065779370360885,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
+    },
+    "nba-2026-11-04-washington-wizards-atlanta-hawks|Vincente|Washington Wizards": {
+      "quota": 2.22,
+      "prob": 0.4238993710691824,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
+    },
+    "nba-2026-11-04-washington-wizards-atlanta-hawks|Vincente|Atlanta Hawks": {
+      "quota": 1.65,
+      "prob": 0.5761006289308176,
+      "alle": "2026-11-04T23:58:08+01:00",
+      "minutiPrima": 62
     }
   },
   "copertura": {
@@ -994,6 +1030,14 @@
       "idPartite": [
         "calcio-2026-11-04-athletico-pr-vasco-da-gama",
         "calcio-2026-11-04-flamengo-gremio"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-04T23:58:08+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-11-04-detroit-pistons-philadelphia-76ers",
+        "nba-2026-11-04-washington-wizards-atlanta-hawks"
       ]
     }
   }

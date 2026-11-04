@@ -214,12 +214,42 @@
         "quota 2,50 ≥ minima 2,11"
       ],
       "alle": "2026-11-04T23:10:19+01:00"
+    },
+    "nba-2026-11-04-washington-wizards-atlanta-hawks-vincente-atlanta-hawks": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,65 sotto la minima 1,74",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,65 sotto la minima 1,74"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-04T23:58:08+01:00"
+    },
+    "nba-2026-11-04-detroit-pistons-philadelphia-76ers-vincente-detroit-pistons": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,71 sotto la minima 1,78",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,71 sotto la minima 1,78"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-04T23:58:08+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza-vincente-gas-sales-piacenza"
+      "pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza-vincente-gas-sales-piacenza",
+      "nba-2026-11-04-washington-wizards-atlanta-hawks-vincente-atlanta-hawks",
+      "nba-2026-11-04-detroit-pistons-philadelphia-76ers-vincente-detroit-pistons"
     ]
   },
   "pronostici": {
