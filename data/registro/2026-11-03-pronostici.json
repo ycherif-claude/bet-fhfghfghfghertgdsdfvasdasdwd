@@ -16,7 +16,7 @@
       "n": 1190,
       "limite": 0.8961,
       "quotaMinima": 1.1,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -33,7 +33,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -50,7 +50,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -67,7 +67,7 @@
       "n": 156,
       "limite": 0.825,
       "quotaMinima": 1.14,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -84,7 +84,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -101,7 +101,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     }
   ],
@@ -124,7 +124,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-03-chapecoense-mirassol",
@@ -140,7 +140,7 @@
           "prob": 0.8196,
           "limite": 0.8036,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -148,8 +148,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-11-03-c9q87e",
@@ -169,7 +169,7 @@
           "prob": 0.8761,
           "limite": 0.8603,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-03-villarreal-paris-saint-germain",
@@ -185,7 +185,7 @@
           "prob": 0.8846,
           "limite": 0.825,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-03-internacional-coritiba",
@@ -201,7 +201,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.6,
@@ -209,8 +209,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.6
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-11-04T07:39:37+01:00"
 }

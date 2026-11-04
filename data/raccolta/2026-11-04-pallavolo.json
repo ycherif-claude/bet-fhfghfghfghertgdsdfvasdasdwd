@@ -1,0 +1,1236 @@
+{
+  "data": "2026-11-04",
+  "generataAlle": "2026-11-04T07:37:31+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 244
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League maschile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre SuperLega non riconosciute: Power Volley Milano, VV Monza",
+    "Quote pallavolo: 15 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "264ce68f7d65d32d",
+        "30e3a38d96107f0b",
+        "440f1fbb4d18dd2c",
+        "6457a496285ddcdd",
+        "7a52595812edf265",
+        "fe091921582eab4c"
+      ],
+      "idPartita": "pallavolo-2026-11-04-volley-civitanova-modena-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Volley Civitanova - Modena Volley",
+      "casa": "Volley Civitanova",
+      "trasferta": "Modena Volley",
+      "inizio": "2026-11-04T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Volley Civitanova": 1642,
+        "Modena Volley": 1562
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Volley Civitanova 1642 – Modena Volley 1562, vantaggio campo compreso: vittoria della casa 69% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Civitanova",
+          "probModello": null,
+          "probModelloStudio": 0.6909729026985411,
+          "probPinnacle": 0.7192722657076369,
+          "quota": 1.27,
+          "fonteQuota": "mediana di 136 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Volley Civitanova vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.36
+            ],
+            [
+              "starcasino",
+              1.36
+            ],
+            [
+              "williamhill",
+              1.36
+            ],
+            [
+              "betflag",
+              1.34
+            ],
+            [
+              "bgame",
+              1.34
+            ],
+            [
+              "codere",
+              1.34
+            ],
+            [
+              "goldbet",
+              1.34
+            ],
+            [
+              "lottomatica",
+              1.34
+            ],
+            [
+              "marathonbet",
+              1.34
+            ],
+            [
+              "perlaplay",
+              1.34
+            ],
+            [
+              "planetwin365",
+              1.34
+            ],
+            [
+              "sportbet",
+              1.34
+            ],
+            [
+              "sunbet",
+              1.34
+            ],
+            [
+              "totosi",
+              1.34
+            ],
+            [
+              "winamax",
+              1.34
+            ],
+            [
+              "admiralbet",
+              1.33
+            ],
+            [
+              "starvegas",
+              1.33
+            ],
+            [
+              "vincitu",
+              1.33
+            ],
+            [
+              "daznbet",
+              1.32
+            ],
+            [
+              "domusbet",
+              1.32
+            ],
+            [
+              "stanleybet",
+              1.32
+            ],
+            [
+              "eurobet",
+              1.31
+            ],
+            [
+              "quigioco",
+              1.31
+            ],
+            [
+              "fastbet",
+              1.273
+            ],
+            [
+              "zonagioco",
+              1.273
+            ],
+            [
+              "leovegas",
+              1.26
+            ],
+            [
+              "888sport",
+              1.24
+            ],
+            [
+              "888sport_it",
+              1.24
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Modena Volley",
+          "probModello": null,
+          "probModelloStudio": 0.30902709730145894,
+          "probPinnacle": 0.28072773429236303,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 136 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Modena Volley vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.5
+            ],
+            [
+              "zonagioco",
+              3.5
+            ],
+            [
+              "leovegas",
+              3.4
+            ],
+            [
+              "888sport",
+              3.3
+            ],
+            [
+              "888sport_it",
+              3.3
+            ],
+            [
+              "eurobet",
+              3.25
+            ],
+            [
+              "betsson",
+              3.2
+            ],
+            [
+              "starcasino",
+              3.2
+            ],
+            [
+              "williamhill",
+              3.2
+            ],
+            [
+              "betflag",
+              3.1
+            ],
+            [
+              "bgame",
+              3.1
+            ],
+            [
+              "codere",
+              3.1
+            ],
+            [
+              "goldbet",
+              3.1
+            ],
+            [
+              "lottomatica",
+              3.1
+            ],
+            [
+              "marathonbet",
+              3.1
+            ],
+            [
+              "perlaplay",
+              3.1
+            ],
+            [
+              "planetwin365",
+              3.1
+            ],
+            [
+              "sportbet",
+              3.1
+            ],
+            [
+              "sunbet",
+              3.1
+            ],
+            [
+              "totosi",
+              3.1
+            ],
+            [
+              "winamax",
+              3.1
+            ],
+            [
+              "admiralbet",
+              3.05
+            ],
+            [
+              "starvegas",
+              3.05
+            ],
+            [
+              "vincitu",
+              3.05
+            ],
+            [
+              "daznbet",
+              3
+            ],
+            [
+              "domusbet",
+              3
+            ],
+            [
+              "stanleybet",
+              3
+            ],
+            [
+              "quigioco",
+              2.99
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "34712934e5e3f2a9"
+      ],
+      "idPartita": "pallavolo-2026-11-04-lkps-lublin-skra-belchatow",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "LKPS Lublin - Skra Belchatow",
+      "casa": "LKPS Lublin",
+      "trasferta": "Skra Belchatow",
+      "inizio": "2026-11-04T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "LKPS Lublin": 1689,
+        "Skra Belchatow": 1541
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: LKPS Lublin 1689 – Skra Belchatow 1541, vantaggio campo compreso: vittoria della casa 77% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "LKPS Lublin",
+          "probModello": null,
+          "probModelloStudio": 0.7679613546165033,
+          "probPinnacle": 0.8212963867044878,
+          "quota": 1.13,
+          "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se LKPS Lublin vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "betwin360",
+              1.13
+            ],
+            [
+              "casinosanremo",
+              1.13
+            ],
+            [
+              "eplay24",
+              1.13
+            ],
+            [
+              "gioca7",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "netbet",
+              1.13
+            ],
+            [
+              "netwin",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ],
+            [
+              "sportium",
+              1.13
+            ],
+            [
+              "staryes",
+              1.13
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Skra Belchatow",
+          "probModello": null,
+          "probModelloStudio": 0.23203864538349672,
+          "probPinnacle": 0.1787036132955121,
+          "quota": 5.2,
+          "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Skra Belchatow vince la partita.",
+          "bookmaker": [
+            [
+              "betwin360",
+              5.2
+            ],
+            [
+              "casinosanremo",
+              5.2
+            ],
+            [
+              "eplay24",
+              5.2
+            ],
+            [
+              "gioca7",
+              5.2
+            ],
+            [
+              "netbet",
+              5.2
+            ],
+            [
+              "netwin",
+              5.2
+            ],
+            [
+              "sportium",
+              5.2
+            ],
+            [
+              "staryes",
+              5.2
+            ],
+            [
+              "betflag",
+              5.18
+            ],
+            [
+              "goldbet",
+              5.18
+            ],
+            [
+              "lottomatica",
+              5.18
+            ],
+            [
+              "planetwin365",
+              5.18
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "46b52c28c5e75a67",
+        "6077bdbf4215c903",
+        "6182ff6884b07def",
+        "7e5240332b041bb5",
+        "ac3cfaaa145d8787",
+        "c1f1c3e238639aa0",
+        "cc1368612d26bbfb"
+      ],
+      "idPartita": "pallavolo-2026-11-04-perugia-volley-cisterna-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Perugia Volley - Cisterna Volley",
+      "casa": "Perugia Volley",
+      "trasferta": "Cisterna Volley",
+      "inizio": "2026-11-04T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Perugia Volley": 1767,
+        "Cisterna Volley": 1349
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Perugia Volley 1767 – Cisterna Volley 1349, vantaggio campo compreso: vittoria della casa 94% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Perugia Volley",
+          "probModello": null,
+          "probModelloStudio": 0.9399409581001383,
+          "probPinnacle": 0.8755709256726738,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 33 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Perugia Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.08
+            ],
+            [
+              "betwin360",
+              1.07
+            ],
+            [
+              "casinosanremo",
+              1.07
+            ],
+            [
+              "eplay24",
+              1.07
+            ],
+            [
+              "eurobet",
+              1.07
+            ],
+            [
+              "gioca7",
+              1.07
+            ],
+            [
+              "goldbet",
+              1.07
+            ],
+            [
+              "lottomatica",
+              1.07
+            ],
+            [
+              "netbet",
+              1.07
+            ],
+            [
+              "netwin",
+              1.07
+            ],
+            [
+              "planetwin365",
+              1.07
+            ],
+            [
+              "staryes",
+              1.07
+            ],
+            [
+              "winamax",
+              1.07
+            ],
+            [
+              "sportium",
+              1.06
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Cisterna Volley",
+          "probModello": null,
+          "probModelloStudio": 0.060059041899861665,
+          "probPinnacle": 0.12442907432732601,
+          "quota": 7.4,
+          "fonteQuota": "mediana di 33 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Cisterna Volley vince la partita.",
+          "bookmaker": [
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "eurobet",
+              7.4
+            ],
+            [
+              "goldbet",
+              7.4
+            ],
+            [
+              "lottomatica",
+              7.4
+            ],
+            [
+              "planetwin365",
+              7.4
+            ],
+            [
+              "betflag",
+              7
+            ],
+            [
+              "betwin360",
+              7
+            ],
+            [
+              "eplay24",
+              7
+            ],
+            [
+              "gioca7",
+              7
+            ],
+            [
+              "sportium",
+              7
+            ],
+            [
+              "staryes",
+              7
+            ],
+            [
+              "casinosanremo",
+              6.85
+            ],
+            [
+              "netbet",
+              6.85
+            ],
+            [
+              "netwin",
+              6.85
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "a316882b7e1c44d4",
+        "aa2ef8b57dae809f",
+        "bdd09f9691cee579",
+        "c2e275bcaee35f08",
+        "f1013812ef16f3d3"
+      ],
+      "idPartita": "pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Trentino Volley - Gas Sales Piacenza",
+      "casa": "Trentino Volley",
+      "trasferta": "Gas Sales Piacenza",
+      "inizio": "2026-11-04T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Trentino Volley": 1685,
+        "Gas Sales Piacenza": 1632
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Trentino Volley 1685 – Gas Sales Piacenza 1632, vantaggio campo compreso: vittoria della casa 66% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Trentino Volley",
+          "probModello": null,
+          "probModelloStudio": 0.6578912653382544,
+          "probPinnacle": 0.6743383199079402,
+          "quota": 1.3,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Trentino Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.35
+            ],
+            [
+              "starcasino",
+              1.35
+            ],
+            [
+              "williamhill",
+              1.35
+            ],
+            [
+              "bgame",
+              1.34
+            ],
+            [
+              "codere",
+              1.34
+            ],
+            [
+              "eurobet",
+              1.34
+            ],
+            [
+              "marathonbet",
+              1.34
+            ],
+            [
+              "perlaplay",
+              1.34
+            ],
+            [
+              "sportbet",
+              1.34
+            ],
+            [
+              "sunbet",
+              1.34
+            ],
+            [
+              "totosi",
+              1.34
+            ],
+            [
+              "winamax",
+              1.34
+            ],
+            [
+              "admiralbet",
+              1.33
+            ],
+            [
+              "betwin360",
+              1.33
+            ],
+            [
+              "casinosanremo",
+              1.33
+            ],
+            [
+              "eplay24",
+              1.33
+            ],
+            [
+              "gioca7",
+              1.33
+            ],
+            [
+              "leovegas",
+              1.33
+            ],
+            [
+              "netbet",
+              1.33
+            ],
+            [
+              "netwin",
+              1.33
+            ],
+            [
+              "sportium",
+              1.33
+            ],
+            [
+              "starvegas",
+              1.33
+            ],
+            [
+              "staryes",
+              1.33
+            ],
+            [
+              "vincitu",
+              1.33
+            ],
+            [
+              "888sport",
+              1.32
+            ],
+            [
+              "888sport_it",
+              1.32
+            ],
+            [
+              "daznbet",
+              1.32
+            ],
+            [
+              "domusbet",
+              1.32
+            ],
+            [
+              "stanleybet",
+              1.32
+            ],
+            [
+              "fastbet",
+              1.3
+            ],
+            [
+              "quigioco",
+              1.3
+            ],
+            [
+              "zonagioco",
+              1.3
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Gas Sales Piacenza",
+          "probModello": null,
+          "probModelloStudio": 0.34210873466174563,
+          "probPinnacle": 0.32566168009205987,
+          "quota": 3.25,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Gas Sales Piacenza vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.333
+            ],
+            [
+              "zonagioco",
+              3.333
+            ],
+            [
+              "betsson",
+              3.2
+            ],
+            [
+              "starcasino",
+              3.2
+            ],
+            [
+              "williamhill",
+              3.2
+            ],
+            [
+              "winamax",
+              3.15
+            ],
+            [
+              "bgame",
+              3.1
+            ],
+            [
+              "codere",
+              3.1
+            ],
+            [
+              "eurobet",
+              3.1
+            ],
+            [
+              "marathonbet",
+              3.1
+            ],
+            [
+              "perlaplay",
+              3.1
+            ],
+            [
+              "sportbet",
+              3.1
+            ],
+            [
+              "sunbet",
+              3.1
+            ],
+            [
+              "totosi",
+              3.1
+            ],
+            [
+              "admiralbet",
+              3.05
+            ],
+            [
+              "betwin360",
+              3.05
+            ],
+            [
+              "casinosanremo",
+              3.05
+            ],
+            [
+              "eplay24",
+              3.05
+            ],
+            [
+              "gioca7",
+              3.05
+            ],
+            [
+              "netbet",
+              3.05
+            ],
+            [
+              "netwin",
+              3.05
+            ],
+            [
+              "sportium",
+              3.05
+            ],
+            [
+              "starvegas",
+              3.05
+            ],
+            [
+              "staryes",
+              3.05
+            ],
+            [
+              "vincitu",
+              3.05
+            ],
+            [
+              "daznbet",
+              3
+            ],
+            [
+              "domusbet",
+              3
+            ],
+            [
+              "quigioco",
+              3
+            ],
+            [
+              "stanleybet",
+              3
+            ],
+            [
+              "leovegas",
+              2.95
+            ],
+            [
+              "888sport",
+              2.9
+            ],
+            [
+              "888sport_it",
+              2.9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-04-warta-zawiercie-azs-olsztyn",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Warta Zawiercie - AZS Olsztyn",
+      "casa": "Warta Zawiercie",
+      "trasferta": "AZS Olsztyn",
+      "inizio": "2026-11-04T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Warta Zawiercie": 1708,
+        "AZS Olsztyn": 1462
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Warta Zawiercie 1708 – AZS Olsztyn 1462, vantaggio campo compreso: vittoria della casa 85% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Warta Zawiercie",
+          "probModello": null,
+          "probModelloStudio": 0.8534452158874533,
+          "probPinnacle": 0.866399708773207,
+          "quota": 1.068,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,08 su 146 bookmaker",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "quotaBet365": 1.068,
+          "oraQuotaBet365": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Warta Zawiercie vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.11
+            ],
+            [
+              "888sport",
+              1.1
+            ],
+            [
+              "betflag",
+              1.1
+            ],
+            [
+              "bwin",
+              1.1
+            ],
+            [
+              "eurobet",
+              1.1
+            ],
+            [
+              "goldbet",
+              1.1
+            ],
+            [
+              "lottomatica",
+              1.1
+            ],
+            [
+              "netbet",
+              1.1
+            ],
+            [
+              "planetwin365",
+              1.1
+            ],
+            [
+              "pokerstars",
+              1.1
+            ],
+            [
+              "sisal",
+              1.1
+            ],
+            [
+              "snai",
+              1.1
+            ],
+            [
+              "stake",
+              1.09
+            ],
+            [
+              "winamax",
+              1.09
+            ],
+            [
+              "winbet",
+              1.09
+            ],
+            [
+              "betsson",
+              1.08
+            ],
+            [
+              "codere",
+              1.08
+            ],
+            [
+              "quigioco",
+              1.08
+            ],
+            [
+              "starcasino",
+              1.077
+            ],
+            [
+              "bet365",
+              1.068
+            ],
+            [
+              "leovegas",
+              1.06
+            ],
+            [
+              "marathonbet",
+              1.053
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "AZS Olsztyn",
+          "probModello": null,
+          "probModelloStudio": 0.14655478411254674,
+          "probPinnacle": 0.13360029122679287,
+          "quota": 6.5,
+          "fonteQuota": "mediana di 146 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "quotaBet365": 7,
+          "oraQuotaBet365": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se AZS Olsztyn vince la partita.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              7.5
+            ],
+            [
+              "bet365",
+              7
+            ],
+            [
+              "leovegas",
+              7
+            ],
+            [
+              "bwin",
+              6.75
+            ],
+            [
+              "starcasino",
+              6.667
+            ],
+            [
+              "888sport",
+              6.5
+            ],
+            [
+              "admiralbet",
+              6.4
+            ],
+            [
+              "winamax",
+              6.25
+            ],
+            [
+              "eurobet",
+              6
+            ],
+            [
+              "pokerstars",
+              6
+            ],
+            [
+              "sisal",
+              6
+            ],
+            [
+              "snai",
+              6
+            ],
+            [
+              "stake",
+              6
+            ],
+            [
+              "winbet",
+              6
+            ],
+            [
+              "betflag",
+              5.92
+            ],
+            [
+              "goldbet",
+              5.92
+            ],
+            [
+              "lottomatica",
+              5.92
+            ],
+            [
+              "planetwin365",
+              5.92
+            ],
+            [
+              "netbet",
+              5.9
+            ],
+            [
+              "betsson",
+              5.8
+            ],
+            [
+              "quigioco",
+              5.8
+            ],
+            [
+              "codere",
+              5.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.6742135893280226,
+          "probPinnacle": 0.764637904468413,
+          "quota": 1.23,
+          "fonteQuota": "mediana di 37 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Warta Zawiercie -1,5 vince se Warta Zawiercie vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              1.21
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.32578641067197744,
+          "probPinnacle": 0.23536209553158707,
+          "quota": 3.7,
+          "fonteQuota": "mediana di 37 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: AZS Olsztyn +1,5 vince se AZS Olsztyn vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              3.84
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.6141393579618553,
+          "probPinnacle": 0.4541600423953365,
+          "quota": 2.06,
+          "fonteQuota": "mediana di 13 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "marathonbet",
+              1.93
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.38586064203814474,
+          "probPinnacle": 0.5458399576046635,
+          "quota": 1.71,
+          "fonteQuota": "mediana di 13 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-04T07:37:31+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              1.76
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
