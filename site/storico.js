@@ -143,6 +143,43 @@ export function renderMercati(righe) {
   ];
 }
 
+// Ricontrollo della lista (dati.storicoRicontrollo): quante confermate prendiamo e se togliere le "fuori" è stato giusto.
+const NOMI_RICONTROLLO = [
+  ['confermata', 'Confermate dal ricontrollo'],
+  ['fuori', 'Tolte dal ricontrollo'],
+  ['senza-quote', 'Quote non trovate'],
+  ['nessuno', 'Non ricontrollate'],
+];
+export function renderRicontrollo(s) {
+  if (!s?.gruppi) return [];
+  const f = s.gruppi.fuori ?? { vinte: 0, perse: 0, guadagno: 0 };
+  const righe = NOMI_RICONTROLLO.filter(([k]) => s.gruppi[k]?.partite).map(([k, nome]) => {
+    const r = s.gruppi[k];
+    const chiuse = r.vinte + r.perse;
+    return el('tr', {},
+      el('td', {}, nome),
+      el('td', {}, chiuse ? `${r.vinte} su ${chiuse} (${percento(r.vinte / chiuse)})` : `${r.partite} da finire`),
+      el('td', { class: classeProfitto(r.guadagno) }, chiuse ? euroConSegno(r.guadagno) : '–'),
+    );
+  });
+  const chiuseFuori = f.vinte + f.perse;
+  return [
+    el('h2', {}, 'Ricontrollo della lista'),
+    el('p', { class: 'meta' }, `Dal ${dataBreve(s.da)} ogni giocata della lista si ricontrolla da 90 minuti prima della partita. Guadagno: giocando con 1 € ogni partita del gruppo, anche quelle tolte.`),
+    righe.length ? el('table', { class: 'tabella-modi' },
+      el('thead', {}, el('tr', {}, ['Giocate', 'Vinte', 'Guadagno'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('tbody', {}, righe)) : el('p', { class: 'vuoto' }, 'Ancora nessuna giocata ricontrollata'),
+    chiuseFuori ? el('p', { class: 'meta' }, `Delle ${chiuseFuori} tolte e già finite, ${f.perse} sono uscite perse (toglierle è stato giusto) e ${f.vinte} vinte lo stesso (toglierle è stato sbagliato). Giocarle tutte avrebbe reso ${euroConSegno(f.guadagno)}.`) : null,
+    ...(s.fuori ?? []).map((x) => el('article', { class: 'riga-storico' },
+      el('div', {},
+        el('p', {}, el('strong', {}, x.partita)),
+        el('p', { class: 'meta' }, `${fmtGiorno.format(new Date(x.inizio))} · ${x.mercato}: ${x.selezione} · ${x.motivi.join(', ')}`),
+      ),
+      el('div', {}, el('p', {}, x.esito === 'persa' ? 'Persa: tolta giustamente' : x.esito === 'vinta' ? 'Vinta: tolta per sbaglio' : x.esito ? etichettaEsito(x.esito) : 'Non ancora finita')),
+    )),
+  ];
+}
+
 // Coppie a quota 2 nei quattro modi (dati.bilancioCoppie) e modello contro mercato (dati.confrontoModello).
 const MODI_COPPIE = [
   ['lista', 'Lista del giorno (quella che vedi)'],
@@ -250,6 +287,7 @@ function avvia(dati) {
   document.getElementById('bankroll-attuale').textContent = `Saldo${dati.inizioConti ? ` dal ${dataBreve(dati.inizioConti)}` : ''}: ${segno(dati.bankroll.saldo ?? 0)}${euro(dati.bankroll.saldo ?? 0)}`;
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
+  document.getElementById('ricontrollo')?.replaceChildren(...renderRicontrollo(dati.storicoRicontrollo).filter(Boolean));
   document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
   document.getElementById('confronto')?.replaceChildren(...[...renderChiusura(dati.chiusura), ...renderBookmaker(dati.bookmakerMigliore), ...renderConfronto(dati.bilancioCoppie, dati.confrontoModello)].filter(Boolean));
   document.getElementById('andamento').replaceChildren(renderGrafico(dati.storico.andamento ?? []));

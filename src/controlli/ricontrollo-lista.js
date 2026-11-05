@@ -55,3 +55,32 @@ export function applicaRicontrollo(giornata, quote, voci, adesso) {
   }
   return cambiate;
 }
+
+// Storico del ricontrollo [utente, 05/11/2026]: per ogni esito del ricontrollo quante giocate della lista sono uscite
+// vinte o perse, con il guadagno a 1 € giocandole tutte. Per le "fuori" dice se toglierle è stato giusto (perse) o
+// sbagliato (vinte); `guadagno` è quanto avrebbero reso se giocate lo stesso. Dal giorno in cui il ricontrollo è
+// partito, le giocate senza ricontrollo (il passaggio non è arrivato in tempo) hanno un gruppo a parte.
+export const INIZIO_RICONTROLLO = '2026-11-05';
+export const GRUPPI_RICONTROLLO = ['confermata', 'fuori', 'senza-quote', 'nessuno'];
+export function storicoRicontrollo(giornate) {
+  const gruppi = Object.fromEntries(GRUPPI_RICONTROLLO.map((k) => [k, { partite: 0, vinte: 0, perse: 0, rimborsate: 0, aperte: 0, guadagno: 0 }]));
+  const fuori = [];
+  for (const giornata of giornate) {
+    if (!(giornata?.data >= INIZIO_RICONTROLLO)) continue;
+    for (const c of giocate(giornata)) {
+      const g = c.gambe[0];
+      const r = gruppi[g.ricontrollo?.esito ?? 'nessuno'];
+      if (!r) continue;
+      r.partite++;
+      if (g.esito === 'vinta') { r.vinte++; r.guadagno += (num(g.quota) ? g.quota : 1) - 1; }
+      else if (g.esito === 'persa') { r.perse++; r.guadagno -= 1; }
+      else if (g.esito === 'rimborsata') r.rimborsate++;
+      else r.aperte++;
+      if (g.ricontrollo?.esito === 'fuori') {
+        fuori.push({ data: giornata.data, partita: g.partita, inizio: g.inizio, mercato: g.mercato, selezione: g.selezione, quota: g.quota, quotaRicontrollo: g.ricontrollo.quota ?? null, motivi: g.ricontrollo.motivi ?? [], esito: g.esito ?? null });
+      }
+    }
+  }
+  for (const r of Object.values(gruppi)) r.guadagno = Math.round(r.guadagno * 100) / 100;
+  return { da: INIZIO_RICONTROLLO, gruppi, fuori: fuori.sort((a, b) => Date.parse(b.inizio) - Date.parse(a.inizio)) };
+}

@@ -130,3 +130,20 @@ test('controlli: il passaggio ricontrolla la lista con odss e scrive l\'esito ne
   await eseguiControlli({ dirData: d, adesso: ore('20:10'), fonti, chiavi: { odss: 'CHIAVE' } });
   assert.equal(f.chiamate.length, 1);
 });
+
+test('storico del ricontrollo: confermate prese, tolte giuste e tolte sbagliate', async () => {
+  const { storicoRicontrollo } = await import('../../src/controlli/ricontrollo-lista.js');
+  const con = (id, esito, ric, quota = 1.5) => ({ id, gambe: [{ ...giocata().gambe[0], idPartita: id, partita: id, quota, esito, ...(ric ? { ricontrollo: { esito: ric, motivi: ric === 'fuori' ? ['quota 1,77 sopra 1,70'] : [], quota: 1.77 } } : {}) }] });
+  const s = storicoRicontrollo([
+    { data: '2026-11-04', coppieQuota2: { lista: [con('vecchia', 'vinta', null)] } },
+    giornata(con('a', 'vinta', 'confermata', 1.4), con('b', 'persa', 'confermata'), con('c', 'persa', 'fuori'), con('d', 'vinta', 'fuori', 1.6), con('e', 'persa', 'senza-quote'), con('f', null, null)),
+  ]);
+  assert.deepEqual(s.gruppi.confermata, { partite: 2, vinte: 1, perse: 1, rimborsate: 0, aperte: 0, guadagno: -0.6 });
+  assert.equal(s.gruppi.fuori.perse, 1);
+  assert.equal(s.gruppi.fuori.vinte, 1);
+  assert.equal(s.gruppi.fuori.guadagno, -0.4);
+  assert.equal(s.gruppi['senza-quote'].perse, 1);
+  // Prima del 05/11 il ricontrollo non c'era: la giocata del 04/11 non conta.
+  assert.deepEqual(s.gruppi.nessuno, { partite: 1, vinte: 0, perse: 0, rimborsate: 0, aperte: 1, guadagno: 0 });
+  assert.deepEqual(s.fuori.map((x) => [x.partita, x.esito]), [['c', 'persa'], ['d', 'vinta']]);
+});

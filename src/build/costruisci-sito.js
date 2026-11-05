@@ -11,6 +11,7 @@ import { bilancioPronostici } from '../regole/pronostici.js';
 import { bigliettiGiornata, profittoReale } from '../storico/biglietti.js';
 import { MODI, bilancioCoppie } from '../regole/coppie-quota2.js';
 import { bilancioSchedineScelte } from '../regole/schedina-del-giorno.js';
+import { storicoRicontrollo } from '../controlli/ricontrollo-lista.js';
 import { chiusuraPartite, confrontoModello, guadagnoBookmaker, storicoMercati } from '../regole/mercati-partite.js';
 
 const cent = (n) => Math.round(n * 100) / 100;
@@ -168,6 +169,8 @@ export function costruisciDati(dirData, adesso) {
     bilancioPronostici: conPronostici ? { data: conPronostici.g.data, ...bilancioPronostici(conPronostici.g) } : null,
     // Coppie a quota 2 dall'inizio: i due modi a confronto (1 € a coppia).
     bilancioCoppie: Object.fromEntries(MODI.map((k) => [k, bilancioCoppie(giornate.map((x) => x.g), k)])),
+    // Ricontrollo della lista prima della partita: confermate, fuori e come sono finite (dal 05/11/2026).
+    storicoRicontrollo: storicoRicontrollo(giornate.map((x) => x.g)),
     bilancioSchedineScelte: bilancioSchedineScelte(giornate.map((x) => x.g)),
     // Mercati delle partite di multiple bonus e coppie: vinte, quota media e guadagno a 1 € per mercato.
     storicoMercati: storicoMercati(giornate.map((x) => x.g)),
