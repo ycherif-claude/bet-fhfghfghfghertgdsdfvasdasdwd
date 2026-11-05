@@ -244,6 +244,51 @@
       ],
       "alle": "2026-11-04T23:58:59+01:00",
       "claude": true
+    },
+    "calcio-2026-11-04-botafogo-atletico-mg-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-05T01:15:57+01:00"
+    },
+    "nba-2026-11-04-memphis-grizzlies-indiana-pacers-handicap-meno-6-5-casa": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,95 ≥ minima 1,95",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,95 ≥ minima 1,95"
+      ],
+      "alle": "2026-11-05T01:15:57+01:00"
+    },
+    "nba-2026-11-04-houston-rockets-minnesota-timberwolves-vincente-minnesota-timberwolves": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 3,25 sotto la minima 3,71",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,25 sotto la minima 3,71"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-05T01:15:57+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-04-sao-paulo-corinthians-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-05T01:15:57+01:00"
     }
   },
   "claude": {

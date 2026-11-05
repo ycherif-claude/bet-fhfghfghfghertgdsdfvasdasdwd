@@ -2174,9 +2174,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-05T01:15:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -2459,8 +2459,8 @@
         }
       },
       "stato": "confermata",
-      "motivoStato": "nessuna novità trovata per questa partita; quote fresche in linea con il mattino (ricerca web infortuni NBA, 21:15: nessun report del 4 novembre trovato)",
-      "oraUltimoControllo": "2026-11-04T21:10:00+01:00",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 1,95 ≥ minima 1,95",
+      "oraUltimoControllo": "2026-11-05T01:15:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -2540,9 +2540,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità trovata per questa partita; quote fresche in linea con il mattino (ricerca web infortuni NBA, 21:15: nessun report del 4 novembre trovato)",
-      "oraUltimoControllo": "2026-11-04T21:10:00+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 3,25 sotto la minima 3,71",
+      "oraUltimoControllo": "2026-11-05T01:15:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -2580,9 +2580,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-05T01:15:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -19484,7 +19484,8 @@
     "Quote pallavolo: 15 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
     "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi",
     "odss-api alle 07:30: 6 partite senza righe a tempo intero (full_time), senza quote: Sportivo Ameliano - Club Guarani, Club Libertad - Cerro Porteno, Kaya FC - Melbourne City FC (F), April Wom. - Ho Chi Minh Wom., Bam Khatoon Wom. - Naegohyang FC Wom., Kaya FC Wom. - Melbourne City Wom.",
-    "Decisione di Claude per pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza-vincente-gas-sales-piacenza arrivata dopo l'inizio della partita (23:58): non applicata"
+    "Decisione di Claude per pallavolo-2026-11-04-trentino-volley-gas-sales-piacenza-vincente-gas-sales-piacenza arrivata dopo l'inizio della partita (23:58): non applicata",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 7 richieste al giorno per i controlli raggiunto; controlli oggi 7 su 7, giornata 13 su 16, rimaste 332, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": []
 }
