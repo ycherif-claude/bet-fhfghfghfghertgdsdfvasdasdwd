@@ -1,0 +1,462 @@
+{
+  "data": "2026-11-05",
+  "generataAlle": "2026-11-05T07:39:25+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 242
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League maschile: senza storico gratuito della stagione in corso",
+    "Champions League femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-11-05-projekt-warsaw-mks-slepsk-suwalki",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Projekt Warsaw - MKS Slepsk Suwalki",
+      "casa": "Projekt Warsaw",
+      "trasferta": "MKS Slepsk Suwalki",
+      "inizio": "2026-11-05T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Projekt Warsaw": 1609,
+        "MKS Slepsk Suwalki": 1469
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Projekt Warsaw 1609 – MKS Slepsk Suwalki 1469, vantaggio campo compreso: vittoria della casa 76% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probModelloStudio": 0.7594415087516123,
+          "probPinnacle": 0.7999329196713063,
+          "quota": 1.13,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,16 su 146 bookmaker",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "quotaBet365": 1.13,
+          "oraQuotaBet365": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.2
+            ],
+            [
+              "eurobet",
+              1.2
+            ],
+            [
+              "pokerstars",
+              1.2
+            ],
+            [
+              "sisal",
+              1.2
+            ],
+            [
+              "snai",
+              1.2
+            ],
+            [
+              "admiralbet",
+              1.19
+            ],
+            [
+              "betflag",
+              1.19
+            ],
+            [
+              "bwin",
+              1.19
+            ],
+            [
+              "goldbet",
+              1.19
+            ],
+            [
+              "lottomatica",
+              1.19
+            ],
+            [
+              "planetwin365",
+              1.19
+            ],
+            [
+              "stake",
+              1.19
+            ],
+            [
+              "codere",
+              1.18
+            ],
+            [
+              "winamax",
+              1.18
+            ],
+            [
+              "winbet",
+              1.18
+            ],
+            [
+              "betsson",
+              1.17
+            ],
+            [
+              "netbet",
+              1.17
+            ],
+            [
+              "quigioco",
+              1.17
+            ],
+            [
+              "starcasino",
+              1.167
+            ],
+            [
+              "marathonbet",
+              1.136
+            ],
+            [
+              "bet365",
+              1.13
+            ],
+            [
+              "leovegas",
+              1.13
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "MKS Slepsk Suwalki",
+          "probModello": null,
+          "probModelloStudio": 0.24055849124838768,
+          "probPinnacle": 0.2000670803286936,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 146 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "quotaBet365": 4.5,
+          "oraQuotaBet365": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se MKS Slepsk Suwalki vince la partita.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              4.95
+            ],
+            [
+              "leovegas",
+              4.9
+            ],
+            [
+              "bet365",
+              4.5
+            ],
+            [
+              "starcasino",
+              4.5
+            ],
+            [
+              "winamax",
+              4.4
+            ],
+            [
+              "888sport",
+              4.333
+            ],
+            [
+              "bwin",
+              4.33
+            ],
+            [
+              "admiralbet",
+              4.3
+            ],
+            [
+              "winbet",
+              4.25
+            ],
+            [
+              "betflag",
+              4.21
+            ],
+            [
+              "goldbet",
+              4.21
+            ],
+            [
+              "lottomatica",
+              4.21
+            ],
+            [
+              "planetwin365",
+              4.21
+            ],
+            [
+              "netbet",
+              4.2
+            ],
+            [
+              "stake",
+              4.2
+            ],
+            [
+              "quigioco",
+              4.15
+            ],
+            [
+              "betsson",
+              4.1
+            ],
+            [
+              "eurobet",
+              4.1
+            ],
+            [
+              "codere",
+              4
+            ],
+            [
+              "pokerstars",
+              4
+            ],
+            [
+              "sisal",
+              4
+            ],
+            [
+              "snai",
+              4
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.556852507136196,
+          "probPinnacle": 0.675422138836773,
+          "quota": 1.38,
+          "fonteQuota": "mediana di 61 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw -1,5 vince se Projekt Warsaw vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.5
+            ],
+            [
+              "bwin",
+              1.44
+            ],
+            [
+              "winamax",
+              1.38
+            ],
+            [
+              "marathonbet",
+              1.37
+            ],
+            [
+              "netbet",
+              1.36
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.44314749286380395,
+          "probPinnacle": 0.324577861163227,
+          "quota": 2.78,
+          "fonteQuota": "mediana di 61 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki +1,5 vince se MKS Slepsk Suwalki vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              2.8
+            ],
+            [
+              "netbet",
+              2.8
+            ],
+            [
+              "bwin",
+              2.6
+            ],
+            [
+              "winamax",
+              2.6
+            ],
+            [
+              "winbet",
+              2.6
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.8701935117460688,
+          "probPinnacle": 0.8661092233203641,
+          "quota": 1.07,
+          "fonteQuota": "mediana di 26 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Projekt Warsaw +1,5 vince se Projekt Warsaw vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.08
+            ],
+            [
+              "bwin",
+              1.071
+            ],
+            [
+              "winamax",
+              1.06
+            ],
+            [
+              "marathonbet",
+              1.042
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.12980648825393115,
+          "probPinnacle": 0.13389077667963573,
+          "quota": 7,
+          "fonteQuota": "mediana di 26 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki -1,5 vince se MKS Slepsk Suwalki vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              7.8
+            ],
+            [
+              "bwin",
+              7.75
+            ],
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "winbet",
+              7
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.6855738522688924,
+          "probPinnacle": 0.5344323318266418,
+          "quota": 1.56,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "netbet",
+              1.71
+            ],
+            [
+              "marathonbet",
+              1.67
+            ],
+            [
+              "winamax",
+              1.66
+            ],
+            [
+              "winbet",
+              1.57
+            ],
+            [
+              "stake",
+              1.56
+            ],
+            [
+              "bwin",
+              1.55
+            ],
+            [
+              "betsson",
+              1.53
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.31442614773110755,
+          "probPinnacle": 0.4655676681733581,
+          "quota": 2.24,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-05T07:39:25+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              2.35
+            ],
+            [
+              "bwin",
+              2.3
+            ],
+            [
+              "stake",
+              2.3
+            ],
+            [
+              "betsson",
+              2.24
+            ],
+            [
+              "marathonbet",
+              2.05
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "netbet",
+              1.97
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
