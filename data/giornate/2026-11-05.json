@@ -3716,9 +3716,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,83 sotto la minima 1,85",
-      "oraUltimoControllo": "2026-11-05T18:42:06+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 1,83 sotto la minima 1,85 e nessun motivo concreto per una probabilità più alta di quella del mattino (Pinnacle ferma al 53%, sotto il 57% usato) (controlli quote odss-api, 18:42)",
+      "oraUltimoControllo": "2026-11-05T18:43:21+01:00",
       "esito": null,
       "prova": true
     },
@@ -29765,7 +29765,9 @@
     "odss-api (NBL (Australia)) alle 07:39: budget insufficiente (tetto di 1 richieste al giorno per basket raggiunto; basket oggi 1 su 1, giornata 5 su 16, rimaste 327, riserva 60): quote di NBL (Australia) dalla fonte di prima",
     "Quote NBL (Australia): nessuna partita su odss-api, quote da The Odds API",
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
-    "odss-api alle 07:32: 3 partite senza righe a tempo intero (full_time), senza quote: US Biskra (donne) - CF Akbou (donne), Paysandu (F) - Cabanos (F), Paysandu (W) - Cabanos (W)"
+    "odss-api alle 07:32: 3 partite senza righe a tempo intero (full_time), senza quote: US Biskra (donne) - CF Akbou (donne), Paysandu (F) - Cabanos (F), Paysandu (W) - Cabanos (W)",
+    "Decisione di Claude per calcio-2026-11-05-lincoln-red-imps-hajduk-split-doppia-chance-1x non applicata: la giocata non è in revisione (stato annullata)",
+    "Decisione di Claude per calcio-2026-11-05-lillestrom-viktoria-plzen-under-over-2-5-under-2-5 non applicata: la giocata non è in revisione (stato annullata)"
   ],
   "schedinePronostici": [
     {
