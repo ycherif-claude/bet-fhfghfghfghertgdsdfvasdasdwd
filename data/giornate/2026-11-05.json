@@ -3919,9 +3919,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,55 sotto la minima 1,65",
+      "oraUltimoControllo": "2026-11-06T00:52:56+01:00",
       "esito": null,
       "prova": true
     },
@@ -15041,6 +15041,12 @@
               "prob": 0.5391771019677997,
               "alle": "2026-11-06T00:11:15+01:00",
               "minutiPrima": 79
+            },
+            "chiusura": {
+              "quota": 1.81,
+              "prob": 0.5355714564985598,
+              "alle": "2026-11-06T00:52:56+01:00",
+              "minutiPrima": 37
             }
           }
         ],
