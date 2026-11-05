@@ -98,21 +98,25 @@ const COPPIE_SCELTA = [
 ];
 // Dal giorno della lista [utente, 03/11/2026] si manda solo lei: doppie, triple e multiple restano in background.
 const haLista = (giornata) => Array.isArray(giornata?.coppieQuota2?.lista);
-// Ricontrollo della lista [utente, 05/11/2026]: un messaggio per passaggio; "senza quote" solo dopo l'ultimo tentativo.
+// Ricontrollo della lista [utente, 05/11/2026]: un messaggio per passaggio. "Senza quote" anche al primo tentativo
+// [utente, 05/11/2026]: il secondo può non arrivare prima dell'inizio. Con le quote tra cui giocarla lo stesso.
+const tra = (q) => (q ? `giocala solo se su bet365 la quota è tra ${virgola(q.min)} e ${virgola(q.max)}, altrimenti non giocarla` : 'controllala tu su bet365');
 const rigaRicontrollo = (g) => {
   const r = g.ricontrollo;
   const chi = `${Number.isFinite(Date.parse(g.inizio)) ? `${oraRoma(new Date(g.inizio))} ` : ''}${html(g.partita)}: <b>${html(g.selezione)}</b>`;
   if (r.esito === 'fuori') return `❌ ${chi} @${virgola(r.quota)}: non giocarla più, ${r.motivi.map(html).join('; ')}`;
-  if (r.esito === 'senza-quote') return `⚠️ ${chi}: quote non trovate, controllala tu su bet365`;
+  if (r.esito === 'senza-quote') return `⚠️ ${chi}: quote non trovate, ${tra(r.giocaTra)}`;
   return `✅ ${chi} @${virgola(r.quota)}${num(r.prob) ? ` · mercato ${percentuale(r.prob)}` : ' · mercato non disponibile'}`;
 };
-export function messaggiRicontrollo({ giornate, inviate }) {
+// Con `adesso`, le partite già iniziate restano fuori: un avviso dopo l'inizio non serve.
+export function messaggiRicontrollo({ giornate, inviate, adesso = null }) {
   const out = [];
   for (const x of giornate) {
-    const fatte = coppieDi(x, 'lista').map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo && (g.ricontrollo.esito !== 'senza-quote' || g.ricontrollo.tentativi >= 2));
+    const fatte = coppieDi(x, 'lista').map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo && !(adesso && Date.parse(g.inizio) <= adesso.getTime()));
     for (const alle of new Set(fatte.map((g) => g.ricontrollo.alle))) {
       const stesse = fatte.filter((g) => g.ricontrollo.alle === alle);
-      const chiave = `${x.data}|ricontrollo|${hash(stesse.map((g) => g.idPartita + g.ricontrollo.esito + alle).join(','))}`;
+      // Una chiave per passaggio: un nuovo tentativo sposta la partita a un altro passaggio e non rimanda il primo.
+      const chiave = `${x.data}|ricontrollo|${hash(alle)}`;
       if (!inviate.has(chiave)) out.push({ chiave, testo: ['🔄 <b>Ricontrollo delle giocate di oggi</b>', ...stesse.map(rigaRicontrollo)].join('\n') });
     }
   }
@@ -780,7 +784,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
   lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate, errori }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
-  lista.push(...messaggiRicontrollo({ giornate: recenti, inviate }));
+  lista.push(...messaggiRicontrollo({ giornate: recenti, inviate, adesso }));
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));

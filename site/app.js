@@ -458,7 +458,7 @@ export function testoRicontrollo(r) {
   if (!r) return null;
   const quando = r.alle ? ora(r.alle) : '';
   if (r.esito === 'fuori') return { esito: r.esito, testo: `Non giocarla più (${quando}): ${r.motivi.join('; ')}` };
-  if (r.esito === 'senza-quote') return { esito: r.esito, testo: `Ricontrollo delle ${quando} senza quote: controllala tu su bet365` };
+  if (r.esito === 'senza-quote') return { esito: r.esito, testo: `Ricontrollo delle ${quando} senza quote: ${r.giocaTra ? `giocala solo se su bet365 la quota è tra ${fmtQuota.format(r.giocaTra.min)} e ${fmtQuota.format(r.giocaTra.max)}` : 'controllala tu su bet365'}` };
   return { esito: r.esito, testo: `Ricontrollata alle ${quando}: ok, quota ${fmtQuota.format(r.quota)}${numero(r.prob) ? `, mercato ${percento(r.prob)}` : ''}` };
 }
 

@@ -71,24 +71,27 @@ test('quote: mediana dei bookmaker senza margine accanto a Pinnacle', () => {
   assert.ok(Math.abs(q.probMediana - (1 / 1.3) / (1 / 1.3 + 1 / 3.5)) < 1e-9);
 });
 
-test('Telegram: un messaggio per passaggio, una volta; senza quote solo dopo l\'ultimo tentativo', () => {
+test('Telegram: un messaggio per passaggio, una volta; senza quote già al primo tentativo, con le quote giocabili', () => {
   const alle = '2026-11-05T19:40:00+01:00';
   const g = giornata(
     giocata({ ricontrollo: { esito: 'confermata', motivi: [], quota: 1.45, prob: 0.66, alle } }),
     { id: 'L-sturm', gambe: [{ ...giocata().gambe[0], partita: 'Sturm - Celje', idPartita: 'sturm', ricontrollo: { esito: 'fuori', motivi: ['quota 1,77 sopra 1,70'], quota: 1.77, prob: 0.55, alle } }] },
-    { id: 'L-twente', gambe: [{ ...giocata().gambe[0], partita: 'Twente - Pafos', idPartita: 'twente', ricontrollo: { esito: 'senza-quote', tentativi: 1, alle } }] },
+    { id: 'L-twente', gambe: [{ ...giocata().gambe[0], partita: 'Twente - Pafos', idPartita: 'twente', ricontrollo: { esito: 'senza-quote', tentativi: 1, alle, giocaTra: { min: 1.41, max: 1.64 } } }] },
   );
   const [m, altro] = messaggiRicontrollo({ giornate: [g], inviate: new Set() });
   assert.equal(altro, undefined);
   assert.match(m.testo, /✅ 21:00 Monaco - Nordsjaelland: <b>1<\/b> @1,45 · mercato 66%/);
   assert.match(m.testo, /❌ 21:00 Sturm - Celje: <b>1<\/b> @1,77: non giocarla più, quota 1,77 sopra 1,70/);
-  assert.doesNotMatch(m.testo, /Twente/);
+  assert.match(m.testo, /⚠️ 21:00 Twente - Pafos: <b>1<\/b>: quote non trovate, giocala solo se su bet365 la quota è tra 1,41 e 1,64, altrimenti non giocarla/);
   assert.deepEqual(messaggiRicontrollo({ giornate: [g], inviate: new Set([m.chiave]) }), []);
   assert.equal(soloEssenziale([m], { giornata: g, oggi: '2026-11-05' }).manda.length, 1);
   g.coppieQuota2.lista[2].gambe[0].ricontrollo = { esito: 'senza-quote', tentativi: 2, alle: '2026-11-05T20:20:00+01:00' };
   const secondo = messaggiRicontrollo({ giornate: [g], inviate: new Set([m.chiave]) });
   assert.equal(secondo.length, 1);
-  assert.match(secondo[0].testo, /⚠️ 21:00 Twente - Pafos: <b>1<\/b>: quote non trovate/);
+  // A partita iniziata non si manda niente.
+  assert.deepEqual(messaggiRicontrollo({ giornate: [g], inviate: new Set(), adesso: ore('21:05') }), []);
+  // Secondo tentativo fallito: un altro avviso; senza le quote giocabili resta "controllala tu".
+  assert.match(secondo[0].testo, /⚠️ 21:00 Twente - Pafos: <b>1<\/b>: quote non trovate, controllala tu su bet365/);
 });
 
 test('sito: il ricontrollo dice se giocarla ancora', () => {
@@ -97,6 +100,7 @@ test('sito: il ricontrollo dice se giocarla ancora', () => {
   assert.match(testoRicontrollo({ esito: 'fuori', motivi: ['quota 1,77 sopra 1,70'], alle }).testo, /^Non giocarla più \(19:40\): quota 1,77 sopra 1,70/);
   assert.match(testoRicontrollo({ esito: 'confermata', quota: 1.45, prob: 0.66, alle }).testo, /^Ricontrollata alle 19:40: ok, quota 1,45, mercato 66%/);
   assert.match(testoRicontrollo({ esito: 'senza-quote', alle }).testo, /controllala tu su bet365/);
+  assert.match(testoRicontrollo({ esito: 'senza-quote', alle, giocaTra: { min: 1.41, max: 1.64 } }).testo, /giocala solo se su bet365 la quota è tra 1,41 e 1,64/);
 });
 
 test('confronto settimanale: confermate e fuori dal ricontrollo', () => {
@@ -146,4 +150,16 @@ test('storico del ricontrollo: confermate prese, tolte giuste e tolte sbagliate'
   // Prima del 05/11 il ricontrollo non c'era: la giocata del 04/11 non conta.
   assert.deepEqual(s.gruppi.nessuno, { partite: 1, vinte: 0, perse: 0, rimborsate: 0, aperte: 1, guadagno: 0 });
   assert.deepEqual(s.fuori.map((x) => [x.partita, x.esito]), [['c', 'persa'], ['d', 'vinta']]);
+});
+
+test('senza quote: tra che quote giocarla lo stesso, col margine del mattino', async () => {
+  const { quoteGiocabili } = await import('../../src/controlli/ricontrollo-lista.js');
+  // Sturm - Celje del 05/11: 1 a 1,51, mercato 63,3%, modello 63,0%.
+  assert.deepEqual(quoteGiocabili({ quota: 1.51, probMercato: 0.633, probModello: 0.630 }), { min: 1.41, max: 1.64 });
+  // Dentro i limiti della lista: un 1 molto probabile non scende sotto 1,25.
+  assert.equal(quoteGiocabili({ quota: 1.28, probMercato: 0.75, probModello: 0.76 }).min, 1.25);
+  assert.deepEqual(quoteGiocabili({ quota: 1.5 }), { min: 1.25, max: 1.7 });
+  const g = giornata(giocata());
+  applicaRicontrollo(g, new Map(), vociRicontrollo(g, ore('19:40')), ore('19:40'));
+  assert.ok(g.coppieQuota2.lista[0].gambe[0].ricontrollo.giocaTra.min >= 1.25);
 });
