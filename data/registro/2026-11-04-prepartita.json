@@ -1085,6 +1085,66 @@
       "prob": 0.2938787637274068,
       "alle": "2026-11-05T01:15:57+01:00",
       "minutiPrima": 74
+    },
+    "nba-2026-11-04-san-antonio-spurs-dallas-mavericks|Vincente|San Antonio Spurs": {
+      "quota": 1.16,
+      "prob": 0.8222483207002922,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 4
+    },
+    "nba-2026-11-04-san-antonio-spurs-dallas-mavericks|Vincente|Dallas Mavericks": {
+      "quota": 5.4,
+      "prob": 0.1777516792997078,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 4
+    },
+    "nba-2026-11-04-san-antonio-spurs-dallas-mavericks|Totale punti 226.5|Over 226.5": {
+      "quota": 1.87,
+      "prob": 0.506544502617801,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 4
+    },
+    "nba-2026-11-04-san-antonio-spurs-dallas-mavericks|Totale punti 226.5|Under 226.5": {
+      "quota": 1.94,
+      "prob": 0.493455497382199,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 4
+    },
+    "nba-2026-11-04-sacramento-kings-los-angeles-lakers|Vincente|Sacramento Kings": {
+      "quota": 5.6,
+      "prob": 0.17192089909109587,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 34
+    },
+    "nba-2026-11-04-sacramento-kings-los-angeles-lakers|Vincente|Los Angeles Lakers": {
+      "quota": 1.15,
+      "prob": 0.8280791009089041,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 34
+    },
+    "nba-2026-11-04-sacramento-kings-los-angeles-lakers|Totale punti 233.5|Over 233.5": {
+      "quota": 1.91,
+      "prob": 0.4967237406842469,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 34
+    },
+    "nba-2026-11-04-sacramento-kings-los-angeles-lakers|Totale punti 233.5|Under 233.5": {
+      "quota": 1.9,
+      "prob": 0.503276259315753,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 34
+    },
+    "nba-2026-11-04-la-clippers-miami-heat|Vincente|LA Clippers": {
+      "quota": 2.75,
+      "prob": 0.34704915716306883,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 64
+    },
+    "nba-2026-11-04-la-clippers-miami-heat|Vincente|Miami Heat": {
+      "quota": 1.47,
+      "prob": 0.6529508428369312,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "minutiPrima": 64
     }
   },
   "copertura": {
@@ -1153,8 +1213,8 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-05T01:15:57+01:00",
-      "partite": 9,
+      "alle": "2026-11-05T03:25:33+01:00",
+      "partite": 12,
       "idPartite": [
         "nba-2026-11-04-detroit-pistons-philadelphia-76ers",
         "nba-2026-11-04-washington-wizards-atlanta-hawks",
@@ -1164,7 +1224,10 @@
         "nba-2026-11-04-new-orleans-pelicans-utah-jazz",
         "nba-2026-11-04-memphis-grizzlies-indiana-pacers",
         "nba-2026-11-04-oklahoma-city-thunder-cleveland-cavaliers",
-        "nba-2026-11-04-houston-rockets-minnesota-timberwolves"
+        "nba-2026-11-04-houston-rockets-minnesota-timberwolves",
+        "nba-2026-11-04-san-antonio-spurs-dallas-mavericks",
+        "nba-2026-11-04-sacramento-kings-los-angeles-lakers",
+        "nba-2026-11-04-la-clippers-miami-heat"
       ]
     }
   }
