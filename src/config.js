@@ -208,9 +208,10 @@ export const CONFIG = congela({
   // spendibili); consumo atteso più basso (README, "Budget di odss-api").
   odss: {
     // Controlli da 4 a 7 [utente, 30/10/2026]: servono anche alla quota di chiusura delle partite di coppie e multiple
-    // (il 30/10 le 4 richieste finivano nel pomeriggio). Al massimo 16 × 30 = 480 in 30 giorni; consumo reale ~11-14.
-    richiesteGiorno: 16,
-    tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 7 },
+    // (il 30/10 le 4 richieste finivano nel pomeriggio). Da 7 a 10 [utente, 05/11/2026]: il ricontrollo della lista cade
+    // spesso la sera, quando le 7 erano già finite. Consumo reale ~12-15 al giorno; il tetto è un massimo, la riserva protegge.
+    richiesteGiorno: 19,
+    tetti: { calcio: 4, nba: 2, tennis: 1, basket: 1, pallavolo: 1, controlli: 10 },
     riserva: 60,
     // Righe per pagina: 5000, il massimo dell'API, per tutti gli sport (con 1000 NBA e tennis finivano in 2 pagine e
     // il 23/10 l'NBA è rimasta con le quote incomplete).
@@ -275,7 +276,9 @@ export const CONFIG = congela({
     // Lista del giorno [utente, 03/11/2026], l'unica cosa mostrata: 1 e Over 1.5 di calcio, singole, al massimo 20, una per partita,
     // prima le più probabili per il mercato. Sullo storico di 6 stagioni gli 1 oltre quota 1,70 perdono molto di più.
     // `scarto` confronta il modello grezzo col mercato (senza taratura), come nella prova sui giorni dal 23/10 al 02/11.
-    lista: { sport: 'calcio', quotaMin: 1.25, quotaMax: 1.7, scarto: 0.05, massimo: 20 },
+    // Ricontrollo [utente, 05/11/2026]: una volta da `minutiRicontrollo` minuti prima dell'inizio (il cron parte ogni 30-43
+    // minuti); senza quote si riprova una volta da `minutiUltimoRicontrollo`.
+    lista: { sport: 'calcio', quotaMin: 1.25, quotaMax: 1.7, scarto: 0.05, massimo: 20, minutiRicontrollo: 90, minutiUltimoRicontrollo: 45 },
     // Triple [utente, 31/10/2026]: dalle 10 partite più probabili confermate da modello e mercato, al massimo 3,
     // quota totale intorno a 2 (le più probabili sono a 1,30: due insieme non arrivano a 1,90).
     triple: { partite: 10, max: 3, quotaMin: 1.9, quotaMax: 2.5 },

@@ -83,6 +83,9 @@ main > section > .meta, .giocate > .meta { grid-column: 1 / -1; margin: 0 0 4px;
 .biglietto h3 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--inchiostro-tenue); }
 .quota-totale { margin: 0; white-space: nowrap; font-family: var(--condensato); font-weight: 700; font-size: 2.6rem; line-height: .9; letter-spacing: -0.01em; }
 .nota-biglietto { margin: 2px 16px 10px; font-size: .85rem; color: var(--inchiostro-tenue); }
+.ricontrollo { margin: 0 16px 10px; font-size: .9rem; font-weight: 600; color: var(--inchiostro); }
+.ricontrollo-fuori { color: var(--errore); }
+.ricontrollo-senza-quote { color: var(--attesa); }
 .biglietto details { margin: 0 16px 8px; }
 .biglietto summary { color: var(--inchiostro); font-weight: 600; padding: 4px 0; }
 .partite { list-style: none; margin: 0; padding: 0 16px 8px; }

@@ -2,7 +2,8 @@
 // tutto il resto gira in background per vedere se sale o scende di precisione. Dalle righe del registro calcola, per
 // gruppo e per settimana (da lunedì a domenica), partite chiuse, prese, percentuale contro quella attesa dal mercato
 // e guadagno a 1 € a partita. In `soglie`, la stessa lista con quote minime e massime diverse. Due gruppi mostrano la
-// lista senza l'accordo fra modello e mercato: scelta solo dal modello e solo dal mercato.
+// lista senza l'accordo fra modello e mercato: scelta solo dal modello e solo dal mercato. Altri due, dalle giocate vere
+// della lista: quelle confermate dal ricontrollo e quelle che ha messo fuori.
 // Uso: npm run confronto-settimanale -- <fino a>   (data AAAA-MM-GG, compresa; stampa JSON)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -56,7 +57,11 @@ export function confrontoSettimanale(giorni) {
     g.totale.push(...righe);
     (g.settimane[lunediDi(data)] ??= []).push(...righe);
   };
-  for (const { data, righe } of giorni) {
+  for (const { data, righe, ricontrollate = [] } of giorni) {
+    for (const esito of ['confermata', 'fuori']) {
+      const stesse = ricontrollate.filter((g) => g.ricontrollo.esito === esito);
+      if (stesse.length) aggiungi(`lista: ricontrollo ${esito}`, data, stesse);
+    }
     aggiungi('lista', data, scegliLista(righe));
     aggiungi('lista: solo modello', data, scegliLista(righe, { ...L, scarto: Infinity, ordine: 'probModello' }));
     aggiungi('lista: solo mercato', data, scegliLista(righe, { ...L, scarto: Infinity }));
@@ -78,7 +83,13 @@ export function confrontoSettimanale(giorni) {
 export function leggiGiorni(dirData, fino) {
   const dir = path.join(dirData, 'registro');
   return fs.readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f.slice(0, 10) >= DA && f.slice(0, 10) <= fino).sort()
-    .map((f) => ({ data: f.slice(0, 10), righe: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')).righe ?? [] }));
+    .map((f) => {
+      const data = f.slice(0, 10);
+      const fileGiornata = path.join(dirData, 'giornate', `${data}.json`);
+      const giornata = fs.existsSync(fileGiornata) ? JSON.parse(fs.readFileSync(fileGiornata, 'utf8')) : null;
+      const ricontrollate = (giornata?.coppieQuota2?.lista ?? []).map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo);
+      return { data, righe: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')).righe ?? [], ricontrollate };
+    });
 }
 
 function principale() {

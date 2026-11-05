@@ -98,6 +98,26 @@ const COPPIE_SCELTA = [
 ];
 // Dal giorno della lista [utente, 03/11/2026] si manda solo lei: doppie, triple e multiple restano in background.
 const haLista = (giornata) => Array.isArray(giornata?.coppieQuota2?.lista);
+// Ricontrollo della lista [utente, 05/11/2026]: un messaggio per passaggio; "senza quote" solo dopo l'ultimo tentativo.
+const rigaRicontrollo = (g) => {
+  const r = g.ricontrollo;
+  const chi = `${Number.isFinite(Date.parse(g.inizio)) ? `${oraRoma(new Date(g.inizio))} ` : ''}${html(g.partita)}: <b>${html(g.selezione)}</b>`;
+  if (r.esito === 'fuori') return `❌ ${chi} @${virgola(r.quota)}: non giocarla più, ${r.motivi.map(html).join('; ')}`;
+  if (r.esito === 'senza-quote') return `⚠️ ${chi}: quote non trovate, controllala tu su bet365`;
+  return `✅ ${chi} @${virgola(r.quota)}${num(r.prob) ? ` · mercato ${percentuale(r.prob)}` : ' · mercato non disponibile'}`;
+};
+export function messaggiRicontrollo({ giornate, inviate }) {
+  const out = [];
+  for (const x of giornate) {
+    const fatte = coppieDi(x, 'lista').map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo && (g.ricontrollo.esito !== 'senza-quote' || g.ricontrollo.tentativi >= 2));
+    for (const alle of new Set(fatte.map((g) => g.ricontrollo.alle))) {
+      const stesse = fatte.filter((g) => g.ricontrollo.alle === alle);
+      const chiave = `${x.data}|ricontrollo|${hash(stesse.map((g) => g.idPartita + g.ricontrollo.esito + alle).join(','))}`;
+      if (!inviate.has(chiave)) out.push({ chiave, testo: ['🔄 <b>Ricontrollo delle giocate di oggi</b>', ...stesse.map(rigaRicontrollo)].join('\n') });
+    }
+  }
+  return out;
+}
 const testoLista = (giornata) => {
   const lista = coppieDi(giornata, 'lista');
   if (!lista.length) return null;
@@ -417,7 +437,7 @@ export function soloEssenziale(lista, { giornata, oggi, sito = null }) {
   const manda = [];
   const tacere = [];
   const piede = sito ? `\n\n${sito}` : '';
-  const sempre = /\|(run|mancante|esito|provvisorio|storico|ieri|coppie)(\||$)/;
+  const sempre = /\|(run|mancante|esito|provvisorio|storico|ieri|coppie|ricontrollo)(\||$)/;
   for (const m of lista) {
     if (m.chiave === `${oggi}|giornata`) manda.push({ ...m, testo: testoMattinoEssenziale(giornata, oggi) + piede });
     else if (sempre.test(m.chiave)) manda.push(m);
@@ -760,6 +780,7 @@ export async function eseguiNotifiche({ dirData, adesso, token, chat, run, sito,
   const recenti = leggiGiornateRecenti(dirData, oggi, GIORNI_STATO - 1);
   lista.push(...messaggiErroriPrecedenti({ giornate: recenti, oggi, inviate, errori }));
   lista.push(...messaggiProvvisori({ giornate: recenti, segnature, inviate }));
+  lista.push(...messaggiRicontrollo({ giornate: recenti, inviate }));
   lista.push(...messaggiMultipleBonus({ giornate: recenti, inviate }));
   lista.push(...messaggiSchedinePronostici({ giornate: recenti, inviate }));
   lista.push(...messaggiPronostici({ giornate: recenti, inviate, oggi }));

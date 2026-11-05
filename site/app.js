@@ -383,7 +383,7 @@ const NOME_ESITO = { vinta: 'Vinta', persa: 'Persa', rimborsata: 'Rimborsata' };
 // Biglietto (coppie e multiple bonus): quota grande in alto, una riga per partita (ora, partita, giocata,
 // quota, esito) e in fondo l'esito con quanto rende 1 €.
 // `segna`: { giocata, segnatura } per segnare il biglietto come giocato (quota presa, puntata, bookmaker).
-function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = true, segna = null }) {
+function renderBiglietto({ titolo, quota, nota, avviso = null, gambe, esito, ritorno, aperto = true, segna = null }) {
   const righe = el('ol', { class: 'partite' }, gambe.map((g) => el('li', { class: `partita${g.esito ? ` esito-${g.esito}` : ''}` },
     el('span', { class: 'ora' }, ora(g.inizio)),
     el('span', { class: 'chi' }, el('span', { class: 'incontro' }, g.partita), el('span', { class: 'scelta' }, testoScelta(g)),
@@ -402,6 +402,7 @@ function renderBiglietto({ titolo, quota, nota, gambe, esito, ritorno, aperto = 
       el('p', { class: 'quota-totale' }, el('span', { class: 'sr' }, 'quota '), fmtQuota.format(quota)),
     ),
     nota ? el('p', { class: 'nota-biglietto' }, nota) : null,
+    avviso ? el('p', { class: `ricontrollo ricontrollo-${avviso.esito}` }, avviso.testo) : null,
     aperto ? righe : el('details', {}, el('summary', {}, `Le ${gambe.length} partite`), righe),
     renderDove(gambe),
     el('p', { class: 'piede' }, piede),
@@ -452,11 +453,21 @@ export function renderSchedinaDelGiorno(s, giornata, ultime, bilancio) {
 }
 
 // Una giocata della lista del giorno [utente, 03/11/2026]: singola, da segnare come le schedine.
+// Il testo del ricontrollo prima della partita, se c'è stato.
+export function testoRicontrollo(r) {
+  if (!r) return null;
+  const quando = r.alle ? ora(r.alle) : '';
+  if (r.esito === 'fuori') return { esito: r.esito, testo: `Non giocarla più (${quando}): ${r.motivi.join('; ')}` };
+  if (r.esito === 'senza-quote') return { esito: r.esito, testo: `Ricontrollo delle ${quando} senza quote: controllala tu su bet365` };
+  return { esito: r.esito, testo: `Ricontrollata alle ${quando}: ok, quota ${fmtQuota.format(r.quota)}${numero(r.prob) ? `, mercato ${percento(r.prob)}` : ''}` };
+}
+
 export function renderGiocataLista(c, n, segnatura = null) {
   return renderBiglietto({
     titolo: `Giocata ${n}`,
     quota: c.quota,
-    nota: `Pinnacle la dà al ${percento(c.prob)}`,
+    nota: `Il mercato la dà al ${percento(c.prob)}`,
+    avviso: testoRicontrollo(c.gambe?.[0]?.ricontrollo),
     gambe: c.gambe,
     esito: c.esito,
     ritorno: c.ritorno,
@@ -613,7 +624,7 @@ function avvia(dati) {
   if (sezLista && Array.isArray(listaGiorno)) {
     sezLista.replaceChildren(
       el('h2', {}, 'Giocate di oggi'),
-      el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Controlla la quota su bet365: sotto 1,25 salta la giocata."),
+      el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Controlla la quota su bet365: sotto 1,25 salta la giocata. Ogni giocata viene ricontrollata da circa 90 minuti prima dell'inizio."),
       ...(listaGiorno.length ? listaGiorno.map((x, i) => schedaSicura(x?.id, () => renderGiocataLista(x, i + 1, ultime.get(x?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Oggi nessuna giocata adatta.')]),
     );
   }

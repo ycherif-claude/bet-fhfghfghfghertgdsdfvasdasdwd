@@ -190,9 +190,9 @@ test('budget: mai sotto la riserva, al massimo il tetto del calcio lasciando una
   r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 3, perSport: { calcio: 3 } } });
   assert.equal(f.chiamate.length, 0);
   assert.match(r.file.erroriGiro[0], /budget insufficiente/);
-  // 15 richieste oggi fra tutti gli sport: il tetto giornaliero (16) non basta.
+  // 18 richieste oggi fra tutti gli sport: il tetto giornaliero (19) non basta.
   f = fetchFinto(pagineTipo());
-  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 15, perSport: { tennis: 15 } } });
+  r = await scaricaQuoteOdss({ data: DATA, adesso: ADESSO, chiave: CHIAVE, fetch: f, stato: { rimaste: 400, giorno: DATA, usateOggi: 18, perSport: { tennis: 18 } } });
   assert.equal(f.chiamate.length, 0);
   // Giorno nuovo: il conteggio di oggi riparte; un reset passato rende sconosciute le rimaste.
   f = fetchFinto(pagineTipo());

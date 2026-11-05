@@ -88,7 +88,13 @@ export function quotaCalcio(evento, mercato, selezione) {
       prob = 1 / leggi(pin) / somma;
     }
   }
-  return { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n: quote.length, prob };
+  // Senza Pinnacle, la mediana dei bookmaker senza margine: è la stessa probabilità di mercato del mattino.
+  const giuste = tutte && prob === null ? libri.map((b) => {
+    const t = tutte(b);
+    if (!t || !t.every((q) => num(q) && q > 1)) return null;
+    return 1 / leggi(b) / t.reduce((a, q) => a + 1 / q, 0);
+  }).filter(num) : [];
+  return { quota: Math.floor(mediana(quote) * 100 + 1e-9) / 100, n: quote.length, prob, ...(giuste.length ? { probMediana: mediana(giuste) } : {}) };
 }
 
 // NBA, basket e pallavolo (stesso formato dei bookmaker): vincente, handicap e totale per linea.
