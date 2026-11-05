@@ -144,6 +144,50 @@
       "dettagli": [],
       "alle": "2026-11-05T18:43:21+01:00",
       "claude": true
+    },
+    "M-calcio-2026-11-05-fc-thun-heart-of-midlothian-1x2-2+basket-2026-11-05-pallacanestro-olimpia-milano-valencia-basket-vincente-valencia-basket#1": {
+      "esito": "confermata",
+      "motivo": "quota 1,73",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,73"
+      ],
+      "alle": "2026-11-05T19:27:03+01:00"
+    },
+    "basket-2026-11-05-pallacanestro-olimpia-milano-valencia-basket-vincente-valencia-basket": {
+      "esito": "confermata",
+      "motivo": "quota 1,73 ≥ minima 1,69",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,73 ≥ minima 1,69"
+      ],
+      "alle": "2026-11-05T19:27:03+01:00"
+    },
+    "pallavolo-2026-11-05-projekt-warsaw-mks-slepsk-suwalki-totale-set-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 2,00 sotto la minima 2,26",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,00 sotto la minima 2,26"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-05T19:27:03+01:00",
+      "regola": true
+    },
+    "basket-2026-11-05-asvel-lyon-villeurbanne-fc-bayern-munchen-vincente-asvel-lyon-villeurbanne": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,66 sotto la minima 1,74",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,66 sotto la minima 1,74"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-05T19:27:03+01:00",
+      "regola": true
     }
   },
   "claude": {
