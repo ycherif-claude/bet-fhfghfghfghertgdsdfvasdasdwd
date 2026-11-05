@@ -53,8 +53,8 @@
       "alle": "2026-11-05T17:49:21+01:00"
     },
     "calcio-2026-11-05-lincoln-red-imps-hajduk-split-doppia-chance-1x": {
-      "esito": "revisione",
-      "motivo": "in revisione: mercato contro: da 36% a 26%",
+      "esito": "annullata",
+      "motivo": "Claude: Mercato contro (probabilità del consenso da 36% a 26%) senza trovare una notizia o una formazione che lo spieghi; l'analisi del mattino non è più sostenuta, nel dubbio si annulla (ricerca web sulle formazioni di Lincoln Red Imps - Hajduk Split: nessuna formazione ufficiale né notizia trovata, 17:55)",
       "problemi": [
         {
           "tipo": "mercato",
@@ -65,7 +65,8 @@
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
         "quota 2,75 ≥ minima 2,46"
       ],
-      "alle": "2026-11-05T17:49:21+01:00"
+      "alle": "2026-11-05T17:50:24+01:00",
+      "claude": true
     },
     "calcio-2026-11-05-fc-midtjylland-ajax-amsterdam-under-over-2-5-under-2-5": {
       "esito": "confermata",
@@ -97,8 +98,8 @@
       "alle": "2026-11-05T17:49:21+01:00"
     },
     "calcio-2026-11-05-lillestrom-viktoria-plzen-under-over-2-5-under-2-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,38 sotto la minima 2,43",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 2,38 sotto la minima 2,43 e nessun motivo concreto per una probabilità più alta di quella del mattino (value già solo 1,7%) (controlli quote odss-api, 17:49)",
       "problemi": [
         {
           "tipo": "quota",
@@ -108,7 +109,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-11-05T17:49:21+01:00"
+      "alle": "2026-11-05T17:50:24+01:00",
+      "claude": true
     }
   },
   "claude": {
