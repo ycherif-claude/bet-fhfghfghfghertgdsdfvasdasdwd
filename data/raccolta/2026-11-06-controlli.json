@@ -42,11 +42,58 @@
         "quote non controllate (mercato senza quote nella fonte gratuita)"
       ],
       "alle": "2026-11-06T17:43:48+01:00"
+    },
+    "calcio-2026-11-06-hammarby-if-if-elfsborg-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "regola automatica (troppo tardi per Claude): mercato contro: da 36% a 29%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 36% a 29%"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,82 ≥ minima 2,61"
+      ],
+      "alle": "2026-11-06T18:31:41+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,75 sotto la minima 2,82",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,75 sotto la minima 2,82"
+        }
+      ],
+      "dettagli": [
+        "partita non trovata su ESPN: formazioni non controllate"
+      ],
+      "alle": "2026-11-06T18:31:41+01:00"
+    },
+    "calcio-2026-11-06-silkeborg-if-lyngby-boldklub-under-over-3-5-over-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 2,43 sotto la minima 2,55",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,43 sotto la minima 2,55"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-06T18:31:41+01:00",
+      "regola": true
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5"
+    ]
   },
   "pronostici": {
     "calcio-2026-11-06-dynamo-dresden-greuther-furth|Under/Over casa 0.5|Over 0.5": {
@@ -66,6 +113,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-06T17:43:48+01:00"
+    },
+    "calcio-2026-11-06-rapid-vienna-wolfsberger|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-06T18:31:41+01:00"
     }
   }
 }
