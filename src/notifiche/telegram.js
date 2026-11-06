@@ -149,7 +149,7 @@ const testoLista = (giornata) => {
       const x = c.gambe[0];
       return `${i + 1}. ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: <b>${html(x.selezione)}</b> @${virgola(x.quota)} · mercato ${percentuale(c.prob)}`;
     }),
-    'Controlla la quota su bet365: sotto 1,25 salta la giocata.',
+    'Se su bet365 la quota è un po\' diversa va bene lo stesso: la giocata salta solo se modello e mercato non sono più d\'accordo.',
     ...testoOrari(giornata),
   ].join('\n');
 };

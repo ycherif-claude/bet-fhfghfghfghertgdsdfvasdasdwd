@@ -649,7 +649,7 @@ function avvia(dati) {
   if (sezLista && Array.isArray(listaGiorno)) {
     sezLista.replaceChildren(
       el('h2', {}, 'Giocate di oggi'),
-      el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Controlla la quota su bet365: sotto 1,25 salta la giocata. Ogni giocata viene ricontrollata da circa 90 minuti prima dell'inizio."),
+      el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Ogni giocata viene ricontrollata prima dell'inizio e salta solo se modello e mercato non sono più d'accordo: una quota su bet365 un po' diversa va bene lo stesso."),
       ...renderOrariRicontrollo(listaGiorno),
       ...(listaGiorno.length ? listaGiorno.map((x, i) => schedaSicura(x?.id, () => renderGiocataLista(x, i + 1, ultime.get(x?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Oggi nessuna giocata adatta.')]),
     );

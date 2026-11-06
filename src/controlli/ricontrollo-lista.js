@@ -8,7 +8,6 @@ import { isoRoma } from '../calcio/testo.js';
 
 const L = CONFIG.coppieQuota2.lista;
 const MIN = 60000;
-const virgola = (q) => q.toFixed(2).replace('.', ',');
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const giocate = (giornata) => (Array.isArray(giornata?.coppieQuota2?.lista) ? giornata.coppieQuota2.lista : [])
   .filter((c) => c?.id && c.gambe?.[0]?.idPartita);
@@ -49,24 +48,24 @@ export function vociRicontrollo(giornata, adesso) {
 }
 
 // Esito dalle quote del momento. `prob`: Pinnacle se c'è, altrimenti la mediana dei bookmaker (come al mattino).
+// Solo l'accordo tra modello e mercato [utente, 06/11/2026]: una quota scesa sotto 1,25 o salita sopra 1,70 non
+// toglie più la giocata (i limiti di quota valgono al mattino, per scegliere la lista).
 export function valutaRicontrollo(g, q) {
   const prob = num(q.prob) ? q.prob : num(q.probMediana) ? q.probMediana : null;
   const motivi = [];
-  if (q.quota < L.quotaMin) motivi.push(`quota ${virgola(q.quota)} sotto ${virgola(L.quotaMin)}`);
-  if (q.quota > L.quotaMax) motivi.push(`quota ${virgola(q.quota)} sopra ${virgola(L.quotaMax)}`);
   if (prob !== null && num(g.probModello) && Math.abs(g.probModello - prob) >= L.scarto) motivi.push(`modello e mercato non più d'accordo (mercato ${Math.round(prob * 100)}%)`);
   return { esito: motivi.length ? 'fuori' : 'confermata', motivi, quota: q.quota, prob };
 }
 
-// Senza quote [utente, 05/11/2026]: tra che quote giocarla lo stesso. Le quote dove modello e mercato restano d'accordo,
-// dentro i limiti della lista. Il margine del bookmaker è quello del mattino sulla stessa partita (quota per probabilità
+// Senza quote [utente, 05/11/2026]: tra che quote giocarla lo stesso. Le quote dove modello e mercato restano d'accordo
+// (dal 06/11 senza i limiti 1,25-1,70, come il ricontrollo). Senza modello, i limiti della lista. Il margine del bookmaker è quello del mattino sulla stessa partita (quota per probabilità
 // del mercato); al mattino la quota è la migliore o la mediana dei bookmaker, quindi su bet365 è un'indicazione.
 export function quoteGiocabili(g) {
   if (!num(g?.probModello)) return { min: L.quotaMin, max: L.quotaMax };
   const margine = num(g.quota) && num(g.probMercato) && g.quota * g.probMercato > 0 ? 1 / (g.quota * g.probMercato) : 1;
   const quotaDi = (p) => (p > 0 ? 1 / (margine * p) : Infinity);
-  const min = Math.ceil(Math.max(L.quotaMin, quotaDi(g.probModello + L.scarto)) * 100) / 100;
-  const max = Math.floor(Math.min(L.quotaMax, quotaDi(g.probModello - L.scarto)) * 100) / 100;
+  const min = Math.ceil(Math.max(1.01, quotaDi(g.probModello + L.scarto)) * 100) / 100;
+  const max = Math.floor(quotaDi(g.probModello - L.scarto) * 100) / 100;
   return min <= max ? { min, max } : null;
 }
 

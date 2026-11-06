@@ -34,11 +34,12 @@ test('ricontrollo: parte da 90 minuti prima, una volta sola, non a partita inizi
   assert.deepEqual(vociRicontrollo({}, ore('19:40')), []);
 });
 
-test('ricontrollo: fuori se la quota esce dai limiti o modello e mercato non sono più d\'accordo', () => {
+test('ricontrollo: fuori solo se modello e mercato non sono più d\'accordo', () => {
   const g = giocata().gambe[0];
   assert.deepEqual(valutaRicontrollo(g, { quota: 1.5, prob: 0.65 }).motivi, []);
-  assert.deepEqual(valutaRicontrollo(g, { quota: 1.24, prob: 0.68 }).motivi, ['quota 1,24 sotto 1,25']);
-  assert.deepEqual(valutaRicontrollo(g, { quota: 1.77, prob: 0.66 }).motivi, ['quota 1,77 sopra 1,70']);
+  // La quota fuori da 1,25-1,70 non toglie più la giocata [utente, 06/11/2026].
+  assert.equal(valutaRicontrollo(g, { quota: 1.24, prob: 0.68 }).esito, 'confermata');
+  assert.equal(valutaRicontrollo(g, { quota: 1.77, prob: 0.66 }).esito, 'confermata');
   const disaccordo = valutaRicontrollo(g, { quota: 1.5, prob: 0.638 });
   assert.equal(disaccordo.esito, 'fuori');
   assert.match(disaccordo.motivi[0], /non più d'accordo \(mercato 64%\)/);
@@ -156,12 +157,13 @@ test('senza quote: tra che quote giocarla lo stesso, col margine del mattino', a
   const { quoteGiocabili } = await import('../../src/controlli/ricontrollo-lista.js');
   // Sturm - Celje del 05/11: 1 a 1,51, mercato 63,3%, modello 63,0%.
   assert.deepEqual(quoteGiocabili({ quota: 1.51, probMercato: 0.633, probModello: 0.630 }), { min: 1.41, max: 1.64 });
-  // Dentro i limiti della lista: un 1 molto probabile non scende sotto 1,25.
-  assert.equal(quoteGiocabili({ quota: 1.28, probMercato: 0.75, probModello: 0.76 }).min, 1.25);
+  // Senza i limiti della lista: un Over 1.5 molto probabile si può giocare anche sotto 1,25.
+  assert.equal(quoteGiocabili({ quota: 1.28, probMercato: 0.75, probModello: 0.76 }).min, 1.19);
+  // Senza modello restano i limiti della lista.
   assert.deepEqual(quoteGiocabili({ quota: 1.5 }), { min: 1.25, max: 1.7 });
   const g = giornata(giocata());
   applicaRicontrollo(g, new Map(), vociRicontrollo(g, ore('19:40')), ore('19:40'));
-  assert.ok(g.coppieQuota2.lista[0].gambe[0].ricontrollo.giocaTra.min >= 1.25);
+  assert.ok(g.coppieQuota2.lista[0].gambe[0].ricontrollo.giocaTra.min > 1);
 });
 
 test('orari indicativi dei ricontrolli: uno per orario d\'inizio, da 90 a 45 minuti prima', async () => {
@@ -227,7 +229,7 @@ test('ultimo momento: la chiusura dopo il ricontrollo avvisa solo se la giocata 
   assert.equal(med.esito, 'fuori');
   const msg = messaggiRicontrollo({ giornate: [g], inviate: new Set(), adesso: ore('20:26') }).filter((m) => m.chiave.includes('|ultimo|'));
   assert.equal(msg.length, 2);
-  assert.match(msg[0].testo, /❌ <b>Cambiata all'ultimo<\/b>\n21:00 Monaco - Nordsjaelland: <b>1<\/b> @1,75: non giocarla, quota 1,75 sopra 1,70/);
+  assert.match(msg[0].testo, /❌ <b>Cambiata all'ultimo<\/b>\n21:00 Monaco - Nordsjaelland: <b>1<\/b> @1,75: non giocarla, modello e mercato non più d'accordo \(mercato 60%\)/);
   assert.equal(soloEssenziale(msg, { giornata: g, oggi: '2026-11-05' }).manda.length, 2);
   assert.equal(messaggiRicontrollo({ giornate: [g], inviate: new Set(), adesso: ore('21:01') }).length, 0);
   assert.match(testoRicontrollo(g.coppieQuota2.lista[0].gambe[0].ricontrollo).testo, /^Cambiata all'ultimo \(20:25\): non giocarla/);
