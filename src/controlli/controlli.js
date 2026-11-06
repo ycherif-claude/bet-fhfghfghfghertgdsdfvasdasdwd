@@ -22,7 +22,7 @@ import { quoteFresche, squadreDi, trovaEvento } from './quote.js';
 import { eseguiEsitiRapidi } from '../esiti/rapidi.js';
 import { raccoglitorePrePartita } from '../registro/chiusure.js';
 import { applicaChiusura, vociChiusura } from './chiusura.js';
-import { applicaRicontrollo, vociRicontrollo } from './ricontrollo-lista.js';
+import { applicaRicontrollo, applicaUltimo, vociRicontrollo } from './ricontrollo-lista.js';
 import { bloccoEspn } from '../calcio/fonti/http.js';
 
 const K = CONFIG.controlli;
@@ -342,7 +342,7 @@ export async function eseguiControlli({ dirData, adesso, fonti = fonteDefault(),
   }) : new Map();
   try { chiusure?.salva(); } catch (e) { errore('Registro (pre-partita)', e); }
   const conChiusura = perChiusura.length ? applicaChiusura(giornata, quote, adesso) : 0;
-  const conRicontrollo = perLista.length ? applicaRicontrollo(giornata, quote, perLista, adesso) : 0;
+  const conRicontrollo = (perLista.length ? applicaRicontrollo(giornata, quote, perLista, adesso) : 0) + (conChiusura ? applicaUltimo(giornata) : 0);
 
   // 3. Esiti; le revisioni nuove vanno a Claude se c'è posto, altrimenti regole fisse.
   const nuoveRevisioni = [];

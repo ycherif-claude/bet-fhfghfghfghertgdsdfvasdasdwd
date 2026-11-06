@@ -278,7 +278,7 @@ export const CONFIG = congela({
     // `scarto` confronta il modello grezzo col mercato (senza taratura), come nella prova sui giorni dal 23/10 al 02/11.
     // Ricontrollo [utente, 05/11/2026]: una volta da `minutiRicontrollo` minuti prima dell'inizio (il cron parte ogni 30-43
     // minuti); senza quote si riprova una volta da `minutiUltimoRicontrollo`.
-    lista: { sport: 'calcio', quotaMin: 1.25, quotaMax: 1.7, scarto: 0.05, massimo: 20, minutiRicontrollo: 90, minutiUltimoRicontrollo: 45 },
+    lista: { sport: 'calcio', quotaMin: 1.25, quotaMax: 1.7, scarto: 0.05, massimo: 20, minutiRicontrollo: 90, minutiUltimoRicontrollo: 45, minutiGruppo: 180 },
     // Triple [utente, 31/10/2026]: dalle 10 partite più probabili confermate da modello e mercato, al massimo 3,
     // quota totale intorno a 2 (le più probabili sono a 1,30: due insieme non arrivano a 1,90).
     triple: { partite: 10, max: 3, quotaMin: 1.9, quotaMax: 2.5 },

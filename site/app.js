@@ -457,21 +457,26 @@ export function renderSchedinaDelGiorno(s, giornata, ultime, bilancio) {
 export function testoRicontrollo(r) {
   if (!r) return null;
   const quando = r.alle ? ora(r.alle) : '';
+  // Avviso dell'ultimo momento [utente, 06/11/2026].
+  if (r.ultimo?.esito === 'fuori') return { esito: 'fuori', testo: `Cambiata all'ultimo (${ora(r.ultimo.alle)}): non giocarla, ${r.ultimo.motivi.join('; ')}` };
   if (r.esito === 'fuori') return { esito: r.esito, testo: `Non giocarla più (${quando}): ${r.motivi.join('; ')}` };
   if (r.esito === 'senza-quote') return { esito: r.esito, testo: `Ricontrollo delle ${quando} senza quote: ${r.giocaTra ? `giocala solo se su bet365 la quota è tra ${fmtQuota.format(r.giocaTra.min)} e ${fmtQuota.format(r.giocaTra.max)}` : 'controllala tu su bet365'}` };
   return { esito: r.esito, testo: `Ricontrollata alle ${quando}: ok, quota ${fmtQuota.format(r.quota)}${numero(r.prob) ? `, mercato ${percento(r.prob)}` : ''}` };
 }
 
-// Orari indicativi dei ricontrolli [utente, 06/11/2026]: per ogni orario d'inizio, da 90 a 45 minuti prima
-// (CONFIG.coppieQuota2.lista.minutiRicontrollo e minutiUltimoRicontrollo).
+// Orari indicativi dei ricontrolli [utente, 06/11/2026], come src/controlli/ricontrollo-lista.js: le partite che iniziano
+// entro 180 minuti dalla prima del gruppo si ricontrollano insieme, da 90 a 45 minuti prima della prima
+// (CONFIG.coppieQuota2.lista: minutiGruppo, minutiRicontrollo, minutiUltimoRicontrollo).
 export function orariRicontrollo(lista) {
-  const perInizio = new Map();
-  for (const c of Array.isArray(lista) ? lista : []) {
-    const t = Date.parse(c?.gambe?.[0]?.inizio);
-    if (Number.isFinite(t)) perInizio.set(t, (perInizio.get(t) ?? 0) + 1);
+  const inizi = (Array.isArray(lista) ? lista : []).map((c) => Date.parse(c?.gambe?.[0]?.inizio)).filter(Number.isFinite).sort((x, y) => x - y);
+  const gruppi = [];
+  for (const t of inizi) {
+    const ultimo = gruppi.at(-1);
+    if (ultimo && t - ultimo[0] <= 180 * 60000) ultimo.push(t);
+    else gruppi.push([t]);
   }
-  return [...perInizio].sort(([a], [b]) => a - b).map(([t, partite]) => (
-    `tra le ${ora(new Date(t - 90 * 60000).toISOString())} e le ${ora(new Date(t - 45 * 60000).toISOString())}: ${partite === 1 ? 'la partita' : `le ${partite} partite`} delle ${ora(new Date(t).toISOString())}`));
+  const hhmm = (t) => ora(new Date(t).toISOString());
+  return gruppi.map((g) => `tra le ${hhmm(g[0] - 90 * 60000)} e le ${hhmm(g[0] - 45 * 60000)}: ${g.length === 1 ? 'la partita' : `le ${g.length} partite`} ${g[0] === g.at(-1) ? `delle ${hhmm(g[0])}` : `dalle ${hhmm(g[0])} alle ${hhmm(g.at(-1))}`}`);
 }
 function renderOrariRicontrollo(lista) {
   const righe = orariRicontrollo(lista);

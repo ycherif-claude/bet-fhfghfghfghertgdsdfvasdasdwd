@@ -149,6 +149,7 @@ const NOMI_RICONTROLLO = [
   ['fuori', 'Tolte dal ricontrollo'],
   ['senza-quote', 'Quote non trovate'],
   ['nessuno', 'Non ricontrollate'],
+  ['ultimo', "Confermate, poi cambiate all'ultimo"],
 ];
 export function renderRicontrollo(s) {
   if (!s?.gruppi) return [];

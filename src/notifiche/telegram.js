@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { giornataDi, partiRoma } from '../bankroll/settimana.js';
 import { oraRoma } from '../calcio/testo.js';
-import { orariRicontrollo } from '../controlli/ricontrollo-lista.js';
+import { gruppiRicontrollo, orariRicontrollo } from '../controlli/ricontrollo-lista.js';
 import { leggiJson, erroreSegnatura } from '../build/costruisci-sito.js';
 import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
@@ -113,6 +113,12 @@ const rigaRicontrollo = (g) => {
 export function messaggiRicontrollo({ giornate, inviate, adesso = null }) {
   const out = [];
   for (const x of giornate) {
+    // Avviso dell'ultimo momento [utente, 06/11/2026]: solo se la giocata è cambiata, una volta per partita.
+    for (const g of coppieDi(x, 'lista').map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo?.ultimo?.esito === 'fuori' && !(adesso && Date.parse(g.inizio) <= adesso.getTime()))) {
+      const chiave = `${x.data}|ricontrollo|ultimo|${g.idPartita}`;
+      const u = g.ricontrollo.ultimo;
+      if (!inviate.has(chiave)) out.push({ chiave, testo: `❌ <b>Cambiata all'ultimo</b>\n${oraRoma(new Date(g.inizio))} ${html(g.partita)}: <b>${html(g.selezione)}</b> @${virgola(u.quota)}: non giocarla, ${u.motivi.map(html).join('; ')}` });
+    }
     const fatte = coppieDi(x, 'lista').map((c) => c.gambe?.[0]).filter((g) => g?.ricontrollo && !(adesso && Date.parse(g.inizio) <= adesso.getTime()));
     for (const alle of new Set(fatte.map((g) => g.ricontrollo.alle))) {
       const stesse = fatte.filter((g) => g.ricontrollo.alle === alle);
@@ -124,12 +130,14 @@ export function messaggiRicontrollo({ giornate, inviate, adesso = null }) {
   return out;
 }
 // Orari indicativi dei ricontrolli [utente, 06/11/2026].
+// Cambia se cambiano i gruppi: il nuovo elenco parte una volta.
+const chiaveOrari = (giornata, oggi) => `${oggi}|ricontrollo|orari|${hash(gruppiRicontrollo(giornata).map((g) => g.inizi.join('+')).join(','))}`;
 // Con `adesso`, solo i ricontrolli non ancora passati.
 export function testoOrari(giornata, adesso = null) {
   const orari = orariRicontrollo(giornata).filter((o) => !adesso || o.alle > adesso);
   if (!orari.length) return [];
   return ['', '🔄 <b>Ricontrolli (orari indicativi)</b>',
-    ...orari.map((o) => `· tra le ${oraRoma(o.dalle)} e le ${oraRoma(o.alle)}: ${o.partite === 1 ? 'la partita' : `le ${o.partite} partite`} delle ${oraRoma(o.inizio)}`),
+    ...orari.map((o) => `· tra le ${oraRoma(o.dalle)} e le ${oraRoma(o.alle)}: ${o.partite === 1 ? 'la partita' : `le ${o.partite} partite`} ${o.primo.getTime() === o.ultimo.getTime() ? `delle ${oraRoma(o.primo)}` : `dalle ${oraRoma(o.primo)} alle ${oraRoma(o.ultimo)}`}`),
     'Il controllo parte a orari irregolari: se non ti arriva niente, controlla tu la quota prima di giocare.'];
 }
 const testoLista = (giornata) => {
@@ -501,11 +509,11 @@ export function messaggi({ giornata, oggi, adesso, inviate, run = null, sito = n
       : testo;
     const coppie = testoCoppie(delGiorno);
     const conBonus = [base, ...(coppie ? [coppie] : []), ...bonus].join('\n\n');
-    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`), chiaveCoppie(delGiorno, oggi), `${oggi}|ricontrollo|orari`] });
+    out.push({ chiave: `${oggi}|giornata`, testo: conBonus + piede, segna: [...giocate.map((g) => `${oggi}|giocata|${g.id}`), `${oggi}|pronostici`, ...pronosticiDi(delGiorno).map((p) => `${oggi}|pronostico|${p.idPartita}`), chiaveCoppie(delGiorno, oggi), chiaveOrari(delGiorno, oggi)] });
   } else {
     // Orari dei ricontrolli da soli [utente, 06/11/2026], se il messaggio del mattino è partito senza: solo quelli ancora da fare.
     const orari = testoOrari(delGiorno, adesso);
-    if (orari.length) aggiungi(`${oggi}|ricontrollo|orari`, orari.slice(1).join('\n'));
+    if (orari.length) aggiungi(chiaveOrari(delGiorno, oggi), orari.slice(1).join('\n'));
     // Coppie rifatte dopo il messaggio del mattino [utente, 31/10/2026]: si manda il nuovo elenco una volta.
     const coppieOra = testoCoppie(delGiorno);
     const multipleOra = multipleProb(delGiorno).map(testoMultiplaBonus);

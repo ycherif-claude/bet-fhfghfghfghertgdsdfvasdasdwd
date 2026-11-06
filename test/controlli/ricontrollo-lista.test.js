@@ -180,15 +180,58 @@ test('orari dei ricontrolli da soli se il messaggio del mattino è partito senza
   const altra = { id: 'L-cruzeiro', gambe: [{ ...giocata().gambe[0], idPartita: 'cruzeiro', inizio: '2026-11-06T01:30:00+01:00' }] };
   const g = { ...giornata(giocata(), altra), giocate: [] };
   const inviate = new Set(['2026-11-05|giornata']);
-  const orari = messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:30'), inviate }).filter((m) => m.chiave === '2026-11-05|ricontrollo|orari');
+  const orari = messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:30'), inviate }).filter((m) => m.chiave.startsWith('2026-11-05|ricontrollo|orari|'));
   assert.equal(orari.length, 1);
   // Alle 20:30 quello delle 21:00 è passato: resta solo la partita dell'01:30.
   assert.doesNotMatch(orari[0].testo, /delle 21:00/);
   assert.match(orari[0].testo, /tra le 00:00 e le 00:45: la partita delle 01:30/);
   inviate.add(orari[0].chiave);
-  assert.equal(messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:40'), inviate }).filter((m) => m.chiave === '2026-11-05|ricontrollo|orari').length, 0);
+  assert.equal(messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:40'), inviate }).filter((m) => m.chiave.startsWith('2026-11-05|ricontrollo|orari|')).length, 0);
   // Il messaggio del mattino li contiene già e li segna.
   const mattino = messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('09:00'), inviate: new Set() }).find((m) => m.chiave === '2026-11-05|giornata');
   assert.match(mattino.testo, /Ricontrolli \(orari indicativi\)/);
-  assert.ok(mattino.segna.includes('2026-11-05|ricontrollo|orari'));
+  assert.ok(mattino.segna.includes(orari[0].chiave));
+});
+
+test('gruppi: le partite entro 3 ore dalla prima si ricontrollano insieme', async () => {
+  const { orariRicontrollo } = await import('../../src/controlli/ricontrollo-lista.js');
+  const alle = (id, hhmm) => ({ id: `L-${id}`, gambe: [{ ...giocata().gambe[0], idPartita: id, partita: id, inizio: `2026-11-05T${hhmm}:00+01:00` }] });
+  const g = giornata(alle('a', '19:00'), alle('b', '20:00'), alle('c', '21:45'), alle('d', '22:30'));
+  // Alle 17:40 la prima del gruppo è a 80 minuti: si ricontrollano a, b e c (c a 245 minuti); d apre un altro gruppo.
+  assert.deepEqual(vociRicontrollo(g, ore('17:40')).map((v) => v.idPartita), ['a', 'b', 'c']);
+  assert.deepEqual(vociRicontrollo(g, ore('17:20')), []);
+  const o = orariRicontrollo(g);
+  assert.equal(o.length, 2);
+  assert.equal(o[0].partite, 3);
+  // Il gruppo saltato (passaggio in ritardo) si ricontrolla lo stesso al passaggio dopo, se le partite non sono iniziate.
+  assert.deepEqual(vociRicontrollo(g, ore('19:10')).map((v) => v.idPartita), ['b', 'c']);
+});
+
+test('ultimo momento: la chiusura dopo il ricontrollo avvisa solo se la giocata è cambiata', async () => {
+  const { applicaUltimo, storicoRicontrollo } = await import('../../src/controlli/ricontrollo-lista.js');
+  const conferma = { esito: 'confermata', motivi: [], quota: 1.42, prob: 0.68, alle: '2026-11-05T17:40:00+01:00' };
+  const g = giornata(
+    giocata({ ricontrollo: { ...conferma }, chiusura: { quota: 1.75, prob: 0.6, alle: '2026-11-05T20:25:00+01:00', minutiPrima: 35 } }),
+    { id: 'L-ok', gambe: [{ ...giocata().gambe[0], idPartita: 'ok', partita: 'Ok - Bene', ricontrollo: { ...conferma }, chiusura: { quota: 1.45, prob: 0.67, alle: '2026-11-05T20:25:00+01:00' } }] },
+    // Ricontrollo e chiusura nello stesso passaggio: niente da aggiungere.
+    { id: 'L-stesso', gambe: [{ ...giocata().gambe[0], idPartita: 'stesso', ricontrollo: { ...conferma, alle: '2026-11-05T20:25:00+01:00' }, chiusura: { quota: 1.9, prob: 0.5, alle: '2026-11-05T20:25:00+01:00' } }] },
+    // Senza Pinnacle vale la mediana dei bookmaker.
+    { id: 'L-mediana', gambe: [{ ...giocata().gambe[0], idPartita: 'mediana', partita: 'Mediana - Fc', ricontrollo: { ...conferma }, chiusura: { quota: 1.5, prob: null, probMediana: 0.6, alle: '2026-11-05T20:25:00+01:00' } }] },
+  );
+  assert.equal(applicaUltimo(g), 3);
+  assert.equal(applicaUltimo(g), 0);
+  const [a, ok, stesso, med] = g.coppieQuota2.lista.map((c) => c.gambe[0].ricontrollo.ultimo);
+  assert.equal(a.esito, 'fuori');
+  assert.equal(ok.esito, 'confermata');
+  assert.equal(stesso, undefined);
+  assert.equal(med.esito, 'fuori');
+  const msg = messaggiRicontrollo({ giornate: [g], inviate: new Set(), adesso: ore('20:26') }).filter((m) => m.chiave.includes('|ultimo|'));
+  assert.equal(msg.length, 2);
+  assert.match(msg[0].testo, /❌ <b>Cambiata all'ultimo<\/b>\n21:00 Monaco - Nordsjaelland: <b>1<\/b> @1,75: non giocarla, quota 1,75 sopra 1,70/);
+  assert.equal(soloEssenziale(msg, { giornata: g, oggi: '2026-11-05' }).manda.length, 2);
+  assert.equal(messaggiRicontrollo({ giornate: [g], inviate: new Set(), adesso: ore('21:01') }).length, 0);
+  assert.match(testoRicontrollo(g.coppieQuota2.lista[0].gambe[0].ricontrollo).testo, /^Cambiata all'ultimo \(20:25\): non giocarla/);
+  g.coppieQuota2.lista[0].gambe[0].esito = 'persa';
+  assert.equal(storicoRicontrollo([g]).gruppi.ultimo.perse, 1);
+  assert.equal(storicoRicontrollo([g]).gruppi.confermata.partite, 4);
 });

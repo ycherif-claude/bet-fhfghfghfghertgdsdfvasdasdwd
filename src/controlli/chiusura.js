@@ -36,7 +36,7 @@ export function applicaChiusura(giornata, quote, adesso) {
     const q = quote.get(`chiusura|${chiave(g)}`);
     if (g.chiusura || !q || !num(q.quota)) continue;
     g.chiusura = {
-      quota: q.quota, prob: num(q.prob) ? q.prob : null, alle: ora,
+      quota: q.quota, prob: num(q.prob) ? q.prob : null, ...(!num(q.prob) && num(q.probMediana) ? { probMediana: q.probMediana } : {}), alle: ora,
       minutiPrima: Math.round((Date.parse(g.inizio) - adesso.getTime()) / 60000),
     };
     fatte.add(chiave(g));
