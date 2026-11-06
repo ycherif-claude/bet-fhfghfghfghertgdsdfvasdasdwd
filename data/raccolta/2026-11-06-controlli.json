@@ -228,6 +228,31 @@
       ],
       "alle": "2026-11-06T20:22:28+01:00",
       "regola": true
+    },
+    "calcio-2026-11-06-independiente-deportivo-riestra-1x2-x": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 3,20 sotto la minima 3,46",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,20 sotto la minima 3,46"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-06T23:09:39+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-06-san-lorenzo-platense-1x2-x": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,90 ≥ minima 2,87",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,90 ≥ minima 2,87"
+      ],
+      "alle": "2026-11-06T23:09:39+01:00"
     }
   },
   "claude": {
