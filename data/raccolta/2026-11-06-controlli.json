@@ -60,8 +60,8 @@
       "regola": true
     },
     "calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 2,75 sotto la minima 2,82",
+      "esito": "annullata",
+      "motivo": "Claude: Quota 2,75 sotto la minima 2,82 e nessun fatto concreto che alzi la probabilità del 37% usata al mattino (Pinnacle 34%): il value sparisce (controlli quote odss-api, 18:31)",
       "problemi": [
         {
           "tipo": "quota",
@@ -71,7 +71,8 @@
       "dettagli": [
         "partita non trovata su ESPN: formazioni non controllate"
       ],
-      "alle": "2026-11-06T18:31:41+01:00"
+      "alle": "2026-11-06T18:32:59+01:00",
+      "claude": true
     },
     "calcio-2026-11-06-silkeborg-if-lyngby-boldklub-under-over-3-5-over-3-5": {
       "esito": "annullata",
