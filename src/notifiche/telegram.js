@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { giornataDi, partiRoma } from '../bankroll/settimana.js';
 import { oraRoma } from '../calcio/testo.js';
+import { orariRicontrollo } from '../controlli/ricontrollo-lista.js';
 import { leggiJson, erroreSegnatura } from '../build/costruisci-sito.js';
 import { statoBankroll, giocateConProva } from '../bankroll/bankroll.js';
 import { bilancioPronostici } from '../regole/pronostici.js';
@@ -122,6 +123,14 @@ export function messaggiRicontrollo({ giornate, inviate, adesso = null }) {
   }
   return out;
 }
+// Orari indicativi dei ricontrolli [utente, 06/11/2026].
+export function testoOrari(giornata) {
+  const orari = orariRicontrollo(giornata);
+  if (!orari.length) return [];
+  return ['', '🔄 <b>Ricontrolli (orari indicativi)</b>',
+    ...orari.map((o) => `· tra le ${oraRoma(o.dalle)} e le ${oraRoma(o.alle)}: ${o.partite === 1 ? 'la partita' : `le ${o.partite} partite`} delle ${oraRoma(o.inizio)}`),
+    'Il controllo parte a orari irregolari: se non ti arriva niente, controlla tu la quota prima di giocare.'];
+}
 const testoLista = (giornata) => {
   const lista = coppieDi(giornata, 'lista');
   if (!lista.length) return null;
@@ -132,6 +141,7 @@ const testoLista = (giornata) => {
       return `${i + 1}. ${Number.isFinite(Date.parse(x.inizio)) ? `${oraRoma(new Date(x.inizio))} ` : ''}${html(x.partita)}: <b>${html(x.selezione)}</b> @${virgola(x.quota)} · mercato ${percentuale(c.prob)}`;
     }),
     'Controlla la quota su bet365: sotto 1,25 salta la giocata.',
+    ...testoOrari(giornata),
   ].join('\n');
 };
 // Chiave delle schedine mostrate: cambia se cambiano (per mandare l'elenco aggiornato una volta sola).

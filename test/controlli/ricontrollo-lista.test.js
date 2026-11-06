@@ -163,3 +163,14 @@ test('senza quote: tra che quote giocarla lo stesso, col margine del mattino', a
   applicaRicontrollo(g, new Map(), vociRicontrollo(g, ore('19:40')), ore('19:40'));
   assert.ok(g.coppieQuota2.lista[0].gambe[0].ricontrollo.giocaTra.min >= 1.25);
 });
+
+test('orari indicativi dei ricontrolli: uno per orario d\'inizio, da 90 a 45 minuti prima', async () => {
+  const { testoOrari } = await import('../../src/notifiche/telegram.js');
+  const { orariRicontrollo } = await import('../../site/app.js');
+  const altra = { id: 'L-cruzeiro', gambe: [{ ...giocata().gambe[0], idPartita: 'cruzeiro', inizio: '2026-11-06T01:30:00+01:00' }] };
+  const g = giornata(giocata(), { ...giocata(), id: 'L-sturm' }, altra);
+  const t = testoOrari(g).join('\n');
+  assert.match(t, /· tra le 19:30 e le 20:15: le 2 partite delle 21:00\n· tra le 00:00 e le 00:45: la partita delle 01:30/);
+  assert.deepEqual(testoOrari({}), []);
+  assert.deepEqual(orariRicontrollo(g.coppieQuota2.lista), ['tra le 19:30 e le 20:15: le 2 partite delle 21:00', 'tra le 00:00 e le 00:45: la partita delle 01:30']);
+});

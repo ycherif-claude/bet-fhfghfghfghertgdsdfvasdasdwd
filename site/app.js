@@ -462,6 +462,26 @@ export function testoRicontrollo(r) {
   return { esito: r.esito, testo: `Ricontrollata alle ${quando}: ok, quota ${fmtQuota.format(r.quota)}${numero(r.prob) ? `, mercato ${percento(r.prob)}` : ''}` };
 }
 
+// Orari indicativi dei ricontrolli [utente, 06/11/2026]: per ogni orario d'inizio, da 90 a 45 minuti prima
+// (CONFIG.coppieQuota2.lista.minutiRicontrollo e minutiUltimoRicontrollo).
+export function orariRicontrollo(lista) {
+  const perInizio = new Map();
+  for (const c of Array.isArray(lista) ? lista : []) {
+    const t = Date.parse(c?.gambe?.[0]?.inizio);
+    if (Number.isFinite(t)) perInizio.set(t, (perInizio.get(t) ?? 0) + 1);
+  }
+  return [...perInizio].sort(([a], [b]) => a - b).map(([t, partite]) => (
+    `tra le ${ora(new Date(t - 90 * 60000).toISOString())} e le ${ora(new Date(t - 45 * 60000).toISOString())}: ${partite === 1 ? 'la partita' : `le ${partite} partite`} delle ${ora(new Date(t).toISOString())}`));
+}
+function renderOrariRicontrollo(lista) {
+  const righe = orariRicontrollo(lista);
+  if (!righe.length) return [];
+  return [el('details', { class: 'orari-ricontrollo' },
+    el('summary', {}, 'Orari indicativi dei ricontrolli'),
+    el('ul', {}, righe.map((r) => el('li', {}, r))),
+    el('p', { class: 'meta' }, 'Il controllo parte a orari irregolari: se non arriva niente, controlla tu la quota prima di giocare.'))];
+}
+
 export function renderGiocataLista(c, n, segnatura = null) {
   return renderBiglietto({
     titolo: `Giocata ${n}`,
@@ -625,6 +645,7 @@ function avvia(dati) {
     sezLista.replaceChildren(
       el('h2', {}, 'Giocate di oggi'),
       el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Controlla la quota su bet365: sotto 1,25 salta la giocata. Ogni giocata viene ricontrollata da circa 90 minuti prima dell'inizio."),
+      ...renderOrariRicontrollo(listaGiorno),
       ...(listaGiorno.length ? listaGiorno.map((x, i) => schedaSicura(x?.id, () => renderGiocataLista(x, i + 1, ultime.get(x?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Oggi nessuna giocata adatta.')]),
     );
   }

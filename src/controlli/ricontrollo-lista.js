@@ -50,6 +50,19 @@ export function quoteGiocabili(g) {
   return min <= max ? { min, max } : null;
 }
 
+// Orari indicativi dei ricontrolli [utente, 06/11/2026], uno per orario d'inizio: da `minutiRicontrollo` a
+// `minutiUltimoRicontrollo` minuti prima. Il passaggio vero dipende da quando GitHub avvia i controlli.
+export function orariRicontrollo(giornata) {
+  const perInizio = new Map();
+  for (const c of giocate(giornata)) {
+    const t = Date.parse(c.gambe[0].inizio);
+    if (Number.isFinite(t)) perInizio.set(t, (perInizio.get(t) ?? 0) + 1);
+  }
+  return [...perInizio].sort(([a], [b]) => a - b).map(([t, partite]) => ({
+    inizio: new Date(t), dalle: new Date(t - L.minutiRicontrollo * MIN), alle: new Date(t - L.minutiUltimoRicontrollo * MIN), partite,
+  }));
+}
+
 // Salva l'esito sulle giocate di `voci`. Restituisce quante ne ha cambiate.
 export function applicaRicontrollo(giornata, quote, voci, adesso) {
   const ids = new Set(voci.map((v) => v.id));
