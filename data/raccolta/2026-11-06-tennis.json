@@ -1,0 +1,205 @@
+{
+  "data": "2026-11-06",
+  "generataAlle": "2026-11-06T07:38:36+01:00",
+  "crediti": {
+    "usati": 0,
+    "rimasti": 437
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Paris Masters: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "4611dec7b4b09099",
+        "850a7bf7709cb800",
+        "db142b3baa688022",
+        "5551965e1f55d7d7"
+      ],
+      "idPartita": "tennis-2026-11-06-ben-shelton-tommy-paul",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Ben Shelton - Tommy Paul",
+      "casa": "Ben Shelton",
+      "trasferta": "Tommy Paul",
+      "inizio": "2026-11-06T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Ben Shelton",
+          "probModello": null,
+          "probPinnacle": 0.4435975609756098,
+          "quota": 2.08,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Ben Shelton vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Tommy Paul",
+          "probModello": null,
+          "probPinnacle": 0.5564024390243902,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 193 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Tommy Paul vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "51fa174c0e68f450",
+        "4abcf9593e95065d",
+        "dfd4c489039ea036",
+        "cd2b3641150d3e65"
+      ],
+      "idPartita": "tennis-2026-11-06-luca-van-assche-rinky-hijikata",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Luca Van Assche - Rinky Hijikata",
+      "casa": "Luca Van Assche",
+      "trasferta": "Rinky Hijikata",
+      "inizio": "2026-11-06T15:10:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Luca Van Assche",
+          "probModello": null,
+          "probPinnacle": 0.6099951004409604,
+          "quota": 1.58,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Luca Van Assche vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Rinky Hijikata",
+          "probModello": null,
+          "probPinnacle": 0.3900048995590397,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Rinky Hijikata vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4d4be026bdaf540f",
+        "a4a07e48ded0cd69",
+        "feea1e0b19b1e1e0"
+      ],
+      "idPartita": "tennis-2026-11-06-carlos-alcaraz-taylor-fritz",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Taylor Fritz - Carlos Alcaraz",
+      "casa": "Taylor Fritz",
+      "trasferta": "Carlos Alcaraz",
+      "inizio": "2026-11-06T19:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Taylor Fritz",
+          "probModello": null,
+          "probPinnacle": 0.2815493544356518,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 147 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Taylor Fritz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Carlos Alcaraz",
+          "probModello": null,
+          "probPinnacle": 0.7184506455643482,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 147 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Carlos Alcaraz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "970a48961bfc1186",
+        "ec83dac552013ce4",
+        "73d51f65c0246f01"
+      ],
+      "idPartita": "tennis-2026-11-06-casper-ruud-nuno-borges",
+      "sport": "tennis",
+      "competizione": "ATP Paris Masters",
+      "partita": "Casper Ruud - Nuno Borges",
+      "casa": "Casper Ruud",
+      "trasferta": "Nuno Borges",
+      "inizio": "2026-11-06T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Casper Ruud",
+          "probModello": null,
+          "probPinnacle": 0.6553567278642807,
+          "quota": 1.42,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Casper Ruud vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Nuno Borges",
+          "probModello": null,
+          "probPinnacle": 0.34464327213571927,
+          "quota": 2.85,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-06T07:38:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Nuno Borges vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}
