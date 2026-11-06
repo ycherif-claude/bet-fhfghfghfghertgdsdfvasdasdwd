@@ -174,3 +174,21 @@ test('orari indicativi dei ricontrolli: uno per orario d\'inizio, da 90 a 45 min
   assert.deepEqual(testoOrari({}), []);
   assert.deepEqual(orariRicontrollo(g.coppieQuota2.lista), ['tra le 19:30 e le 20:15: le 2 partite delle 21:00', 'tra le 00:00 e le 00:45: la partita delle 01:30']);
 });
+
+test('orari dei ricontrolli da soli se il messaggio del mattino è partito senza, una volta', async () => {
+  const { messaggi } = await import('../../src/notifiche/telegram.js');
+  const altra = { id: 'L-cruzeiro', gambe: [{ ...giocata().gambe[0], idPartita: 'cruzeiro', inizio: '2026-11-06T01:30:00+01:00' }] };
+  const g = { ...giornata(giocata(), altra), giocate: [] };
+  const inviate = new Set(['2026-11-05|giornata']);
+  const orari = messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:30'), inviate }).filter((m) => m.chiave === '2026-11-05|ricontrollo|orari');
+  assert.equal(orari.length, 1);
+  // Alle 20:30 quello delle 21:00 è passato: resta solo la partita dell'01:30.
+  assert.doesNotMatch(orari[0].testo, /delle 21:00/);
+  assert.match(orari[0].testo, /tra le 00:00 e le 00:45: la partita delle 01:30/);
+  inviate.add(orari[0].chiave);
+  assert.equal(messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('20:40'), inviate }).filter((m) => m.chiave === '2026-11-05|ricontrollo|orari').length, 0);
+  // Il messaggio del mattino li contiene già e li segna.
+  const mattino = messaggi({ giornata: g, oggi: '2026-11-05', adesso: ore('09:00'), inviate: new Set() }).find((m) => m.chiave === '2026-11-05|giornata');
+  assert.match(mattino.testo, /Ricontrolli \(orari indicativi\)/);
+  assert.ok(mattino.segna.includes('2026-11-05|ricontrollo|orari'));
+});
