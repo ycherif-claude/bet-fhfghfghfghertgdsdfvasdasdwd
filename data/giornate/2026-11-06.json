@@ -2860,9 +2860,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,78 sotto la minima 1,95",
-      "oraUltimoControllo": "2026-11-07T00:57:31+01:00",
+      "stato": "annullata",
+      "motivoStato": "Claude: Quota 1,78 sotto la minima 1,95 e nessun fatto concreto che alzi la probabilità del 54% usata al mattino (Pinnacle 50%): il value sparisce (controlli quote odss-api, 00:57)",
+      "oraUltimoControllo": "2026-11-07T00:58:08+01:00",
       "esito": null,
       "prova": true
     }
@@ -37313,7 +37313,8 @@
     "Superficie sconosciuta per ATP Paris Masters: solo Pinnacle",
     "odss-api (NBL (Australia)) alle 07:38: budget insufficiente (tetto di 1 richieste al giorno per basket raggiunto; basket oggi 1 su 1, giornata 6 su 19, rimaste 311, riserva 60): quote di NBL (Australia) dalla fonte di prima",
     "Quote NBL (Australia): nessuna partita su odss-api, quote da The Odds API",
-    "odss-api alle 07:32: 2 partite senza righe a tempo intero (full_time), senza quote: Tatran Liptovský Mikuláš - MFK Bytca, Pachuca Wom. - Puebla Wom."
+    "odss-api alle 07:32: 2 partite senza righe a tempo intero (full_time), senza quote: Tatran Liptovský Mikuláš - MFK Bytca, Pachuca Wom. - Puebla Wom.",
+    "Decisione di Claude per calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5 arrivata dopo l'inizio della partita (00:58): non applicata"
   ],
   "schedinePronostici": [
     {
