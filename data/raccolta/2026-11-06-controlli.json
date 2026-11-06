@@ -88,6 +88,61 @@
       ],
       "alle": "2026-11-06T18:31:41+01:00",
       "regola": true
+    },
+    "M-calcio-2026-11-06-rapid-vienna-wolfsberger-under-over-2-5-under-2-5+calcio-2026-11-06-eintracht-braunschweig-fc-energie-cottbus-cartellini-under-over-5-5-over-5-5#0": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,00",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,00"
+      ],
+      "alle": "2026-11-06T19:21:12+01:00"
+    },
+    "calcio-2026-11-06-rapid-vienna-wolfsberger-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,00 ≥ minima 2,80",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,00 ≥ minima 2,80"
+      ],
+      "alle": "2026-11-06T19:21:12+01:00"
+    },
+    "calcio-2026-11-06-cd-castellon-sd-eibar-under-over-1-5-under-1-5": {
+      "esito": "confermata",
+      "motivo": "partita non trovata su ESPN: formazioni non controllate; quote non controllate (meno di 3 bookmaker con la quota)",
+      "problemi": [],
+      "dettagli": [
+        "partita non trovata su ESPN: formazioni non controllate",
+        "quote non controllate (meno di 3 bookmaker con la quota)"
+      ],
+      "alle": "2026-11-06T19:21:12+01:00"
+    },
+    "calcio-2026-11-06-boulogne-annecy-fc-1x2-2": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,20 ≥ minima 3,04",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,20 ≥ minima 3,04"
+      ],
+      "alle": "2026-11-06T19:21:12+01:00"
+    },
+    "calcio-2026-11-06-montpellier-metz-under-over-1-5-under-1-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 4,30 sotto la minima 4,54",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,30 sotto la minima 4,54"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-06T19:21:12+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -120,6 +175,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|1X",
       "alle": "2026-11-06T18:31:41+01:00"
+    },
+    "calcio-2026-11-06-toulouse-strasbourg|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-06T19:21:12+01:00"
     }
   }
 }
