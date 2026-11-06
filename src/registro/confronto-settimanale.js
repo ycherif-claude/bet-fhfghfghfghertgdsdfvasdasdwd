@@ -14,6 +14,9 @@ import { scegliLista } from '../regole/coppie-quota2.js';
 const DATA = /^\d{4}-\d{2}-\d{2}$/;
 // Prima di questo giorno il registro ha pochi mercati: i confronti partirebbero da numeri non paragonabili.
 const DA = '2026-10-23';
+// Over 1.5 con un tetto più basso [utente, 06/11/2026]: sotto il 70% del mercato (quota oltre circa 1,40) vale la pena?
+const TETTO_OVER15 = 1.4;
+const over15 = (x) => x.mercato === 'Under/Over 1.5' && x.selezione === 'Over 1.5';
 const SOGLIE = [[1.15, 1.7], [1.2, 1.7], [1.25, 1.5], [1.25, 1.7], [1.25, 2], [1.25, 2.5], [1.3, 1.7], [1.25, Infinity], [1.7, 2.5]];
 const num = (v) => typeof v === 'number' && Number.isFinite(v);
 const arrotonda = (x, n = 2) => Math.round(x * 10 ** n) / 10 ** n;
@@ -65,6 +68,9 @@ export function confrontoSettimanale(giorni) {
     aggiungi('lista', data, scegliLista(righe));
     aggiungi('lista: solo modello', data, scegliLista(righe, { ...L, scarto: Infinity, ordine: 'probModello' }));
     aggiungi('lista: solo mercato', data, scegliLista(righe, { ...L, scarto: Infinity }));
+    // La lista con gli Over 1.5 solo fino a 1,40, e gli Over 1.5 della lista che quel tetto toglierebbe.
+    aggiungi('lista: Over 1.5 fino a 1,40', data, scegliLista(righe.filter((x) => !(over15(x) && x.quota > TETTO_OVER15))));
+    aggiungi('lista: Over 1.5 tra 1,40 e 1,70', data, scegliLista(righe).filter((x) => over15(x) && x.quota > TETTO_OVER15));
     const perGruppo = Object.groupBy(righe, gruppoDi);
     for (const [nome, lista] of Object.entries(perGruppo)) aggiungi(nome, data, lista);
   }

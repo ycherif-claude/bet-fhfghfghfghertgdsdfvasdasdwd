@@ -105,3 +105,19 @@ test('confronto settimanale: gruppi per settimana contro il mercato e soglie', (
   assert.deepEqual([inUso.quotaMin, inUso.quotaMax, inUso.chiuse], [1.25, 1.7, 3]);
   assert.equal(r.soglie.find((s) => s.quotaMin === 1.7).chiuse, 1);
 });
+
+test('confronto settimanale: Over 1.5 fino a 1,40 e quelli che il tetto toglierebbe', () => {
+  const chiusa = (x, esito) => ({ ...x, esito });
+  const righe = [
+    chiusa(over('a', 1.3, 0.73), 'vinta'),
+    chiusa(over('b', 1.5, 0.64), 'persa'),
+    // Partita c: Over 1.5 a 1,55 e 1 a 1,35; col tetto resta l'1.
+    chiusa(over('c', 1.55, 0.62), 'vinta'),
+    chiusa(uno('c', 1.35, 0.7), 'vinta'),
+    chiusa(uno('d', 1.6, 0.6), 'persa'),
+  ];
+  const g = confrontoSettimanale([{ data: '2026-11-09', righe }]).gruppi;
+  assert.equal(g['lista: Over 1.5 fino a 1,40'].totale.chiuse, 3);
+  assert.equal(g['lista: Over 1.5 tra 1,40 e 1,70'].totale.chiuse, scegliLista(righe).filter((x) => x.mercato === 'Under/Over 1.5' && x.quota > 1.4).length);
+  assert.ok(g['lista: Over 1.5 tra 1,40 e 1,70'].totale.chiuse >= 1);
+});
