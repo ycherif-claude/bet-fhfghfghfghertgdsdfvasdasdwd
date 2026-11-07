@@ -6083,9 +6083,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,80 ≥ minima 3,51",
+      "oraUltimoControllo": "2026-11-07T18:00:10+01:00",
       "esito": null,
       "prova": true
     },
@@ -6365,9 +6365,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 4,80 ≥ minima 4,49",
+      "oraUltimoControllo": "2026-11-07T18:00:10+01:00",
       "esito": null,
       "prova": true
     },
@@ -6845,9 +6845,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-07T18:00:10+01:00",
       "esito": null,
       "prova": true
     },
@@ -7649,9 +7649,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,82 sotto la minima 1,90",
+      "oraUltimoControllo": "2026-11-07T18:00:10+01:00",
       "esito": null,
       "prova": true
     },
@@ -7932,9 +7932,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,40 sotto la minima 3,90",
+      "oraUltimoControllo": "2026-11-07T18:00:10+01:00",
       "esito": null,
       "prova": true
     },
@@ -32529,9 +32529,9 @@
             ],
             "ricontrollo": {
               "esito": "senza-quote",
-              "tentativi": 1,
-              "alle": "2026-11-07T17:22:27+01:00",
-              "minutiPrima": 68,
+              "tentativi": 2,
+              "alle": "2026-11-07T18:00:10+01:00",
+              "minutiPrima": 30,
               "giocaTra": {
                 "min": 1.24,
                 "max": 1.41
@@ -32701,9 +32701,9 @@
             ],
             "ricontrollo": {
               "esito": "senza-quote",
-              "tentativi": 1,
-              "alle": "2026-11-07T17:22:27+01:00",
-              "minutiPrima": 83,
+              "tentativi": 2,
+              "alle": "2026-11-07T18:00:10+01:00",
+              "minutiPrima": 45,
               "giocaTra": {
                 "min": 1.23,
                 "max": 1.41
