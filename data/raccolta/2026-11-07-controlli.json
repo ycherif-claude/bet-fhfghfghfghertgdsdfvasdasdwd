@@ -33,11 +33,77 @@
       ],
       "alle": "2026-11-07T10:49:54+01:00",
       "regola": true
+    },
+    "calcio-2026-11-07-leeds-united-tottenham-hotspur-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,70 ≥ minima 2,68",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,70 ≥ minima 2,68"
+      ],
+      "alle": "2026-11-07T12:39:34+01:00"
+    },
+    "calcio-2026-11-07-vfl-osnabruck-1-fc-kaiserslautern-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,97 sotto la minima 2,11",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,97 sotto la minima 2,11"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-07T12:39:34+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-07-wrexham-afc-wolverhampton-wanderers-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,60 ≥ minima 3,48",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,60 ≥ minima 3,48"
+      ],
+      "alle": "2026-11-07T12:39:34+01:00"
+    },
+    "calcio-2026-11-07-clermont-rodez-af-under-over-1-5-under-1-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 4,10 sotto la minima 4,34",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,10 sotto la minima 4,34"
+        }
+      ],
+      "dettagli": [
+        "partita non trovata su ESPN: formazioni non controllate"
+      ],
+      "alle": "2026-11-07T12:39:34+01:00"
+    },
+    "calcio-2026-11-07-bristol-city-norwich-city-under-over-2-5-under-2-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,97 sotto la minima 2,23",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,97 sotto la minima 2,23"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-07T12:39:34+01:00"
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "calcio-2026-11-07-clermont-rodez-af-under-over-1-5-under-1-5",
+      "calcio-2026-11-07-bristol-city-norwich-city-under-over-2-5-under-2-5"
+    ]
   },
   "pronostici": {
     "calcio-2026-11-07-korona-kielce-radomiak-radom|Under/Over casa 0.5|Over 0.5": {
@@ -51,6 +117,18 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-07T12:05:40+01:00"
+    },
+    "calcio-2026-11-07-malaga-real-racing-club-de-santander|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-07T12:39:34+01:00"
+    },
+    "calcio-2026-11-07-csikszereda-m-ciuc-u-cluj|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-07T12:39:34+01:00"
     }
   }
 }
