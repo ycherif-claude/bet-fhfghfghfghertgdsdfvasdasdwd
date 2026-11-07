@@ -2017,9 +2017,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-07T01:37:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -37314,7 +37314,8 @@
     "odss-api (NBL (Australia)) alle 07:38: budget insufficiente (tetto di 1 richieste al giorno per basket raggiunto; basket oggi 1 su 1, giornata 6 su 19, rimaste 311, riserva 60): quote di NBL (Australia) dalla fonte di prima",
     "Quote NBL (Australia): nessuna partita su odss-api, quote da The Odds API",
     "odss-api alle 07:32: 2 partite senza righe a tempo intero (full_time), senza quote: Tatran Liptovský Mikuláš - MFK Bytca, Pachuca Wom. - Puebla Wom.",
-    "Decisione di Claude per calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5 arrivata dopo l'inizio della partita (00:58): non applicata"
+    "Decisione di Claude per calcio-2026-11-06-dijon-red-star-under-over-3-5-over-3-5 arrivata dopo l'inizio della partita (00:58): non applicata",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 10 richieste al giorno per i controlli raggiunto; controlli oggi 10 su 10, giornata 16 su 19, rimaste 301, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
