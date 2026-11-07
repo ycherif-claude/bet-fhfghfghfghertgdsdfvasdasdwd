@@ -16,7 +16,7 @@
       "n": 600,
       "limite": 0.8246,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -33,7 +33,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -50,7 +50,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "persa",
       "migliore": true,
       "quota": 1.18,
       "bookmaker": "sportium"
@@ -69,7 +69,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -86,7 +86,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.07,
       "bookmaker": "sportium"
@@ -105,7 +105,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -122,7 +122,7 @@
       "n": 1519,
       "limite": 0.8324,
       "quotaMinima": 1.18,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -139,7 +139,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "persa",
       "migliore": true
     },
     {
@@ -196,7 +196,7 @@
           "prob": 0.8512,
           "limite": 0.8324,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-06-atletico-de-san-luis-fc-juarez",
@@ -212,7 +212,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "idPartita": "calcio-2026-11-06-fc-tokyo-kashima-antlers",
@@ -236,8 +236,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     },
     {
       "id": "sp-2026-11-06-1qkhnb2",
@@ -257,7 +257,7 @@
           "prob": 0.855,
           "limite": 0.8246,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-06-hammarby-if-if-elfsborg",
@@ -273,7 +273,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-06-rapid-vienna-wolfsberger",
@@ -290,7 +290,7 @@
           "prob": 0.8761,
           "limite": 0.8603,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.53,
@@ -298,8 +298,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.53
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-11-07T07:30:18+01:00"
 }

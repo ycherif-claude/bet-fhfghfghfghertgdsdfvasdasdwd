@@ -1,0 +1,1664 @@
+{
+  "data": "2026-11-07",
+  "generataAlle": "2026-11-07T07:28:36+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 237
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Efeler Ligi non riconosciute: Sultanbeyli Bld, Gebze Genclik",
+    "Quote pallavolo: 10 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "08bc759a86a9f8dd",
+        "9092c255127236f4",
+        "98ca52f6402a8874"
+      ],
+      "idPartita": "pallavolo-2026-11-07-istanbul-genclik-spor-galatasaray-sk",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Istanbul Genclik Spor - Galatasaray SK",
+      "casa": "Istanbul Genclik Spor",
+      "trasferta": "Galatasaray SK",
+      "inizio": "2026-11-07T12:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Istanbul Genclik Spor": 1519,
+        "Galatasaray SK": 1634
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Istanbul Genclik Spor 1519 – Galatasaray SK 1634, vantaggio campo compreso: vittoria della casa 42% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Istanbul Genclik Spor",
+          "probModello": null,
+          "probModelloStudio": 0.4210343577530935,
+          "probPinnacle": 0.26072061893273196,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 131 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Istanbul Genclik Spor vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.6
+            ],
+            [
+              "zonagioco",
+              3.6
+            ],
+            [
+              "betwin360",
+              3.55
+            ],
+            [
+              "casinosanremo",
+              3.55
+            ],
+            [
+              "eplay24",
+              3.55
+            ],
+            [
+              "gioca7",
+              3.55
+            ],
+            [
+              "netbet",
+              3.55
+            ],
+            [
+              "netwin",
+              3.55
+            ],
+            [
+              "sportium",
+              3.55
+            ],
+            [
+              "staryes",
+              3.55
+            ],
+            [
+              "leovegas",
+              3.4
+            ],
+            [
+              "888sport",
+              3.35
+            ],
+            [
+              "888sport_it",
+              3.35
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Galatasaray SK",
+          "probModello": null,
+          "probModelloStudio": 0.5789656422469065,
+          "probPinnacle": 0.7392793810672674,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 131 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Galatasaray SK vince la partita.",
+          "bookmaker": [
+            [
+              "betwin360",
+              1.25
+            ],
+            [
+              "casinosanremo",
+              1.25
+            ],
+            [
+              "eplay24",
+              1.25
+            ],
+            [
+              "fastbet",
+              1.25
+            ],
+            [
+              "gioca7",
+              1.25
+            ],
+            [
+              "leovegas",
+              1.25
+            ],
+            [
+              "netbet",
+              1.25
+            ],
+            [
+              "netwin",
+              1.25
+            ],
+            [
+              "sportium",
+              1.25
+            ],
+            [
+              "staryes",
+              1.25
+            ],
+            [
+              "zonagioco",
+              1.25
+            ],
+            [
+              "888sport",
+              1.24
+            ],
+            [
+              "888sport_it",
+              1.24
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "020bc9b0f63b5f26",
+        "f05c4d658f3df922"
+      ],
+      "idPartita": "pallavolo-2026-11-07-tfl-altekma-onikisubat-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "TFL Altekma - Onikisubat Bld",
+      "casa": "TFL Altekma",
+      "trasferta": "Onikisubat Bld",
+      "inizio": "2026-11-07T14:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "TFL Altekma",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.7945936068356985,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TFL Altekma vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.167
+            ],
+            [
+              "zonagioco",
+              1.167
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Onikisubat Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.20540639316430023,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Onikisubat Bld vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              4.5
+            ],
+            [
+              "zonagioco",
+              4.5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "554f18a962409e1f"
+      ],
+      "idPartita": "pallavolo-2026-11-07-gaziantep-genclik-spor-alanya-belediye",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Gaziantep Genclik Spor - Alanya Belediye",
+      "casa": "Gaziantep Genclik Spor",
+      "trasferta": "Alanya Belediye",
+      "inizio": "2026-11-07T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Gaziantep Genclik Spor": 1337,
+        "Alanya Belediye": 1392
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Gaziantep Genclik Spor 1337 – Alanya Belediye 1392, vantaggio campo compreso: vittoria della casa 51% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Gaziantep Genclik Spor",
+          "probModello": null,
+          "probModelloStudio": 0.5073618263452722,
+          "probPinnacle": 0.28366531127583555,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 113 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Gaziantep Genclik Spor vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.333
+            ],
+            [
+              "zonagioco",
+              3.333
+            ],
+            [
+              "betsson",
+              3.2
+            ],
+            [
+              "eplay24",
+              3.2
+            ],
+            [
+              "marathonbet",
+              3.2
+            ],
+            [
+              "starcasino",
+              3.2
+            ],
+            [
+              "williamhill",
+              3.2
+            ],
+            [
+              "betflag",
+              3.15
+            ],
+            [
+              "betwin360",
+              3.15
+            ],
+            [
+              "casinosanremo",
+              3.15
+            ],
+            [
+              "gioca7",
+              3.15
+            ],
+            [
+              "netbet",
+              3.15
+            ],
+            [
+              "netwin",
+              3.15
+            ],
+            [
+              "sportium",
+              3.15
+            ],
+            [
+              "stanleybet",
+              3.15
+            ],
+            [
+              "staryes",
+              3.15
+            ],
+            [
+              "admiralbet",
+              3.1
+            ],
+            [
+              "codere",
+              3.1
+            ],
+            [
+              "daznbet",
+              3.1
+            ],
+            [
+              "eurobet",
+              3.1
+            ],
+            [
+              "goldbet",
+              3.1
+            ],
+            [
+              "lottomatica",
+              3.1
+            ],
+            [
+              "perlaplay",
+              3.1
+            ],
+            [
+              "planetwin365",
+              3.1
+            ],
+            [
+              "quigioco",
+              3.1
+            ],
+            [
+              "sportbet",
+              3.1
+            ],
+            [
+              "starvegas",
+              3.1
+            ],
+            [
+              "sunbet",
+              3.1
+            ],
+            [
+              "totosi",
+              3.1
+            ],
+            [
+              "domusbet",
+              3.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Alanya Belediye",
+          "probModello": null,
+          "probModelloStudio": 0.49263817365472784,
+          "probPinnacle": 0.716334688724164,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 113 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Alanya Belediye vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.32
+            ],
+            [
+              "marathonbet",
+              1.32
+            ],
+            [
+              "starcasino",
+              1.32
+            ],
+            [
+              "williamhill",
+              1.32
+            ],
+            [
+              "betwin360",
+              1.31
+            ],
+            [
+              "casinosanremo",
+              1.31
+            ],
+            [
+              "codere",
+              1.31
+            ],
+            [
+              "daznbet",
+              1.31
+            ],
+            [
+              "eurobet",
+              1.31
+            ],
+            [
+              "gioca7",
+              1.31
+            ],
+            [
+              "goldbet",
+              1.31
+            ],
+            [
+              "lottomatica",
+              1.31
+            ],
+            [
+              "netbet",
+              1.31
+            ],
+            [
+              "netwin",
+              1.31
+            ],
+            [
+              "perlaplay",
+              1.31
+            ],
+            [
+              "planetwin365",
+              1.31
+            ],
+            [
+              "sportbet",
+              1.31
+            ],
+            [
+              "sportium",
+              1.31
+            ],
+            [
+              "stanleybet",
+              1.31
+            ],
+            [
+              "staryes",
+              1.31
+            ],
+            [
+              "sunbet",
+              1.31
+            ],
+            [
+              "totosi",
+              1.31
+            ],
+            [
+              "admiralbet",
+              1.3
+            ],
+            [
+              "betflag",
+              1.3
+            ],
+            [
+              "domusbet",
+              1.3
+            ],
+            [
+              "eplay24",
+              1.3
+            ],
+            [
+              "starvegas",
+              1.3
+            ],
+            [
+              "quigioco",
+              1.29
+            ],
+            [
+              "fastbet",
+              1.286
+            ],
+            [
+              "zonagioco",
+              1.286
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "b150d16a8f684a9a",
+        "eab3e4f6be06d060"
+      ],
+      "idPartita": "pallavolo-2026-11-07-ziraat-bankasi-ankara-ibb-spor",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Ziraat Bankasi Ankara - Ibb Spor",
+      "casa": "Ziraat Bankasi Ankara",
+      "trasferta": "Ibb Spor",
+      "inizio": "2026-11-07T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Ziraat Bankasi Ankara": 1784,
+        "Ibb Spor": 1350
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Ziraat Bankasi Ankara 1784 – Ibb Spor 1350, vantaggio campo compreso: vittoria della casa 95% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Ziraat Bankasi Ankara",
+          "probModello": null,
+          "probModelloStudio": 0.945016355007153,
+          "probPinnacle": 0.8416195161278077,
+          "quota": 1.09,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ziraat Bankasi Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.1
+            ],
+            [
+              "betwin360",
+              1.1
+            ],
+            [
+              "casinosanremo",
+              1.1
+            ],
+            [
+              "eplay24",
+              1.1
+            ],
+            [
+              "gioca7",
+              1.1
+            ],
+            [
+              "marathonbet",
+              1.1
+            ],
+            [
+              "netbet",
+              1.1
+            ],
+            [
+              "netwin",
+              1.1
+            ],
+            [
+              "sportium",
+              1.1
+            ],
+            [
+              "stanleybet",
+              1.1
+            ],
+            [
+              "starcasino",
+              1.1
+            ],
+            [
+              "staryes",
+              1.1
+            ],
+            [
+              "williamhill",
+              1.1
+            ],
+            [
+              "admiralbet",
+              1.09
+            ],
+            [
+              "betflag",
+              1.09
+            ],
+            [
+              "codere",
+              1.09
+            ],
+            [
+              "daznbet",
+              1.09
+            ],
+            [
+              "domusbet",
+              1.09
+            ],
+            [
+              "eurobet",
+              1.09
+            ],
+            [
+              "goldbet",
+              1.09
+            ],
+            [
+              "lottomatica",
+              1.09
+            ],
+            [
+              "perlaplay",
+              1.09
+            ],
+            [
+              "planetwin365",
+              1.09
+            ],
+            [
+              "sportbet",
+              1.09
+            ],
+            [
+              "starvegas",
+              1.09
+            ],
+            [
+              "sunbet",
+              1.09
+            ],
+            [
+              "totosi",
+              1.09
+            ],
+            [
+              "quigioco",
+              1.08
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Ibb Spor",
+          "probModello": null,
+          "probModelloStudio": 0.054983644992847025,
+          "probPinnacle": 0.15838048387219208,
+          "quota": 5.8,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Ibb Spor vince la partita.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              6.2
+            ],
+            [
+              "williamhill",
+              6.2
+            ],
+            [
+              "betsson",
+              6.15
+            ],
+            [
+              "starcasino",
+              6.15
+            ],
+            [
+              "stanleybet",
+              6
+            ],
+            [
+              "betwin360",
+              5.9
+            ],
+            [
+              "casinosanremo",
+              5.9
+            ],
+            [
+              "eplay24",
+              5.9
+            ],
+            [
+              "gioca7",
+              5.9
+            ],
+            [
+              "netbet",
+              5.9
+            ],
+            [
+              "netwin",
+              5.9
+            ],
+            [
+              "sportium",
+              5.9
+            ],
+            [
+              "staryes",
+              5.9
+            ],
+            [
+              "betflag",
+              5.8
+            ],
+            [
+              "codere",
+              5.8
+            ],
+            [
+              "eurobet",
+              5.8
+            ],
+            [
+              "goldbet",
+              5.8
+            ],
+            [
+              "lottomatica",
+              5.8
+            ],
+            [
+              "perlaplay",
+              5.8
+            ],
+            [
+              "planetwin365",
+              5.8
+            ],
+            [
+              "quigioco",
+              5.8
+            ],
+            [
+              "sportbet",
+              5.8
+            ],
+            [
+              "sunbet",
+              5.8
+            ],
+            [
+              "totosi",
+              5.8
+            ],
+            [
+              "admiralbet",
+              5.7
+            ],
+            [
+              "daznbet",
+              5.7
+            ],
+            [
+              "starvegas",
+              5.7
+            ],
+            [
+              "domusbet",
+              5.6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "09e0b5dcbcceb6f8",
+        "7931fa6e667d939e",
+        "a65af1173aebf68f",
+        "c2af196ad338dda2",
+        "d236a4704d9d0b46",
+        "dd9c71d0ceab0950"
+      ],
+      "idPartita": "pallavolo-2026-11-07-corum-sungurlu-bld-halkbank-ankara",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Corum Sungurlu Bld - Halkbank Ankara",
+      "casa": "Corum Sungurlu Bld",
+      "trasferta": "Halkbank Ankara",
+      "inizio": "2026-11-07T14:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Corum Sungurlu Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.18534322917271068,
+          "quota": 5,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Corum Sungurlu Bld vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              5.2
+            ],
+            [
+              "marathonbet",
+              5.2
+            ],
+            [
+              "starcasino",
+              5.2
+            ],
+            [
+              "williamhill",
+              5.2
+            ],
+            [
+              "betwin360",
+              5
+            ],
+            [
+              "casinosanremo",
+              5
+            ],
+            [
+              "eplay24",
+              5
+            ],
+            [
+              "fastbet",
+              5
+            ],
+            [
+              "gioca7",
+              5
+            ],
+            [
+              "netbet",
+              5
+            ],
+            [
+              "netwin",
+              5
+            ],
+            [
+              "sportium",
+              5
+            ],
+            [
+              "stanleybet",
+              5
+            ],
+            [
+              "staryes",
+              5
+            ],
+            [
+              "zonagioco",
+              5
+            ],
+            [
+              "quigioco",
+              4.95
+            ],
+            [
+              "admiralbet",
+              4.9
+            ],
+            [
+              "betflag",
+              4.9
+            ],
+            [
+              "codere",
+              4.9
+            ],
+            [
+              "daznbet",
+              4.9
+            ],
+            [
+              "eurobet",
+              4.9
+            ],
+            [
+              "goldbet",
+              4.9
+            ],
+            [
+              "lottomatica",
+              4.9
+            ],
+            [
+              "perlaplay",
+              4.9
+            ],
+            [
+              "planetwin365",
+              4.9
+            ],
+            [
+              "sportbet",
+              4.9
+            ],
+            [
+              "starvegas",
+              4.9
+            ],
+            [
+              "sunbet",
+              4.9
+            ],
+            [
+              "totosi",
+              4.9
+            ],
+            [
+              "domusbet",
+              4.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Halkbank Ankara",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8146567708272893,
+          "quota": 1.13,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Halkbank Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.14
+            ],
+            [
+              "marathonbet",
+              1.14
+            ],
+            [
+              "starcasino",
+              1.14
+            ],
+            [
+              "williamhill",
+              1.14
+            ],
+            [
+              "fastbet",
+              1.133
+            ],
+            [
+              "zonagioco",
+              1.133
+            ],
+            [
+              "admiralbet",
+              1.13
+            ],
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "betwin360",
+              1.13
+            ],
+            [
+              "casinosanremo",
+              1.13
+            ],
+            [
+              "codere",
+              1.13
+            ],
+            [
+              "daznbet",
+              1.13
+            ],
+            [
+              "eplay24",
+              1.13
+            ],
+            [
+              "eurobet",
+              1.13
+            ],
+            [
+              "gioca7",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "netbet",
+              1.13
+            ],
+            [
+              "netwin",
+              1.13
+            ],
+            [
+              "perlaplay",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ],
+            [
+              "sportbet",
+              1.13
+            ],
+            [
+              "sportium",
+              1.13
+            ],
+            [
+              "stanleybet",
+              1.13
+            ],
+            [
+              "starvegas",
+              1.13
+            ],
+            [
+              "staryes",
+              1.13
+            ],
+            [
+              "sunbet",
+              1.13
+            ],
+            [
+              "totosi",
+              1.13
+            ],
+            [
+              "domusbet",
+              1.12
+            ],
+            [
+              "quigioco",
+              1.11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "64ba5be338ea3a9d"
+      ],
+      "idPartita": "pallavolo-2026-11-07-cuprum-stilon-gorzow-zaksa-kedzierzyn-kozle",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Cuprum Stilon Gorzow - ZAKSA Kedzierzyn-Kozle",
+      "casa": "Cuprum Stilon Gorzow",
+      "trasferta": "ZAKSA Kedzierzyn-Kozle",
+      "inizio": "2026-11-07T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cuprum Stilon Gorzow": 1379,
+        "ZAKSA Kedzierzyn-Kozle": 1517
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Cuprum Stilon Gorzow 1379 – ZAKSA Kedzierzyn-Kozle 1517, vantaggio campo compreso: vittoria della casa 39% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuprum Stilon Gorzow",
+          "probModello": null,
+          "probModelloStudio": 0.3898450461750121,
+          "probPinnacle": 0.31924882629107987,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Cuprum Stilon Gorzow vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              2.9
+            ],
+            [
+              "goldbet",
+              2.9
+            ],
+            [
+              "lottomatica",
+              2.9
+            ],
+            [
+              "planetwin365",
+              2.9
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "ZAKSA Kedzierzyn-Kozle",
+          "probModello": null,
+          "probModelloStudio": 0.610154953824988,
+          "probPinnacle": 0.6807511737089202,
+          "quota": 1.36,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se ZAKSA Kedzierzyn-Kozle vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.36
+            ],
+            [
+              "goldbet",
+              1.36
+            ],
+            [
+              "lottomatica",
+              1.36
+            ],
+            [
+              "planetwin365",
+              1.36
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-07-chks-chelm-ks-norwid-czestochowa",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Chks Chelm - KS Norwid Czestochowa",
+      "casa": "Chks Chelm",
+      "trasferta": "KS Norwid Czestochowa",
+      "inizio": "2026-11-07T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Chks Chelm": 1357,
+        "KS Norwid Czestochowa": 1369
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Chks Chelm 1357 – KS Norwid Czestochowa 1369, vantaggio campo compreso: vittoria della casa 57% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Chks Chelm",
+          "probModello": null,
+          "probModelloStudio": 0.5678924714033174,
+          "probPinnacle": 0.5363186670137984,
+          "quota": 1.58,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,68 su 136 bookmaker",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "quotaBet365": 1.58,
+          "oraQuotaBet365": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chks Chelm vince la partita.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.72
+            ],
+            [
+              "admiralbet",
+              1.71
+            ],
+            [
+              "888sport",
+              1.7
+            ],
+            [
+              "winamax",
+              1.7
+            ],
+            [
+              "betflag",
+              1.68
+            ],
+            [
+              "bwin",
+              1.68
+            ],
+            [
+              "eurobet",
+              1.68
+            ],
+            [
+              "goldbet",
+              1.68
+            ],
+            [
+              "lottomatica",
+              1.68
+            ],
+            [
+              "netbet",
+              1.68
+            ],
+            [
+              "planetwin365",
+              1.68
+            ],
+            [
+              "stake",
+              1.68
+            ],
+            [
+              "winbet",
+              1.68
+            ],
+            [
+              "betsson",
+              1.65
+            ],
+            [
+              "codere",
+              1.65
+            ],
+            [
+              "pokerstars",
+              1.65
+            ],
+            [
+              "quigioco",
+              1.65
+            ],
+            [
+              "sisal",
+              1.65
+            ],
+            [
+              "snai",
+              1.65
+            ],
+            [
+              "starcasino",
+              1.6
+            ],
+            [
+              "bet365",
+              1.58
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "KS Norwid Czestochowa",
+          "probModello": null,
+          "probModelloStudio": 0.43210752859668256,
+          "probPinnacle": 0.46368133298620146,
+          "quota": 2.06,
+          "fonteQuota": "mediana di 136 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "quotaBet365": 2.2,
+          "oraQuotaBet365": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KS Norwid Czestochowa vince la partita.",
+          "bookmaker": [
+            [
+              "bet365",
+              2.2
+            ],
+            [
+              "starcasino",
+              2.2
+            ],
+            [
+              "admiralbet",
+              2.1
+            ],
+            [
+              "pokerstars",
+              2.1
+            ],
+            [
+              "sisal",
+              2.1
+            ],
+            [
+              "snai",
+              2.1
+            ],
+            [
+              "winamax",
+              2.1
+            ],
+            [
+              "betflag",
+              2.06
+            ],
+            [
+              "eurobet",
+              2.06
+            ],
+            [
+              "goldbet",
+              2.06
+            ],
+            [
+              "lottomatica",
+              2.06
+            ],
+            [
+              "planetwin365",
+              2.06
+            ],
+            [
+              "stake",
+              2.06
+            ],
+            [
+              "888sport",
+              2.05
+            ],
+            [
+              "bwin",
+              2.05
+            ],
+            [
+              "netbet",
+              2.05
+            ],
+            [
+              "winbet",
+              2.05
+            ],
+            [
+              "quigioco",
+              2.02
+            ],
+            [
+              "betsson",
+              2
+            ],
+            [
+              "codere",
+              2
+            ],
+            [
+              "leovegas",
+              1.98
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.3688849731660022,
+          "probPinnacle": 0.3958013312852023,
+          "quota": 2.25,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 2,36 su 108 bookmaker",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "quotaBet365": 2.25,
+          "oraQuotaBet365": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm -1,5 vince se Chks Chelm vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              2.45
+            ],
+            [
+              "bwin",
+              2.4
+            ],
+            [
+              "leovegas",
+              2.4
+            ],
+            [
+              "netbet",
+              2.38
+            ],
+            [
+              "stake",
+              2.38
+            ],
+            [
+              "888sport",
+              2.375
+            ],
+            [
+              "starcasino",
+              2.286
+            ],
+            [
+              "bet365",
+              2.25
+            ],
+            [
+              "winamax",
+              2.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.6311150268339978,
+          "probPinnacle": 0.6041986687147978,
+          "quota": 1.53,
+          "fonteQuota": "mediana di 108 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "quotaBet365": 1.54,
+          "oraQuotaBet365": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Norwid Czestochowa +1,5 vince se KS Norwid Czestochowa vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "starcasino",
+              1.556
+            ],
+            [
+              "bet365",
+              1.54
+            ],
+            [
+              "888sport",
+              1.533
+            ],
+            [
+              "winbet",
+              1.53
+            ],
+            [
+              "bwin",
+              1.51
+            ],
+            [
+              "netbet",
+              1.51
+            ],
+            [
+              "stake",
+              1.51
+            ],
+            [
+              "winamax",
+              1.5
+            ],
+            [
+              "leovegas",
+              1.49
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.7399342880868525,
+          "probPinnacle": 0.6638013371537727,
+          "quota": 1.32,
+          "fonteQuota": "mediana di 56 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm +1,5 vince se Chks Chelm vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.33
+            ],
+            [
+              "bwin",
+              1.32
+            ],
+            [
+              "netbet",
+              1.32
+            ],
+            [
+              "winamax",
+              1.31
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.26006571191314753,
+          "probPinnacle": 0.3361986628462273,
+          "quota": 3,
+          "fonteQuota": "mediana di 56 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Norwid Czestochowa -1,5 vince se KS Norwid Czestochowa vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              3.2
+            ],
+            [
+              "bwin",
+              3.1
+            ],
+            [
+              "netbet",
+              3.1
+            ],
+            [
+              "winamax",
+              3
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.7460388544715855,
+          "probPinnacle": 0.6387176325524043,
+          "quota": 1.34,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "bwin",
+              1.34
+            ],
+            [
+              "stake",
+              1.34
+            ],
+            [
+              "winamax",
+              1.33
+            ],
+            [
+              "betsson",
+              1.32
+            ],
+            [
+              "netbet",
+              1.32
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.25396114552841453,
+          "probPinnacle": 0.36128236744759556,
+          "quota": 2.93,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-07T07:28:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              3.1
+            ],
+            [
+              "winbet",
+              3.1
+            ],
+            [
+              "bwin",
+              3
+            ],
+            [
+              "betsson",
+              2.93
+            ],
+            [
+              "netbet",
+              2.9
+            ],
+            [
+              "winamax",
+              2.85
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
