@@ -4283,6 +4283,66 @@
       "prob": null,
       "alle": "2026-11-07T18:28:59+01:00",
       "minutiPrima": 31
+    },
+    "calcio-2026-11-07-pau-fc-nantes|1X2|1": {
+      "quota": 3.05,
+      "prob": 0.30082729895489024,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-pau-fc-nantes|1X2|X": {
+      "quota": 3.1,
+      "prob": 0.28825541183438735,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-pau-fc-nantes|1X2|2": {
+      "quota": 2.25,
+      "prob": 0.4109172892107224,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-pau-fc-nantes|Under/Over 2.5|Over 2.5": {
+      "quota": 2.1,
+      "prob": null,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-pau-fc-nantes|Under/Over 2.5|Under 2.5": {
+      "quota": 1.64,
+      "prob": null,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-saint-etienne-stade-lavallois|1X2|1": {
+      "quota": 1.31,
+      "prob": 0.7221286886466629,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-saint-etienne-stade-lavallois|1X2|X": {
+      "quota": 4.95,
+      "prob": 0.17336302453069707,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-saint-etienne-stade-lavallois|1X2|2": {
+      "quota": 8,
+      "prob": 0.10450828682264,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-saint-etienne-stade-lavallois|Under/Over 2.5|Over 2.5": {
+      "quota": 1.54,
+      "prob": null,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
+    },
+    "calcio-2026-11-07-saint-etienne-stade-lavallois|Under/Over 2.5|Under 2.5": {
+      "quota": 2.21,
+      "prob": null,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "minutiPrima": 26
     }
   },
   "copertura": {
@@ -4336,10 +4396,12 @@
       ]
     },
     "calcio|Ligue 2": {
-      "alle": "2026-11-07T13:16:30+01:00",
-      "partite": 1,
+      "alle": "2026-11-07T19:33:51+01:00",
+      "partite": 3,
       "idPartite": [
-        "calcio-2026-11-07-clermont-rodez-af"
+        "calcio-2026-11-07-clermont-rodez-af",
+        "calcio-2026-11-07-pau-fc-nantes",
+        "calcio-2026-11-07-saint-etienne-stade-lavallois"
       ]
     },
     "calcio|2. Bundesliga": {
