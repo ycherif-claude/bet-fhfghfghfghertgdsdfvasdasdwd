@@ -6445,9 +6445,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 3,00 sotto la minima 3,62",
+      "oraUltimoControllo": "2026-11-07T16:49:37+01:00",
       "esito": null,
       "prova": true
     },
@@ -7006,9 +7006,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 2,80 sotto la minima 2,91",
+      "oraUltimoControllo": "2026-11-07T16:49:37+01:00",
       "esito": null,
       "prova": true
     },
@@ -16550,7 +16550,13 @@
               "888sport_it",
               1.35
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6751824817518249,
+            "alle": "2026-11-07T16:49:37+01:00",
+            "minutiPrima": 10
+          }
         },
         {
           "sport": "calcio",
@@ -16599,7 +16605,13 @@
               "888sport_it",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6569362333130184,
+            "alle": "2026-11-07T16:49:37+01:00",
+            "minutiPrima": 25
+          }
         },
         {
           "sport": "calcio",
@@ -23077,7 +23089,13 @@
               "888sport_it",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6569362333130184,
+            "alle": "2026-11-07T16:49:37+01:00",
+            "minutiPrima": 25
+          }
         },
         {
           "sport": "calcio",
@@ -44837,7 +44855,13 @@
                 "888sport_it",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.640356897735072,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 1.93,
@@ -45028,7 +45052,13 @@
                 "888sport_it",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6569362333130184,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 25
+            }
           },
           {
             "sport": "calcio",
@@ -53750,7 +53780,13 @@
                 "888sport_it",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.640356897735072,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 10
+            }
           },
           {
             "sport": "calcio",
@@ -54175,7 +54211,13 @@
                 "888sport_it",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6569362333130184,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.9,
@@ -59571,7 +59613,13 @@
                 "888sport_it",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6569362333130184,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 25
+            }
           },
           {
             "sport": "calcio",
@@ -60423,7 +60471,13 @@
                 "888sport_it",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.640356897735072,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 1.91,
@@ -62676,7 +62730,13 @@
                 "888sport_it",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6569362333130184,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.9,
@@ -63378,7 +63438,13 @@
                 "888sport_it",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.640356897735072,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 10
+            }
           },
           {
             "sport": "calcio",
@@ -70076,7 +70142,13 @@
                 "888sport_it",
                 1.44
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.4,
+              "prob": 0.640356897735072,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 10
+            }
           },
           {
             "sport": "calcio",
@@ -70501,7 +70573,13 @@
                 "888sport_it",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6569362333130184,
+              "alle": "2026-11-07T16:49:37+01:00",
+              "minutiPrima": 25
+            }
           }
         ],
         "quota": 1.9,
