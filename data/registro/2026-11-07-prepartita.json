@@ -4049,6 +4049,36 @@
       "prob": 0.3565815324165029,
       "alle": "2026-11-07T16:49:37+01:00",
       "minutiPrima": 70
+    },
+    "calcio-2026-11-07-parma-bologna|1X2|1": {
+      "quota": 5.07,
+      "prob": 0.17493178907511556,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "minutiPrima": 38
+    },
+    "calcio-2026-11-07-parma-bologna|1X2|X": {
+      "quota": 3.55,
+      "prob": 0.2724427863466785,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "minutiPrima": 38
+    },
+    "calcio-2026-11-07-parma-bologna|1X2|2": {
+      "quota": 1.73,
+      "prob": 0.552625424578206,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "minutiPrima": 38
+    },
+    "calcio-2026-11-07-parma-bologna|Under/Over 2.5|Over 2.5": {
+      "quota": 2.11,
+      "prob": null,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "minutiPrima": 38
+    },
+    "calcio-2026-11-07-parma-bologna|Under/Over 2.5|Under 2.5": {
+      "quota": 1.7,
+      "prob": null,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "minutiPrima": 38
     }
   },
   "copertura": {
@@ -4153,11 +4183,12 @@
       ]
     },
     "calcio|Serie A": {
-      "alle": "2026-11-07T14:53:02+01:00",
-      "partite": 2,
+      "alle": "2026-11-07T17:22:27+01:00",
+      "partite": 3,
       "idPartite": [
         "calcio-2026-11-07-cagliari-frosinone",
-        "calcio-2026-11-07-torino-lecce"
+        "calcio-2026-11-07-torino-lecce",
+        "calcio-2026-11-07-parma-bologna"
       ]
     },
     "calcio|Serie B": {

@@ -393,6 +393,21 @@
       "dettagli": [],
       "alle": "2026-11-07T16:49:37+01:00",
       "regola": true
+    },
+    "calcio-2026-11-07-parma-bologna-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,70 sotto la minima 1,85",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,70 sotto la minima 1,85"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-07T17:22:27+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -556,6 +571,24 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|1X",
       "alle": "2026-11-07T16:49:37+01:00"
+    },
+    "calcio-2026-11-07-vfb-stuttgart-werder-bremen|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-07T17:22:27+01:00"
+    },
+    "calcio-2026-11-07-cordoba-ad-ceuta-fc|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-07T17:22:27+01:00"
+    },
+    "calcio-2026-11-07-aris-panetolikos|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-07T17:22:27+01:00"
     }
   }
 }
