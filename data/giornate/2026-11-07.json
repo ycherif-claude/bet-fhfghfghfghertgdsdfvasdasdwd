@@ -7249,9 +7249,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-07T18:59:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -8175,9 +8175,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-07T18:59:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -32885,9 +32885,9 @@
             ],
             "ricontrollo": {
               "esito": "senza-quote",
-              "tentativi": 1,
-              "alle": "2026-11-07T17:22:27+01:00",
-              "minutiPrima": 128,
+              "tentativi": 2,
+              "alle": "2026-11-07T18:59:57+01:00",
+              "minutiPrima": 30,
               "giocaTra": {
                 "min": 1.23,
                 "max": 1.41
