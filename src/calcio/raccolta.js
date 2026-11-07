@@ -17,6 +17,7 @@ import { espn, stessaSquadra } from '../controlli/espn.js';
 import { PARAMETRI as ELO, SOLO_COPPE, lambdaCoppa } from '../coppe/elo.js';
 import { existsSync, readFileSync } from 'node:fs';
 import { aggiornaEsitiGiro } from './esiti.js';
+import { filtriVideo } from './filtri-video.js';
 import { abbinaEventiOdss, candidatiOdss, completaQuoteOdss, leggiQuoteOdss, mercatoOdss } from './odss.js';
 
 const TOTALE_MESE = 500;
@@ -267,6 +268,7 @@ function costruisciPartita({ c, evento, odssEv = null, base, stato, coppa = null
   let lam = null;
   let mercati = [];
   let ragionamentoBase = [];
+  let video = null;
 
   if (coppa) {
     // Coppa europea: gol attesi dall'Elo europeo (un punteggio per tutti i club).
@@ -309,6 +311,8 @@ function costruisciPartita({ c, evento, odssEv = null, base, stato, coppa = null
       return null;
     }
     ragionamentoBase = [`Gol attesi: ${casa} ${virgola(lam.casa)} – ${trasferta} ${virgola(lam.trasferta)} (gol e xG, ultime 2 stagioni)`];
+    // Strategia del video (banco di prova) [utente, 07/11/2026].
+    video = filtriVideo(stato.righe, csvCasa, csvTrasferta, data);
     for (const g of mercatiGol(lam.casa, lam.trasferta, stato.forze.quotaPT)) {
       mercati.push(voce(g.mercato, g.selezione, g.prob, stato.frequenze.get(`${g.mercato}|${g.selezione}`) ?? null));
     }
@@ -329,6 +333,7 @@ function costruisciPartita({ c, evento, odssEv = null, base, stato, coppa = null
     lambda: lam,
     ragionamentoBase,
     mercati,
+    ...(video ? { filtriVideo: video } : {}),
     // Campionato senza quote (né The Odds API né odss-api): solo pronostici sì/no e registro, niente giocate.
     ...(c.chiave || mercati.some((m) => m.quota !== null) ? {} : { soloPronostici: true }),
   };

@@ -32,7 +32,10 @@ export const STRATEGIE = [
   { id: 'favoritiBassi', nome: 'Favoriti a quota 1,10-1,25, ogni sport e mercato', scegli: (r) => unaPerPartita(valide(r).filter((x) => tra(x, 1.1, 1.25)), (x) => x.probMercato) },
   { id: 'prezzo', nome: 'Quota media dei bookmaker vicina al prezzo giusto di Pinnacle (entro il 3%)', scegli: (r) => unaPerPartita(valide(r).filter((x) => x.riferimento === 'Pinnacle' && x.quota * x.probMercato >= 0.97), (x) => x.quota * x.probMercato) },
   { id: 'modello', nome: 'Il nostro modello dà almeno 5 punti più del mercato', scegli: (r) => unaPerPartita(valide(r).filter((x) => num(x.probModello) && x.probModello - x.probMercato >= 0.05), (x) => x.probModello - x.probMercato) },
-  { id: 'tutto', nome: 'Tutto quello che il sistema segue (per confronto)', scegli: (r) => valide(r) },
+  // Video "The Soccer Bet That Wins 87% of the Time" [utente, 07/11/2026]: Over 1.5 che passa i tre filtri
+  // (src/calcio/filtri-video.js) a quota sopra 1,15. Dal 08/11/2026: prima le righe non hanno i filtri.
+  { id: 'video', nome: 'Video "87%": Over 1.5 con media gol, scontri diretti e forma, quota sopra 1,15', scegli: (r) => valide(r).filter((x) => x.video === true && x.quota > 1.15) },
+  { id: 'tutto',nome: 'Tutto quello che il sistema segue (per confronto)', scegli: (r) => valide(r) },
 ];
 
 // Valore alla chiusura delle giocate che hanno la probabilità di prima della partita.

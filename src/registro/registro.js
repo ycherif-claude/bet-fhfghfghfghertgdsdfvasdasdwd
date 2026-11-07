@@ -58,6 +58,8 @@ export function righeDaRaccolta(raccolta) {
         probModello: num(m.probModello), probMercato: num(m.probPinnacle), riferimento: m.etichettaMercato ?? 'Pinnacle',
         quota: num(m.quota), frequenzaCampionato: num(m.frequenzaCampionato),
         quotaPrePartita: null, probPrePartita: null, minutiPrima: null, esito: null, esitoProvvisorio: false,
+        // Strategia del video (src/calcio/filtri-video.js), solo sull'Over 1.5 [utente, 07/11/2026].
+        ...(m.mercato === 'Under/Over 1.5' && m.selezione === 'Over 1.5' && typeof p.filtriVideo?.passa === 'boolean' ? { video: p.filtriVideo.passa } : {}),
       });
     }
   }
