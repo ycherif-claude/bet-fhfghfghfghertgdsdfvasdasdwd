@@ -4430,27 +4430,51 @@
     },
     "nba-2026-11-07-atlanta-hawks-brooklyn-nets|Vincente|Atlanta Hawks": {
       "quota": 1.36,
-      "prob": 0.704589058849056,
-      "alle": "2026-11-08T00:18:02+01:00",
-      "minutiPrima": 72
+      "prob": 0.6997062786600426,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 40
     },
     "nba-2026-11-07-atlanta-hawks-brooklyn-nets|Vincente|Brooklyn Nets": {
-      "quota": 3.25,
-      "prob": 0.295410941150944,
-      "alle": "2026-11-08T00:18:02+01:00",
-      "minutiPrima": 72
+      "quota": 3.17,
+      "prob": 0.30029372133995724,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 40
     },
     "nba-2026-11-07-atlanta-hawks-brooklyn-nets|Handicap -6.5|casa": {
-      "quota": 1.87,
-      "prob": 0.512294779434883,
-      "alle": "2026-11-08T00:18:02+01:00",
-      "minutiPrima": 72
+      "quota": 1.91,
+      "prob": 0.5020942408376963,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 40
     },
     "nba-2026-11-07-atlanta-hawks-brooklyn-nets|Handicap -6.5|trasferta": {
-      "quota": 1.95,
-      "prob": 0.487705220565117,
-      "alle": "2026-11-08T00:18:02+01:00",
-      "minutiPrima": 72
+      "quota": 1.91,
+      "prob": 0.4979057591623037,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 40
+    },
+    "nba-2026-11-07-cleveland-cavaliers-new-york-knicks|Vincente|Cleveland Cavaliers": {
+      "quota": 2.64,
+      "prob": 0.3652272842554159,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-11-07-cleveland-cavaliers-new-york-knicks|Vincente|New York Knicks": {
+      "quota": 1.51,
+      "prob": 0.6347727157445842,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-11-07-oklahoma-city-thunder-washington-wizards|Vincente|Oklahoma City Thunder": {
+      "quota": 1.15,
+      "prob": 0.8276520498251422,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-11-07-oklahoma-city-thunder-washington-wizards|Vincente|Washington Wizards": {
+      "quota": 5.5,
+      "prob": 0.1723479501748577,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "minutiPrima": 70
     }
   },
   "copertura": {
@@ -4676,10 +4700,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-08T00:18:02+01:00",
-      "partite": 1,
+      "alle": "2026-11-08T00:49:46+01:00",
+      "partite": 3,
       "idPartite": [
-        "nba-2026-11-07-atlanta-hawks-brooklyn-nets"
+        "nba-2026-11-07-atlanta-hawks-brooklyn-nets",
+        "nba-2026-11-07-cleveland-cavaliers-new-york-knicks",
+        "nba-2026-11-07-oklahoma-city-thunder-washington-wizards"
       ]
     }
   }
