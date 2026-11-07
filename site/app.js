@@ -649,6 +649,10 @@ function avvia(dati) {
   if (sezLista && Array.isArray(listaGiorno)) {
     sezLista.replaceChildren(
       el('h2', {}, 'Giocate di oggi'),
+      // Banco di prova [utente, 07/11/2026]: finché nessuna strategia batte il mercato, la lista è solo in prova.
+      el('p', { class: 'avviso' }, dati.bancoProva?.pronte?.length
+        ? 'Il banco di prova ha una strategia pronta: guarda lo storico prima di giocare.'
+        : '🧪 In prova: nessuna strategia batte ancora il mercato, non giocare soldi veri. I risultati sono nel banco di prova dello storico.'),
       el('p', { class: 'meta' }, "1 e Over 1.5 di calcio, singole, quota 1,25-1,70, modello e mercato d'accordo. Ogni giocata viene ricontrollata prima dell'inizio e salta solo se modello e mercato non sono più d'accordo: una quota su bet365 un po' diversa va bene lo stesso."),
       ...renderOrariRicontrollo(listaGiorno),
       ...(listaGiorno.length ? listaGiorno.map((x, i) => schedaSicura(x?.id, () => renderGiocataLista(x, i + 1, ultime.get(x?.id) ?? null))) : [el('p', { class: 'vuoto' }, 'Oggi nessuna giocata adatta.')]),

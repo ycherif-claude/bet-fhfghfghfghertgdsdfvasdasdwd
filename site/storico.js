@@ -181,6 +181,34 @@ export function renderRicontrollo(s) {
   ];
 }
 
+// Banco di prova delle strategie (dati.bancoProva, src/registro/banco-prova.js) [utente, 07/11/2026].
+const STATO_BANCO = { pronta: '✅ Pronta', 'in prova': '🧪 In prova', 'in perdita': '❌ In perdita' };
+const conSegnoPercento = (x) => (Math.round(x * 100) === 0 ? '0%' : `${x > 0 ? '+' : ''}${percento(x)}`);
+export function renderBancoProva(b) {
+  if (!Array.isArray(b?.strategie)) return [];
+  // Schede invece di una tabella: sul telefono quattro colonne non ci stanno.
+  const righe = b.strategie.map((s) => el('article', { class: 'riga-storico' },
+    el('div', {},
+      el('p', {}, el('strong', {}, STATO_BANCO[s.stato] ?? s.stato)),
+      el('p', { class: 'meta' }, s.nome),
+      el('p', { class: 'meta' }, s.chiuse ? `Vinte ${s.prese} su ${s.chiuse} (${percento(s.percentuale)}, attese ${percento(s.attesa)})` : 'Ancora nessuna giocata finita'),
+    ),
+    el('div', {},
+      el('p', { class: classeProfitto(s.chiusura.valore ?? 0) }, s.chiusura.giocate ? `Chiusura ${conSegnoPercento(s.chiusura.valore)}` : 'Chiusura –'),
+      el('p', { class: 'meta' }, `${s.chiusura.giocate} di ${b.minimo} misurate`),
+      el('p', { class: classeProfitto(s.resa ?? 0) }, s.chiuse ? `Resa ${conSegnoPercento(s.resa)}` : ''),
+    ),
+  ));
+  return [
+    el('h2', {}, 'Banco di prova'),
+    el('p', { class: b.pronte?.length ? 'meta' : 'avviso' }, b.pronte?.length
+      ? `Strategia pronta: ${b.strategie.filter((s) => b.pronte.includes(s.id)).map((s) => s.nome).join('; ')}.`
+      : 'Nessuna strategia batte ancora il mercato: non giocare soldi veri.'),
+    el('p', { class: 'meta' }, `Dal ${dataBreve(b.da)}, su tutto quello che il sistema segue. Resa: giocando 1 € ogni giocata. Valore alla chiusura: quanto valeva la quota del mattino secondo il mercato di prima della partita; risente poco della fortuna. Una strategia è pronta con almeno ${b.minimo} giocate misurate e un valore di almeno ${conSegnoPercento(b.sogliaPronta)}.`),
+    ...righe,
+  ];
+}
+
 // Coppie a quota 2 nei quattro modi (dati.bilancioCoppie) e modello contro mercato (dati.confrontoModello).
 const MODI_COPPIE = [
   ['lista', 'Lista del giorno (quella che vedi)'],
@@ -288,6 +316,7 @@ function avvia(dati) {
   document.getElementById('bankroll-attuale').textContent = `Saldo${dati.inizioConti ? ` dal ${dataBreve(dati.inizioConti)}` : ''}: ${segno(dati.bankroll.saldo ?? 0)}${euro(dati.bankroll.saldo ?? 0)}`;
   document.getElementById('aggiornamento').textContent = testoAggiornamento(dati.generatoAlle) ?? 'Ora di aggiornamento dei dati sconosciuta';
   document.getElementById('avvisi').replaceChildren(...avvisiDati(dati).map((t) => el('p', { class: 'avviso', role: 'status' }, t)));
+  document.getElementById('banco-prova')?.replaceChildren(...renderBancoProva(dati.bancoProva).filter(Boolean));
   document.getElementById('ricontrollo')?.replaceChildren(...renderRicontrollo(dati.storicoRicontrollo).filter(Boolean));
   document.getElementById('mercati')?.replaceChildren(...renderMercati(dati.storicoMercati));
   document.getElementById('confronto')?.replaceChildren(...[...renderChiusura(dati.chiusura), ...renderBookmaker(dati.bookmakerMigliore), ...renderConfronto(dati.bilancioCoppie, dati.confrontoModello)].filter(Boolean));
