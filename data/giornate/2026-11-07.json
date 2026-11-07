@@ -6525,9 +6525,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 4,00 sotto la minima 4,13",
+      "oraUltimoControllo": "2026-11-07T10:49:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -11743,7 +11743,13 @@
               "quigioco",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6700437485609027,
+            "alle": "2026-11-07T10:49:54+01:00",
+            "minutiPrima": 40
+          }
         },
         {
           "sport": "calcio",
@@ -20223,7 +20229,13 @@
               "quigioco",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6700437485609027,
+            "alle": "2026-11-07T10:49:54+01:00",
+            "minutiPrima": 40
+          }
         },
         {
           "sport": "calcio",
@@ -26513,7 +26525,13 @@
               "quigioco",
               1.28
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6700437485609027,
+            "alle": "2026-11-07T10:49:54+01:00",
+            "minutiPrima": 40
+          }
         },
         {
           "sport": "calcio",
@@ -56221,7 +56239,13 @@
                 "quigioco",
                 1.28
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.36,
+              "prob": 0.6700437485609027,
+              "alle": "2026-11-07T10:49:54+01:00",
+              "minutiPrima": 40
+            }
           },
           {
             "sport": "calcio",

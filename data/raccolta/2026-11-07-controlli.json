@@ -18,10 +18,33 @@
         "quota 1,87 ≥ minima 1,74"
       ],
       "alle": "2026-11-07T08:29:24+01:00"
+    },
+    "calcio-2026-11-07-eyupspor-kocaelispor-1x2-1": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 4,00 sotto la minima 4,13",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,00 sotto la minima 4,13"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-07T10:49:54+01:00",
+      "regola": true
     }
   },
   "claude": {
     "avvii": 0,
     "richieste": []
+  },
+  "pronostici": {
+    "calcio-2026-11-07-korona-kielce-radomiak-radom|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-07T10:49:54+01:00"
+    }
   }
 }
