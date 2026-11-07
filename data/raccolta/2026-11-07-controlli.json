@@ -70,8 +70,8 @@
       "alle": "2026-11-07T12:39:34+01:00"
     },
     "calcio-2026-11-07-clermont-rodez-af-under-over-1-5-under-1-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 4,10 sotto la minima 4,34",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 4,10 sotto la minima 4,34 e nessun fatto concreto che alzi la probabilità rispetto all'analisi del mattino; partita non trovata su ESPN, formazioni non verificate: prudenza (controlli quote odss-api, 12:39)",
       "problemi": [
         {
           "tipo": "quota",
@@ -81,11 +81,12 @@
       "dettagli": [
         "partita non trovata su ESPN: formazioni non controllate"
       ],
-      "alle": "2026-11-07T12:39:34+01:00"
+      "alle": "2026-11-07T12:40:08+01:00",
+      "claude": true
     },
     "calcio-2026-11-07-bristol-city-norwich-city-under-over-2-5-under-2-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,97 sotto la minima 2,23",
+      "esito": "annullata",
+      "motivo": "Claude: Quota scesa a 1,97 sotto la minima 2,23: il value del mattino (circa 1%) è sparito e non c'è un motivo concreto per una probabilità più alta (controlli quote odss-api, 12:39)",
       "problemi": [
         {
           "tipo": "quota",
@@ -95,7 +96,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-11-07T12:39:34+01:00"
+      "alle": "2026-11-07T12:40:08+01:00",
+      "claude": true
     }
   },
   "claude": {
