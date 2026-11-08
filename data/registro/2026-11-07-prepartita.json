@@ -4475,6 +4475,30 @@
       "prob": 0.1723479501748577,
       "alle": "2026-11-08T00:49:46+01:00",
       "minutiPrima": 70
+    },
+    "nba-2026-11-07-golden-state-warriors-orlando-magic|Vincente|Golden State Warriors": {
+      "quota": 1.32,
+      "prob": 0.7201356332306768,
+      "alle": "2026-11-08T02:29:47+01:00",
+      "minutiPrima": 0
+    },
+    "nba-2026-11-07-golden-state-warriors-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 3.5,
+      "prob": 0.2798643667693232,
+      "alle": "2026-11-08T02:29:47+01:00",
+      "minutiPrima": 0
+    },
+    "nba-2026-11-07-phoenix-suns-houston-rockets|Vincente|Phoenix Suns": {
+      "quota": 3.2,
+      "prob": 0.3022648434941874,
+      "alle": "2026-11-08T02:29:47+01:00",
+      "minutiPrima": 30
+    },
+    "nba-2026-11-07-phoenix-suns-houston-rockets|Vincente|Houston Rockets": {
+      "quota": 1.37,
+      "prob": 0.6977351565058126,
+      "alle": "2026-11-08T02:29:47+01:00",
+      "minutiPrima": 30
     }
   },
   "copertura": {
@@ -4700,12 +4724,14 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-08T00:49:46+01:00",
-      "partite": 3,
+      "alle": "2026-11-08T02:29:47+01:00",
+      "partite": 5,
       "idPartite": [
         "nba-2026-11-07-atlanta-hawks-brooklyn-nets",
         "nba-2026-11-07-cleveland-cavaliers-new-york-knicks",
-        "nba-2026-11-07-oklahoma-city-thunder-washington-wizards"
+        "nba-2026-11-07-oklahoma-city-thunder-washington-wizards",
+        "nba-2026-11-07-golden-state-warriors-orlando-magic",
+        "nba-2026-11-07-phoenix-suns-houston-rockets"
       ]
     }
   }
