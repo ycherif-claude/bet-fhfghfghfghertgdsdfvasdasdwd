@@ -7610,9 +7610,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-11-08T17:59:42+01:00",
       "esito": null,
       "prova": true
     },
@@ -7850,9 +7850,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,45 ≥ minima 2,42",
+      "oraUltimoControllo": "2026-11-08T17:59:42+01:00",
       "esito": null,
       "prova": true
     },
@@ -27129,9 +27129,9 @@
             ],
             "ricontrollo": {
               "esito": "senza-quote",
-              "tentativi": 1,
-              "alle": "2026-11-08T17:24:22+01:00",
-              "minutiPrima": 66,
+              "tentativi": 2,
+              "alle": "2026-11-08T17:59:42+01:00",
+              "minutiPrima": 30,
               "giocaTra": {
                 "min": 1.14,
                 "max": 1.29
