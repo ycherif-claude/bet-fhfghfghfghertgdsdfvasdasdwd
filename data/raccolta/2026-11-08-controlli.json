@@ -489,6 +489,31 @@
         "quota 2,45 ≥ minima 2,42"
       ],
       "alle": "2026-11-08T17:59:42+01:00"
+    },
+    "calcio-2026-11-08-vitoria-sc-fc-porto-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,96 sotto la minima 2,01",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,96 sotto la minima 2,01"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-08T18:28:36+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-08-fredrikstad-sk-brann-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-08T18:28:36+01:00"
     }
   },
   "claude": {
@@ -798,6 +823,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-08T17:59:42+01:00"
+    },
+    "calcio-2026-11-08-tsg-hoffenheim-fc-schalke-04|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-08T18:28:36+01:00"
     }
   }
 }
