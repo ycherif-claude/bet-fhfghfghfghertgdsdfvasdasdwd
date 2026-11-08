@@ -65,11 +65,62 @@
       ],
       "alle": "2026-11-08T12:14:42+01:00",
       "regola": true
+    },
+    "calcio-2026-11-08-kups-inter-turku-1x2-1": {
+      "esito": "confermata",
+      "motivo": "quota 3,70 ≥ minima 3,37",
+      "problemi": [],
+      "dettagli": [
+        "quota 3,70 ≥ minima 3,37"
+      ],
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-st-gallen-lugano-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "quota 2,60 ≥ minima 2,46",
+      "problemi": [],
+      "dettagli": [
+        "quota 2,60 ≥ minima 2,46"
+      ],
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-1-fc-heidenheim-hannover-96-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni non uscite: valutata sui dati del mattino; quota 2,88 ≥ minima 2,70",
+      "problemi": [],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino",
+        "quota 2,88 ≥ minima 2,70"
+      ],
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-hjk-ac-oulu-doppia-chance-x2": {
+      "esito": "confermata",
+      "motivo": "quota 3,50 ≥ minima 3,50",
+      "problemi": [],
+      "dettagli": [
+        "quota 3,50 ≥ minima 3,50"
+      ],
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-gnistan-vps-under-over-2-5-under-2-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,40 sotto la minima 2,46",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,40 sotto la minima 2,46"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-08T12:50:34+01:00"
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "calcio-2026-11-08-gnistan-vps-under-over-2-5-under-2-5"
+    ]
   },
   "pronostici": {
     "calcio-2026-11-08-beijing-guoan-chongqing-tonglianglong|Doppia chance|1X": {
@@ -131,6 +182,42 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Doppia chance|1X",
       "alle": "2026-11-08T12:14:42+01:00"
+    },
+    "calcio-2026-11-08-corum-fk-fenerbahce|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-agf-ac-horsens|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-st-gallen-lugano|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-halmstads-bk-djurgarden|Doppia chance|X2": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|X2",
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-gnistan-vps|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-hjk-ac-oulu|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-08T12:50:34+01:00"
     }
   }
 }
