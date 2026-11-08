@@ -8293,9 +8293,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,57 sotto la minima 1,71",
+      "oraUltimoControllo": "2026-11-08T17:24:22+01:00",
       "esito": null,
       "prova": true
     },
@@ -27126,7 +27126,17 @@
                 "quigioco",
                 1.25
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "senza-quote",
+              "tentativi": 1,
+              "alle": "2026-11-08T17:24:22+01:00",
+              "minutiPrima": 66,
+              "giocaTra": {
+                "min": 1.14,
+                "max": 1.29
+              }
+            }
           }
         ],
         "quota": 1.27,
@@ -27172,7 +27182,17 @@
                 "winamax",
                 1.56
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "senza-quote",
+              "tentativi": 1,
+              "alle": "2026-11-08T17:24:22+01:00",
+              "minutiPrima": 126,
+              "giocaTra": {
+                "min": 1.39,
+                "max": 1.62
+              }
+            }
           }
         ],
         "quota": 1.61,
@@ -27242,7 +27262,17 @@
                 "staryes",
                 1.62
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "senza-quote",
+              "tentativi": 1,
+              "alle": "2026-11-08T17:24:22+01:00",
+              "minutiPrima": 156,
+              "giocaTra": {
+                "min": 1.63,
+                "max": 1.96
+              }
+            }
           }
         ],
         "quota": 1.66,
@@ -27280,7 +27310,17 @@
                 "zonagioco",
                 1.52
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "senza-quote",
+              "tentativi": 1,
+              "alle": "2026-11-08T17:24:22+01:00",
+              "minutiPrima": 171,
+              "giocaTra": {
+                "min": 1.38,
+                "max": 1.6
+              }
+            }
           }
         ],
         "quota": 1.52,

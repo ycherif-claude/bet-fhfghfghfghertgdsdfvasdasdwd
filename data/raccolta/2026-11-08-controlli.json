@@ -454,6 +454,21 @@
       ],
       "alle": "2026-11-08T16:52:48+01:00",
       "regola": true
+    },
+    "calcio-2026-11-08-inter-milan-como-under-over-3-5-under-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,57 sotto la minima 1,71",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,57 sotto la minima 1,71"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-08T17:24:22+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -733,6 +748,24 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-11-08T16:52:48+01:00"
+    },
+    "calcio-2026-11-08-celta-vigo-levante|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T17:24:22+01:00"
+    },
+    "calcio-2026-11-08-villarreal-getafe|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-08T17:24:22+01:00"
+    },
+    "calcio-2026-11-08-st-gilloise-genk|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T17:24:22+01:00"
     }
   }
 }
