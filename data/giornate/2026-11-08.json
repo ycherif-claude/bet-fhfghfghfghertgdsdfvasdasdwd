@@ -7409,9 +7409,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 2,58 sotto la minima 2,59",
+      "oraUltimoControllo": "2026-11-08T18:58:53+01:00",
       "esito": null,
       "prova": true
     },
@@ -8333,9 +8333,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-08T18:58:53+01:00",
       "esito": null,
       "prova": true
     },
@@ -27185,9 +27185,9 @@
             ],
             "ricontrollo": {
               "esito": "senza-quote",
-              "tentativi": 1,
-              "alle": "2026-11-08T17:24:22+01:00",
-              "minutiPrima": 126,
+              "tentativi": 2,
+              "alle": "2026-11-08T18:58:53+01:00",
+              "minutiPrima": 31,
               "giocaTra": {
                 "min": 1.39,
                 "max": 1.62
