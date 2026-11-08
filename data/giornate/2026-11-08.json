@@ -6928,9 +6928,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-08T16:17:50+01:00",
       "esito": null,
       "prova": true
     },
@@ -7449,9 +7449,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,60 ≥ minima 3,60",
+      "oraUltimoControllo": "2026-11-08T16:17:50+01:00",
       "esito": null,
       "prova": true
     },
@@ -8614,9 +8614,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-11-08T16:17:50+01:00",
       "esito": null,
       "prova": true
     },
@@ -8814,9 +8814,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quote non controllate (meno di 3 bookmaker con la quota)",
+      "oraUltimoControllo": "2026-11-08T16:17:50+01:00",
       "esito": null,
       "prova": true
     },
@@ -8894,9 +8894,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-08T16:17:50+01:00",
       "esito": null,
       "prova": true
     }
@@ -55742,7 +55742,8 @@
     "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
     "odss-api alle 07:22: 8 partite senza righe a tempo intero (full_time), senza quote: Barcellona (donne) - Madrid CFF (donne), USC Landhaus (F) - Simacek St. Pölten (F), Dynama Dynamo Donau FC Women - Rapid Wien (F), FC Barcelona (Women) - Madrid CFF (Women), USC Landhaus (W) - Simacek St. Pölten (W), Dynama Dynamo Donau FC Women - Rapid Wien (W), Xylofagou (W) - Apollon Limassol FC (W), Znk Gorica (Women) - ZNK Hajduk Split (Women)",
     "odss-api alle 07:22: budget insufficiente (tetto di 4 richieste al giorno per calcio raggiunto; calcio oggi 4 su 4, giornata 4 su 19, rimaste 279, riserva 60): doppia chance e under/over solo per le partite già completate",
-    "odss-api alle 07:22: 2 partite senza doppia chance e under/over (budget del calcio finito o errore: solo l'1x2 del mattino)"
+    "odss-api alle 07:22: 2 partite senza doppia chance e under/over (budget del calcio finito o errore: solo l'1x2 del mattino)",
+    "Controlli prima delle partite (odss-api): budget insufficiente (tetto di 10 richieste al giorno per i controlli raggiunto; controlli oggi 10 su 10, giornata 17 su 19, rimaste 266, riserva 60): quote dei controlli dalle fonti di prima"
   ],
   "schedinePronostici": [
     {
