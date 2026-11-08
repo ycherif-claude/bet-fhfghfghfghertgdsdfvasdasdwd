@@ -115,6 +115,61 @@
       "dettagli": [],
       "alle": "2026-11-08T12:51:15+01:00",
       "claude": true
+    },
+    "M-calcio-2026-11-08-dalian-yingbo-tianjin-jinmen-tiger-doppia-chance-x2+calcio-2026-11-08-halmstads-bk-djurgarden-handicap-asiatico-piu-1-trasferta#1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-fc-twente-enschede-ajax-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "partita non trovata su ESPN: formazioni non controllate; quota 2,90 ≥ minima 2,50",
+      "problemi": [],
+      "dettagli": [
+        "partita non trovata su ESPN: formazioni non controllate",
+        "quota 2,90 ≥ minima 2,50"
+      ],
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-elche-cf-real-betis-1x2-1": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,62 ≥ minima 3,37",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,62 ≥ minima 3,37"
+      ],
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-halmstads-bk-djurgarden-handicap-asiatico-piu-1-trasferta": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-andorra-cf-mallorca-1x2-1": {
+      "esito": "revisione",
+      "motivo": "regola automatica (troppo tardi per Claude): partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso): resta in revisione, controlla su bet365 prima di giocarla",
+      "problemi": [
+        {
+          "tipo": "assente",
+          "testo": "partita non trovata nella fonte delle quote (ritiro, rinvio o nome diverso)"
+        }
+      ],
+      "dettagli": [
+        "formazioni non uscite: valutata sui dati del mattino"
+      ],
+      "alle": "2026-11-08T13:28:11+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -219,6 +274,30 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-11-08T12:50:34+01:00"
+    },
+    "calcio-2026-11-08-fc-twente-enschede-ajax|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-tsv-hartberg-sc-rheindorf-altach|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-tromso-bodo-glimt|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-08T13:28:11+01:00"
+    },
+    "calcio-2026-11-08-jagiellonia-gks-katowice|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T13:28:11+01:00"
     }
   }
 }
