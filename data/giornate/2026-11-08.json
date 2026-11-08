@@ -7329,9 +7329,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 5,00 ≥ minima 4,59",
+      "oraUltimoControllo": "2026-11-08T15:42:33+01:00",
       "esito": null,
       "prova": true
     },
@@ -8011,9 +8011,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,85 sotto la minima 4,46",
+      "oraUltimoControllo": "2026-11-08T15:42:33+01:00",
       "esito": null,
       "prova": true
     },
@@ -8413,9 +8413,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,40 sotto la minima 3,67",
+      "oraUltimoControllo": "2026-11-08T15:42:33+01:00",
       "esito": null,
       "prova": true
     },
@@ -9409,7 +9409,13 @@
               "quigioco",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.68289384719405,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 32
+          }
         },
         {
           "sport": "calcio",
@@ -11303,7 +11309,13 @@
               "quigioco",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.68289384719405,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 32
+          }
         },
         {
           "sport": "calcio",
@@ -15490,7 +15502,13 @@
               "planetwin365",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.44,
+            "prob": 0.6414552417424605,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 17
+          }
         },
         {
           "sport": "calcio",
@@ -15623,7 +15641,14 @@
               "planetwin365",
               1.42
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.53,
+            "prob": null,
+            "probMediana": 0.6106870229007634,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 17
+          }
         },
         {
           "sport": "calcio",
@@ -15756,7 +15781,14 @@
               "winbet",
               1.44
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.43,
+            "prob": null,
+            "probMediana": 0.6433915211970075,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 17
+          }
         },
         {
           "sport": "calcio",
@@ -15913,7 +15945,13 @@
               "quigioco",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.38,
+            "prob": 0.68289384719405,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 32
+          }
         },
         {
           "sport": "calcio",
@@ -21477,7 +21515,13 @@
               "planetwin365",
               1.4
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.44,
+            "prob": 0.6414552417424605,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 17
+          }
         },
         {
           "sport": "calcio",
@@ -21610,7 +21654,14 @@
               "planetwin365",
               1.42
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.53,
+            "prob": null,
+            "probMediana": 0.6106870229007634,
+            "alle": "2026-11-08T15:42:33+01:00",
+            "minutiPrima": 17
+          }
         },
         {
           "sport": "calcio",
@@ -26426,7 +26477,22 @@
               "quota": 1.53,
               "prob": 0.6106870229007634,
               "alle": "2026-11-08T14:23:45+01:00",
-              "minutiPrima": 96
+              "minutiPrima": 96,
+              "ultimo": {
+                "esito": "confermata",
+                "motivi": [],
+                "quota": 1.53,
+                "prob": 0.6106870229007634,
+                "alle": "2026-11-08T15:42:33+01:00",
+                "minutiPrima": 17
+              }
+            },
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
             }
           }
         ],
@@ -26603,6 +26669,13 @@
               "prob": 0.5277421195264584,
               "alle": "2026-11-08T14:23:45+01:00",
               "minutiPrima": 96
+            },
+            "chiusura": {
+              "quota": 1.63,
+              "prob": null,
+              "probMediana": 0.5689593086064098,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
             }
           }
         ],
@@ -28941,7 +29014,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.9,
@@ -30173,7 +30252,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.9,
@@ -32536,7 +32621,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.97,
@@ -35405,7 +35496,14 @@
                 "planetwin365",
                 1.42
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.91,
@@ -40286,7 +40384,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.9,
@@ -40507,7 +40611,14 @@
                 "planetwin365",
                 1.42
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           },
           {
             "sport": "calcio",
@@ -44014,7 +44125,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.9,
@@ -44931,7 +45048,14 @@
                 "planetwin365",
                 1.42
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.91,
@@ -48506,7 +48630,14 @@
                 "planetwin365",
                 1.42
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           },
           {
             "sport": "calcio",
@@ -51546,7 +51677,13 @@
                 "planetwin365",
                 1.4
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.44,
+              "prob": 0.6414552417424605,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.92,
@@ -53763,7 +53900,14 @@
                 "planetwin365",
                 1.42
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6106870229007634,
+              "alle": "2026-11-08T15:42:33+01:00",
+              "minutiPrima": 17
+            }
           }
         ],
         "quota": 1.96,

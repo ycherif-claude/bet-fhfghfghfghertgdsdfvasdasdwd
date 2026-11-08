@@ -293,6 +293,46 @@
         "quota 4,20 ≥ minima 4,09"
       ],
       "alle": "2026-11-08T15:07:45+01:00"
+    },
+    "calcio-2026-11-08-iraklis-panathinaikos-1x2-x": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 5,00 ≥ minima 4,59",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 5,00 ≥ minima 4,59"
+      ],
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-real-sociedad-rayo-vallecano-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 3,85 sotto la minima 4,46",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,85 sotto la minima 4,46"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-08T15:42:33+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-08-girona-fc-almeria-1x2-2": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 3,40 sotto la minima 3,67",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,40 sotto la minima 3,67"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-08T15:42:33+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -505,6 +545,42 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over trasferta 0.5|Over 0.5",
       "alle": "2026-11-08T15:07:45+01:00"
+    },
+    "calcio-2026-11-08-az-alkmaar-groningen|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-sc-cambuur-psv-eindhoven|Doppia chance|12": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|12",
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-celtic-kilmarnock|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-hamarkameratene-sarpsborg-fk|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-lillestrom-aalesund|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-08T15:42:33+01:00"
+    },
+    "calcio-2026-11-08-viking-fk-kfum-oslo|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-08T15:42:33+01:00"
     }
   }
 }
