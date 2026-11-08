@@ -7249,9 +7249,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 4,50 sotto la minima 4,56",
+      "oraUltimoControllo": "2026-11-08T12:14:42+01:00",
       "esito": null,
       "prova": true
     },
@@ -13461,7 +13461,13 @@
               "leovegas",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.33,
+            "prob": 0.7218446094321865,
+            "alle": "2026-11-08T12:14:42+01:00",
+            "minutiPrima": 15
+          }
         },
         {
           "sport": "calcio",
@@ -19903,7 +19909,13 @@
               "leovegas",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.33,
+            "prob": 0.7218446094321865,
+            "alle": "2026-11-08T12:14:42+01:00",
+            "minutiPrima": 15
+          }
         },
         {
           "sport": "calcio",
@@ -41156,7 +41168,13 @@
                 "leovegas",
                 1.36
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.33,
+              "prob": 0.7218446094321865,
+              "alle": "2026-11-08T12:14:42+01:00",
+              "minutiPrima": 15
+            }
           },
           {
             "sport": "calcio",
@@ -43776,7 +43794,13 @@
                 "leovegas",
                 1.36
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.33,
+              "prob": 0.7218446094321865,
+              "alle": "2026-11-08T12:14:42+01:00",
+              "minutiPrima": 15
+            }
           },
           {
             "sport": "calcio",
@@ -47480,7 +47504,13 @@
                 "leovegas",
                 1.36
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.33,
+              "prob": 0.7218446094321865,
+              "alle": "2026-11-08T12:14:42+01:00",
+              "minutiPrima": 15
+            }
           },
           {
             "sport": "calcio",

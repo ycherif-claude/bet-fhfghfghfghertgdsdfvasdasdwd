@@ -50,6 +50,21 @@
         "quota 3,00 ≥ minima 3,00"
       ],
       "alle": "2026-11-08T11:31:43+01:00"
+    },
+    "calcio-2026-11-08-napoli-lazio-under-over-1-5-under-1-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 4,50 sotto la minima 4,56",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,50 sotto la minima 4,56"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-08T12:14:42+01:00",
+      "regola": true
     }
   },
   "claude": {
@@ -110,6 +125,12 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over casa 0.5|Over 0.5",
       "alle": "2026-11-08T10:57:12+01:00"
+    },
+    "calcio-2026-11-08-club-brugge-anderlecht|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-08T12:14:42+01:00"
     }
   }
 }
