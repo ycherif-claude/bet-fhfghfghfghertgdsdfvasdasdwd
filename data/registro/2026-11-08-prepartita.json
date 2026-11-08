@@ -3005,6 +3005,30 @@
       "prob": 0.3004860261298722,
       "alle": "2026-11-08T23:13:14+01:00",
       "minutiPrima": 47
+    },
+    "nba-2026-11-08-minnesota-timberwolves-utah-jazz|Vincente|Minnesota Timberwolves": {
+      "quota": 1.14,
+      "prob": 0.8357758719325605,
+      "alle": "2026-11-09T00:19:44+01:00",
+      "minutiPrima": 40
+    },
+    "nba-2026-11-08-minnesota-timberwolves-utah-jazz|Vincente|Utah Jazz": {
+      "quota": 6,
+      "prob": 0.16422412806743944,
+      "alle": "2026-11-09T00:19:44+01:00",
+      "minutiPrima": 40
+    },
+    "nba-2026-11-08-dallas-mavericks-brooklyn-nets|Vincente|Dallas Mavericks": {
+      "quota": 1.33,
+      "prob": 0.7176047203802342,
+      "alle": "2026-11-09T00:19:44+01:00",
+      "minutiPrima": 70
+    },
+    "nba-2026-11-08-dallas-mavericks-brooklyn-nets|Vincente|Brooklyn Nets": {
+      "quota": 3.4,
+      "prob": 0.2823952796197658,
+      "alle": "2026-11-09T00:19:44+01:00",
+      "minutiPrima": 70
     }
   },
   "copertura": {
@@ -3208,10 +3232,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-08T23:13:14+01:00",
-      "partite": 1,
+      "alle": "2026-11-09T00:19:44+01:00",
+      "partite": 3,
       "idPartite": [
-        "nba-2026-11-08-detroit-pistons-los-angeles-lakers"
+        "nba-2026-11-08-detroit-pistons-los-angeles-lakers",
+        "nba-2026-11-08-minnesota-timberwolves-utah-jazz",
+        "nba-2026-11-08-dallas-mavericks-brooklyn-nets"
       ]
     }
   }
