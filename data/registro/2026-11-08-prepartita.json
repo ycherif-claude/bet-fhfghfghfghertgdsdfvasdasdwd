@@ -2891,6 +2891,108 @@
       "prob": null,
       "alle": "2026-11-08T18:58:53+01:00",
       "minutiPrima": 31
+    },
+    "calcio-2026-11-08-rc-lens-marseille|1X2|1": {
+      "quota": 2.2,
+      "prob": 0.43737829736648265,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-rc-lens-marseille|1X2|X": {
+      "quota": 3.65,
+      "prob": 0.25823931387063603,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-rc-lens-marseille|1X2|2": {
+      "quota": 3.07,
+      "prob": 0.3043823887628814,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-rc-lens-marseille|Under/Over 2.5|Over 2.5": {
+      "quota": 1.6,
+      "prob": null,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-rc-lens-marseille|Under/Over 2.5|Under 2.5": {
+      "quota": 2.28,
+      "prob": null,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|1X2|1": {
+      "quota": 3.5,
+      "prob": 0.27010804321728693,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|1X2|X": {
+      "quota": 4.37,
+      "prob": 0.21668667466986793,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|1X2|2": {
+      "quota": 1.85,
+      "prob": 0.5132052821128451,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|Under/Over 2.5|Over 2.5": {
+      "quota": 1.31,
+      "prob": null,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|Under/Over 2.5|Under 2.5": {
+      "quota": 3.35,
+      "prob": null,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|Under/Over 3.5|Over 3.5": {
+      "quota": 1.82,
+      "prob": 0.526854219948849,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-atletico-madrid-barcelona|Under/Over 3.5|Under 3.5": {
+      "quota": 1.97,
+      "prob": 0.4731457800511509,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 40
+    },
+    "calcio-2026-11-08-fiorentina-juventus|1X2|1": {
+      "quota": 3.25,
+      "prob": 0.2876869331393747,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-fiorentina-juventus|1X2|X": {
+      "quota": 3.35,
+      "prob": 0.2826836821282552,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-fiorentina-juventus|1X2|2": {
+      "quota": 2.2,
+      "prob": 0.4296293847323701,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-fiorentina-juventus|Under/Over 2.5|Over 2.5": {
+      "quota": 1.85,
+      "prob": 0.5115089514066496,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
+    },
+    "calcio-2026-11-08-fiorentina-juventus|Under/Over 2.5|Under 2.5": {
+      "quota": 1.94,
+      "prob": 0.48849104859335046,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "minutiPrima": 25
     }
   },
   "copertura": {
@@ -2919,13 +3021,14 @@
       ]
     },
     "calcio|Serie A": {
-      "alle": "2026-11-08T17:24:22+01:00",
-      "partite": 4,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "partite": 5,
       "idPartite": [
         "calcio-2026-11-08-napoli-lazio",
         "calcio-2026-11-08-genoa-ac-milan",
         "calcio-2026-11-08-monza-atalanta-bc",
-        "calcio-2026-11-08-inter-milan-como"
+        "calcio-2026-11-08-inter-milan-como",
+        "calcio-2026-11-08-fiorentina-juventus"
       ]
     },
     "calcio|Veikkausliiga (Finlandia)": {
@@ -2961,13 +3064,14 @@
       ]
     },
     "calcio|LaLiga": {
-      "alle": "2026-11-08T17:59:42+01:00",
-      "partite": 4,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "partite": 5,
       "idPartite": [
         "calcio-2026-11-08-elche-cf-real-betis",
         "calcio-2026-11-08-real-sociedad-rayo-vallecano",
         "calcio-2026-11-08-celta-vigo-levante",
-        "calcio-2026-11-08-villarreal-getafe"
+        "calcio-2026-11-08-villarreal-getafe",
+        "calcio-2026-11-08-atletico-madrid-barcelona"
       ]
     },
     "calcio|Allsvenskan (Svezia)": {
@@ -3071,13 +3175,14 @@
       ]
     },
     "calcio|Ligue 1": {
-      "alle": "2026-11-08T16:52:48+01:00",
-      "partite": 4,
+      "alle": "2026-11-08T20:20:06+01:00",
+      "partite": 5,
       "idPartite": [
         "calcio-2026-11-08-le-mans-fc-as-monaco",
         "calcio-2026-11-08-angers-nice",
         "calcio-2026-11-08-brest-lyon",
-        "calcio-2026-11-08-le-havre-lorient"
+        "calcio-2026-11-08-le-havre-lorient",
+        "calcio-2026-11-08-rc-lens-marseille"
       ]
     },
     "calcio|Primeira Liga": {
