@@ -143,6 +143,90 @@
       "prob": null,
       "alle": "2026-11-09T20:23:38+01:00",
       "minutiPrima": 6
+    },
+    "nba-2026-11-09-detroit-pistons-washington-wizards|Vincente|Detroit Pistons": {
+      "quota": 1.25,
+      "prob": 0.7799145299145299,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-detroit-pistons-washington-wizards|Vincente|Washington Wizards": {
+      "quota": 4,
+      "prob": 0.22008547008547008,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-detroit-pistons-washington-wizards|Handicap -10.5|casa": {
+      "quota": 2.05,
+      "prob": 0.4408822775070531,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-detroit-pistons-washington-wizards|Handicap -10.5|trasferta": {
+      "quota": 1.72,
+      "prob": 0.559117722492947,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Vincente|Charlotte Hornets": {
+      "quota": 3.6,
+      "prob": 0.24414210128495842,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Vincente|Cleveland Cavaliers": {
+      "quota": 1.28,
+      "prob": 0.7558578987150415,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Handicap +8.5|casa": {
+      "quota": 1.9,
+      "prob": 0.49539170506912444,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Handicap +8.5|trasferta": {
+      "quota": 1.85,
+      "prob": 0.5046082949308756,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Totale punti 215.5|Over 215.5": {
+      "quota": 1.93,
+      "prob": 0.4909607438016529,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers|Totale punti 215.5|Under 215.5": {
+      "quota": 1.84,
+      "prob": 0.5090392561983471,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-atlanta-hawks-los-angeles-lakers|Vincente|Atlanta Hawks": {
+      "quota": 1.68,
+      "prob": 0.5604645291593032,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-atlanta-hawks-los-angeles-lakers|Vincente|Los Angeles Lakers": {
+      "quota": 2.16,
+      "prob": 0.4395354708406968,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-atlanta-hawks-los-angeles-lakers|Totale punti 235.5|Over 235.5": {
+      "quota": 1.98,
+      "prob": 0.4630872483221477,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-09-atlanta-hawks-los-angeles-lakers|Totale punti 235.5|Under 235.5": {
+      "quota": 1.75,
+      "prob": 0.5369127516778525,
+      "alle": "2026-11-10T00:17:52+01:00",
+      "minutiPrima": 42
     }
   },
   "copertura": {
@@ -158,6 +242,15 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-11-09-sabadell-fc-real-sociedad-b"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-10T00:17:52+01:00",
+      "partite": 3,
+      "idPartite": [
+        "nba-2026-11-09-detroit-pistons-washington-wizards",
+        "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers",
+        "nba-2026-11-09-atlanta-hawks-los-angeles-lakers"
       ]
     }
   }
