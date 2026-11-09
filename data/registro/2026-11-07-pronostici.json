@@ -370,7 +370,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -387,7 +387,7 @@
       "n": 952,
       "limite": 0.8324,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -404,7 +404,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -421,7 +421,7 @@
       "n": 85,
       "limite": 0.9183,
       "quotaMinima": 1.04,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false,
       "quota": 1.03,
       "bookmaker": "sportium"
@@ -440,7 +440,7 @@
       "n": 134,
       "limite": 0.9257,
       "quotaMinima": 1.04,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -457,7 +457,7 @@
       "n": 135,
       "limite": 0.8335,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.19,
       "bookmaker": "daznbet"
@@ -476,7 +476,7 @@
       "n": 288,
       "limite": 0.8318,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false,
       "quota": 1.08,
       "bookmaker": "sportium"
@@ -495,7 +495,7 @@
       "n": 446,
       "limite": 0.8018,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false,
       "quota": 1.11,
       "bookmaker": "daznbet"
@@ -514,7 +514,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -531,7 +531,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -548,7 +548,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.16,
       "bookmaker": "daznbet"
@@ -567,7 +567,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "persa",
       "migliore": true
     },
     {
@@ -584,7 +584,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -1704,7 +1704,7 @@
           "prob": 0.8963,
           "limite": 0.8335,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-07-vfb-stuttgart-werder-bremen",
@@ -1729,8 +1729,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.51
     },
     {
       "id": "sp-2026-11-07-405vo",
@@ -1811,7 +1811,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -1823,5 +1823,5 @@
       "quotaFinale": null
     }
   ],
-  "aggiornataAlle": "2026-11-08T12:14:44+01:00"
+  "aggiornataAlle": "2026-11-09T12:29:27+01:00"
 }
