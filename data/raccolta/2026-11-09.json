@@ -1,0 +1,2264 @@
+{
+  "data": "2026-11-09",
+  "generataAlle": "2026-11-09T07:35:08+01:00",
+  "crediti": {
+    "usati": 0,
+    "rimasti": 366
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Esiti alle 07:35: Multipla M-calcio-2026-11-08-qingdao-hainiu-shenzhen-xinpengcheng-doppia-chance-1x+calcio-2026-11-08-cf-estrela-benfica-handicap-asiatico-piu-1-trasferta con gamba rimborsata: bet365 paga una quota ridotta, controlla l'importo",
+    "Esiti alle 07:35: Giocata calcio-2026-10-23-gateshead-tamworth-1x2-1 senza esito da 16 giorni",
+    "Esiti alle 07:35: Giocata calcio-2026-11-01-tenerife-andorra-cf-1x2-2 senza esito da 7 giorni"
+  ],
+  "partite": [
+    {
+      "idPartita": "calcio-2026-11-09-sabadell-fc-real-sociedad-b",
+      "competizione": "Segunda División",
+      "partita": "Sabadell FC - Real Sociedad B",
+      "casa": "Sabadell FC",
+      "trasferta": "Real Sociedad B",
+      "inizio": "2026-11-09T20:30:00+01:00",
+      "modello": "dixon-coles",
+      "lambda": {
+        "casa": 1.5027407575053835,
+        "trasferta": 0.8912635200044651
+      },
+      "ragionamentoBase": [
+        "Gol attesi: Sabadell FC 1,5 – Real Sociedad B 0,9 (gol e xG, ultime 2 stagioni)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": 0.5057169254983147,
+          "probPinnacle": 0.5333,
+          "quota": 1.75,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.4608013998224226,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": 0.28061017207475275,
+          "probPinnacle": 0.2593,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.23681077406801004,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": 0.21367290242693252,
+          "probPinnacle": 0.2048,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 127 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.3023878261095676,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "1X",
+          "probModello": 0.7863270975730676,
+          "probPinnacle": 0.7756,
+          "quota": 1.18,
+          "fonteQuota": "mediana di 124 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.6976121738904327,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "12",
+          "probModello": 0.7193898279252474,
+          "probPinnacle": 0.7334,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 124 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.7631892259319906,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "X2",
+          "probModello": 0.494283074501685,
+          "probPinnacle": 0.491,
+          "quota": 1.86,
+          "fonteQuota": "mediana di 124 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5391986001775788,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.7000297128226568,
+          "probPinnacle": 0.7159,
+          "quota": 1.29,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.7365701535986443,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.2999702871773433,
+          "probPinnacle": 0.2841,
+          "quota": 3.25,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.26342984640135614,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.42872366241848525,
+          "probPinnacle": 0.4554,
+          "quota": 2.05,
+          "fonteQuota": "mediana di 120 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5044960110211778,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.5712763375815144,
+          "probPinnacle": 0.5446,
+          "quota": 1.71,
+          "fonteQuota": "mediana di 120 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.49550398897882353,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": 0.2200244002705974,
+          "probPinnacle": 0.2632,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.29420055192595745,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": 0.7799755997294026,
+          "probPinnacle": 0.7368,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.7057994480740429,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.7774804232733828,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7772743269034701
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.22251957672661732,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.22272567309653085
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.443091185983448,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4367916935806813
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.5569088140165517,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5632083064193201
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.19184101811008658,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.19667446939107924
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.8081589818899134,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.8033255306089215
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.5898627900592438,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7001795933104954
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.4101372099407562,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2998204066895051
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.224322456642635,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.32565955468659247
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.775677543357365,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6743404453134073
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.06142607451038875,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.11492568522763164
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.9385739254896114,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.88507431477237
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.6626078250994601,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6941177363850265
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.3373921749005402,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3058822636149745
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.29602808875223463,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.35070696452944117
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.7039719112477665,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6492930354705595
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "Gol",
+          "probModello": 0.46838539195167,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.550295101216476
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "No gol",
+          "probModello": 0.5316146080483296,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.44970489878352493
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-0",
+          "probModello": 0.10104217861904392,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.07284118100251101
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-1",
+          "probModello": 0.07156126000517932,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.08463478004362406
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-2",
+          "probModello": 0.03624763400236475,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.041437245665715904
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-3",
+          "probModello": 0.010768731290927046,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.014005613886877705
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-4",
+          "probModello": 0.002399444339083467,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.009045580151628135
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-0",
+          "probModello": 0.12736684855312008,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.10595388535522123
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-1",
+          "probModello": 0.13201137355307913,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.11894258104102919
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-2",
+          "probModello": 0.0544707969784915,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.07379891290528268
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-3",
+          "probModello": 0.016182611417499635,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.03547998596416205
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-4",
+          "probModello": 0.0036057428037062937,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.005210017986520511
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-0",
+          "probModello": 0.10304704284872719,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.07169431587072198
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-1",
+          "probModello": 0.09184207013540753,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.09246500361723729
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-2",
+          "probModello": 0.04092774335669014,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.03974617721174686
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-3",
+          "probModello": 0.012159134869974338,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.027355085033262828
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-4",
+          "probModello": 0.002709248336105591,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.008513779925633921
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-0",
+          "probModello": 0.051617663743061995,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.030025928685821917
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-1",
+          "probModello": 0.04600494068204829,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.04751962360697113
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-2",
+          "probModello": 0.020501262684939486,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.03792168764960466
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-3",
+          "probModello": 0.006090675848371785,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.004677379124822583
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-4",
+          "probModello": 0.0013570992989565048,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0007054395991141092
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-0",
+          "probModello": 0.019391991778476787,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.012590128298958758
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-1",
+          "probModello": 0.01728337485238287,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.01844308653619178
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-2",
+          "probModello": 0.007702020754245704,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.011090553047090917
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-3",
+          "probModello": 0.0022881767095254903,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.004943400629673801
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-4",
+          "probModello": 0.0005098421071309808,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0006034556879003994
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "casa",
+          "probModello": 0.26355827085824174,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2186704831236851
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.7364417291417584,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7813295168763159
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "casa",
+          "probModello": 0.34777499600931394,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2885333205191067
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "trasferta",
+          "probModello": 0.6522250039906856,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7114666794808935
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "casa",
+          "probModello": 0.5057169254983147,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4608013998224226
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "trasferta",
+          "probModello": 0.494283074501685,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5391986001775788
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "casa",
+          "probModello": 0.7863270975730676,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6976121738904327
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "trasferta",
+          "probModello": 0.21367290242693252,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3023878261095676
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "casa",
+          "probModello": 0.9139548213167534,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.8575380642240684
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "trasferta",
+          "probModello": 0.08604517868324654,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.14246193577593155
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "casa",
+          "probModello": 0.9259704593311577,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.884106391471717
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.07402954066884246,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.1158936085282842
+        },
+        {
+          "mercato": "Angoli Under/Over 8.5",
+          "selezione": "Over 8.5",
+          "probModello": 0.5398433114882295,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5839718127439116
+        },
+        {
+          "mercato": "Angoli Under/Over 8.5",
+          "selezione": "Under 8.5",
+          "probModello": 0.46015668851177055,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.41602818725608837
+        },
+        {
+          "mercato": "Angoli Under/Over 9.5",
+          "selezione": "Over 9.5",
+          "probModello": 0.4080962147908369,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4732270474755819
+        },
+        {
+          "mercato": "Angoli Under/Over 9.5",
+          "selezione": "Under 9.5",
+          "probModello": 0.5919037852091631,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.526772952524418
+        },
+        {
+          "mercato": "Angoli Under/Over 10.5",
+          "selezione": "Over 10.5",
+          "probModello": 0.28997336241110616,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3449258701872941
+        },
+        {
+          "mercato": "Angoli Under/Over 10.5",
+          "selezione": "Under 10.5",
+          "probModello": 0.7100266375888938,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6550741298127059
+        },
+        {
+          "mercato": "Angoli Under/Over 11.5",
+          "selezione": "Over 11.5",
+          "probModello": 0.193693798941021,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.25590685569789867
+        },
+        {
+          "mercato": "Angoli Under/Over 11.5",
+          "selezione": "Under 11.5",
+          "probModello": 0.806306201058979,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7440931443021013
+        },
+        {
+          "mercato": "Cartellini Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": 0.8863397578193264,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.789835915884214
+        },
+        {
+          "mercato": "Cartellini Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": 0.11366024218067355,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.21016408411578602
+        },
+        {
+          "mercato": "Cartellini Under/Over 4.5",
+          "selezione": "Over 4.5",
+          "probModello": 0.7733918358184568,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6302698371269939
+        },
+        {
+          "mercato": "Cartellini Under/Over 4.5",
+          "selezione": "Under 4.5",
+          "probModello": 0.22660816418154311,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3697301628730061
+        },
+        {
+          "mercato": "Cartellini Under/Over 5.5",
+          "selezione": "Over 5.5",
+          "probModello": 0.6271497496578109,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4799577254888005
+        },
+        {
+          "mercato": "Cartellini Under/Over 5.5",
+          "selezione": "Under 5.5",
+          "probModello": 0.3728502503421891,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5200422745111994
+        }
+      ],
+      "filtriVideo": {
+        "passa": false,
+        "mediaGol": true,
+        "scontriDiretti": false,
+        "forma": false,
+        "scontri": 0
+      }
+    },
+    {
+      "idPartita": "calcio-2026-11-09-kristiansund-bk-valerenga",
+      "competizione": "Eliteserien (Norvegia)",
+      "partita": "Kristiansund BK - Vålerenga",
+      "casa": "Kristiansund BK",
+      "trasferta": "Vålerenga",
+      "inizio": "2026-11-09T19:00:00+01:00",
+      "modello": "dixon-coles",
+      "lambda": {
+        "casa": 1.5988663270084396,
+        "trasferta": 1.8428789468063018
+      },
+      "ragionamentoBase": [
+        "Gol attesi: Kristiansund BK 1,6 – Vålerenga 1,8 (gol e xG, ultime 2 stagioni)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": 0.33049572171828756,
+          "probPinnacle": 0.3536,
+          "quota": 2.6,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.4852381301028538
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": 0.23836014719759302,
+          "probPinnacle": 0.2233,
+          "quota": 4,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.19576328173556493
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": 0.43114413108411886,
+          "probPinnacle": 0.4231,
+          "quota": 2.22,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.3189985881615802
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "1X",
+          "probModello": 0.5688558689158804,
+          "probPinnacle": 0.5934,
+          "quota": 1.54,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.6810014118384183,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "12",
+          "probModello": 0.7616398528024066,
+          "probPinnacle": 0.7645,
+          "quota": 1.2,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.8042367182644343,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "X2",
+          "probModello": 0.6695042782817122,
+          "probPinnacle": 0.6426,
+          "quota": 1.42,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5147618698971447,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.8653696765247817,
+          "probPinnacle": 0.8607,
+          "quota": 1.1,
+          "fonteQuota": "mediana di 93 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.8581414899871952
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.134630323475218,
+          "probPinnacle": 0.1393,
+          "quota": 6.25,
+          "fonteQuota": "mediana di 93 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.14185851001280408
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.6682418305839806,
+          "probPinnacle": 0.6873,
+          "quota": 1.36,
+          "fonteQuota": "mediana di 97 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.6449222091734939
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.33175816941601877,
+          "probPinnacle": 0.3127,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 97 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.355077790826505
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": 0.45074342570366405,
+          "probPinnacle": 0.4829,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 184 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.4023229920646618
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": 0.5492565742963355,
+          "probPinnacle": 0.5171,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 184 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5976770079353372
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.7978742618236128,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.821371615192842
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.20212573817638685,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.1786283848071572
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.47470222523166333,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5480236065297325
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.525297774768336,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4519763934702661
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.2163477816628598,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2752023991526619
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.7836522183371394,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7247976008473375
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.8416385267195714,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7476914048778224
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.15836147328042807,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2523085951221769
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.5497975016258416,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.41275801335754647
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.4502024983741577,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5872419866424521
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.2808836611460397,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.18003806486475823
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.7191163388539599,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.8199619351352411
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.7874940670774669,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.21250593292253325,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.4583679864452924,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.5416320135547079,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "Gol",
+          "probModello": 0.6790669069039409,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6018094515899379
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "No gol",
+          "probModello": 0.32093309309605833,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3981905484100609
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-0",
+          "probModello": 0.03955411836075654,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.03274643151927311
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-1",
+          "probModello": 0.05144339395197376,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0455719679146119
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-2",
+          "probModello": 0.05435440851282715,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0507810400290334
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-3",
+          "probModello": 0.03338953170479946,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.04240457610421695
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-4",
+          "probModello": 0.015383216255624114,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0018220732048510652
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-0",
+          "probModello": 0.0436328111624877,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.06354011057891908
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-1",
+          "probModello": 0.10186004711587265,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0947575310806363
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-2",
+          "probModello": 0.0869054334956202,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.06370859577087752
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-3",
+          "probModello": 0.05338539791738455,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.02350694609729834
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-4",
+          "probModello": 0.024595706472206248,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.020801106007353045
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-0",
+          "probModello": 0.04091339031210095,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.06768070970403112
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-1",
+          "probModello": 0.07539842564863976,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.10097881754636004
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-2",
+          "probModello": 0.06947508562510923,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.05564269893730898
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-3",
+          "probModello": 0.04267805754202632,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.019667181301296684
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-4",
+          "probModello": 0.019662623433697055,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.021719097165654892
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-0",
+          "probModello": 0.02180501403125718,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.03550722768737821
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-1",
+          "probModello": 0.04018400129301987,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.05021971033428927
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-2",
+          "probModello": 0.03702712499067176,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0534362203009944
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-3",
+          "probModello": 0.022745503035358154,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.007970933287790439
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-4",
+          "probModello": 0.010479302169595094,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.009547286680771259
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-0",
+          "probModello": 0.008715825673630911,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.036863708362890074
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-1",
+          "probModello": 0.016062211637968265,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.017114539725999835
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-2",
+          "probModello": 0.014800355833379436,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0076044495736877875
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-3",
+          "probModello": 0.009091754723525601,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0009527851842909944
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-4",
+          "probModello": 0.0041887508423780195,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0006517641160046045
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "casa",
+          "probModello": 0.16386486197336206,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.26633019649228995
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.8361351380266375,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7336698035077095
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "casa",
+          "probModello": 0.19662938553641052,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3409715806273517
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "trasferta",
+          "probModello": 0.8033706144635889,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.659028419372648
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "casa",
+          "probModello": 0.33049572171828756,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4852381301028538
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "trasferta",
+          "probModello": 0.6695042782817122,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5147618698971447
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "casa",
+          "probModello": 0.5688558689158804,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6810014118384183
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "trasferta",
+          "probModello": 0.43114413108411886,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3189985881615802
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "casa",
+          "probModello": 0.7050879716082195,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7904787979999554
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "trasferta",
+          "probModello": 0.2949120283917795,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.20952120200004362
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "casa",
+          "probModello": 0.7620687844356424,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.8194964435059766
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.23793121556435703,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.18050355649402275
+        }
+      ],
+      "filtriVideo": {
+        "passa": true,
+        "mediaGol": true,
+        "scontriDiretti": true,
+        "forma": true,
+        "scontri": 3
+      }
+    },
+    {
+      "idPartita": "calcio-2026-11-09-fc-botosani-otelul",
+      "competizione": "Superliga (Romania)",
+      "partita": "FC Botosani - Otelul",
+      "casa": "FC Botosani",
+      "trasferta": "Otelul",
+      "inizio": "2026-11-09T19:00:00+01:00",
+      "modello": "dixon-coles",
+      "lambda": {
+        "casa": 1.6147620164647674,
+        "trasferta": 1.0847104392872609
+      },
+      "ragionamentoBase": [
+        "Gol attesi: FC Botosani 1,6 – Otelul 1,1 (gol e xG, ultime 2 stagioni)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": 0.4874120323085223,
+          "probPinnacle": 0.4359,
+          "quota": 2.14,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.4806102516281317,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": 0.2666503565160282,
+          "probPinnacle": 0.2669,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.26269311466863376,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": 0.2459376111754502,
+          "probPinnacle": 0.2972,
+          "quota": 3.14,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.2566966337032343,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "1X",
+          "probModello": 0.7540623888245502,
+          "probPinnacle": 0.7018,
+          "quota": 1.3,
+          "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.7433033662967661,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "12",
+          "probModello": 0.7333496434839725,
+          "probPinnacle": 0.7245,
+          "quota": 1.26,
+          "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.7373068853313661,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Doppia chance",
+          "selezione": "X2",
+          "probModello": 0.5125879676914786,
+          "probPinnacle": 0.5737,
+          "quota": 1.6,
+          "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5193897483718681,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.7606656585736203,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7164682490908164
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.2393343414263803,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.28353175090918364
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.5062457070487513,
+          "probPinnacle": 0.5232,
+          "quota": 1.78,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.45982858366057444,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.4937542929512494,
+          "probPinnacle": 0.4768,
+          "quota": 1.96,
+          "fonteQuota": "mediana di 83 bookmaker (odss-api)",
+          "oraQuota": "2026-11-09T07:35:08+01:00",
+          "frequenzaCampionato": 0.5401714163394252,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": 0.2857907060335166,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2929955242334359
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": 0.7142092939664842,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7070044757665647
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.8010617686510749,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.776655242978943
+        },
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.19893823134892588,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.22334475702105733
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.4798238690461489,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4466057901411588
+        },
+        {
+          "mercato": "Under/Over casa 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.5201761309538518,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5533942098588409
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.2204624897806703,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.20451043529997578
+        },
+        {
+          "mercato": "Under/Over casa 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.7795375102193304,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7954895647000251
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.662000349165708,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.650442771920141
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.3379996508342926,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.34955722807985906
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.2953685994303018,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.276172633641342
+        },
+        {
+          "mercato": "Under/Over trasferta 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.7046314005696989,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7238273663586584
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Over 2.5",
+          "probModello": 0.09652395627422695,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0947915960223373
+        },
+        {
+          "mercato": "Under/Over trasferta 2.5",
+          "selezione": "Under 2.5",
+          "probModello": 0.9034760437257737,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.9052084039776631
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Over 0.5",
+          "probModello": 0.7032195397810698,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 0.5",
+          "selezione": "Under 0.5",
+          "probModello": 0.29678046021893006,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Over 1.5",
+          "probModello": 0.34270173478618476,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1° tempo 1.5",
+          "selezione": "Under 1.5",
+          "probModello": 0.6572982652138155,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "Gol",
+          "probModello": 0.5397252516073892,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4980120438632176
+        },
+        {
+          "mercato": "Gol/No gol",
+          "selezione": "No gol",
+          "probModello": 0.4602747483926114,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5019879561367823
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-0",
+          "probModello": 0.07666313379060707,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.07091402896413403
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-1",
+          "probModello": 0.06351499079164524,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0876408959452053
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-2",
+          "probModello": 0.039557801622677795,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.04660966573874516
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-3",
+          "probModello": 0.014302920125124385,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.01085585624744562
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "0-4",
+          "probModello": 0.003878631693003569,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.0028697485156205264
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-0",
+          "probModello": 0.09915621684412798,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.12497682599984435
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-1",
+          "probModello": 0.12719809427055917,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.12942791408658819
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-2",
+          "probModello": 0.06387643551514846,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.04301056157743221
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-3",
+          "probModello": 0.023095812142580358,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.024399033256056364
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "1-4",
+          "probModello": 0.006263067133718598,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.00582238524981841
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-0",
+          "probModello": 0.08766405563163217,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.08060208560490842
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-1",
+          "probModello": 0.0950901162938906,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.08468879049970704
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-2",
+          "probModello": 0.0515726209085114,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.05273201690166765
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-3",
+          "probModello": 0.01864712009362226,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.021755905445836957
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "2-4",
+          "probModello": 0.005056681457048827,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.002316556389063161
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-0",
+          "probModello": 0.0471855290810713,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.028277851102553958
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-1",
+          "probModello": 0.05118263597753067,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.04732433615865066
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-2",
+          "probModello": 0.027759169777533628,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.033263265233399904
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-3",
+          "probModello": 0.010036887081212718,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.009619154716243855
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "3-4",
+          "probModello": 0.0027217790487347204,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.004548731060059752
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-0",
+          "probModello": 0.019048350021726904,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.029586036808866525
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-1",
+          "probModello": 0.020661944119764894,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.01536822486322348
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-2",
+          "probModello": 0.011206113241339508,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.005542298274654776
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-3",
+          "probModello": 0.004051796005572056,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.005736930864241761
+        },
+        {
+          "mercato": "Risultato esatto",
+          "selezione": "4-4",
+          "probModello": 0.0010987563562766083,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.000001
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "casa",
+          "probModello": 0.2609782780119487,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.23194443903093892
+        },
+        {
+          "mercato": "Handicap asiatico -1.5",
+          "selezione": "trasferta",
+          "probModello": 0.7390217219880526,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7680555609690618
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "casa",
+          "probModello": 0.3373703021059735,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.3087100825702057
+        },
+        {
+          "mercato": "Handicap asiatico -1",
+          "selezione": "trasferta",
+          "probModello": 0.6626296978940278,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.6912899174297944
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "casa",
+          "probModello": 0.4874120323085223,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.4806102516281317
+        },
+        {
+          "mercato": "Handicap asiatico -0.5",
+          "selezione": "trasferta",
+          "probModello": 0.5125879676914786,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.5193897483718681
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "casa",
+          "probModello": 0.7540623888245502,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.7433033662967661
+        },
+        {
+          "mercato": "Handicap asiatico +0.5",
+          "selezione": "trasferta",
+          "probModello": 0.2459376111754502,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.2566966337032343
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "casa",
+          "probModello": 0.886103516387471,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.8816899820184739
+        },
+        {
+          "mercato": "Handicap asiatico +1",
+          "selezione": "trasferta",
+          "probModello": 0.11389648361252944,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.11831001798152606
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "casa",
+          "probModello": 0.903075596786116,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.9002594603253004
+        },
+        {
+          "mercato": "Handicap asiatico +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.09692440321388454,
+          "probPinnacle": null,
+          "quota": null,
+          "fonteQuota": null,
+          "oraQuota": null,
+          "frequenzaCampionato": 0.09974053967470013
+        }
+      ],
+      "filtriVideo": {
+        "passa": false,
+        "mediaGol": true,
+        "scontriDiretti": false,
+        "forma": true,
+        "scontri": 6
+      }
+    }
+  ]
+}
