@@ -78,11 +78,37 @@
       ],
       "alle": "2026-11-10T00:17:52+01:00",
       "regola": true
+    },
+    "M-nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa+nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5+nba-2026-11-09-atlanta-hawks-los-angeles-lakers-totale-punti-235-5-over-235-5#0": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,78",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,78"
+      ],
+      "alle": "2026-11-10T00:53:19+01:00"
+    },
+    "nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,78 sotto la minima 1,80",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,78 sotto la minima 1,80"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-10T00:53:19+01:00"
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa"
+    ]
   },
   "pronostici": {
     "calcio-2026-11-09-kristiansund-bk-valerenga|Under/Over 1.5|Over 1.5": {
