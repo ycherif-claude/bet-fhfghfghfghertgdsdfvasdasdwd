@@ -649,6 +649,22 @@
         "quote non controllate (meno di 3 bookmaker con la stessa linea)"
       ],
       "alle": "2026-11-09T00:19:44+01:00"
+    },
+    "nba-2026-11-08-sacramento-kings-miami-heat-vincente-sacramento-kings": {
+      "esito": "confermata",
+      "motivo": "regola automatica (troppo tardi per Claude): mercato contro: da 24% a 18%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 24% a 18%"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 5,30 ≥ minima 3,81"
+      ],
+      "alle": "2026-11-09T02:48:12+01:00",
+      "regola": true
     }
   },
   "claude": {

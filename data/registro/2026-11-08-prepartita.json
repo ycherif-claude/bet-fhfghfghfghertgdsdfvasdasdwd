@@ -3029,6 +3029,42 @@
       "prob": 0.2823952796197658,
       "alle": "2026-11-09T00:19:44+01:00",
       "minutiPrima": 70
+    },
+    "nba-2026-11-08-sacramento-kings-miami-heat|Vincente|Sacramento Kings": {
+      "quota": 5.3,
+      "prob": 0.1807992881108259,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
+    },
+    "nba-2026-11-08-sacramento-kings-miami-heat|Vincente|Miami Heat": {
+      "quota": 1.17,
+      "prob": 0.8192007118891741,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
+    },
+    "nba-2026-11-08-la-clippers-new-orleans-pelicans|Vincente|LA Clippers": {
+      "quota": 2.03,
+      "prob": 0.4732543846092034,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
+    },
+    "nba-2026-11-08-la-clippers-new-orleans-pelicans|Vincente|New Orleans Pelicans": {
+      "quota": 1.8,
+      "prob": 0.5267456153907968,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
+    },
+    "nba-2026-11-08-la-clippers-new-orleans-pelicans|Handicap +1.5|casa": {
+      "quota": 1.94,
+      "prob": 0.4932333392880865,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
+    },
+    "nba-2026-11-08-la-clippers-new-orleans-pelicans|Handicap +1.5|trasferta": {
+      "quota": 1.87,
+      "prob": 0.5067666607119136,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "minutiPrima": 12
     }
   },
   "copertura": {
@@ -3232,12 +3268,14 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-09T00:19:44+01:00",
-      "partite": 3,
+      "alle": "2026-11-09T02:48:12+01:00",
+      "partite": 5,
       "idPartite": [
         "nba-2026-11-08-detroit-pistons-los-angeles-lakers",
         "nba-2026-11-08-minnesota-timberwolves-utah-jazz",
-        "nba-2026-11-08-dallas-mavericks-brooklyn-nets"
+        "nba-2026-11-08-dallas-mavericks-brooklyn-nets",
+        "nba-2026-11-08-sacramento-kings-miami-heat",
+        "nba-2026-11-08-la-clippers-new-orleans-pelicans"
       ]
     }
   }
