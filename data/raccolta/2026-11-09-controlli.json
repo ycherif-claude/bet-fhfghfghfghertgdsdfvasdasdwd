@@ -115,8 +115,8 @@
       "alle": "2026-11-10T01:28:48+01:00"
     },
     "nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,45 sotto la minima 1,84",
+      "esito": "annullata",
+      "motivo": "Claude: La quota dell'Over 216.5 è scesa a 1,45, molto sotto la minima di 1,84. Il totale di mercato si è spostato a 222.5-223.5 (era 216.5 al mattino): la quota più bassa è la conseguenza di una linea più alta, non di un mercato sbagliato, quindi il value del mattino non c'è più. Nessun fatto concreto alza la probabilità rispetto all'analisi del mattino: nel dubbio si annulla (quote odss-api (fanduel 222.5, pointsbet 223.5), controllo serale, 01:28)",
       "problemi": [
         {
           "tipo": "quota",
@@ -126,7 +126,8 @@
       "dettagli": [
         "giocatori chiave non indicati dal giro del mattino"
       ],
-      "alle": "2026-11-10T01:28:48+01:00"
+      "alle": "2026-11-10T01:29:38+01:00",
+      "claude": true
     }
   },
   "claude": {
