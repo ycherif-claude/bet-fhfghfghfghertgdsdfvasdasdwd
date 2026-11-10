@@ -103,12 +103,37 @@
       ],
       "alle": "2026-11-10T00:54:02+01:00",
       "claude": true
+    },
+    "M-nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa+nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5+nba-2026-11-09-atlanta-hawks-los-angeles-lakers-totale-punti-235-5-over-235-5#1": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,45",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,45"
+      ],
+      "alle": "2026-11-10T01:28:48+01:00"
+    },
+    "nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,45 sotto la minima 1,84",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,45 sotto la minima 1,84"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-10T01:28:48+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa"
+      "nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa",
+      "nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5"
     ]
   },
   "pronostici": {
