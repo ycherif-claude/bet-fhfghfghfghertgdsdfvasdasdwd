@@ -394,7 +394,7 @@
           "fonteConsenso": "Pinnacle",
           "probMercato": 0.8607,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         },
         {
@@ -409,7 +409,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": false
         }
       ]
@@ -538,7 +538,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "prova": true
@@ -606,7 +606,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 1,78 · giocatori chiave non indicati dal giro del mattino; quota 1,45 · regola automatica (troppo tardi per Claude): mercato contro: da 51% a 46%, confermata con l'avviso",
       "oraUltimoControllo": "2026-11-10T01:28:48+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "nba-2026-11-09-dallas-mavericks-indiana-pacers-handicap-meno-3-5-casa",
@@ -643,7 +643,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa"
         },
         {
           "id": "nba-2026-11-09-houston-rockets-denver-nuggets-totale-punti-216-5-over-216-5",
@@ -679,7 +679,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa"
         },
         {
           "id": "nba-2026-11-09-atlanta-hawks-los-angeles-lakers-totale-punti-235-5-over-235-5",
@@ -716,7 +716,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "prova": true
@@ -755,7 +755,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 1,93 ≥ minima 1,80",
       "oraUltimoControllo": "2026-11-10T00:17:52+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -793,7 +793,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: La quota è scesa a 1,78, sotto la minima di 1,80 del mattino, e non c'è un fatto concreto che alzi la probabilità rispetto all'analisi del mattino (nessuna notizia nuova sui giocatori chiave): senza value, nel dubbio si annulla (controlli quote odss-api, 00:53)",
       "oraUltimoControllo": "2026-11-10T00:54:02+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -829,7 +829,7 @@
       "stato": "confermata",
       "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-11-09T18:34:04+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -866,7 +866,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: La quota dell'Over 216.5 è scesa a 1,45, molto sotto la minima di 1,84. Il totale di mercato si è spostato a 222.5-223.5 (era 216.5 al mattino): la quota più bassa è la conseguenza di una linea più alta, non di un mercato sbagliato, quindi il value del mattino non c'è più. Nessun fatto concreto alza la probabilità rispetto all'analisi del mattino: nel dubbio si annulla (quote odss-api (fanduel 222.5, pointsbet 223.5), controllo serale, 01:28)",
       "oraUltimoControllo": "2026-11-10T01:29:38+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -904,7 +904,7 @@
       "stato": "confermata",
       "motivoStato": "regola automatica (troppo tardi per Claude): mercato contro: da 51% a 46%, confermata con l'avviso",
       "oraUltimoControllo": "2026-11-10T00:17:52+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -942,7 +942,7 @@
       "stato": "confermata",
       "motivoStato": "regola automatica (troppo tardi per Claude): mercato contro: da 50% a 44%, confermata con l'avviso",
       "oraUltimoControllo": "2026-11-10T00:17:52+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     }
   ],
@@ -1061,7 +1061,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -1233,8 +1233,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilita": [
@@ -1288,7 +1288,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -1460,8 +1460,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "modello": [
@@ -1515,7 +1515,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -1687,8 +1687,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "confermate": [],
@@ -1748,7 +1748,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -1920,8 +1920,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilitaTutte": [
@@ -1975,7 +1975,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -2147,8 +2147,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "modelloTutte": [
@@ -2202,7 +2202,7 @@
             "quotaBet365": null,
             "probMercato": 0.6873,
             "probModello": 0.6682418305839806,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.704,
             "bookmaker": [
               [
@@ -2374,8 +2374,8 @@
         "prob": 0.4492156862745098,
         "probModello": 0.3643633526634359,
         "valueAtteso": -0.14469333333333334,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "confermateTutte": []

@@ -1,0 +1,434 @@
+{
+  "data": "2026-11-10",
+  "generataAlle": "2026-11-10T07:34:17+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 223
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-11-10-gks-katowice-chks-chelm",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "GKS Katowice - Chks Chelm",
+      "casa": "GKS Katowice",
+      "trasferta": "Chks Chelm",
+      "inizio": "2026-11-10T17:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.5065479308538501,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 128 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "quotaBet365": 1.97,
+          "oraQuotaBet365": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita.",
+          "bookmaker": [
+            [
+              "bet365",
+              1.97
+            ],
+            [
+              "starcasino",
+              1.96
+            ],
+            [
+              "admiralbet",
+              1.91
+            ],
+            [
+              "winamax",
+              1.88
+            ],
+            [
+              "betflag",
+              1.87
+            ],
+            [
+              "bwin",
+              1.87
+            ],
+            [
+              "eurobet",
+              1.87
+            ],
+            [
+              "goldbet",
+              1.87
+            ],
+            [
+              "lottomatica",
+              1.87
+            ],
+            [
+              "planetwin365",
+              1.87
+            ],
+            [
+              "stake",
+              1.87
+            ],
+            [
+              "winbet",
+              1.87
+            ],
+            [
+              "888sport",
+              1.85
+            ],
+            [
+              "betsson",
+              1.85
+            ],
+            [
+              "leovegas",
+              1.85
+            ],
+            [
+              "quigioco",
+              1.84
+            ],
+            [
+              "codere",
+              1.83
+            ],
+            [
+              "netbet",
+              1.8
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Chks Chelm",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.49345206914614975,
+          "quota": 1.69,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,80 su 128 bookmaker",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "quotaBet365": 1.69,
+          "oraQuotaBet365": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chks Chelm vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.87
+            ],
+            [
+              "netbet",
+              1.86
+            ],
+            [
+              "888sport",
+              1.85
+            ],
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "betflag",
+              1.83
+            ],
+            [
+              "bwin",
+              1.83
+            ],
+            [
+              "eurobet",
+              1.83
+            ],
+            [
+              "goldbet",
+              1.83
+            ],
+            [
+              "leovegas",
+              1.83
+            ],
+            [
+              "lottomatica",
+              1.83
+            ],
+            [
+              "planetwin365",
+              1.83
+            ],
+            [
+              "stake",
+              1.83
+            ],
+            [
+              "winbet",
+              1.83
+            ],
+            [
+              "betsson",
+              1.8
+            ],
+            [
+              "codere",
+              1.8
+            ],
+            [
+              "quigioco",
+              1.8
+            ],
+            [
+              "starcasino",
+              1.692
+            ],
+            [
+              "bet365",
+              1.69
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.3542074363992172,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 39 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice -1,5 vince se GKS Katowice vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              3.15
+            ],
+            [
+              "bwin",
+              3.1
+            ],
+            [
+              "leovegas",
+              3
+            ],
+            [
+              "winamax",
+              2.95
+            ],
+            [
+              "netbet",
+              2.55
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.6457925636007827,
+          "quota": 1.36,
+          "fonteQuota": "mediana di 39 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm +1,5 vince se Chks Chelm vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "netbet",
+              1.43
+            ],
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "bwin",
+              1.33
+            ],
+            [
+              "leovegas",
+              1.33
+            ],
+            [
+              "winamax",
+              1.31
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.657672849915683,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 65 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "quotaBet365": 1.41,
+          "oraQuotaBet365": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice +1,5 vince se GKS Katowice vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bet365",
+              1.41
+            ],
+            [
+              "netbet",
+              1.4
+            ],
+            [
+              "starcasino",
+              1.4
+            ],
+            [
+              "winbet",
+              1.4
+            ],
+            [
+              "leovegas",
+              1.38
+            ],
+            [
+              "bwin",
+              1.37
+            ],
+            [
+              "stake",
+              1.37
+            ],
+            [
+              "888sport",
+              1.364
+            ],
+            [
+              "winamax",
+              1.35
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.342327150084317,
+          "quota": 2.62,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 2,65 su 65 bookmaker",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "quotaBet365": 2.62,
+          "oraQuotaBet365": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm -1,5 vince se Chks Chelm vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "888sport",
+              3
+            ],
+            [
+              "winbet",
+              2.95
+            ],
+            [
+              "bwin",
+              2.87
+            ],
+            [
+              "stake",
+              2.85
+            ],
+            [
+              "leovegas",
+              2.8
+            ],
+            [
+              "winamax",
+              2.75
+            ],
+            [
+              "netbet",
+              2.65
+            ],
+            [
+              "bet365",
+              2.62
+            ],
+            [
+              "starcasino",
+              2.455
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.7131918617370379,
+          "quota": 1.28,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "netbet",
+              1.29
+            ],
+            [
+              "stake",
+              1.22
+            ],
+            [
+              "betsson",
+              1.2
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.28680813826296214,
+          "quota": 3.26,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-10T07:34:17+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              4
+            ],
+            [
+              "betsson",
+              3.72
+            ],
+            [
+              "netbet",
+              3.15
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

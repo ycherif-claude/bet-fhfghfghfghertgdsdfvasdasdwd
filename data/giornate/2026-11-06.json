@@ -2744,7 +2744,7 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota 2,75 sotto la minima 2,82 e nessun fatto concreto che alzi la probabilità del 37% usata al mattino (Pinnacle 34%): il value sparisce (controlli quote odss-api, 18:31)",
       "oraUltimoControllo": "2026-11-06T18:32:59+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -7762,7 +7762,7 @@
           "quotaBet365": null,
           "probMercato": 0.6556,
           "probModello": 0.636285018920129,
-          "esito": null,
+          "esito": "rimborsata",
           "probModelloTarato": 0.6716,
           "bookmaker": [
             [
@@ -7815,7 +7815,8 @@
             "prob": 0.6622925511385565,
             "alle": "2026-11-06T19:21:12+01:00",
             "minutiPrima": 39
-          }
+          },
+          "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
         },
         {
           "sport": "calcio",
@@ -8042,7 +8043,7 @@
           "quotaBet365": null,
           "probMercato": 0.6332,
           "probModello": 0.7526578766760927,
-          "esito": null,
+          "esito": "rimborsata",
           "probModelloTarato": 0.7604,
           "bookmaker": [
             [
@@ -8081,7 +8082,8 @@
               "quigioco",
               1.45
             ]
-          ]
+          ],
+          "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
         },
         {
           "sport": "calcio",
@@ -12009,7 +12011,7 @@
           "quotaBet365": null,
           "probMercato": 0.6556,
           "probModello": 0.636285018920129,
-          "esito": null,
+          "esito": "rimborsata",
           "probModelloTarato": 0.6716,
           "bookmaker": [
             [
@@ -12062,7 +12064,8 @@
             "prob": 0.6622925511385565,
             "alle": "2026-11-06T19:21:12+01:00",
             "minutiPrima": 39
-          }
+          },
+          "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
         },
         {
           "sport": "calcio",
@@ -25669,7 +25672,7 @@
             "quotaBet365": null,
             "probMercato": 0.6556,
             "probModello": 0.636285018920129,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6716,
             "bookmaker": [
               [
@@ -25722,7 +25725,8 @@
               "prob": 0.6622925511385565,
               "alle": "2026-11-06T19:21:12+01:00",
               "minutiPrima": 39
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           }
         ],
         "quota": 1.96,
@@ -30049,7 +30053,7 @@
             "quotaBet365": null,
             "probMercato": 0.6556,
             "probModello": 0.636285018920129,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6716,
             "bookmaker": [
               [
@@ -30102,7 +30106,8 @@
               "prob": 0.6622925511385565,
               "alle": "2026-11-06T19:21:12+01:00",
               "minutiPrima": 39
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           }
         ],
         "quota": 1.96,
@@ -32657,7 +32662,7 @@
             "quotaBet365": null,
             "probMercato": 0.6556,
             "probModello": 0.636285018920129,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6716,
             "bookmaker": [
               [
@@ -32710,7 +32715,8 @@
               "prob": 0.6622925511385565,
               "alle": "2026-11-06T19:21:12+01:00",
               "minutiPrima": 39
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           }
         ],
         "quota": 1.96,
@@ -34786,7 +34792,7 @@
             "quotaBet365": null,
             "probMercato": 0.6556,
             "probModello": 0.636285018920129,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6716,
             "bookmaker": [
               [
@@ -34839,7 +34845,8 @@
               "prob": 0.6622925511385565,
               "alle": "2026-11-06T19:21:12+01:00",
               "minutiPrima": 39
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           },
           {
             "sport": "calcio",
@@ -34937,8 +34944,8 @@
         "prob": 0.43354827999999995,
         "probModello": 0.45064360000000003,
         "valueAtteso": -0.15024537120000026,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.4
       },
       {
         "id": "Q2OT10-2026-11-06",
@@ -36891,7 +36898,7 @@
             "quotaBet365": null,
             "probMercato": 0.6556,
             "probModello": 0.636285018920129,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6716,
             "bookmaker": [
               [
@@ -36944,7 +36951,8 @@
               "prob": 0.6622925511385565,
               "alle": "2026-11-06T19:21:12+01:00",
               "minutiPrima": 39
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           }
         ],
         "quota": 1.96,
