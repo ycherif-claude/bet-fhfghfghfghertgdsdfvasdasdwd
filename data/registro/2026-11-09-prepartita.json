@@ -275,6 +275,30 @@
       "prob": 0.35172037345829815,
       "alle": "2026-11-10T01:28:48+01:00",
       "minutiPrima": 61
+    },
+    "nba-2026-11-09-golden-state-warriors-new-orleans-pelicans|Vincente|Golden State Warriors": {
+      "quota": 1.17,
+      "prob": 0.8144936512852275,
+      "alle": "2026-11-10T03:28:43+01:00",
+      "minutiPrima": 31
+    },
+    "nba-2026-11-09-golden-state-warriors-new-orleans-pelicans|Vincente|New Orleans Pelicans": {
+      "quota": 4.9,
+      "prob": 0.18550634871477237,
+      "alle": "2026-11-10T03:28:43+01:00",
+      "minutiPrima": 31
+    },
+    "nba-2026-11-09-golden-state-warriors-new-orleans-pelicans|Totale punti 232.5|Over 232.5": {
+      "quota": 2.18,
+      "prob": 0.4303073455967885,
+      "alle": "2026-11-10T03:28:43+01:00",
+      "minutiPrima": 31
+    },
+    "nba-2026-11-09-golden-state-warriors-new-orleans-pelicans|Totale punti 232.5|Under 232.5": {
+      "quota": 1.64,
+      "prob": 0.5696926544032115,
+      "alle": "2026-11-10T03:28:43+01:00",
+      "minutiPrima": 31
     }
   },
   "copertura": {
@@ -293,14 +317,15 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-10T01:28:48+01:00",
-      "partite": 5,
+      "alle": "2026-11-10T03:28:43+01:00",
+      "partite": 6,
       "idPartite": [
         "nba-2026-11-09-detroit-pistons-washington-wizards",
         "nba-2026-11-09-charlotte-hornets-cleveland-cavaliers",
         "nba-2026-11-09-atlanta-hawks-los-angeles-lakers",
         "nba-2026-11-09-dallas-mavericks-indiana-pacers",
-        "nba-2026-11-09-houston-rockets-denver-nuggets"
+        "nba-2026-11-09-houston-rockets-denver-nuggets",
+        "nba-2026-11-09-golden-state-warriors-new-orleans-pelicans"
       ]
     }
   }
