@@ -47,6 +47,42 @@
       "prob": 0.28323197219808866,
       "alle": "2026-11-10T16:34:14+01:00",
       "minutiPrima": 56
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Vincente|Philadelphia 76ers": {
+      "quota": 2,
+      "prob": 0.46700507614213205,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Vincente|Boston Celtics": {
+      "quota": 1.8,
+      "prob": 0.5329949238578681,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Handicap +1.5|casa": {
+      "quota": 1.87,
+      "prob": 0.4862573850500899,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Handicap +1.5|trasferta": {
+      "quota": 1.88,
+      "prob": 0.5137426149499101,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Totale punti 217.5|Over 217.5": {
+      "quota": 1.87,
+      "prob": 0.5068457762851976,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
+    },
+    "nba-2026-11-10-philadelphia-76ers-boston-celtics|Totale punti 217.5|Under 217.5": {
+      "quota": 1.89,
+      "prob": 0.4931542237148024,
+      "alle": "2026-11-11T01:12:10+01:00",
+      "minutiPrima": 48
     }
   },
   "copertura": {
@@ -55,6 +91,13 @@
       "partite": 1,
       "idPartite": [
         "pallavolo-2026-11-10-gks-katowice-chks-chelm"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-11T01:12:10+01:00",
+      "partite": 1,
+      "idPartite": [
+        "nba-2026-11-10-philadelphia-76ers-boston-celtics"
       ]
     }
   }
