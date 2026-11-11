@@ -62,12 +62,37 @@
         "quota 1,88 ≥ minima 1,75"
       ],
       "alle": "2026-11-11T20:49:40+01:00"
+    },
+    "M-nba-2026-11-11-toronto-raptors-boston-celtics-vincente-toronto-raptors+nba-2026-11-11-milwaukee-bucks-los-angeles-lakers-handicap-piu-11-5-trasferta#0": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 2,67",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 2,67"
+      ],
+      "alle": "2026-11-12T00:03:56+01:00"
+    },
+    "nba-2026-11-11-toronto-raptors-boston-celtics-vincente-toronto-raptors": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 2,67 sotto la minima 2,88",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,67 sotto la minima 2,88"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-12T00:03:56+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
-      "pallavolo-2026-11-11-ks-norwid-czestochowa-jastrzebie-barkom-totale-set-3-5-under-3-5"
+      "pallavolo-2026-11-11-ks-norwid-czestochowa-jastrzebie-barkom-totale-set-3-5-under-3-5",
+      "nba-2026-11-11-toronto-raptors-boston-celtics-vincente-toronto-raptors"
     ]
   }
 }
