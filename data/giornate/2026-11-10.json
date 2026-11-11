@@ -488,9 +488,9 @@
         "euro": 1.5,
         "percentuale": 1
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità trovata nelle ricerche (ricerca web, nessun report infortuni del 10/11 trovato)",
-      "oraUltimoControllo": "2026-11-10T21:05:14+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,83 sotto la minima 1,92",
+      "oraUltimoControllo": "2026-11-11T03:15:45+01:00",
       "esito": null,
       "prova": true
     }
@@ -715,7 +715,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.46,
+              "prob": 0.6475658047985092,
+              "alle": "2026-11-11T03:15:45+01:00",
+              "minutiPrima": 44
+            }
           }
         ],
         "quota": 1.99,
@@ -944,7 +950,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.46,
+              "prob": 0.6475658047985092,
+              "alle": "2026-11-11T03:15:45+01:00",
+              "minutiPrima": 44
+            }
           }
         ],
         "quota": 1.99,
@@ -1180,7 +1192,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.46,
+              "prob": 0.6475658047985092,
+              "alle": "2026-11-11T03:15:45+01:00",
+              "minutiPrima": 44
+            }
           }
         ],
         "quota": 1.99,
@@ -1409,7 +1427,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.46,
+              "prob": 0.6475658047985092,
+              "alle": "2026-11-11T03:15:45+01:00",
+              "minutiPrima": 44
+            }
           }
         ],
         "quota": 1.99,

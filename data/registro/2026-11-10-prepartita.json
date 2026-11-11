@@ -95,6 +95,30 @@
       "prob": 0.7508140203026241,
       "alle": "2026-11-11T02:19:29+01:00",
       "minutiPrima": 41
+    },
+    "nba-2026-11-10-sacramento-kings-orlando-magic|Vincente|Sacramento Kings": {
+      "quota": 2.65,
+      "prob": 0.35243419520149083,
+      "alle": "2026-11-11T03:15:45+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-10-sacramento-kings-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 1.46,
+      "prob": 0.6475658047985092,
+      "alle": "2026-11-11T03:15:45+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-10-sacramento-kings-orlando-magic|Handicap +5.5|casa": {
+      "quota": 1.9,
+      "prob": 0.5024327784891165,
+      "alle": "2026-11-11T03:15:45+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-10-sacramento-kings-orlando-magic|Handicap +5.5|trasferta": {
+      "quota": 1.88,
+      "prob": 0.49756722151088345,
+      "alle": "2026-11-11T03:15:45+01:00",
+      "minutiPrima": 44
     }
   },
   "copertura": {
@@ -106,11 +130,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-11T02:19:29+01:00",
-      "partite": 2,
+      "alle": "2026-11-11T03:15:45+01:00",
+      "partite": 3,
       "idPartite": [
         "nba-2026-11-10-philadelphia-76ers-boston-celtics",
-        "nba-2026-11-10-utah-jazz-miami-heat"
+        "nba-2026-11-10-utah-jazz-miami-heat",
+        "nba-2026-11-10-sacramento-kings-orlando-magic"
       ]
     }
   }
