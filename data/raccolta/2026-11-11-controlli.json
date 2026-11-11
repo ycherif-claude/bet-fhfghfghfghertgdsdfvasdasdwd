@@ -87,6 +87,71 @@
       ],
       "alle": "2026-11-12T00:05:19+01:00",
       "claude": true
+    },
+    "M-nba-2026-11-11-toronto-raptors-boston-celtics-vincente-toronto-raptors+nba-2026-11-11-milwaukee-bucks-los-angeles-lakers-handicap-piu-11-5-trasferta#1": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,56",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,56"
+      ],
+      "alle": "2026-11-12T00:49:54+01:00"
+    },
+    "nba-2026-11-11-milwaukee-bucks-los-angeles-lakers-handicap-piu-11-5-trasferta": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 1,56 sotto la minima 1,68",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,56 sotto la minima 1,68"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-12T00:49:54+01:00",
+      "regola": true
+    },
+    "nba-2026-11-11-new-orleans-pelicans-brooklyn-nets-totale-punti-229-5-over-229-5": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,97 ≥ minima 1,86",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,97 ≥ minima 1,86"
+      ],
+      "alle": "2026-11-12T00:49:54+01:00"
+    },
+    "nba-2026-11-11-chicago-bulls-san-antonio-spurs-handicap-piu-15-5-trasferta": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 1,85 sotto la minima 1,87",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,85 sotto la minima 1,87"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-12T00:49:54+01:00",
+      "regola": true
+    },
+    "nba-2026-11-11-memphis-grizzlies-denver-nuggets-totale-punti-227-5-over-227-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 1,66 sotto la minima 1,86",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,66 sotto la minima 1,86"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-12T00:49:54+01:00",
+      "regola": true
     }
   },
   "claude": {

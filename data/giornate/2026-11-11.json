@@ -676,8 +676,8 @@
         }
       },
       "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato per le partite di stasera (ricerca web, 22:15)",
-      "oraUltimoControllo": "2026-11-11T21:12:33+01:00",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 2,67 · giocatori chiave non indicati dal giro del mattino; quota 1,56",
+      "oraUltimoControllo": "2026-11-12T00:49:54+01:00",
       "esito": null,
       "gambe": [
         {
@@ -942,9 +942,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato per le partite di stasera (ricerca web, 22:15)",
-      "oraUltimoControllo": "2026-11-11T21:12:33+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 1,56 sotto la minima 1,68",
+      "oraUltimoControllo": "2026-11-12T00:49:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -1108,8 +1108,8 @@
         }
       },
       "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato per le partite di stasera (ricerca web, 22:15)",
-      "oraUltimoControllo": "2026-11-11T21:12:33+01:00",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 1,97 ≥ minima 1,86",
+      "oraUltimoControllo": "2026-11-12T00:49:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -1148,9 +1148,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato per le partite di stasera (ricerca web, 22:15)",
-      "oraUltimoControllo": "2026-11-11T21:12:33+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 1,85 sotto la minima 1,87",
+      "oraUltimoControllo": "2026-11-12T00:49:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -1232,9 +1232,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato per le partite di stasera (ricerca web, 22:15)",
-      "oraUltimoControllo": "2026-11-11T21:12:33+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 1,66 sotto la minima 1,86",
+      "oraUltimoControllo": "2026-11-12T00:49:54+01:00",
       "esito": null,
       "prova": true
     },
@@ -1737,7 +1737,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.47,
+            "prob": 0.6425891181988743,
+            "alle": "2026-11-12T00:49:54+01:00",
+            "minutiPrima": 10
+          }
         },
         {
           "sport": "nba",
@@ -2450,7 +2456,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.6425891181988743,
+              "alle": "2026-11-12T00:49:54+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 2.03,
@@ -3085,7 +3097,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.6425891181988743,
+              "alle": "2026-11-12T00:49:54+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 1.97,
@@ -3923,7 +3941,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.6425891181988743,
+              "alle": "2026-11-12T00:49:54+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 2.03,
@@ -4558,7 +4582,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.47,
+              "prob": 0.6425891181988743,
+              "alle": "2026-11-12T00:49:54+01:00",
+              "minutiPrima": 10
+            }
           }
         ],
         "quota": 1.97,
