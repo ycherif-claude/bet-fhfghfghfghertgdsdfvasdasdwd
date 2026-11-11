@@ -14013,7 +14013,7 @@
           "quotaBet365": null,
           "probMercato": 0.6928,
           "probModello": 0.7568592789296507,
-          "esito": null,
+          "esito": "rimborsata",
           "probModelloTarato": 0.7631,
           "bookmaker": [
             [
@@ -14028,7 +14028,8 @@
               "leovegas",
               1.32
             ]
-          ]
+          ],
+          "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
         },
         {
           "sport": "calcio",
@@ -36839,7 +36840,7 @@
             "quotaBet365": null,
             "probMercato": 0.6717,
             "probModello": 0.5866974086541086,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.6349,
             "bookmaker": [
               [
@@ -36854,7 +36855,8 @@
                 "888sport_it",
                 1.35
               ]
-            ]
+            ],
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           },
           {
             "sport": "calcio",
@@ -36920,8 +36922,8 @@
         "prob": 0.44023218,
         "probModello": 0.44474745000000004,
         "valueAtteso": -0.16179792928000014,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.4
       },
       {
         "id": "Q2PC15-2026-11-08",
