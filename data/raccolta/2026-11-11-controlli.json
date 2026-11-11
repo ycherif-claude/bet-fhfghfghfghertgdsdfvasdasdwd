@@ -13,6 +13,37 @@
       "dettagli": [],
       "alle": "2026-11-11T16:24:57+01:00",
       "claude": true
+    },
+    "M-tennis-2026-11-11-aryna-sabalenka-mirra-andreeva-vincente-incontro-aryna-sabalenka+basket-2026-11-11-paris-basketball-fenerbahce-sk-vincente-paris-basketball#1": {
+      "esito": "confermata",
+      "motivo": "quota 2,90",
+      "problemi": [],
+      "dettagli": [
+        "quota 2,90"
+      ],
+      "alle": "2026-11-11T19:57:42+01:00"
+    },
+    "basket-2026-11-11-paris-basketball-fenerbahce-sk-vincente-paris-basketball": {
+      "esito": "confermata",
+      "motivo": "quota 2,90 ≥ minima 2,79",
+      "problemi": [],
+      "dettagli": [
+        "quota 2,90 ≥ minima 2,79"
+      ],
+      "alle": "2026-11-11T19:57:42+01:00"
+    },
+    "basket-2026-11-11-kk-partizan-nis-saski-baskonia-totale-punti-167-5-under-167-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,78 sotto la minima 1,98",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,78 sotto la minima 1,98"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-11T19:57:42+01:00",
+      "regola": true
     }
   },
   "claude": {

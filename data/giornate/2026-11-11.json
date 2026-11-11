@@ -1025,9 +1025,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quota 2,90 ≥ minima 2,79",
+      "oraUltimoControllo": "2026-11-11T19:57:42+01:00",
       "esito": null,
       "prova": true
     },
@@ -1314,9 +1314,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,78 sotto la minima 1,98",
+      "oraUltimoControllo": "2026-11-11T19:57:42+01:00",
       "esito": null,
       "prova": true
     }
