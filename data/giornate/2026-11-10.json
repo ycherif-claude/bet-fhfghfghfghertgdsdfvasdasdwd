@@ -278,7 +278,7 @@
       "stato": "confermata",
       "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 3,75 ≥ minima 3,38",
       "oraUltimoControllo": "2026-11-11T02:19:29+01:00",
-      "esito": null,
+      "esito": "persa",
       "prova": true
     },
     {
@@ -378,7 +378,7 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "prova": true
@@ -454,7 +454,7 @@
       "stato": "annullata",
       "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,80 sotto la minima 1,81",
       "oraUltimoControllo": "2026-11-11T01:12:10+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {
@@ -515,7 +515,7 @@
             "quotaBet365": 1.41,
             "probMercato": 0.657672849915683,
             "probModello": null,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "bet365",
@@ -568,7 +568,7 @@
             "quotaBet365": null,
             "probMercato": 0.677659814772984,
             "probModello": 0.5301889513090076,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "williamhill",
@@ -728,8 +728,8 @@
         "prob": 0.44567846165508224,
         "probModello": null,
         "valueAtteso": -0.1139912182296966,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.99
       }
     ],
     "probabilita": [
@@ -750,7 +750,7 @@
             "quotaBet365": 1.41,
             "probMercato": 0.657672849915683,
             "probModello": null,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "bet365",
@@ -803,7 +803,7 @@
             "quotaBet365": null,
             "probMercato": 0.677659814772984,
             "probModello": 0.5301889513090076,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "williamhill",
@@ -963,8 +963,8 @@
         "prob": 0.44567846165508224,
         "probModello": null,
         "valueAtteso": -0.1139912182296966,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.99
       }
     ],
     "modello": [],
@@ -992,7 +992,7 @@
             "quotaBet365": 1.41,
             "probMercato": 0.657672849915683,
             "probModello": null,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "bet365",
@@ -1045,7 +1045,7 @@
             "quotaBet365": null,
             "probMercato": 0.677659814772984,
             "probModello": 0.5301889513090076,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "williamhill",
@@ -1205,8 +1205,8 @@
         "prob": 0.44567846165508224,
         "probModello": null,
         "valueAtteso": -0.1139912182296966,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.99
       }
     ],
     "probabilitaTutte": [
@@ -1227,7 +1227,7 @@
             "quotaBet365": 1.41,
             "probMercato": 0.657672849915683,
             "probModello": null,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "bet365",
@@ -1280,7 +1280,7 @@
             "quotaBet365": null,
             "probMercato": 0.677659814772984,
             "probModello": 0.5301889513090076,
-            "esito": null,
+            "esito": "vinta",
             "bookmaker": [
               [
                 "williamhill",
@@ -1440,8 +1440,8 @@
         "prob": 0.44567846165508224,
         "probModello": null,
         "valueAtteso": -0.1139912182296966,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.99
       }
     ],
     "modelloTutte": [],
