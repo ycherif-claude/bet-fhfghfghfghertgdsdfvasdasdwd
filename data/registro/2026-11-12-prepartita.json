@@ -11,6 +11,114 @@
       "prob": 0.43814432989690716,
       "alle": "2026-11-12T10:39:03+01:00",
       "minutiPrima": 57
+    },
+    "calcio-2026-11-12-armenia-cyprus|1X2|1": {
+      "quota": 3,
+      "prob": 0.2962154853182956,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|1X2|X": {
+      "quota": 3.14,
+      "prob": 0.29804397596840854,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|1X2|2": {
+      "quota": 2.45,
+      "prob": 0.4057405387132957,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 1.5|Over 1.5": {
+      "quota": 1.36,
+      "prob": 0.6974677920924034,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 1.5|Under 1.5": {
+      "quota": 3,
+      "prob": 0.30253220790759666,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 2.5|Over 2.5": {
+      "quota": 2.12,
+      "prob": 0.44129763130793,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 2.5|Under 2.5": {
+      "quota": 1.68,
+      "prob": 0.55870236869207,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 3.5|Over 3.5": {
+      "quota": 3.8,
+      "prob": 0.24484235110938107,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-armenia-cyprus|Under/Over 3.5|Under 3.5": {
+      "quota": 1.24,
+      "prob": 0.7551576488906189,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|1X2|1": {
+      "quota": 3.5,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|1X2|X": {
+      "quota": 3.85,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|1X2|2": {
+      "quota": 1.88,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 1.5|Over 1.5": {
+      "quota": 1.13,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 1.5|Under 1.5": {
+      "quota": 5.4,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 2.5|Over 2.5": {
+      "quota": 1.48,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 2.5|Under 2.5": {
+      "quota": 2.55,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 3.5|Over 3.5": {
+      "quota": 2.2,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
+    },
+    "calcio-2026-11-12-turkey-belgium|Under/Over 3.5|Under 3.5": {
+      "quota": 1.62,
+      "prob": null,
+      "alle": "2026-11-12T17:36:05+01:00",
+      "minutiPrima": 24
     }
   },
   "copertura": {
@@ -19,6 +127,14 @@
       "partite": 1,
       "idPartite": [
         "basket-2026-11-12-perth-wildcats-tasmania-jackjumpers"
+      ]
+    },
+    "calcio|Nations League": {
+      "alle": "2026-11-12T17:36:05+01:00",
+      "partite": 2,
+      "idPartite": [
+        "calcio-2026-11-12-armenia-cyprus",
+        "calcio-2026-11-12-turkey-belgium"
       ]
     }
   }
