@@ -1,0 +1,902 @@
+{
+  "data": "2026-11-12",
+  "generataAlle": "2026-11-12T07:33:42+01:00",
+  "fonte": "odss-api.com",
+  "esito": "ok",
+  "richieste": 2,
+  "rimaste": 238,
+  "diagnostica": {
+    "righe": 2171,
+    "righeUsate": 1146,
+    "senzaIntero": 3,
+    "doppie": 0,
+    "periodiVisti": {
+      "match|full_time": 1146,
+      "match|1st_half": 760,
+      "match|2nd_half": 265
+    }
+  },
+  "erroriGiro": [
+    "odss-api alle 07:33: 3 partite senza righe a tempo intero (full_time), senza quote: Pereira - America De Cali, SL Benfica (d) - FK Austria Wien (d), SL Benfica (k) - FK Austria Wien (k)"
+  ],
+  "eventi": [
+    {
+      "id": "35223788d7d26a74",
+      "campionato": "UEFA Nations League",
+      "casa": "Armenia",
+      "trasferta": "Cyprus",
+      "inizio": "2026-11-12T17:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3534,
+            "DRAW": 0.3044,
+            "AWAY": 0.3422
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.57,
+              "n": 122
+            },
+            "DRAW": {
+              "quota": 3.25,
+              "n": 122
+            },
+            "AWAY": {
+              "quota": 2.75,
+              "n": 122
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5343,
+            "OVER": 0.4657
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.76,
+              "n": 117
+            },
+            "OVER": {
+              "quota": 2,
+              "n": 117
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.7386,
+            "OVER": 0.2614
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.26,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 3.65,
+              "n": 40
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2764,
+            "OVER": 0.7236
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.15,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 1.33,
+              "n": 40
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7017,
+            "1X": 0.6616,
+            "X2": 0.6366
+          },
+          "fonteProb": "mediana di 110 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.32,
+              "n": 110
+            },
+            "1X": {
+              "quota": 1.4,
+              "n": 110
+            },
+            "X2": {
+              "quota": 1.45,
+              "n": 110
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "5e738ff792d39187",
+      "campionato": "UEFA Nations League",
+      "casa": "Turkey",
+      "trasferta": "Belgium",
+      "inizio": "2026-11-12T17:00:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.2465,
+            "DRAW": 0.2399,
+            "AWAY": 0.5146
+          },
+          "fonteProb": "mediana di 35 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 3.8,
+              "n": 35
+            },
+            "DRAW": {
+              "quota": 3.9,
+              "n": 35
+            },
+            "AWAY": {
+              "quota": 1.8,
+              "n": 35
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7597,
+            "1X": 0.4806,
+            "X2": 0.7597
+          },
+          "fonteProb": "mediana di 32 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.24,
+              "n": 32
+            },
+            "1X": {
+              "quota": 1.96,
+              "n": 32
+            },
+            "X2": {
+              "quota": 1.24,
+              "n": 32
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3596,
+            "OVER": 0.6404
+          },
+          "fonteProb": "mediana di 31 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.6,
+              "n": 31
+            },
+            "OVER": {
+              "quota": 1.47,
+              "n": 31
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5707,
+            "OVER": 0.4293
+          },
+          "fonteProb": "mediana di 28 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.64,
+              "n": 28
+            },
+            "OVER": {
+              "quota": 2.19,
+              "n": 28
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.1679,
+            "OVER": 0.8321
+          },
+          "fonteProb": "mediana di 28 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 5.6,
+              "n": 28
+            },
+            "OVER": {
+              "quota": 1.13,
+              "n": 28
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "813a7e92f0775962",
+      "campionato": "UEFA Nations League",
+      "casa": "Albania",
+      "trasferta": "Finland",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.4126,
+            "DRAW": 0.3111,
+            "AWAY": 0.2763
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.28,
+              "n": 121
+            },
+            "DRAW": {
+              "quota": 3,
+              "n": 121
+            },
+            "AWAY": {
+              "quota": 3.4,
+              "n": 121
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.8071,
+            "OVER": 0.1929
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.17,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 4.7,
+              "n": 40
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6312,
+            "OVER": 0.3688
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.5,
+              "n": 43
+            },
+            "OVER": {
+              "quota": 2.48,
+              "n": 43
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3674,
+            "OVER": 0.6326
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.45,
+              "n": 113
+            },
+            "OVER": {
+              "quota": 1.52,
+              "n": 113
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.6855,
+            "1X": 0.7197,
+            "X2": 0.5948
+          },
+          "fonteProb": "mediana di 110 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.35,
+              "n": 110
+            },
+            "1X": {
+              "quota": 1.28,
+              "n": 110
+            },
+            "X2": {
+              "quota": 1.55,
+              "n": 110
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "6e4cfc4a98e87bf0",
+      "campionato": "UEFA Nations League",
+      "casa": "San Marino",
+      "trasferta": "Belarus",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.0491,
+            "DRAW": 0.1016,
+            "AWAY": 0.8493
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 19,
+              "n": 120
+            },
+            "DRAW": {
+              "quota": 7,
+              "n": 120
+            },
+            "AWAY": {
+              "quota": 1.15,
+              "n": 120
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.644,
+            "OVER": 0.356
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.53,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 2.4,
+              "n": 40
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4175,
+            "OVER": 0.5825
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.25,
+              "n": 114
+            },
+            "OVER": {
+              "quota": 1.61,
+              "n": 114
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2236,
+            "OVER": 0.7764
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.8,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 1.17,
+              "n": 40
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8602,
+            "1X": 0.2316,
+            "X2": 0.9082
+          },
+          "fonteProb": "mediana di 80 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.07,
+              "n": 103
+            },
+            "1X": {
+              "quota": 4,
+              "n": 103
+            },
+            "X2": {
+              "quota": 1.02,
+              "n": 80
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "912f32c1c79c29db",
+      "campionato": "UEFA Nations League",
+      "casa": "England",
+      "trasferta": "Croatia",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.7738,
+            "DRAW": 0.1509,
+            "AWAY": 0.0753
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.25,
+              "n": 121
+            },
+            "DRAW": {
+              "quota": 5.75,
+              "n": 121
+            },
+            "AWAY": {
+              "quota": 11,
+              "n": 121
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.331,
+            "OVER": 0.669
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.8,
+              "n": 43
+            },
+            "OVER": {
+              "quota": 1.4,
+              "n": 43
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5455,
+            "OVER": 0.4545
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.73,
+              "n": 114
+            },
+            "OVER": {
+              "quota": 2.05,
+              "n": 114
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8334,
+            "1X": 0.8818,
+            "X2": 0.2849
+          },
+          "fonteProb": "mediana di 110 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.11,
+              "n": 110
+            },
+            "1X": {
+              "quota": 1.05,
+              "n": 110
+            },
+            "X2": {
+              "quota": 3.25,
+              "n": 110
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.1497,
+            "OVER": 0.8503
+          },
+          "fonteProb": "mediana di 39 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 6.25,
+              "n": 39
+            },
+            "OVER": {
+              "quota": 1.1,
+              "n": 39
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "5feaf766d5311b1b",
+      "campionato": "UEFA Nations League",
+      "casa": "Czech Republic",
+      "trasferta": "Spain",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.0742,
+            "DRAW": 0.1328,
+            "AWAY": 0.7932
+          },
+          "fonteProb": "mediana di 33 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 12.5,
+              "n": 33
+            },
+            "DRAW": {
+              "quota": 7,
+              "n": 33
+            },
+            "AWAY": {
+              "quota": 1.17,
+              "n": 33
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8694,
+            "1X": 0.2016,
+            "X2": 0.929
+          },
+          "fonteProb": "mediana di 30 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.09,
+              "n": 30
+            },
+            "1X": {
+              "quota": 4.7,
+              "n": 30
+            },
+            "X2": {
+              "quota": 1.02,
+              "n": 30
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3507,
+            "OVER": 0.6493
+          },
+          "fonteProb": "mediana di 30 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.67,
+              "n": 30
+            },
+            "OVER": {
+              "quota": 1.44,
+              "n": 30
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.163,
+            "OVER": 0.837
+          },
+          "fonteProb": "mediana di 28 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 5.75,
+              "n": 28
+            },
+            "OVER": {
+              "quota": 1.12,
+              "n": 28
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5658,
+            "OVER": 0.4342
+          },
+          "fonteProb": "mediana di 28 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.65,
+              "n": 28
+            },
+            "OVER": {
+              "quota": 2.15,
+              "n": 28
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "21b8bf960769c6e8",
+      "campionato": "UEFA Nations League",
+      "casa": "Italy",
+      "trasferta": "France",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.2328,
+            "DRAW": 0.2576,
+            "AWAY": 0.5095
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 3.75,
+              "n": 121
+            },
+            "DRAW": {
+              "quota": 3.6,
+              "n": 121
+            },
+            "AWAY": {
+              "quota": 1.92,
+              "n": 121
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.424,
+            "OVER": 0.576
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.2,
+              "n": 117
+            },
+            "OVER": {
+              "quota": 1.64,
+              "n": 117
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6353,
+            "OVER": 0.3647
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.49,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 2.55,
+              "n": 40
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7306,
+            "1X": 0.5289,
+            "X2": 0.7405
+          },
+          "fonteProb": "mediana di 110 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.26,
+              "n": 110
+            },
+            "1X": {
+              "quota": 1.75,
+              "n": 110
+            },
+            "X2": {
+              "quota": 1.25,
+              "n": 110
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.1993,
+            "OVER": 0.8007
+          },
+          "fonteProb": "mediana di 39 bookmaker",
+          "mediana": {
+            "UNDER": {
+              "quota": 4.7,
+              "n": 39
+            },
+            "OVER": {
+              "quota": 1.17,
+              "n": 39
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "aeb5fc9f3bf73f6c",
+      "campionato": "UEFA Nations League",
+      "casa": "Montenegro",
+      "trasferta": "Latvia",
+      "inizio": "2026-11-12T19:45:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.7473,
+            "DRAW": 0.1679,
+            "AWAY": 0.0848
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.28,
+              "n": 121
+            },
+            "DRAW": {
+              "quota": 5.33,
+              "n": 121
+            },
+            "AWAY": {
+              "quota": 10,
+              "n": 121
+            }
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4767,
+            "OVER": 0.5233
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.96,
+              "n": 120
+            },
+            "OVER": {
+              "quota": 1.81,
+              "n": 120
+            }
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.6918,
+            "OVER": 0.3082
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.38,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 2.85,
+              "n": 40
+            }
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2412,
+            "OVER": 0.7588
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.9,
+              "n": 40
+            },
+            "OVER": {
+              "quota": 1.23,
+              "n": 40
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.8096,
+            "1X": 0.8713,
+            "X2": 0.3191
+          },
+          "fonteProb": "mediana di 110 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.14,
+              "n": 110
+            },
+            "1X": {
+              "quota": 1.06,
+              "n": 110
+            },
+            "X2": {
+              "quota": 2.9,
+              "n": 110
+            }
+          }
+        }
+      }
+    }
+  ],
+  "completamento": {
+    "alle": "2026-11-12T07:33:43+01:00",
+    "partite": 8,
+    "completate": 8,
+    "richieste": 1
+  }
+}
