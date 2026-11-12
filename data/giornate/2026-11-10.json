@@ -306,7 +306,7 @@
       "stato": "confermata",
       "motivoStato": "quota 2,95 · giocatori chiave non indicati dal giro del mattino; quota 1,80",
       "oraUltimoControllo": "2026-11-11T01:12:10+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "pallavolo-2026-11-10-gks-katowice-chks-chelm-handicap-set-meno-1-5-casa",
@@ -342,7 +342,8 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa",
+          "esitoDalRegistro": true
         },
         {
           "id": "nba-2026-11-10-philadelphia-76ers-boston-celtics-vincente-boston-celtics",
@@ -417,8 +418,9 @@
       "stato": "annullata",
       "motivoStato": "Claude: Quota 2,95 sotto la minima 2,97 e nessun fatto concreto che alzi la probabilità: la stima del mattino viene solo dal mercato (Pinnacle 35%), quindi il value non regge (controlli quote del progetto, 16:34)",
       "oraUltimoControllo": "2026-11-10T16:35:19+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "nba-2026-11-10-philadelphia-76ers-boston-celtics-vincente-boston-celtics",
