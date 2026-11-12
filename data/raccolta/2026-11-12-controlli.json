@@ -89,10 +89,46 @@
         "quota 2,05 ≥ minima 1,86"
       ],
       "alle": "2026-11-12T21:04:16+01:00"
+    },
+    "nba-2026-11-12-philadelphia-76ers-toronto-raptors-vincente-toronto-raptors": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 3,13 ≥ minima 3,03",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 3,13 ≥ minima 3,03"
+      ],
+      "alle": "2026-11-13T00:08:29+01:00"
+    },
+    "M-basket-2026-11-12-new-zealand-breakers-brisbane-bullets-vincente-new-zealand-breakers+basket-2026-11-12-pallacanestro-olimpia-milano-zalgiris-vincente-zalgiris+nba-2026-11-12-washington-wizards-detroit-pistons-handicap-piu-9-5-trasferta#2": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,78",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,78"
+      ],
+      "alle": "2026-11-13T00:08:29+01:00"
+    },
+    "nba-2026-11-12-washington-wizards-detroit-pistons-handicap-piu-9-5-trasferta": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,78 sotto la minima 1,81",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,78 sotto la minima 1,81"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-13T00:08:29+01:00"
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "nba-2026-11-12-washington-wizards-detroit-pistons-handicap-piu-9-5-trasferta"
+    ]
   }
 }

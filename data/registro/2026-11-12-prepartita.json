@@ -509,6 +509,42 @@
       "prob": 0.5540096129521882,
       "alle": "2026-11-12T21:04:16+01:00",
       "minutiPrima": 86
+    },
+    "nba-2026-11-12-washington-wizards-detroit-pistons|Vincente|Washington Wizards": {
+      "quota": 4.3,
+      "prob": 0.21650926897516612,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
+    },
+    "nba-2026-11-12-washington-wizards-detroit-pistons|Vincente|Detroit Pistons": {
+      "quota": 1.22,
+      "prob": 0.7834907310248339,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
+    },
+    "nba-2026-11-12-washington-wizards-detroit-pistons|Handicap +9.5|casa": {
+      "quota": 2,
+      "prob": 0.4708451066015926,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
+    },
+    "nba-2026-11-12-washington-wizards-detroit-pistons|Handicap +9.5|trasferta": {
+      "quota": 1.78,
+      "prob": 0.5291548933984074,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
+    },
+    "nba-2026-11-12-philadelphia-76ers-toronto-raptors|Vincente|Philadelphia 76ers": {
+      "quota": 1.36,
+      "prob": 0.7106382978723403,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
+    },
+    "nba-2026-11-12-philadelphia-76ers-toronto-raptors|Vincente|Toronto Raptors": {
+      "quota": 3.13,
+      "prob": 0.2893617021276596,
+      "alle": "2026-11-13T00:08:29+01:00",
+      "minutiPrima": 52
     }
   },
   "copertura": {
@@ -548,6 +584,14 @@
       "partite": 1,
       "idPartite": [
         "tennis-2026-11-12-jessica-pegula-linda-noskova"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-13T00:08:29+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-11-12-washington-wizards-detroit-pistons",
+        "nba-2026-11-12-philadelphia-76ers-toronto-raptors"
       ]
     }
   }
