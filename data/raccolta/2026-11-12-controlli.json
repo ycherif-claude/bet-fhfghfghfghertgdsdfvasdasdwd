@@ -139,6 +139,28 @@
       ],
       "alle": "2026-11-13T02:38:34+01:00",
       "regola": true
+    },
+    "M-basket-2026-11-12-new-zealand-breakers-brisbane-bullets-vincente-new-zealand-breakers+basket-2026-11-12-pallacanestro-olimpia-milano-zalgiris-vincente-zalgiris+nba-2026-11-12-washington-wizards-detroit-pistons-handicap-piu-9-5-trasferta#0": {
+      "esito": "confermata",
+      "motivo": "quota 1,63",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,63"
+      ],
+      "alle": "2026-11-13T06:53:19+01:00"
+    },
+    "basket-2026-11-12-new-zealand-breakers-brisbane-bullets-vincente-new-zealand-breakers": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,63 sotto la minima 1,80",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,63 sotto la minima 1,80"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-13T06:53:19+01:00",
+      "regola": true
     }
   },
   "claude": {
