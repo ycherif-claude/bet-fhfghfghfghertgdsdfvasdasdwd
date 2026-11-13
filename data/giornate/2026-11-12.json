@@ -1111,9 +1111,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità: la ricerca web non ha trovato un report infortuni aggiornato né notizie dell’ultima ora (ricerca web NBA/ESPN, 21:10 (nessun risultato per il 12/11/2026))",
-      "oraUltimoControllo": "2026-11-12T21:07:00+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,86 sotto la minima 1,89",
+      "oraUltimoControllo": "2026-11-13T02:38:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -2087,7 +2087,13 @@
               1.34
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6725543478260869,
+            "alle": "2026-11-13T02:38:34+01:00",
+            "minutiPrima": 21
+          }
         }
       ],
       "quota": 35.5,
@@ -3027,7 +3033,13 @@
               1.34
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6725543478260869,
+            "alle": "2026-11-13T02:38:34+01:00",
+            "minutiPrima": 21
+          }
         }
       ],
       "quota": 71.57,
@@ -3905,7 +3917,13 @@
               1.34
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6725543478260869,
+            "alle": "2026-11-13T02:38:34+01:00",
+            "minutiPrima": 21
+          }
         }
       ],
       "quota": 23.2,
@@ -4403,7 +4421,13 @@
               1.34
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6725543478260869,
+            "alle": "2026-11-13T02:38:34+01:00",
+            "minutiPrima": 21
+          }
         }
       ],
       "quota": 5.14,
@@ -5302,7 +5326,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.92,
@@ -5792,7 +5822,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.92,
@@ -6546,7 +6582,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 2.01,
@@ -8490,7 +8532,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.92,
@@ -8980,7 +9028,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.92,
@@ -9734,7 +9788,13 @@
                 1.34
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6725543478260869,
+              "alle": "2026-11-13T02:38:34+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 2.01,
