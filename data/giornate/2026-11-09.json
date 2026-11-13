@@ -965,7 +965,7 @@
             "quotaBet365": null,
             "probMercato": 0.7159,
             "probModello": 0.7000297128226568,
-            "esito": null,
+            "esito": "rimborsata",
             "probModelloTarato": 0.7261,
             "bookmaker": [
               [
@@ -999,15 +999,16 @@
               "prob": 0.7126948775055678,
               "alle": "2026-11-09T20:23:38+01:00",
               "minutiPrima": 6
-            }
+            },
+            "motivoEsito": "nessun risultato dopo 3 giorni (partita rinviata o sospesa)"
           }
         ],
         "quota": 1.29,
         "prob": 0.7159,
         "probModello": 0.7000297128226568,
         "valueAtteso": -0.07648900000000003,
-        "esito": null,
-        "ritorno": null
+        "esito": "rimborsata",
+        "ritorno": 1
       }
     ],
     "margine": [

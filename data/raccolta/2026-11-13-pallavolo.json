@@ -1,0 +1,889 @@
+{
+  "data": "2026-11-13",
+  "generataAlle": "2026-11-13T07:37:36+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 212
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-11-13-projekt-warsaw-chks-chelm",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Projekt Warsaw - Chks Chelm",
+      "casa": "Projekt Warsaw",
+      "trasferta": "Chks Chelm",
+      "inizio": "2026-11-13T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Projekt Warsaw": 1629,
+        "Chks Chelm": 1383
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Projekt Warsaw 1629 – Chks Chelm 1383, vantaggio campo compreso: vittoria della casa 85% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probModelloStudio": 0.8535459250378357,
+          "probPinnacle": 0.8099386898999676,
+          "quota": 1.14,
+          "fonteQuota": "mediana di 127 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita.",
+          "bookmaker": [
+            [
+              "starcasino",
+              1.154
+            ],
+            [
+              "admiralbet",
+              1.15
+            ],
+            [
+              "888sport",
+              1.143
+            ],
+            [
+              "betflag",
+              1.14
+            ],
+            [
+              "bwin",
+              1.14
+            ],
+            [
+              "eurobet",
+              1.14
+            ],
+            [
+              "goldbet",
+              1.14
+            ],
+            [
+              "leovegas",
+              1.14
+            ],
+            [
+              "lottomatica",
+              1.14
+            ],
+            [
+              "planetwin365",
+              1.14
+            ],
+            [
+              "stake",
+              1.14
+            ],
+            [
+              "winamax",
+              1.14
+            ],
+            [
+              "codere",
+              1.13
+            ],
+            [
+              "winbet",
+              1.13
+            ],
+            [
+              "marathonbet",
+              1.125
+            ],
+            [
+              "betsson",
+              1.12
+            ],
+            [
+              "quigioco",
+              1.12
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Chks Chelm",
+          "probModello": null,
+          "probModelloStudio": 0.14645407496216434,
+          "probPinnacle": 0.19006131010003227,
+          "quota": 4.9,
+          "fonteQuota": "mediana di 127 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chks Chelm vince la partita.",
+          "bookmaker": [
+            [
+              "bwin",
+              5.25
+            ],
+            [
+              "admiralbet",
+              5.2
+            ],
+            [
+              "marathonbet",
+              5.15
+            ],
+            [
+              "winamax",
+              5.1
+            ],
+            [
+              "888sport",
+              5
+            ],
+            [
+              "eurobet",
+              5
+            ],
+            [
+              "stake",
+              5
+            ],
+            [
+              "winbet",
+              5
+            ],
+            [
+              "betflag",
+              4.97
+            ],
+            [
+              "goldbet",
+              4.97
+            ],
+            [
+              "lottomatica",
+              4.97
+            ],
+            [
+              "planetwin365",
+              4.97
+            ],
+            [
+              "quigioco",
+              4.85
+            ],
+            [
+              "betsson",
+              4.8
+            ],
+            [
+              "codere",
+              4.75
+            ],
+            [
+              "leovegas",
+              4.6
+            ],
+            [
+              "starcasino",
+              4.333
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.6743538758254953,
+          "probPinnacle": 0.6863196683555965,
+          "quota": 1.34,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw -1,5 vince se Projekt Warsaw vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "marathonbet",
+              1.35
+            ],
+            [
+              "bwin",
+              1.34
+            ],
+            [
+              "leovegas",
+              1.33
+            ],
+            [
+              "winamax",
+              1.32
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.32564612417450467,
+          "probPinnacle": 0.31368033164440356,
+          "quota": 3,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm +1,5 vince se Chks Chelm vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              3.1
+            ],
+            [
+              "bwin",
+              3
+            ],
+            [
+              "leovegas",
+              3
+            ],
+            [
+              "marathonbet",
+              2.88
+            ],
+            [
+              "winamax",
+              2.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.925714867592583,
+          "probPinnacle": 0.8840606823350194,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 28 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Projekt Warsaw +1,5 vince se Projekt Warsaw vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.062
+            ],
+            [
+              "leovegas",
+              1.06
+            ],
+            [
+              "winbet",
+              1.06
+            ],
+            [
+              "winamax",
+              1.04
+            ],
+            [
+              "marathonbet",
+              1.035
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.07428513240741696,
+          "probPinnacle": 0.11593931766498047,
+          "quota": 8.05,
+          "fonteQuota": "mediana di 28 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Chks Chelm -1,5 vince se Chks Chelm vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winamax",
+              9
+            ],
+            [
+              "bwin",
+              8.75
+            ],
+            [
+              "marathonbet",
+              8.3
+            ],
+            [
+              "winbet",
+              8
+            ],
+            [
+              "leovegas",
+              7.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.6140370409434854,
+          "probPinnacle": 0.5069667738478028,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "winbet",
+              1.75
+            ],
+            [
+              "bwin",
+              1.73
+            ],
+            [
+              "stake",
+              1.73
+            ],
+            [
+              "888sport",
+              1.727
+            ],
+            [
+              "leovegas",
+              1.72
+            ],
+            [
+              "betsson",
+              1.7
+            ],
+            [
+              "marathonbet",
+              1.69
+            ],
+            [
+              "winamax",
+              1.68
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.38596295905651457,
+          "probPinnacle": 0.49303322615219725,
+          "quota": 1.97,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              2.05
+            ],
+            [
+              "marathonbet",
+              2.02
+            ],
+            [
+              "888sport",
+              2
+            ],
+            [
+              "bwin",
+              2
+            ],
+            [
+              "leovegas",
+              2
+            ],
+            [
+              "stake",
+              2
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "betsson",
+              1.96
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "GKS Katowice - KS Norwid Czestochowa",
+      "casa": "GKS Katowice",
+      "trasferta": "KS Norwid Czestochowa",
+      "inizio": "2026-11-13T20:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.46572843367213973,
+          "quota": 2.06,
+          "fonteQuota": "mediana di 129 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita.",
+          "bookmaker": [
+            [
+              "marathonbet",
+              2.1
+            ],
+            [
+              "admiralbet",
+              2.06
+            ],
+            [
+              "888sport",
+              2.05
+            ],
+            [
+              "bwin",
+              2.05
+            ],
+            [
+              "netbet",
+              2.05
+            ],
+            [
+              "starcasino",
+              2.05
+            ],
+            [
+              "winamax",
+              2.05
+            ],
+            [
+              "betflag",
+              2.04
+            ],
+            [
+              "eurobet",
+              2.04
+            ],
+            [
+              "goldbet",
+              2.04
+            ],
+            [
+              "lottomatica",
+              2.04
+            ],
+            [
+              "planetwin365",
+              2.04
+            ],
+            [
+              "stake",
+              2.04
+            ],
+            [
+              "winbet",
+              2.03
+            ],
+            [
+              "leovegas",
+              2.02
+            ],
+            [
+              "quigioco",
+              2.01
+            ],
+            [
+              "betsson",
+              2
+            ],
+            [
+              "codere",
+              2
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "KS Norwid Czestochowa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.5342715663278603,
+          "quota": 1.67,
+          "fonteQuota": "mediana di 129 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se KS Norwid Czestochowa vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.71
+            ],
+            [
+              "888sport",
+              1.7
+            ],
+            [
+              "bwin",
+              1.7
+            ],
+            [
+              "netbet",
+              1.7
+            ],
+            [
+              "winamax",
+              1.7
+            ],
+            [
+              "betflag",
+              1.69
+            ],
+            [
+              "eurobet",
+              1.69
+            ],
+            [
+              "goldbet",
+              1.69
+            ],
+            [
+              "lottomatica",
+              1.69
+            ],
+            [
+              "planetwin365",
+              1.69
+            ],
+            [
+              "stake",
+              1.69
+            ],
+            [
+              "winbet",
+              1.68
+            ],
+            [
+              "codere",
+              1.67
+            ],
+            [
+              "leovegas",
+              1.67
+            ],
+            [
+              "quigioco",
+              1.66
+            ],
+            [
+              "betsson",
+              1.65
+            ],
+            [
+              "marathonbet",
+              1.65
+            ],
+            [
+              "starcasino",
+              1.636
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.33747907199234634,
+          "quota": 3,
+          "fonteQuota": "mediana di 39 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice -1,5 vince se GKS Katowice vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              3.15
+            ],
+            [
+              "bwin",
+              3.1
+            ],
+            [
+              "marathonbet",
+              3.08
+            ],
+            [
+              "netbet",
+              3.05
+            ],
+            [
+              "leovegas",
+              3
+            ],
+            [
+              "winamax",
+              2.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.6625209280076536,
+          "quota": 1.33,
+          "fonteQuota": "mediana di 39 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Norwid Czestochowa +1,5 vince se KS Norwid Czestochowa vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "bwin",
+              1.33
+            ],
+            [
+              "leovegas",
+              1.33
+            ],
+            [
+              "netbet",
+              1.33
+            ],
+            [
+              "marathonbet",
+              1.31
+            ],
+            [
+              "winamax",
+              1.31
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.6056733963710709,
+          "quota": 1.53,
+          "fonteQuota": "mediana di 71 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice +1,5 vince se GKS Katowice vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              1.55
+            ],
+            [
+              "888sport",
+              1.533
+            ],
+            [
+              "marathonbet",
+              1.533
+            ],
+            [
+              "bwin",
+              1.53
+            ],
+            [
+              "leovegas",
+              1.53
+            ],
+            [
+              "netbet",
+              1.53
+            ],
+            [
+              "stake",
+              1.53
+            ],
+            [
+              "winamax",
+              1.5
+            ],
+            [
+              "starcasino",
+              1.48
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.3943266036289292,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 71 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: KS Norwid Czestochowa -1,5 vince se KS Norwid Czestochowa vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              2.4
+            ],
+            [
+              "888sport",
+              2.375
+            ],
+            [
+              "bwin",
+              2.35
+            ],
+            [
+              "leovegas",
+              2.35
+            ],
+            [
+              "netbet",
+              2.35
+            ],
+            [
+              "stake",
+              2.35
+            ],
+            [
+              "marathonbet",
+              2.3
+            ],
+            [
+              "starcasino",
+              2.25
+            ],
+            [
+              "winamax",
+              2.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.6391905231984205,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 46 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "marathonbet",
+              1.38
+            ],
+            [
+              "bwin",
+              1.37
+            ],
+            [
+              "stake",
+              1.37
+            ],
+            [
+              "leovegas",
+              1.36
+            ],
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "betsson",
+              1.35
+            ],
+            [
+              "netbet",
+              1.35
+            ],
+            [
+              "winamax",
+              1.35
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.36080947680157943,
+          "quota": 2.8,
+          "fonteQuota": "mediana di 46 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-13T07:37:36+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              2.95
+            ],
+            [
+              "winbet",
+              2.95
+            ],
+            [
+              "bwin",
+              2.9
+            ],
+            [
+              "leovegas",
+              2.9
+            ],
+            [
+              "betsson",
+              2.79
+            ],
+            [
+              "netbet",
+              2.77
+            ],
+            [
+              "marathonbet",
+              2.76
+            ],
+            [
+              "winamax",
+              2.75
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
