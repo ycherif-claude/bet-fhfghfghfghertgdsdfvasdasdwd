@@ -101,6 +101,90 @@
       "prob": 0.7812220032252285,
       "alle": "2026-11-13T17:16:06+01:00",
       "minutiPrima": 44
+    },
+    "tennis-2026-11-13-karolina-muchova-mirra-andreeva|Vincente incontro|Mirra Andreeva": {
+      "quota": 1.34,
+      "prob": null,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 84
+    },
+    "tennis-2026-11-13-karolina-muchova-mirra-andreeva|Vincente incontro|Karolina Muchova": {
+      "quota": 3.2,
+      "prob": null,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 84
+    },
+    "basket-2026-11-13-panathinaikos-fc-barcelona-basquet|Vincente|Panathinaikos": {
+      "quota": 1.18,
+      "prob": 0.8092948717948717,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 39
+    },
+    "basket-2026-11-13-panathinaikos-fc-barcelona-basquet|Vincente|FC Barcelona Bàsquet": {
+      "quota": 4.5,
+      "prob": 0.1907051282051282,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 39
+    },
+    "basket-2026-11-13-panathinaikos-fc-barcelona-basquet|Handicap -9.5|casa": {
+      "quota": 1.76,
+      "prob": 0.5242668050869452,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 39
+    },
+    "basket-2026-11-13-panathinaikos-fc-barcelona-basquet|Handicap -9.5|trasferta": {
+      "quota": 2.07,
+      "prob": 0.47573319491305477,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 39
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Vincente|GKS Katowice": {
+      "quota": 1.96,
+      "prob": 0.5065479308538501,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Vincente|KS Norwid Czestochowa": {
+      "quota": 1.75,
+      "prob": 0.49345206914614975,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Handicap set -1.5|casa": {
+      "quota": 2.9,
+      "prob": 0.3580914904082637,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Handicap set -1.5|trasferta": {
+      "quota": 1.36,
+      "prob": 0.6419085095917364,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Handicap set +1.5|casa": {
+      "quota": 1.5,
+      "prob": 0.6449239823442864,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Handicap set +1.5|trasferta": {
+      "quota": 2.4,
+      "prob": 0.3550760176557136,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Totale set 3.5|Over 3.5": {
+      "quota": 1.4,
+      "prob": 0.658970658970659,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
+    },
+    "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa|Totale set 3.5|Under 3.5": {
+      "quota": 2.75,
+      "prob": 0.341029341029341,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "minutiPrima": 54
     }
   },
   "copertura": {
@@ -112,10 +196,11 @@
       ]
     },
     "basket|Eurolega": {
-      "alle": "2026-11-13T18:09:00+01:00",
-      "partite": 1,
+      "alle": "2026-11-13T19:35:51+01:00",
+      "partite": 2,
       "idPartite": [
-        "basket-2026-11-13-anadolu-efes-virtus-segafredo-bologna"
+        "basket-2026-11-13-anadolu-efes-virtus-segafredo-bologna",
+        "basket-2026-11-13-panathinaikos-fc-barcelona-basquet"
       ]
     },
     "calcio|Nations League": {
@@ -123,6 +208,20 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-11-13-moldova-kazakhstan"
+      ]
+    },
+    "tennis|WTA Finals": {
+      "alle": "2026-11-13T19:35:51+01:00",
+      "partite": 1,
+      "idPartite": [
+        "tennis-2026-11-13-karolina-muchova-mirra-andreeva"
+      ]
+    },
+    "pallavolo|PlusLiga": {
+      "alle": "2026-11-13T19:35:51+01:00",
+      "partite": 1,
+      "idPartite": [
+        "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa"
       ]
     }
   }
