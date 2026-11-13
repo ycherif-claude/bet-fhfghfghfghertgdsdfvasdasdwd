@@ -1218,9 +1218,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata su infortuni o riposi; consenso del mattino mantenuto se non disponibile quello fresco (ricerca web (report ufficiale NBA non reperibile), 21:15)",
-      "oraUltimoControllo": "2026-11-13T21:06:46+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,86 sotto la minima 1,87",
+      "oraUltimoControllo": "2026-11-14T00:17:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -1504,9 +1504,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata su infortuni o riposi; consenso del mattino mantenuto se non disponibile quello fresco (ricerca web (report ufficiale NBA non reperibile), 21:15)",
-      "oraUltimoControllo": "2026-11-13T21:06:46+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,78 sotto la minima 1,82",
+      "oraUltimoControllo": "2026-11-14T00:17:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -2058,7 +2058,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7380292837356549,
+            "alle": "2026-11-14T00:17:34+01:00",
+            "minutiPrima": 42
+          }
         },
         {
           "sport": "nba",
@@ -3181,7 +3187,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7380292837356549,
+            "alle": "2026-11-14T00:17:34+01:00",
+            "minutiPrima": 42
+          }
         },
         {
           "sport": "nba",
@@ -4207,7 +4219,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7380292837356549,
+            "alle": "2026-11-14T00:17:34+01:00",
+            "minutiPrima": 42
+          }
         },
         {
           "sport": "nba",
@@ -5392,7 +5410,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": null
+          "probModelloTarato": null,
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7380292837356549,
+            "alle": "2026-11-14T00:17:34+01:00",
+            "minutiPrima": 42
+          }
         },
         {
           "sport": "nba",
@@ -6295,7 +6319,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7380292837356549,
+              "alle": "2026-11-14T00:17:34+01:00",
+              "minutiPrima": 42
+            }
           }
         ],
         "quota": 2,
@@ -7948,7 +7978,13 @@
                 1.32
               ]
             ],
-            "probModelloTarato": null
+            "probModelloTarato": null,
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7380292837356549,
+              "alle": "2026-11-14T00:17:34+01:00",
+              "minutiPrima": 42
+            }
           }
         ],
         "quota": 2,

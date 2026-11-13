@@ -671,6 +671,54 @@
       "prob": 0.8200772200772201,
       "alle": "2026-11-13T20:31:57+01:00",
       "minutiPrima": 13
+    },
+    "nba-2026-11-13-orlando-magic-milwaukee-bucks|Vincente|Orlando Magic": {
+      "quota": 1.23,
+      "prob": 0.7791292085316411,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-orlando-magic-milwaukee-bucks|Vincente|Milwaukee Bucks": {
+      "quota": 4,
+      "prob": 0.2208707914683589,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-orlando-magic-milwaukee-bucks|Totale punti 222.5|Over 222.5": {
+      "quota": 1.78,
+      "prob": 0.5158627805003869,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-orlando-magic-milwaukee-bucks|Totale punti 222.5|Under 222.5": {
+      "quota": 1.97,
+      "prob": 0.48413721949961314,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-indiana-pacers-new-york-knicks|Vincente|Indiana Pacers": {
+      "quota": 3.55,
+      "prob": 0.2619707162643451,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-indiana-pacers-new-york-knicks|Vincente|New York Knicks": {
+      "quota": 1.3,
+      "prob": 0.7380292837356549,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-indiana-pacers-new-york-knicks|Totale punti 219.5|Over 219.5": {
+      "quota": 1.9,
+      "prob": 0.5,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-13-indiana-pacers-new-york-knicks|Totale punti 219.5|Under 219.5": {
+      "quota": 1.86,
+      "prob": 0.5,
+      "alle": "2026-11-14T00:17:34+01:00",
+      "minutiPrima": 42
     }
   },
   "copertura": {
@@ -717,6 +765,14 @@
       "partite": 1,
       "idPartite": [
         "pallavolo-2026-11-13-gks-katowice-ks-norwid-czestochowa"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-14T00:17:34+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-11-13-orlando-magic-milwaukee-bucks",
+        "nba-2026-11-13-indiana-pacers-new-york-knicks"
       ]
     }
   }

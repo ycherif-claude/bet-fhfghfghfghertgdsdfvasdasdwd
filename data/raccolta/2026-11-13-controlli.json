@@ -103,6 +103,46 @@
       ],
       "alle": "2026-11-13T20:31:57+01:00",
       "regola": true
+    },
+    "M-nba-2026-11-13-miami-heat-cleveland-cavaliers-totale-punti-236-5-over-236-5+nba-2026-11-13-san-antonio-spurs-golden-state-warriors-totale-punti-218-5-over-218-5+nba-2026-11-13-orlando-magic-milwaukee-bucks-totale-punti-222-5-over-222-5#2": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,78",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,78"
+      ],
+      "alle": "2026-11-14T00:17:34+01:00"
+    },
+    "nba-2026-11-13-indiana-pacers-new-york-knicks-totale-punti-219-5-under-219-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,86 sotto la minima 1,87",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,86 sotto la minima 1,87"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-14T00:17:34+01:00",
+      "regola": true
+    },
+    "nba-2026-11-13-orlando-magic-milwaukee-bucks-totale-punti-222-5-over-222-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,78 sotto la minima 1,82",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,78 sotto la minima 1,82"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-14T00:17:34+01:00",
+      "regola": true
     }
   },
   "claude": {
