@@ -72,6 +72,37 @@
       "dettagli": [],
       "alle": "2026-11-13T19:36:30+01:00",
       "claude": true
+    },
+    "calcio-2026-11-13-liechtenstein-azerbaijan-under-over-3-5-over-3-5": {
+      "esito": "confermata",
+      "motivo": "regola automatica (troppo tardi per Claude): mercato contro: da 29% a 22%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 29% a 22%"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 3,95 ≥ minima 3,82"
+      ],
+      "alle": "2026-11-13T20:31:57+01:00",
+      "regola": true
+    },
+    "calcio-2026-11-13-slovenia-switzerland-under-over-2-5-under-2-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,48 sotto la minima 1,68",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,48 sotto la minima 1,68"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-13T20:31:57+01:00",
+      "regola": true
     }
   },
   "claude": {
