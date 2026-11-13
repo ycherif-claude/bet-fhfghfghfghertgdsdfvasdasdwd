@@ -545,6 +545,30 @@
       "prob": 0.2893617021276596,
       "alle": "2026-11-13T00:08:29+01:00",
       "minutiPrima": 52
+    },
+    "nba-2026-11-12-minnesota-timberwolves-dallas-mavericks|Vincente|Minnesota Timberwolves": {
+      "quota": 1.42,
+      "prob": 0.6585027726432533,
+      "alle": "2026-11-13T01:26:46+01:00",
+      "minutiPrima": 33
+    },
+    "nba-2026-11-12-minnesota-timberwolves-dallas-mavericks|Vincente|Dallas Mavericks": {
+      "quota": 2.82,
+      "prob": 0.3414972273567468,
+      "alle": "2026-11-13T01:26:46+01:00",
+      "minutiPrima": 33
+    },
+    "nba-2026-11-12-minnesota-timberwolves-dallas-mavericks|Handicap -5.5|casa": {
+      "quota": 1.81,
+      "prob": 0.5114366486764328,
+      "alle": "2026-11-13T01:26:46+01:00",
+      "minutiPrima": 33
+    },
+    "nba-2026-11-12-minnesota-timberwolves-dallas-mavericks|Handicap -5.5|trasferta": {
+      "quota": 1.94,
+      "prob": 0.48856335132356715,
+      "alle": "2026-11-13T01:26:46+01:00",
+      "minutiPrima": 33
     }
   },
   "copertura": {
@@ -587,11 +611,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-13T00:08:29+01:00",
-      "partite": 2,
+      "alle": "2026-11-13T01:26:46+01:00",
+      "partite": 3,
       "idPartite": [
         "nba-2026-11-12-washington-wizards-detroit-pistons",
-        "nba-2026-11-12-philadelphia-76ers-toronto-raptors"
+        "nba-2026-11-12-philadelphia-76ers-toronto-raptors",
+        "nba-2026-11-12-minnesota-timberwolves-dallas-mavericks"
       ]
     }
   }
