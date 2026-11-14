@@ -2999,6 +2999,42 @@
       "prob": 0.39803439803439805,
       "alle": "2026-11-14T21:24:16+01:00",
       "minutiPrima": 66
+    },
+    "nba-2026-11-14-new-orleans-pelicans-denver-nuggets|Vincente|New Orleans Pelicans": {
+      "quota": 5.6,
+      "prob": 0.17222824801356493,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 43
+    },
+    "nba-2026-11-14-new-orleans-pelicans-denver-nuggets|Vincente|Denver Nuggets": {
+      "quota": 1.15,
+      "prob": 0.827771751986435,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 43
+    },
+    "nba-2026-11-14-new-orleans-pelicans-denver-nuggets|Handicap +12.5|casa": {
+      "quota": 1.9,
+      "prob": 0.5009373828271466,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 43
+    },
+    "nba-2026-11-14-new-orleans-pelicans-denver-nuggets|Handicap +12.5|trasferta": {
+      "quota": 1.91,
+      "prob": 0.49906261717285344,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 43
+    },
+    "nba-2026-11-14-cleveland-cavaliers-dallas-mavericks|Vincente|Cleveland Cavaliers": {
+      "quota": 3.75,
+      "prob": 0.2563765225429867,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 73
+    },
+    "nba-2026-11-14-cleveland-cavaliers-dallas-mavericks|Vincente|Dallas Mavericks": {
+      "quota": 1.29,
+      "prob": 0.7436234774570132,
+      "alle": "2026-11-15T00:17:18+01:00",
+      "minutiPrima": 73
     }
   },
   "copertura": {
@@ -3120,6 +3156,14 @@
       "idPartite": [
         "tennis-2026-11-14-jessica-pegula-mirra-andreeva",
         "tennis-2026-11-14-elina-svitolina-linda-noskova"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-15T00:17:18+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-11-14-new-orleans-pelicans-denver-nuggets",
+        "nba-2026-11-14-cleveland-cavaliers-dallas-mavericks"
       ]
     }
   }
