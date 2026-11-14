@@ -198,6 +198,38 @@
       ],
       "alle": "2026-11-14T00:53:56+01:00",
       "claude": true
+    },
+    "M-nba-2026-11-13-miami-heat-cleveland-cavaliers-totale-punti-236-5-over-236-5+nba-2026-11-13-san-antonio-spurs-golden-state-warriors-totale-punti-218-5-over-218-5+nba-2026-11-13-orlando-magic-milwaukee-bucks-totale-punti-222-5-over-222-5#1": {
+      "esito": "confermata",
+      "motivo": "regola automatica (troppo tardi per Claude): mercato contro: da 54% a 44%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 54% a 44%"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 2,10"
+      ],
+      "alle": "2026-11-14T02:42:10+01:00",
+      "regola": true
+    },
+    "nba-2026-11-13-san-antonio-spurs-golden-state-warriors-totale-punti-218-5-over-218-5": {
+      "esito": "confermata",
+      "motivo": "regola automatica (troppo tardi per Claude): mercato contro: da 54% a 44%, confermata con l'avviso",
+      "problemi": [
+        {
+          "tipo": "mercato",
+          "testo": "mercato contro: da 54% a 44%"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 2,10 ≥ minima 1,68"
+      ],
+      "alle": "2026-11-14T02:42:10+01:00",
+      "regola": true
     }
   },
   "claude": {
