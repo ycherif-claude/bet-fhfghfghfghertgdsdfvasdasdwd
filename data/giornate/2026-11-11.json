@@ -786,7 +786,7 @@
       "stato": "confermata",
       "motivoStato": "quota 1,88 · quota 2,90",
       "oraUltimoControllo": "2026-11-11T20:49:40+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "tennis-2026-11-11-aryna-sabalenka-mirra-andreeva-vincente-incontro-aryna-sabalenka",
@@ -823,7 +823,8 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa",
+          "esitoDalRegistro": true
         },
         {
           "id": "basket-2026-11-11-paris-basketball-fenerbahce-sk-vincente-paris-basketball",
@@ -987,8 +988,9 @@
       "stato": "confermata",
       "motivoStato": "quota 1,88 ≥ minima 1,75",
       "oraUltimoControllo": "2026-11-11T20:49:40+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "basket-2026-11-11-paris-basketball-fenerbahce-sk-vincente-paris-basketball",

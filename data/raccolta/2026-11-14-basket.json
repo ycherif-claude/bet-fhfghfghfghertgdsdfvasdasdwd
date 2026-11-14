@@ -1,0 +1,2692 @@
+{
+  "data": "2026-11-14",
+  "generataAlle": "2026-11-14T07:30:23+01:00",
+  "crediti": {
+    "usati": 0,
+    "rimasti": 335
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idOdss": [
+        "e8459e446ecc996d",
+        "eb30daf35157985a"
+      ],
+      "idPartita": "basket-2026-11-14-melbourne-united-s-e-melbourne-phoenix",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Melbourne United - S.E. Melbourne Phoenix",
+      "casa": "Melbourne United",
+      "trasferta": "S.E. Melbourne Phoenix",
+      "inizio": "2026-11-14T09:36:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 99,
+        "trasferta": 95.5
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Melbourne United 99 – S.E. Melbourne Phoenix 95 (stagione in corso e precedente)",
+        "Melbourne United alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Melbourne United",
+          "probModello": 0.6018939813075126,
+          "probPinnacle": 0.6990077177508269,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 163 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Melbourne United vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.42
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "fastbet",
+              1.385
+            ],
+            [
+              "zonagioco",
+              1.385
+            ],
+            [
+              "winamax",
+              1.38
+            ],
+            [
+              "eurobet",
+              1.37
+            ],
+            [
+              "williamhill",
+              1.37
+            ],
+            [
+              "bgame",
+              1.36
+            ],
+            [
+              "bwin",
+              1.36
+            ],
+            [
+              "codere",
+              1.36
+            ],
+            [
+              "daznbet",
+              1.36
+            ],
+            [
+              "domusbet",
+              1.36
+            ],
+            [
+              "giocodigitale",
+              1.36
+            ],
+            [
+              "perlaplay",
+              1.36
+            ],
+            [
+              "sportbet",
+              1.36
+            ],
+            [
+              "starcasino",
+              1.36
+            ],
+            [
+              "sunbet",
+              1.36
+            ],
+            [
+              "totosi",
+              1.36
+            ],
+            [
+              "vincitu",
+              1.36
+            ],
+            [
+              "admiralbet",
+              1.35
+            ],
+            [
+              "betflag",
+              1.35
+            ],
+            [
+              "betsson",
+              1.35
+            ],
+            [
+              "goldbet",
+              1.35
+            ],
+            [
+              "lottomatica",
+              1.35
+            ],
+            [
+              "planetwin365",
+              1.35
+            ],
+            [
+              "stanleybet",
+              1.35
+            ],
+            [
+              "starvegas",
+              1.35
+            ],
+            [
+              "marathonbet",
+              1.34
+            ],
+            [
+              "quigioco",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "S.E. Melbourne Phoenix",
+          "probModello": 0.3981060186924874,
+          "probPinnacle": 0.3009922822491731,
+          "quota": 2.8,
+          "fonteQuota": "mediana di 163 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se S.E. Melbourne Phoenix vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "williamhill",
+              2.95
+            ],
+            [
+              "winamax",
+              2.95
+            ],
+            [
+              "bgame",
+              2.9
+            ],
+            [
+              "codere",
+              2.9
+            ],
+            [
+              "perlaplay",
+              2.9
+            ],
+            [
+              "totosi",
+              2.9
+            ],
+            [
+              "sportbet",
+              2.89
+            ],
+            [
+              "admiralbet",
+              2.85
+            ],
+            [
+              "betflag",
+              2.85
+            ],
+            [
+              "betsson",
+              2.85
+            ],
+            [
+              "daznbet",
+              2.85
+            ],
+            [
+              "domusbet",
+              2.85
+            ],
+            [
+              "goldbet",
+              2.85
+            ],
+            [
+              "lottomatica",
+              2.85
+            ],
+            [
+              "planetwin365",
+              2.85
+            ],
+            [
+              "stanleybet",
+              2.85
+            ],
+            [
+              "starcasino",
+              2.85
+            ],
+            [
+              "starvegas",
+              2.85
+            ],
+            [
+              "sunbet",
+              2.85
+            ],
+            [
+              "vincitu",
+              2.85
+            ],
+            [
+              "quigioco",
+              2.81
+            ],
+            [
+              "888sport",
+              2.8
+            ],
+            [
+              "888sport_it",
+              2.8
+            ],
+            [
+              "leovegas",
+              2.8
+            ],
+            [
+              "eurobet",
+              2.75
+            ],
+            [
+              "marathonbet",
+              2.75
+            ],
+            [
+              "fastbet",
+              2.714
+            ],
+            [
+              "zonagioco",
+              2.714
+            ],
+            [
+              "bwin",
+              2.7
+            ],
+            [
+              "giocodigitale",
+              2.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "casa",
+          "probModello": 0.4138652502366851,
+          "probPinnacle": 0.48167539267015713,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 124 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Melbourne United vincono con almeno 7 punti di scarto, supplementari compresi. Gioca solo su Melbourne United -6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "leovegas",
+              2
+            ],
+            [
+              "888sport",
+              1.96
+            ],
+            [
+              "888sport_it",
+              1.96
+            ],
+            [
+              "admiralbet",
+              1.92
+            ],
+            [
+              "starvegas",
+              1.92
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "codere",
+              1.91
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "sunbet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "fastbet",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "zonagioco",
+              1.9
+            ],
+            [
+              "bgame",
+              1.89
+            ],
+            [
+              "perlaplay",
+              1.89
+            ],
+            [
+              "daznbet",
+              1.88
+            ],
+            [
+              "quigioco",
+              1.85
+            ],
+            [
+              "bwin",
+              1.83
+            ],
+            [
+              "giocodigitale",
+              1.83
+            ],
+            [
+              "sportbet",
+              1.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -6.5",
+          "selezione": "trasferta",
+          "probModello": 0.5861347497633149,
+          "probPinnacle": 0.518324607329843,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 124 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i S.E. Melbourne Phoenix perdono con meno di 7 punti di scarto o vincono, supplementari compresi. Gioca solo su S.E. Melbourne Phoenix +6.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.8
+            ],
+            [
+              "leovegas",
+              1.8
+            ],
+            [
+              "zonagioco",
+              1.8
+            ],
+            [
+              "bwin",
+              1.78
+            ],
+            [
+              "giocodigitale",
+              1.78
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "888sport",
+              1.77
+            ],
+            [
+              "888sport_it",
+              1.77
+            ],
+            [
+              "admiralbet",
+              1.77
+            ],
+            [
+              "betflag",
+              1.77
+            ],
+            [
+              "goldbet",
+              1.77
+            ],
+            [
+              "lottomatica",
+              1.77
+            ],
+            [
+              "planetwin365",
+              1.77
+            ],
+            [
+              "starvegas",
+              1.77
+            ],
+            [
+              "codere",
+              1.76
+            ],
+            [
+              "domusbet",
+              1.76
+            ],
+            [
+              "sunbet",
+              1.76
+            ],
+            [
+              "totosi",
+              1.76
+            ],
+            [
+              "williamhill",
+              1.76
+            ],
+            [
+              "bgame",
+              1.75
+            ],
+            [
+              "perlaplay",
+              1.75
+            ],
+            [
+              "quigioco",
+              1.74
+            ],
+            [
+              "daznbet",
+              1.73
+            ],
+            [
+              "sportbet",
+              1.69
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 202.5",
+          "selezione": "Over 202.5",
+          "probModello": 0.32082265951515254,
+          "probPinnacle": 0.5205336123463249,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 107 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 202.5: Over vince se le due squadre segnano almeno 203 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (202.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "codere",
+              1.91
+            ],
+            [
+              "daznbet",
+              1.91
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "sunbet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "leovegas",
+              1.9
+            ],
+            [
+              "starvegas",
+              1.9
+            ],
+            [
+              "bgame",
+              1.89
+            ],
+            [
+              "perlaplay",
+              1.89
+            ],
+            [
+              "sportbet",
+              1.89
+            ],
+            [
+              "stanleybet",
+              1.89
+            ],
+            [
+              "888sport",
+              1.86
+            ],
+            [
+              "888sport_it",
+              1.86
+            ],
+            [
+              "betflag",
+              1.82
+            ],
+            [
+              "goldbet",
+              1.82
+            ],
+            [
+              "lottomatica",
+              1.82
+            ],
+            [
+              "planetwin365",
+              1.82
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 202.5",
+          "selezione": "Under 202.5",
+          "probModello": 0.6791773404848475,
+          "probPinnacle": 0.4794663876536751,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 107 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 202.5: Under vince se le due squadre segnano al massimo 202 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (202.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.9
+            ],
+            [
+              "888sport",
+              1.86
+            ],
+            [
+              "888sport_it",
+              1.86
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "goldbet",
+              1.85
+            ],
+            [
+              "lottomatica",
+              1.85
+            ],
+            [
+              "planetwin365",
+              1.85
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "codere",
+              1.77
+            ],
+            [
+              "domusbet",
+              1.77
+            ],
+            [
+              "sunbet",
+              1.77
+            ],
+            [
+              "totosi",
+              1.77
+            ],
+            [
+              "williamhill",
+              1.77
+            ],
+            [
+              "daznbet",
+              1.76
+            ],
+            [
+              "admiralbet",
+              1.75
+            ],
+            [
+              "bgame",
+              1.75
+            ],
+            [
+              "perlaplay",
+              1.75
+            ],
+            [
+              "sportbet",
+              1.75
+            ],
+            [
+              "stanleybet",
+              1.75
+            ],
+            [
+              "starvegas",
+              1.75
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "21f7da5fac2d8126",
+        "588817d49c400884",
+        "b1e826d60ca0aecc",
+        "caf86049b7d62566"
+      ],
+      "idPartita": "basket-2026-11-14-perth-wildcats-illawarra-hawks",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Perth Wildcats - Illawarra Hawks",
+      "casa": "Perth Wildcats",
+      "trasferta": "Illawarra Hawks",
+      "inizio": "2026-11-14T11:36:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 100.2,
+        "trasferta": 97.8
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Perth Wildcats 100 – Illawarra Hawks 98 (stagione in corso e precedente)",
+        "Perth Wildcats alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Perth Wildcats",
+          "probModello": 0.5715275052822525,
+          "probPinnacle": 0.6120925603383925,
+          "quota": 1.54,
+          "fonteQuota": "mediana di 176 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Perth Wildcats vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "eurobet",
+              1.55
+            ],
+            [
+              "fastbet",
+              1.546
+            ],
+            [
+              "zonagioco",
+              1.546
+            ],
+            [
+              "leovegas",
+              1.52
+            ],
+            [
+              "winamax",
+              1.52
+            ],
+            [
+              "williamhill",
+              1.51
+            ],
+            [
+              "888sport",
+              1.5
+            ],
+            [
+              "888sport_it",
+              1.5
+            ],
+            [
+              "betflag",
+              1.5
+            ],
+            [
+              "bgame",
+              1.5
+            ],
+            [
+              "bwin",
+              1.5
+            ],
+            [
+              "codere",
+              1.5
+            ],
+            [
+              "giocodigitale",
+              1.5
+            ],
+            [
+              "goldbet",
+              1.5
+            ],
+            [
+              "lottomatica",
+              1.5
+            ],
+            [
+              "perlaplay",
+              1.5
+            ],
+            [
+              "planetwin365",
+              1.5
+            ],
+            [
+              "sportbet",
+              1.5
+            ],
+            [
+              "totosi",
+              1.5
+            ],
+            [
+              "betsson",
+              1.49
+            ],
+            [
+              "daznbet",
+              1.49
+            ],
+            [
+              "domusbet",
+              1.49
+            ],
+            [
+              "stanleybet",
+              1.49
+            ],
+            [
+              "starcasino",
+              1.49
+            ],
+            [
+              "sunbet",
+              1.49
+            ],
+            [
+              "vincitu",
+              1.49
+            ],
+            [
+              "admiralbet",
+              1.48
+            ],
+            [
+              "betwin360",
+              1.48
+            ],
+            [
+              "casinosanremo",
+              1.48
+            ],
+            [
+              "eplay24",
+              1.48
+            ],
+            [
+              "gioca7",
+              1.48
+            ],
+            [
+              "netbet",
+              1.48
+            ],
+            [
+              "netwin",
+              1.48
+            ],
+            [
+              "quigioco",
+              1.48
+            ],
+            [
+              "sportium",
+              1.48
+            ],
+            [
+              "starvegas",
+              1.48
+            ],
+            [
+              "staryes",
+              1.48
+            ],
+            [
+              "marathonbet",
+              1.47
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Illawarra Hawks",
+          "probModello": 0.42847249471774757,
+          "probPinnacle": 0.3879074396616073,
+          "quota": 2.35,
+          "fonteQuota": "mediana di 176 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Illawarra Hawks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "leovegas",
+              2.48
+            ],
+            [
+              "888sport",
+              2.45
+            ],
+            [
+              "888sport_it",
+              2.45
+            ],
+            [
+              "williamhill",
+              2.45
+            ],
+            [
+              "winamax",
+              2.45
+            ],
+            [
+              "bgame",
+              2.42
+            ],
+            [
+              "codere",
+              2.42
+            ],
+            [
+              "perlaplay",
+              2.42
+            ],
+            [
+              "sportbet",
+              2.42
+            ],
+            [
+              "totosi",
+              2.42
+            ],
+            [
+              "admiralbet",
+              2.4
+            ],
+            [
+              "betwin360",
+              2.4
+            ],
+            [
+              "casinosanremo",
+              2.4
+            ],
+            [
+              "eplay24",
+              2.4
+            ],
+            [
+              "gioca7",
+              2.4
+            ],
+            [
+              "netbet",
+              2.4
+            ],
+            [
+              "netwin",
+              2.4
+            ],
+            [
+              "sportium",
+              2.4
+            ],
+            [
+              "starvegas",
+              2.4
+            ],
+            [
+              "staryes",
+              2.4
+            ],
+            [
+              "betsson",
+              2.39
+            ],
+            [
+              "daznbet",
+              2.39
+            ],
+            [
+              "domusbet",
+              2.39
+            ],
+            [
+              "stanleybet",
+              2.39
+            ],
+            [
+              "starcasino",
+              2.39
+            ],
+            [
+              "sunbet",
+              2.39
+            ],
+            [
+              "vincitu",
+              2.39
+            ],
+            [
+              "quigioco",
+              2.37
+            ],
+            [
+              "betflag",
+              2.35
+            ],
+            [
+              "goldbet",
+              2.35
+            ],
+            [
+              "lottomatica",
+              2.35
+            ],
+            [
+              "planetwin365",
+              2.35
+            ],
+            [
+              "marathonbet",
+              2.33
+            ],
+            [
+              "bwin",
+              2.3
+            ],
+            [
+              "giocodigitale",
+              2.3
+            ],
+            [
+              "eurobet",
+              2.25
+            ],
+            [
+              "fastbet",
+              2.25
+            ],
+            [
+              "zonagioco",
+              2.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "casa",
+          "probModello": 0.46925407953080733,
+          "probPinnacle": 0.5127396900446546,
+          "quota": 1.82,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Perth Wildcats vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Perth Wildcats -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.81
+            ],
+            [
+              "betflag",
+              1.8
+            ],
+            [
+              "fastbet",
+              1.8
+            ],
+            [
+              "goldbet",
+              1.8
+            ],
+            [
+              "lottomatica",
+              1.8
+            ],
+            [
+              "planetwin365",
+              1.8
+            ],
+            [
+              "zonagioco",
+              1.8
+            ],
+            [
+              "888sport",
+              1.78
+            ],
+            [
+              "888sport_it",
+              1.78
+            ],
+            [
+              "bwin",
+              1.78
+            ],
+            [
+              "giocodigitale",
+              1.78
+            ],
+            [
+              "winamax",
+              1.76
+            ],
+            [
+              "codere",
+              1.74
+            ],
+            [
+              "domusbet",
+              1.74
+            ],
+            [
+              "sunbet",
+              1.74
+            ],
+            [
+              "totosi",
+              1.74
+            ],
+            [
+              "williamhill",
+              1.74
+            ],
+            [
+              "admiralbet",
+              1.73
+            ],
+            [
+              "starvegas",
+              1.73
+            ],
+            [
+              "bgame",
+              1.72
+            ],
+            [
+              "casinosanremo",
+              1.72
+            ],
+            [
+              "gioca7",
+              1.72
+            ],
+            [
+              "netbet",
+              1.72
+            ],
+            [
+              "netwin",
+              1.72
+            ],
+            [
+              "perlaplay",
+              1.72
+            ],
+            [
+              "quigioco",
+              1.72
+            ],
+            [
+              "stanleybet",
+              1.72
+            ],
+            [
+              "staryes",
+              1.72
+            ],
+            [
+              "daznbet",
+              1.71
+            ],
+            [
+              "sportbet",
+              1.67
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -3.5",
+          "selezione": "trasferta",
+          "probModello": 0.5307459204691927,
+          "probPinnacle": 0.4872603099553454,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 150 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap: vince se i Illawarra Hawks perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Illawarra Hawks +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.98
+            ],
+            [
+              "winamax",
+              1.96
+            ],
+            [
+              "admiralbet",
+              1.95
+            ],
+            [
+              "starvegas",
+              1.95
+            ],
+            [
+              "888sport",
+              1.94
+            ],
+            [
+              "888sport_it",
+              1.94
+            ],
+            [
+              "codere",
+              1.94
+            ],
+            [
+              "domusbet",
+              1.94
+            ],
+            [
+              "sunbet",
+              1.94
+            ],
+            [
+              "totosi",
+              1.94
+            ],
+            [
+              "williamhill",
+              1.94
+            ],
+            [
+              "bgame",
+              1.92
+            ],
+            [
+              "casinosanremo",
+              1.92
+            ],
+            [
+              "gioca7",
+              1.92
+            ],
+            [
+              "netbet",
+              1.92
+            ],
+            [
+              "netwin",
+              1.92
+            ],
+            [
+              "perlaplay",
+              1.92
+            ],
+            [
+              "stanleybet",
+              1.92
+            ],
+            [
+              "staryes",
+              1.92
+            ],
+            [
+              "daznbet",
+              1.9
+            ],
+            [
+              "fastbet",
+              1.9
+            ],
+            [
+              "zonagioco",
+              1.9
+            ],
+            [
+              "quigioco",
+              1.88
+            ],
+            [
+              "betflag",
+              1.85
+            ],
+            [
+              "bwin",
+              1.85
+            ],
+            [
+              "giocodigitale",
+              1.85
+            ],
+            [
+              "goldbet",
+              1.85
+            ],
+            [
+              "lottomatica",
+              1.85
+            ],
+            [
+              "planetwin365",
+              1.85
+            ],
+            [
+              "sportbet",
+              1.85
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 197.5",
+          "selezione": "Over 197.5",
+          "probModello": 0.5109562417957323,
+          "probPinnacle": 0.5151594354417145,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 197.5: Over vince se le due squadre segnano almeno 198 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (197.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "leovegas",
+              1.8
+            ],
+            [
+              "betflag",
+              1.78
+            ],
+            [
+              "goldbet",
+              1.78
+            ],
+            [
+              "lottomatica",
+              1.78
+            ],
+            [
+              "planetwin365",
+              1.78
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "codere",
+              1.77
+            ],
+            [
+              "daznbet",
+              1.77
+            ],
+            [
+              "domusbet",
+              1.77
+            ],
+            [
+              "sunbet",
+              1.77
+            ],
+            [
+              "totosi",
+              1.77
+            ],
+            [
+              "williamhill",
+              1.77
+            ],
+            [
+              "888sport",
+              1.76
+            ],
+            [
+              "888sport_it",
+              1.76
+            ],
+            [
+              "admiralbet",
+              1.75
+            ],
+            [
+              "bgame",
+              1.75
+            ],
+            [
+              "casinosanremo",
+              1.75
+            ],
+            [
+              "gioca7",
+              1.75
+            ],
+            [
+              "netbet",
+              1.75
+            ],
+            [
+              "netwin",
+              1.75
+            ],
+            [
+              "perlaplay",
+              1.75
+            ],
+            [
+              "sportbet",
+              1.75
+            ],
+            [
+              "stanleybet",
+              1.75
+            ],
+            [
+              "starvegas",
+              1.75
+            ],
+            [
+              "staryes",
+              1.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 197.5",
+          "selezione": "Under 197.5",
+          "probModello": 0.4890437582042677,
+          "probPinnacle": 0.4848405645582854,
+          "quota": 1.88,
+          "fonteQuota": "mediana di 149 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale punti 197.5: Under vince se le due squadre segnano al massimo 197 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (197.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "leovegas",
+              2
+            ],
+            [
+              "888sport",
+              1.96
+            ],
+            [
+              "888sport_it",
+              1.96
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "codere",
+              1.91
+            ],
+            [
+              "daznbet",
+              1.91
+            ],
+            [
+              "domusbet",
+              1.91
+            ],
+            [
+              "sunbet",
+              1.91
+            ],
+            [
+              "totosi",
+              1.91
+            ],
+            [
+              "williamhill",
+              1.91
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "casinosanremo",
+              1.9
+            ],
+            [
+              "gioca7",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "netbet",
+              1.9
+            ],
+            [
+              "netwin",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "starvegas",
+              1.9
+            ],
+            [
+              "staryes",
+              1.9
+            ],
+            [
+              "bgame",
+              1.89
+            ],
+            [
+              "perlaplay",
+              1.89
+            ],
+            [
+              "sportbet",
+              1.89
+            ],
+            [
+              "stanleybet",
+              1.89
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "25469925c6e51fc5",
+        "574feb1ce62102e0",
+        "5f827b30ad815aa0"
+      ],
+      "idPartita": "basket-2026-11-14-sydney-kings-new-zealand-breakers",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Sydney Kings - New Zealand Breakers",
+      "casa": "Sydney Kings",
+      "trasferta": "New Zealand Breakers",
+      "inizio": "2026-11-15T05:06:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 92.6,
+        "trasferta": 84.5
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Sydney Kings 93 – New Zealand Breakers 84 (stagione in corso e precedente)",
+        "Sydney Kings alla seconda partita in 3 giorni",
+        "New Zealand Breakers alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Sydney Kings",
+          "probModello": 0.7257260545150614,
+          "probPinnacle": 0.7662209272324214,
+          "quota": 1.22,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Sydney Kings vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "bgame",
+              1.21
+            ],
+            [
+              "perlaplay",
+              1.21
+            ],
+            [
+              "williamhill",
+              1.21
+            ],
+            [
+              "winamax",
+              1.21
+            ],
+            [
+              "admiralbet",
+              1.2
+            ],
+            [
+              "casinosanremo",
+              1.2
+            ],
+            [
+              "codere",
+              1.2
+            ],
+            [
+              "daznbet",
+              1.2
+            ],
+            [
+              "domusbet",
+              1.2
+            ],
+            [
+              "eplay24",
+              1.2
+            ],
+            [
+              "fastbet",
+              1.2
+            ],
+            [
+              "gioca7",
+              1.2
+            ],
+            [
+              "netbet",
+              1.2
+            ],
+            [
+              "netwin",
+              1.2
+            ],
+            [
+              "sportbet",
+              1.2
+            ],
+            [
+              "stanleybet",
+              1.2
+            ],
+            [
+              "starvegas",
+              1.2
+            ],
+            [
+              "staryes",
+              1.2
+            ],
+            [
+              "sunbet",
+              1.2
+            ],
+            [
+              "totosi",
+              1.2
+            ],
+            [
+              "vincitu",
+              1.2
+            ],
+            [
+              "zonagioco",
+              1.2
+            ],
+            [
+              "betwin360",
+              1.19
+            ],
+            [
+              "eurobet",
+              1.19
+            ],
+            [
+              "marathonbet",
+              1.19
+            ],
+            [
+              "quigioco",
+              1.19
+            ],
+            [
+              "sportium",
+              1.19
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "New Zealand Breakers",
+          "probModello": 0.27427394548493855,
+          "probPinnacle": 0.2337790727675769,
+          "quota": 4,
+          "fonteQuota": "mediana di 111 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se New Zealand Breakers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "williamhill",
+              4.1
+            ],
+            [
+              "winamax",
+              4.1
+            ],
+            [
+              "sportbet",
+              4.04
+            ],
+            [
+              "bgame",
+              4
+            ],
+            [
+              "codere",
+              4
+            ],
+            [
+              "perlaplay",
+              4
+            ],
+            [
+              "totosi",
+              4
+            ],
+            [
+              "betwin360",
+              3.95
+            ],
+            [
+              "casinosanremo",
+              3.95
+            ],
+            [
+              "daznbet",
+              3.95
+            ],
+            [
+              "domusbet",
+              3.95
+            ],
+            [
+              "eplay24",
+              3.95
+            ],
+            [
+              "gioca7",
+              3.95
+            ],
+            [
+              "netbet",
+              3.95
+            ],
+            [
+              "netwin",
+              3.95
+            ],
+            [
+              "sportium",
+              3.95
+            ],
+            [
+              "stanleybet",
+              3.95
+            ],
+            [
+              "starvegas",
+              3.95
+            ],
+            [
+              "staryes",
+              3.95
+            ],
+            [
+              "vincitu",
+              3.95
+            ],
+            [
+              "admiralbet",
+              3.9
+            ],
+            [
+              "eurobet",
+              3.9
+            ],
+            [
+              "sunbet",
+              3.9
+            ],
+            [
+              "quigioco",
+              3.85
+            ],
+            [
+              "fastbet",
+              3.8
+            ],
+            [
+              "zonagioco",
+              3.8
+            ],
+            [
+              "marathonbet",
+              3.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -9.5",
+          "selezione": "casa",
+          "probModello": 0.45976680155211935,
+          "probPinnacle": 0.5028104301197319,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 101 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Sydney Kings vincono con almeno 10 punti di scarto, supplementari compresi. Gioca solo su Sydney Kings -9.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "winamax",
+              1.82
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "sunbet",
+              1.8
+            ],
+            [
+              "bgame",
+              1.79
+            ],
+            [
+              "codere",
+              1.79
+            ],
+            [
+              "domusbet",
+              1.79
+            ],
+            [
+              "perlaplay",
+              1.79
+            ],
+            [
+              "quigioco",
+              1.79
+            ],
+            [
+              "totosi",
+              1.79
+            ],
+            [
+              "williamhill",
+              1.79
+            ],
+            [
+              "starvegas",
+              1.78
+            ],
+            [
+              "casinosanremo",
+              1.77
+            ],
+            [
+              "gioca7",
+              1.77
+            ],
+            [
+              "netbet",
+              1.77
+            ],
+            [
+              "netwin",
+              1.77
+            ],
+            [
+              "stanleybet",
+              1.77
+            ],
+            [
+              "staryes",
+              1.77
+            ],
+            [
+              "daznbet",
+              1.76
+            ],
+            [
+              "marathonbet",
+              1.76
+            ],
+            [
+              "vincitu",
+              1.67
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap -9.5",
+          "selezione": "trasferta",
+          "probModello": 0.5402331984478806,
+          "probPinnacle": 0.4971895698802681,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 101 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i New Zealand Breakers perdono con meno di 10 punti di scarto o vincono, supplementari compresi. Gioca solo su New Zealand Breakers +9.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "codere",
+              1.88
+            ],
+            [
+              "domusbet",
+              1.88
+            ],
+            [
+              "starvegas",
+              1.88
+            ],
+            [
+              "totosi",
+              1.88
+            ],
+            [
+              "williamhill",
+              1.88
+            ],
+            [
+              "admiralbet",
+              1.87
+            ],
+            [
+              "casinosanremo",
+              1.87
+            ],
+            [
+              "gioca7",
+              1.87
+            ],
+            [
+              "netbet",
+              1.87
+            ],
+            [
+              "netwin",
+              1.87
+            ],
+            [
+              "stanleybet",
+              1.87
+            ],
+            [
+              "staryes",
+              1.87
+            ],
+            [
+              "sunbet",
+              1.87
+            ],
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "bgame",
+              1.85
+            ],
+            [
+              "daznbet",
+              1.85
+            ],
+            [
+              "perlaplay",
+              1.85
+            ],
+            [
+              "quigioco",
+              1.85
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "marathonbet",
+              1.82
+            ],
+            [
+              "vincitu",
+              1.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Over 185.5",
+          "probModello": 0.3114911582845785,
+          "probPinnacle": 0.5006711825963815,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 104 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 185.5: Over vince se le due squadre segnano almeno 186 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "codere",
+              1.82
+            ],
+            [
+              "daznbet",
+              1.82
+            ],
+            [
+              "domusbet",
+              1.82
+            ],
+            [
+              "eurobet",
+              1.82
+            ],
+            [
+              "sunbet",
+              1.82
+            ],
+            [
+              "totosi",
+              1.82
+            ],
+            [
+              "williamhill",
+              1.82
+            ],
+            [
+              "bgame",
+              1.81
+            ],
+            [
+              "casinosanremo",
+              1.81
+            ],
+            [
+              "gioca7",
+              1.81
+            ],
+            [
+              "netbet",
+              1.81
+            ],
+            [
+              "netwin",
+              1.81
+            ],
+            [
+              "perlaplay",
+              1.81
+            ],
+            [
+              "sportbet",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "staryes",
+              1.81
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "starvegas",
+              1.8
+            ],
+            [
+              "marathonbet",
+              1.79
+            ],
+            [
+              "vincitu",
+              1.78
+            ],
+            [
+              "quigioco",
+              1.73
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Under 185.5",
+          "probModello": 0.6885088417154215,
+          "probPinnacle": 0.4993288174036184,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 104 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 185.5: Under vince se le due squadre segnano al massimo 185 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "codere",
+              1.85
+            ],
+            [
+              "daznbet",
+              1.85
+            ],
+            [
+              "domusbet",
+              1.85
+            ],
+            [
+              "sunbet",
+              1.85
+            ],
+            [
+              "totosi",
+              1.85
+            ],
+            [
+              "williamhill",
+              1.85
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "admiralbet",
+              1.83
+            ],
+            [
+              "bgame",
+              1.83
+            ],
+            [
+              "casinosanremo",
+              1.83
+            ],
+            [
+              "gioca7",
+              1.83
+            ],
+            [
+              "netbet",
+              1.83
+            ],
+            [
+              "netwin",
+              1.83
+            ],
+            [
+              "perlaplay",
+              1.83
+            ],
+            [
+              "sportbet",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "starvegas",
+              1.83
+            ],
+            [
+              "staryes",
+              1.83
+            ],
+            [
+              "eurobet",
+              1.82
+            ],
+            [
+              "marathonbet",
+              1.81
+            ],
+            [
+              "vincitu",
+              1.8
+            ],
+            [
+              "quigioco",
+              1.75
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "d4f564e41c107361",
+        "e793670faaede894"
+      ],
+      "idPartita": "basket-2026-11-14-brisbane-bullets-tasmania-jackjumpers",
+      "sport": "basket",
+      "competizione": "NBL (Australia)",
+      "partita": "Brisbane Bullets - Tasmania JackJumpers",
+      "casa": "Brisbane Bullets",
+      "trasferta": "Tasmania JackJumpers",
+      "inizio": "2026-11-15T07:06:00+01:00",
+      "modello": "basket",
+      "lambda": null,
+      "puntiAttesi": {
+        "casa": 86.6,
+        "trasferta": 94.6
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Punti attesi: Brisbane Bullets 87 – Tasmania JackJumpers 95 (stagione in corso e precedente)",
+        "Brisbane Bullets alla seconda partita in 3 giorni"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Brisbane Bullets",
+          "probModello": 0.2768164888092368,
+          "probPinnacle": 0.47564994260978516,
+          "quota": 1.95,
+          "fonteQuota": "mediana di 102 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Brisbane Bullets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.98
+            ],
+            [
+              "betwin360",
+              1.95
+            ],
+            [
+              "casinosanremo",
+              1.95
+            ],
+            [
+              "eplay24",
+              1.95
+            ],
+            [
+              "fastbet",
+              1.95
+            ],
+            [
+              "gioca7",
+              1.95
+            ],
+            [
+              "netbet",
+              1.95
+            ],
+            [
+              "netwin",
+              1.95
+            ],
+            [
+              "sportium",
+              1.95
+            ],
+            [
+              "staryes",
+              1.95
+            ],
+            [
+              "zonagioco",
+              1.95
+            ],
+            [
+              "daznbet",
+              1.94
+            ],
+            [
+              "stanleybet",
+              1.94
+            ],
+            [
+              "vincitu",
+              1.94
+            ],
+            [
+              "quigioco",
+              1.92
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Tasmania JackJumpers",
+          "probModello": 0.7231835111907632,
+          "probPinnacle": 0.5243500573902149,
+          "quota": 1.8,
+          "fonteQuota": "mediana di 102 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Tasmania JackJumpers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "daznbet",
+              1.74
+            ],
+            [
+              "stanleybet",
+              1.74
+            ],
+            [
+              "vincitu",
+              1.74
+            ],
+            [
+              "fastbet",
+              1.733
+            ],
+            [
+              "zonagioco",
+              1.733
+            ],
+            [
+              "betwin360",
+              1.73
+            ],
+            [
+              "casinosanremo",
+              1.73
+            ],
+            [
+              "eplay24",
+              1.73
+            ],
+            [
+              "gioca7",
+              1.73
+            ],
+            [
+              "netbet",
+              1.73
+            ],
+            [
+              "netwin",
+              1.73
+            ],
+            [
+              "sportium",
+              1.73
+            ],
+            [
+              "staryes",
+              1.73
+            ],
+            [
+              "quigioco",
+              1.72
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "casa",
+          "probModello": 0.31975616847678834,
+          "probPinnacle": 0.49959148893694727,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 94 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Brisbane Bullets perdono con meno di 2 punti di scarto o vincono, supplementari compresi. Gioca solo su Brisbane Bullets +1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "casinosanremo",
+              1.82
+            ],
+            [
+              "gioca7",
+              1.82
+            ],
+            [
+              "netbet",
+              1.82
+            ],
+            [
+              "netwin",
+              1.82
+            ],
+            [
+              "quigioco",
+              1.82
+            ],
+            [
+              "stanleybet",
+              1.82
+            ],
+            [
+              "staryes",
+              1.82
+            ],
+            [
+              "daznbet",
+              1.81
+            ],
+            [
+              "vincitu",
+              1.71
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap +1.5",
+          "selezione": "trasferta",
+          "probModello": 0.6802438315232117,
+          "probPinnacle": 0.5004085110630526,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 94 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap: vince se i Tasmania JackJumpers vincono con almeno 2 punti di scarto, supplementari compresi. Gioca solo su Tasmania JackJumpers -1.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "casinosanremo",
+              1.81
+            ],
+            [
+              "gioca7",
+              1.81
+            ],
+            [
+              "netbet",
+              1.81
+            ],
+            [
+              "netwin",
+              1.81
+            ],
+            [
+              "quigioco",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "staryes",
+              1.81
+            ],
+            [
+              "daznbet",
+              1.8
+            ],
+            [
+              "vincitu",
+              1.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Over 185.5",
+          "probModello": 0.4018397934040834,
+          "probPinnacle": 0.49994983270109983,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 95 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 185.5: Over vince se le due squadre segnano almeno 186 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "daznbet",
+              1.82
+            ],
+            [
+              "casinosanremo",
+              1.81
+            ],
+            [
+              "gioca7",
+              1.81
+            ],
+            [
+              "netbet",
+              1.81
+            ],
+            [
+              "netwin",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "staryes",
+              1.81
+            ],
+            [
+              "vincitu",
+              1.77
+            ],
+            [
+              "quigioco",
+              1.73
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale punti 185.5",
+          "selezione": "Under 185.5",
+          "probModello": 0.5981602065959166,
+          "probPinnacle": 0.5000501672989002,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 95 bookmaker (odss-api)",
+          "oraQuota": "2026-11-14T07:30:23+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Totale punti 185.5: Under vince se le due squadre segnano al massimo 185 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (185.5) e quota almeno la minima: con una linea diversa il calcolo non vale.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.86
+            ],
+            [
+              "daznbet",
+              1.85
+            ],
+            [
+              "fastbet",
+              1.833
+            ],
+            [
+              "zonagioco",
+              1.833
+            ],
+            [
+              "casinosanremo",
+              1.83
+            ],
+            [
+              "gioca7",
+              1.83
+            ],
+            [
+              "netbet",
+              1.83
+            ],
+            [
+              "netwin",
+              1.83
+            ],
+            [
+              "stanleybet",
+              1.83
+            ],
+            [
+              "staryes",
+              1.83
+            ],
+            [
+              "vincitu",
+              1.8
+            ],
+            [
+              "quigioco",
+              1.75
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
