@@ -2926,9 +2926,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quote non controllate (meno di 3 bookmaker con la stessa linea)",
+      "oraUltimoControllo": "2026-11-14T08:34:11+01:00",
       "esito": null,
       "prova": true
     },
@@ -37336,7 +37336,8 @@
     "Quote PlusLiga: 1 partite su 3 non trovate su odss-api, quote da OddsPapi",
     "Quote Bundesliga: 1 partite su 4 non trovate su odss-api, quote da OddsPapi",
     "odss-api alle 07:23: 5 partite senza righe a tempo intero (full_time), senza quote: Lyon (F) - Saint Malo (W), FK Yenisey Wom. - Zenit Wom., Lyon (W) - Saint Malo (W), Lyon (d) - Saint Malo (W), Lyon (k) - Saint Malo (W)",
-    "Pronostici del 08/11 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): FC Twente Enschede - Ajax, Estoril - CS Maritimo"
+    "Pronostici del 08/11 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): FC Twente Enschede - Ajax, Estoril - CS Maritimo",
+    "Controlli prima delle partite (odss-api): moneyline,ah,ou: odss-api.com: HTTP 522"
   ],
   "schedinePronostici": [
     {
