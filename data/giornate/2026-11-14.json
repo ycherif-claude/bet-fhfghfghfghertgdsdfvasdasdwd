@@ -2509,9 +2509,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 3,85 ≥ minima 3,27",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -2966,9 +2966,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,55 ≥ minima 2,48",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3088,9 +3088,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,20 sotto la minima 3,31",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3128,9 +3128,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 5,20 ≥ minima 4,67",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3328,9 +3328,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,20 sotto la minima 3,42",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3448,9 +3448,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 4,33 sotto la minima 4,87",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3529,9 +3529,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 2,60 sotto la minima 2,70",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -3609,9 +3609,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,20 sotto la minima 3,71",
+      "oraUltimoControllo": "2026-11-14T15:10:13+01:00",
       "esito": null,
       "prova": true
     },
@@ -17278,7 +17278,15 @@
                 "winbet",
                 1.19
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.26,
+              "prob": 0.7282608695652174,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.26,
@@ -17412,7 +17420,15 @@
                 "snai",
                 1.27
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.29,
+              "prob": 0.7222808870116155,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.28,
@@ -17458,7 +17474,15 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.3,
+              "prob": 0.7078651685393258,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.3,
@@ -17612,7 +17636,15 @@
                 "quigioco",
                 1.28
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.3,
+              "prob": 0.7037930278447708,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.3,
@@ -17754,7 +17786,15 @@
                 "888sport_it",
                 1.3
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.37,
+              "prob": 0.6743916570104288,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.34,
@@ -17872,7 +17912,15 @@
                 "vincitu",
                 1.4
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.42,
+              "prob": 0.658362293027078,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 50
+            }
           }
         ],
         "quota": 1.42,
@@ -18042,7 +18090,15 @@
                 "winbet",
                 1.25
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.26,
+              "prob": 0.7336879432624113,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 65
+            }
           }
         ],
         "quota": 1.26,
@@ -18248,7 +18304,15 @@
                 "leovegas",
                 1.61
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.78,
+              "prob": 0.5219216144376271,
+              "alle": "2026-11-14T15:10:13+01:00",
+              "minutiPrima": 200
+            }
           }
         ],
         "quota": 1.7,
