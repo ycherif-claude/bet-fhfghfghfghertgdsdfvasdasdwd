@@ -626,39 +626,63 @@
     },
     "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Vincente|Phoenix Suns": {
       "quota": 2.35,
-      "prob": 0.4093584301917726,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 44
+      "prob": 0.4050885731505309,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 8
     },
     "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Vincente|Los Angeles Lakers": {
       "quota": 1.62,
-      "prob": 0.5906415698082275,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 44
+      "prob": 0.5949114268494692,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 8
     },
     "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Totale punti 226.5|Over 226.5": {
-      "quota": 1.95,
-      "prob": 0.49301919720767895,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 44
+      "quota": 1.93,
+      "prob": 0.4947643979057592,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 8
     },
     "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Totale punti 226.5|Under 226.5": {
-      "quota": 1.87,
-      "prob": 0.506980802792321,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 44
+      "quota": 1.88,
+      "prob": 0.5052356020942408,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 8
     },
     "nba-2026-11-15-la-clippers-charlotte-hornets|Vincente|LA Clippers": {
-      "quota": 1.94,
-      "prob": 0.4940170193020496,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 74
+      "quota": 1.91,
+      "prob": 0.49939085194277066,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 38
     },
     "nba-2026-11-15-la-clippers-charlotte-hornets|Vincente|Charlotte Hornets": {
-      "quota": 1.9,
-      "prob": 0.5059829806979504,
-      "alle": "2026-11-15T21:15:31+01:00",
-      "minutiPrima": 74
+      "quota": 1.91,
+      "prob": 0.5006091480572293,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 38
+    },
+    "nba-2026-11-15-la-clippers-charlotte-hornets|Handicap -1.5|casa": {
+      "quota": 1.99,
+      "prob": 0.4812629491809608,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 38
+    },
+    "nba-2026-11-15-la-clippers-charlotte-hornets|Handicap -1.5|trasferta": {
+      "quota": 1.84,
+      "prob": 0.5187370508190393,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 38
+    },
+    "nba-2026-11-15-utah-jazz-san-antonio-spurs|Vincente|Utah Jazz": {
+      "quota": 7.7,
+      "prob": 0.1239660192724095,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 68
+    },
+    "nba-2026-11-15-utah-jazz-san-antonio-spurs|Vincente|San Antonio Spurs": {
+      "quota": 1.09,
+      "prob": 0.8760339807275903,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "minutiPrima": 68
     }
   },
   "copertura": {
@@ -691,12 +715,13 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-15T21:15:31+01:00",
-      "partite": 3,
+      "alle": "2026-11-15T21:52:10+01:00",
+      "partite": 4,
       "idPartite": [
         "nba-2026-11-15-philadelphia-76ers-indiana-pacers",
         "nba-2026-11-15-phoenix-suns-los-angeles-lakers",
-        "nba-2026-11-15-la-clippers-charlotte-hornets"
+        "nba-2026-11-15-la-clippers-charlotte-hornets",
+        "nba-2026-11-15-utah-jazz-san-antonio-spurs"
       ]
     },
     "tennis|WTA Finals": {
