@@ -156,6 +156,31 @@
         "quote non controllate (meno di 3 bookmaker con la stessa linea)"
       ],
       "alle": "2026-11-15T21:52:10+01:00"
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks-vincente-toronto-raptors": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 2,50 ≥ minima 2,49",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 2,50 ≥ minima 2,49"
+      ],
+      "alle": "2026-11-15T23:00:05+01:00"
+    },
+    "nba-2026-11-15-boston-celtics-dallas-mavericks-totale-punti-217-5-over-217-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 1,90 sotto la minima 1,93",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,90 sotto la minima 1,93"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-15T23:00:05+01:00",
+      "regola": true
     }
   },
   "claude": {

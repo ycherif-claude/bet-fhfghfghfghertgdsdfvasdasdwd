@@ -683,6 +683,66 @@
       "prob": 0.8760339807275903,
       "alle": "2026-11-15T21:52:10+01:00",
       "minutiPrima": 68
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Vincente|Toronto Raptors": {
+      "quota": 2.5,
+      "prob": 0.38412213639692105,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Vincente|New York Knicks": {
+      "quota": 1.56,
+      "prob": 0.6158778636030791,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Handicap +4.5|casa": {
+      "quota": 1.86,
+      "prob": 0.511460667612371,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Handicap +4.5|trasferta": {
+      "quota": 1.96,
+      "prob": 0.48853933238762914,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Totale punti 217.5|Over 217.5": {
+      "quota": 1.88,
+      "prob": 0.5052356020942408,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-toronto-raptors-new-york-knicks|Totale punti 217.5|Under 217.5": {
+      "quota": 1.93,
+      "prob": 0.4947643979057592,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-boston-celtics-dallas-mavericks|Vincente|Boston Celtics": {
+      "quota": 1.1,
+      "prob": 0.8732147893485179,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-boston-celtics-dallas-mavericks|Vincente|Dallas Mavericks": {
+      "quota": 7.5,
+      "prob": 0.12678521065148193,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-boston-celtics-dallas-mavericks|Totale punti 217.5|Over 217.5": {
+      "quota": 1.9,
+      "prob": 0.5017452006980803,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
+    },
+    "nba-2026-11-15-boston-celtics-dallas-mavericks|Totale punti 217.5|Under 217.5": {
+      "quota": 1.91,
+      "prob": 0.4982547993019197,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "minutiPrima": 60
     }
   },
   "copertura": {
@@ -715,13 +775,15 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-15T21:52:10+01:00",
-      "partite": 4,
+      "alle": "2026-11-15T23:00:05+01:00",
+      "partite": 6,
       "idPartite": [
         "nba-2026-11-15-philadelphia-76ers-indiana-pacers",
         "nba-2026-11-15-phoenix-suns-los-angeles-lakers",
         "nba-2026-11-15-la-clippers-charlotte-hornets",
-        "nba-2026-11-15-utah-jazz-san-antonio-spurs"
+        "nba-2026-11-15-utah-jazz-san-antonio-spurs",
+        "nba-2026-11-15-toronto-raptors-new-york-knicks",
+        "nba-2026-11-15-boston-celtics-dallas-mavericks"
       ]
     },
     "tennis|WTA Finals": {
