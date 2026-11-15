@@ -2,8 +2,8 @@
   "data": "2026-11-15",
   "voci": {
     "calcio-2026-11-15-tenerife-ad-ceuta-fc-1x2-2": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 4,10 sotto la minima 4,60",
+      "esito": "annullata",
+      "motivo": "Claude: quota 4,10 sotto la minima 4,60 e nessuna notizia concreta (formazioni, assenze) che alzi la probabilità del Ceuta rispetto al 24% del mattino; il value era già minimo (ricerca web su laliga.com e futboltotal.futbol (pagine pre-partita, nessuna formazione o notizia rilevante), 13:07)",
       "problemi": [
         {
           "tipo": "quota",
@@ -13,7 +13,8 @@
       "dettagli": [
         "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
       ],
-      "alle": "2026-11-15T13:06:19+01:00"
+      "alle": "2026-11-15T13:07:24+01:00",
+      "claude": true
     }
   },
   "claude": {
