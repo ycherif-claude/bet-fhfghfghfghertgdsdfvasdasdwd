@@ -63,6 +63,31 @@
         "quote non controllate (mercato senza quote nella fonte gratuita)"
       ],
       "alle": "2026-11-15T17:21:28+01:00"
+    },
+    "calcio-2026-11-15-sd-eibar-cadiz-cf-under-over-2-5-under-2-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,10 ≥ minima 2,05",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quota 2,10 ≥ minima 2,05"
+      ],
+      "alle": "2026-11-15T18:03:48+01:00"
+    },
+    "nba-2026-11-15-philadelphia-76ers-indiana-pacers-vincente-indiana-pacers": {
+      "esito": "annullata",
+      "motivo": "regola automatica (avvii di Claude finiti per oggi): quota 3,40 sotto la minima 3,57",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 3,40 sotto la minima 3,57"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-15T18:03:48+01:00",
+      "regola": true
     }
   },
   "claude": {

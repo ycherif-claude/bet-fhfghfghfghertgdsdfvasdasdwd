@@ -1172,9 +1172,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,10 ≥ minima 2,05",
+      "oraUltimoControllo": "2026-11-15T18:03:48+01:00",
       "esito": null,
       "prova": true
     },
@@ -1334,9 +1334,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata negli infortuni (ricerca web senza report aggiornato del 15/11) (ricerca web, 18:00)",
-      "oraUltimoControllo": "2026-11-15T17:55:32+01:00",
+      "stato": "annullata",
+      "motivoStato": "regola automatica (avvii di Claude finiti per oggi): quota 3,40 sotto la minima 3,57",
+      "oraUltimoControllo": "2026-11-15T18:03:48+01:00",
       "esito": null,
       "prova": true
     }
@@ -1684,7 +1684,13 @@
               "leovegas",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6638811513463324,
+            "alle": "2026-11-15T18:03:48+01:00",
+            "minutiPrima": 26
+          }
         },
         {
           "sport": "nba",
@@ -2446,7 +2452,13 @@
               "leovegas",
               1.32
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.36,
+            "prob": 0.6638811513463324,
+            "alle": "2026-11-15T18:03:48+01:00",
+            "minutiPrima": 26
+          }
         },
         {
           "sport": "nba",
@@ -4220,6 +4232,12 @@
               "prob": 0.6362229013436286,
               "alle": "2026-11-15T17:21:28+01:00",
               "minutiPrima": 69
+            },
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.630047303009047,
+              "alle": "2026-11-15T18:03:48+01:00",
+              "minutiPrima": 26
             }
           }
         ],
