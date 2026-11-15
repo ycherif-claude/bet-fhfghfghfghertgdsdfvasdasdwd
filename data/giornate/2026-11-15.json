@@ -1293,9 +1293,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 4,10 sotto la minima 4,60",
+      "oraUltimoControllo": "2026-11-15T13:06:19+01:00",
       "esito": null,
       "prova": true
     },
@@ -3808,7 +3808,15 @@
                 "quigioco",
                 1.25
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.27,
+              "prob": 0.7271224953522,
+              "alle": "2026-11-15T13:06:19+01:00",
+              "minutiPrima": 54
+            }
           }
         ],
         "quota": 1.27,
@@ -3986,7 +3994,15 @@
                 "quigioco",
                 1.24
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.25,
+              "prob": 0.7331975560081467,
+              "alle": "2026-11-15T13:06:19+01:00",
+              "minutiPrima": 189
+            }
           }
         ],
         "quota": 1.25,
