@@ -623,6 +623,42 @@
       "prob": 0.6115906288532675,
       "alle": "2026-11-15T20:37:31+01:00",
       "minutiPrima": 7
+    },
+    "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Vincente|Phoenix Suns": {
+      "quota": 2.35,
+      "prob": 0.4093584301917726,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Vincente|Los Angeles Lakers": {
+      "quota": 1.62,
+      "prob": 0.5906415698082275,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Totale punti 226.5|Over 226.5": {
+      "quota": 1.95,
+      "prob": 0.49301919720767895,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-15-phoenix-suns-los-angeles-lakers|Totale punti 226.5|Under 226.5": {
+      "quota": 1.87,
+      "prob": 0.506980802792321,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 44
+    },
+    "nba-2026-11-15-la-clippers-charlotte-hornets|Vincente|LA Clippers": {
+      "quota": 1.94,
+      "prob": 0.4940170193020496,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 74
+    },
+    "nba-2026-11-15-la-clippers-charlotte-hornets|Vincente|Charlotte Hornets": {
+      "quota": 1.9,
+      "prob": 0.5059829806979504,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "minutiPrima": 74
     }
   },
   "copertura": {
@@ -655,10 +691,12 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-15T18:38:00+01:00",
-      "partite": 1,
+      "alle": "2026-11-15T21:15:31+01:00",
+      "partite": 3,
       "idPartite": [
-        "nba-2026-11-15-philadelphia-76ers-indiana-pacers"
+        "nba-2026-11-15-philadelphia-76ers-indiana-pacers",
+        "nba-2026-11-15-phoenix-suns-los-angeles-lakers",
+        "nba-2026-11-15-la-clippers-charlotte-hornets"
       ]
     },
     "tennis|WTA Finals": {
