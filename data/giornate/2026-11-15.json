@@ -3815,7 +3815,21 @@
               "quota": 1.27,
               "prob": 0.7271224953522,
               "alle": "2026-11-15T13:06:19+01:00",
-              "minutiPrima": 54
+              "minutiPrima": 54,
+              "ultimo": {
+                "esito": "confermata",
+                "motivi": [],
+                "quota": 1.28,
+                "prob": 0.7230673056886852,
+                "alle": "2026-11-15T13:52:38+01:00",
+                "minutiPrima": 7
+              }
+            },
+            "chiusura": {
+              "quota": 1.28,
+              "prob": 0.7230673056886852,
+              "alle": "2026-11-15T13:52:38+01:00",
+              "minutiPrima": 7
             }
           }
         ],
@@ -4902,7 +4916,13 @@
                 "quigioco",
                 1.25
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.28,
+              "prob": 0.7230673056886852,
+              "alle": "2026-11-15T13:52:38+01:00",
+              "minutiPrima": 7
+            }
           },
           {
             "sport": "calcio",
