@@ -1,0 +1,168 @@
+{
+  "data": "2026-11-15",
+  "generataAlle": "2026-11-15T07:31:28+01:00",
+  "crediti": {
+    "usati": 2,
+    "rimasti": 320
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Storico tennis WTA fermo al 18/10/2026: ricarica il file in data/storico-tennis/wta/2026.xlsx",
+    "Superficie sconosciuta per ATP Finals: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "282fd17aec6b37e0",
+        "5f82d92d365bc348",
+        "f6bd9dec5d63bf0b",
+        "f7c40e7c40a09228"
+      ],
+      "idPartita": "tennis-2026-11-15-alexander-zverev-rafael-jodar",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Alexander Zverev - Rafael Jodar",
+      "casa": "Alexander Zverev",
+      "trasferta": "Rafael Jodar",
+      "inizio": "2026-11-15T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Alexander Zverev",
+          "probModello": null,
+          "probPinnacle": 0.6948968512486429,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Alexander Zverev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Rafael Jodar",
+          "probModello": null,
+          "probPinnacle": 0.30510314875135724,
+          "quota": 3,
+          "fonteQuota": "mediana di 192 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Rafael Jodar vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "0f2a8e1019fd49bf",
+        "90f8b5a6e19a8ae5",
+        "a4b73040240934d4",
+        "f09d124d45d5846d"
+      ],
+      "idPartita": "tennis-2026-11-15-arthur-fils-ben-shelton",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Ben Shelton - Arthur Fils",
+      "casa": "Ben Shelton",
+      "trasferta": "Arthur Fils",
+      "inizio": "2026-11-15T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Ben Shelton",
+          "probModello": null,
+          "probPinnacle": 0.6172839506172839,
+          "quota": 1.55,
+          "fonteQuota": "mediana di 190 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Ben Shelton vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Arthur Fils",
+          "probModello": null,
+          "probPinnacle": 0.38271604938271603,
+          "quota": 2.45,
+          "fonteQuota": "mediana di 190 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Arthur Fils vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "10be88b6f3381524",
+        "dec44acfaf583baf"
+      ],
+      "idPartita": "tennis-2026-11-15-elina-svitolina-mirra-andreeva",
+      "sport": "tennis",
+      "competizione": "WTA Finals",
+      "partita": "Elina Svitolina - Mirra Andreeva",
+      "casa": "Elina Svitolina",
+      "trasferta": "Mirra Andreeva",
+      "inizio": "2026-11-15T21:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Elina Svitolina": {
+          "tot": 1908,
+          "superficie": 1880
+        },
+        "Mirra Andreeva": {
+          "tot": 1912,
+          "superficie": 1852
+        }
+      },
+      "superficie": "cemento",
+      "bestOf": 3,
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo complessivo e su cemento: Elina Svitolina 1908/1880 – Mirra Andreeva 1912/1852 (ultime 3 stagioni tennis-data)",
+        "Al meglio dei 3 set"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Elina Svitolina",
+          "probModello": 0.5169545056335079,
+          "probPinnacle": 0.2942686056458511,
+          "quota": 3.1,
+          "fonteQuota": "mediana di 146 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Elina Svitolina vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Mirra Andreeva",
+          "probModello": 0.48304549436649213,
+          "probPinnacle": 0.7057313943541488,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 146 bookmaker (odss-api)",
+          "oraQuota": "2026-11-15T07:31:28+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Mirra Andreeva vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}

@@ -1,23 +1,10 @@
 {
-  "aggiornatoAlle": "2026-11-14T17:19:56.034Z",
-  "rimaste": 197,
+  "aggiornatoAlle": "2026-11-15T06:31:40.773Z",
+  "rimaste": 191,
   "limite": 500,
   "reset": "2026-11-21T17:35:58.000Z",
   "limiteRaggiuntoFino": null,
   "giornate": {
-    "2026-11-08": {
-      "usate": 7,
-      "controlli": 10,
-      "perSport": {
-        "calcio": 4,
-        "nba": 1,
-        "tennis": 1,
-        "pallavolo": 1
-      },
-      "avvisi": [
-        "budget insufficiente (tetto di # richieste al giorno per i controlli raggiunto; controlli oggi # su #, giornata # su #, rimaste #, riserva #): quote dei controlli dalle fonti di prima"
-      ]
-    },
     "2026-11-09": {
       "usate": 4,
       "controlli": 6,
@@ -87,6 +74,17 @@
         "moneyline,ah,ou: odss-api.com: HTTP #",
         "budget insufficiente (tetto di # richieste al giorno per i controlli raggiunto; controlli oggi # su #, giornata # su #, rimaste #, riserva #): quote dei controlli dalle fonti di prima"
       ]
+    },
+    "2026-11-15": {
+      "usate": 6,
+      "controlli": 0,
+      "perSport": {
+        "calcio": 3,
+        "nba": 1,
+        "tennis": 1,
+        "pallavolo": 1
+      },
+      "avvisi": []
     }
   }
 }
