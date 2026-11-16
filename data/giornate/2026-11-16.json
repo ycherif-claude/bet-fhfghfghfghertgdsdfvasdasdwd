@@ -1,20 +1,4554 @@
 {
   "data": "2026-11-16",
-  "generataAlle": "2026-11-16T08:11:07+01:00",
-  "giro": "claude",
+  "generataAlle": "2026-11-16T12:00:39+01:00",
+  "giro": "riserva",
   "notizieControllate": false,
   "prova": true,
   "competizioniNonCoperte": [],
-  "candidati": [],
+  "candidati": [
+    {
+      "id": "calcio-2026-11-16-lithuania-liechtenstein-1x2-2",
+      "sport": "calcio",
+      "competizione": "Nations League",
+      "partita": "Lithuania - Liechtenstein",
+      "idPartita": "calcio-2026-11-16-lithuania-liechtenstein",
+      "inizio": "2026-11-16T18:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.0386,
+      "quota": 36,
+      "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 4%",
+        "Quota mediana 36,00 su 122 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.0386,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-16-lithuania-liechtenstein-under-over-1-5-under-1-5",
+      "sport": "calcio",
+      "competizione": "Nations League",
+      "partita": "Lithuania - Liechtenstein",
+      "idPartita": "calcio-2026-11-16-lithuania-liechtenstein",
+      "inizio": "2026-11-16T18:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 1.5",
+      "selezione": "Under 1.5",
+      "prob": 0.2634,
+      "quota": 3.9,
+      "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 26%",
+        "Quota mediana 3,90 su 40 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.2634,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-16-switzerland-scotland-under-over-3-5-over-3-5",
+      "sport": "calcio",
+      "competizione": "Nations League",
+      "partita": "Switzerland - Scotland",
+      "idPartita": "calcio-2026-11-16-switzerland-scotland",
+      "inizio": "2026-11-16T20:45:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 3.5",
+      "selezione": "Over 3.5",
+      "prob": 0.2599,
+      "quota": 3.9,
+      "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 26%",
+        "Quota mediana 3,90 su 40 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.2599,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-16-albacete-celta-fortuna-1x2-2",
+      "sport": "calcio",
+      "competizione": "Segunda División",
+      "partita": "Albacete - Celta Fortuna",
+      "idPartita": "calcio-2026-11-16-albacete-celta-fortuna",
+      "inizio": "2026-11-16T20:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.2151062169732444,
+      "quota": 4.75,
+      "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Albacete 1,9 – Celta Fortuna 1,2 (gol e xG, ultime 2 stagioni)",
+        "Modello 24%, Consenso bookmaker 19%, probabilità usata 22%",
+        "Quota mediana 4,75 su 35 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.2371124339464888,
+      "probPinnacle": 0.1931,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-16-albacete-celta-fortuna-angoli-under-over-10-5-over-10-5",
+      "sport": "calcio",
+      "competizione": "Segunda División",
+      "partita": "Albacete - Celta Fortuna",
+      "idPartita": "calcio-2026-11-16-albacete-celta-fortuna",
+      "inizio": "2026-11-16T20:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Angoli Under/Over 10.5",
+      "selezione": "Over 10.5",
+      "prob": 0.5296998348254996,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Albacete 1,9 – Celta Fortuna 1,2 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 53%",
+        "Quota da verificare su bet365",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.5296998348254996,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-16-albacete-celta-fortuna-angoli-under-over-11-5-over-11-5",
+      "sport": "calcio",
+      "competizione": "Segunda División",
+      "partita": "Albacete - Celta Fortuna",
+      "idPartita": "calcio-2026-11-16-albacete-celta-fortuna",
+      "inizio": "2026-11-16T20:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Angoli Under/Over 11.5",
+      "selezione": "Over 11.5",
+      "prob": 0.41036294206542934,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Albacete 1,9 – Celta Fortuna 1,2 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 41%",
+        "Quota da verificare su bet365",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.41036294206542934,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-washington-wizards-memphis-grizzlies-vincente-memphis-grizzlies",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Memphis Grizzlies",
+      "prob": 0.6982713039558641,
+      "quota": 1.58,
+      "fonteQuota": "mediana di 92 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 114 – Memphis Grizzlies 125 (stagione in corso e precedente)",
+        "Washington Wizards alla seconda partita in due sere",
+        "Modello 78%, Pinnacle 61%, probabilità usata 70%",
+        "Quota mediana 1,58 su 92 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Memphis Grizzlies vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.7845475038725606,
+      "probPinnacle": 0.6119951040391677,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-washington-wizards-memphis-grizzlies-handicap-piu-4-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +4.5",
+      "selezione": "trasferta",
+      "prob": 0.5829981070110151,
+      "quota": 1.93,
+      "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 114 – Memphis Grizzlies 125 (stagione in corso e precedente)",
+        "Washington Wizards alla seconda partita in due sere",
+        "Modello 68%, Pinnacle 49%, probabilità usata 58%",
+        "Quota mediana 1,93 su 78 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Memphis Grizzlies vincono con almeno 5 punti di scarto, supplementari compresi. Gioca solo su Memphis Grizzlies -4.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6750354702203774,
+      "probPinnacle": 0.4909607438016529,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 230.5",
+      "selezione": "Over 230.5",
+      "prob": 0.5803659273381094,
+      "quota": 1.94,
+      "fonteQuota": "mediana di 67 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 114 – Memphis Grizzlies 125 (stagione in corso e precedente)",
+        "Washington Wizards alla seconda partita in due sere",
+        "Modello 68%, Pinnacle 48%, probabilità usata 58%",
+        "Quota mediana 1,94 su 67 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6762758961269961,
+      "probPinnacle": 0.4844559585492228,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Cleveland Cavaliers - Chicago Bulls",
+      "idPartita": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 241.5",
+      "selezione": "Over 241.5",
+      "prob": 0.6334917055467923,
+      "quota": 1.75,
+      "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Cleveland Cavaliers 132 – Chicago Bulls 122 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 52%, probabilità usata 63%",
+        "Quota mediana 1,75 su 61 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7436673489174188,
+      "probPinnacle": 0.5233160621761658,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-boston-celtics-orlando-magic-handicap-meno-9-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Boston Celtics - Orlando Magic",
+      "idPartita": "nba-2026-11-16-boston-celtics-orlando-magic",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -9.5",
+      "selezione": "casa",
+      "prob": 0.5463806457719975,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Boston Celtics 115 – Orlando Magic 102 (stagione in corso e precedente)",
+        "Boston Celtics alla seconda partita in due sere",
+        "Modello 60%, Pinnacle 49%, probabilità usata 55%",
+        "Quota mediana 1,90 su 82 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Boston Celtics vincono con almeno 10 punti di scarto, supplementari compresi. Gioca solo su Boston Celtics -9.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5997057359884395,
+      "probPinnacle": 0.49305555555555547,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-boston-celtics-orlando-magic-totale-punti-211-5-over-211-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Boston Celtics - Orlando Magic",
+      "idPartita": "nba-2026-11-16-boston-celtics-orlando-magic",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 211.5",
+      "selezione": "Over 211.5",
+      "prob": 0.5631297903140924,
+      "quota": 1.87,
+      "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Boston Celtics 115 – Orlando Magic 102 (stagione in corso e precedente)",
+        "Boston Celtics alla seconda partita in due sere",
+        "Modello 62%, Pinnacle 51%, probabilità usata 56%",
+        "Quota mediana 1,87 su 82 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 211.5: Over vince se le due squadre segnano almeno 212 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (211.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6173101642857723,
+      "probPinnacle": 0.5089494163424125,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-miami-heat-houston-rockets-vincente-houston-rockets",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Miami Heat - Houston Rockets",
+      "idPartita": "nba-2026-11-16-miami-heat-houston-rockets",
+      "inizio": "2026-11-17T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Houston Rockets",
+      "prob": 0.6070137926090187,
+      "quota": 1.67,
+      "fonteQuota": "mediana di 92 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Miami Heat 117 – Houston Rockets 123 (stagione in corso e precedente)",
+        "Houston Rockets alla seconda partita in due sere",
+        "Modello 66%, Pinnacle 55%, probabilità usata 61%",
+        "Quota mediana 1,67 su 92 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Houston Rockets vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.661583593364677,
+      "probPinnacle": 0.5524439918533605,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-miami-heat-houston-rockets-handicap-piu-2-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Miami Heat - Houston Rockets",
+      "idPartita": "nba-2026-11-16-miami-heat-houston-rockets",
+      "inizio": "2026-11-17T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +2.5",
+      "selezione": "trasferta",
+      "prob": 0.5433864742856711,
+      "quota": 1.85,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Miami Heat 117 – Houston Rockets 123 (stagione in corso e precedente)",
+        "Houston Rockets alla seconda partita in due sere",
+        "Modello 59%, Pinnacle 50%, probabilità usata 54%",
+        "Quota mediana 1,85 su 81 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Houston Rockets vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Houston Rockets -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.591402578200972,
+      "probPinnacle": 0.4953703703703703,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Miami Heat - Houston Rockets",
+      "idPartita": "nba-2026-11-16-miami-heat-houston-rockets",
+      "inizio": "2026-11-17T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 230.5",
+      "selezione": "Over 230.5",
+      "prob": 0.5971598380792511,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Miami Heat 117 – Houston Rockets 123 (stagione in corso e precedente)",
+        "Houston Rockets alla seconda partita in due sere",
+        "Modello 71%, Pinnacle 49%, probabilità usata 60%",
+        "Quota mediana 1,90 su 79 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.70547112844066,
+      "probPinnacle": 0.4888485477178423,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-vincente-golden-state-warriors",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Golden State Warriors",
+      "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors",
+      "inizio": "2026-11-17T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Golden State Warriors",
+      "prob": 0.6934121883377109,
+      "quota": 1.61,
+      "fonteQuota": "mediana di 92 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 114 – Golden State Warriors 125 (stagione in corso e precedente)",
+        "Modello 80%, Pinnacle 59%, probabilità usata 69%",
+        "Quota mediana 1,61 su 92 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Golden State Warriors vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.7965379507725575,
+      "probPinnacle": 0.5902864259028642,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-handicap-piu-3-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Golden State Warriors",
+      "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors",
+      "inizio": "2026-11-17T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +3.5",
+      "selezione": "trasferta",
+      "prob": 0.6012861508298042,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 76 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 114 – Golden State Warriors 125 (stagione in corso e precedente)",
+        "Modello 71%, Pinnacle 49%, probabilità usata 60%",
+        "Quota mediana 1,90 su 76 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Golden State Warriors vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Golden State Warriors -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7138039050678191,
+      "probPinnacle": 0.4887683965917893,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Golden State Warriors",
+      "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors",
+      "inizio": "2026-11-17T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 225.5",
+      "selezione": "Over 225.5",
+      "prob": 0.6427978013665387,
+      "quota": 1.84,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 114 – Golden State Warriors 125 (stagione in corso e precedente)",
+        "Modello 77%, Pinnacle 51%, probabilità usata 64%",
+        "Quota mediana 1,84 su 81 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 225.5: Over vince se le due squadre segnano almeno 226 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (225.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.770984793320096,
+      "probPinnacle": 0.5146108094129817,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-denver-nuggets-phoenix-suns-vincente-phoenix-suns",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Phoenix Suns",
+      "idPartita": "nba-2026-11-16-denver-nuggets-phoenix-suns",
+      "inizio": "2026-11-17T03:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Phoenix Suns",
+      "prob": 0.2540113040813926,
+      "quota": 4.15,
+      "fonteQuota": "mediana di 91 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 119 – Phoenix Suns 111 (stagione in corso e precedente)",
+        "Phoenix Suns alla seconda partita in due sere",
+        "Modello 29%, Pinnacle 22%, probabilità usata 25%",
+        "Quota mediana 4,15 su 91 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Phoenix Suns vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.29250839264856965,
+      "probPinnacle": 0.21551421551421554,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-16-denver-nuggets-phoenix-suns-handicap-meno-10-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Phoenix Suns",
+      "idPartita": "nba-2026-11-16-denver-nuggets-phoenix-suns",
+      "inizio": "2026-11-17T03:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -10.5",
+      "selezione": "trasferta",
+      "prob": 0.5444601885700153,
+      "quota": 1.85,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 119 – Phoenix Suns 111 (stagione in corso e precedente)",
+        "Phoenix Suns alla seconda partita in due sere",
+        "Modello 58%, Pinnacle 51%, probabilità usata 54%",
+        "Quota mediana 1,85 su 81 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Phoenix Suns perdono con meno di 11 punti di scarto o vincono, supplementari compresi. Gioca solo su Phoenix Suns +10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5797920665203342,
+      "probPinnacle": 0.5091283106196965,
+      "correzioneNotizie": null
+    }
+  ],
   "pronostici": [],
-  "giocate": [],
-  "scartate": [],
+  "giocate": [
+    {
+      "id": "M-nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5+nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Golden State Warriors + Miami Heat - Houston Rockets",
+      "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors+nba-2026-11-16-miami-heat-houston-rockets",
+      "inizio": "2026-11-17T01:30:00+01:00",
+      "tipo": "multipla",
+      "mercato": "Multipla",
+      "selezione": "Over 225.5 + Over 230.5",
+      "prob": 0.3838530309817409,
+      "quota": 3.5,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": false,
+      "ragionamento": [],
+      "value": 0.3434856084360931,
+      "quotaMinima": 2.74,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "ridotta": {
+          "da": 1.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "gambe": [
+        {
+          "id": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "New Orleans Pelicans - Golden State Warriors",
+          "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors",
+          "inizio": "2026-11-17T02:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 225.5",
+          "selezione": "Over 225.5",
+          "prob": 0.6427978013665387,
+          "quota": 1.84,
+          "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:08:49+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: New Orleans Pelicans 114 – Golden State Warriors 125 (stagione in corso e precedente)",
+            "Modello 77%, Pinnacle 51%, probabilità usata 64%",
+            "Quota mediana 1,84 su 81 bookmaker alle 08:08",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 225.5: Over vince se le due squadre segnano almeno 226 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (225.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.770984793320096,
+          "probPinnacle": 0.5146108094129817,
+          "correzioneNotizie": null,
+          "value": 0.18274795451443127,
+          "quotaMinima": 1.64,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        },
+        {
+          "id": "nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Miami Heat - Houston Rockets",
+          "idPartita": "nba-2026-11-16-miami-heat-houston-rockets",
+          "inizio": "2026-11-17T01:30:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 230.5",
+          "selezione": "Over 230.5",
+          "prob": 0.5971598380792511,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:08:49+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Miami Heat 117 – Houston Rockets 123 (stagione in corso e precedente)",
+            "Houston Rockets alla seconda partita in due sere",
+            "Modello 71%, Pinnacle 49%, probabilità usata 60%",
+            "Quota mediana 1,90 su 79 bookmaker alle 08:08",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.70547112844066,
+          "probPinnacle": 0.4888485477178423,
+          "correzioneNotizie": null,
+          "value": 0.13460369235057712,
+          "quotaMinima": 1.76,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        }
+      ],
+      "prova": true
+    },
+    {
+      "id": "M-nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5+nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Memphis Grizzlies + Cleveland Cavaliers - Chicago Bulls",
+      "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies+nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "multipla",
+      "mercato": "Multipla",
+      "selezione": "Over 230.5 + Over 241.5",
+      "prob": 0.3676570011506647,
+      "quota": 3.4,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": false,
+      "ragionamento": [],
+      "value": 0.2500338039122598,
+      "quotaMinima": 2.86,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "ridotta": {
+          "da": 1.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "gambe": [
+        {
+          "id": "nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Washington Wizards - Memphis Grizzlies",
+          "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+          "inizio": "2026-11-17T01:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 230.5",
+          "selezione": "Over 230.5",
+          "prob": 0.5803659273381094,
+          "quota": 1.94,
+          "fonteQuota": "mediana di 67 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:08:49+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Washington Wizards 114 – Memphis Grizzlies 125 (stagione in corso e precedente)",
+            "Washington Wizards alla seconda partita in due sere",
+            "Modello 68%, Pinnacle 48%, probabilità usata 58%",
+            "Quota mediana 1,94 su 67 bookmaker alle 08:08",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.6762758961269961,
+          "probPinnacle": 0.4844559585492228,
+          "correzioneNotizie": null,
+          "value": 0.1259098990359322,
+          "quotaMinima": 1.81,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        },
+        {
+          "id": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Cleveland Cavaliers - Chicago Bulls",
+          "idPartita": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
+          "inizio": "2026-11-17T01:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 241.5",
+          "selezione": "Over 241.5",
+          "prob": 0.6334917055467923,
+          "quota": 1.75,
+          "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:08:49+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Cleveland Cavaliers 132 – Chicago Bulls 122 (stagione in corso e precedente)",
+            "Modello 74%, Pinnacle 52%, probabilità usata 63%",
+            "Quota mediana 1,75 su 61 bookmaker alle 08:08",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.7436673489174188,
+          "probPinnacle": 0.5233160621761658,
+          "correzioneNotizie": null,
+          "value": 0.10861048470688672,
+          "quotaMinima": 1.66,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        }
+      ],
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Golden State Warriors",
+      "idPartita": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors",
+      "inizio": "2026-11-17T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 225.5",
+      "selezione": "Over 225.5",
+      "prob": 0.6427978013665387,
+      "quota": 1.84,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 114 – Golden State Warriors 125 (stagione in corso e precedente)",
+        "Modello 77%, Pinnacle 51%, probabilità usata 64%",
+        "Quota mediana 1,84 su 81 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 225.5: Over vince se le due squadre segnano almeno 226 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (225.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.770984793320096,
+      "probPinnacle": 0.5146108094129817,
+      "correzioneNotizie": null,
+      "value": 0.18274795451443127,
+      "quotaMinima": 1.64,
+      "puntata": {
+        "euro": 3.7,
+        "percentuale": 1.87,
+        "ridotta": {
+          "da": 5.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Miami Heat - Houston Rockets",
+      "idPartita": "nba-2026-11-16-miami-heat-houston-rockets",
+      "inizio": "2026-11-17T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 230.5",
+      "selezione": "Over 230.5",
+      "prob": 0.5971598380792511,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Miami Heat 117 – Houston Rockets 123 (stagione in corso e precedente)",
+        "Houston Rockets alla seconda partita in due sere",
+        "Modello 71%, Pinnacle 49%, probabilità usata 60%",
+        "Quota mediana 1,90 su 79 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.70547112844066,
+      "probPinnacle": 0.4888485477178423,
+      "correzioneNotizie": null,
+      "value": 0.13460369235057712,
+      "quotaMinima": 1.76,
+      "puntata": {
+        "euro": 3.7,
+        "percentuale": 1.87,
+        "ridotta": {
+          "da": 5.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 230.5",
+      "selezione": "Over 230.5",
+      "prob": 0.5803659273381094,
+      "quota": 1.94,
+      "fonteQuota": "mediana di 67 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 114 – Memphis Grizzlies 125 (stagione in corso e precedente)",
+        "Washington Wizards alla seconda partita in due sere",
+        "Modello 68%, Pinnacle 48%, probabilità usata 58%",
+        "Quota mediana 1,94 su 67 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 230.5: Over vince se le due squadre segnano almeno 231 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (230.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6762758961269961,
+      "probPinnacle": 0.4844559585492228,
+      "correzioneNotizie": null,
+      "value": 0.1259098990359322,
+      "quotaMinima": 1.81,
+      "puntata": {
+        "euro": 3.7,
+        "percentuale": 1.87,
+        "ridotta": {
+          "da": 5.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Cleveland Cavaliers - Chicago Bulls",
+      "idPartita": "nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 241.5",
+      "selezione": "Over 241.5",
+      "prob": 0.6334917055467923,
+      "quota": 1.75,
+      "fonteQuota": "mediana di 61 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Cleveland Cavaliers 132 – Chicago Bulls 122 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 52%, probabilità usata 63%",
+        "Quota mediana 1,75 su 61 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7436673489174188,
+      "probPinnacle": 0.5233160621761658,
+      "correzioneNotizie": null,
+      "value": 0.10861048470688672,
+      "quotaMinima": 1.66,
+      "puntata": {
+        "euro": 3.7,
+        "percentuale": 1.87,
+        "ridotta": {
+          "da": 5.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-denver-nuggets-phoenix-suns-vincente-phoenix-suns",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Phoenix Suns",
+      "idPartita": "nba-2026-11-16-denver-nuggets-phoenix-suns",
+      "inizio": "2026-11-17T03:00:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Vincente",
+      "selezione": "Phoenix Suns",
+      "prob": 0.2540113040813926,
+      "quota": 4.15,
+      "fonteQuota": "mediana di 91 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 119 – Phoenix Suns 111 (stagione in corso e precedente)",
+        "Phoenix Suns alla seconda partita in due sere",
+        "Modello 29%, Pinnacle 22%, probabilità usata 25%",
+        "Quota mediana 4,15 su 91 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Phoenix Suns vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.29250839264856965,
+      "probPinnacle": 0.21551421551421554,
+      "correzioneNotizie": null,
+      "value": 0.05414691193777932,
+      "quotaMinima": 4.34,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "ridotta": {
+          "da": 1.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-16-albacete-celta-fortuna-angoli-under-over-10-5-over-10-5",
+      "sport": "calcio",
+      "competizione": "Segunda División",
+      "partita": "Albacete - Celta Fortuna",
+      "idPartita": "calcio-2026-11-16-albacete-celta-fortuna",
+      "inizio": "2026-11-16T20:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Angoli Under/Over 10.5",
+      "selezione": "Over 10.5",
+      "prob": 0.5296998348254996,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Albacete 1,9 – Celta Fortuna 1,2 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 53%",
+        "Quota da verificare su bet365",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.5296998348254996,
+      "probPinnacle": null,
+      "correzioneNotizie": null,
+      "value": 0.054102671302744376,
+      "quotaMinima": 1.99,
+      "puntata": {
+        "euro": 1.6,
+        "percentuale": 0.81,
+        "ridotta": {
+          "da": 2.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-16-boston-celtics-orlando-magic-totale-punti-211-5-over-211-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Boston Celtics - Orlando Magic",
+      "idPartita": "nba-2026-11-16-boston-celtics-orlando-magic",
+      "inizio": "2026-11-17T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 211.5",
+      "selezione": "Over 211.5",
+      "prob": 0.5631297903140924,
+      "quota": 1.87,
+      "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:49+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Boston Celtics 115 – Orlando Magic 102 (stagione in corso e precedente)",
+        "Boston Celtics alla seconda partita in due sere",
+        "Modello 62%, Pinnacle 51%, probabilità usata 56%",
+        "Quota mediana 1,87 su 82 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 211.5: Over vince se le due squadre segnano almeno 212 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (211.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6173101642857723,
+      "probPinnacle": 0.5089494163424125,
+      "correzioneNotizie": null,
+      "value": 0.053052707887352835,
+      "quotaMinima": 1.87,
+      "puntata": {
+        "euro": 2,
+        "percentuale": 1.01,
+        "ridotta": {
+          "da": 3,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-16-lithuania-liechtenstein-under-over-1-5-under-1-5",
+      "sport": "calcio",
+      "competizione": "Nations League",
+      "partita": "Lithuania - Liechtenstein",
+      "idPartita": "calcio-2026-11-16-lithuania-liechtenstein",
+      "inizio": "2026-11-16T18:00:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Under/Over 1.5",
+      "selezione": "Under 1.5",
+      "prob": 0.2634,
+      "quota": 3.9,
+      "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 26%",
+        "Quota mediana 3,90 su 40 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.2634,
+      "correzioneNotizie": null,
+      "value": 0.027260000000000062,
+      "quotaMinima": 4.18,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "ridotta": {
+          "da": 1.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-16-switzerland-scotland-under-over-3-5-over-3-5",
+      "sport": "calcio",
+      "competizione": "Nations League",
+      "partita": "Switzerland - Scotland",
+      "idPartita": "calcio-2026-11-16-switzerland-scotland",
+      "inizio": "2026-11-16T20:45:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Under/Over 3.5",
+      "selezione": "Over 3.5",
+      "prob": 0.2599,
+      "quota": 3.9,
+      "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+      "oraQuota": "2026-11-16T08:08:39+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)",
+        "Solo Pinnacle, probabilità usata 26%",
+        "Quota mediana 3,90 su 40 bookmaker alle 08:08",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": null,
+      "probPinnacle": 0.2599,
+      "correzioneNotizie": null,
+      "value": 0.013610000000000122,
+      "quotaMinima": 4.24,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "ridotta": {
+          "da": 1.5,
+          "motivo": "tetto giornaliero"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    }
+  ],
+  "multipleBonus": [
+    {
+      "id": "MB10-2026-11-16",
+      "nome": "Multipla bonus bet365 da 10",
+      "prova": true,
+      "gambe": [
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Kazakhstan - Slovakia",
+          "idPartita": "calcio-2026-11-16-kazakhstan-slovakia",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.3,
+          "quotaBet365": null,
+          "probMercato": 0.7335,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Faroe Islands - Moldova",
+          "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.4,
+          "quotaBet365": null,
+          "probMercato": 0.6721,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Lithuania - Liechtenstein",
+          "idPartita": "calcio-2026-11-16-lithuania-liechtenstein",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "quota": 1.38,
+          "quotaBet365": null,
+          "probMercato": 0.6939,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Estonia - Bulgaria",
+          "idPartita": "calcio-2026-11-16-estonia-bulgaria",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6594,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null,
+          "bookmaker": [
+            [
+              "888sport",
+              1.45
+            ],
+            [
+              "888sport_it",
+              1.45
+            ],
+            [
+              "leovegas",
+              1.44
+            ],
+            [
+              "sunbet",
+              1.44
+            ],
+            [
+              "giocodigitale",
+              1.43
+            ],
+            [
+              "betsson",
+              1.42
+            ],
+            [
+              "marathonbet",
+              1.42
+            ],
+            [
+              "starcasino",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "williamhill",
+              1.42
+            ],
+            [
+              "betpassion",
+              1.41
+            ],
+            [
+              "bgame",
+              1.41
+            ],
+            [
+              "casinosanremo",
+              1.41
+            ],
+            [
+              "codere",
+              1.41
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "domusbet",
+              1.41
+            ],
+            [
+              "gioca7",
+              1.41
+            ],
+            [
+              "netbet",
+              1.41
+            ],
+            [
+              "netwin",
+              1.41
+            ],
+            [
+              "perlaplay",
+              1.41
+            ],
+            [
+              "sportbet",
+              1.41
+            ],
+            [
+              "sportium",
+              1.41
+            ],
+            [
+              "stanleybet",
+              1.41
+            ],
+            [
+              "staryes",
+              1.41
+            ],
+            [
+              "winamax",
+              1.41
+            ],
+            [
+              "admiralbet",
+              1.4
+            ],
+            [
+              "bwin",
+              1.4
+            ],
+            [
+              "quigioco",
+              1.4
+            ],
+            [
+              "starvegas",
+              1.4
+            ],
+            [
+              "vincitu",
+              1.4
+            ],
+            [
+              "betflag",
+              1.38
+            ],
+            [
+              "betitaly",
+              1.38
+            ],
+            [
+              "elabet",
+              1.38
+            ],
+            [
+              "goldbet",
+              1.38
+            ],
+            [
+              "lottomatica",
+              1.38
+            ],
+            [
+              "planetwin365",
+              1.38
+            ],
+            [
+              "pokerstars",
+              1.38
+            ],
+            [
+              "sisal",
+              1.38
+            ],
+            [
+              "snai",
+              1.38
+            ],
+            [
+              "winbet",
+              1.38
+            ],
+            [
+              "eurobet",
+              1.37
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Germany - Netherlands",
+          "idPartita": "calcio-2026-11-16-germany-netherlands",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7182,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Switzerland - Scotland",
+          "idPartita": "calcio-2026-11-16-switzerland-scotland",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7126,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Gibraltar - Malta",
+          "idPartita": "calcio-2026-11-16-gibraltar-malta",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "quota": 1.5,
+          "quotaBet365": null,
+          "probMercato": 0.6323,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null,
+          "bookmaker": [
+            [
+              "888sport",
+              1.47
+            ],
+            [
+              "888sport_it",
+              1.47
+            ],
+            [
+              "leovegas",
+              1.47
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Greece - Serbia",
+          "idPartita": "calcio-2026-11-16-greece-serbia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "1X2",
+          "selezione": "1",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6644,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "North Macedonia - Slovenia",
+          "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.6823,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Brooklyn Nets - Philadelphia 76ers",
+          "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+          "inizio": "2026-11-17T01:30:00+01:00",
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6816143497757848,
+          "probModello": 0.611862159024819,
+          "esito": null,
+          "bookmaker": [
+            [
+              "williamhill",
+              1.44
+            ],
+            [
+              "winamax",
+              1.44
+            ],
+            [
+              "betsson",
+              1.43
+            ],
+            [
+              "betwin360",
+              1.43
+            ],
+            [
+              "casinosanremo",
+              1.43
+            ],
+            [
+              "domusbet",
+              1.43
+            ],
+            [
+              "eplay24",
+              1.43
+            ],
+            [
+              "gioca7",
+              1.43
+            ],
+            [
+              "marathonbet",
+              1.43
+            ],
+            [
+              "netbet",
+              1.43
+            ],
+            [
+              "netwin",
+              1.43
+            ],
+            [
+              "quigioco",
+              1.43
+            ],
+            [
+              "sportium",
+              1.43
+            ],
+            [
+              "starcasino",
+              1.43
+            ],
+            [
+              "staryes",
+              1.43
+            ],
+            [
+              "sunbet",
+              1.43
+            ],
+            [
+              "admiralbet",
+              1.42
+            ],
+            [
+              "bgame",
+              1.42
+            ],
+            [
+              "bwin",
+              1.42
+            ],
+            [
+              "codere",
+              1.42
+            ],
+            [
+              "giocodigitale",
+              1.42
+            ],
+            [
+              "perlaplay",
+              1.42
+            ],
+            [
+              "sportbet",
+              1.42
+            ],
+            [
+              "stanleybet",
+              1.42
+            ],
+            [
+              "starvegas",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "vincitu",
+              1.42
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "betflag",
+              1.4
+            ],
+            [
+              "goldbet",
+              1.4
+            ],
+            [
+              "lottomatica",
+              1.4
+            ],
+            [
+              "planetwin365",
+              1.4
+            ],
+            [
+              "pokerstars",
+              1.4
+            ],
+            [
+              "sisal",
+              1.4
+            ],
+            [
+              "snai",
+              1.4
+            ],
+            [
+              "eurobet",
+              1.38
+            ],
+            [
+              "leovegas",
+              1.36
+            ]
+          ],
+          "probModelloTarato": 0.6219
+        }
+      ],
+      "quota": 27.13,
+      "incremento": 0.35,
+      "quotaConBonus": 36.63,
+      "prob": 0.02255474723564201,
+      "valueAtteso": -0.1737809111249704,
+      "esito": null,
+      "ritorno": null
+    },
+    {
+      "id": "MB12-2026-11-16",
+      "nome": "Multipla bonus bet365 da 12",
+      "prova": true,
+      "gambe": [
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Kazakhstan - Slovakia",
+          "idPartita": "calcio-2026-11-16-kazakhstan-slovakia",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.3,
+          "quotaBet365": null,
+          "probMercato": 0.7335,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Faroe Islands - Moldova",
+          "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.4,
+          "quotaBet365": null,
+          "probMercato": 0.6721,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Lithuania - Liechtenstein",
+          "idPartita": "calcio-2026-11-16-lithuania-liechtenstein",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "quota": 1.38,
+          "quotaBet365": null,
+          "probMercato": 0.6939,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Estonia - Bulgaria",
+          "idPartita": "calcio-2026-11-16-estonia-bulgaria",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6594,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null,
+          "bookmaker": [
+            [
+              "888sport",
+              1.45
+            ],
+            [
+              "888sport_it",
+              1.45
+            ],
+            [
+              "leovegas",
+              1.44
+            ],
+            [
+              "sunbet",
+              1.44
+            ],
+            [
+              "giocodigitale",
+              1.43
+            ],
+            [
+              "betsson",
+              1.42
+            ],
+            [
+              "marathonbet",
+              1.42
+            ],
+            [
+              "starcasino",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "williamhill",
+              1.42
+            ],
+            [
+              "betpassion",
+              1.41
+            ],
+            [
+              "bgame",
+              1.41
+            ],
+            [
+              "casinosanremo",
+              1.41
+            ],
+            [
+              "codere",
+              1.41
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "domusbet",
+              1.41
+            ],
+            [
+              "gioca7",
+              1.41
+            ],
+            [
+              "netbet",
+              1.41
+            ],
+            [
+              "netwin",
+              1.41
+            ],
+            [
+              "perlaplay",
+              1.41
+            ],
+            [
+              "sportbet",
+              1.41
+            ],
+            [
+              "sportium",
+              1.41
+            ],
+            [
+              "stanleybet",
+              1.41
+            ],
+            [
+              "staryes",
+              1.41
+            ],
+            [
+              "winamax",
+              1.41
+            ],
+            [
+              "admiralbet",
+              1.4
+            ],
+            [
+              "bwin",
+              1.4
+            ],
+            [
+              "quigioco",
+              1.4
+            ],
+            [
+              "starvegas",
+              1.4
+            ],
+            [
+              "vincitu",
+              1.4
+            ],
+            [
+              "betflag",
+              1.38
+            ],
+            [
+              "betitaly",
+              1.38
+            ],
+            [
+              "elabet",
+              1.38
+            ],
+            [
+              "goldbet",
+              1.38
+            ],
+            [
+              "lottomatica",
+              1.38
+            ],
+            [
+              "planetwin365",
+              1.38
+            ],
+            [
+              "pokerstars",
+              1.38
+            ],
+            [
+              "sisal",
+              1.38
+            ],
+            [
+              "snai",
+              1.38
+            ],
+            [
+              "winbet",
+              1.38
+            ],
+            [
+              "eurobet",
+              1.37
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Iceland - Luxembourg",
+          "idPartita": "calcio-2026-11-16-iceland-luxembourg",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "quota": 1.44,
+          "quotaBet365": null,
+          "probMercato": 0.6375,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Segunda División",
+          "partita": "Albacete - Celta Fortuna",
+          "idPartita": "calcio-2026-11-16-albacete-celta-fortuna",
+          "inizio": "2026-11-16T20:30:00+01:00",
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "quota": 1.48,
+          "quotaBet365": null,
+          "probMercato": 0.6186,
+          "probModello": 0.6308794415910907,
+          "esito": null,
+          "probModelloTarato": 0.6851,
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.5
+            ],
+            [
+              "stanleybet",
+              1.5
+            ],
+            [
+              "starvegas",
+              1.5
+            ],
+            [
+              "betsson",
+              1.49
+            ],
+            [
+              "domusbet",
+              1.49
+            ],
+            [
+              "starcasino",
+              1.49
+            ],
+            [
+              "totosi",
+              1.49
+            ],
+            [
+              "vincitu",
+              1.49
+            ],
+            [
+              "winamax",
+              1.49
+            ],
+            [
+              "betflag",
+              1.48
+            ],
+            [
+              "bgame",
+              1.48
+            ],
+            [
+              "codere",
+              1.48
+            ],
+            [
+              "daznbet",
+              1.48
+            ],
+            [
+              "eurobet",
+              1.48
+            ],
+            [
+              "goldbet",
+              1.48
+            ],
+            [
+              "lottomatica",
+              1.48
+            ],
+            [
+              "marathonbet",
+              1.48
+            ],
+            [
+              "perlaplay",
+              1.48
+            ],
+            [
+              "planetwin365",
+              1.48
+            ],
+            [
+              "sportbet",
+              1.48
+            ],
+            [
+              "sunbet",
+              1.48
+            ],
+            [
+              "williamhill",
+              1.48
+            ],
+            [
+              "casinosanremo",
+              1.47
+            ],
+            [
+              "gioca7",
+              1.47
+            ],
+            [
+              "netbet",
+              1.47
+            ],
+            [
+              "netwin",
+              1.47
+            ],
+            [
+              "sportium",
+              1.47
+            ],
+            [
+              "staryes",
+              1.47
+            ],
+            [
+              "quigioco",
+              1.44
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Germany - Netherlands",
+          "idPartita": "calcio-2026-11-16-germany-netherlands",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7182,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Switzerland - Scotland",
+          "idPartita": "calcio-2026-11-16-switzerland-scotland",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7126,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Gibraltar - Malta",
+          "idPartita": "calcio-2026-11-16-gibraltar-malta",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "quota": 1.5,
+          "quotaBet365": null,
+          "probMercato": 0.6323,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null,
+          "bookmaker": [
+            [
+              "888sport",
+              1.47
+            ],
+            [
+              "888sport_it",
+              1.47
+            ],
+            [
+              "leovegas",
+              1.47
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Greece - Serbia",
+          "idPartita": "calcio-2026-11-16-greece-serbia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "1X2",
+          "selezione": "1",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6644,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "North Macedonia - Slovenia",
+          "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.6823,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Brooklyn Nets - Philadelphia 76ers",
+          "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+          "inizio": "2026-11-17T01:30:00+01:00",
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6816143497757848,
+          "probModello": 0.611862159024819,
+          "esito": null,
+          "bookmaker": [
+            [
+              "williamhill",
+              1.44
+            ],
+            [
+              "winamax",
+              1.44
+            ],
+            [
+              "betsson",
+              1.43
+            ],
+            [
+              "betwin360",
+              1.43
+            ],
+            [
+              "casinosanremo",
+              1.43
+            ],
+            [
+              "domusbet",
+              1.43
+            ],
+            [
+              "eplay24",
+              1.43
+            ],
+            [
+              "gioca7",
+              1.43
+            ],
+            [
+              "marathonbet",
+              1.43
+            ],
+            [
+              "netbet",
+              1.43
+            ],
+            [
+              "netwin",
+              1.43
+            ],
+            [
+              "quigioco",
+              1.43
+            ],
+            [
+              "sportium",
+              1.43
+            ],
+            [
+              "starcasino",
+              1.43
+            ],
+            [
+              "staryes",
+              1.43
+            ],
+            [
+              "sunbet",
+              1.43
+            ],
+            [
+              "admiralbet",
+              1.42
+            ],
+            [
+              "bgame",
+              1.42
+            ],
+            [
+              "bwin",
+              1.42
+            ],
+            [
+              "codere",
+              1.42
+            ],
+            [
+              "giocodigitale",
+              1.42
+            ],
+            [
+              "perlaplay",
+              1.42
+            ],
+            [
+              "sportbet",
+              1.42
+            ],
+            [
+              "stanleybet",
+              1.42
+            ],
+            [
+              "starvegas",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "vincitu",
+              1.42
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "betflag",
+              1.4
+            ],
+            [
+              "goldbet",
+              1.4
+            ],
+            [
+              "lottomatica",
+              1.4
+            ],
+            [
+              "planetwin365",
+              1.4
+            ],
+            [
+              "pokerstars",
+              1.4
+            ],
+            [
+              "sisal",
+              1.4
+            ],
+            [
+              "snai",
+              1.4
+            ],
+            [
+              "eurobet",
+              1.38
+            ],
+            [
+              "leovegas",
+              1.36
+            ]
+          ],
+          "probModelloTarato": 0.6219
+        }
+      ],
+      "quota": 57.83,
+      "incremento": 0.45,
+      "quotaConBonus": 83.85,
+      "prob": 0.008894633732979693,
+      "valueAtteso": -0.2541632639404161,
+      "esito": null,
+      "ritorno": null,
+      "lunga": true
+    },
+    {
+      "id": "MBSU8-2026-11-16",
+      "nome": "Multipla bonus bet365 senza Under (8 partite)",
+      "prova": true,
+      "gambe": [
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Kazakhstan - Slovakia",
+          "idPartita": "calcio-2026-11-16-kazakhstan-slovakia",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.3,
+          "quotaBet365": null,
+          "probMercato": 0.7335,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Faroe Islands - Moldova",
+          "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.4,
+          "quotaBet365": null,
+          "probMercato": 0.6721,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Estonia - Bulgaria",
+          "idPartita": "calcio-2026-11-16-estonia-bulgaria",
+          "inizio": "2026-11-16T18:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6594,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null,
+          "bookmaker": [
+            [
+              "888sport",
+              1.45
+            ],
+            [
+              "888sport_it",
+              1.45
+            ],
+            [
+              "leovegas",
+              1.44
+            ],
+            [
+              "sunbet",
+              1.44
+            ],
+            [
+              "giocodigitale",
+              1.43
+            ],
+            [
+              "betsson",
+              1.42
+            ],
+            [
+              "marathonbet",
+              1.42
+            ],
+            [
+              "starcasino",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "williamhill",
+              1.42
+            ],
+            [
+              "betpassion",
+              1.41
+            ],
+            [
+              "bgame",
+              1.41
+            ],
+            [
+              "casinosanremo",
+              1.41
+            ],
+            [
+              "codere",
+              1.41
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "domusbet",
+              1.41
+            ],
+            [
+              "gioca7",
+              1.41
+            ],
+            [
+              "netbet",
+              1.41
+            ],
+            [
+              "netwin",
+              1.41
+            ],
+            [
+              "perlaplay",
+              1.41
+            ],
+            [
+              "sportbet",
+              1.41
+            ],
+            [
+              "sportium",
+              1.41
+            ],
+            [
+              "stanleybet",
+              1.41
+            ],
+            [
+              "staryes",
+              1.41
+            ],
+            [
+              "winamax",
+              1.41
+            ],
+            [
+              "admiralbet",
+              1.4
+            ],
+            [
+              "bwin",
+              1.4
+            ],
+            [
+              "quigioco",
+              1.4
+            ],
+            [
+              "starvegas",
+              1.4
+            ],
+            [
+              "vincitu",
+              1.4
+            ],
+            [
+              "betflag",
+              1.38
+            ],
+            [
+              "betitaly",
+              1.38
+            ],
+            [
+              "elabet",
+              1.38
+            ],
+            [
+              "goldbet",
+              1.38
+            ],
+            [
+              "lottomatica",
+              1.38
+            ],
+            [
+              "planetwin365",
+              1.38
+            ],
+            [
+              "pokerstars",
+              1.38
+            ],
+            [
+              "sisal",
+              1.38
+            ],
+            [
+              "snai",
+              1.38
+            ],
+            [
+              "winbet",
+              1.38
+            ],
+            [
+              "eurobet",
+              1.37
+            ]
+          ]
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Germany - Netherlands",
+          "idPartita": "calcio-2026-11-16-germany-netherlands",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7182,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Switzerland - Scotland",
+          "idPartita": "calcio-2026-11-16-switzerland-scotland",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7126,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Greece - Serbia",
+          "idPartita": "calcio-2026-11-16-greece-serbia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "1X2",
+          "selezione": "1",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6644,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "North Macedonia - Slovenia",
+          "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.6823,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Brooklyn Nets - Philadelphia 76ers",
+          "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+          "inizio": "2026-11-17T01:30:00+01:00",
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6816143497757848,
+          "probModello": 0.611862159024819,
+          "esito": null,
+          "bookmaker": [
+            [
+              "williamhill",
+              1.44
+            ],
+            [
+              "winamax",
+              1.44
+            ],
+            [
+              "betsson",
+              1.43
+            ],
+            [
+              "betwin360",
+              1.43
+            ],
+            [
+              "casinosanremo",
+              1.43
+            ],
+            [
+              "domusbet",
+              1.43
+            ],
+            [
+              "eplay24",
+              1.43
+            ],
+            [
+              "gioca7",
+              1.43
+            ],
+            [
+              "marathonbet",
+              1.43
+            ],
+            [
+              "netbet",
+              1.43
+            ],
+            [
+              "netwin",
+              1.43
+            ],
+            [
+              "quigioco",
+              1.43
+            ],
+            [
+              "sportium",
+              1.43
+            ],
+            [
+              "starcasino",
+              1.43
+            ],
+            [
+              "staryes",
+              1.43
+            ],
+            [
+              "sunbet",
+              1.43
+            ],
+            [
+              "admiralbet",
+              1.42
+            ],
+            [
+              "bgame",
+              1.42
+            ],
+            [
+              "bwin",
+              1.42
+            ],
+            [
+              "codere",
+              1.42
+            ],
+            [
+              "giocodigitale",
+              1.42
+            ],
+            [
+              "perlaplay",
+              1.42
+            ],
+            [
+              "sportbet",
+              1.42
+            ],
+            [
+              "stanleybet",
+              1.42
+            ],
+            [
+              "starvegas",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "vincitu",
+              1.42
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "betflag",
+              1.4
+            ],
+            [
+              "goldbet",
+              1.4
+            ],
+            [
+              "lottomatica",
+              1.4
+            ],
+            [
+              "planetwin365",
+              1.4
+            ],
+            [
+              "pokerstars",
+              1.4
+            ],
+            [
+              "sisal",
+              1.4
+            ],
+            [
+              "snai",
+              1.4
+            ],
+            [
+              "eurobet",
+              1.38
+            ],
+            [
+              "leovegas",
+              1.36
+            ]
+          ],
+          "probModelloTarato": 0.6219
+        }
+      ],
+      "quota": 13.11,
+      "incremento": 0.25,
+      "quotaConBonus": 16.39,
+      "prob": 0.051406483323957926,
+      "valueAtteso": -0.1576723549409884,
+      "esito": null,
+      "ritorno": null,
+      "senzaUnder": true
+    },
+    {
+      "id": "MBP5-2026-11-16",
+      "nome": "Multipla bonus bet365 da 5 (le più probabili)",
+      "prova": true,
+      "gambe": [
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Kazakhstan - Slovakia",
+          "idPartita": "calcio-2026-11-16-kazakhstan-slovakia",
+          "inizio": "2026-11-16T16:00:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.3,
+          "quotaBet365": null,
+          "probMercato": 0.7335,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Germany - Netherlands",
+          "idPartita": "calcio-2026-11-16-germany-netherlands",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7182,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "Switzerland - Scotland",
+          "idPartita": "calcio-2026-11-16-switzerland-scotland",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.7126,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "calcio",
+          "competizione": "Nations League",
+          "partita": "North Macedonia - Slovenia",
+          "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+          "inizio": "2026-11-16T20:45:00+01:00",
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "quota": 1.36,
+          "quotaBet365": null,
+          "probMercato": 0.6823,
+          "probModello": null,
+          "esito": null,
+          "probModelloTarato": null
+        },
+        {
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Brooklyn Nets - Philadelphia 76ers",
+          "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+          "inizio": "2026-11-17T01:30:00+01:00",
+          "mercato": "Vincente",
+          "selezione": "Philadelphia 76ers",
+          "quota": 1.42,
+          "quotaBet365": null,
+          "probMercato": 0.6816143497757848,
+          "probModello": 0.611862159024819,
+          "esito": null,
+          "bookmaker": [
+            [
+              "williamhill",
+              1.44
+            ],
+            [
+              "winamax",
+              1.44
+            ],
+            [
+              "betsson",
+              1.43
+            ],
+            [
+              "betwin360",
+              1.43
+            ],
+            [
+              "casinosanremo",
+              1.43
+            ],
+            [
+              "domusbet",
+              1.43
+            ],
+            [
+              "eplay24",
+              1.43
+            ],
+            [
+              "gioca7",
+              1.43
+            ],
+            [
+              "marathonbet",
+              1.43
+            ],
+            [
+              "netbet",
+              1.43
+            ],
+            [
+              "netwin",
+              1.43
+            ],
+            [
+              "quigioco",
+              1.43
+            ],
+            [
+              "sportium",
+              1.43
+            ],
+            [
+              "starcasino",
+              1.43
+            ],
+            [
+              "staryes",
+              1.43
+            ],
+            [
+              "sunbet",
+              1.43
+            ],
+            [
+              "admiralbet",
+              1.42
+            ],
+            [
+              "bgame",
+              1.42
+            ],
+            [
+              "bwin",
+              1.42
+            ],
+            [
+              "codere",
+              1.42
+            ],
+            [
+              "giocodigitale",
+              1.42
+            ],
+            [
+              "perlaplay",
+              1.42
+            ],
+            [
+              "sportbet",
+              1.42
+            ],
+            [
+              "stanleybet",
+              1.42
+            ],
+            [
+              "starvegas",
+              1.42
+            ],
+            [
+              "totosi",
+              1.42
+            ],
+            [
+              "vincitu",
+              1.42
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "888sport",
+              1.4
+            ],
+            [
+              "888sport_it",
+              1.4
+            ],
+            [
+              "betflag",
+              1.4
+            ],
+            [
+              "goldbet",
+              1.4
+            ],
+            [
+              "lottomatica",
+              1.4
+            ],
+            [
+              "planetwin365",
+              1.4
+            ],
+            [
+              "pokerstars",
+              1.4
+            ],
+            [
+              "sisal",
+              1.4
+            ],
+            [
+              "snai",
+              1.4
+            ],
+            [
+              "eurobet",
+              1.38
+            ],
+            [
+              "leovegas",
+              1.36
+            ]
+          ],
+          "probModelloTarato": 0.6219
+        }
+      ],
+      "quota": 4.64,
+      "incremento": 0.1,
+      "quotaConBonus": 5.11,
+      "prob": 0.17458439938425882,
+      "valueAtteso": -0.10824297325185084,
+      "esito": null,
+      "ritorno": null,
+      "criterio": "probabilita"
+    }
+  ],
+  "coppieQuota2": {
+    "lista": [],
+    "margine": [
+      {
+        "id": "Q2M1-2026-11-16",
+        "criterio": "margine",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Germany - Netherlands",
+            "idPartita": "calcio-2026-11-16-germany-netherlands",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7182,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Brooklyn Nets - Philadelphia 76ers",
+            "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+            "inizio": "2026-11-17T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Philadelphia 76ers",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6816143497757848,
+            "probModello": 0.611862159024819,
+            "esito": null,
+            "bookmaker": [
+              [
+                "williamhill",
+                1.44
+              ],
+              [
+                "winamax",
+                1.44
+              ],
+              [
+                "betsson",
+                1.43
+              ],
+              [
+                "betwin360",
+                1.43
+              ],
+              [
+                "casinosanremo",
+                1.43
+              ],
+              [
+                "domusbet",
+                1.43
+              ],
+              [
+                "eplay24",
+                1.43
+              ],
+              [
+                "gioca7",
+                1.43
+              ],
+              [
+                "marathonbet",
+                1.43
+              ],
+              [
+                "netbet",
+                1.43
+              ],
+              [
+                "netwin",
+                1.43
+              ],
+              [
+                "quigioco",
+                1.43
+              ],
+              [
+                "sportium",
+                1.43
+              ],
+              [
+                "starcasino",
+                1.43
+              ],
+              [
+                "staryes",
+                1.43
+              ],
+              [
+                "sunbet",
+                1.43
+              ],
+              [
+                "admiralbet",
+                1.42
+              ],
+              [
+                "bgame",
+                1.42
+              ],
+              [
+                "bwin",
+                1.42
+              ],
+              [
+                "codere",
+                1.42
+              ],
+              [
+                "giocodigitale",
+                1.42
+              ],
+              [
+                "perlaplay",
+                1.42
+              ],
+              [
+                "sportbet",
+                1.42
+              ],
+              [
+                "stanleybet",
+                1.42
+              ],
+              [
+                "starvegas",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "vincitu",
+                1.42
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "888sport",
+                1.4
+              ],
+              [
+                "888sport_it",
+                1.4
+              ],
+              [
+                "betflag",
+                1.4
+              ],
+              [
+                "goldbet",
+                1.4
+              ],
+              [
+                "lottomatica",
+                1.4
+              ],
+              [
+                "planetwin365",
+                1.4
+              ],
+              [
+                "pokerstars",
+                1.4
+              ],
+              [
+                "sisal",
+                1.4
+              ],
+              [
+                "snai",
+                1.4
+              ],
+              [
+                "eurobet",
+                1.38
+              ],
+              [
+                "leovegas",
+                1.36
+              ]
+            ],
+            "probModelloTarato": 0.6219
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.48953542600896865,
+        "probModello": null,
+        "valueAtteso": -0.054609185291479734,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2M2-2026-11-16",
+        "criterio": "margine",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Switzerland - Scotland",
+            "idPartita": "calcio-2026-11-16-switzerland-scotland",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7126,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Greece - Serbia",
+            "idPartita": "calcio-2026-11-16-greece-serbia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6644,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.47345144,
+        "probModello": null,
+        "valueAtteso": -0.08567057907199993,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2M3-2026-11-16",
+        "criterio": "margine",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Faroe Islands - Moldova",
+            "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+            "inizio": "2026-11-16T16:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6721,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Estonia - Bulgaria",
+            "idPartita": "calcio-2026-11-16-estonia-bulgaria",
+            "inizio": "2026-11-16T18:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6594,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null,
+            "bookmaker": [
+              [
+                "888sport",
+                1.45
+              ],
+              [
+                "888sport_it",
+                1.45
+              ],
+              [
+                "leovegas",
+                1.44
+              ],
+              [
+                "sunbet",
+                1.44
+              ],
+              [
+                "giocodigitale",
+                1.43
+              ],
+              [
+                "betsson",
+                1.42
+              ],
+              [
+                "marathonbet",
+                1.42
+              ],
+              [
+                "starcasino",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "williamhill",
+                1.42
+              ],
+              [
+                "betpassion",
+                1.41
+              ],
+              [
+                "bgame",
+                1.41
+              ],
+              [
+                "casinosanremo",
+                1.41
+              ],
+              [
+                "codere",
+                1.41
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "domusbet",
+                1.41
+              ],
+              [
+                "gioca7",
+                1.41
+              ],
+              [
+                "netbet",
+                1.41
+              ],
+              [
+                "netwin",
+                1.41
+              ],
+              [
+                "perlaplay",
+                1.41
+              ],
+              [
+                "sportbet",
+                1.41
+              ],
+              [
+                "sportium",
+                1.41
+              ],
+              [
+                "stanleybet",
+                1.41
+              ],
+              [
+                "staryes",
+                1.41
+              ],
+              [
+                "winamax",
+                1.41
+              ],
+              [
+                "admiralbet",
+                1.4
+              ],
+              [
+                "bwin",
+                1.4
+              ],
+              [
+                "quigioco",
+                1.4
+              ],
+              [
+                "starvegas",
+                1.4
+              ],
+              [
+                "vincitu",
+                1.4
+              ],
+              [
+                "betflag",
+                1.38
+              ],
+              [
+                "betitaly",
+                1.38
+              ],
+              [
+                "elabet",
+                1.38
+              ],
+              [
+                "goldbet",
+                1.38
+              ],
+              [
+                "lottomatica",
+                1.38
+              ],
+              [
+                "planetwin365",
+                1.38
+              ],
+              [
+                "pokerstars",
+                1.38
+              ],
+              [
+                "sisal",
+                1.38
+              ],
+              [
+                "snai",
+                1.38
+              ],
+              [
+                "winbet",
+                1.38
+              ],
+              [
+                "eurobet",
+                1.37
+              ]
+            ]
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.44318274,
+        "probModello": null,
+        "valueAtteso": -0.11895271288000009,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "probabilita": [
+      {
+        "id": "Q2P1-2026-11-16",
+        "criterio": "probabilita",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Germany - Netherlands",
+            "idPartita": "calcio-2026-11-16-germany-netherlands",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7182,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Brooklyn Nets - Philadelphia 76ers",
+            "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+            "inizio": "2026-11-17T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Philadelphia 76ers",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6816143497757848,
+            "probModello": 0.611862159024819,
+            "esito": null,
+            "bookmaker": [
+              [
+                "williamhill",
+                1.44
+              ],
+              [
+                "winamax",
+                1.44
+              ],
+              [
+                "betsson",
+                1.43
+              ],
+              [
+                "betwin360",
+                1.43
+              ],
+              [
+                "casinosanremo",
+                1.43
+              ],
+              [
+                "domusbet",
+                1.43
+              ],
+              [
+                "eplay24",
+                1.43
+              ],
+              [
+                "gioca7",
+                1.43
+              ],
+              [
+                "marathonbet",
+                1.43
+              ],
+              [
+                "netbet",
+                1.43
+              ],
+              [
+                "netwin",
+                1.43
+              ],
+              [
+                "quigioco",
+                1.43
+              ],
+              [
+                "sportium",
+                1.43
+              ],
+              [
+                "starcasino",
+                1.43
+              ],
+              [
+                "staryes",
+                1.43
+              ],
+              [
+                "sunbet",
+                1.43
+              ],
+              [
+                "admiralbet",
+                1.42
+              ],
+              [
+                "bgame",
+                1.42
+              ],
+              [
+                "bwin",
+                1.42
+              ],
+              [
+                "codere",
+                1.42
+              ],
+              [
+                "giocodigitale",
+                1.42
+              ],
+              [
+                "perlaplay",
+                1.42
+              ],
+              [
+                "sportbet",
+                1.42
+              ],
+              [
+                "stanleybet",
+                1.42
+              ],
+              [
+                "starvegas",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "vincitu",
+                1.42
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "888sport",
+                1.4
+              ],
+              [
+                "888sport_it",
+                1.4
+              ],
+              [
+                "betflag",
+                1.4
+              ],
+              [
+                "goldbet",
+                1.4
+              ],
+              [
+                "lottomatica",
+                1.4
+              ],
+              [
+                "planetwin365",
+                1.4
+              ],
+              [
+                "pokerstars",
+                1.4
+              ],
+              [
+                "sisal",
+                1.4
+              ],
+              [
+                "snai",
+                1.4
+              ],
+              [
+                "eurobet",
+                1.38
+              ],
+              [
+                "leovegas",
+                1.36
+              ]
+            ],
+            "probModelloTarato": 0.6219
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.48953542600896865,
+        "probModello": null,
+        "valueAtteso": -0.054609185291479734,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2P2-2026-11-16",
+        "criterio": "probabilita",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Faroe Islands - Moldova",
+            "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+            "inizio": "2026-11-16T16:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6721,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Switzerland - Scotland",
+            "idPartita": "calcio-2026-11-16-switzerland-scotland",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7126,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.9,
+        "prob": 0.47893846,
+        "probModello": null,
+        "valueAtteso": -0.08810117216000002,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2P3-2026-11-16",
+        "criterio": "probabilita",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Greece - Serbia",
+            "idPartita": "calcio-2026-11-16-greece-serbia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6644,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "North Macedonia - Slovenia",
+            "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.6823,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.45332012,
+        "probModello": null,
+        "valueAtteso": -0.124548184256,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "modello": [],
+    "confermate": [],
+    "probabilitaConfermate": [],
+    "doppie": [],
+    "triple": [],
+    "over15": [],
+    "doppieOver15": [],
+    "tutte": [
+      {
+        "id": "Q2T1-2026-11-16",
+        "criterio": "tutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Germany - Netherlands",
+            "idPartita": "calcio-2026-11-16-germany-netherlands",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7182,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Brooklyn Nets - Philadelphia 76ers",
+            "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+            "inizio": "2026-11-17T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Philadelphia 76ers",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6816143497757848,
+            "probModello": 0.611862159024819,
+            "esito": null,
+            "bookmaker": [
+              [
+                "williamhill",
+                1.44
+              ],
+              [
+                "winamax",
+                1.44
+              ],
+              [
+                "betsson",
+                1.43
+              ],
+              [
+                "betwin360",
+                1.43
+              ],
+              [
+                "casinosanremo",
+                1.43
+              ],
+              [
+                "domusbet",
+                1.43
+              ],
+              [
+                "eplay24",
+                1.43
+              ],
+              [
+                "gioca7",
+                1.43
+              ],
+              [
+                "marathonbet",
+                1.43
+              ],
+              [
+                "netbet",
+                1.43
+              ],
+              [
+                "netwin",
+                1.43
+              ],
+              [
+                "quigioco",
+                1.43
+              ],
+              [
+                "sportium",
+                1.43
+              ],
+              [
+                "starcasino",
+                1.43
+              ],
+              [
+                "staryes",
+                1.43
+              ],
+              [
+                "sunbet",
+                1.43
+              ],
+              [
+                "admiralbet",
+                1.42
+              ],
+              [
+                "bgame",
+                1.42
+              ],
+              [
+                "bwin",
+                1.42
+              ],
+              [
+                "codere",
+                1.42
+              ],
+              [
+                "giocodigitale",
+                1.42
+              ],
+              [
+                "perlaplay",
+                1.42
+              ],
+              [
+                "sportbet",
+                1.42
+              ],
+              [
+                "stanleybet",
+                1.42
+              ],
+              [
+                "starvegas",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "vincitu",
+                1.42
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "888sport",
+                1.4
+              ],
+              [
+                "888sport_it",
+                1.4
+              ],
+              [
+                "betflag",
+                1.4
+              ],
+              [
+                "goldbet",
+                1.4
+              ],
+              [
+                "lottomatica",
+                1.4
+              ],
+              [
+                "planetwin365",
+                1.4
+              ],
+              [
+                "pokerstars",
+                1.4
+              ],
+              [
+                "sisal",
+                1.4
+              ],
+              [
+                "snai",
+                1.4
+              ],
+              [
+                "eurobet",
+                1.38
+              ],
+              [
+                "leovegas",
+                1.36
+              ]
+            ],
+            "probModelloTarato": 0.6219
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.48953542600896865,
+        "probModello": null,
+        "valueAtteso": -0.054609185291479734,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2T2-2026-11-16",
+        "criterio": "tutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Switzerland - Scotland",
+            "idPartita": "calcio-2026-11-16-switzerland-scotland",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7126,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Greece - Serbia",
+            "idPartita": "calcio-2026-11-16-greece-serbia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6644,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.47345144,
+        "probModello": null,
+        "valueAtteso": -0.08567057907199993,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2T3-2026-11-16",
+        "criterio": "tutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Faroe Islands - Moldova",
+            "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+            "inizio": "2026-11-16T16:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6721,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Estonia - Bulgaria",
+            "idPartita": "calcio-2026-11-16-estonia-bulgaria",
+            "inizio": "2026-11-16T18:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6594,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null,
+            "bookmaker": [
+              [
+                "888sport",
+                1.45
+              ],
+              [
+                "888sport_it",
+                1.45
+              ],
+              [
+                "leovegas",
+                1.44
+              ],
+              [
+                "sunbet",
+                1.44
+              ],
+              [
+                "giocodigitale",
+                1.43
+              ],
+              [
+                "betsson",
+                1.42
+              ],
+              [
+                "marathonbet",
+                1.42
+              ],
+              [
+                "starcasino",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "williamhill",
+                1.42
+              ],
+              [
+                "betpassion",
+                1.41
+              ],
+              [
+                "bgame",
+                1.41
+              ],
+              [
+                "casinosanremo",
+                1.41
+              ],
+              [
+                "codere",
+                1.41
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "domusbet",
+                1.41
+              ],
+              [
+                "gioca7",
+                1.41
+              ],
+              [
+                "netbet",
+                1.41
+              ],
+              [
+                "netwin",
+                1.41
+              ],
+              [
+                "perlaplay",
+                1.41
+              ],
+              [
+                "sportbet",
+                1.41
+              ],
+              [
+                "sportium",
+                1.41
+              ],
+              [
+                "stanleybet",
+                1.41
+              ],
+              [
+                "staryes",
+                1.41
+              ],
+              [
+                "winamax",
+                1.41
+              ],
+              [
+                "admiralbet",
+                1.4
+              ],
+              [
+                "bwin",
+                1.4
+              ],
+              [
+                "quigioco",
+                1.4
+              ],
+              [
+                "starvegas",
+                1.4
+              ],
+              [
+                "vincitu",
+                1.4
+              ],
+              [
+                "betflag",
+                1.38
+              ],
+              [
+                "betitaly",
+                1.38
+              ],
+              [
+                "elabet",
+                1.38
+              ],
+              [
+                "goldbet",
+                1.38
+              ],
+              [
+                "lottomatica",
+                1.38
+              ],
+              [
+                "planetwin365",
+                1.38
+              ],
+              [
+                "pokerstars",
+                1.38
+              ],
+              [
+                "sisal",
+                1.38
+              ],
+              [
+                "snai",
+                1.38
+              ],
+              [
+                "winbet",
+                1.38
+              ],
+              [
+                "eurobet",
+                1.37
+              ]
+            ]
+          }
+        ],
+        "quota": 1.99,
+        "prob": 0.44318274,
+        "probModello": null,
+        "valueAtteso": -0.11895271288000009,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "probabilitaTutte": [
+      {
+        "id": "Q2PT1-2026-11-16",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Germany - Netherlands",
+            "idPartita": "calcio-2026-11-16-germany-netherlands",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 2.5",
+            "selezione": "Over 2.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7182,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Brooklyn Nets - Philadelphia 76ers",
+            "idPartita": "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+            "inizio": "2026-11-17T01:30:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Philadelphia 76ers",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6816143497757848,
+            "probModello": 0.611862159024819,
+            "esito": null,
+            "bookmaker": [
+              [
+                "williamhill",
+                1.44
+              ],
+              [
+                "winamax",
+                1.44
+              ],
+              [
+                "betsson",
+                1.43
+              ],
+              [
+                "betwin360",
+                1.43
+              ],
+              [
+                "casinosanremo",
+                1.43
+              ],
+              [
+                "domusbet",
+                1.43
+              ],
+              [
+                "eplay24",
+                1.43
+              ],
+              [
+                "gioca7",
+                1.43
+              ],
+              [
+                "marathonbet",
+                1.43
+              ],
+              [
+                "netbet",
+                1.43
+              ],
+              [
+                "netwin",
+                1.43
+              ],
+              [
+                "quigioco",
+                1.43
+              ],
+              [
+                "sportium",
+                1.43
+              ],
+              [
+                "starcasino",
+                1.43
+              ],
+              [
+                "staryes",
+                1.43
+              ],
+              [
+                "sunbet",
+                1.43
+              ],
+              [
+                "admiralbet",
+                1.42
+              ],
+              [
+                "bgame",
+                1.42
+              ],
+              [
+                "bwin",
+                1.42
+              ],
+              [
+                "codere",
+                1.42
+              ],
+              [
+                "giocodigitale",
+                1.42
+              ],
+              [
+                "perlaplay",
+                1.42
+              ],
+              [
+                "sportbet",
+                1.42
+              ],
+              [
+                "stanleybet",
+                1.42
+              ],
+              [
+                "starvegas",
+                1.42
+              ],
+              [
+                "totosi",
+                1.42
+              ],
+              [
+                "vincitu",
+                1.42
+              ],
+              [
+                "daznbet",
+                1.41
+              ],
+              [
+                "888sport",
+                1.4
+              ],
+              [
+                "888sport_it",
+                1.4
+              ],
+              [
+                "betflag",
+                1.4
+              ],
+              [
+                "goldbet",
+                1.4
+              ],
+              [
+                "lottomatica",
+                1.4
+              ],
+              [
+                "planetwin365",
+                1.4
+              ],
+              [
+                "pokerstars",
+                1.4
+              ],
+              [
+                "sisal",
+                1.4
+              ],
+              [
+                "snai",
+                1.4
+              ],
+              [
+                "eurobet",
+                1.38
+              ],
+              [
+                "leovegas",
+                1.36
+              ]
+            ],
+            "probModelloTarato": 0.6219
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.48953542600896865,
+        "probModello": null,
+        "valueAtteso": -0.054609185291479734,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2PT2-2026-11-16",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Faroe Islands - Moldova",
+            "idPartita": "calcio-2026-11-16-faroe-islands-moldova",
+            "inizio": "2026-11-16T16:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.4,
+            "quotaBet365": null,
+            "probMercato": 0.6721,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Switzerland - Scotland",
+            "idPartita": "calcio-2026-11-16-switzerland-scotland",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.7126,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.9,
+        "prob": 0.47893846,
+        "probModello": null,
+        "valueAtteso": -0.08810117216000002,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "Q2PT3-2026-11-16",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "Greece - Serbia",
+            "idPartita": "calcio-2026-11-16-greece-serbia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.42,
+            "quotaBet365": null,
+            "probMercato": 0.6644,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Nations League",
+            "partita": "North Macedonia - Slovenia",
+            "idPartita": "calcio-2026-11-16-north-macedonia-slovenia",
+            "inizio": "2026-11-16T20:45:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.36,
+            "quotaBet365": null,
+            "probMercato": 0.6823,
+            "probModello": null,
+            "esito": null,
+            "probModelloTarato": null
+          }
+        ],
+        "quota": 1.93,
+        "prob": 0.45332012,
+        "probModello": null,
+        "valueAtteso": -0.124548184256,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "modelloTutte": [],
+    "confermateTutte": []
+  },
+  "taraturaModello": {
+    "calcio": {
+      "a": 0.399,
+      "b": 0.7057,
+      "partite": 856
+    },
+    "nba": {
+      "a": 0.0891,
+      "b": 0.8978,
+      "partite": 52
+    }
+  },
+  "scartate": [
+    {
+      "idCandidato": "calcio-2026-11-16-lithuania-liechtenstein-1x2-2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-11-16-albacete-celta-fortuna-1x2-2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-washington-wizards-memphis-grizzlies-vincente-memphis-grizzlies",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-handicap-piu-3-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-washington-wizards-memphis-grizzlies-handicap-piu-4-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-vincente-golden-state-warriors",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "calcio-2026-11-16-albacete-celta-fortuna-angoli-under-over-11-5-over-11-5",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-boston-celtics-orlando-magic-handicap-meno-9-5-casa",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-miami-heat-houston-rockets-vincente-houston-rockets",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-denver-nuggets-phoenix-suns-handicap-meno-10-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-16-miami-heat-houston-rockets-handicap-piu-2-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    }
+  ],
   "erroriGiro": [
-    "Raccolta di oggi mancante: data/raccolta/2026-11-16.json",
-    "Raccolta NBA di oggi mancante: data/raccolta/2026-11-16-nba.json",
-    "Raccolta tennis di oggi mancante: data/raccolta/2026-11-16-tennis.json",
-    "Raccolta basket di oggi mancante: data/raccolta/2026-11-16-basket.json",
-    "Raccolta pallavolo di oggi mancante: data/raccolta/2026-11-16-pallavolo.json"
+    "Esiti alle 08:08: Giocata calcio-2026-10-23-gateshead-tamworth-1x2-1 senza esito da 23 giorni",
+    "Esiti alle 08:08: Giocata calcio-2026-11-01-tenerife-andorra-cf-1x2-2 senza esito da 14 giorni",
+    "Esiti alle 08:08: Giocata calcio-2026-11-06-cd-castellon-sd-eibar-under-over-1-5-under-1-5 senza esito da 9 giorni",
+    "Esiti alle 08:08: Giocata calcio-2026-11-08-andorra-cf-mallorca-1x2-1 senza esito da 7 giorni",
+    "Esiti alle 08:08: Giocata calcio-2026-11-08-estoril-cs-maritimo-under-over-2-5-over-2-5 senza esito da 7 giorni",
+    "odss-api alle 08:08: 8 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Orlando Magic - Boston Celtics, Memphis Grizzlies - Washington Wizards, Chicago Bulls - Cleveland Cavaliers, Houston Rockets - Miami Heat, Philadelphia 76ers - Brooklyn Nets, Portland Trail Blazers - Minnesota Timberwolves, Golden State Warriors - New Orleans Pelicans, Phoenix Suns - Denver Nuggets",
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Finals: solo Pinnacle",
+    "Giro di Claude non eseguito: notizie non controllate",
+    "odss-api alle 08:08: 2 partite senza righe a tempo intero (full_time), senza quote: Masar (F) - AL Mokawloon AL Arab (F), Masar (W) - AL Mokawloon AL Arab (W)"
   ],
   "schedinePronostici": []
 }
