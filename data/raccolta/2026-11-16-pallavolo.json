@@ -1,0 +1,355 @@
+{
+  "data": "2026-11-16",
+  "generataAlle": "2026-11-16T08:14:56+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 1,
+      "rimaste": 199
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [],
+  "partite": [
+    {
+      "idOdss": [
+        "25b2faae5ede599f",
+        "27cf614d2dc3b93d",
+        "93533022ea4279b8",
+        "9df9e2fc23401f75",
+        "f0c4d741ac1de728"
+      ],
+      "idPartita": "pallavolo-2026-11-16-pallavolo-padova-tinet-prata-di-pordenone",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Pallavolo Padova - Tinet Prata Di Pordenone",
+      "casa": "Pallavolo Padova",
+      "trasferta": "Tinet Prata Di Pordenone",
+      "inizio": "2026-11-16T20:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Pallavolo Padova",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.5371577574967407,
+          "quota": 1.85,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:14:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Pallavolo Padova vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.867
+            ],
+            [
+              "zonagioco",
+              1.867
+            ],
+            [
+              "betsson",
+              1.82
+            ],
+            [
+              "starcasino",
+              1.82
+            ],
+            [
+              "williamhill",
+              1.82
+            ],
+            [
+              "winamax",
+              1.8
+            ],
+            [
+              "betflag",
+              1.79
+            ],
+            [
+              "bgame",
+              1.79
+            ],
+            [
+              "codere",
+              1.79
+            ],
+            [
+              "eurobet",
+              1.79
+            ],
+            [
+              "goldbet",
+              1.79
+            ],
+            [
+              "lottomatica",
+              1.79
+            ],
+            [
+              "marathonbet",
+              1.79
+            ],
+            [
+              "perlaplay",
+              1.79
+            ],
+            [
+              "planetwin365",
+              1.79
+            ],
+            [
+              "sportbet",
+              1.79
+            ],
+            [
+              "sunbet",
+              1.79
+            ],
+            [
+              "totosi",
+              1.79
+            ],
+            [
+              "admiralbet",
+              1.77
+            ],
+            [
+              "betwin360",
+              1.77
+            ],
+            [
+              "casinosanremo",
+              1.77
+            ],
+            [
+              "eplay24",
+              1.77
+            ],
+            [
+              "gioca7",
+              1.77
+            ],
+            [
+              "netbet",
+              1.77
+            ],
+            [
+              "netwin",
+              1.77
+            ],
+            [
+              "sportium",
+              1.77
+            ],
+            [
+              "starvegas",
+              1.77
+            ],
+            [
+              "staryes",
+              1.77
+            ],
+            [
+              "vincitu",
+              1.77
+            ],
+            [
+              "daznbet",
+              1.76
+            ],
+            [
+              "domusbet",
+              1.76
+            ],
+            [
+              "stanleybet",
+              1.76
+            ],
+            [
+              "quigioco",
+              1.74
+            ],
+            [
+              "leovegas",
+              1.72
+            ],
+            [
+              "888sport",
+              1.7
+            ],
+            [
+              "888sport_it",
+              1.7
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Tinet Prata Di Pordenone",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.4628422425032595,
+          "quota": 1.87,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-16T08:14:56+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Tinet Prata Di Pordenone vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              2
+            ],
+            [
+              "starcasino",
+              2
+            ],
+            [
+              "williamhill",
+              2
+            ],
+            [
+              "leovegas",
+              1.98
+            ],
+            [
+              "betflag",
+              1.96
+            ],
+            [
+              "bgame",
+              1.96
+            ],
+            [
+              "codere",
+              1.96
+            ],
+            [
+              "eurobet",
+              1.96
+            ],
+            [
+              "goldbet",
+              1.96
+            ],
+            [
+              "lottomatica",
+              1.96
+            ],
+            [
+              "marathonbet",
+              1.96
+            ],
+            [
+              "perlaplay",
+              1.96
+            ],
+            [
+              "planetwin365",
+              1.96
+            ],
+            [
+              "sportbet",
+              1.96
+            ],
+            [
+              "sunbet",
+              1.96
+            ],
+            [
+              "totosi",
+              1.96
+            ],
+            [
+              "winamax",
+              1.96
+            ],
+            [
+              "888sport",
+              1.94
+            ],
+            [
+              "888sport_it",
+              1.94
+            ],
+            [
+              "vincitu",
+              1.94
+            ],
+            [
+              "admiralbet",
+              1.93
+            ],
+            [
+              "betwin360",
+              1.93
+            ],
+            [
+              "casinosanremo",
+              1.93
+            ],
+            [
+              "eplay24",
+              1.93
+            ],
+            [
+              "gioca7",
+              1.93
+            ],
+            [
+              "netbet",
+              1.93
+            ],
+            [
+              "netwin",
+              1.93
+            ],
+            [
+              "sportium",
+              1.93
+            ],
+            [
+              "starvegas",
+              1.93
+            ],
+            [
+              "staryes",
+              1.93
+            ],
+            [
+              "daznbet",
+              1.92
+            ],
+            [
+              "domusbet",
+              1.92
+            ],
+            [
+              "stanleybet",
+              1.92
+            ],
+            [
+              "quigioco",
+              1.91
+            ],
+            [
+              "fastbet",
+              1.875
+            ],
+            [
+              "zonagioco",
+              1.875
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
