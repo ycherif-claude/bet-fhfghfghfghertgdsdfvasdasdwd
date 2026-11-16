@@ -92,8 +92,8 @@
       "regola": true
     },
     "M-nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5+nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5#0": {
-      "esito": "revisione",
-      "motivo": "in revisione: mercato contro: da 51% a 46%",
+      "esito": "annullata",
+      "motivo": "Claude: la gamba Over 225.5 Pelicans-Warriors perde il value per le assenze di Curry, Butler, Murray e Trey Murphy III; inoltre la gamba Miami-Houston è a 1,75, sotto la minima 1,76 (singola già annullata dalle regole) (report infortuni Pelicans vs Warriors su nba.com/pelicans e Yahoo Sports/ClutchPoints, controllato alle 00:50 del 17/11)",
       "problemi": [
         {
           "tipo": "mercato",
@@ -104,7 +104,8 @@
         "giocatori chiave non indicati dal giro del mattino",
         "quota 2,05"
       ],
-      "alle": "2026-11-17T00:48:04+01:00"
+      "alle": "2026-11-17T00:49:16+01:00",
+      "claude": true
     },
     "M-nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5+nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5#1": {
       "esito": "confermata",
@@ -117,8 +118,8 @@
       "alle": "2026-11-17T00:48:04+01:00"
     },
     "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors-totale-punti-225-5-over-225-5": {
-      "esito": "revisione",
-      "motivo": "in revisione: mercato contro: da 51% a 46%",
+      "esito": "annullata",
+      "motivo": "Claude: mercato contro spiegato dalle assenze: Warriors senza Curry (obliquo destro) e Butler, Pelicans senza Murray e Trey Murphy III. Il modello del mattino (125 punti attesi per Golden State) non teneva conto delle notizie: senza i principali realizzatori l'Over 225.5 perde il value (report infortuni Pelicans vs Warriors su nba.com/pelicans e Yahoo Sports/ClutchPoints, controllato alle 00:50 del 17/11)",
       "problemi": [
         {
           "tipo": "mercato",
@@ -129,7 +130,8 @@
         "giocatori chiave non indicati dal giro del mattino",
         "quota 2,05 ≥ minima 1,64"
       ],
-      "alle": "2026-11-17T00:48:04+01:00"
+      "alle": "2026-11-17T00:49:16+01:00",
+      "claude": true
     },
     "nba-2026-11-16-miami-heat-houston-rockets-totale-punti-230-5-over-230-5": {
       "esito": "annullata",
