@@ -413,6 +413,102 @@
       "prob": 0.45772295039835525,
       "alle": "2026-11-17T00:10:14+01:00",
       "minutiPrima": 50
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Vincente|Miami Heat": {
+      "quota": 2.15,
+      "prob": 0.4339622641509433,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Vincente|Houston Rockets": {
+      "quota": 1.7,
+      "prob": 0.5660377358490566,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Handicap +2.5|casa": {
+      "quota": 1.89,
+      "prob": 0.49539170506912444,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Handicap +2.5|trasferta": {
+      "quota": 1.9,
+      "prob": 0.5046082949308756,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Totale punti 230.5|Over 230.5": {
+      "quota": 1.75,
+      "prob": 0.5442875481386393,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-miami-heat-houston-rockets|Totale punti 230.5|Under 230.5": {
+      "quota": 2.02,
+      "prob": 0.45571245186136067,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-brooklyn-nets-philadelphia-76ers|Vincente|Brooklyn Nets": {
+      "quota": 2.65,
+      "prob": 0.3277501131733816,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-brooklyn-nets-philadelphia-76ers|Vincente|Philadelphia 76ers": {
+      "quota": 1.48,
+      "prob": 0.6722498868266185,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-brooklyn-nets-philadelphia-76ers|Totale punti 226.5|Over 226.5": {
+      "quota": 1.85,
+      "prob": 0.5,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-brooklyn-nets-philadelphia-76ers|Totale punti 226.5|Under 226.5": {
+      "quota": 1.9,
+      "prob": 0.5,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 42
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Vincente|New Orleans Pelicans": {
+      "quota": 2.3,
+      "prob": 0.41660433807030667,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Vincente|Golden State Warriors": {
+      "quota": 1.6,
+      "prob": 0.5833956619296933,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Handicap +3.5|casa": {
+      "quota": 1.86,
+      "prob": 0.5116398055768739,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Handicap +3.5|trasferta": {
+      "quota": 1.9,
+      "prob": 0.4883601944231262,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Totale punti 225.5|Over 225.5": {
+      "quota": 2.05,
+      "prob": 0.45654960266598305,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
+    },
+    "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors|Totale punti 225.5|Under 225.5": {
+      "quota": 1.74,
+      "prob": 0.5434503973340169,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "minutiPrima": 72
     }
   },
   "copertura": {
@@ -435,12 +531,15 @@
       ]
     },
     "nba|NBA": {
-      "alle": "2026-11-17T00:10:14+01:00",
-      "partite": 3,
+      "alle": "2026-11-17T00:48:04+01:00",
+      "partite": 6,
       "idPartite": [
         "nba-2026-11-16-washington-wizards-memphis-grizzlies",
         "nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
-        "nba-2026-11-16-boston-celtics-orlando-magic"
+        "nba-2026-11-16-boston-celtics-orlando-magic",
+        "nba-2026-11-16-miami-heat-houston-rockets",
+        "nba-2026-11-16-brooklyn-nets-philadelphia-76ers",
+        "nba-2026-11-16-new-orleans-pelicans-golden-state-warriors"
       ]
     }
   }
