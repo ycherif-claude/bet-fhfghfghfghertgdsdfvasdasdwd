@@ -341,6 +341,78 @@
       "prob": null,
       "alle": "2026-11-16T20:10:44+01:00",
       "minutiPrima": 19
+    },
+    "nba-2026-11-16-washington-wizards-memphis-grizzlies|Vincente|Washington Wizards": {
+      "quota": 2.29,
+      "prob": 0.41733067729083667,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-washington-wizards-memphis-grizzlies|Vincente|Memphis Grizzlies": {
+      "quota": 1.62,
+      "prob": 0.5826693227091634,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-washington-wizards-memphis-grizzlies|Totale punti 230.5|Over 230.5": {
+      "quota": 1.72,
+      "prob": 0.5541368743615934,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-washington-wizards-memphis-grizzlies|Totale punti 230.5|Under 230.5": {
+      "quota": 2.05,
+      "prob": 0.4458631256384066,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-cleveland-cavaliers-chicago-bulls|Vincente|Cleveland Cavaliers": {
+      "quota": 1.28,
+      "prob": 0.7491289198606272,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-cleveland-cavaliers-chicago-bulls|Vincente|Chicago Bulls": {
+      "quota": 3.65,
+      "prob": 0.2508710801393728,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-cleveland-cavaliers-chicago-bulls|Totale punti 241.5|Over 241.5": {
+      "quota": 1.89,
+      "prob": 0.4953703703703703,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-cleveland-cavaliers-chicago-bulls|Totale punti 241.5|Under 241.5": {
+      "quota": 1.88,
+      "prob": 0.5046296296296295,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-boston-celtics-orlando-magic|Vincente|Boston Celtics": {
+      "quota": 1.26,
+      "prob": 0.7621894264898188,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-boston-celtics-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 3.8,
+      "prob": 0.23781057351018117,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-boston-celtics-orlando-magic|Totale punti 211.5|Over 211.5": {
+      "quota": 1.72,
+      "prob": 0.5422770496016449,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
+    },
+    "nba-2026-11-16-boston-celtics-orlando-magic|Totale punti 211.5|Under 211.5": {
+      "quota": 2.05,
+      "prob": 0.45772295039835525,
+      "alle": "2026-11-17T00:10:14+01:00",
+      "minutiPrima": 50
     }
   },
   "copertura": {
@@ -360,6 +432,15 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-11-16-albacete-celta-fortuna"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-17T00:10:14+01:00",
+      "partite": 3,
+      "idPartite": [
+        "nba-2026-11-16-washington-wizards-memphis-grizzlies",
+        "nba-2026-11-16-cleveland-cavaliers-chicago-bulls",
+        "nba-2026-11-16-boston-celtics-orlando-magic"
       ]
     }
   }

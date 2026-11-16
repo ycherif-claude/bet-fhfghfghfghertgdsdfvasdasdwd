@@ -30,6 +30,66 @@
       ],
       "alle": "2026-11-16T20:10:44+01:00",
       "regola": true
+    },
+    "M-nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5+nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5#0": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,72",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,72"
+      ],
+      "alle": "2026-11-17T00:10:14+01:00"
+    },
+    "M-nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5+nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5#1": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,89",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,89"
+      ],
+      "alle": "2026-11-17T00:10:14+01:00"
+    },
+    "nba-2026-11-16-washington-wizards-memphis-grizzlies-totale-punti-230-5-over-230-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,72 sotto la minima 1,81",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,72 sotto la minima 1,81"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-17T00:10:14+01:00",
+      "regola": true
+    },
+    "nba-2026-11-16-cleveland-cavaliers-chicago-bulls-totale-punti-241-5-over-241-5": {
+      "esito": "confermata",
+      "motivo": "giocatori chiave non indicati dal giro del mattino; quota 1,89 ≥ minima 1,66",
+      "problemi": [],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino",
+        "quota 1,89 ≥ minima 1,66"
+      ],
+      "alle": "2026-11-17T00:10:14+01:00"
+    },
+    "nba-2026-11-16-boston-celtics-orlando-magic-totale-punti-211-5-over-211-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,72 sotto la minima 1,87",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,72 sotto la minima 1,87"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-17T00:10:14+01:00",
+      "regola": true
     }
   },
   "claude": {
