@@ -5,6 +5,31 @@
       "esito": "non-eseguito",
       "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "alle": "2026-11-16T18:13:39+01:00"
+    },
+    "calcio-2026-11-16-albacete-celta-fortuna-angoli-under-over-10-5-over-10-5": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (mercato senza quote nella fonte gratuita)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (mercato senza quote nella fonte gratuita)"
+      ],
+      "alle": "2026-11-16T20:10:44+01:00"
+    },
+    "calcio-2026-11-16-switzerland-scotland-under-over-3-5-over-3-5": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 2,80 sotto la minima 4,24",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 2,80 sotto la minima 4,24"
+        }
+      ],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)"
+      ],
+      "alle": "2026-11-16T20:10:44+01:00",
+      "regola": true
     }
   },
   "claude": {
