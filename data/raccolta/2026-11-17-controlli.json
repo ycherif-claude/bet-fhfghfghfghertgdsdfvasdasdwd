@@ -26,10 +26,42 @@
       "dettagli": [],
       "alle": "2026-11-17T18:29:24+01:00",
       "regola": true
+    },
+    "M-nba-2026-11-17-san-antonio-spurs-detroit-pistons-totale-punti-222-5-over-222-5+basket-2026-11-17-pallacanestro-olimpia-milano-kk-crvena-zvezda-vincente-kk-crvena-zvezda#1": {
+      "esito": "confermata",
+      "motivo": "quota 1,83",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,83"
+      ],
+      "alle": "2026-11-17T19:20:10+01:00"
+    },
+    "basket-2026-11-17-pallacanestro-olimpia-milano-kk-crvena-zvezda-vincente-kk-crvena-zvezda": {
+      "esito": "confermata",
+      "motivo": "quota 1,83 ≥ minima 1,73",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,83 ≥ minima 1,73"
+      ],
+      "alle": "2026-11-17T19:20:10+01:00"
+    },
+    "basket-2026-11-17-saski-baskonia-hapoel-tel-aviv-totale-punti-179-5-under-179-5": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,79 sotto la minima 1,95",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,79 sotto la minima 1,95"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-17T19:20:10+01:00"
     }
   },
   "claude": {
-    "avvii": 0,
-    "richieste": []
+    "avvii": 1,
+    "richieste": [
+      "basket-2026-11-17-saski-baskonia-hapoel-tel-aviv-totale-punti-179-5-under-179-5"
+    ]
   }
 }
