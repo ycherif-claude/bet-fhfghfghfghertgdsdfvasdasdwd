@@ -147,6 +147,21 @@
       ],
       "alle": "2026-11-17T00:48:04+01:00",
       "regola": true
+    },
+    "nba-2026-11-16-denver-nuggets-phoenix-suns-vincente-phoenix-suns": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 4,29 sotto la minima 4,34",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 4,29 sotto la minima 4,34"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-17T02:47:27+01:00",
+      "regola": true
     }
   },
   "claude": {
