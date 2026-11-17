@@ -2209,7 +2209,7 @@
       "stato": "confermata",
       "motivoStato": "quota 3,10 · giocatori chiave non indicati dal giro del mattino; quote non controllate (meno di 3 bookmaker con la stessa linea)",
       "oraUltimoControllo": "2026-11-15T00:50:12+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "tennis-2026-11-14-jessica-pegula-mirra-andreeva-vincente-incontro-jessica-pegula",
@@ -2246,7 +2246,8 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa",
+          "esitoDalRegistro": true
         },
         {
           "id": "nba-2026-11-14-miami-heat-detroit-pistons-totale-punti-225-5-over-225-5",
@@ -2327,8 +2328,9 @@
       "stato": "confermata",
       "motivoStato": "quota 3,10 ≥ minima 1,77",
       "oraUltimoControllo": "2026-11-14T20:12:48+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "M-nba-2026-11-14-minnesota-timberwolves-chicago-bulls-handicap-meno-13-5-casa+basket-2026-11-14-brisbane-bullets-tasmania-jackjumpers-vincente-tasmania-jackjumpers+nba-2026-11-14-cleveland-cavaliers-dallas-mavericks-totale-punti-231-5-over-231-5",
@@ -2678,8 +2680,9 @@
       "stato": "confermata",
       "motivoStato": "quota 2,35 ≥ minima 2,21",
       "oraUltimoControllo": "2026-11-14T21:24:16+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "vinta",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "nba-2026-11-14-new-orleans-pelicans-denver-nuggets-totale-punti-234-5-over-234-5",
@@ -3211,7 +3214,7 @@
       "stato": "confermata",
       "motivoStato": "quote non controllate (competizione sconosciuta alle quote)",
       "oraUltimoControllo": "2026-11-14T17:02:13+01:00",
-      "esito": null,
+      "esito": "vinta",
       "prova": true
     },
     {

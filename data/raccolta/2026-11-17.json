@@ -1,0 +1,880 @@
+{
+  "data": "2026-11-17",
+  "generataAlle": "2026-11-17T07:33:41+01:00",
+  "crediti": {
+    "usati": 2,
+    "rimasti": 315
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Esiti alle 07:33: Giocata calcio-2026-10-23-gateshead-tamworth-1x2-1 senza esito da 24 giorni",
+    "Esiti alle 07:33: Giocata calcio-2026-11-01-tenerife-andorra-cf-1x2-2 senza esito da 15 giorni",
+    "Esiti alle 07:33: Giocata calcio-2026-11-06-cd-castellon-sd-eibar-under-over-1-5-under-1-5 senza esito da 10 giorni",
+    "Esiti alle 07:33: Giocata calcio-2026-11-08-andorra-cf-mallorca-1x2-1 senza esito da 8 giorni",
+    "Esiti alle 07:33: Giocata calcio-2026-11-08-estoril-cs-maritimo-under-over-2-5-over-2-5 senza esito da 8 giorni"
+  ],
+  "partite": [
+    {
+      "idPartita": "calcio-2026-11-17-israel-austria",
+      "competizione": "Nations League",
+      "partita": "Israel - Austria",
+      "casa": "Israel",
+      "trasferta": "Austria",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.2347,
+          "quota": 4,
+          "fonteQuota": "mediana di 137 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.2443,
+          "quota": 3.75,
+          "fonteQuota": "mediana di 137 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.521,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 137 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.8039,
+          "quota": 1.18,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.1961,
+          "quota": 4.5,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.5991,
+          "quota": 1.62,
+          "fonteQuota": "mediana di 132 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.4009,
+          "quota": 2.22,
+          "fonteQuota": "mediana di 132 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.3821,
+          "quota": 2.55,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6179,
+          "quota": 1.49,
+          "fonteQuota": "mediana di 45 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-bosnia-herzegovina-romania",
+      "competizione": "Nations League",
+      "partita": "Bosnia & Herzegovina - Romania",
+      "casa": "Bosnia & Herzegovina",
+      "trasferta": "Romania",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4674,
+          "quota": 2,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.2644,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.2687,
+          "quota": 3.45,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.7602,
+          "quota": 1.23,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.2398,
+          "quota": 3.9,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.5319,
+          "quota": 1.76,
+          "fonteQuota": "mediana di 37 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.4681,
+          "quota": 2,
+          "fonteQuota": "mediana di 37 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.3135,
+          "quota": 3,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.6865,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-denmark-norway",
+      "competizione": "Nations League",
+      "partita": "Denmark - Norway",
+      "casa": "Denmark",
+      "trasferta": "Norway",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4159,
+          "quota": 2.28,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.233,
+          "quota": 3.8,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.3511,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.8492,
+          "quota": 1.11,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.1508,
+          "quota": 6.25,
+          "fonteQuota": "mediana di 39 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.7008,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 43 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.2992,
+          "quota": 2.88,
+          "fonteQuota": "mediana di 43 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.4931,
+          "quota": 2.05,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5069,
+          "quota": 1.73,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-ukraine-georgia",
+      "competizione": "Nations League",
+      "partita": "Ukraine - Georgia",
+      "casa": "Ukraine",
+      "trasferta": "Georgia",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4512,
+          "quota": 2.12,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.2865,
+          "quota": 3.25,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.2624,
+          "quota": 3.5,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.6777,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.3223,
+          "quota": 2.85,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.421,
+          "quota": 2.2,
+          "fonteQuota": "mediana di 117 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.579,
+          "quota": 1.64,
+          "fonteQuota": "mediana di 117 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.2282,
+          "quota": 4.2,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.7718,
+          "quota": 1.21,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-hungary-northern-ireland",
+      "competizione": "Nations League",
+      "partita": "Hungary - Northern Ireland",
+      "casa": "Hungary",
+      "trasferta": "Northern Ireland",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4938,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 118 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.2852,
+          "quota": 3.33,
+          "fonteQuota": "mediana di 118 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.2211,
+          "quota": 4.2,
+          "fonteQuota": "mediana di 118 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.6394,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.3606,
+          "quota": 2.63,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.3762,
+          "quota": 2.45,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.6238,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.1899,
+          "quota": 4.7,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.8101,
+          "quota": 1.17,
+          "fonteQuota": "mediana di 38 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-republic-of-ireland-kosovo",
+      "competizione": "Nations League",
+      "partita": "Republic of Ireland - Kosovo",
+      "casa": "Republic of Ireland",
+      "trasferta": "Kosovo",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4681,
+          "quota": 2.02,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.2955,
+          "quota": 3.2,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.2364,
+          "quota": 4,
+          "fonteQuota": "mediana di 34 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.6404,
+          "quota": 1.46,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.3596,
+          "quota": 2.6,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.3864,
+          "quota": 2.43,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.6136,
+          "quota": 1.52,
+          "fonteQuota": "mediana di 36 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.2028,
+          "quota": 4.6,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.7972,
+          "quota": 1.17,
+          "fonteQuota": "mediana di 35 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-poland-sweden",
+      "competizione": "Nations League",
+      "partita": "Poland - Sweden",
+      "casa": "Poland",
+      "trasferta": "Sweden",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.4331,
+          "quota": 2.25,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.247,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.3198,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 122 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.8299,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.1701,
+          "quota": 4.9,
+          "fonteQuota": "mediana di 40 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.6355,
+          "quota": 1.58,
+          "fonteQuota": "mediana di 43 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.3645,
+          "quota": 2.3,
+          "fonteQuota": "mediana di 43 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.4262,
+          "quota": 2.33,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5738,
+          "quota": 1.57,
+          "fonteQuota": "mediana di 114 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    },
+    {
+      "idPartita": "calcio-2026-11-17-wales-portugal",
+      "competizione": "Nations League",
+      "partita": "Wales - Portugal",
+      "casa": "Wales",
+      "trasferta": "Portugal",
+      "inizio": "2026-11-17T20:45:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "ragionamentoBase": [
+        "Coppa o nazionale: probabilità solo da Pinnacle (nessun modello tra campionati diversi)"
+      ],
+      "mercati": [
+        {
+          "mercato": "1X2",
+          "selezione": "1",
+          "probModello": null,
+          "probPinnacle": 0.1303,
+          "quota": 6.25,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "X",
+          "probModello": null,
+          "probPinnacle": 0.1857,
+          "quota": 5,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "1X2",
+          "selezione": "2",
+          "probModello": null,
+          "probPinnacle": 0.684,
+          "quota": 1.42,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Over 1.5",
+          "probModello": null,
+          "probPinnacle": 0.8189,
+          "quota": 1.15,
+          "fonteQuota": "mediana di 51 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 1.5",
+          "selezione": "Under 1.5",
+          "probModello": null,
+          "probPinnacle": 0.1811,
+          "quota": 5.2,
+          "fonteQuota": "mediana di 51 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker"
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Over 2.5",
+          "probModello": null,
+          "probPinnacle": 0.6385,
+          "quota": 1.53,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 2.5",
+          "selezione": "Under 2.5",
+          "probModello": null,
+          "probPinnacle": 0.3615,
+          "quota": 2.43,
+          "fonteQuota": "mediana di 55 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probPinnacle": 0.4175,
+          "quota": 2.3,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        },
+        {
+          "mercato": "Under/Over 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probPinnacle": 0.5825,
+          "quota": 1.58,
+          "fonteQuota": "mediana di 126 bookmaker (odss-api)",
+          "oraQuota": "2026-11-17T07:33:41+01:00",
+          "frequenzaCampionato": null
+        }
+      ]
+    }
+  ]
+}
