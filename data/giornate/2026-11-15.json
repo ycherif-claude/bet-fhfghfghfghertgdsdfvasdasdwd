@@ -585,7 +585,7 @@
       "stato": "confermata",
       "motivoStato": "quota 3,10 · giocatori chiave non indicati dal giro del mattino; quota 1,94",
       "oraUltimoControllo": "2026-11-15T21:15:31+01:00",
-      "esito": null,
+      "esito": "persa",
       "gambe": [
         {
           "id": "tennis-2026-11-15-elina-svitolina-mirra-andreeva-vincente-incontro-elina-svitolina",
@@ -622,7 +622,8 @@
           "stato": "in_attesa",
           "motivoStato": null,
           "oraUltimoControllo": null,
-          "esito": null
+          "esito": "persa",
+          "esitoDalRegistro": true
         },
         {
           "id": "nba-2026-11-15-la-clippers-charlotte-hornets-vincente-la-clippers",
@@ -702,8 +703,9 @@
       "stato": "confermata",
       "motivoStato": "quota 3,10 ≥ minima 2,72",
       "oraUltimoControllo": "2026-11-15T19:58:33+01:00",
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "M-nba-2026-11-15-washington-wizards-houston-rockets-handicap-piu-9-5-trasferta+nba-2026-11-15-phoenix-suns-los-angeles-lakers-totale-punti-226-5-over-226-5",

@@ -1,0 +1,114 @@
+{
+  "data": "2026-11-18",
+  "generataAlle": "2026-11-18T07:41:24+01:00",
+  "crediti": {
+    "usati": 0,
+    "rimasti": 310
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Finals: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "172f0ba2f9d81de1",
+        "3257ef82225ac875",
+        "4d653821b501df11",
+        "cb6751fd56512d0e",
+        "e7fbbfbcdaf30622"
+      ],
+      "idPartita": "tennis-2026-11-18-carlos-alcaraz-daniil-medvedev",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Carlos Alcaraz - Daniil Medvedev",
+      "casa": "Carlos Alcaraz",
+      "trasferta": "Daniil Medvedev",
+      "inizio": "2026-11-18T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Carlos Alcaraz",
+          "probModello": null,
+          "probPinnacle": 0.7771469127040453,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 182 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:24+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Carlos Alcaraz vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Daniil Medvedev",
+          "probModello": null,
+          "probPinnacle": 0.22285308729595457,
+          "quota": 4,
+          "fonteQuota": "mediana di 182 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:24+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Daniil Medvedev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "328eb81a604964f5",
+        "5ff73992ac1024ac",
+        "7a7e8b4157bd6b65",
+        "a21750d8a78e5cbd",
+        "b9088cdd30a80f2e",
+        "e160fab445668229"
+      ],
+      "idPartita": "tennis-2026-11-18-flavio-cobolli-frances-tiafoe",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Flavio Cobolli - Frances Tiafoe",
+      "casa": "Flavio Cobolli",
+      "trasferta": "Frances Tiafoe",
+      "inizio": "2026-11-18T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Flavio Cobolli",
+          "probModello": null,
+          "probPinnacle": 0.442200908632004,
+          "quota": 2.1,
+          "fonteQuota": "mediana di 185 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:24+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Flavio Cobolli vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Frances Tiafoe",
+          "probModello": null,
+          "probPinnacle": 0.557799091367996,
+          "quota": 1.71,
+          "fonteQuota": "mediana di 185 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:24+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Frances Tiafoe vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}

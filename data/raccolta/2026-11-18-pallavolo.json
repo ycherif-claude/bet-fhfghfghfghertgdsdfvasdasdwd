@@ -1,0 +1,509 @@
+{
+  "data": "2026-11-18",
+  "generataAlle": "2026-11-18T07:41:46+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 196
+    }
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "3907e795a2b89862"
+      ],
+      "idPartita": "pallavolo-2026-11-18-cuprum-lubin-sa-lkps-lublin",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Cuprum Lubin SA - LKPS Lublin",
+      "casa": "Cuprum Lubin SA",
+      "trasferta": "LKPS Lublin",
+      "inizio": "2026-11-18T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Cuprum Lubin SA": 1349,
+        "LKPS Lublin": 1731
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Cuprum Lubin SA 1349 – LKPS Lublin 1731, vantaggio campo compreso: vittoria della casa 14% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Cuprum Lubin SA",
+          "probModello": null,
+          "probModelloStudio": 0.1358651478778195,
+          "probPinnacle": 0.17151607963246554,
+          "quota": 5.41,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Cuprum Lubin SA vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              5.41
+            ],
+            [
+              "goldbet",
+              5.41
+            ],
+            [
+              "lottomatica",
+              5.41
+            ],
+            [
+              "planetwin365",
+              5.41
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "LKPS Lublin",
+          "probModello": null,
+          "probModelloStudio": 0.8641348521221806,
+          "probPinnacle": 0.8284839203675344,
+          "quota": 1.12,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se LKPS Lublin vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.12
+            ],
+            [
+              "goldbet",
+              1.12
+            ],
+            [
+              "lottomatica",
+              1.12
+            ],
+            [
+              "planetwin365",
+              1.12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-18-trefl-gdansk-warta-zawiercie",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Trefl Gdansk - Warta Zawiercie",
+      "casa": "Trefl Gdansk",
+      "trasferta": "Warta Zawiercie",
+      "inizio": "2026-11-18T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Trefl Gdansk": 1444,
+        "Warta Zawiercie": 1753
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Trefl Gdansk 1444 – Warta Zawiercie 1753, vantaggio campo compreso: vittoria della casa 19% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Trefl Gdansk",
+          "probModello": null,
+          "probModelloStudio": 0.19205238826631704,
+          "probPinnacle": 0.1824292637173675,
+          "quota": 5,
+          "fonteQuota": "mediana di 153 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Trefl Gdansk vince la partita.",
+          "bookmaker": [
+            [
+              "leovegas",
+              5.3
+            ],
+            [
+              "bwin",
+              5.25
+            ],
+            [
+              "admiralbet",
+              5.2
+            ],
+            [
+              "winamax",
+              5.1
+            ],
+            [
+              "888sport",
+              5
+            ],
+            [
+              "pokerstars",
+              5
+            ],
+            [
+              "sisal",
+              5
+            ],
+            [
+              "snai",
+              5
+            ],
+            [
+              "stake",
+              5
+            ],
+            [
+              "winbet",
+              5
+            ],
+            [
+              "betflag",
+              4.95
+            ],
+            [
+              "goldbet",
+              4.95
+            ],
+            [
+              "lottomatica",
+              4.95
+            ],
+            [
+              "netbet",
+              4.95
+            ],
+            [
+              "planetwin365",
+              4.95
+            ],
+            [
+              "quigioco",
+              4.85
+            ],
+            [
+              "betsson",
+              4.8
+            ],
+            [
+              "starcasino",
+              4.75
+            ],
+            [
+              "codere",
+              4.6
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Warta Zawiercie",
+          "probModello": null,
+          "probModelloStudio": 0.807947611733683,
+          "probPinnacle": 0.8175707362826324,
+          "quota": 1.14,
+          "fonteQuota": "mediana di 153 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Warta Zawiercie vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.15
+            ],
+            [
+              "888sport",
+              1.143
+            ],
+            [
+              "betflag",
+              1.14
+            ],
+            [
+              "bwin",
+              1.14
+            ],
+            [
+              "goldbet",
+              1.14
+            ],
+            [
+              "lottomatica",
+              1.14
+            ],
+            [
+              "netbet",
+              1.14
+            ],
+            [
+              "planetwin365",
+              1.14
+            ],
+            [
+              "pokerstars",
+              1.14
+            ],
+            [
+              "sisal",
+              1.14
+            ],
+            [
+              "snai",
+              1.14
+            ],
+            [
+              "stake",
+              1.14
+            ],
+            [
+              "winamax",
+              1.14
+            ],
+            [
+              "codere",
+              1.13
+            ],
+            [
+              "winbet",
+              1.13
+            ],
+            [
+              "starcasino",
+              1.125
+            ],
+            [
+              "betsson",
+              1.12
+            ],
+            [
+              "quigioco",
+              1.12
+            ],
+            [
+              "leovegas",
+              1.11
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.10051315206748695,
+          "probPinnacle": 0.10873544955053989,
+          "quota": 8.4,
+          "fonteQuota": "mediana di 27 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Trefl Gdansk -1,5 vince se Trefl Gdansk vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              9.75
+            ],
+            [
+              "winamax",
+              9.5
+            ],
+            [
+              "winbet",
+              9
+            ],
+            [
+              "netbet",
+              8
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.8994868479325131,
+          "probPinnacle": 0.8912645504494603,
+          "quota": 1.05,
+          "fonteQuota": "mediana di 27 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Warta Zawiercie +1,5 vince se Warta Zawiercie vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.05
+            ],
+            [
+              "netbet",
+              1.05
+            ],
+            [
+              "winbet",
+              1.05
+            ],
+            [
+              "winamax",
+              1.04
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.38561774985949276,
+          "probPinnacle": 0.3073593073593074,
+          "quota": 2.95,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Trefl Gdansk +1,5 vince se Trefl Gdansk vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              3
+            ],
+            [
+              "bwin",
+              2.95
+            ],
+            [
+              "netbet",
+              2.9
+            ],
+            [
+              "winamax",
+              2.75
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.6143822501405072,
+          "probPinnacle": 0.6926406926406926,
+          "quota": 1.35,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Warta Zawiercie -1,5 vince se Warta Zawiercie vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.36
+            ],
+            [
+              "netbet",
+              1.36
+            ],
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "winamax",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.6539548124205592,
+          "probPinnacle": 0.5111111111111112,
+          "quota": 1.66,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "winbet",
+              1.7
+            ],
+            [
+              "888sport",
+              1.667
+            ],
+            [
+              "bwin",
+              1.66
+            ],
+            [
+              "stake",
+              1.66
+            ],
+            [
+              "winamax",
+              1.64
+            ],
+            [
+              "betsson",
+              1.63
+            ],
+            [
+              "netbet",
+              1.63
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.3460451875794408,
+          "probPinnacle": 0.4888888888888889,
+          "quota": 2.08,
+          "fonteQuota": "mediana di 49 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-18T07:41:46+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "winbet",
+              2.15
+            ],
+            [
+              "stake",
+              2.11
+            ],
+            [
+              "888sport",
+              2.1
+            ],
+            [
+              "bwin",
+              2.1
+            ],
+            [
+              "betsson",
+              2.06
+            ],
+            [
+              "netbet",
+              2.05
+            ],
+            [
+              "winamax",
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
