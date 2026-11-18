@@ -1249,7 +1249,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1534,9 +1534,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 3,66 sotto la minima 3,72",
+      "oraUltimoControllo": "2026-11-18T22:40:16+01:00",
       "esito": null,
       "prova": true
     },
@@ -1739,7 +1739,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -8635,7 +8635,17 @@
                 "winamax",
                 1.54
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "fuori",
+              "motivi": [
+                "modello e mercato non più d'accordo (mercato 66%)"
+              ],
+              "quota": 1.48,
+              "prob": 0.6616813028622965,
+              "alle": "2026-11-18T22:40:16+01:00",
+              "minutiPrima": 80
+            }
           }
         ],
         "quota": 1.6,
@@ -8663,7 +8673,17 @@
             "probMercato": 0.7479,
             "probModello": 0.7258788117366799,
             "esito": null,
-            "probModelloTarato": 0.7481
+            "probModelloTarato": 0.7481,
+            "ricontrollo": {
+              "esito": "fuori",
+              "motivi": [
+                "modello e mercato non più d'accordo (mercato 81%)"
+              ],
+              "quota": 1.18,
+              "prob": 0.8051344574543949,
+              "alle": "2026-11-18T22:40:16+01:00",
+              "minutiPrima": 110
+            }
           }
         ],
         "quota": 1.27,
@@ -8701,7 +8721,15 @@
                 "snai",
                 1.25
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.26,
+              "prob": 0.744,
+              "alle": "2026-11-18T22:40:16+01:00",
+              "minutiPrima": 170
+            }
           }
         ],
         "quota": 1.27,
