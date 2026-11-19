@@ -1,0 +1,55 @@
+{
+  "data": "2026-11-19",
+  "voci": {
+    "basket-2026-11-19-fc-bayern-munchen-saski-baskonia-totale-punti-178-5-over-178-5": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-19T20:10:40+01:00"
+    },
+    "basket-2026-11-19-zalgiris-panathinaikos-vincente-zalgiris": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-19T20:10:40+01:00"
+    },
+    "basket-2026-11-19-maccabi-tel-aviv-dubai-basketball-handicap-piu-3-5-casa": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-19T20:10:40+01:00"
+    },
+    "M-basket-2026-11-19-valencia-basket-virtus-segafredo-bologna-totale-punti-186-5-under-186-5+calcio-2026-11-19-orlando-city-sc-fc-cincinnati-1x2-1#0": {
+      "esito": "confermata",
+      "motivo": "quota 1,84",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,84"
+      ],
+      "alle": "2026-11-19T20:10:40+01:00"
+    },
+    "basket-2026-11-19-valencia-basket-virtus-segafredo-bologna-totale-punti-186-5-under-186-5": {
+      "esito": "confermata",
+      "motivo": "quota 1,84 ≥ minima 1,80",
+      "problemi": [],
+      "dettagli": [
+        "quota 1,84 ≥ minima 1,80"
+      ],
+      "alle": "2026-11-19T20:10:40+01:00"
+    },
+    "basket-2026-11-19-paris-basketball-hapoel-tel-aviv-handicap-piu-1-5-casa": {
+      "esito": "annullata",
+      "motivo": "regola automatica (troppo tardi per Claude): quota 1,60 sotto la minima 1,90",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,60 sotto la minima 1,90"
+        }
+      ],
+      "dettagli": [],
+      "alle": "2026-11-19T20:10:40+01:00",
+      "regola": true
+    }
+  },
+  "claude": {
+    "avvii": 0,
+    "richieste": []
+  }
+}

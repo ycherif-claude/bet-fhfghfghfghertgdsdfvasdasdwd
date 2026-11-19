@@ -1267,9 +1267,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "quota 1,84 ≥ minima 1,80",
+      "oraUltimoControllo": "2026-11-19T20:10:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -1391,7 +1391,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1434,7 +1434,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1476,9 +1476,9 @@
           "motivo": "tetto giornaliero"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "annullata",
+      "motivoStato": "regola automatica (troppo tardi per Claude): quota 1,60 sotto la minima 1,90",
+      "oraUltimoControllo": "2026-11-19T20:10:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -1641,7 +1641,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
