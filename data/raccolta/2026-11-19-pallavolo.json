@@ -1,0 +1,488 @@
+{
+  "data": "2026-11-19",
+  "generataAlle": "2026-11-19T07:37:26+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 2,
+      "rimaste": 194
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League maschile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Quote pallavolo: 1 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: 1 partite su 2 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "c7acbea58ea7bf01"
+      ],
+      "idPartita": "pallavolo-2026-11-19-ks-norwid-czestochowa-projekt-warsaw",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "KS Norwid Czestochowa - Projekt Warsaw",
+      "casa": "KS Norwid Czestochowa",
+      "trasferta": "Projekt Warsaw",
+      "inizio": "2026-11-19T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "KS Norwid Czestochowa": 1325,
+        "Projekt Warsaw": 1640
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: KS Norwid Czestochowa 1325 – Projekt Warsaw 1640, vantaggio campo compreso: vittoria della casa 19% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "KS Norwid Czestochowa",
+          "probModello": null,
+          "probModelloStudio": 0.18759466660490234,
+          "probPinnacle": 0.4491978609625669,
+          "quota": 2.06,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se KS Norwid Czestochowa vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              2.06
+            ],
+            [
+              "goldbet",
+              2.06
+            ],
+            [
+              "lottomatica",
+              2.06
+            ],
+            [
+              "planetwin365",
+              2.06
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probModelloStudio": 0.8124053333950977,
+          "probPinnacle": 0.5508021390374332,
+          "quota": 1.68,
+          "fonteQuota": "mediana di 4 bookmaker (odss-api)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.68
+            ],
+            [
+              "goldbet",
+              1.68
+            ],
+            [
+              "lottomatica",
+              1.68
+            ],
+            [
+              "planetwin365",
+              1.68
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-19-zaksa-kedzierzyn-kozle-jastrzebie-barkom",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "ZAKSA Kedzierzyn-Kozle - Jastrzebie Barkom",
+      "casa": "ZAKSA Kedzierzyn-Kozle",
+      "trasferta": "Jastrzebie Barkom",
+      "inizio": "2026-11-19T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "ZAKSA Kedzierzyn-Kozle": 1578,
+        "Jastrzebie Barkom": 1327
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: ZAKSA Kedzierzyn-Kozle 1578 – Jastrzebie Barkom 1327, vantaggio campo compreso: vittoria della casa 86% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "ZAKSA Kedzierzyn-Kozle",
+          "probModello": null,
+          "probModelloStudio": 0.8569924515512805,
+          "probPinnacle": 0.7738859343480652,
+          "quota": 1.19,
+          "fonteQuota": "mediana di 116 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se ZAKSA Kedzierzyn-Kozle vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.19
+            ],
+            [
+              "betflag",
+              1.18
+            ],
+            [
+              "bwin",
+              1.18
+            ],
+            [
+              "eurobet",
+              1.18
+            ],
+            [
+              "goldbet",
+              1.18
+            ],
+            [
+              "leovegas",
+              1.18
+            ],
+            [
+              "lottomatica",
+              1.18
+            ],
+            [
+              "planetwin365",
+              1.18
+            ],
+            [
+              "pokerstars",
+              1.18
+            ],
+            [
+              "sisal",
+              1.18
+            ],
+            [
+              "snai",
+              1.18
+            ],
+            [
+              "stake",
+              1.18
+            ],
+            [
+              "winamax",
+              1.18
+            ],
+            [
+              "winbet",
+              1.18
+            ],
+            [
+              "starcasino",
+              1.177
+            ],
+            [
+              "betsson",
+              1.16
+            ],
+            [
+              "quigioco",
+              1.16
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Jastrzebie Barkom",
+          "probModello": null,
+          "probModelloStudio": 0.14300754844871955,
+          "probPinnacle": 0.2261140656519347,
+          "quota": 4.2,
+          "fonteQuota": "mediana di 116 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Jastrzebie Barkom vince la partita.",
+          "bookmaker": [
+            [
+              "bwin",
+              4.5
+            ],
+            [
+              "admiralbet",
+              4.4
+            ],
+            [
+              "winamax",
+              4.4
+            ],
+            [
+              "winbet",
+              4.4
+            ],
+            [
+              "betflag",
+              4.31
+            ],
+            [
+              "goldbet",
+              4.31
+            ],
+            [
+              "lottomatica",
+              4.31
+            ],
+            [
+              "planetwin365",
+              4.31
+            ],
+            [
+              "eurobet",
+              4.3
+            ],
+            [
+              "stake",
+              4.3
+            ],
+            [
+              "pokerstars",
+              4.25
+            ],
+            [
+              "quigioco",
+              4.25
+            ],
+            [
+              "sisal",
+              4.25
+            ],
+            [
+              "snai",
+              4.25
+            ],
+            [
+              "betsson",
+              4.2
+            ],
+            [
+              "leovegas",
+              4.1
+            ],
+            [
+              "starcasino",
+              4
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.6791786782770322,
+          "probPinnacle": 0.6304510341390481,
+          "quota": 1.41,
+          "fonteQuota": "mediana di 35 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: ZAKSA Kedzierzyn-Kozle -1,5 vince se ZAKSA Kedzierzyn-Kozle vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.41
+            ],
+            [
+              "leovegas",
+              1.4
+            ],
+            [
+              "winbet",
+              1.4
+            ],
+            [
+              "winamax",
+              1.39
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.32082132172296784,
+          "probPinnacle": 0.369548965860952,
+          "quota": 2.7,
+          "fonteQuota": "mediana di 35 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Jastrzebie Barkom +1,5 vince se Jastrzebie Barkom vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              2.75
+            ],
+            [
+              "leovegas",
+              2.75
+            ],
+            [
+              "winbet",
+              2.75
+            ],
+            [
+              "winamax",
+              2.6
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.9276449843858018,
+          "probPinnacle": 0.8649902695780085,
+          "quota": 1.08,
+          "fonteQuota": "mediana di 24 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: ZAKSA Kedzierzyn-Kozle +1,5 vince se ZAKSA Kedzierzyn-Kozle vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.083
+            ],
+            [
+              "leovegas",
+              1.08
+            ],
+            [
+              "winbet",
+              1.07
+            ],
+            [
+              "winamax",
+              1.06
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.07235501561419821,
+          "probPinnacle": 0.13500973042199144,
+          "quota": 7,
+          "fonteQuota": "mediana di 24 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Jastrzebie Barkom -1,5 vince se Jastrzebie Barkom vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              7.5
+            ],
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "winbet",
+              7
+            ],
+            [
+              "leovegas",
+              6.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.6104911622318169,
+          "probPinnacle": 0.5530563641174914,
+          "quota": 1.65,
+          "fonteQuota": "mediana di 46 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "bwin",
+              1.65
+            ],
+            [
+              "leovegas",
+              1.65
+            ],
+            [
+              "winbet",
+              1.65
+            ],
+            [
+              "stake",
+              1.64
+            ],
+            [
+              "betsson",
+              1.62
+            ],
+            [
+              "winamax",
+              1.62
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.3895088377681831,
+          "probPinnacle": 0.4469436358825086,
+          "quota": 2.1,
+          "fonteQuota": "mediana di 46 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-19T07:37:26+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              2.13
+            ],
+            [
+              "winbet",
+              2.12
+            ],
+            [
+              "bwin",
+              2.1
+            ],
+            [
+              "leovegas",
+              2.1
+            ],
+            [
+              "betsson",
+              2.08
+            ],
+            [
+              "winamax",
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

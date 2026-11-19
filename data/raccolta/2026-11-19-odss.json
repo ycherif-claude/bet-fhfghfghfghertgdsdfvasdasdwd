@@ -1,0 +1,4631 @@
+{
+  "data": "2026-11-19",
+  "generataAlle": "2026-11-19T07:30:57+01:00",
+  "fonte": "odss-api.com",
+  "esito": "ok",
+  "richieste": 2,
+  "rimaste": 150,
+  "diagnostica": {
+    "righe": 1520,
+    "righeUsate": 803,
+    "senzaIntero": 4,
+    "doppie": 0,
+    "periodiVisti": {
+      "match|full_time": 803,
+      "match|1st_half": 530,
+      "match|2nd_half": 187
+    }
+  },
+  "erroriGiro": [
+    "odss-api alle 07:30: 4 partite senza righe a tempo intero (full_time), senza quote: Barcellona (donne) - Servette FC Chenois (donne), Bercellona (F) - Servette (F), Khankhedi - FK Karvan, Ascent Academy (W) - Ntopwa FC (W)"
+  ],
+  "eventi": [
+    {
+      "id": "e43ec3bd7d9ec942",
+      "campionato": "Brasile 1",
+      "casa": "Vasco Da Gama",
+      "trasferta": "Internacional",
+      "inizio": "2026-11-19T22:30:00+00:00",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.6007,
+            "DRAW": 0.2259,
+            "AWAY": 0.1734
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.56,
+              "n": 10
+            },
+            "DRAW": {
+              "quota": 4.05,
+              "n": 10
+            },
+            "AWAY": {
+              "quota": 5.27,
+              "n": 10
+            }
+          },
+          "italiani": {
+            "HOME": [
+              [
+                "eurobet",
+                1.57
+              ],
+              [
+                "winamax",
+                1.56
+              ],
+              [
+                "fastbet",
+                1.546
+              ],
+              [
+                "zonagioco",
+                1.546
+              ]
+            ],
+            "DRAW": [
+              [
+                "winamax",
+                4.1
+              ],
+              [
+                "fastbet",
+                4
+              ],
+              [
+                "zonagioco",
+                4
+              ],
+              [
+                "eurobet",
+                3.95
+              ]
+            ],
+            "AWAY": [
+              [
+                "fastbet",
+                5.333
+              ],
+              [
+                "zonagioco",
+                5.333
+              ],
+              [
+                "eurobet",
+                5
+              ],
+              [
+                "winamax",
+                4.8
+              ]
+            ]
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.4502,
+            "OVER": 0.5498
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.06,
+              "n": 9
+            },
+            "OVER": {
+              "quota": 1.71,
+              "n": 9
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "fastbet",
+                2.05
+              ],
+              [
+                "winamax",
+                2.05
+              ],
+              [
+                "zonagioco",
+                2.05
+              ],
+              [
+                "eurobet",
+                2
+              ]
+            ],
+            "OVER": [
+              [
+                "eurobet",
+                1.68
+              ],
+              [
+                "winamax",
+                1.68
+              ],
+              [
+                "fastbet",
+                1.667
+              ],
+              [
+                "zonagioco",
+                1.667
+              ]
+            ]
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.2256,
+            "OVER": 0.7744
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 4,
+              "n": 6
+            },
+            "OVER": {
+              "quota": 1.24,
+              "n": 6
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "winamax",
+                4.1
+              ],
+              [
+                "eurobet",
+                3.8
+              ]
+            ],
+            "OVER": [
+              [
+                "eurobet",
+                1.2
+              ],
+              [
+                "winamax",
+                1.2
+              ]
+            ]
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.665,
+            "OVER": 0.335
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.42,
+              "n": 6
+            },
+            "OVER": {
+              "quota": 2.88,
+              "n": 6
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "winamax",
+                1.42
+              ],
+              [
+                "eurobet",
+                1.37
+              ]
+            ],
+            "OVER": [
+              [
+                "eurobet",
+                2.7
+              ],
+              [
+                "winamax",
+                2.65
+              ]
+            ]
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7631,
+            "1X": 0.8176,
+            "X2": 0.4179
+          },
+          "fonteProb": "mediana di 7 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.23,
+              "n": 7
+            },
+            "1X": {
+              "quota": 1.15,
+              "n": 7
+            },
+            "X2": {
+              "quota": 2.25,
+              "n": 7
+            }
+          },
+          "italiani": {
+            "12": [
+              [
+                "winamax",
+                1.23
+              ],
+              [
+                "fastbet",
+                1.222
+              ],
+              [
+                "zonagioco",
+                1.222
+              ]
+            ],
+            "1X": [
+              [
+                "winamax",
+                1.15
+              ],
+              [
+                "fastbet",
+                1.143
+              ],
+              [
+                "zonagioco",
+                1.143
+              ]
+            ],
+            "X2": [
+              [
+                "fastbet",
+                2.35
+              ],
+              [
+                "zonagioco",
+                2.35
+              ],
+              [
+                "winamax",
+                2.25
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "61bf1202cf567310",
+      "campionato": "Serie A 2026",
+      "casa": "EC Vitória",
+      "trasferta": "Red Bull Bragantino",
+      "inizio": "2026-11-19T22:30:00.000Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.358,
+            "DRAW": 0.277,
+            "AWAY": 0.365
+          },
+          "fonteProb": "mediana di 3 bookmaker",
+          "mediana": {
+            "HOME": {
+              "quota": 2.63,
+              "n": 3
+            },
+            "DRAW": {
+              "quota": 3.4,
+              "n": 3
+            },
+            "AWAY": {
+              "quota": 2.58,
+              "n": 3
+            }
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7294,
+            "1X": 0.6348,
+            "X2": 0.6353
+          },
+          "fonteProb": "mediana di 3 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.28,
+              "n": 3
+            },
+            "1X": {
+              "quota": 1.47,
+              "n": 3
+            },
+            "X2": {
+              "quota": 1.45,
+              "n": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "a339359fb0aa89e7",
+      "campionato": "Brasileiro Serie A",
+      "casa": "Sao Paulo",
+      "trasferta": "Fluminense",
+      "inizio": "2026-11-20T00:30:00Z",
+      "mercati": {
+        "1x2": {
+          "miei": {},
+          "prob": {
+            "HOME": 0.3969,
+            "DRAW": 0.2949,
+            "AWAY": 0.3081
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.37,
+              "n": 105
+            },
+            "DRAW": {
+              "quota": 3.25,
+              "n": 105
+            },
+            "AWAY": {
+              "quota": 3.1,
+              "n": 105
+            }
+          },
+          "italiani": {
+            "HOME": [
+              [
+                "fastbet",
+                2.333
+              ],
+              [
+                "zonagioco",
+                2.333
+              ],
+              [
+                "winamax",
+                2.3
+              ]
+            ],
+            "DRAW": [
+              [
+                "winamax",
+                3.15
+              ],
+              [
+                "fastbet",
+                3.1
+              ],
+              [
+                "zonagioco",
+                3.1
+              ]
+            ],
+            "AWAY": [
+              [
+                "fastbet",
+                3
+              ],
+              [
+                "zonagioco",
+                3
+              ],
+              [
+                "winamax",
+                2.8
+              ]
+            ]
+          }
+        },
+        "ou|3.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.7593,
+            "OVER": 0.2407
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.24,
+              "n": 11
+            },
+            "OVER": {
+              "quota": 3.87,
+              "n": 11
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "winamax",
+                1.24
+              ]
+            ],
+            "OVER": [
+              [
+                "winamax",
+                3.75
+              ]
+            ]
+          }
+        },
+        "ou|2.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.5602,
+            "OVER": 0.4398
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.72,
+              "n": 98
+            },
+            "OVER": {
+              "quota": 2.12,
+              "n": 98
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "fastbet",
+                1.667
+              ],
+              [
+                "zonagioco",
+                1.667
+              ],
+              [
+                "winamax",
+                1.66
+              ]
+            ],
+            "OVER": [
+              [
+                "winamax",
+                2.1
+              ],
+              [
+                "fastbet",
+                2.05
+              ],
+              [
+                "zonagioco",
+                2.05
+              ]
+            ]
+          }
+        },
+        "ou|1.5": {
+          "miei": {},
+          "prob": {
+            "UNDER": 0.3034,
+            "OVER": 0.6966
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.05,
+              "n": 11
+            },
+            "OVER": {
+              "quota": 1.36,
+              "n": 11
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "winamax",
+                3
+              ]
+            ],
+            "OVER": [
+              [
+                "winamax",
+                1.35
+              ]
+            ]
+          }
+        },
+        "dc": {
+          "miei": {},
+          "prob": {
+            "12": 0.7007,
+            "1X": 0.6919,
+            "X2": 0.6073
+          },
+          "fonteProb": "mediana di 100 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.33,
+              "n": 100
+            },
+            "1X": {
+              "quota": 1.35,
+              "n": 100
+            },
+            "X2": {
+              "quota": 1.53,
+              "n": 100
+            }
+          },
+          "italiani": {
+            "12": [
+              [
+                "winamax",
+                1.34
+              ],
+              [
+                "fastbet",
+                1.32
+              ],
+              [
+                "zonagioco",
+                1.32
+              ]
+            ],
+            "1X": [
+              [
+                "winamax",
+                1.38
+              ],
+              [
+                "fastbet",
+                1.357
+              ],
+              [
+                "zonagioco",
+                1.357
+              ]
+            ],
+            "X2": [
+              [
+                "fastbet",
+                1.567
+              ],
+              [
+                "zonagioco",
+                1.567
+              ],
+              [
+                "winamax",
+                1.54
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "0eb7bfd1f1a26540",
+      "campionato": "MLS",
+      "casa": "Orlando City",
+      "trasferta": "Cincinnati",
+      "inizio": "2026-11-20T00:30:00.000Z",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "HOME": 2.45,
+                "DRAW": 3.75,
+                "AWAY": 2.45
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "HOME": 2.45,
+                "DRAW": 3.75,
+                "AWAY": 2.5
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 2.43,
+                "DRAW": 3.9,
+                "AWAY": 2.48
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 2.41,
+                "DRAW": 3.85,
+                "AWAY": 2.47
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.3817,
+            "DRAW": 0.2483,
+            "AWAY": 0.37
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 2.42,
+              "n": 175
+            },
+            "DRAW": {
+              "quota": 4,
+              "n": 175
+            },
+            "AWAY": {
+              "quota": 2.45,
+              "n": 175
+            }
+          },
+          "italiani": {
+            "HOME": [
+              [
+                "codere",
+                2.46
+              ],
+              [
+                "marathonbet",
+                2.46
+              ],
+              [
+                "totosi",
+                2.46
+              ],
+              [
+                "betflag",
+                2.45
+              ],
+              [
+                "bgame",
+                2.45
+              ],
+              [
+                "goldbet",
+                2.45
+              ],
+              [
+                "lottomatica",
+                2.45
+              ],
+              [
+                "perlaplay",
+                2.45
+              ],
+              [
+                "planetwin365",
+                2.45
+              ],
+              [
+                "snai",
+                2.45
+              ],
+              [
+                "betwin360",
+                2.43
+              ],
+              [
+                "casinosanremo",
+                2.43
+              ],
+              [
+                "domusbet",
+                2.43
+              ],
+              [
+                "eplay24",
+                2.43
+              ],
+              [
+                "gioca7",
+                2.43
+              ],
+              [
+                "netbet",
+                2.43
+              ],
+              [
+                "netwin",
+                2.43
+              ],
+              [
+                "sportium",
+                2.43
+              ],
+              [
+                "staryes",
+                2.43
+              ],
+              [
+                "williamhill",
+                2.43
+              ],
+              [
+                "fastbet",
+                2.429
+              ],
+              [
+                "zonagioco",
+                2.429
+              ],
+              [
+                "quigioco",
+                2.42
+              ],
+              [
+                "stanleybet",
+                2.42
+              ],
+              [
+                "betsson",
+                2.41
+              ],
+              [
+                "daznbet",
+                2.41
+              ],
+              [
+                "starcasino",
+                2.41
+              ],
+              [
+                "admiralbet",
+                2.4
+              ],
+              [
+                "betitaly",
+                2.4
+              ],
+              [
+                "betpassion",
+                2.4
+              ],
+              [
+                "bwin",
+                2.4
+              ],
+              [
+                "elabet",
+                2.4
+              ],
+              [
+                "eurobet",
+                2.4
+              ],
+              [
+                "giocodigitale",
+                2.4
+              ],
+              [
+                "starvegas",
+                2.4
+              ],
+              [
+                "winbet",
+                2.4
+              ],
+              [
+                "sunbet",
+                2.39
+              ],
+              [
+                "vincitu",
+                2.39
+              ],
+              [
+                "sportbet",
+                2.37
+              ],
+              [
+                "winamax",
+                2.35
+              ],
+              [
+                "888sport",
+                2.3
+              ],
+              [
+                "888sport_it",
+                2.3
+              ],
+              [
+                "leovegas",
+                2.25
+              ]
+            ],
+            "DRAW": [
+              [
+                "bwin",
+                4
+              ],
+              [
+                "giocodigitale",
+                4
+              ],
+              [
+                "vincitu",
+                4
+              ],
+              [
+                "perlaplay",
+                3.95
+              ],
+              [
+                "888sport",
+                3.9
+              ],
+              [
+                "888sport_it",
+                3.9
+              ],
+              [
+                "betsson",
+                3.9
+              ],
+              [
+                "betwin360",
+                3.9
+              ],
+              [
+                "casinosanremo",
+                3.9
+              ],
+              [
+                "domusbet",
+                3.9
+              ],
+              [
+                "eplay24",
+                3.9
+              ],
+              [
+                "gioca7",
+                3.9
+              ],
+              [
+                "marathonbet",
+                3.9
+              ],
+              [
+                "netbet",
+                3.9
+              ],
+              [
+                "netwin",
+                3.9
+              ],
+              [
+                "sportium",
+                3.9
+              ],
+              [
+                "stanleybet",
+                3.9
+              ],
+              [
+                "starcasino",
+                3.9
+              ],
+              [
+                "staryes",
+                3.9
+              ],
+              [
+                "williamhill",
+                3.9
+              ],
+              [
+                "winamax",
+                3.9
+              ],
+              [
+                "daznbet",
+                3.85
+              ],
+              [
+                "quigioco",
+                3.85
+              ],
+              [
+                "admiralbet",
+                3.8
+              ],
+              [
+                "betitaly",
+                3.8
+              ],
+              [
+                "betpassion",
+                3.8
+              ],
+              [
+                "bgame",
+                3.8
+              ],
+              [
+                "codere",
+                3.8
+              ],
+              [
+                "elabet",
+                3.8
+              ],
+              [
+                "fastbet",
+                3.8
+              ],
+              [
+                "leovegas",
+                3.8
+              ],
+              [
+                "starvegas",
+                3.8
+              ],
+              [
+                "sunbet",
+                3.8
+              ],
+              [
+                "winbet",
+                3.8
+              ],
+              [
+                "zonagioco",
+                3.8
+              ],
+              [
+                "betflag",
+                3.75
+              ],
+              [
+                "goldbet",
+                3.75
+              ],
+              [
+                "lottomatica",
+                3.75
+              ],
+              [
+                "planetwin365",
+                3.75
+              ],
+              [
+                "snai",
+                3.75
+              ],
+              [
+                "sportbet",
+                3.75
+              ],
+              [
+                "totosi",
+                3.75
+              ],
+              [
+                "eurobet",
+                3.7
+              ]
+            ],
+            "AWAY": [
+              [
+                "888sport",
+                2.55
+              ],
+              [
+                "888sport_it",
+                2.55
+              ],
+              [
+                "betflag",
+                2.55
+              ],
+              [
+                "betitaly",
+                2.5
+              ],
+              [
+                "betpassion",
+                2.5
+              ],
+              [
+                "betsson",
+                2.5
+              ],
+              [
+                "bgame",
+                2.5
+              ],
+              [
+                "codere",
+                2.5
+              ],
+              [
+                "elabet",
+                2.5
+              ],
+              [
+                "eurobet",
+                2.5
+              ],
+              [
+                "goldbet",
+                2.5
+              ],
+              [
+                "leovegas",
+                2.5
+              ],
+              [
+                "lottomatica",
+                2.5
+              ],
+              [
+                "marathonbet",
+                2.5
+              ],
+              [
+                "perlaplay",
+                2.5
+              ],
+              [
+                "planetwin365",
+                2.5
+              ],
+              [
+                "starcasino",
+                2.5
+              ],
+              [
+                "totosi",
+                2.5
+              ],
+              [
+                "winbet",
+                2.5
+              ],
+              [
+                "domusbet",
+                2.49
+              ],
+              [
+                "vincitu",
+                2.49
+              ],
+              [
+                "williamhill",
+                2.49
+              ],
+              [
+                "betwin360",
+                2.48
+              ],
+              [
+                "casinosanremo",
+                2.48
+              ],
+              [
+                "eplay24",
+                2.48
+              ],
+              [
+                "gioca7",
+                2.48
+              ],
+              [
+                "netbet",
+                2.48
+              ],
+              [
+                "netwin",
+                2.48
+              ],
+              [
+                "sportium",
+                2.48
+              ],
+              [
+                "staryes",
+                2.48
+              ],
+              [
+                "daznbet",
+                2.47
+              ],
+              [
+                "stanleybet",
+                2.47
+              ],
+              [
+                "quigioco",
+                2.46
+              ],
+              [
+                "admiralbet",
+                2.45
+              ],
+              [
+                "bwin",
+                2.45
+              ],
+              [
+                "giocodigitale",
+                2.45
+              ],
+              [
+                "snai",
+                2.45
+              ],
+              [
+                "starvegas",
+                2.45
+              ],
+              [
+                "sunbet",
+                2.44
+              ],
+              [
+                "fastbet",
+                2.429
+              ],
+              [
+                "zonagioco",
+                2.429
+              ],
+              [
+                "sportbet",
+                2.42
+              ],
+              [
+                "winamax",
+                2.4
+              ]
+            ]
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 6.5,
+                "OVER": 1.07
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 7,
+                "OVER": 1.06
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 5.9,
+                "OVER": 1.09
+              },
+              "aggiornato": "2026-11-19T06:20:19.547118+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 6.25,
+                "OVER": 1.09
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.1328,
+            "OVER": 0.8672
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 7.1,
+              "n": 73
+            },
+            "OVER": {
+              "quota": 1.07,
+              "n": 72
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "888sport",
+                7.5
+              ],
+              [
+                "888sport_it",
+                7.5
+              ],
+              [
+                "leovegas",
+                7.5
+              ],
+              [
+                "bwin",
+                7.25
+              ],
+              [
+                "giocodigitale",
+                7.25
+              ],
+              [
+                "betitaly",
+                7.1
+              ],
+              [
+                "betpassion",
+                7.1
+              ],
+              [
+                "elabet",
+                7.1
+              ],
+              [
+                "winbet",
+                7.1
+              ],
+              [
+                "eurobet",
+                7
+              ],
+              [
+                "goldbet",
+                7
+              ],
+              [
+                "lottomatica",
+                7
+              ],
+              [
+                "planetwin365",
+                7
+              ],
+              [
+                "stanleybet",
+                7
+              ],
+              [
+                "quigioco",
+                6.8
+              ],
+              [
+                "betflag",
+                6.75
+              ],
+              [
+                "winamax",
+                6.75
+              ],
+              [
+                "vincitu",
+                6.7
+              ],
+              [
+                "snai",
+                6.5
+              ],
+              [
+                "domusbet",
+                6.4
+              ],
+              [
+                "daznbet",
+                6.25
+              ],
+              [
+                "marathonbet",
+                6.2
+              ],
+              [
+                "totosi",
+                6.2
+              ],
+              [
+                "williamhill",
+                6.2
+              ],
+              [
+                "betsson",
+                6.1
+              ],
+              [
+                "starcasino",
+                6.1
+              ],
+              [
+                "admiralbet",
+                5.9
+              ],
+              [
+                "bgame",
+                5.9
+              ],
+              [
+                "casinosanremo",
+                5.9
+              ],
+              [
+                "gioca7",
+                5.9
+              ],
+              [
+                "netbet",
+                5.9
+              ],
+              [
+                "netwin",
+                5.9
+              ],
+              [
+                "sportium",
+                5.9
+              ],
+              [
+                "starvegas",
+                5.9
+              ],
+              [
+                "staryes",
+                5.9
+              ],
+              [
+                "codere",
+                5.8
+              ],
+              [
+                "perlaplay",
+                5.8
+              ],
+              [
+                "sunbet",
+                5.8
+              ],
+              [
+                "sportbet",
+                5.6
+              ]
+            ],
+            "OVER": [
+              [
+                "admiralbet",
+                1.09
+              ],
+              [
+                "betsson",
+                1.09
+              ],
+              [
+                "bgame",
+                1.09
+              ],
+              [
+                "casinosanremo",
+                1.09
+              ],
+              [
+                "codere",
+                1.09
+              ],
+              [
+                "daznbet",
+                1.09
+              ],
+              [
+                "gioca7",
+                1.09
+              ],
+              [
+                "marathonbet",
+                1.09
+              ],
+              [
+                "netbet",
+                1.09
+              ],
+              [
+                "netwin",
+                1.09
+              ],
+              [
+                "perlaplay",
+                1.09
+              ],
+              [
+                "sportium",
+                1.09
+              ],
+              [
+                "stanleybet",
+                1.09
+              ],
+              [
+                "starcasino",
+                1.09
+              ],
+              [
+                "starvegas",
+                1.09
+              ],
+              [
+                "staryes",
+                1.09
+              ],
+              [
+                "sunbet",
+                1.09
+              ],
+              [
+                "totosi",
+                1.09
+              ],
+              [
+                "williamhill",
+                1.09
+              ],
+              [
+                "bwin",
+                1.08
+              ],
+              [
+                "domusbet",
+                1.08
+              ],
+              [
+                "giocodigitale",
+                1.08
+              ],
+              [
+                "sportbet",
+                1.08
+              ],
+              [
+                "winamax",
+                1.08
+              ],
+              [
+                "betflag",
+                1.07
+              ],
+              [
+                "snai",
+                1.07
+              ],
+              [
+                "888sport",
+                1.06
+              ],
+              [
+                "888sport_it",
+                1.06
+              ],
+              [
+                "goldbet",
+                1.06
+              ],
+              [
+                "lottomatica",
+                1.06
+              ],
+              [
+                "planetwin365",
+                1.06
+              ],
+              [
+                "quigioco",
+                1.06
+              ],
+              [
+                "vincitu",
+                1.06
+              ],
+              [
+                "betitaly",
+                1.05
+              ],
+              [
+                "betpassion",
+                1.05
+              ],
+              [
+                "elabet",
+                1.05
+              ],
+              [
+                "leovegas",
+                1.05
+              ],
+              [
+                "winbet",
+                1.05
+              ],
+              [
+                "eurobet",
+                1.04
+              ]
+            ]
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 3.25,
+                "OVER": 1.3
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 3.05,
+                "OVER": 1.33
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 2.95,
+                "OVER": 1.33
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 3.05,
+                "OVER": 1.33
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.3045,
+            "OVER": 0.6955
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 3.1,
+              "n": 78
+            },
+            "OVER": {
+              "quota": 1.32,
+              "n": 78
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "888sport",
+                3.35
+              ],
+              [
+                "888sport_it",
+                3.35
+              ],
+              [
+                "leovegas",
+                3.35
+              ],
+              [
+                "vincitu",
+                3.35
+              ],
+              [
+                "snai",
+                3.25
+              ],
+              [
+                "betitaly",
+                3.1
+              ],
+              [
+                "betpassion",
+                3.1
+              ],
+              [
+                "bwin",
+                3.1
+              ],
+              [
+                "elabet",
+                3.1
+              ],
+              [
+                "giocodigitale",
+                3.1
+              ],
+              [
+                "quigioco",
+                3.1
+              ],
+              [
+                "winbet",
+                3.1
+              ],
+              [
+                "daznbet",
+                3.05
+              ],
+              [
+                "domusbet",
+                3.05
+              ],
+              [
+                "eurobet",
+                3.05
+              ],
+              [
+                "goldbet",
+                3.05
+              ],
+              [
+                "lottomatica",
+                3.05
+              ],
+              [
+                "planetwin365",
+                3.05
+              ],
+              [
+                "winamax",
+                3.05
+              ],
+              [
+                "betflag",
+                3
+              ],
+              [
+                "betsson",
+                3
+              ],
+              [
+                "marathonbet",
+                3
+              ],
+              [
+                "stanleybet",
+                3
+              ],
+              [
+                "starcasino",
+                3
+              ],
+              [
+                "totosi",
+                3
+              ],
+              [
+                "williamhill",
+                3
+              ],
+              [
+                "admiralbet",
+                2.95
+              ],
+              [
+                "betwin360",
+                2.95
+              ],
+              [
+                "bgame",
+                2.95
+              ],
+              [
+                "casinosanremo",
+                2.95
+              ],
+              [
+                "codere",
+                2.95
+              ],
+              [
+                "eplay24",
+                2.95
+              ],
+              [
+                "gioca7",
+                2.95
+              ],
+              [
+                "netbet",
+                2.95
+              ],
+              [
+                "netwin",
+                2.95
+              ],
+              [
+                "perlaplay",
+                2.95
+              ],
+              [
+                "sportium",
+                2.95
+              ],
+              [
+                "starvegas",
+                2.95
+              ],
+              [
+                "staryes",
+                2.95
+              ],
+              [
+                "sunbet",
+                2.95
+              ],
+              [
+                "sportbet",
+                2.9
+              ]
+            ],
+            "OVER": [
+              [
+                "betflag",
+                1.35
+              ],
+              [
+                "betsson",
+                1.34
+              ],
+              [
+                "marathonbet",
+                1.34
+              ],
+              [
+                "stanleybet",
+                1.34
+              ],
+              [
+                "starcasino",
+                1.34
+              ],
+              [
+                "totosi",
+                1.34
+              ],
+              [
+                "williamhill",
+                1.34
+              ],
+              [
+                "admiralbet",
+                1.33
+              ],
+              [
+                "betwin360",
+                1.33
+              ],
+              [
+                "bgame",
+                1.33
+              ],
+              [
+                "casinosanremo",
+                1.33
+              ],
+              [
+                "codere",
+                1.33
+              ],
+              [
+                "daznbet",
+                1.33
+              ],
+              [
+                "domusbet",
+                1.33
+              ],
+              [
+                "eplay24",
+                1.33
+              ],
+              [
+                "gioca7",
+                1.33
+              ],
+              [
+                "goldbet",
+                1.33
+              ],
+              [
+                "lottomatica",
+                1.33
+              ],
+              [
+                "netbet",
+                1.33
+              ],
+              [
+                "netwin",
+                1.33
+              ],
+              [
+                "perlaplay",
+                1.33
+              ],
+              [
+                "planetwin365",
+                1.33
+              ],
+              [
+                "quigioco",
+                1.33
+              ],
+              [
+                "sportium",
+                1.33
+              ],
+              [
+                "starvegas",
+                1.33
+              ],
+              [
+                "staryes",
+                1.33
+              ],
+              [
+                "sunbet",
+                1.33
+              ],
+              [
+                "winamax",
+                1.33
+              ],
+              [
+                "bwin",
+                1.32
+              ],
+              [
+                "giocodigitale",
+                1.32
+              ],
+              [
+                "sportbet",
+                1.32
+              ],
+              [
+                "betitaly",
+                1.3
+              ],
+              [
+                "betpassion",
+                1.3
+              ],
+              [
+                "elabet",
+                1.3
+              ],
+              [
+                "eurobet",
+                1.3
+              ],
+              [
+                "snai",
+                1.3
+              ],
+              [
+                "winbet",
+                1.3
+              ],
+              [
+                "888sport",
+                1.27
+              ],
+              [
+                "888sport_it",
+                1.27
+              ],
+              [
+                "leovegas",
+                1.27
+              ],
+              [
+                "vincitu",
+                1.26
+              ]
+            ]
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.85,
+                "OVER": 1.8
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.83,
+                "OVER": 1.85
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.86,
+                "OVER": 1.81
+              },
+              "aggiornato": "2026-11-19T06:20:19.547118+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.88,
+                "OVER": 1.82
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.4978,
+            "OVER": 0.5022
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.88,
+              "n": 162
+            },
+            "OVER": {
+              "quota": 1.83,
+              "n": 162
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "vincitu",
+                2.04
+              ],
+              [
+                "888sport",
+                1.98
+              ],
+              [
+                "888sport_it",
+                1.98
+              ],
+              [
+                "leovegas",
+                1.98
+              ],
+              [
+                "domusbet",
+                1.89
+              ],
+              [
+                "bwin",
+                1.88
+              ],
+              [
+                "daznbet",
+                1.88
+              ],
+              [
+                "giocodigitale",
+                1.88
+              ],
+              [
+                "winamax",
+                1.88
+              ],
+              [
+                "betitaly",
+                1.87
+              ],
+              [
+                "betpassion",
+                1.87
+              ],
+              [
+                "betsson",
+                1.87
+              ],
+              [
+                "elabet",
+                1.87
+              ],
+              [
+                "marathonbet",
+                1.87
+              ],
+              [
+                "quigioco",
+                1.87
+              ],
+              [
+                "stanleybet",
+                1.87
+              ],
+              [
+                "starcasino",
+                1.87
+              ],
+              [
+                "totosi",
+                1.87
+              ],
+              [
+                "williamhill",
+                1.87
+              ],
+              [
+                "winbet",
+                1.87
+              ],
+              [
+                "fastbet",
+                1.867
+              ],
+              [
+                "zonagioco",
+                1.867
+              ],
+              [
+                "bgame",
+                1.86
+              ],
+              [
+                "casinosanremo",
+                1.86
+              ],
+              [
+                "codere",
+                1.86
+              ],
+              [
+                "gioca7",
+                1.86
+              ],
+              [
+                "netbet",
+                1.86
+              ],
+              [
+                "netwin",
+                1.86
+              ],
+              [
+                "perlaplay",
+                1.86
+              ],
+              [
+                "sportium",
+                1.86
+              ],
+              [
+                "staryes",
+                1.86
+              ],
+              [
+                "sunbet",
+                1.86
+              ],
+              [
+                "admiralbet",
+                1.85
+              ],
+              [
+                "eurobet",
+                1.85
+              ],
+              [
+                "snai",
+                1.85
+              ],
+              [
+                "starvegas",
+                1.85
+              ],
+              [
+                "sportbet",
+                1.84
+              ],
+              [
+                "goldbet",
+                1.83
+              ],
+              [
+                "lottomatica",
+                1.83
+              ],
+              [
+                "planetwin365",
+                1.83
+              ],
+              [
+                "betflag",
+                1.8
+              ]
+            ],
+            "OVER": [
+              [
+                "betflag",
+                1.88
+              ],
+              [
+                "goldbet",
+                1.85
+              ],
+              [
+                "lottomatica",
+                1.85
+              ],
+              [
+                "planetwin365",
+                1.85
+              ],
+              [
+                "winamax",
+                1.84
+              ],
+              [
+                "betsson",
+                1.83
+              ],
+              [
+                "marathonbet",
+                1.83
+              ],
+              [
+                "stanleybet",
+                1.83
+              ],
+              [
+                "starcasino",
+                1.83
+              ],
+              [
+                "totosi",
+                1.83
+              ],
+              [
+                "williamhill",
+                1.83
+              ],
+              [
+                "admiralbet",
+                1.82
+              ],
+              [
+                "daznbet",
+                1.82
+              ],
+              [
+                "starvegas",
+                1.82
+              ],
+              [
+                "bgame",
+                1.81
+              ],
+              [
+                "casinosanremo",
+                1.81
+              ],
+              [
+                "codere",
+                1.81
+              ],
+              [
+                "domusbet",
+                1.81
+              ],
+              [
+                "gioca7",
+                1.81
+              ],
+              [
+                "netbet",
+                1.81
+              ],
+              [
+                "netwin",
+                1.81
+              ],
+              [
+                "perlaplay",
+                1.81
+              ],
+              [
+                "sportium",
+                1.81
+              ],
+              [
+                "staryes",
+                1.81
+              ],
+              [
+                "sunbet",
+                1.81
+              ],
+              [
+                "betitaly",
+                1.8
+              ],
+              [
+                "betpassion",
+                1.8
+              ],
+              [
+                "bwin",
+                1.8
+              ],
+              [
+                "elabet",
+                1.8
+              ],
+              [
+                "eurobet",
+                1.8
+              ],
+              [
+                "fastbet",
+                1.8
+              ],
+              [
+                "giocodigitale",
+                1.8
+              ],
+              [
+                "quigioco",
+                1.8
+              ],
+              [
+                "snai",
+                1.8
+              ],
+              [
+                "sportbet",
+                1.8
+              ],
+              [
+                "winbet",
+                1.8
+              ],
+              [
+                "zonagioco",
+                1.8
+              ],
+              [
+                "888sport",
+                1.72
+              ],
+              [
+                "888sport_it",
+                1.72
+              ],
+              [
+                "leovegas",
+                1.72
+              ],
+              [
+                "vincitu",
+                1.67
+              ]
+            ]
+          }
+        },
+        "dc": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "12": 1.22,
+                "1X": 1.5,
+                "X2": 1.52
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "12": 1.25,
+                "1X": 1.5,
+                "X2": 1.5
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.25,
+                "1X": 1.5,
+                "X2": 1.52
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7515,
+            "1X": 0.6243,
+            "X2": 0.6243
+          },
+          "fonteProb": "mediana di 133 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.22,
+              "n": 133
+            },
+            "1X": {
+              "quota": 1.47,
+              "n": 133
+            },
+            "X2": {
+              "quota": 1.47,
+              "n": 133
+            }
+          },
+          "italiani": {
+            "12": [
+              [
+                "betflag",
+                1.25
+              ],
+              [
+                "betwin360",
+                1.25
+              ],
+              [
+                "eplay24",
+                1.25
+              ],
+              [
+                "goldbet",
+                1.25
+              ],
+              [
+                "lottomatica",
+                1.25
+              ],
+              [
+                "planetwin365",
+                1.25
+              ],
+              [
+                "sportium",
+                1.25
+              ],
+              [
+                "winamax",
+                1.25
+              ],
+              [
+                "bwin",
+                1.23
+              ],
+              [
+                "giocodigitale",
+                1.23
+              ],
+              [
+                "888sport",
+                1.22
+              ],
+              [
+                "888sport_it",
+                1.22
+              ],
+              [
+                "snai",
+                1.22
+              ],
+              [
+                "betitaly",
+                1.2
+              ],
+              [
+                "betpassion",
+                1.2
+              ],
+              [
+                "elabet",
+                1.2
+              ],
+              [
+                "winbet",
+                1.2
+              ],
+              [
+                "leovegas",
+                1.19
+              ],
+              [
+                "fastbet",
+                1.177
+              ]
+            ],
+            "1X": [
+              [
+                "bwin",
+                1.52
+              ],
+              [
+                "giocodigitale",
+                1.52
+              ],
+              [
+                "fastbet",
+                1.513
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "goldbet",
+                1.5
+              ],
+              [
+                "lottomatica",
+                1.5
+              ],
+              [
+                "planetwin365",
+                1.5
+              ],
+              [
+                "snai",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "winamax",
+                1.5
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "888sport",
+                1.47
+              ],
+              [
+                "888sport_it",
+                1.47
+              ],
+              [
+                "betitaly",
+                1.45
+              ],
+              [
+                "betpassion",
+                1.45
+              ],
+              [
+                "elabet",
+                1.45
+              ],
+              [
+                "winbet",
+                1.45
+              ],
+              [
+                "leovegas",
+                1.44
+              ]
+            ],
+            "X2": [
+              [
+                "888sport",
+                1.57
+              ],
+              [
+                "888sport_it",
+                1.57
+              ],
+              [
+                "bwin",
+                1.53
+              ],
+              [
+                "giocodigitale",
+                1.53
+              ],
+              [
+                "leovegas",
+                1.53
+              ],
+              [
+                "betwin360",
+                1.52
+              ],
+              [
+                "eplay24",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "sportium",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "fastbet",
+                1.513
+              ],
+              [
+                "betflag",
+                1.5
+              ],
+              [
+                "goldbet",
+                1.5
+              ],
+              [
+                "lottomatica",
+                1.5
+              ],
+              [
+                "planetwin365",
+                1.5
+              ],
+              [
+                "betitaly",
+                1.48
+              ],
+              [
+                "betpassion",
+                1.48
+              ],
+              [
+                "elabet",
+                1.48
+              ],
+              [
+                "winbet",
+                1.48
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "7e2e53562620df92",
+      "campionato": "MLS",
+      "casa": "Seattle Sounders",
+      "trasferta": "Real Salt Lake",
+      "inizio": "2026-11-20T03:00:00.000Z",
+      "mercati": {
+        "1x2": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "HOME": 1.95,
+                "DRAW": 3.75,
+                "AWAY": 3.4
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "HOME": 1.92,
+                "DRAW": 3.8,
+                "AWAY": 3.5
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "HOME": 1.94,
+                "DRAW": 3.8,
+                "AWAY": 3.45
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "HOME": 1.92,
+                "DRAW": 3.75,
+                "AWAY": 3.45
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "HOME": 0.4891,
+            "DRAW": 0.2447,
+            "AWAY": 0.2663
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "HOME": {
+              "quota": 1.95,
+              "n": 173
+            },
+            "DRAW": {
+              "quota": 3.66,
+              "n": 173
+            },
+            "AWAY": {
+              "quota": 3.5,
+              "n": 173
+            }
+          },
+          "italiani": {
+            "HOME": [
+              [
+                "vincitu",
+                1.98
+              ],
+              [
+                "marathonbet",
+                1.96
+              ],
+              [
+                "bgame",
+                1.95
+              ],
+              [
+                "bwin",
+                1.95
+              ],
+              [
+                "codere",
+                1.95
+              ],
+              [
+                "giocodigitale",
+                1.95
+              ],
+              [
+                "perlaplay",
+                1.95
+              ],
+              [
+                "snai",
+                1.95
+              ],
+              [
+                "totosi",
+                1.95
+              ],
+              [
+                "betwin360",
+                1.94
+              ],
+              [
+                "casinosanremo",
+                1.94
+              ],
+              [
+                "domusbet",
+                1.94
+              ],
+              [
+                "eplay24",
+                1.94
+              ],
+              [
+                "gioca7",
+                1.94
+              ],
+              [
+                "netbet",
+                1.94
+              ],
+              [
+                "netwin",
+                1.94
+              ],
+              [
+                "sportium",
+                1.94
+              ],
+              [
+                "staryes",
+                1.94
+              ],
+              [
+                "williamhill",
+                1.94
+              ],
+              [
+                "fastbet",
+                1.933
+              ],
+              [
+                "zonagioco",
+                1.933
+              ],
+              [
+                "quigioco",
+                1.93
+              ],
+              [
+                "betflag",
+                1.92
+              ],
+              [
+                "betsson",
+                1.92
+              ],
+              [
+                "daznbet",
+                1.92
+              ],
+              [
+                "goldbet",
+                1.92
+              ],
+              [
+                "lottomatica",
+                1.92
+              ],
+              [
+                "planetwin365",
+                1.92
+              ],
+              [
+                "stanleybet",
+                1.92
+              ],
+              [
+                "starcasino",
+                1.92
+              ],
+              [
+                "sunbet",
+                1.91
+              ],
+              [
+                "admiralbet",
+                1.9
+              ],
+              [
+                "betitaly",
+                1.9
+              ],
+              [
+                "betpassion",
+                1.9
+              ],
+              [
+                "elabet",
+                1.9
+              ],
+              [
+                "starvegas",
+                1.9
+              ],
+              [
+                "winbet",
+                1.9
+              ],
+              [
+                "sportbet",
+                1.89
+              ],
+              [
+                "888sport",
+                1.88
+              ],
+              [
+                "888sport_it",
+                1.88
+              ],
+              [
+                "eurobet",
+                1.88
+              ],
+              [
+                "winamax",
+                1.88
+              ],
+              [
+                "leovegas",
+                1.84
+              ]
+            ],
+            "DRAW": [
+              [
+                "888sport",
+                3.9
+              ],
+              [
+                "888sport_it",
+                3.9
+              ],
+              [
+                "perlaplay",
+                3.85
+              ],
+              [
+                "betflag",
+                3.8
+              ],
+              [
+                "betsson",
+                3.8
+              ],
+              [
+                "betwin360",
+                3.8
+              ],
+              [
+                "casinosanremo",
+                3.8
+              ],
+              [
+                "domusbet",
+                3.8
+              ],
+              [
+                "eplay24",
+                3.8
+              ],
+              [
+                "gioca7",
+                3.8
+              ],
+              [
+                "goldbet",
+                3.8
+              ],
+              [
+                "lottomatica",
+                3.8
+              ],
+              [
+                "marathonbet",
+                3.8
+              ],
+              [
+                "netbet",
+                3.8
+              ],
+              [
+                "netwin",
+                3.8
+              ],
+              [
+                "planetwin365",
+                3.8
+              ],
+              [
+                "sportium",
+                3.8
+              ],
+              [
+                "starcasino",
+                3.8
+              ],
+              [
+                "staryes",
+                3.8
+              ],
+              [
+                "williamhill",
+                3.8
+              ],
+              [
+                "betitaly",
+                3.75
+              ],
+              [
+                "betpassion",
+                3.75
+              ],
+              [
+                "daznbet",
+                3.75
+              ],
+              [
+                "elabet",
+                3.75
+              ],
+              [
+                "leovegas",
+                3.75
+              ],
+              [
+                "quigioco",
+                3.75
+              ],
+              [
+                "snai",
+                3.75
+              ],
+              [
+                "stanleybet",
+                3.75
+              ],
+              [
+                "winamax",
+                3.75
+              ],
+              [
+                "winbet",
+                3.75
+              ],
+              [
+                "admiralbet",
+                3.7
+              ],
+              [
+                "bgame",
+                3.7
+              ],
+              [
+                "bwin",
+                3.7
+              ],
+              [
+                "codere",
+                3.7
+              ],
+              [
+                "eurobet",
+                3.7
+              ],
+              [
+                "giocodigitale",
+                3.7
+              ],
+              [
+                "starvegas",
+                3.7
+              ],
+              [
+                "sunbet",
+                3.7
+              ],
+              [
+                "vincitu",
+                3.7
+              ],
+              [
+                "fastbet",
+                3.667
+              ],
+              [
+                "zonagioco",
+                3.667
+              ],
+              [
+                "sportbet",
+                3.65
+              ],
+              [
+                "totosi",
+                3.65
+              ]
+            ],
+            "AWAY": [
+              [
+                "888sport",
+                3.55
+              ],
+              [
+                "888sport_it",
+                3.55
+              ],
+              [
+                "betflag",
+                3.5
+              ],
+              [
+                "betsson",
+                3.5
+              ],
+              [
+                "bgame",
+                3.5
+              ],
+              [
+                "codere",
+                3.5
+              ],
+              [
+                "goldbet",
+                3.5
+              ],
+              [
+                "lottomatica",
+                3.5
+              ],
+              [
+                "marathonbet",
+                3.5
+              ],
+              [
+                "perlaplay",
+                3.5
+              ],
+              [
+                "planetwin365",
+                3.5
+              ],
+              [
+                "starcasino",
+                3.5
+              ],
+              [
+                "totosi",
+                3.5
+              ],
+              [
+                "betitaly",
+                3.45
+              ],
+              [
+                "betpassion",
+                3.45
+              ],
+              [
+                "betwin360",
+                3.45
+              ],
+              [
+                "casinosanremo",
+                3.45
+              ],
+              [
+                "daznbet",
+                3.45
+              ],
+              [
+                "domusbet",
+                3.45
+              ],
+              [
+                "eplay24",
+                3.45
+              ],
+              [
+                "eurobet",
+                3.45
+              ],
+              [
+                "gioca7",
+                3.45
+              ],
+              [
+                "netbet",
+                3.45
+              ],
+              [
+                "netwin",
+                3.45
+              ],
+              [
+                "sportium",
+                3.45
+              ],
+              [
+                "staryes",
+                3.45
+              ],
+              [
+                "williamhill",
+                3.45
+              ],
+              [
+                "admiralbet",
+                3.4
+              ],
+              [
+                "bwin",
+                3.4
+              ],
+              [
+                "elabet",
+                3.4
+              ],
+              [
+                "fastbet",
+                3.4
+              ],
+              [
+                "giocodigitale",
+                3.4
+              ],
+              [
+                "leovegas",
+                3.4
+              ],
+              [
+                "quigioco",
+                3.4
+              ],
+              [
+                "snai",
+                3.4
+              ],
+              [
+                "stanleybet",
+                3.4
+              ],
+              [
+                "starvegas",
+                3.4
+              ],
+              [
+                "sunbet",
+                3.4
+              ],
+              [
+                "vincitu",
+                3.4
+              ],
+              [
+                "winbet",
+                3.4
+              ],
+              [
+                "zonagioco",
+                3.4
+              ],
+              [
+                "sportbet",
+                3.35
+              ],
+              [
+                "winamax",
+                3.25
+              ]
+            ]
+          }
+        },
+        "ou|1.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 4.5,
+                "OVER": 1.15
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 5.25,
+                "OVER": 1.12
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 4.6,
+                "OVER": 1.15
+              },
+              "aggiornato": "2026-11-19T06:20:20.513557+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 4.8,
+                "OVER": 1.15
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.1796,
+            "OVER": 0.8204
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 5,
+              "n": 72
+            },
+            "OVER": {
+              "quota": 1.14,
+              "n": 72
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "888sport",
+                5.3
+              ],
+              [
+                "888sport_it",
+                5.3
+              ],
+              [
+                "leovegas",
+                5.3
+              ],
+              [
+                "betflag",
+                5.25
+              ],
+              [
+                "goldbet",
+                5.25
+              ],
+              [
+                "lottomatica",
+                5.25
+              ],
+              [
+                "planetwin365",
+                5.25
+              ],
+              [
+                "quigioco",
+                5.1
+              ],
+              [
+                "bwin",
+                5
+              ],
+              [
+                "giocodigitale",
+                5
+              ],
+              [
+                "stanleybet",
+                5
+              ],
+              [
+                "winamax",
+                5
+              ],
+              [
+                "betitaly",
+                4.9
+              ],
+              [
+                "betpassion",
+                4.9
+              ],
+              [
+                "elabet",
+                4.9
+              ],
+              [
+                "eurobet",
+                4.9
+              ],
+              [
+                "winbet",
+                4.9
+              ],
+              [
+                "daznbet",
+                4.8
+              ],
+              [
+                "domusbet",
+                4.8
+              ],
+              [
+                "betsson",
+                4.75
+              ],
+              [
+                "starcasino",
+                4.75
+              ],
+              [
+                "marathonbet",
+                4.7
+              ],
+              [
+                "totosi",
+                4.7
+              ],
+              [
+                "williamhill",
+                4.7
+              ],
+              [
+                "admiralbet",
+                4.6
+              ],
+              [
+                "bgame",
+                4.6
+              ],
+              [
+                "casinosanremo",
+                4.6
+              ],
+              [
+                "codere",
+                4.6
+              ],
+              [
+                "gioca7",
+                4.6
+              ],
+              [
+                "netbet",
+                4.6
+              ],
+              [
+                "netwin",
+                4.6
+              ],
+              [
+                "perlaplay",
+                4.6
+              ],
+              [
+                "sportium",
+                4.6
+              ],
+              [
+                "starvegas",
+                4.6
+              ],
+              [
+                "staryes",
+                4.6
+              ],
+              [
+                "sunbet",
+                4.6
+              ],
+              [
+                "vincitu",
+                4.6
+              ],
+              [
+                "snai",
+                4.5
+              ],
+              [
+                "sportbet",
+                4.5
+              ]
+            ],
+            "OVER": [
+              [
+                "admiralbet",
+                1.15
+              ],
+              [
+                "betsson",
+                1.15
+              ],
+              [
+                "bgame",
+                1.15
+              ],
+              [
+                "casinosanremo",
+                1.15
+              ],
+              [
+                "codere",
+                1.15
+              ],
+              [
+                "daznbet",
+                1.15
+              ],
+              [
+                "gioca7",
+                1.15
+              ],
+              [
+                "marathonbet",
+                1.15
+              ],
+              [
+                "netbet",
+                1.15
+              ],
+              [
+                "netwin",
+                1.15
+              ],
+              [
+                "perlaplay",
+                1.15
+              ],
+              [
+                "snai",
+                1.15
+              ],
+              [
+                "sportium",
+                1.15
+              ],
+              [
+                "stanleybet",
+                1.15
+              ],
+              [
+                "starcasino",
+                1.15
+              ],
+              [
+                "starvegas",
+                1.15
+              ],
+              [
+                "staryes",
+                1.15
+              ],
+              [
+                "sunbet",
+                1.15
+              ],
+              [
+                "totosi",
+                1.15
+              ],
+              [
+                "vincitu",
+                1.15
+              ],
+              [
+                "williamhill",
+                1.15
+              ],
+              [
+                "bwin",
+                1.14
+              ],
+              [
+                "domusbet",
+                1.14
+              ],
+              [
+                "giocodigitale",
+                1.14
+              ],
+              [
+                "sportbet",
+                1.14
+              ],
+              [
+                "winamax",
+                1.14
+              ],
+              [
+                "betflag",
+                1.12
+              ],
+              [
+                "betitaly",
+                1.12
+              ],
+              [
+                "betpassion",
+                1.12
+              ],
+              [
+                "elabet",
+                1.12
+              ],
+              [
+                "eurobet",
+                1.12
+              ],
+              [
+                "goldbet",
+                1.12
+              ],
+              [
+                "leovegas",
+                1.12
+              ],
+              [
+                "lottomatica",
+                1.12
+              ],
+              [
+                "planetwin365",
+                1.12
+              ],
+              [
+                "quigioco",
+                1.12
+              ],
+              [
+                "winbet",
+                1.12
+              ],
+              [
+                "888sport",
+                1.11
+              ],
+              [
+                "888sport_it",
+                1.11
+              ]
+            ]
+          }
+        },
+        "ou|2.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 2.4,
+                "OVER": 1.52
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 2.45,
+                "OVER": 1.5
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 2.35,
+                "OVER": 1.5
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 2.4,
+                "OVER": 1.5
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.3784,
+            "OVER": 0.6216
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 2.4,
+              "n": 76
+            },
+            "OVER": {
+              "quota": 1.5,
+              "n": 76
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "888sport",
+                2.5
+              ],
+              [
+                "888sport_it",
+                2.5
+              ],
+              [
+                "leovegas",
+                2.5
+              ],
+              [
+                "quigioco",
+                2.46
+              ],
+              [
+                "betflag",
+                2.45
+              ],
+              [
+                "goldbet",
+                2.45
+              ],
+              [
+                "lottomatica",
+                2.45
+              ],
+              [
+                "planetwin365",
+                2.45
+              ],
+              [
+                "domusbet",
+                2.41
+              ],
+              [
+                "betitaly",
+                2.4
+              ],
+              [
+                "betpassion",
+                2.4
+              ],
+              [
+                "daznbet",
+                2.4
+              ],
+              [
+                "elabet",
+                2.4
+              ],
+              [
+                "eurobet",
+                2.4
+              ],
+              [
+                "snai",
+                2.4
+              ],
+              [
+                "winamax",
+                2.4
+              ],
+              [
+                "winbet",
+                2.4
+              ],
+              [
+                "betsson",
+                2.39
+              ],
+              [
+                "marathonbet",
+                2.39
+              ],
+              [
+                "starcasino",
+                2.39
+              ],
+              [
+                "totosi",
+                2.39
+              ],
+              [
+                "williamhill",
+                2.39
+              ],
+              [
+                "stanleybet",
+                2.38
+              ],
+              [
+                "bwin",
+                2.37
+              ],
+              [
+                "giocodigitale",
+                2.37
+              ],
+              [
+                "codere",
+                2.36
+              ],
+              [
+                "perlaplay",
+                2.36
+              ],
+              [
+                "sunbet",
+                2.36
+              ],
+              [
+                "admiralbet",
+                2.35
+              ],
+              [
+                "betwin360",
+                2.35
+              ],
+              [
+                "bgame",
+                2.35
+              ],
+              [
+                "casinosanremo",
+                2.35
+              ],
+              [
+                "eplay24",
+                2.35
+              ],
+              [
+                "gioca7",
+                2.35
+              ],
+              [
+                "netbet",
+                2.35
+              ],
+              [
+                "netwin",
+                2.35
+              ],
+              [
+                "sportium",
+                2.35
+              ],
+              [
+                "starvegas",
+                2.35
+              ],
+              [
+                "staryes",
+                2.35
+              ],
+              [
+                "sportbet",
+                2.33
+              ],
+              [
+                "vincitu",
+                2.33
+              ]
+            ],
+            "OVER": [
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "stanleybet",
+                1.52
+              ],
+              [
+                "betsson",
+                1.51
+              ],
+              [
+                "marathonbet",
+                1.51
+              ],
+              [
+                "starcasino",
+                1.51
+              ],
+              [
+                "totosi",
+                1.51
+              ],
+              [
+                "vincitu",
+                1.51
+              ],
+              [
+                "williamhill",
+                1.51
+              ],
+              [
+                "admiralbet",
+                1.5
+              ],
+              [
+                "betflag",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bgame",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "codere",
+                1.5
+              ],
+              [
+                "daznbet",
+                1.5
+              ],
+              [
+                "domusbet",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "goldbet",
+                1.5
+              ],
+              [
+                "lottomatica",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "netwin",
+                1.5
+              ],
+              [
+                "perlaplay",
+                1.5
+              ],
+              [
+                "planetwin365",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "starvegas",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "winamax",
+                1.5
+              ],
+              [
+                "quigioco",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "betitaly",
+                1.48
+              ],
+              [
+                "betpassion",
+                1.48
+              ],
+              [
+                "elabet",
+                1.48
+              ],
+              [
+                "eurobet",
+                1.48
+              ],
+              [
+                "winbet",
+                1.48
+              ],
+              [
+                "888sport",
+                1.46
+              ],
+              [
+                "888sport_it",
+                1.46
+              ],
+              [
+                "leovegas",
+                1.46
+              ]
+            ]
+          }
+        },
+        "ou|3.5": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "UNDER": 1.57,
+                "OVER": 2.2
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "UNDER": 1.55,
+                "OVER": 2.25
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "UNDER": 1.57,
+                "OVER": 2.22
+              },
+              "aggiornato": "2026-11-19T06:20:20.513557+00:00"
+            },
+            "daznbet": {
+              "quote": {
+                "UNDER": 1.6,
+                "OVER": 2.2
+              },
+              "aggiornato": "2026-11-19T06:26:55.410236+00:00"
+            }
+          },
+          "prob": {
+            "UNDER": 0.5863,
+            "OVER": 0.4137
+          },
+          "fonteProb": "Pinnacle",
+          "mediana": {
+            "UNDER": {
+              "quota": 1.58,
+              "n": 157
+            },
+            "OVER": {
+              "quota": 2.25,
+              "n": 157
+            }
+          },
+          "italiani": {
+            "UNDER": [
+              [
+                "888sport",
+                1.6
+              ],
+              [
+                "888sport_it",
+                1.6
+              ],
+              [
+                "daznbet",
+                1.6
+              ],
+              [
+                "leovegas",
+                1.6
+              ],
+              [
+                "domusbet",
+                1.59
+              ],
+              [
+                "betsson",
+                1.58
+              ],
+              [
+                "eurobet",
+                1.58
+              ],
+              [
+                "marathonbet",
+                1.58
+              ],
+              [
+                "stanleybet",
+                1.58
+              ],
+              [
+                "starcasino",
+                1.58
+              ],
+              [
+                "totosi",
+                1.58
+              ],
+              [
+                "williamhill",
+                1.58
+              ],
+              [
+                "winamax",
+                1.58
+              ],
+              [
+                "admiralbet",
+                1.57
+              ],
+              [
+                "betitaly",
+                1.57
+              ],
+              [
+                "betpassion",
+                1.57
+              ],
+              [
+                "bgame",
+                1.57
+              ],
+              [
+                "bwin",
+                1.57
+              ],
+              [
+                "casinosanremo",
+                1.57
+              ],
+              [
+                "codere",
+                1.57
+              ],
+              [
+                "elabet",
+                1.57
+              ],
+              [
+                "gioca7",
+                1.57
+              ],
+              [
+                "giocodigitale",
+                1.57
+              ],
+              [
+                "netbet",
+                1.57
+              ],
+              [
+                "netwin",
+                1.57
+              ],
+              [
+                "perlaplay",
+                1.57
+              ],
+              [
+                "quigioco",
+                1.57
+              ],
+              [
+                "snai",
+                1.57
+              ],
+              [
+                "sportium",
+                1.57
+              ],
+              [
+                "starvegas",
+                1.57
+              ],
+              [
+                "staryes",
+                1.57
+              ],
+              [
+                "sunbet",
+                1.57
+              ],
+              [
+                "winbet",
+                1.57
+              ],
+              [
+                "sportbet",
+                1.56
+              ],
+              [
+                "vincitu",
+                1.56
+              ],
+              [
+                "fastbet",
+                1.556
+              ],
+              [
+                "zonagioco",
+                1.556
+              ],
+              [
+                "betflag",
+                1.55
+              ],
+              [
+                "goldbet",
+                1.55
+              ],
+              [
+                "lottomatica",
+                1.55
+              ],
+              [
+                "planetwin365",
+                1.55
+              ]
+            ],
+            "OVER": [
+              [
+                "betflag",
+                2.25
+              ],
+              [
+                "bwin",
+                2.25
+              ],
+              [
+                "giocodigitale",
+                2.25
+              ],
+              [
+                "goldbet",
+                2.25
+              ],
+              [
+                "lottomatica",
+                2.25
+              ],
+              [
+                "planetwin365",
+                2.25
+              ],
+              [
+                "winamax",
+                2.25
+              ],
+              [
+                "betsson",
+                2.24
+              ],
+              [
+                "marathonbet",
+                2.24
+              ],
+              [
+                "starcasino",
+                2.24
+              ],
+              [
+                "totosi",
+                2.24
+              ],
+              [
+                "williamhill",
+                2.24
+              ],
+              [
+                "stanleybet",
+                2.23
+              ],
+              [
+                "vincitu",
+                2.23
+              ],
+              [
+                "fastbet",
+                2.222
+              ],
+              [
+                "zonagioco",
+                2.222
+              ],
+              [
+                "casinosanremo",
+                2.22
+              ],
+              [
+                "domusbet",
+                2.22
+              ],
+              [
+                "gioca7",
+                2.22
+              ],
+              [
+                "netbet",
+                2.22
+              ],
+              [
+                "netwin",
+                2.22
+              ],
+              [
+                "sportium",
+                2.22
+              ],
+              [
+                "staryes",
+                2.22
+              ],
+              [
+                "bgame",
+                2.21
+              ],
+              [
+                "codere",
+                2.21
+              ],
+              [
+                "perlaplay",
+                2.21
+              ],
+              [
+                "sunbet",
+                2.21
+              ],
+              [
+                "admiralbet",
+                2.2
+              ],
+              [
+                "betitaly",
+                2.2
+              ],
+              [
+                "betpassion",
+                2.2
+              ],
+              [
+                "daznbet",
+                2.2
+              ],
+              [
+                "elabet",
+                2.2
+              ],
+              [
+                "eurobet",
+                2.2
+              ],
+              [
+                "quigioco",
+                2.2
+              ],
+              [
+                "snai",
+                2.2
+              ],
+              [
+                "starvegas",
+                2.2
+              ],
+              [
+                "winbet",
+                2.2
+              ],
+              [
+                "sportbet",
+                2.19
+              ],
+              [
+                "888sport",
+                2.16
+              ],
+              [
+                "888sport_it",
+                2.16
+              ],
+              [
+                "leovegas",
+                2.16
+              ]
+            ]
+          }
+        },
+        "dc": {
+          "miei": {
+            "snai": {
+              "quote": {
+                "12": 1.24,
+                "1X": 1.28,
+                "X2": 1.8
+              },
+              "aggiornato": "2026-11-19T06:23:51.892004+00:00"
+            },
+            "goldbet": {
+              "quote": {
+                "12": 1.25,
+                "1X": 1.27,
+                "X2": 1.82
+              },
+              "aggiornato": "2026-11-19T06:22:43.513078+00:00"
+            },
+            "sportium": {
+              "quote": {
+                "12": 1.26,
+                "1X": 1.28,
+                "X2": 1.8
+              },
+              "aggiornato": "2026-11-19T06:22:58.203513+00:00"
+            }
+          },
+          "prob": {
+            "12": 0.7448,
+            "1X": 0.7202,
+            "X2": 0.5349
+          },
+          "fonteProb": "mediana di 131 bookmaker",
+          "mediana": {
+            "12": {
+              "quota": 1.23,
+              "n": 131
+            },
+            "1X": {
+              "quota": 1.27,
+              "n": 131
+            },
+            "X2": {
+              "quota": 1.71,
+              "n": 131
+            }
+          },
+          "italiani": {
+            "12": [
+              [
+                "betwin360",
+                1.26
+              ],
+              [
+                "bwin",
+                1.26
+              ],
+              [
+                "eplay24",
+                1.26
+              ],
+              [
+                "giocodigitale",
+                1.26
+              ],
+              [
+                "sportium",
+                1.26
+              ],
+              [
+                "winamax",
+                1.26
+              ],
+              [
+                "goldbet",
+                1.25
+              ],
+              [
+                "lottomatica",
+                1.25
+              ],
+              [
+                "planetwin365",
+                1.25
+              ],
+              [
+                "snai",
+                1.24
+              ],
+              [
+                "888sport",
+                1.23
+              ],
+              [
+                "888sport_it",
+                1.23
+              ],
+              [
+                "betflag",
+                1.23
+              ],
+              [
+                "betitaly",
+                1.22
+              ],
+              [
+                "betpassion",
+                1.22
+              ],
+              [
+                "elabet",
+                1.22
+              ],
+              [
+                "winbet",
+                1.22
+              ],
+              [
+                "leovegas",
+                1.2
+              ],
+              [
+                "fastbet",
+                1.19
+              ]
+            ],
+            "1X": [
+              [
+                "bwin",
+                1.29
+              ],
+              [
+                "giocodigitale",
+                1.29
+              ],
+              [
+                "winamax",
+                1.29
+              ],
+              [
+                "betwin360",
+                1.28
+              ],
+              [
+                "eplay24",
+                1.28
+              ],
+              [
+                "snai",
+                1.28
+              ],
+              [
+                "sportium",
+                1.28
+              ],
+              [
+                "fastbet",
+                1.273
+              ],
+              [
+                "888sport",
+                1.27
+              ],
+              [
+                "888sport_it",
+                1.27
+              ],
+              [
+                "betflag",
+                1.27
+              ],
+              [
+                "goldbet",
+                1.27
+              ],
+              [
+                "lottomatica",
+                1.27
+              ],
+              [
+                "planetwin365",
+                1.27
+              ],
+              [
+                "elabet",
+                1.26
+              ],
+              [
+                "winbet",
+                1.26
+              ],
+              [
+                "betitaly",
+                1.25
+              ],
+              [
+                "betpassion",
+                1.25
+              ],
+              [
+                "leovegas",
+                1.24
+              ]
+            ],
+            "X2": [
+              [
+                "888sport",
+                1.87
+              ],
+              [
+                "888sport_it",
+                1.87
+              ],
+              [
+                "betflag",
+                1.85
+              ],
+              [
+                "goldbet",
+                1.82
+              ],
+              [
+                "leovegas",
+                1.82
+              ],
+              [
+                "lottomatica",
+                1.82
+              ],
+              [
+                "planetwin365",
+                1.82
+              ],
+              [
+                "winamax",
+                1.82
+              ],
+              [
+                "betwin360",
+                1.8
+              ],
+              [
+                "eplay24",
+                1.8
+              ],
+              [
+                "snai",
+                1.8
+              ],
+              [
+                "sportium",
+                1.8
+              ],
+              [
+                "fastbet",
+                1.786
+              ],
+              [
+                "betitaly",
+                1.78
+              ],
+              [
+                "betpassion",
+                1.78
+              ],
+              [
+                "bwin",
+                1.78
+              ],
+              [
+                "elabet",
+                1.78
+              ],
+              [
+                "giocodigitale",
+                1.78
+              ],
+              [
+                "winbet",
+                1.78
+              ]
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "completamento": {
+    "alle": "2026-11-19T07:30:58+01:00",
+    "partite": 5,
+    "completate": 5,
+    "richieste": 1
+  }
+}
