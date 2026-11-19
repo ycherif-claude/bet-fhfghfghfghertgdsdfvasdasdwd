@@ -1093,7 +1093,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "gambe": [
@@ -1414,7 +1414,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1454,7 +1454,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1575,7 +1575,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1779,7 +1779,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1819,7 +1819,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3331,7 +3331,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": 0.691
+          "probModelloTarato": 0.691,
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7082452431289641,
+            "alle": "2026-11-19T03:48:08+01:00",
+            "minutiPrima": 12
+          }
         }
       ],
       "quota": 25.79,
@@ -4971,7 +4977,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": 0.691
+          "probModelloTarato": 0.691,
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7082452431289641,
+            "alle": "2026-11-19T03:48:08+01:00",
+            "minutiPrima": 12
+          }
         }
       ],
       "quota": 83.14,
@@ -6433,7 +6445,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": 0.691
+          "probModelloTarato": 0.691,
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7082452431289641,
+            "alle": "2026-11-19T03:48:08+01:00",
+            "minutiPrima": 12
+          }
         }
       ],
       "quota": 30.15,
@@ -8446,7 +8464,13 @@
               1.32
             ]
           ],
-          "probModelloTarato": 0.691
+          "probModelloTarato": 0.691,
+          "chiusura": {
+            "quota": 1.35,
+            "prob": 0.7082452431289641,
+            "alle": "2026-11-19T03:48:08+01:00",
+            "minutiPrima": 12
+          }
         }
       ],
       "quota": 20.37,
