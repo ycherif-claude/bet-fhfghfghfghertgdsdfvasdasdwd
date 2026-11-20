@@ -1,0 +1,97 @@
+{
+  "data": "2026-11-20",
+  "generataAlle": "2026-11-20T15:25:01+01:00",
+  "crediti": {
+    "usati": 1,
+    "rimasti": 306
+  },
+  "competizioniNonCoperte": [],
+  "erroriGiro": [
+    "Quote ATP Finals: 1 partite su 2 non trovate su odss-api, quote da The Odds API",
+    "Storico tennis ATP fermo al 18/10/2026: ricarica il file in data/storico-tennis/atp/2026.xlsx",
+    "Superficie sconosciuta per ATP Finals: solo Pinnacle"
+  ],
+  "partite": [
+    {
+      "idPartita": "tennis-2026-11-20-carlos-alcaraz-flavio-cobolli",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Carlos Alcaraz - Flavio Cobolli",
+      "casa": "Carlos Alcaraz",
+      "trasferta": "Flavio Cobolli",
+      "inizio": "2026-11-20T14:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Flavio Cobolli",
+          "probModello": null,
+          "probPinnacle": 0.051420176297747304,
+          "quota": 19.37,
+          "fonteQuota": "mediana di 3 bookmaker (The Odds API)",
+          "oraQuota": "2026-11-20T15:25:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Flavio Cobolli vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "00654074ef521c4f",
+        "7a5e3b7968736af8",
+        "80d90880c0db23a8",
+        "a8d2c89b46fc9a80",
+        "b5539fad54eeff1a",
+        "d862bfba50586612"
+      ],
+      "idPartita": "tennis-2026-11-20-daniil-medvedev-frances-tiafoe",
+      "sport": "tennis",
+      "competizione": "ATP Finals",
+      "partita": "Daniil Medvedev - Frances Tiafoe",
+      "casa": "Daniil Medvedev",
+      "trasferta": "Frances Tiafoe",
+      "inizio": "2026-11-20T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": null,
+      "superficie": null,
+      "bestOf": 3,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Superficie del torneo sconosciuta: probabilità solo da Pinnacle"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Daniil Medvedev",
+          "probModello": null,
+          "probPinnacle": 0.6768265351860152,
+          "quota": 1.41,
+          "fonteQuota": "mediana di 190 bookmaker (odss-api)",
+          "oraQuota": "2026-11-20T15:25:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Daniil Medvedev vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        },
+        {
+          "mercato": "Vincente incontro",
+          "selezione": "Frances Tiafoe",
+          "probModello": null,
+          "probPinnacle": 0.3231734648139848,
+          "quota": 2.9,
+          "fonteQuota": "mediana di 190 bookmaker (odss-api)",
+          "oraQuota": "2026-11-20T15:25:01+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente incontro: vince se Frances Tiafoe vince la partita. Se un giocatore si ritira dopo almeno un set completo vince chi passa il turno; se si ritira prima, o la partita non si gioca, la giocata è rimborsata"
+        }
+      ]
+    }
+  ]
+}
