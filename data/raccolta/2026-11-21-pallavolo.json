@@ -1,0 +1,2696 @@
+{
+  "data": "2026-11-21",
+  "generataAlle": "2026-11-21T14:47:58+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 189
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: VC Bitterfeld-Wolfen",
+    "odss-api (pallavolo) alle 14:47: moneyline,ou: quote incomplete (le altre pagine superano il budget di oggi)",
+    "Quote pallavolo: 14 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Quote PlusLiga: 2 partite su 3 non trovate su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "d079fe8bf105dba7"
+      ],
+      "idPartita": "pallavolo-2026-11-21-resovia-rzeszow-skra-belchatow",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Resovia Rzeszow - Skra Belchatow",
+      "casa": "Resovia Rzeszow",
+      "trasferta": "Skra Belchatow",
+      "inizio": "2026-11-21T15:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Resovia Rzeszow": 1544,
+        "Skra Belchatow": 1562
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Resovia Rzeszow 1544 – Skra Belchatow 1562, vantaggio campo compreso: vittoria della casa 56% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Resovia Rzeszow",
+          "probModello": null,
+          "probModelloStudio": 0.5592439276352418,
+          "probPinnacle": 0.7406079704718019,
+          "quota": 1.26,
+          "fonteQuota": "mediana di 23 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Resovia Rzeszow vince la partita.",
+          "bookmaker": [
+            [
+              "bgame",
+              1.27
+            ],
+            [
+              "perlaplay",
+              1.27
+            ],
+            [
+              "betsson",
+              1.26
+            ],
+            [
+              "codere",
+              1.26
+            ],
+            [
+              "marathonbet",
+              1.26
+            ],
+            [
+              "netwin",
+              1.26
+            ],
+            [
+              "sportbet",
+              1.26
+            ],
+            [
+              "stanleybet",
+              1.26
+            ],
+            [
+              "starcasino",
+              1.26
+            ],
+            [
+              "sunbet",
+              1.26
+            ],
+            [
+              "totosi",
+              1.26
+            ],
+            [
+              "williamhill",
+              1.26
+            ],
+            [
+              "admiralbet",
+              1.25
+            ],
+            [
+              "betflag",
+              1.25
+            ],
+            [
+              "eurobet",
+              1.25
+            ],
+            [
+              "goldbet",
+              1.25
+            ],
+            [
+              "lottomatica",
+              1.25
+            ],
+            [
+              "planetwin365",
+              1.25
+            ],
+            [
+              "starvegas",
+              1.25
+            ],
+            [
+              "vincitu",
+              1.25
+            ],
+            [
+              "daznbet",
+              1.24
+            ],
+            [
+              "domusbet",
+              1.24
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Skra Belchatow",
+          "probModello": null,
+          "probModelloStudio": 0.4407560723647582,
+          "probPinnacle": 0.25939202952819784,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 23 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Skra Belchatow vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.65
+            ],
+            [
+              "codere",
+              3.65
+            ],
+            [
+              "marathonbet",
+              3.65
+            ],
+            [
+              "starcasino",
+              3.65
+            ],
+            [
+              "totosi",
+              3.65
+            ],
+            [
+              "admiralbet",
+              3.6
+            ],
+            [
+              "eurobet",
+              3.6
+            ],
+            [
+              "netwin",
+              3.6
+            ],
+            [
+              "sportbet",
+              3.6
+            ],
+            [
+              "starvegas",
+              3.6
+            ],
+            [
+              "sunbet",
+              3.6
+            ],
+            [
+              "vincitu",
+              3.6
+            ],
+            [
+              "betflag",
+              3.58
+            ],
+            [
+              "goldbet",
+              3.58
+            ],
+            [
+              "lottomatica",
+              3.58
+            ],
+            [
+              "planetwin365",
+              3.58
+            ],
+            [
+              "bgame",
+              3.55
+            ],
+            [
+              "perlaplay",
+              3.55
+            ],
+            [
+              "daznbet",
+              3.5
+            ],
+            [
+              "domusbet",
+              3.5
+            ],
+            [
+              "stanleybet",
+              3.5
+            ],
+            [
+              "williamhill",
+              3.45
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "2d85a755ebf0a65b",
+        "483c90e696689888",
+        "6d1ef040b1bb03cf",
+        "7ebf11252f418ffa",
+        "c046af2f64f14b0c"
+      ],
+      "idPartita": "pallavolo-2026-11-21-tfl-altekma-corum-sungurlu-bld",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "TFL Altekma - Corum Sungurlu Bld",
+      "casa": "TFL Altekma",
+      "trasferta": "Corum Sungurlu Bld",
+      "inizio": "2026-11-21T16:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "TFL Altekma",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.737586292438145,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TFL Altekma vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.286
+            ],
+            [
+              "zonagioco",
+              1.286
+            ],
+            [
+              "betsson",
+              1.28
+            ],
+            [
+              "marathonbet",
+              1.28
+            ],
+            [
+              "netwin",
+              1.28
+            ],
+            [
+              "starcasino",
+              1.28
+            ],
+            [
+              "admiralbet",
+              1.27
+            ],
+            [
+              "betwin360",
+              1.27
+            ],
+            [
+              "casinosanremo",
+              1.27
+            ],
+            [
+              "eplay24",
+              1.27
+            ],
+            [
+              "gioca7",
+              1.27
+            ],
+            [
+              "netbet",
+              1.27
+            ],
+            [
+              "sportium",
+              1.27
+            ],
+            [
+              "stanleybet",
+              1.27
+            ],
+            [
+              "starvegas",
+              1.27
+            ],
+            [
+              "staryes",
+              1.27
+            ],
+            [
+              "williamhill",
+              1.27
+            ],
+            [
+              "betflag",
+              1.26
+            ],
+            [
+              "bgame",
+              1.26
+            ],
+            [
+              "codere",
+              1.26
+            ],
+            [
+              "daznbet",
+              1.26
+            ],
+            [
+              "domusbet",
+              1.26
+            ],
+            [
+              "eurobet",
+              1.26
+            ],
+            [
+              "goldbet",
+              1.26
+            ],
+            [
+              "lottomatica",
+              1.26
+            ],
+            [
+              "perlaplay",
+              1.26
+            ],
+            [
+              "planetwin365",
+              1.26
+            ],
+            [
+              "sportbet",
+              1.26
+            ],
+            [
+              "sunbet",
+              1.26
+            ],
+            [
+              "totosi",
+              1.26
+            ],
+            [
+              "quigioco",
+              1.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Corum Sungurlu Bld",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.2624137075618529,
+          "quota": 3.6,
+          "fonteQuota": "mediana di 115 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Corum Sungurlu Bld vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.5
+            ],
+            [
+              "marathonbet",
+              3.5
+            ],
+            [
+              "netwin",
+              3.5
+            ],
+            [
+              "starcasino",
+              3.5
+            ],
+            [
+              "betwin360",
+              3.4
+            ],
+            [
+              "casinosanremo",
+              3.4
+            ],
+            [
+              "eplay24",
+              3.4
+            ],
+            [
+              "gioca7",
+              3.4
+            ],
+            [
+              "netbet",
+              3.4
+            ],
+            [
+              "sportium",
+              3.4
+            ],
+            [
+              "stanleybet",
+              3.4
+            ],
+            [
+              "staryes",
+              3.4
+            ],
+            [
+              "williamhill",
+              3.4
+            ],
+            [
+              "admiralbet",
+              3.35
+            ],
+            [
+              "betflag",
+              3.35
+            ],
+            [
+              "bgame",
+              3.35
+            ],
+            [
+              "codere",
+              3.35
+            ],
+            [
+              "daznbet",
+              3.35
+            ],
+            [
+              "eurobet",
+              3.35
+            ],
+            [
+              "goldbet",
+              3.35
+            ],
+            [
+              "lottomatica",
+              3.35
+            ],
+            [
+              "perlaplay",
+              3.35
+            ],
+            [
+              "planetwin365",
+              3.35
+            ],
+            [
+              "quigioco",
+              3.35
+            ],
+            [
+              "sportbet",
+              3.35
+            ],
+            [
+              "starvegas",
+              3.35
+            ],
+            [
+              "sunbet",
+              3.35
+            ],
+            [
+              "totosi",
+              3.35
+            ],
+            [
+              "fastbet",
+              3.333
+            ],
+            [
+              "zonagioco",
+              3.333
+            ],
+            [
+              "domusbet",
+              3.3
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "ad655658e2c2b9cf",
+        "c4bd060ee22ded64"
+      ],
+      "idPartita": "pallavolo-2026-11-21-fenerbahce-sk-istanbul-spor-toto-sk-ankara",
+      "sport": "pallavolo",
+      "competizione": "Efeler Ligi",
+      "partita": "Fenerbahce SK Istanbul - Spor Toto SK Ankara",
+      "casa": "Fenerbahce SK Istanbul",
+      "trasferta": "Spor Toto SK Ankara",
+      "inizio": "2026-11-21T17:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Fenerbahce SK Istanbul": 1648,
+        "Spor Toto SK Ankara": 1564
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Fenerbahce SK Istanbul 1648 – Spor Toto SK Ankara 1564, vantaggio campo compreso: vittoria della casa 70% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Fenerbahce SK Istanbul",
+          "probModello": null,
+          "probModelloStudio": 0.6955665329164776,
+          "probPinnacle": 0.7312049433573635,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 37 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Fenerbahce SK Istanbul vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              1.25
+            ],
+            [
+              "betsson",
+              1.25
+            ],
+            [
+              "betwin360",
+              1.25
+            ],
+            [
+              "casinosanremo",
+              1.25
+            ],
+            [
+              "eplay24",
+              1.25
+            ],
+            [
+              "gioca7",
+              1.25
+            ],
+            [
+              "marathonbet",
+              1.25
+            ],
+            [
+              "netbet",
+              1.25
+            ],
+            [
+              "netwin",
+              1.25
+            ],
+            [
+              "sportium",
+              1.25
+            ],
+            [
+              "stanleybet",
+              1.25
+            ],
+            [
+              "starcasino",
+              1.25
+            ],
+            [
+              "starvegas",
+              1.25
+            ],
+            [
+              "staryes",
+              1.25
+            ],
+            [
+              "williamhill",
+              1.25
+            ],
+            [
+              "betflag",
+              1.24
+            ],
+            [
+              "bgame",
+              1.24
+            ],
+            [
+              "codere",
+              1.24
+            ],
+            [
+              "daznbet",
+              1.24
+            ],
+            [
+              "goldbet",
+              1.24
+            ],
+            [
+              "lottomatica",
+              1.24
+            ],
+            [
+              "perlaplay",
+              1.24
+            ],
+            [
+              "planetwin365",
+              1.24
+            ],
+            [
+              "sportbet",
+              1.24
+            ],
+            [
+              "sunbet",
+              1.24
+            ],
+            [
+              "totosi",
+              1.24
+            ],
+            [
+              "domusbet",
+              1.23
+            ],
+            [
+              "quigioco",
+              1.23
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Spor Toto SK Ankara",
+          "probModello": null,
+          "probModelloStudio": 0.30443346708352237,
+          "probPinnacle": 0.2687950566426364,
+          "quota": 3.55,
+          "fonteQuota": "mediana di 37 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Spor Toto SK Ankara vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.65
+            ],
+            [
+              "marathonbet",
+              3.65
+            ],
+            [
+              "netwin",
+              3.65
+            ],
+            [
+              "starcasino",
+              3.65
+            ],
+            [
+              "betwin360",
+              3.6
+            ],
+            [
+              "casinosanremo",
+              3.6
+            ],
+            [
+              "eplay24",
+              3.6
+            ],
+            [
+              "gioca7",
+              3.6
+            ],
+            [
+              "netbet",
+              3.6
+            ],
+            [
+              "sportium",
+              3.6
+            ],
+            [
+              "stanleybet",
+              3.6
+            ],
+            [
+              "staryes",
+              3.6
+            ],
+            [
+              "williamhill",
+              3.6
+            ],
+            [
+              "admiralbet",
+              3.5
+            ],
+            [
+              "betflag",
+              3.5
+            ],
+            [
+              "bgame",
+              3.5
+            ],
+            [
+              "codere",
+              3.5
+            ],
+            [
+              "daznbet",
+              3.5
+            ],
+            [
+              "goldbet",
+              3.5
+            ],
+            [
+              "lottomatica",
+              3.5
+            ],
+            [
+              "perlaplay",
+              3.5
+            ],
+            [
+              "planetwin365",
+              3.5
+            ],
+            [
+              "quigioco",
+              3.5
+            ],
+            [
+              "sportbet",
+              3.5
+            ],
+            [
+              "starvegas",
+              3.5
+            ],
+            [
+              "sunbet",
+              3.5
+            ],
+            [
+              "totosi",
+              3.5
+            ],
+            [
+              "domusbet",
+              3.45
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "853968fa34093871",
+        "9bc0fccf53087c1c",
+        "b620b16772ac8d9e",
+        "eee3335d25ed51ca"
+      ],
+      "idPartita": "pallavolo-2026-11-21-berlin-rv-barock-volleys-mtv-ludwigsburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Berlin RV - Barock Volleys MTV Ludwigsburg",
+      "casa": "Berlin RV",
+      "trasferta": "Barock Volleys MTV Ludwigsburg",
+      "inizio": "2026-11-21T18:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Berlin RV",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8685772114241039,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 108 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Berlin RV vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.08
+            ],
+            [
+              "netwin",
+              1.08
+            ],
+            [
+              "starcasino",
+              1.08
+            ],
+            [
+              "admiralbet",
+              1.07
+            ],
+            [
+              "betflag",
+              1.07
+            ],
+            [
+              "bgame",
+              1.07
+            ],
+            [
+              "codere",
+              1.07
+            ],
+            [
+              "eurobet",
+              1.07
+            ],
+            [
+              "goldbet",
+              1.07
+            ],
+            [
+              "lottomatica",
+              1.07
+            ],
+            [
+              "marathonbet",
+              1.07
+            ],
+            [
+              "perlaplay",
+              1.07
+            ],
+            [
+              "planetwin365",
+              1.07
+            ],
+            [
+              "sportbet",
+              1.07
+            ],
+            [
+              "stanleybet",
+              1.07
+            ],
+            [
+              "starvegas",
+              1.07
+            ],
+            [
+              "sunbet",
+              1.07
+            ],
+            [
+              "totosi",
+              1.07
+            ],
+            [
+              "vincitu",
+              1.07
+            ],
+            [
+              "williamhill",
+              1.07
+            ],
+            [
+              "fastbet",
+              1.067
+            ],
+            [
+              "zonagioco",
+              1.067
+            ],
+            [
+              "daznbet",
+              1.06
+            ],
+            [
+              "domusbet",
+              1.06
+            ],
+            [
+              "quigioco",
+              1.05
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Barock Volleys MTV Ludwigsburg",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.1314227885758972,
+          "quota": 7,
+          "fonteQuota": "mediana di 108 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Barock Volleys MTV Ludwigsburg vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              8.1
+            ],
+            [
+              "netwin",
+              8.1
+            ],
+            [
+              "starcasino",
+              8.1
+            ],
+            [
+              "bgame",
+              7.4
+            ],
+            [
+              "codere",
+              7.4
+            ],
+            [
+              "marathonbet",
+              7.4
+            ],
+            [
+              "perlaplay",
+              7.4
+            ],
+            [
+              "sportbet",
+              7.4
+            ],
+            [
+              "sunbet",
+              7.4
+            ],
+            [
+              "totosi",
+              7.4
+            ],
+            [
+              "williamhill",
+              7.4
+            ],
+            [
+              "admiralbet",
+              7
+            ],
+            [
+              "betflag",
+              7
+            ],
+            [
+              "eurobet",
+              7
+            ],
+            [
+              "fastbet",
+              7
+            ],
+            [
+              "goldbet",
+              7
+            ],
+            [
+              "lottomatica",
+              7
+            ],
+            [
+              "planetwin365",
+              7
+            ],
+            [
+              "stanleybet",
+              7
+            ],
+            [
+              "starvegas",
+              7
+            ],
+            [
+              "vincitu",
+              7
+            ],
+            [
+              "zonagioco",
+              7
+            ],
+            [
+              "quigioco",
+              6.9
+            ],
+            [
+              "daznbet",
+              6.7
+            ],
+            [
+              "domusbet",
+              6.6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "eb57648e65843008"
+      ],
+      "idPartita": "pallavolo-2026-11-21-sv-warnemunde-wwk-volleys-munich",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "SV Warnemünde - Wwk Volleys Munich",
+      "casa": "SV Warnemünde",
+      "trasferta": "Wwk Volleys Munich",
+      "inizio": "2026-11-21T18:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "SV Warnemünde",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.48727833400497167,
+          "quota": 1.89,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SV Warnemünde vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.95
+            ],
+            [
+              "netwin",
+              1.95
+            ],
+            [
+              "starcasino",
+              1.95
+            ],
+            [
+              "bgame",
+              1.92
+            ],
+            [
+              "codere",
+              1.92
+            ],
+            [
+              "marathonbet",
+              1.92
+            ],
+            [
+              "perlaplay",
+              1.92
+            ],
+            [
+              "sportbet",
+              1.92
+            ],
+            [
+              "sunbet",
+              1.92
+            ],
+            [
+              "totosi",
+              1.92
+            ],
+            [
+              "williamhill",
+              1.92
+            ],
+            [
+              "winamax",
+              1.92
+            ],
+            [
+              "admiralbet",
+              1.9
+            ],
+            [
+              "betflag",
+              1.9
+            ],
+            [
+              "betwin360",
+              1.9
+            ],
+            [
+              "casinosanremo",
+              1.9
+            ],
+            [
+              "eplay24",
+              1.9
+            ],
+            [
+              "eurobet",
+              1.9
+            ],
+            [
+              "gioca7",
+              1.9
+            ],
+            [
+              "goldbet",
+              1.9
+            ],
+            [
+              "lottomatica",
+              1.9
+            ],
+            [
+              "netbet",
+              1.9
+            ],
+            [
+              "planetwin365",
+              1.9
+            ],
+            [
+              "sportium",
+              1.9
+            ],
+            [
+              "stanleybet",
+              1.9
+            ],
+            [
+              "starvegas",
+              1.9
+            ],
+            [
+              "staryes",
+              1.9
+            ],
+            [
+              "vincitu",
+              1.9
+            ],
+            [
+              "leovegas",
+              1.89
+            ],
+            [
+              "daznbet",
+              1.88
+            ],
+            [
+              "domusbet",
+              1.88
+            ],
+            [
+              "888sport",
+              1.86
+            ],
+            [
+              "888sport_it",
+              1.86
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Wwk Volleys Munich",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.5127216659950282,
+          "quota": 1.79,
+          "fonteQuota": "mediana di 59 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Wwk Volleys Munich vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.86
+            ],
+            [
+              "netwin",
+              1.86
+            ],
+            [
+              "starcasino",
+              1.86
+            ],
+            [
+              "winamax",
+              1.84
+            ],
+            [
+              "bgame",
+              1.83
+            ],
+            [
+              "codere",
+              1.83
+            ],
+            [
+              "marathonbet",
+              1.83
+            ],
+            [
+              "perlaplay",
+              1.83
+            ],
+            [
+              "sportbet",
+              1.83
+            ],
+            [
+              "sunbet",
+              1.83
+            ],
+            [
+              "totosi",
+              1.83
+            ],
+            [
+              "williamhill",
+              1.83
+            ],
+            [
+              "betflag",
+              1.81
+            ],
+            [
+              "betwin360",
+              1.81
+            ],
+            [
+              "casinosanremo",
+              1.81
+            ],
+            [
+              "eplay24",
+              1.81
+            ],
+            [
+              "eurobet",
+              1.81
+            ],
+            [
+              "gioca7",
+              1.81
+            ],
+            [
+              "goldbet",
+              1.81
+            ],
+            [
+              "lottomatica",
+              1.81
+            ],
+            [
+              "netbet",
+              1.81
+            ],
+            [
+              "planetwin365",
+              1.81
+            ],
+            [
+              "sportium",
+              1.81
+            ],
+            [
+              "stanleybet",
+              1.81
+            ],
+            [
+              "staryes",
+              1.81
+            ],
+            [
+              "vincitu",
+              1.81
+            ],
+            [
+              "admiralbet",
+              1.8
+            ],
+            [
+              "starvegas",
+              1.8
+            ],
+            [
+              "daznbet",
+              1.79
+            ],
+            [
+              "domusbet",
+              1.79
+            ],
+            [
+              "leovegas",
+              1.79
+            ],
+            [
+              "888sport",
+              1.76
+            ],
+            [
+              "888sport_it",
+              1.76
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "3b4cf884993f4786",
+        "eedf54fe3b962f0d"
+      ],
+      "idPartita": "pallavolo-2026-11-21-tsv-giesen-grizzlys-vfb-friedrichshafen",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "TSV Giesen Grizzlys - VfB Friedrichshafen",
+      "casa": "TSV Giesen Grizzlys",
+      "trasferta": "VfB Friedrichshafen",
+      "inizio": "2026-11-21T19:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "TSV Giesen Grizzlys": 1512,
+        "VfB Friedrichshafen": 1682
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: TSV Giesen Grizzlys 1512 – VfB Friedrichshafen 1682, vantaggio campo compreso: vittoria della casa 35% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "TSV Giesen Grizzlys",
+          "probModello": null,
+          "probModelloStudio": 0.3469929262268936,
+          "probPinnacle": 0.4664728534875996,
+          "quota": 2,
+          "fonteQuota": "mediana di 116 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TSV Giesen Grizzlys vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              2.02
+            ],
+            [
+              "netwin",
+              2.02
+            ],
+            [
+              "starcasino",
+              2.02
+            ],
+            [
+              "fastbet",
+              2
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "zonagioco",
+              2
+            ],
+            [
+              "bgame",
+              1.98
+            ],
+            [
+              "codere",
+              1.98
+            ],
+            [
+              "marathonbet",
+              1.98
+            ],
+            [
+              "perlaplay",
+              1.98
+            ],
+            [
+              "sportbet",
+              1.98
+            ],
+            [
+              "sunbet",
+              1.98
+            ],
+            [
+              "totosi",
+              1.98
+            ],
+            [
+              "williamhill",
+              1.98
+            ],
+            [
+              "admiralbet",
+              1.97
+            ],
+            [
+              "starvegas",
+              1.97
+            ],
+            [
+              "betflag",
+              1.96
+            ],
+            [
+              "eurobet",
+              1.96
+            ],
+            [
+              "goldbet",
+              1.96
+            ],
+            [
+              "lottomatica",
+              1.96
+            ],
+            [
+              "planetwin365",
+              1.96
+            ],
+            [
+              "stanleybet",
+              1.96
+            ],
+            [
+              "vincitu",
+              1.96
+            ],
+            [
+              "daznbet",
+              1.94
+            ],
+            [
+              "domusbet",
+              1.94
+            ],
+            [
+              "quigioco",
+              1.93
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "VfB Friedrichshafen",
+          "probModello": null,
+          "probModelloStudio": 0.6530070737731064,
+          "probPinnacle": 0.5335271465124004,
+          "quota": 1.72,
+          "fonteQuota": "mediana di 116 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se VfB Friedrichshafen vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.8
+            ],
+            [
+              "netwin",
+              1.8
+            ],
+            [
+              "starcasino",
+              1.8
+            ],
+            [
+              "winamax",
+              1.78
+            ],
+            [
+              "bgame",
+              1.77
+            ],
+            [
+              "codere",
+              1.77
+            ],
+            [
+              "marathonbet",
+              1.77
+            ],
+            [
+              "perlaplay",
+              1.77
+            ],
+            [
+              "sportbet",
+              1.77
+            ],
+            [
+              "sunbet",
+              1.77
+            ],
+            [
+              "totosi",
+              1.77
+            ],
+            [
+              "williamhill",
+              1.77
+            ],
+            [
+              "admiralbet",
+              1.75
+            ],
+            [
+              "betflag",
+              1.75
+            ],
+            [
+              "eurobet",
+              1.75
+            ],
+            [
+              "goldbet",
+              1.75
+            ],
+            [
+              "lottomatica",
+              1.75
+            ],
+            [
+              "planetwin365",
+              1.75
+            ],
+            [
+              "stanleybet",
+              1.75
+            ],
+            [
+              "starvegas",
+              1.75
+            ],
+            [
+              "vincitu",
+              1.75
+            ],
+            [
+              "daznbet",
+              1.74
+            ],
+            [
+              "domusbet",
+              1.74
+            ],
+            [
+              "fastbet",
+              1.727
+            ],
+            [
+              "zonagioco",
+              1.727
+            ],
+            [
+              "quigioco",
+              1.72
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "2498ce6d706f357c",
+        "91099861919f4cb4",
+        "b67724ec183c8437",
+        "d3368149a0ce1a82"
+      ],
+      "idPartita": "pallavolo-2026-11-21-ft-1844-freiburg-swd-powervolleys-duren",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "FT 1844 Freiburg - SWD Powervolleys Duren",
+      "casa": "FT 1844 Freiburg",
+      "trasferta": "SWD Powervolleys Duren",
+      "inizio": "2026-11-21T20:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "FT 1844 Freiburg": 1379,
+        "SWD Powervolleys Duren": 1673
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: FT 1844 Freiburg 1379 – SWD Powervolleys Duren 1673, vantaggio campo compreso: vittoria della casa 21% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "FT 1844 Freiburg",
+          "probModello": null,
+          "probModelloStudio": 0.20678521004172762,
+          "probPinnacle": 0.18327846099973705,
+          "quota": 5,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se FT 1844 Freiburg vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              5.55
+            ],
+            [
+              "netwin",
+              5.55
+            ],
+            [
+              "starcasino",
+              5.55
+            ],
+            [
+              "winamax",
+              5.3
+            ],
+            [
+              "bgame",
+              5.2
+            ],
+            [
+              "codere",
+              5.2
+            ],
+            [
+              "marathonbet",
+              5.2
+            ],
+            [
+              "perlaplay",
+              5.2
+            ],
+            [
+              "sportbet",
+              5.2
+            ],
+            [
+              "sunbet",
+              5.2
+            ],
+            [
+              "totosi",
+              5.2
+            ],
+            [
+              "williamhill",
+              5.2
+            ],
+            [
+              "admiralbet",
+              5.1
+            ],
+            [
+              "betwin360",
+              5.1
+            ],
+            [
+              "casinosanremo",
+              5.1
+            ],
+            [
+              "eplay24",
+              5.1
+            ],
+            [
+              "gioca7",
+              5.1
+            ],
+            [
+              "netbet",
+              5.1
+            ],
+            [
+              "sportium",
+              5.1
+            ],
+            [
+              "starvegas",
+              5.1
+            ],
+            [
+              "staryes",
+              5.1
+            ],
+            [
+              "betflag",
+              5.05
+            ],
+            [
+              "goldbet",
+              5.05
+            ],
+            [
+              "lottomatica",
+              5.05
+            ],
+            [
+              "planetwin365",
+              5.05
+            ],
+            [
+              "eurobet",
+              5
+            ],
+            [
+              "fastbet",
+              5
+            ],
+            [
+              "leovegas",
+              5
+            ],
+            [
+              "stanleybet",
+              5
+            ],
+            [
+              "vincitu",
+              5
+            ],
+            [
+              "zonagioco",
+              5
+            ],
+            [
+              "quigioco",
+              4.95
+            ],
+            [
+              "888sport",
+              4.9
+            ],
+            [
+              "888sport_it",
+              4.9
+            ],
+            [
+              "daznbet",
+              4.9
+            ],
+            [
+              "domusbet",
+              4.9
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "SWD Powervolleys Duren",
+          "probModello": null,
+          "probModelloStudio": 0.7932147899582724,
+          "probPinnacle": 0.8167215390002633,
+          "quota": 1.13,
+          "fonteQuota": "mediana di 144 bookmaker (odss-api)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se SWD Powervolleys Duren vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.15
+            ],
+            [
+              "netwin",
+              1.15
+            ],
+            [
+              "starcasino",
+              1.15
+            ],
+            [
+              "bgame",
+              1.14
+            ],
+            [
+              "codere",
+              1.14
+            ],
+            [
+              "marathonbet",
+              1.14
+            ],
+            [
+              "perlaplay",
+              1.14
+            ],
+            [
+              "sportbet",
+              1.14
+            ],
+            [
+              "sunbet",
+              1.14
+            ],
+            [
+              "totosi",
+              1.14
+            ],
+            [
+              "williamhill",
+              1.14
+            ],
+            [
+              "winamax",
+              1.14
+            ],
+            [
+              "fastbet",
+              1.133
+            ],
+            [
+              "zonagioco",
+              1.133
+            ],
+            [
+              "admiralbet",
+              1.13
+            ],
+            [
+              "betflag",
+              1.13
+            ],
+            [
+              "betwin360",
+              1.13
+            ],
+            [
+              "casinosanremo",
+              1.13
+            ],
+            [
+              "daznbet",
+              1.13
+            ],
+            [
+              "domusbet",
+              1.13
+            ],
+            [
+              "eplay24",
+              1.13
+            ],
+            [
+              "eurobet",
+              1.13
+            ],
+            [
+              "gioca7",
+              1.13
+            ],
+            [
+              "goldbet",
+              1.13
+            ],
+            [
+              "leovegas",
+              1.13
+            ],
+            [
+              "lottomatica",
+              1.13
+            ],
+            [
+              "netbet",
+              1.13
+            ],
+            [
+              "planetwin365",
+              1.13
+            ],
+            [
+              "sportium",
+              1.13
+            ],
+            [
+              "stanleybet",
+              1.13
+            ],
+            [
+              "starvegas",
+              1.13
+            ],
+            [
+              "staryes",
+              1.13
+            ],
+            [
+              "vincitu",
+              1.13
+            ],
+            [
+              "888sport",
+              1.11
+            ],
+            [
+              "888sport_it",
+              1.11
+            ],
+            [
+              "quigioco",
+              1.11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-21-warta-zawiercie-mks-slepsk-suwalki",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Warta Zawiercie - MKS Slepsk Suwalki",
+      "casa": "Warta Zawiercie",
+      "trasferta": "MKS Slepsk Suwalki",
+      "inizio": "2026-11-21T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Warta Zawiercie": 1753,
+        "MKS Slepsk Suwalki": 1388
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Warta Zawiercie 1753 – MKS Slepsk Suwalki 1388, vantaggio campo compreso: vittoria della casa 92% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Warta Zawiercie",
+          "probModello": null,
+          "probModelloStudio": 0.9203880894939455,
+          "probPinnacle": 0.8787405091558732,
+          "quota": 1.06,
+          "fonteQuota": "mediana di 129 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Warta Zawiercie vince la partita.",
+          "bookmaker": [
+            [
+              "starcasino",
+              1.071
+            ],
+            [
+              "admiralbet",
+              1.07
+            ],
+            [
+              "bwin",
+              1.062
+            ],
+            [
+              "betflag",
+              1.06
+            ],
+            [
+              "eurobet",
+              1.06
+            ],
+            [
+              "goldbet",
+              1.06
+            ],
+            [
+              "leovegas",
+              1.06
+            ],
+            [
+              "lottomatica",
+              1.06
+            ],
+            [
+              "netbet",
+              1.06
+            ],
+            [
+              "planetwin365",
+              1.06
+            ],
+            [
+              "stake",
+              1.06
+            ],
+            [
+              "winamax",
+              1.06
+            ],
+            [
+              "betsson",
+              1.05
+            ],
+            [
+              "codere",
+              1.05
+            ],
+            [
+              "pokerstars",
+              1.05
+            ],
+            [
+              "sisal",
+              1.05
+            ],
+            [
+              "snai",
+              1.05
+            ],
+            [
+              "quigioco",
+              1.04
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "MKS Slepsk Suwalki",
+          "probModello": null,
+          "probModelloStudio": 0.07961191050605454,
+          "probPinnacle": 0.12125949084412685,
+          "quota": 7.2,
+          "fonteQuota": "mediana di 129 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se MKS Slepsk Suwalki vince la partita.",
+          "bookmaker": [
+            [
+              "bwin",
+              8.5
+            ],
+            [
+              "admiralbet",
+              8.2
+            ],
+            [
+              "pokerstars",
+              7.5
+            ],
+            [
+              "sisal",
+              7.5
+            ],
+            [
+              "snai",
+              7.5
+            ],
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "eurobet",
+              7.4
+            ],
+            [
+              "stake",
+              7.4
+            ],
+            [
+              "betflag",
+              7.35
+            ],
+            [
+              "goldbet",
+              7.35
+            ],
+            [
+              "lottomatica",
+              7.35
+            ],
+            [
+              "planetwin365",
+              7.35
+            ],
+            [
+              "netbet",
+              7.25
+            ],
+            [
+              "quigioco",
+              7.2
+            ],
+            [
+              "betsson",
+              7
+            ],
+            [
+              "leovegas",
+              6.7
+            ],
+            [
+              "codere",
+              6.5
+            ],
+            [
+              "starcasino",
+              6
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.7784632791071288,
+          "probPinnacle": 0.7780447237109591,
+          "quota": 1.19,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Warta Zawiercie -1,5 vince se Warta Zawiercie vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.22153672089287124,
+          "probPinnacle": 0.22195527628904085,
+          "quota": 4.21,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki +1,5 vince se MKS Slepsk Suwalki vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.9617703251195291,
+          "probPinnacle": 0.8868131868131868,
+          "quota": 1.03,
+          "fonteQuota": "mediana di 3 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Warta Zawiercie +1,5 vince se Warta Zawiercie vince la partita o perde 2-3."
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.03822967488047091,
+          "probPinnacle": 0.11318681318681317,
+          "quota": 8.07,
+          "fonteQuota": "mediana di 3 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: MKS Slepsk Suwalki -1,5 vince se MKS Slepsk Suwalki vince 3-0 o 3-1."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.5243668267716793,
+          "probPinnacle": 0.4231271208561733,
+          "quota": 2.21,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3)."
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.47563317322832066,
+          "probPinnacle": 0.5768728791438267,
+          "quota": 1.62,
+          "fonteQuota": "mediana di 19 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3."
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-21-chks-chelm-trefl-gdansk",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "Chks Chelm - Trefl Gdansk",
+      "casa": "Chks Chelm",
+      "trasferta": "Trefl Gdansk",
+      "inizio": "2026-11-21T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Chks Chelm": 1372,
+        "Trefl Gdansk": 1444
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: Chks Chelm 1372 – Trefl Gdansk 1444, vantaggio campo compreso: vittoria della casa 48% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Chks Chelm",
+          "probModello": null,
+          "probModelloStudio": 0.4830727633400496,
+          "probPinnacle": 0.4628422425032595,
+          "quota": 2.04,
+          "fonteQuota": "mediana di 128 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Chks Chelm vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              2.07
+            ],
+            [
+              "888sport",
+              2.05
+            ],
+            [
+              "starcasino",
+              2.05
+            ],
+            [
+              "eurobet",
+              2.02
+            ],
+            [
+              "netbet",
+              2.02
+            ],
+            [
+              "stake",
+              2.02
+            ],
+            [
+              "winbet",
+              2.02
+            ],
+            [
+              "betsson",
+              2
+            ],
+            [
+              "bwin",
+              2
+            ],
+            [
+              "codere",
+              2
+            ],
+            [
+              "pokerstars",
+              2
+            ],
+            [
+              "sisal",
+              2
+            ],
+            [
+              "snai",
+              2
+            ],
+            [
+              "leovegas",
+              1.98
+            ],
+            [
+              "quigioco",
+              1.98
+            ],
+            [
+              "winamax",
+              1.74
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Trefl Gdansk",
+          "probModello": null,
+          "probModelloStudio": 0.5169272366599504,
+          "probPinnacle": 0.5371577574967407,
+          "quota": 1.7,
+          "fonteQuota": "mediana di 128 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Trefl Gdansk vince la partita.",
+          "bookmaker": [
+            [
+              "winamax",
+              2
+            ],
+            [
+              "admiralbet",
+              1.74
+            ],
+            [
+              "pokerstars",
+              1.72
+            ],
+            [
+              "sisal",
+              1.72
+            ],
+            [
+              "snai",
+              1.72
+            ],
+            [
+              "bwin",
+              1.71
+            ],
+            [
+              "eurobet",
+              1.71
+            ],
+            [
+              "netbet",
+              1.71
+            ],
+            [
+              "stake",
+              1.71
+            ],
+            [
+              "888sport",
+              1.7
+            ],
+            [
+              "leovegas",
+              1.7
+            ],
+            [
+              "winbet",
+              1.7
+            ],
+            [
+              "betsson",
+              1.68
+            ],
+            [
+              "quigioco",
+              1.68
+            ],
+            [
+              "codere",
+              1.67
+            ],
+            [
+              "starcasino",
+              1.636
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.29907902502139727,
+          "probPinnacle": 0.33747907199234634,
+          "quota": 2.85,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm -1,5 vince se Chks Chelm vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winbet",
+              3.05
+            ],
+            [
+              "bwin",
+              3
+            ],
+            [
+              "netbet",
+              2.97
+            ],
+            [
+              "leovegas",
+              2.95
+            ],
+            [
+              "winamax",
+              2.35
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.7009209749786027,
+          "probPinnacle": 0.6625209280076536,
+          "quota": 1.37,
+          "fonteQuota": "mediana di 42 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Trefl Gdansk +1,5 vince se Trefl Gdansk vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "winamax",
+              1.46
+            ],
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "leovegas",
+              1.35
+            ],
+            [
+              "netbet",
+              1.35
+            ],
+            [
+              "bwin",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.6738344518151341,
+          "probPinnacle": 0.6155015197568389,
+          "quota": 1.5,
+          "fonteQuota": "mediana di 69 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Chks Chelm +1,5 vince se Chks Chelm vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.533
+            ],
+            [
+              "winbet",
+              1.53
+            ],
+            [
+              "bwin",
+              1.51
+            ],
+            [
+              "netbet",
+              1.51
+            ],
+            [
+              "stake",
+              1.51
+            ],
+            [
+              "leovegas",
+              1.5
+            ],
+            [
+              "starcasino",
+              1.48
+            ],
+            [
+              "winamax",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.32616554818486587,
+          "probPinnacle": 0.384498480243161,
+          "quota": 2.4,
+          "fonteQuota": "mediana di 69 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Trefl Gdansk -1,5 vince se Trefl Gdansk vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "winamax",
+              2.75
+            ],
+            [
+              "winbet",
+              2.45
+            ],
+            [
+              "bwin",
+              2.4
+            ],
+            [
+              "leovegas",
+              2.4
+            ],
+            [
+              "netbet",
+              2.4
+            ],
+            [
+              "stake",
+              2.4
+            ],
+            [
+              "888sport",
+              2.375
+            ],
+            [
+              "starcasino",
+              2.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.7497553869033589,
+          "probPinnacle": 0.6527541858772142,
+          "quota": 1.35,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "winbet",
+              1.36
+            ],
+            [
+              "bwin",
+              1.35
+            ],
+            [
+              "leovegas",
+              1.35
+            ],
+            [
+              "stake",
+              1.35
+            ],
+            [
+              "betsson",
+              1.33
+            ],
+            [
+              "netbet",
+              1.33
+            ],
+            [
+              "winamax",
+              1.31
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.25024461309664114,
+          "probPinnacle": 0.34724581412278577,
+          "quota": 2.89,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-21T14:47:58+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              3.05
+            ],
+            [
+              "winbet",
+              3.05
+            ],
+            [
+              "bwin",
+              3
+            ],
+            [
+              "leovegas",
+              2.95
+            ],
+            [
+              "betsson",
+              2.89
+            ],
+            [
+              "netbet",
+              2.87
+            ],
+            [
+              "winamax",
+              2.85
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
