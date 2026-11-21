@@ -3276,7 +3276,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3398,7 +3398,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3559,7 +3559,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3721,9 +3721,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità trovata: la ricerca web non ha restituito report infortuni per la partita di oggi (ricerca web, nessun report del 21/11/2026 disponibile)",
-      "oraUltimoControllo": "2026-11-22T00:22:09+01:00",
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 1,83 sotto la minima 2,56",
+      "oraUltimoControllo": "2026-11-22T00:30:38+01:00",
       "esito": null,
       "prova": true
     },
@@ -3762,7 +3762,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3802,7 +3802,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3882,7 +3882,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3961,9 +3961,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "oraUltimoControllo": "2026-11-22T00:30:38+01:00",
       "esito": null,
       "prova": true
     },
@@ -4124,7 +4124,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -4324,7 +4324,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -4484,7 +4484,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -5208,7 +5208,13 @@
               "eurobet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6565072754065668,
+            "alle": "2026-11-22T00:30:38+01:00",
+            "minutiPrima": 29
+          }
         },
         {
           "sport": "nba",
@@ -7277,7 +7283,13 @@
               "eurobet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6565072754065668,
+            "alle": "2026-11-22T00:30:38+01:00",
+            "minutiPrima": 29
+          }
         },
         {
           "sport": "nba",
@@ -11663,7 +11675,13 @@
               "eurobet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6565072754065668,
+            "alle": "2026-11-22T00:30:38+01:00",
+            "minutiPrima": 29
+          }
         },
         {
           "sport": "nba",
@@ -15167,7 +15185,13 @@
               "eurobet",
               1.43
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.52,
+            "prob": 0.6565072754065668,
+            "alle": "2026-11-22T00:30:38+01:00",
+            "minutiPrima": 29
+          }
         },
         {
           "sport": "nba",
@@ -18496,7 +18520,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           },
           {
             "sport": "nba",
@@ -21797,7 +21827,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 1.98,
@@ -23658,7 +23694,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 2,
@@ -25071,7 +25113,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 2.11,
@@ -27438,7 +27486,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 2.01,
@@ -29974,7 +30028,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           },
           {
             "sport": "nba",
@@ -34723,7 +34783,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 1.95,
@@ -39309,7 +39375,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 2.01,
@@ -41192,7 +41264,13 @@
                 "eurobet",
                 1.43
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.52,
+              "prob": 0.6565072754065668,
+              "alle": "2026-11-22T00:30:38+01:00",
+              "minutiPrima": 29
+            }
           }
         ],
         "quota": 2.11,

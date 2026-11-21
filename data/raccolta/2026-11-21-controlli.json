@@ -147,13 +147,83 @@
       "dettagli": [],
       "alle": "2026-11-21T19:27:43+01:00",
       "claude": true
+    },
+    "calcio-2026-11-21-palmeiras-flamengo-1x2-1": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-real-madrid-celta-vigo-under-over-2-5-under-2-5": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-fc-st-pauli-vfl-bochum-under-over-2-5-under-2-5": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-pachuca-toluca-under-over-2-5-under-2-5": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-strasbourg-brest-under-over-3-5-over-3-5": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-motherwell-rangers-doppia-chance-1x": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-as-monaco-auxerre-doppia-chance-x2": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-rc-lens-toulouse-1x2-1": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-napoli-torino-1x2-x": {
+      "esito": "non-eseguito",
+      "motivo": "controllo prima della partita non eseguito: valutata sui dati del mattino",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "nba-2026-11-21-new-york-knicks-portland-trail-blazers-vincente-portland-trail-blazers": {
+      "esito": "revisione",
+      "motivo": "in revisione: quota 1,83 sotto la minima 2,56",
+      "problemi": [
+        {
+          "tipo": "quota",
+          "testo": "quota 1,83 sotto la minima 2,56"
+        }
+      ],
+      "dettagli": [
+        "giocatori chiave non indicati dal giro del mattino"
+      ],
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-chapecoense-cruzeiro-handicap-asiatico-piu-1-trasferta": {
+      "esito": "confermata",
+      "motivo": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quote non controllate (competizione sconosciuta alle quote)",
+      "problemi": [],
+      "dettagli": [
+        "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino)",
+        "quote non controllate (competizione sconosciuta alle quote)"
+      ],
+      "alle": "2026-11-22T00:30:38+01:00"
     }
   },
   "claude": {
-    "avvii": 1,
+    "avvii": 2,
     "richieste": [
       "calcio-2026-11-21-sion-servette-1x2-2",
-      "pallavolo-2026-11-21-chks-chelm-trefl-gdansk-totale-set-3-5-under-3-5"
+      "pallavolo-2026-11-21-chks-chelm-trefl-gdansk-totale-set-3-5-under-3-5",
+      "nba-2026-11-21-new-york-knicks-portland-trail-blazers-vincente-portland-trail-blazers"
     ]
   },
   "pronostici": {
@@ -264,6 +334,60 @@
       "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
       "pronostico": "Under/Over 1.5|Over 1.5",
       "alle": "2026-11-21T19:26:51+01:00"
+    },
+    "calcio-2026-11-21-real-madrid-celta-vigo|Doppia chance|1X": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Doppia chance|1X",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-sc-telstar-fc-zwolle|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-groningen-heerenveen|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-motherwell-rangers|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-bahia-coritiba|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-fc-dallas-portland-timbers|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-inter-miami-cf-columbus-crew|Under/Over 1.5|Over 1.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (controllo non eseguito prima dell'inizio)",
+      "pronostico": "Under/Over 1.5|Over 1.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-chapecoense-cruzeiro|Under/Over trasferta 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over trasferta 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
+    },
+    "calcio-2026-11-21-pumas-unam-monterrey|Under/Over casa 0.5|Over 0.5": {
+      "esito": "non-controllata",
+      "motivo": "formazione non controllata (giocatori chiave non indicati dal giro del mattino)",
+      "pronostico": "Under/Over casa 0.5|Over 0.5",
+      "alle": "2026-11-22T00:30:38+01:00"
     }
   }
 }
