@@ -16,7 +16,7 @@
       "n": 167,
       "limite": 0.9319,
       "quotaMinima": 1.04,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -33,7 +33,7 @@
       "n": 103,
       "limite": 0.9044,
       "quotaMinima": 1.05,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -50,7 +50,7 @@
       "n": 61,
       "limite": 0.8015,
       "quotaMinima": 1.11,
-      "esito": null,
+      "esito": "persa",
       "migliore": false,
       "quota": 1.02
     },
@@ -68,7 +68,7 @@
       "n": 274,
       "limite": 0.8522,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.01
     },
@@ -86,7 +86,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "persa",
       "migliore": true
     },
     {
@@ -120,7 +120,7 @@
       "n": 952,
       "limite": 0.8324,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -137,7 +137,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.08,
       "bookmaker": "snai"
@@ -156,7 +156,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -226,7 +226,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -243,7 +243,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -260,7 +260,7 @@
       "n": 1840,
       "limite": 0.8603,
       "quotaMinima": 1.15,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.12,
       "bookmaker": "sportium"
@@ -279,7 +279,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "persa",
       "migliore": false
     },
     {
@@ -296,7 +296,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -313,7 +313,7 @@
       "n": 952,
       "limite": 0.8324,
       "quotaMinima": 1.17,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -330,7 +330,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     }
   ],
@@ -370,7 +370,7 @@
           "prob": 0.8761,
           "limite": 0.8603,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-20-kawasaki-frontale-avispa-fukuoka",
@@ -386,7 +386,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.51,
@@ -416,7 +416,7 @@
           "prob": 0.8942,
           "limite": 0.8522,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-20-inverness-caledonian-thistle-ayr-united",
@@ -432,7 +432,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "idPartita": "calcio-2026-11-20-tijuana-atlante",
@@ -448,7 +448,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -456,8 +456,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     },
     {
       "id": "sp-2026-11-20-ooji7b",
@@ -494,7 +494,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-20-cerezo-osaka-fc-tokyo",
@@ -510,7 +510,7 @@
           "prob": 0.8561,
           "limite": 0.8324,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.64,
@@ -521,5 +521,6 @@
       "esito": null,
       "quotaFinale": null
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-11-21T12:54:37+01:00"
 }
