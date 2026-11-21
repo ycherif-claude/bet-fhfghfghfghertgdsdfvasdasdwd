@@ -3712,7 +3712,7 @@
       "probPinnacle": 0.35866983372921607,
       "correzioneNotizie": null,
       "value": 0.06859256905787814,
-      "quotaMinima": 2.56,
+      "quotaMinima": 2,
       "puntata": {
         "euro": 1,
         "percentuale": 0.51,
@@ -3721,9 +3721,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_revisione",
-      "motivoStato": "in revisione: quota 1,83 sotto la minima 2,56",
-      "oraUltimoControllo": "2026-11-22T00:30:38+01:00",
+      "stato": "modificata",
+      "motivoStato": "Claude: il calo da 2,60 a 1,83 è spiegato: i Knicks sono senza Karl-Anthony Towns (malattia) e OG Anunoby (polpaccio), entrambi esclusi, oltre a Clarkson. La probabilità di Portland sale a circa il 52-54%, ma Avdija resta in dubbio: a 1,83 non c'è value, si gioca solo da 2,00 in su (Rotowire e FantasyPros (Towns e Anunoby esclusi), Yahoo Sports (report infortuni), 00:33)",
+      "oraUltimoControllo": "2026-11-22T00:31:40+01:00",
       "esito": null,
       "prova": true
     },
@@ -43045,7 +43045,9 @@
     "Quote PlusLiga: 2 partite su 3 non trovate su odss-api, quote da OddsPapi",
     "Giro di Claude non eseguito: notizie non controllate",
     "93 partite già iniziate escluse",
-    "odss-api alle 14:40: 2 partite senza righe a tempo intero (full_time), senza quote: Sporting CP - Uniao da Serra, Farense - CD Fatima"
+    "odss-api alle 14:40: 2 partite senza righe a tempo intero (full_time), senza quote: Sporting CP - Uniao da Serra, Farense - CD Fatima",
+    "Decisione di Claude per calcio-2026-11-21-sion-servette-1x2-2 arrivata dopo l'inizio della partita (00:31): non applicata",
+    "Decisione di Claude per pallavolo-2026-11-21-chks-chelm-trefl-gdansk-totale-set-3-5-under-3-5 arrivata dopo l'inizio della partita (00:31): non applicata"
   ],
   "schedinePronostici": [
     {

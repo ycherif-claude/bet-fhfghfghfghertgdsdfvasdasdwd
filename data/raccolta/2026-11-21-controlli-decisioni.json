@@ -1,6 +1,23 @@
 {
   "decisioni": [
-    { "idGiocata": "calcio-2026-11-21-sion-servette-1x2-2", "stato": "annullata", "motivo": "quota 4,80 sotto la minima 4,86 e nessun fatto concreto e verificato per questa partita che alzi la probabilità del Servette: un articolo Blick sulle assenze del Sion non ha data certa, quindi nel dubbio si annulla", "fonte": "ricerca web (Blick, FotMob), 19:28" },
-    { "idGiocata": "pallavolo-2026-11-21-chks-chelm-trefl-gdansk-totale-set-3-5-under-3-5", "stato": "annullata", "motivo": "quota 2,75 molto sotto la minima 3,03 e nessuna notizia trovata (formazioni, assenze) che giustifichi una probabilità più alta dell'Under 3.5: la quota minima del mattino resta il limite", "fonte": "ricerca web (volleyballworld.com, trojmiasto.pl), 19:28" }
+    {
+      "idGiocata": "calcio-2026-11-21-sion-servette-1x2-2",
+      "stato": "annullata",
+      "motivo": "quota 4,80 sotto la minima 4,86 e nessun fatto concreto e verificato per questa partita che alzi la probabilità del Servette: un articolo Blick sulle assenze del Sion non ha data certa, quindi nel dubbio si annulla",
+      "fonte": "ricerca web (Blick, FotMob), 19:28"
+    },
+    {
+      "idGiocata": "pallavolo-2026-11-21-chks-chelm-trefl-gdansk-totale-set-3-5-under-3-5",
+      "stato": "annullata",
+      "motivo": "quota 2,75 molto sotto la minima 3,03 e nessuna notizia trovata (formazioni, assenze) che giustifichi una probabilità più alta dell'Under 3.5: la quota minima del mattino resta il limite",
+      "fonte": "ricerca web (volleyballworld.com, trojmiasto.pl), 19:28"
+    },
+    {
+      "idGiocata": "nba-2026-11-21-new-york-knicks-portland-trail-blazers-vincente-portland-trail-blazers",
+      "stato": "modificata",
+      "quotaMinima": 2.0,
+      "motivo": "il calo da 2,60 a 1,83 è spiegato: i Knicks sono senza Karl-Anthony Towns (malattia) e OG Anunoby (polpaccio), entrambi esclusi, oltre a Clarkson. La probabilità di Portland sale a circa il 52-54%, ma Avdija resta in dubbio: a 1,83 non c'è value, si gioca solo da 2,00 in su",
+      "fonte": "Rotowire e FantasyPros (Towns e Anunoby esclusi), Yahoo Sports (report infortuni), 00:33"
+    }
   ]
 }
