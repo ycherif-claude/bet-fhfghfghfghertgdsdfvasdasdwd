@@ -263,14 +263,123 @@
       "prob": 0.7840028188865399,
       "alle": "2026-11-22T19:39:38+01:00",
       "minutiPrima": 80
+    },
+    "nba-2026-11-22-chicago-bulls-denver-nuggets|Vincente|Chicago Bulls": {
+      "quota": 4.15,
+      "prob": 0.22648959081119888,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "nba-2026-11-22-chicago-bulls-denver-nuggets|Vincente|Denver Nuggets": {
+      "quota": 1.22,
+      "prob": 0.7735104091888012,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "nba-2026-11-22-chicago-bulls-denver-nuggets|Totale punti 237.5|Over 237.5": {
+      "quota": 1.88,
+      "prob": 0.5069444444444444,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "nba-2026-11-22-chicago-bulls-denver-nuggets|Totale punti 237.5|Under 237.5": {
+      "quota": 1.9,
+      "prob": 0.49305555555555547,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "nba-2026-11-22-washington-wizards-orlando-magic|Vincente|Washington Wizards": {
+      "quota": 2.55,
+      "prob": 0.3611504007543611,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "nba-2026-11-22-washington-wizards-orlando-magic|Vincente|Orlando Magic": {
+      "quota": 1.5,
+      "prob": 0.6388495992456389,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 21
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|1X2|1": {
+      "quota": 2.05,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|1X2|X": {
+      "quota": 2.9,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|1X2|2": {
+      "quota": 4.15,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Doppia chance|1X": {
+      "quota": 1.2,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Doppia chance|12": {
+      "quota": 1.35,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Doppia chance|X2": {
+      "quota": 1.7,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 1.5|Over 1.5": {
+      "quota": 1.5,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 1.5|Under 1.5": {
+      "quota": 2.37,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 2.5|Over 2.5": {
+      "quota": 2.55,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 2.5|Under 2.5": {
+      "quota": 1.44,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 3.5|Over 3.5": {
+      "quota": 4.75,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
+    },
+    "calcio-2026-11-22-instituto-cordoba-huracan|Under/Over 3.5|Under 3.5": {
+      "quota": 1.14,
+      "prob": null,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "minutiPrima": 71
     }
   },
   "copertura": {
     "calcio|Liga Profesional (Argentina)": {
-      "alle": "2026-11-22T19:39:38+01:00",
-      "partite": 1,
+      "alle": "2026-11-23T00:48:53+01:00",
+      "partite": 2,
       "idPartite": [
-        "calcio-2026-11-22-rosario-central-gimnasia-mendoza"
+        "calcio-2026-11-22-rosario-central-gimnasia-mendoza",
+        "calcio-2026-11-22-instituto-cordoba-huracan"
       ]
     },
     "calcio|Serie A (Brasile)": {
@@ -292,6 +401,14 @@
       "partite": 1,
       "idPartite": [
         "calcio-2026-11-22-burgos-cf-albacete"
+      ]
+    },
+    "nba|NBA": {
+      "alle": "2026-11-23T00:48:53+01:00",
+      "partite": 2,
+      "idPartite": [
+        "nba-2026-11-22-chicago-bulls-denver-nuggets",
+        "nba-2026-11-22-washington-wizards-orlando-magic"
       ]
     }
   }

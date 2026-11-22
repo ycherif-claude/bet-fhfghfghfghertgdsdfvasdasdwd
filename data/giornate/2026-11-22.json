@@ -2156,7 +2156,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "gambe": [
@@ -2269,7 +2269,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2350,7 +2350,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2512,7 +2512,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2592,9 +2592,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 1,94 ≥ minima 1,83",
+      "oraUltimoControllo": "2026-11-23T00:48:53+01:00",
       "esito": null,
       "prova": true
     },
@@ -2713,7 +2713,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2753,7 +2753,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2793,9 +2793,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 4,15 ≥ minima 4,02",
+      "oraUltimoControllo": "2026-11-23T00:48:53+01:00",
       "esito": null,
       "prova": true
     },
@@ -2874,7 +2874,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2915,7 +2915,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2995,7 +2995,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3920,7 +3920,13 @@
               1.38
             ]
           ],
-          "probModelloTarato": 0.6295
+          "probModelloTarato": 0.6295,
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6388495992456389,
+            "alle": "2026-11-23T00:48:53+01:00",
+            "minutiPrima": 21
+          }
         },
         {
           "sport": "calcio",
@@ -5597,7 +5603,13 @@
               1.38
             ]
           ],
-          "probModelloTarato": 0.6295
+          "probModelloTarato": 0.6295,
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6388495992456389,
+            "alle": "2026-11-23T00:48:53+01:00",
+            "minutiPrima": 21
+          }
         },
         {
           "sport": "calcio",
@@ -7066,7 +7078,13 @@
               1.38
             ]
           ],
-          "probModelloTarato": 0.6295
+          "probModelloTarato": 0.6295,
+          "chiusura": {
+            "quota": 1.5,
+            "prob": 0.6388495992456389,
+            "alle": "2026-11-23T00:48:53+01:00",
+            "minutiPrima": 21
+          }
         },
         {
           "sport": "calcio",
@@ -11159,7 +11177,15 @@
                 "quigioco",
                 1.5
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.5,
+              "prob": 0.6124031007751938,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 71
+            }
           }
         ],
         "quota": 1.53,
@@ -11353,7 +11379,15 @@
                 "winbet",
                 1.45
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.45,
+              "prob": 0.6622606734265101,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 101
+            }
           }
         ],
         "quota": 1.48,
@@ -11910,7 +11944,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -12959,7 +12999,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -14427,7 +14473,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -15251,7 +15303,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -15949,7 +16007,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -19326,7 +19390,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -20375,7 +20445,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -21843,7 +21919,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
@@ -22667,7 +22749,13 @@
                 1.38
               ]
             ],
-            "probModelloTarato": 0.6295
+            "probModelloTarato": 0.6295,
+            "chiusura": {
+              "quota": 1.5,
+              "prob": 0.6388495992456389,
+              "alle": "2026-11-23T00:48:53+01:00",
+              "minutiPrima": 21
+            }
           }
         ],
         "quota": 1.97,
