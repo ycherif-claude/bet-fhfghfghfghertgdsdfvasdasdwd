@@ -2124,7 +2124,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2309,7 +2309,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2389,9 +2389,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni non uscite: valutata sui dati del mattino; quota 4,00 ≥ minima 3,98",
+      "oraUltimoControllo": "2026-11-22T19:39:38+01:00",
       "esito": null,
       "prova": true
     },
@@ -2472,7 +2472,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2633,7 +2633,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2673,7 +2673,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2834,7 +2834,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3035,7 +3035,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3373,7 +3373,13 @@
               "zonagioco",
               1.417
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6901017266764824,
+            "alle": "2026-11-22T19:39:38+01:00",
+            "minutiPrima": 20
+          }
         },
         {
           "sport": "calcio",
@@ -4630,7 +4636,13 @@
               "zonagioco",
               1.417
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6901017266764824,
+            "alle": "2026-11-22T19:39:38+01:00",
+            "minutiPrima": 20
+          }
         },
         {
           "sport": "calcio",
@@ -6114,7 +6126,13 @@
               "zonagioco",
               1.417
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6901017266764824,
+            "alle": "2026-11-22T19:39:38+01:00",
+            "minutiPrima": 20
+          }
         },
         {
           "sport": "calcio",
@@ -8028,7 +8046,13 @@
               "zonagioco",
               1.417
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6901017266764824,
+            "alle": "2026-11-22T19:39:38+01:00",
+            "minutiPrima": 20
+          }
         },
         {
           "sport": "calcio",
@@ -9499,7 +9523,13 @@
               "zonagioco",
               1.417
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.41,
+            "prob": 0.6901017266764824,
+            "alle": "2026-11-22T19:39:38+01:00",
+            "minutiPrima": 20
+          }
         },
         {
           "sport": "calcio",
@@ -10554,7 +10584,22 @@
             "probMercato": 0.5949,
             "probModello": 0.6079919943502147,
             "esito": null,
-            "probModelloTarato": 0.6706
+            "probModelloTarato": 0.6706,
+            "chiusura": {
+              "quota": 1.53,
+              "prob": null,
+              "probMediana": 0.6218502952461389,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            },
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.53,
+              "prob": 0.6218502952461389,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           }
         ],
         "quota": 1.6,
@@ -10600,7 +10645,15 @@
                 "zonagioco",
                 1.46
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.41,
+              "prob": 0.6779097636500411,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 65
+            }
           }
         ],
         "quota": 1.46,
@@ -10758,7 +10811,15 @@
                 "winbet",
                 1.32
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.37,
+              "prob": 0.6765375854214124,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 80
+            }
           }
         ],
         "quota": 1.33,
@@ -11332,7 +11393,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -12315,7 +12382,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -13991,7 +14064,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -14655,7 +14734,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -15287,7 +15372,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -16797,7 +16888,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -18712,7 +18809,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -19695,7 +19798,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -21371,7 +21480,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
@@ -22035,7 +22150,13 @@
                 "zonagioco",
                 1.417
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.41,
+              "prob": 0.6901017266764824,
+              "alle": "2026-11-22T19:39:38+01:00",
+              "minutiPrima": 20
+            }
           },
           {
             "sport": "calcio",
