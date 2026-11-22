@@ -1,0 +1,1064 @@
+{
+  "data": "2026-11-22",
+  "generataAlle": "2026-11-22T14:40:40+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 1,
+      "rimaste": 186
+    }
+  },
+  "competizioniNonCoperte": [
+    "Serie A1 femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Squadre Bundesliga non riconosciute: VCO Berlin",
+    "Squadre SuperLega non riconosciute: Power Volley Milano, VV Monza",
+    "Quote pallavolo: 18 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "7ebdfdb2f515e099",
+        "bba27c25aa6a228d",
+        "c22d8938c8f4e2dc",
+        "d9471454ae4cbc43",
+        "ec8629e4d4aff2dd"
+      ],
+      "idPartita": "pallavolo-2026-11-22-netzhoppers-konigs-wusterhausen-tv-rottenburg",
+      "sport": "pallavolo",
+      "competizione": "Bundesliga",
+      "partita": "Netzhoppers Konigs Wusterhausen - TV Rottenburg",
+      "casa": "Netzhoppers Konigs Wusterhausen",
+      "trasferta": "TV Rottenburg",
+      "inizio": "2026-11-22T17:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Netzhoppers Konigs Wusterhausen",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.732453061334115,
+          "quota": 1.27,
+          "fonteQuota": "mediana di 125 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Netzhoppers Konigs Wusterhausen vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.28
+            ],
+            [
+              "netwin",
+              1.28
+            ],
+            [
+              "starcasino",
+              1.28
+            ],
+            [
+              "fastbet",
+              1.273
+            ],
+            [
+              "zonagioco",
+              1.273
+            ],
+            [
+              "bgame",
+              1.27
+            ],
+            [
+              "codere",
+              1.27
+            ],
+            [
+              "marathonbet",
+              1.27
+            ],
+            [
+              "perlaplay",
+              1.27
+            ],
+            [
+              "sportbet",
+              1.27
+            ],
+            [
+              "sunbet",
+              1.27
+            ],
+            [
+              "totosi",
+              1.27
+            ],
+            [
+              "williamhill",
+              1.27
+            ],
+            [
+              "winamax",
+              1.27
+            ],
+            [
+              "betflag",
+              1.26
+            ],
+            [
+              "betwin360",
+              1.26
+            ],
+            [
+              "casinosanremo",
+              1.26
+            ],
+            [
+              "eplay24",
+              1.26
+            ],
+            [
+              "eurobet",
+              1.26
+            ],
+            [
+              "gioca7",
+              1.26
+            ],
+            [
+              "goldbet",
+              1.26
+            ],
+            [
+              "lottomatica",
+              1.26
+            ],
+            [
+              "netbet",
+              1.26
+            ],
+            [
+              "planetwin365",
+              1.26
+            ],
+            [
+              "sportium",
+              1.26
+            ],
+            [
+              "stanleybet",
+              1.26
+            ],
+            [
+              "staryes",
+              1.26
+            ],
+            [
+              "vincitu",
+              1.26
+            ],
+            [
+              "admiralbet",
+              1.25
+            ],
+            [
+              "daznbet",
+              1.25
+            ],
+            [
+              "domusbet",
+              1.25
+            ],
+            [
+              "starvegas",
+              1.25
+            ],
+            [
+              "quigioco",
+              1.24
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "TV Rottenburg",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.26754693866588564,
+          "quota": 3.4,
+          "fonteQuota": "mediana di 125 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se TV Rottenburg vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              3.7
+            ],
+            [
+              "netwin",
+              3.7
+            ],
+            [
+              "starcasino",
+              3.7
+            ],
+            [
+              "winamax",
+              3.6
+            ],
+            [
+              "bgame",
+              3.55
+            ],
+            [
+              "codere",
+              3.55
+            ],
+            [
+              "marathonbet",
+              3.55
+            ],
+            [
+              "perlaplay",
+              3.55
+            ],
+            [
+              "sportbet",
+              3.55
+            ],
+            [
+              "sunbet",
+              3.55
+            ],
+            [
+              "totosi",
+              3.55
+            ],
+            [
+              "williamhill",
+              3.55
+            ],
+            [
+              "admiralbet",
+              3.5
+            ],
+            [
+              "betflag",
+              3.5
+            ],
+            [
+              "betwin360",
+              3.5
+            ],
+            [
+              "casinosanremo",
+              3.5
+            ],
+            [
+              "eplay24",
+              3.5
+            ],
+            [
+              "eurobet",
+              3.5
+            ],
+            [
+              "gioca7",
+              3.5
+            ],
+            [
+              "goldbet",
+              3.5
+            ],
+            [
+              "lottomatica",
+              3.5
+            ],
+            [
+              "netbet",
+              3.5
+            ],
+            [
+              "planetwin365",
+              3.5
+            ],
+            [
+              "sportium",
+              3.5
+            ],
+            [
+              "stanleybet",
+              3.5
+            ],
+            [
+              "starvegas",
+              3.5
+            ],
+            [
+              "staryes",
+              3.5
+            ],
+            [
+              "vincitu",
+              3.5
+            ],
+            [
+              "daznbet",
+              3.45
+            ],
+            [
+              "domusbet",
+              3.45
+            ],
+            [
+              "quigioco",
+              3.45
+            ],
+            [
+              "fastbet",
+              3.4
+            ],
+            [
+              "zonagioco",
+              3.4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "4e704609037f4daa",
+        "6684d75d22eba156",
+        "e21c8194a6f2cd1e",
+        "f52fa569e45eb25e"
+      ],
+      "idPartita": "pallavolo-2026-11-22-gas-sales-piacenza-perugia-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Gas Sales Piacenza - Perugia Volley",
+      "casa": "Gas Sales Piacenza",
+      "trasferta": "Perugia Volley",
+      "inizio": "2026-11-22T18:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Gas Sales Piacenza": 1640,
+        "Perugia Volley": 1802
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Gas Sales Piacenza 1640 – Perugia Volley 1802, vantaggio campo compreso: vittoria della casa 36% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Gas Sales Piacenza",
+          "probModello": null,
+          "probModelloStudio": 0.3573040472722564,
+          "probPinnacle": 0.2646282174161811,
+          "quota": 3.66,
+          "fonteQuota": "mediana di 125 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Gas Sales Piacenza vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              3.667
+            ],
+            [
+              "zonagioco",
+              3.667
+            ],
+            [
+              "winamax",
+              3.55
+            ],
+            [
+              "betflag",
+              3.5
+            ],
+            [
+              "goldbet",
+              3.5
+            ],
+            [
+              "lottomatica",
+              3.5
+            ],
+            [
+              "planetwin365",
+              3.5
+            ],
+            [
+              "betwin360",
+              3.45
+            ],
+            [
+              "casinosanremo",
+              3.45
+            ],
+            [
+              "eplay24",
+              3.45
+            ],
+            [
+              "gioca7",
+              3.45
+            ],
+            [
+              "netbet",
+              3.45
+            ],
+            [
+              "sportium",
+              3.45
+            ],
+            [
+              "staryes",
+              3.45
+            ],
+            [
+              "quigioco",
+              3.35
+            ],
+            [
+              "leovegas",
+              3.25
+            ],
+            [
+              "888sport",
+              3.15
+            ],
+            [
+              "888sport_it",
+              3.15
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Perugia Volley",
+          "probModello": null,
+          "probModelloStudio": 0.6426959527277436,
+          "probPinnacle": 0.7353717825838187,
+          "quota": 1.25,
+          "fonteQuota": "mediana di 125 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Perugia Volley vince la partita.",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.28
+            ],
+            [
+              "winamax",
+              1.28
+            ],
+            [
+              "betflag",
+              1.27
+            ],
+            [
+              "betwin360",
+              1.27
+            ],
+            [
+              "casinosanremo",
+              1.27
+            ],
+            [
+              "eplay24",
+              1.27
+            ],
+            [
+              "gioca7",
+              1.27
+            ],
+            [
+              "goldbet",
+              1.27
+            ],
+            [
+              "lottomatica",
+              1.27
+            ],
+            [
+              "netbet",
+              1.27
+            ],
+            [
+              "planetwin365",
+              1.27
+            ],
+            [
+              "sportium",
+              1.27
+            ],
+            [
+              "staryes",
+              1.27
+            ],
+            [
+              "888sport",
+              1.26
+            ],
+            [
+              "888sport_it",
+              1.26
+            ],
+            [
+              "fastbet",
+              1.25
+            ],
+            [
+              "zonagioco",
+              1.25
+            ],
+            [
+              "quigioco",
+              1.24
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "5e3942a71cd9b82f",
+        "61a3218fb24f9737",
+        "866f2a5876750b2d",
+        "86f7fe093f17000d",
+        "8afe26c7bb9c0fcc",
+        "f4ac3aec41a60aa7",
+        "f89d2d9f70269968"
+      ],
+      "idPartita": "pallavolo-2026-11-22-volley-civitanova-tinet-prata-di-pordenone",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Volley Civitanova - Tinet Prata Di Pordenone",
+      "casa": "Volley Civitanova",
+      "trasferta": "Tinet Prata Di Pordenone",
+      "inizio": "2026-11-22T18:00:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Civitanova",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.9020852284596165,
+          "quota": 1.03,
+          "fonteQuota": "mediana di 56 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Volley Civitanova vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              1.04
+            ],
+            [
+              "betwin360",
+              1.04
+            ],
+            [
+              "casinosanremo",
+              1.04
+            ],
+            [
+              "eplay24",
+              1.04
+            ],
+            [
+              "eurobet",
+              1.04
+            ],
+            [
+              "gioca7",
+              1.04
+            ],
+            [
+              "goldbet",
+              1.04
+            ],
+            [
+              "lottomatica",
+              1.04
+            ],
+            [
+              "netbet",
+              1.04
+            ],
+            [
+              "planetwin365",
+              1.04
+            ],
+            [
+              "sportium",
+              1.04
+            ],
+            [
+              "staryes",
+              1.04
+            ],
+            [
+              "winamax",
+              1.04
+            ],
+            [
+              "quigioco",
+              1.02
+            ],
+            [
+              "leovegas",
+              1.01
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Tinet Prata Di Pordenone",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.09791477154038426,
+          "quota": 9.65,
+          "fonteQuota": "mediana di 56 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Tinet Prata Di Pordenone vince la partita.",
+          "bookmaker": [
+            [
+              "leovegas",
+              10.5
+            ],
+            [
+              "winamax",
+              9.5
+            ],
+            [
+              "betflag",
+              9.2
+            ],
+            [
+              "eurobet",
+              9.2
+            ],
+            [
+              "goldbet",
+              9.2
+            ],
+            [
+              "lottomatica",
+              9.2
+            ],
+            [
+              "planetwin365",
+              9.2
+            ],
+            [
+              "betwin360",
+              8.75
+            ],
+            [
+              "casinosanremo",
+              8.75
+            ],
+            [
+              "eplay24",
+              8.75
+            ],
+            [
+              "gioca7",
+              8.75
+            ],
+            [
+              "netbet",
+              8.75
+            ],
+            [
+              "sportium",
+              8.75
+            ],
+            [
+              "staryes",
+              8.75
+            ],
+            [
+              "quigioco",
+              8.4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idOdss": [
+        "1d47f04c236f5be5",
+        "34d40c074ff46cb7",
+        "5098766f0eceea00",
+        "794228227bffb4b9",
+        "8970f4162ae231dd",
+        "9ef3a372cc06863c",
+        "a17e983c13761dd6",
+        "ae2ca0c90bd55dc9"
+      ],
+      "idPartita": "pallavolo-2026-11-22-modena-volley-cisterna-volley",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Modena Volley - Cisterna Volley",
+      "casa": "Modena Volley",
+      "trasferta": "Cisterna Volley",
+      "inizio": "2026-11-22T19:00:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Modena Volley": 1577,
+        "Cisterna Volley": 1299
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Modena Volley 1577 – Cisterna Volley 1299, vantaggio campo compreso: vittoria della casa 88% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Modena Volley",
+          "probModello": null,
+          "probModelloStudio": 0.8752906596606985,
+          "probPinnacle": 0.8143219264892269,
+          "quota": 1.15,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Modena Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              1.17
+            ],
+            [
+              "netwin",
+              1.17
+            ],
+            [
+              "starcasino",
+              1.17
+            ],
+            [
+              "admiralbet",
+              1.16
+            ],
+            [
+              "betflag",
+              1.16
+            ],
+            [
+              "betwin360",
+              1.16
+            ],
+            [
+              "bgame",
+              1.16
+            ],
+            [
+              "casinosanremo",
+              1.16
+            ],
+            [
+              "codere",
+              1.16
+            ],
+            [
+              "eplay24",
+              1.16
+            ],
+            [
+              "eurobet",
+              1.16
+            ],
+            [
+              "gioca7",
+              1.16
+            ],
+            [
+              "goldbet",
+              1.16
+            ],
+            [
+              "lottomatica",
+              1.16
+            ],
+            [
+              "marathonbet",
+              1.16
+            ],
+            [
+              "netbet",
+              1.16
+            ],
+            [
+              "perlaplay",
+              1.16
+            ],
+            [
+              "planetwin365",
+              1.16
+            ],
+            [
+              "sportbet",
+              1.16
+            ],
+            [
+              "sportium",
+              1.16
+            ],
+            [
+              "stanleybet",
+              1.16
+            ],
+            [
+              "starvegas",
+              1.16
+            ],
+            [
+              "staryes",
+              1.16
+            ],
+            [
+              "sunbet",
+              1.16
+            ],
+            [
+              "totosi",
+              1.16
+            ],
+            [
+              "vincitu",
+              1.16
+            ],
+            [
+              "williamhill",
+              1.16
+            ],
+            [
+              "winamax",
+              1.16
+            ],
+            [
+              "fastbet",
+              1.154
+            ],
+            [
+              "zonagioco",
+              1.154
+            ],
+            [
+              "daznbet",
+              1.15
+            ],
+            [
+              "domusbet",
+              1.15
+            ],
+            [
+              "leovegas",
+              1.14
+            ],
+            [
+              "quigioco",
+              1.14
+            ],
+            [
+              "888sport",
+              1.12
+            ],
+            [
+              "888sport_it",
+              1.12
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Cisterna Volley",
+          "probModello": null,
+          "probModelloStudio": 0.12470934033930148,
+          "probPinnacle": 0.18567807351077312,
+          "quota": 5,
+          "fonteQuota": "mediana di 156 bookmaker (odss-api)",
+          "oraQuota": "2026-11-22T14:40:40+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Cisterna Volley vince la partita.",
+          "bookmaker": [
+            [
+              "betsson",
+              5.05
+            ],
+            [
+              "netwin",
+              5.05
+            ],
+            [
+              "starcasino",
+              5.05
+            ],
+            [
+              "fastbet",
+              5
+            ],
+            [
+              "zonagioco",
+              5
+            ],
+            [
+              "betflag",
+              4.8
+            ],
+            [
+              "bgame",
+              4.8
+            ],
+            [
+              "codere",
+              4.8
+            ],
+            [
+              "eurobet",
+              4.8
+            ],
+            [
+              "goldbet",
+              4.8
+            ],
+            [
+              "leovegas",
+              4.8
+            ],
+            [
+              "lottomatica",
+              4.8
+            ],
+            [
+              "marathonbet",
+              4.8
+            ],
+            [
+              "perlaplay",
+              4.8
+            ],
+            [
+              "planetwin365",
+              4.8
+            ],
+            [
+              "sportbet",
+              4.8
+            ],
+            [
+              "sunbet",
+              4.8
+            ],
+            [
+              "totosi",
+              4.8
+            ],
+            [
+              "williamhill",
+              4.8
+            ],
+            [
+              "winamax",
+              4.8
+            ],
+            [
+              "888sport",
+              4.7
+            ],
+            [
+              "888sport_it",
+              4.7
+            ],
+            [
+              "admiralbet",
+              4.65
+            ],
+            [
+              "betwin360",
+              4.65
+            ],
+            [
+              "casinosanremo",
+              4.65
+            ],
+            [
+              "eplay24",
+              4.65
+            ],
+            [
+              "gioca7",
+              4.65
+            ],
+            [
+              "netbet",
+              4.65
+            ],
+            [
+              "sportium",
+              4.65
+            ],
+            [
+              "starvegas",
+              4.65
+            ],
+            [
+              "staryes",
+              4.65
+            ],
+            [
+              "stanleybet",
+              4.6
+            ],
+            [
+              "vincitu",
+              4.6
+            ],
+            [
+              "quigioco",
+              4.55
+            ],
+            [
+              "daznbet",
+              4.5
+            ],
+            [
+              "domusbet",
+              4.5
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
