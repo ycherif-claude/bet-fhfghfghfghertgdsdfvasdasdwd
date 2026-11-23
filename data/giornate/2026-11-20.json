@@ -1415,7 +1415,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "vinta",
           "migliore": false
         },
         {
@@ -1448,7 +1448,7 @@
           "fonteConsenso": "mediana di 56 bookmaker",
           "probMercato": 0.8189,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         },
         {
@@ -1463,7 +1463,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": false
         }
       ]
@@ -2629,8 +2629,9 @@
       "stato": "in_attesa",
       "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
-      "esito": null,
-      "prova": true
+      "esito": "persa",
+      "prova": true,
+      "esitoDalRegistro": true
     },
     {
       "id": "nba-2026-11-20-atlanta-hawks-charlotte-hornets-handicap-meno-6-5-casa",
@@ -4826,7 +4827,7 @@
           "quotaBet365": null,
           "probMercato": 0.7037,
           "probModello": 0.670032178715667,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7119,
           "bookmaker": [
             [
@@ -7806,7 +7807,7 @@
           "quotaBet365": null,
           "probMercato": 0.7037,
           "probModello": 0.670032178715667,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7119,
           "bookmaker": [
             [
@@ -10680,7 +10681,7 @@
           "quotaBet365": null,
           "probMercato": 0.7037,
           "probModello": 0.670032178715667,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7119,
           "bookmaker": [
             [
@@ -13622,7 +13623,7 @@
           "quotaBet365": null,
           "probMercato": 0.7037,
           "probModello": 0.670032178715667,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7119,
           "bookmaker": [
             [
@@ -15282,7 +15283,7 @@
           "quotaBet365": null,
           "probMercato": 0.7037,
           "probModello": 0.670032178715667,
-          "esito": null,
+          "esito": "vinta",
           "probModelloTarato": 0.7119,
           "bookmaker": [
             [
@@ -18024,7 +18025,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -18147,8 +18148,8 @@
         "prob": 0.45684204,
         "probModello": 0.49847238,
         "valueAtteso": -0.11847759961600002,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.93
       },
       {
         "id": "Q2M8-2026-11-20",
@@ -19267,7 +19268,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -19494,8 +19495,8 @@
         "prob": 0.47327649456521736,
         "probModello": 0.5117849099999999,
         "valueAtteso": -0.09944948614130433,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.9
       },
       {
         "id": "Q2P4-2026-11-20",
@@ -22175,7 +22176,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -22394,8 +22395,8 @@
         "prob": 0.45163466,
         "probModello": 0.47077947,
         "valueAtteso": -0.1224738556199999,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.94
       },
       {
         "id": "Q2O7-2026-11-20",
@@ -24300,7 +24301,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -24519,8 +24520,8 @@
         "prob": 0.45163466,
         "probModello": 0.47077947,
         "valueAtteso": -0.1224738556199999,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.94
       }
     ],
     "probabilitaConfermate": [
@@ -25101,7 +25102,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -25328,8 +25329,8 @@
         "prob": 0.47327649456521736,
         "probModello": 0.5117849099999999,
         "valueAtteso": -0.09944948614130433,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.9
       },
       {
         "id": "Q2PC4-2026-11-20",
@@ -27003,7 +27004,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -27059,8 +27060,8 @@
         "prob": 0.49737516,
         "probModello": 0.52780266,
         "valueAtteso": -0.111911783062,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.79
       },
       {
         "id": "D2P5-2026-11-20",
@@ -27953,7 +27954,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -28118,8 +28119,8 @@
         "prob": 0.34905788728799997,
         "probModello": 0.391946255316,
         "valueAtteso": -0.14446121260443556,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 2.45
       }
     ],
     "over15": [
@@ -30683,7 +30684,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -30806,8 +30807,8 @@
         "prob": 0.45684204,
         "probModello": 0.49847238,
         "valueAtteso": -0.11847759961600002,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.93
       },
       {
         "id": "Q2T8-2026-11-20",
@@ -32053,7 +32054,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -32280,8 +32281,8 @@
         "prob": 0.47327649456521736,
         "probModello": 0.5117849099999999,
         "valueAtteso": -0.09944948614130433,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.9
       },
       {
         "id": "Q2PT4-2026-11-20",
@@ -35191,7 +35192,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -35410,8 +35411,8 @@
         "prob": 0.45163466,
         "probModello": 0.47077947,
         "valueAtteso": -0.1224738556199999,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.94
       },
       {
         "id": "Q2OT8-2026-11-20",
@@ -37204,7 +37205,7 @@
             "quotaBet365": null,
             "probMercato": 0.7037,
             "probModello": 0.670032178715667,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7119,
             "bookmaker": [
               [
@@ -37423,8 +37424,8 @@
         "prob": 0.45163466,
         "probModello": 0.47077947,
         "valueAtteso": -0.1224738556199999,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.94
       }
     ]
   },
@@ -37763,7 +37764,7 @@
           "prob": 0.8388,
           "limite": 0.8236,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         },
         {
           "idPartita": "calcio-2026-11-20-kyoto-sanga-urawa-red-diamonds",
@@ -37803,8 +37804,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     }
   ]
 }
