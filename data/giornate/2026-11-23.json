@@ -1,0 +1,3708 @@
+{
+  "data": "2026-11-23",
+  "generataAlle": "2026-11-23T22:39:58+01:00",
+  "giro": "riserva",
+  "notizieControllate": false,
+  "prova": true,
+  "competizioniNonCoperte": [],
+  "candidati": [
+    {
+      "id": "calcio-2026-11-23-internacional-vitoria-1x2-2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Internacional - Vitória",
+      "idPartita": "calcio-2026-11-23-internacional-vitoria",
+      "inizio": "2026-11-23T23:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.18571622287773204,
+      "quota": 5.42,
+      "fonteQuota": "mediana di 18 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Internacional 1,5 – Vitória 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 21%, Pinnacle 16%, probabilità usata 19%",
+        "Quota mediana 5,42 su 18 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.20903244575546412,
+      "probPinnacle": 0.1624,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-internacional-vitoria-doppia-chance-x2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Internacional - Vitória",
+      "idPartita": "calcio-2026-11-23-internacional-vitoria",
+      "inizio": "2026-11-23T23:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Doppia chance",
+      "selezione": "X2",
+      "prob": 0.4595119251102013,
+      "quota": 2.2,
+      "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Internacional 1,5 – Vitória 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 49%, Consenso bookmaker 43%, probabilità usata 46%",
+        "Quota mediana 2,20 su 12 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.4884238502204026,
+      "probPinnacle": 0.4306,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-botafogo-sao-paulo-under-over-1-5-under-1-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Botafogo - São Paulo",
+      "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+      "inizio": "2026-11-24T00:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 1.5",
+      "selezione": "Under 1.5",
+      "prob": 0.2876899248002743,
+      "quota": 3.5,
+      "fonteQuota": "mediana di 6 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Botafogo 1,4 – São Paulo 1,0 (gol e xG, ultime 2 stagioni)",
+        "Modello 30%, Consenso bookmaker 27%, probabilità usata 29%",
+        "Quota mediana 3,50 su 6 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.30307984960054857,
+      "probPinnacle": 0.2723,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-santos-gremio-1x2-x",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "X",
+      "prob": 0.24038202310915002,
+      "quota": 4.25,
+      "fonteQuota": "mediana di 102 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Santos 1,7 – Grêmio 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 26%, Pinnacle 22%, probabilità usata 24%",
+        "Quota mediana 4,25 su 102 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.2606640462183,
+      "probPinnacle": 0.2201,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-santos-gremio-under-over-1-5-under-1-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 1.5",
+      "selezione": "Under 1.5",
+      "prob": 0.21711808851795894,
+      "quota": 5.22,
+      "fonteQuota": "mediana di 9 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Santos 1,7 – Grêmio 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 26%, Pinnacle 18%, probabilità usata 22%",
+        "Quota mediana 5,22 su 9 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.25693617703591787,
+      "probPinnacle": 0.1773,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-santos-gremio-under-over-2-5-under-2-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 2.5",
+      "selezione": "Under 2.5",
+      "prob": 0.44645473587201034,
+      "quota": 2.36,
+      "fonteQuota": "mediana di 94 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Santos 1,7 – Grêmio 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 52%, Pinnacle 38%, probabilità usata 45%",
+        "Quota mediana 2,36 su 94 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.5168094717440207,
+      "probPinnacle": 0.3761,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-23-santos-gremio-under-over-3-5-under-3-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 3.5",
+      "selezione": "Under 3.5",
+      "prob": 0.6633981343947272,
+      "quota": 1.59,
+      "fonteQuota": "mediana di 11 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Santos 1,7 – Grêmio 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 73%, Pinnacle 59%, probabilità usata 66%",
+        "Quota mediana 1,59 su 11 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.7345962687894544,
+      "probPinnacle": 0.5922,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-vincente-memphis-grizzlies",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Charlotte Hornets - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Memphis Grizzlies",
+      "prob": 0.685417962489681,
+      "quota": 1.65,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Charlotte Hornets 104 – Memphis Grizzlies 115 (stagione in corso e precedente)",
+        "Modello 80%, Pinnacle 57%, probabilità usata 69%",
+        "Quota mediana 1,65 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Memphis Grizzlies vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.796757208509069,
+      "probPinnacle": 0.5740787164702932,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-handicap-piu-2-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Charlotte Hornets - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +2.5",
+      "selezione": "trasferta",
+      "prob": 0.6255671520739225,
+      "quota": 1.81,
+      "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Charlotte Hornets 104 – Memphis Grizzlies 115 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 51%, probabilità usata 63%",
+        "Quota mediana 1,81 su 75 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Memphis Grizzlies vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Memphis Grizzlies -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7371992491746924,
+      "probPinnacle": 0.5139350549731526,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-totale-punti-213-5-over-213-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Charlotte Hornets - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 213.5",
+      "selezione": "Over 213.5",
+      "prob": 0.5758947815337212,
+      "quota": 1.75,
+      "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Charlotte Hornets 104 – Memphis Grizzlies 115 (stagione in corso e precedente)",
+        "Modello 63%, Pinnacle 53%, probabilità usata 58%",
+        "Quota mediana 1,75 su 75 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 213.5: Over vince se le due squadre segnano almeno 214 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (213.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6250660928892859,
+      "probPinnacle": 0.5267234701781565,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-vincente-portland-trail-blazers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Philadelphia 76ers - Portland Trail Blazers",
+      "idPartita": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Portland Trail Blazers",
+      "prob": 0.5306055090928775,
+      "quota": 2.25,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Philadelphia 76ers 114 – Portland Trail Blazers 119 (stagione in corso e precedente)",
+        "Modello 64%, Pinnacle 42%, probabilità usata 53%",
+        "Quota mediana 2,25 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Portland Trail Blazers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.641211018185755,
+      "probPinnacle": 0.42000000000000004,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-handicap-meno-3-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Philadelphia 76ers - Portland Trail Blazers",
+      "idPartita": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -3.5",
+      "selezione": "trasferta",
+      "prob": 0.619325674739557,
+      "quota": 1.84,
+      "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Philadelphia 76ers 114 – Portland Trail Blazers 119 (stagione in corso e precedente)",
+        "Modello 72%, Pinnacle 51%, probabilità usata 62%",
+        "Quota mediana 1,84 su 79 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Portland Trail Blazers perdono con meno di 4 punti di scarto o vincono, supplementari compresi. Gioca solo su Portland Trail Blazers +3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7247162945059615,
+      "probPinnacle": 0.5139350549731526,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets-vincente-minnesota-timberwolves",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Minnesota Timberwolves - Brooklyn Nets",
+      "idPartita": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets",
+      "inizio": "2026-11-24T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Minnesota Timberwolves",
+      "prob": 0.871254054729524,
+      "quota": 1.15,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Minnesota Timberwolves 121 – Brooklyn Nets 101 (stagione in corso e precedente)",
+        "Modello 92%, Pinnacle 82%, probabilità usata 87%",
+        "Quota mediana 1,15 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Minnesota Timberwolves vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.919971200751606,
+      "probPinnacle": 0.822536908707442,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets-handicap-meno-11-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Minnesota Timberwolves - Brooklyn Nets",
+      "idPartita": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets",
+      "inizio": "2026-11-24T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -11.5",
+      "selezione": "casa",
+      "prob": 0.6114740379174235,
+      "quota": 1.83,
+      "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Minnesota Timberwolves 121 – Brooklyn Nets 101 (stagione in corso e precedente)",
+        "Modello 72%, Pinnacle 51%, probabilità usata 61%",
+        "Quota mediana 1,83 su 72 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Minnesota Timberwolves vincono con almeno 12 punti di scarto, supplementari compresi. Gioca solo su Minnesota Timberwolves -11.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7160356334385335,
+      "probPinnacle": 0.5069124423963134,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-toronto-raptors-milwaukee-bucks-totale-punti-222-5-over-222-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Toronto Raptors - Milwaukee Bucks",
+      "idPartita": "nba-2026-11-23-toronto-raptors-milwaukee-bucks",
+      "inizio": "2026-11-24T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 222.5",
+      "selezione": "Over 222.5",
+      "prob": 0.5723251590434869,
+      "quota": 1.86,
+      "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Toronto Raptors 120 – Milwaukee Bucks 109 (stagione in corso e precedente)",
+        "Modello 64%, Pinnacle 50%, probabilità usata 57%",
+        "Quota mediana 1,86 su 84 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 222.5: Over vince se le due squadre segnano almeno 223 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (222.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6424533679706648,
+      "probPinnacle": 0.502196950116309,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-vincente-chicago-bulls",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Chicago Bulls - Cleveland Cavaliers",
+      "idPartita": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Chicago Bulls",
+      "prob": 0.2947657164093881,
+      "quota": 3.6,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Chicago Bulls 124 – Cleveland Cavaliers 130 (stagione in corso e precedente)",
+        "Chicago Bulls alla seconda partita in due sere",
+        "Modello 32%, Pinnacle 27%, probabilità usata 29%",
+        "Quota mediana 3,60 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Chicago Bulls vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.3213875011253426,
+      "probPinnacle": 0.2681439316934336,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-handicap-piu-8-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Chicago Bulls - Cleveland Cavaliers",
+      "idPartita": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +8.5",
+      "selezione": "casa",
+      "prob": 0.5364838538393503,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Chicago Bulls 124 – Cleveland Cavaliers 130 (stagione in corso e precedente)",
+        "Chicago Bulls alla seconda partita in due sere",
+        "Modello 56%, Pinnacle 52%, probabilità usata 54%",
+        "Quota mediana 1,90 su 81 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Chicago Bulls perdono con meno di 9 punti di scarto o vincono, supplementari compresi. Gioca solo su Chicago Bulls +8.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5569214945849907,
+      "probPinnacle": 0.5160462130937098,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Chicago Bulls - Cleveland Cavaliers",
+      "idPartita": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 241.5",
+      "selezione": "Over 241.5",
+      "prob": 0.6136733282203226,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Chicago Bulls 124 – Cleveland Cavaliers 130 (stagione in corso e precedente)",
+        "Chicago Bulls alla seconda partita in due sere",
+        "Modello 75%, Pinnacle 48%, probabilità usata 61%",
+        "Quota mediana 1,90 su 78 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7461534009283237,
+      "probPinnacle": 0.4811932555123216,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-vincente-phoenix-suns",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Phoenix Suns",
+      "idPartita": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Phoenix Suns",
+      "prob": 0.6424311795590649,
+      "quota": 1.62,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 116 – Phoenix Suns 124 (stagione in corso e precedente)",
+        "Modello 70%, Pinnacle 59%, probabilità usata 64%",
+        "Quota mediana 1,62 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Phoenix Suns vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.6998486673083214,
+      "probPinnacle": 0.5850136918098083,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-handicap-piu-3-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Phoenix Suns",
+      "idPartita": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +3.5",
+      "selezione": "trasferta",
+      "prob": 0.5500120065843187,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 116 – Phoenix Suns 124 (stagione in corso e precedente)",
+        "Modello 60%, Pinnacle 50%, probabilità usata 55%",
+        "Quota mediana 1,90 su 80 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Phoenix Suns vincono con almeno 4 punti di scarto, supplementari compresi. Gioca solo su Phoenix Suns -3.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.604632308099513,
+      "probPinnacle": 0.49539170506912444,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-totale-punti-233-5-over-233-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Phoenix Suns",
+      "idPartita": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 233.5",
+      "selezione": "Over 233.5",
+      "prob": 0.570389465105184,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 116 – Phoenix Suns 124 (stagione in corso e precedente)",
+        "Modello 63%, Pinnacle 51%, probabilità usata 57%",
+        "Quota mediana 1,90 su 81 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 233.5: Over vince se le due squadre segnano almeno 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (233.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6339331539251702,
+      "probPinnacle": 0.5068457762851976,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-houston-rockets-la-clippers-totale-punti-223-5-over-223-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Houston Rockets - LA Clippers",
+      "idPartita": "nba-2026-11-23-houston-rockets-la-clippers",
+      "inizio": "2026-11-24T02:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 223.5",
+      "selezione": "Over 223.5",
+      "prob": 0.6212809709475,
+      "quota": 1.83,
+      "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Houston Rockets 125 – LA Clippers 110 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 50%, probabilità usata 62%",
+        "Quota mediana 1,83 su 80 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 223.5: Over vince se le due squadre segnano almeno 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.738038809302599,
+      "probPinnacle": 0.5045231325924011,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-vincente-san-antonio-spurs",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Sacramento Kings - San Antonio Spurs",
+      "idPartita": "nba-2026-11-23-sacramento-kings-san-antonio-spurs",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "San Antonio Spurs",
+      "prob": 0.8425489504811375,
+      "quota": 1.19,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Sacramento Kings 102 – San Antonio Spurs 119 (stagione in corso e precedente)",
+        "Modello 89%, Pinnacle 79%, probabilità usata 84%",
+        "Quota mediana 1,19 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se San Antonio Spurs vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.8904520182106654,
+      "probPinnacle": 0.7946458827516096,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-handicap-piu-10-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Sacramento Kings - San Antonio Spurs",
+      "idPartita": "nba-2026-11-23-sacramento-kings-san-antonio-spurs",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +10.5",
+      "selezione": "trasferta",
+      "prob": 0.5954929224850297,
+      "quota": 1.85,
+      "fonteQuota": "mediana di 71 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Sacramento Kings 102 – San Antonio Spurs 119 (stagione in corso e precedente)",
+        "Modello 68%, Pinnacle 51%, probabilità usata 60%",
+        "Quota mediana 1,85 su 71 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i San Antonio Spurs vincono con almeno 11 punti di scarto, supplementari compresi. Gioca solo su San Antonio Spurs -10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6798343926879017,
+      "probPinnacle": 0.5111514522821577,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-totale-punti-223-5-under-223-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Sacramento Kings - San Antonio Spurs",
+      "idPartita": "nba-2026-11-23-sacramento-kings-san-antonio-spurs",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 223.5",
+      "selezione": "Under 223.5",
+      "prob": 0.5241959525350174,
+      "quota": 1.92,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Sacramento Kings 102 – San Antonio Spurs 119 (stagione in corso e precedente)",
+        "Modello 54%, Pinnacle 50%, probabilità usata 52%",
+        "Quota mediana 1,92 su 81 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 223.5: Under vince se le due squadre segnano al massimo 223 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5438687724776337,
+      "probPinnacle": 0.5045231325924011,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-los-angeles-lakers-utah-jazz-vincente-utah-jazz",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Utah Jazz",
+      "idPartita": "nba-2026-11-23-los-angeles-lakers-utah-jazz",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Utah Jazz",
+      "prob": 0.19022856061254212,
+      "quota": 6.2,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Los Angeles Lakers 120 – Utah Jazz 111 (stagione in corso e precedente)",
+        "Utah Jazz alla seconda partita in due sere",
+        "Modello 24%, Pinnacle 14%, probabilità usata 19%",
+        "Quota mediana 6,20 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Utah Jazz vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.24216320021480814,
+      "probPinnacle": 0.1382939210102761,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-los-angeles-lakers-utah-jazz-handicap-meno-13-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Utah Jazz",
+      "idPartita": "nba-2026-11-23-los-angeles-lakers-utah-jazz",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -13.5",
+      "selezione": "trasferta",
+      "prob": 0.5389664617498142,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 71 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Los Angeles Lakers 120 – Utah Jazz 111 (stagione in corso e precedente)",
+        "Utah Jazz alla seconda partita in due sere",
+        "Modello 60%, Pinnacle 47%, probabilità usata 54%",
+        "Quota mediana 1,91 su 71 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Utah Jazz perdono con meno di 14 punti di scarto o vincono, supplementari compresi. Gioca solo su Utah Jazz +13.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6037061193759171,
+      "probPinnacle": 0.4742268041237113,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-23-los-angeles-lakers-utah-jazz-totale-punti-224-5-over-224-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Utah Jazz",
+      "idPartita": "nba-2026-11-23-los-angeles-lakers-utah-jazz",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 224.5",
+      "selezione": "Over 224.5",
+      "prob": 0.5652891074630368,
+      "quota": 1.88,
+      "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Los Angeles Lakers 120 – Utah Jazz 111 (stagione in corso e precedente)",
+        "Utah Jazz alla seconda partita in due sere",
+        "Modello 63%, Pinnacle 50%, probabilità usata 57%",
+        "Quota mediana 1,88 su 82 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 224.5: Over vince se le due squadre segnano almeno 225 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (224.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.632775165042383,
+      "probPinnacle": 0.49780304988369084,
+      "correzioneNotizie": null
+    }
+  ],
+  "pronostici": [
+    {
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "pronostici": [
+        {
+          "mercato": "Under/Over casa 0.5",
+          "selezione": "Over 0.5",
+          "testo": "Segna Santos",
+          "probModello": 0.812990169043548,
+          "prob": 0.8207,
+          "limite": 0.8105,
+          "n": 5679,
+          "quotaMinima": 1.22,
+          "quota": null,
+          "probMercato": null,
+          "giocabile": false,
+          "esito": null,
+          "migliore": true
+        }
+      ]
+    }
+  ],
+  "giocate": [
+    {
+      "id": "M-nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-vincente-portland-trail-blazers+nba-2026-11-23-chicago-bulls-cleveland-cavaliers-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Philadelphia 76ers - Portland Trail Blazers + Chicago Bulls - Cleveland Cavaliers",
+      "idPartita": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers+nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "multipla",
+      "mercato": "Multipla",
+      "selezione": "Portland Trail Blazers + Over 241.5",
+      "prob": 0.3256184487370648,
+      "quota": 4.27,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": false,
+      "ragionamento": [],
+      "value": 0.39039077610726647,
+      "quotaMinima": 3.23,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 1.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "gambe": [
+        {
+          "id": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-vincente-portland-trail-blazers",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Philadelphia 76ers - Portland Trail Blazers",
+          "idPartita": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers",
+          "inizio": "2026-11-24T01:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Vincente",
+          "selezione": "Portland Trail Blazers",
+          "prob": 0.5306055090928775,
+          "quota": 2.25,
+          "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+          "oraQuota": "2026-11-23T17:25:31+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Philadelphia 76ers 114 – Portland Trail Blazers 119 (stagione in corso e precedente)",
+            "Modello 64%, Pinnacle 42%, probabilità usata 53%",
+            "Quota mediana 2,25 su 89 bookmaker alle 17:25",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Vincente: vince se Portland Trail Blazers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+          ],
+          "probModello": 0.641211018185755,
+          "probPinnacle": 0.42000000000000004,
+          "correzioneNotizie": null,
+          "value": 0.19386239545897443,
+          "quotaMinima": 1.98,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        },
+        {
+          "id": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-totale-punti-241-5-over-241-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Chicago Bulls - Cleveland Cavaliers",
+          "idPartita": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+          "inizio": "2026-11-24T02:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 241.5",
+          "selezione": "Over 241.5",
+          "prob": 0.6136733282203226,
+          "quota": 1.9,
+          "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+          "oraQuota": "2026-11-23T17:25:31+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Chicago Bulls 124 – Cleveland Cavaliers 130 (stagione in corso e precedente)",
+            "Chicago Bulls alla seconda partita in due sere",
+            "Modello 75%, Pinnacle 48%, probabilità usata 61%",
+            "Quota mediana 1,90 su 78 bookmaker alle 17:25",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.7461534009283237,
+          "probPinnacle": 0.4811932555123216,
+          "correzioneNotizie": null,
+          "value": 0.1659793236186129,
+          "quotaMinima": 1.72,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        }
+      ],
+      "prova": true
+    },
+    {
+      "id": "M-nba-2026-11-23-houston-rockets-la-clippers-totale-punti-223-5-over-223-5+nba-2026-11-23-charlotte-hornets-memphis-grizzlies-handicap-piu-2-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Houston Rockets - LA Clippers + Charlotte Hornets - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-23-houston-rockets-la-clippers+nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "multipla",
+      "mercato": "Multipla",
+      "selezione": "Over 223.5 + trasferta",
+      "prob": 0.388652967633349,
+      "quota": 3.31,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": false,
+      "ragionamento": [],
+      "value": 0.28644132286638513,
+      "quotaMinima": 2.71,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 1.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "gambe": [
+        {
+          "id": "nba-2026-11-23-houston-rockets-la-clippers-totale-punti-223-5-over-223-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Houston Rockets - LA Clippers",
+          "idPartita": "nba-2026-11-23-houston-rockets-la-clippers",
+          "inizio": "2026-11-24T02:30:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 223.5",
+          "selezione": "Over 223.5",
+          "prob": 0.6212809709475,
+          "quota": 1.83,
+          "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+          "oraQuota": "2026-11-23T17:25:31+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Houston Rockets 125 – LA Clippers 110 (stagione in corso e precedente)",
+            "Modello 74%, Pinnacle 50%, probabilità usata 62%",
+            "Quota mediana 1,83 su 80 bookmaker alle 17:25",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 223.5: Over vince se le due squadre segnano almeno 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.738038809302599,
+          "probPinnacle": 0.5045231325924011,
+          "correzioneNotizie": null,
+          "value": 0.136944176833925,
+          "quotaMinima": 1.7,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        },
+        {
+          "id": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-handicap-piu-2-5-trasferta",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Charlotte Hornets - Memphis Grizzlies",
+          "idPartita": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+          "inizio": "2026-11-24T01:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Handicap +2.5",
+          "selezione": "trasferta",
+          "prob": 0.6255671520739225,
+          "quota": 1.81,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-11-23T17:25:31+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Charlotte Hornets 104 – Memphis Grizzlies 115 (stagione in corso e precedente)",
+            "Modello 74%, Pinnacle 51%, probabilità usata 63%",
+            "Quota mediana 1,81 su 75 bookmaker alle 17:25",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Handicap: vince se i Memphis Grizzlies vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Memphis Grizzlies -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.7371992491746924,
+          "probPinnacle": 0.5139350549731526,
+          "correzioneNotizie": null,
+          "value": 0.13227654525379995,
+          "quotaMinima": 1.68,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        }
+      ],
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-vincente-portland-trail-blazers",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Philadelphia 76ers - Portland Trail Blazers",
+      "idPartita": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Portland Trail Blazers",
+      "prob": 0.5306055090928775,
+      "quota": 2.25,
+      "fonteQuota": "mediana di 89 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Philadelphia 76ers 114 – Portland Trail Blazers 119 (stagione in corso e precedente)",
+        "Modello 64%, Pinnacle 42%, probabilità usata 53%",
+        "Quota mediana 2,25 su 89 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Portland Trail Blazers vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.641211018185755,
+      "probPinnacle": 0.42000000000000004,
+      "correzioneNotizie": null,
+      "value": 0.19386239545897443,
+      "quotaMinima": 1.98,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-totale-punti-241-5-over-241-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Chicago Bulls - Cleveland Cavaliers",
+      "idPartita": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 241.5",
+      "selezione": "Over 241.5",
+      "prob": 0.6136733282203226,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 78 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Chicago Bulls 124 – Cleveland Cavaliers 130 (stagione in corso e precedente)",
+        "Chicago Bulls alla seconda partita in due sere",
+        "Modello 75%, Pinnacle 48%, probabilità usata 61%",
+        "Quota mediana 1,90 su 78 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 241.5: Over vince se le due squadre segnano almeno 242 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (241.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7461534009283237,
+      "probPinnacle": 0.4811932555123216,
+      "correzioneNotizie": null,
+      "value": 0.1659793236186129,
+      "quotaMinima": 1.72,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-houston-rockets-la-clippers-totale-punti-223-5-over-223-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Houston Rockets - LA Clippers",
+      "idPartita": "nba-2026-11-23-houston-rockets-la-clippers",
+      "inizio": "2026-11-24T02:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 223.5",
+      "selezione": "Over 223.5",
+      "prob": 0.6212809709475,
+      "quota": 1.83,
+      "fonteQuota": "mediana di 80 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Houston Rockets 125 – LA Clippers 110 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 50%, probabilità usata 62%",
+        "Quota mediana 1,83 su 80 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 223.5: Over vince se le due squadre segnano almeno 224 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (223.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.738038809302599,
+      "probPinnacle": 0.5045231325924011,
+      "correzioneNotizie": null,
+      "value": 0.136944176833925,
+      "quotaMinima": 1.7,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-handicap-piu-2-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Charlotte Hornets - Memphis Grizzlies",
+      "idPartita": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +2.5",
+      "selezione": "trasferta",
+      "prob": 0.6255671520739225,
+      "quota": 1.81,
+      "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Charlotte Hornets 104 – Memphis Grizzlies 115 (stagione in corso e precedente)",
+        "Modello 74%, Pinnacle 51%, probabilità usata 63%",
+        "Quota mediana 1,81 su 75 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Memphis Grizzlies vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Memphis Grizzlies -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7371992491746924,
+      "probPinnacle": 0.5139350549731526,
+      "correzioneNotizie": null,
+      "value": 0.13227654525379995,
+      "quotaMinima": 1.68,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets-handicap-meno-11-5-casa",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Minnesota Timberwolves - Brooklyn Nets",
+      "idPartita": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets",
+      "inizio": "2026-11-24T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -11.5",
+      "selezione": "casa",
+      "prob": 0.6114740379174235,
+      "quota": 1.83,
+      "fonteQuota": "mediana di 72 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Minnesota Timberwolves 121 – Brooklyn Nets 101 (stagione in corso e precedente)",
+        "Modello 72%, Pinnacle 51%, probabilità usata 61%",
+        "Quota mediana 1,83 su 72 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Minnesota Timberwolves vincono con almeno 12 punti di scarto, supplementari compresi. Gioca solo su Minnesota Timberwolves -11.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.7160356334385335,
+      "probPinnacle": 0.5069124423963134,
+      "correzioneNotizie": null,
+      "value": 0.11899748938888499,
+      "quotaMinima": 1.72,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-handicap-piu-10-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Sacramento Kings - San Antonio Spurs",
+      "idPartita": "nba-2026-11-23-sacramento-kings-san-antonio-spurs",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +10.5",
+      "selezione": "trasferta",
+      "prob": 0.5954929224850297,
+      "quota": 1.85,
+      "fonteQuota": "mediana di 71 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Sacramento Kings 102 – San Antonio Spurs 119 (stagione in corso e precedente)",
+        "Modello 68%, Pinnacle 51%, probabilità usata 60%",
+        "Quota mediana 1,85 su 71 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i San Antonio Spurs vincono con almeno 11 punti di scarto, supplementari compresi. Gioca solo su San Antonio Spurs -10.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6798343926879017,
+      "probPinnacle": 0.5111514522821577,
+      "correzioneNotizie": null,
+      "value": 0.10166190659730501,
+      "quotaMinima": 1.77,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 5.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-totale-punti-233-5-over-233-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "New Orleans Pelicans - Phoenix Suns",
+      "idPartita": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns",
+      "inizio": "2026-11-24T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 233.5",
+      "selezione": "Over 233.5",
+      "prob": 0.570389465105184,
+      "quota": 1.9,
+      "fonteQuota": "mediana di 81 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: New Orleans Pelicans 116 – Phoenix Suns 124 (stagione in corso e precedente)",
+        "Modello 63%, Pinnacle 51%, probabilità usata 57%",
+        "Quota mediana 1,90 su 81 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 233.5: Over vince se le due squadre segnano almeno 234 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (233.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6339331539251702,
+      "probPinnacle": 0.5068457762851976,
+      "correzioneNotizie": null,
+      "value": 0.08373998369984936,
+      "quotaMinima": 1.85,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 4.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-toronto-raptors-milwaukee-bucks-totale-punti-222-5-over-222-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Toronto Raptors - Milwaukee Bucks",
+      "idPartita": "nba-2026-11-23-toronto-raptors-milwaukee-bucks",
+      "inizio": "2026-11-24T01:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 222.5",
+      "selezione": "Over 222.5",
+      "prob": 0.5723251590434869,
+      "quota": 1.86,
+      "fonteQuota": "mediana di 84 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Toronto Raptors 120 – Milwaukee Bucks 109 (stagione in corso e precedente)",
+        "Modello 64%, Pinnacle 50%, probabilità usata 57%",
+        "Quota mediana 1,86 su 84 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 222.5: Over vince se le due squadre segnano almeno 223 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (222.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6424533679706648,
+      "probPinnacle": 0.502196950116309,
+      "correzioneNotizie": null,
+      "value": 0.06452479582088566,
+      "quotaMinima": 1.84,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 3.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-23-los-angeles-lakers-utah-jazz-totale-punti-224-5-over-224-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Los Angeles Lakers - Utah Jazz",
+      "idPartita": "nba-2026-11-23-los-angeles-lakers-utah-jazz",
+      "inizio": "2026-11-24T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 224.5",
+      "selezione": "Over 224.5",
+      "prob": 0.5652891074630368,
+      "quota": 1.88,
+      "fonteQuota": "mediana di 82 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:31+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Los Angeles Lakers 120 – Utah Jazz 111 (stagione in corso e precedente)",
+        "Utah Jazz alla seconda partita in due sere",
+        "Modello 63%, Pinnacle 50%, probabilità usata 57%",
+        "Quota mediana 1,88 su 82 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 224.5: Over vince se le due squadre segnano almeno 225 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (224.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.632775165042383,
+      "probPinnacle": 0.49780304988369084,
+      "correzioneNotizie": null,
+      "value": 0.06274352203050926,
+      "quotaMinima": 1.86,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 3.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-23-santos-gremio-under-over-2-5-under-2-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Santos - Grêmio",
+      "idPartita": "calcio-2026-11-23-santos-gremio",
+      "inizio": "2026-11-24T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Under/Over 2.5",
+      "selezione": "Under 2.5",
+      "prob": 0.44645473587201034,
+      "quota": 2.36,
+      "fonteQuota": "mediana di 94 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Santos 1,7 – Grêmio 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 52%, Pinnacle 38%, probabilità usata 45%",
+        "Quota mediana 2,36 su 94 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.5168094717440207,
+      "probPinnacle": 0.3761,
+      "correzioneNotizie": null,
+      "value": 0.053633176657944315,
+      "quotaMinima": 2.36,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 1.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-23-internacional-vitoria-doppia-chance-x2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Internacional - Vitória",
+      "idPartita": "calcio-2026-11-23-internacional-vitoria",
+      "inizio": "2026-11-23T23:30:00+01:00",
+      "tipo": "singola",
+      "mercato": "Doppia chance",
+      "selezione": "X2",
+      "prob": 0.4595119251102013,
+      "quota": 2.2,
+      "fonteQuota": "mediana di 12 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Internacional 1,5 – Vitória 0,9 (gol e xG, ultime 2 stagioni)",
+        "Modello 49%, Consenso bookmaker 43%, probabilità usata 46%",
+        "Quota mediana 2,20 su 12 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.4884238502204026,
+      "probPinnacle": 0.4306,
+      "correzioneNotizie": null,
+      "value": 0.01092623524244285,
+      "quotaMinima": 2.29,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 1.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-23-botafogo-sao-paulo-under-over-1-5-under-1-5",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Botafogo - São Paulo",
+      "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+      "inizio": "2026-11-24T00:00:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Under/Over 1.5",
+      "selezione": "Under 1.5",
+      "prob": 0.2876899248002743,
+      "quota": 3.5,
+      "fonteQuota": "mediana di 6 bookmaker (odss-api)",
+      "oraQuota": "2026-11-23T17:25:07+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Botafogo 1,4 – São Paulo 1,0 (gol e xG, ultime 2 stagioni)",
+        "Modello 30%, Consenso bookmaker 27%, probabilità usata 29%",
+        "Quota mediana 3,50 su 6 bookmaker alle 17:25",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.30307984960054857,
+      "probPinnacle": 0.2723,
+      "correzioneNotizie": null,
+      "value": 0.006914736800959886,
+      "quotaMinima": 3.83,
+      "puntata": {
+        "euro": 1,
+        "percentuale": 0.51,
+        "fissa": {
+          "da": 1.5,
+          "motivo": "giornata piena"
+        }
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    }
+  ],
+  "coppieQuota2": {
+    "lista": [
+      {
+        "id": "L-calcio-2026-11-23-internacional-vitoria",
+        "criterio": "lista",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          }
+        ],
+        "quota": 1.3,
+        "prob": 0.7232,
+        "probModello": 0.6997471184463164,
+        "valueAtteso": -0.059840000000000004,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "L-calcio-2026-11-23-botafogo-sao-paulo",
+        "criterio": "lista",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Botafogo - São Paulo",
+            "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+            "inizio": "2026-11-24T00:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.29,
+            "quotaBet365": null,
+            "probMercato": 0.7277,
+            "probModello": 0.6969201503994509,
+            "esito": null,
+            "probModelloTarato": 0.7284,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          }
+        ],
+        "quota": 1.29,
+        "prob": 0.7277,
+        "probModello": 0.6969201503994509,
+        "valueAtteso": -0.06126699999999996,
+        "esito": null,
+        "ritorno": null
+      },
+      {
+        "id": "L-calcio-2026-11-23-santos-gremio",
+        "criterio": "lista",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Santos - Grêmio",
+            "idPartita": "calcio-2026-11-23-santos-gremio",
+            "inizio": "2026-11-24T01:00:00+01:00",
+            "mercato": "1X2",
+            "selezione": "1",
+            "quota": 1.62,
+            "quotaBet365": null,
+            "probMercato": 0.5873,
+            "probModello": 0.5403447201503065,
+            "esito": null,
+            "probModelloTarato": 0.6292,
+            "bookmaker": [
+              [
+                "quigioco",
+                1.62
+              ],
+              [
+                "eurobet",
+                1.6
+              ],
+              [
+                "fastbet",
+                1.6
+              ],
+              [
+                "zonagioco",
+                1.6
+              ],
+              [
+                "winamax",
+                1.58
+              ]
+            ]
+          }
+        ],
+        "quota": 1.62,
+        "prob": 0.5873,
+        "probModello": 0.5403447201503065,
+        "valueAtteso": -0.048573999999999895,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "margine": [
+      {
+        "id": "Q2M1-2026-11-23",
+        "criterio": "margine",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "probabilita": [
+      {
+        "id": "Q2P1-2026-11-23",
+        "criterio": "probabilita",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "modello": [
+      {
+        "id": "Q2O1-2026-11-23",
+        "criterio": "modello",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Botafogo - São Paulo",
+            "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+            "inizio": "2026-11-24T00:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "1X",
+            "quota": 1.33,
+            "quotaBet365": null,
+            "probMercato": 0.6948,
+            "probModello": 0.7352135252152251,
+            "esito": null,
+            "probModelloTarato": 0.7531,
+            "bookmaker": [
+              [
+                "winamax",
+                1.35
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 2,
+        "prob": 0.43748521989906275,
+        "probModello": 0.50661037,
+        "valueAtteso": -0.1272169863013698,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "confermate": [
+      {
+        "id": "Q2C1-2026-11-23",
+        "criterio": "confermate",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "probabilitaConfermate": [
+      {
+        "id": "Q2PC1-2026-11-23",
+        "criterio": "probabilitaConfermate",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "doppie": [],
+    "triple": [],
+    "over15": [],
+    "doppieOver15": [
+      {
+        "id": "D151-2026-11-23",
+        "criterio": "doppieOver15",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Botafogo - São Paulo",
+            "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+            "inizio": "2026-11-24T00:00:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.29,
+            "quotaBet365": null,
+            "probMercato": 0.7277,
+            "probModello": 0.6969201503994509,
+            "esito": null,
+            "probModelloTarato": 0.7284,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          }
+        ],
+        "quota": 1.68,
+        "incremento": 0.025,
+        "quotaConBonus": 1.72,
+        "prob": 0.52627264,
+        "probModello": 0.53187768,
+        "valueAtteso": -0.09537680228800005,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "tutte": [
+      {
+        "id": "Q2T1-2026-11-23",
+        "criterio": "tutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "probabilitaTutte": [
+      {
+        "id": "Q2PT1-2026-11-23",
+        "criterio": "probabilitaTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "modelloTutte": [
+      {
+        "id": "Q2OT1-2026-11-23",
+        "criterio": "modelloTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Botafogo - São Paulo",
+            "idPartita": "calcio-2026-11-23-botafogo-sao-paulo",
+            "inizio": "2026-11-24T00:00:00+01:00",
+            "mercato": "Doppia chance",
+            "selezione": "1X",
+            "quota": 1.33,
+            "quotaBet365": null,
+            "probMercato": 0.6948,
+            "probModello": 0.7352135252152251,
+            "esito": null,
+            "probModelloTarato": 0.7531,
+            "bookmaker": [
+              [
+                "winamax",
+                1.35
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 2,
+        "prob": 0.43748521989906275,
+        "probModello": 0.50661037,
+        "valueAtteso": -0.1272169863013698,
+        "esito": null,
+        "ritorno": null
+      }
+    ],
+    "confermateTutte": [
+      {
+        "id": "Q2CT1-2026-11-23",
+        "criterio": "confermateTutte",
+        "prova": true,
+        "gambe": [
+          {
+            "sport": "calcio",
+            "competizione": "Serie A (Brasile)",
+            "partita": "Internacional - Vitória",
+            "idPartita": "calcio-2026-11-23-internacional-vitoria",
+            "inizio": "2026-11-23T23:30:00+01:00",
+            "mercato": "Under/Over 1.5",
+            "selezione": "Over 1.5",
+            "quota": 1.3,
+            "quotaBet365": null,
+            "probMercato": 0.7232,
+            "probModello": 0.6997471184463164,
+            "esito": null,
+            "probModelloTarato": 0.7302,
+            "bookmaker": [
+              [
+                "winamax",
+                1.28
+              ],
+              [
+                "quigioco",
+                1.25
+              ]
+            ]
+          },
+          {
+            "sport": "nba",
+            "competizione": "NBA",
+            "partita": "Indiana Pacers - Oklahoma City Thunder",
+            "idPartita": "nba-2026-11-23-indiana-pacers-oklahoma-city-thunder",
+            "inizio": "2026-11-24T01:40:00+01:00",
+            "mercato": "Vincente",
+            "selezione": "Oklahoma City Thunder",
+            "quota": 1.5,
+            "quotaBet365": null,
+            "probMercato": 0.6296563326123529,
+            "probModello": 0.6753803831858215,
+            "esito": null,
+            "bookmaker": [
+              [
+                "pokerstars",
+                1.52
+              ],
+              [
+                "sisal",
+                1.52
+              ],
+              [
+                "snai",
+                1.52
+              ],
+              [
+                "winamax",
+                1.52
+              ],
+              [
+                "888sport",
+                1.5
+              ],
+              [
+                "888sport_it",
+                1.5
+              ],
+              [
+                "betwin360",
+                1.5
+              ],
+              [
+                "bwin",
+                1.5
+              ],
+              [
+                "casinosanremo",
+                1.5
+              ],
+              [
+                "eplay24",
+                1.5
+              ],
+              [
+                "eurobet",
+                1.5
+              ],
+              [
+                "gioca7",
+                1.5
+              ],
+              [
+                "giocodigitale",
+                1.5
+              ],
+              [
+                "netbet",
+                1.5
+              ],
+              [
+                "sportium",
+                1.5
+              ],
+              [
+                "staryes",
+                1.5
+              ],
+              [
+                "sunbet",
+                1.5
+              ],
+              [
+                "betsson",
+                1.49
+              ],
+              [
+                "bgame",
+                1.49
+              ],
+              [
+                "codere",
+                1.49
+              ],
+              [
+                "daznbet",
+                1.49
+              ],
+              [
+                "domusbet",
+                1.49
+              ],
+              [
+                "marathonbet",
+                1.49
+              ],
+              [
+                "netwin",
+                1.49
+              ],
+              [
+                "perlaplay",
+                1.49
+              ],
+              [
+                "sportbet",
+                1.49
+              ],
+              [
+                "starcasino",
+                1.49
+              ],
+              [
+                "totosi",
+                1.49
+              ],
+              [
+                "admiralbet",
+                1.48
+              ],
+              [
+                "betflag",
+                1.48
+              ],
+              [
+                "goldbet",
+                1.48
+              ],
+              [
+                "lottomatica",
+                1.48
+              ],
+              [
+                "planetwin365",
+                1.48
+              ],
+              [
+                "stanleybet",
+                1.48
+              ],
+              [
+                "starvegas",
+                1.48
+              ],
+              [
+                "vincitu",
+                1.48
+              ],
+              [
+                "williamhill",
+                1.48
+              ],
+              [
+                "leovegas",
+                1.45
+              ]
+            ],
+            "probModelloTarato": 0.6727
+          }
+        ],
+        "quota": 1.95,
+        "prob": 0.45536745974525356,
+        "probModello": 0.49120553999999994,
+        "valueAtteso": -0.11203345349675553,
+        "esito": null,
+        "ritorno": null
+      }
+    ]
+  },
+  "schedinaDelGiornoStudio": {
+    "formato": "doppiaOver15",
+    "nome": "Doppia Over 1.5",
+    "id": "D151-2026-11-23",
+    "classifica": [
+      {
+        "formato": "doppiaOver15",
+        "nome": "Doppia Over 1.5",
+        "giorni": 19,
+        "vinte": 7,
+        "profitto": -7.53,
+        "prob": 0.526,
+        "atteso": -0.095,
+        "voto": -0.328
+      },
+      {
+        "formato": "multipla10",
+        "nome": "Multipla da 10",
+        "giorni": 16,
+        "vinte": 3,
+        "profitto": 47.68,
+        "prob": null,
+        "atteso": null,
+        "voto": null
+      },
+      {
+        "formato": "multipla5",
+        "nome": "Multipla da 5",
+        "giorni": 19,
+        "vinte": 7,
+        "profitto": 10.58,
+        "prob": null,
+        "atteso": null,
+        "voto": null
+      },
+      {
+        "formato": "tripla",
+        "nome": "Tripla",
+        "giorni": 18,
+        "vinte": 11,
+        "profitto": 7.69,
+        "prob": null,
+        "atteso": null,
+        "voto": null
+      },
+      {
+        "formato": "doppia",
+        "nome": "Doppia",
+        "giorni": 23,
+        "vinte": 15,
+        "profitto": 3.58,
+        "prob": null,
+        "atteso": null,
+        "voto": null
+      },
+      {
+        "formato": "triplaOver15",
+        "nome": "Tripla Over 1.5",
+        "giorni": 18,
+        "vinte": 6,
+        "profitto": -5.09,
+        "prob": null,
+        "atteso": null,
+        "voto": null
+      }
+    ]
+  },
+  "taraturaModello": {
+    "calcio": {
+      "a": 0.4185,
+      "b": 0.6824,
+      "partite": 975
+    },
+    "nba": {
+      "a": 0.0899,
+      "b": 0.8605,
+      "partite": 69
+    }
+  },
+  "scartate": [
+    {
+      "idCandidato": "calcio-2026-11-23-internacional-vitoria-1x2-2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-11-23-santos-gremio-under-over-1-5-under-1-5",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-11-23-santos-gremio-under-over-3-5-under-3-5",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-minnesota-timberwolves-brooklyn-nets-vincente-minnesota-timberwolves",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-vincente-san-antonio-spurs",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-los-angeles-lakers-utah-jazz-vincente-utah-jazz",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-philadelphia-76ers-portland-trail-blazers-handicap-meno-3-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-vincente-memphis-grizzlies",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-vincente-chicago-bulls",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-handicap-piu-3-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-new-orleans-pelicans-phoenix-suns-vincente-phoenix-suns",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-los-angeles-lakers-utah-jazz-handicap-meno-13-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "calcio-2026-11-23-santos-gremio-1x2-x",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-chicago-bulls-cleveland-cavaliers-handicap-piu-8-5-casa",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-charlotte-hornets-memphis-grizzlies-totale-punti-213-5-over-213-5",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-23-sacramento-kings-san-antonio-spurs-totale-punti-223-5-under-223-5",
+      "motivo": "altra giocata sulla stessa partita"
+    }
+  ],
+  "erroriGiro": [
+    "Quote Süper Lig (Turchia): 1 partite su 1 non trovate su odss-api, senza quote",
+    "Quote Super League (Grecia): 1 partite su 1 non trovate su odss-api, senza quote",
+    "Quote Allsvenskan (Svezia): 1 partite su 2 non trovate su odss-api, senza quote",
+    "Quote MLS (Stati Uniti): 1 partite su 1 non trovate su odss-api, senza quote",
+    "Esiti alle 17:25: Giocata calcio-2026-10-23-gateshead-tamworth-1x2-1 senza esito da 30 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-01-tenerife-andorra-cf-1x2-2 senza esito da 21 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-06-cd-castellon-sd-eibar-under-over-1-5-under-1-5 senza esito da 16 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-08-andorra-cf-mallorca-1x2-1 senza esito da 15 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-08-estoril-cs-maritimo-under-over-2-5-over-2-5 senza esito da 15 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-14-leicester-city-bradford-city-doppia-chance-x2 senza esito da 9 giorni",
+    "Esiti alle 17:25: Giocata calcio-2026-11-14-carlisle-united-boston-united-angoli-under-over-11-5-over-11-5 senza esito da 9 giorni",
+    "odss-api alle 17:25: 10 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Memphis Grizzlies - Charlotte Hornets, Portland Trail Blazers - Philadelphia 76ers, Oklahoma City Thunder - Indiana Pacers, Brooklyn Nets - Minnesota Timberwolves, Milwaukee Bucks - Toronto Raptors, Phoenix Suns - New Orleans Pelicans, Cleveland Cavaliers - Chicago Bulls, LA Clippers - Houston Rockets, Utah Jazz - Los Angeles Lakers, San Antonio Spurs - Sacramento Kings",
+    "Esiti tennis alle 17:31: Giocata M-tennis-2026-11-13-karolina-muchova-mirra-andreeva-vincente-incontro-karolina-muchova+nba-2026-11-13-new-orleans-pelicans-memphis-grizzlies-totale-punti-234-5-over-234-5 senza esito da 9 giorni",
+    "Esiti tennis alle 17:31: Giocata tennis-2026-11-13-karolina-muchova-mirra-andreeva-vincente-incontro-karolina-muchova senza esito da 9 giorni",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
+    "Giro di Claude non eseguito: notizie non controllate",
+    "12 partite già iniziate escluse",
+    "odss-api alle 17:25: 1 partita senza righe a tempo intero (full_time), senza quote: Rubio Nu Reserve - Libertad Reserve"
+  ],
+  "schedinePronostici": []
+}
