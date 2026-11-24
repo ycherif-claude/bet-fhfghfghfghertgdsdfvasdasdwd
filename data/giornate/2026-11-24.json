@@ -1,21 +1,639 @@
 {
   "data": "2026-11-24",
-  "generataAlle": "2026-11-24T08:08:16+01:00",
-  "giro": "claude",
+  "generataAlle": "2026-11-24T21:20:27+01:00",
+  "giro": "riserva",
   "notizieControllate": false,
   "prova": true,
-  "competizioniNonCoperte": [],
-  "candidati": [],
-  "pronostici": [],
-  "giocate": [],
-  "scartate": [],
+  "competizioniNonCoperte": [
+    "Champions League maschile: senza storico gratuito della stagione in corso"
+  ],
+  "candidati": [
+    {
+      "id": "calcio-2026-11-24-chapecoense-palmeiras-1x2-2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.5727573614746704,
+      "quota": 2.19,
+      "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:17:32+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+        "Modello 70%, Pinnacle 44%, probabilità usata 57%",
+        "Quota mediana 2,19 su 133 bookmaker alle 17:17",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.7038147229493407,
+      "probPinnacle": 0.4417,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-24-chapecoense-palmeiras-doppia-chance-x2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Doppia chance",
+      "selezione": "X2",
+      "prob": 0.8012927155254272,
+      "quota": 1.33,
+      "fonteQuota": "mediana di 104 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:17:32+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+        "Modello 90%, Consenso bookmaker 70%, probabilità usata 80%",
+        "Quota mediana 1,33 su 104 bookmaker alle 17:17",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.9009854310508544,
+      "probPinnacle": 0.7016,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-24-chapecoense-palmeiras-handicap-asiatico-piu-1-trasferta",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap asiatico +1",
+      "selezione": "trasferta",
+      "prob": 0.6111508206578213,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 61%",
+        "Quota da verificare su bet365",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.6111508206578213,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "calcio-2026-11-24-chapecoense-palmeiras-handicap-asiatico-piu-1-5-trasferta",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap asiatico +1.5",
+      "selezione": "trasferta",
+      "prob": 0.4655117838810878,
+      "quota": null,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": true,
+      "ragionamento": [
+        "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+        "Solo modello, probabilità usata 47%",
+        "Quota da verificare su bet365",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.4655117838810878,
+      "probPinnacle": null,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-orlando-magic-detroit-pistons-vincente-detroit-pistons",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Orlando Magic - Detroit Pistons",
+      "idPartita": "nba-2026-11-24-orlando-magic-detroit-pistons",
+      "inizio": "2026-11-25T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Detroit Pistons",
+      "prob": 0.6033750345549949,
+      "quota": 1.7,
+      "fonteQuota": "mediana di 88 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Orlando Magic 108 – Detroit Pistons 114 (stagione in corso e precedente)",
+        "Modello 65%, Pinnacle 55%, probabilità usata 60%",
+        "Quota mediana 1,70 su 88 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Detroit Pistons vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.6520388229093818,
+      "probPinnacle": 0.5547112462006079,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-orlando-magic-detroit-pistons-handicap-piu-2-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Orlando Magic - Detroit Pistons",
+      "idPartita": "nba-2026-11-24-orlando-magic-detroit-pistons",
+      "inizio": "2026-11-25T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap +2.5",
+      "selezione": "trasferta",
+      "prob": 0.5394231414226532,
+      "quota": 1.88,
+      "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Orlando Magic 108 – Detroit Pistons 114 (stagione in corso e precedente)",
+        "Modello 58%, Pinnacle 50%, probabilità usata 54%",
+        "Quota mediana 1,88 su 79 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Detroit Pistons vincono con almeno 3 punti di scarto, supplementari compresi. Gioca solo su Detroit Pistons -2.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.581279061334423,
+      "probPinnacle": 0.49756722151088345,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-orlando-magic-detroit-pistons-totale-punti-213-5-over-213-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Orlando Magic - Detroit Pistons",
+      "idPartita": "nba-2026-11-24-orlando-magic-detroit-pistons",
+      "inizio": "2026-11-25T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 213.5",
+      "selezione": "Over 213.5",
+      "prob": 0.5895222179752561,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Orlando Magic 108 – Detroit Pistons 114 (stagione in corso e precedente)",
+        "Modello 68%, Pinnacle 50%, probabilità usata 59%",
+        "Quota mediana 1,91 su 75 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 213.5: Over vince se le due squadre segnano almeno 214 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (213.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6835675685429133,
+      "probPinnacle": 0.49547686740759883,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-washington-wizards-boston-celtics-totale-punti-217-5-under-217-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Boston Celtics",
+      "idPartita": "nba-2026-11-24-washington-wizards-boston-celtics",
+      "inizio": "2026-11-25T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 217.5",
+      "selezione": "Under 217.5",
+      "prob": 0.5428430774916193,
+      "quota": 1.89,
+      "fonteQuota": "mediana di 87 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 101 – Boston Celtics 112 (stagione in corso e precedente)",
+        "Modello 59%, Pinnacle 50%, probabilità usata 54%",
+        "Quota mediana 1,89 su 87 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 217.5: Under vince se le due squadre segnano al massimo 217 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (217.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5903157846128683,
+      "probPinnacle": 0.4953703703703703,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-denver-nuggets-dallas-mavericks-vincente-dallas-mavericks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Dallas Mavericks",
+      "idPartita": "nba-2026-11-24-denver-nuggets-dallas-mavericks",
+      "inizio": "2026-11-25T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Vincente",
+      "selezione": "Dallas Mavericks",
+      "prob": 0.30726906852587954,
+      "quota": 3.45,
+      "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 120 – Dallas Mavericks 114 (stagione in corso e precedente)",
+        "Modello 34%, Pinnacle 27%, probabilità usata 31%",
+        "Quota mediana 3,45 su 90 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Dallas Mavericks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.3422185284092804,
+      "probPinnacle": 0.2723196086424786,
+      "correzioneNotizie": null
+    },
+    {
+      "id": "nba-2026-11-24-denver-nuggets-dallas-mavericks-handicap-meno-8-5-trasferta",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Dallas Mavericks",
+      "idPartita": "nba-2026-11-24-denver-nuggets-dallas-mavericks",
+      "inizio": "2026-11-25T04:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Handicap -8.5",
+      "selezione": "trasferta",
+      "prob": 0.5459096829828636,
+      "quota": 1.84,
+      "fonteQuota": "mediana di 79 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 120 – Dallas Mavericks 114 (stagione in corso e precedente)",
+        "Modello 58%, Pinnacle 51%, probabilità usata 55%",
+        "Quota mediana 1,84 su 79 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Handicap: vince se i Dallas Mavericks perdono con meno di 9 punti di scarto o vincono, supplementari compresi. Gioca solo su Dallas Mavericks +8.5 (stessa linea) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.579329023447056,
+      "probPinnacle": 0.5124903425186712,
+      "correzioneNotizie": null
+    }
+  ],
+  "pronostici": [
+    {
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "pronostici": [
+        {
+          "mercato": "Doppia chance",
+          "selezione": "X2",
+          "testo": "Palmeiras non perde (X2)",
+          "probModello": 0.9009854310508544,
+          "prob": 0.8708,
+          "limite": 0.83,
+          "n": 325,
+          "quotaMinima": 1.15,
+          "quota": 1.35,
+          "fonteQuota": "miei",
+          "quoteMiei": [
+            {
+              "bookmaker": "goldbet",
+              "quota": 1.35,
+              "aggiornato": "2026-11-24T16:12:18.132008+00:00"
+            },
+            {
+              "bookmaker": "sportium",
+              "quota": 1.34,
+              "aggiornato": "2026-11-24T16:12:10.932012+00:00"
+            },
+            {
+              "bookmaker": "snai",
+              "quota": 1.33,
+              "aggiornato": "2026-11-24T16:09:01.602206+00:00"
+            }
+          ],
+          "quotaMigliore": 1.35,
+          "bookmakerMigliore": "goldbet",
+          "oraQuota": "2026-11-24T16:12:18.132008+00:00",
+          "probConsenso": 0.7016,
+          "fonteConsenso": "mediana di 104 bookmaker",
+          "probMercato": 0.7016,
+          "giocabile": false,
+          "esito": null,
+          "migliore": true
+        },
+        {
+          "mercato": "Under/Over trasferta 0.5",
+          "selezione": "Over 0.5",
+          "testo": "Segna Palmeiras",
+          "probModello": 0.8830472613827366,
+          "prob": 0.8561,
+          "limite": 0.8324,
+          "n": 952,
+          "quotaMinima": 1.17,
+          "quota": null,
+          "probMercato": null,
+          "giocabile": false,
+          "esito": null,
+          "migliore": false
+        }
+      ]
+    }
+  ],
+  "giocate": [
+    {
+      "id": "M-calcio-2026-11-24-chapecoense-palmeiras-1x2-2+nba-2026-11-24-orlando-magic-detroit-pistons-totale-punti-213-5-over-213-5",
+      "sport": "calcio + nba",
+      "competizione": "Serie A (Brasile) + NBA",
+      "partita": "Chapecoense - Palmeiras + Orlando Magic - Detroit Pistons",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras+nba-2026-11-24-orlando-magic-detroit-pistons",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "multipla",
+      "mercato": "Multipla",
+      "selezione": "2 + Over 213.5",
+      "prob": 0.33765319009820316,
+      "quota": 4.18,
+      "fonteQuota": null,
+      "oraQuota": null,
+      "quotaDaVerificare": false,
+      "ragionamento": [],
+      "value": 0.411390334610489,
+      "quotaMinima": 3.11,
+      "puntata": {
+        "euro": 1.5,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "gambe": [
+        {
+          "id": "calcio-2026-11-24-chapecoense-palmeiras-1x2-2",
+          "sport": "calcio",
+          "competizione": "Serie A (Brasile)",
+          "partita": "Chapecoense - Palmeiras",
+          "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+          "inizio": "2026-11-24T22:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "1X2",
+          "selezione": "2",
+          "prob": 0.5727573614746704,
+          "quota": 2.19,
+          "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+          "oraQuota": "2026-11-24T17:17:32+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+            "Modello 70%, Pinnacle 44%, probabilità usata 57%",
+            "Quota mediana 2,19 su 133 bookmaker alle 17:17",
+            "Notizie non controllate: giro di Claude non eseguito"
+          ],
+          "probModello": 0.7038147229493407,
+          "probPinnacle": 0.4417,
+          "correzioneNotizie": null,
+          "value": 0.25433862162952803,
+          "quotaMinima": 1.84,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        },
+        {
+          "id": "nba-2026-11-24-orlando-magic-detroit-pistons-totale-punti-213-5-over-213-5",
+          "sport": "nba",
+          "competizione": "NBA",
+          "partita": "Orlando Magic - Detroit Pistons",
+          "idPartita": "nba-2026-11-24-orlando-magic-detroit-pistons",
+          "inizio": "2026-11-25T01:00:00+01:00",
+          "tipo": "singola",
+          "mercato": "Totale punti 213.5",
+          "selezione": "Over 213.5",
+          "prob": 0.5895222179752561,
+          "quota": 1.91,
+          "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+          "oraQuota": "2026-11-24T17:18:12+01:00",
+          "quotaDaVerificare": false,
+          "ragionamento": [
+            "Punti attesi: Orlando Magic 108 – Detroit Pistons 114 (stagione in corso e precedente)",
+            "Modello 68%, Pinnacle 50%, probabilità usata 59%",
+            "Quota mediana 1,91 su 75 bookmaker alle 17:18",
+            "Notizie non controllate: giro di Claude non eseguito",
+            "Totale punti 213.5: Over vince se le due squadre segnano almeno 214 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (213.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+          ],
+          "probModello": 0.6835675685429133,
+          "probPinnacle": 0.49547686740759883,
+          "correzioneNotizie": null,
+          "value": 0.12598743633273912,
+          "quotaMinima": 1.79,
+          "puntata": {
+            "euro": 5.5,
+            "percentuale": 3
+          },
+          "stato": "in_attesa",
+          "motivoStato": null,
+          "oraUltimoControllo": null,
+          "esito": null
+        }
+      ],
+      "prova": true
+    },
+    {
+      "id": "calcio-2026-11-24-chapecoense-palmeiras-1x2-2",
+      "sport": "calcio",
+      "competizione": "Serie A (Brasile)",
+      "partita": "Chapecoense - Palmeiras",
+      "idPartita": "calcio-2026-11-24-chapecoense-palmeiras",
+      "inizio": "2026-11-24T22:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "1X2",
+      "selezione": "2",
+      "prob": 0.5727573614746704,
+      "quota": 2.19,
+      "fonteQuota": "mediana di 133 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:17:32+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Gol attesi: Chapecoense 0,7 – Palmeiras 2,1 (gol e xG, ultime 2 stagioni)",
+        "Modello 70%, Pinnacle 44%, probabilità usata 57%",
+        "Quota mediana 2,19 su 133 bookmaker alle 17:17",
+        "Notizie non controllate: giro di Claude non eseguito"
+      ],
+      "probModello": 0.7038147229493407,
+      "probPinnacle": 0.4417,
+      "correzioneNotizie": null,
+      "value": 0.25433862162952803,
+      "quotaMinima": 1.84,
+      "puntata": {
+        "euro": 5.5,
+        "percentuale": 3
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-24-orlando-magic-detroit-pistons-totale-punti-213-5-over-213-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Orlando Magic - Detroit Pistons",
+      "idPartita": "nba-2026-11-24-orlando-magic-detroit-pistons",
+      "inizio": "2026-11-25T01:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 213.5",
+      "selezione": "Over 213.5",
+      "prob": 0.5895222179752561,
+      "quota": 1.91,
+      "fonteQuota": "mediana di 75 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Orlando Magic 108 – Detroit Pistons 114 (stagione in corso e precedente)",
+        "Modello 68%, Pinnacle 50%, probabilità usata 59%",
+        "Quota mediana 1,91 su 75 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 213.5: Over vince se le due squadre segnano almeno 214 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (213.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.6835675685429133,
+      "probPinnacle": 0.49547686740759883,
+      "correzioneNotizie": null,
+      "value": 0.12598743633273912,
+      "quotaMinima": 1.79,
+      "puntata": {
+        "euro": 5.5,
+        "percentuale": 3
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-24-denver-nuggets-dallas-mavericks-vincente-dallas-mavericks",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Denver Nuggets - Dallas Mavericks",
+      "idPartita": "nba-2026-11-24-denver-nuggets-dallas-mavericks",
+      "inizio": "2026-11-25T04:00:00+01:00",
+      "tipo": "speciale",
+      "mercato": "Vincente",
+      "selezione": "Dallas Mavericks",
+      "prob": 0.30726906852587954,
+      "quota": 3.45,
+      "fonteQuota": "mediana di 90 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Denver Nuggets 120 – Dallas Mavericks 114 (stagione in corso e precedente)",
+        "Modello 34%, Pinnacle 27%, probabilità usata 31%",
+        "Quota mediana 3,45 su 90 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Vincente: vince se Dallas Mavericks vince la partita, supplementari compresi. Gioca solo con quota almeno la minima."
+      ],
+      "probModello": 0.3422185284092804,
+      "probPinnacle": 0.2723196086424786,
+      "correzioneNotizie": null,
+      "value": 0.060078286414284365,
+      "quotaMinima": 3.58,
+      "puntata": {
+        "euro": 1.5,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    },
+    {
+      "id": "nba-2026-11-24-washington-wizards-boston-celtics-totale-punti-217-5-under-217-5",
+      "sport": "nba",
+      "competizione": "NBA",
+      "partita": "Washington Wizards - Boston Celtics",
+      "idPartita": "nba-2026-11-24-washington-wizards-boston-celtics",
+      "inizio": "2026-11-25T02:00:00+01:00",
+      "tipo": "singola",
+      "mercato": "Totale punti 217.5",
+      "selezione": "Under 217.5",
+      "prob": 0.5428430774916193,
+      "quota": 1.89,
+      "fonteQuota": "mediana di 87 bookmaker (odss-api)",
+      "oraQuota": "2026-11-24T17:18:12+01:00",
+      "quotaDaVerificare": false,
+      "ragionamento": [
+        "Punti attesi: Washington Wizards 101 – Boston Celtics 112 (stagione in corso e precedente)",
+        "Modello 59%, Pinnacle 50%, probabilità usata 54%",
+        "Quota mediana 1,89 su 87 bookmaker alle 17:18",
+        "Notizie non controllate: giro di Claude non eseguito",
+        "Totale punti 217.5: Under vince se le due squadre segnano al massimo 217 punti in tutto, supplementari compresi. Gioca solo con la stessa linea (217.5) e quota almeno la minima: con una linea diversa il calcolo non vale."
+      ],
+      "probModello": 0.5903157846128683,
+      "probPinnacle": 0.4953703703703703,
+      "correzioneNotizie": null,
+      "value": 0.025973416459160514,
+      "quotaMinima": 1.94,
+      "puntata": {
+        "euro": 1.5,
+        "percentuale": 1
+      },
+      "stato": "in_attesa",
+      "motivoStato": null,
+      "oraUltimoControllo": null,
+      "esito": null,
+      "prova": true
+    }
+  ],
+  "taraturaModello": {
+    "calcio": {
+      "a": 0.4058,
+      "b": 0.6981,
+      "partite": 986
+    },
+    "nba": {
+      "a": 0.0739,
+      "b": 0.8497,
+      "partite": 70
+    }
+  },
+  "scartate": [
+    {
+      "idCandidato": "calcio-2026-11-24-chapecoense-palmeiras-doppia-chance-x2",
+      "motivo": "quota fuori range"
+    },
+    {
+      "idCandidato": "calcio-2026-11-24-chapecoense-palmeiras-handicap-asiatico-piu-1-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "calcio-2026-11-24-chapecoense-palmeiras-handicap-asiatico-piu-1-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-24-orlando-magic-detroit-pistons-vincente-detroit-pistons",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-24-orlando-magic-detroit-pistons-handicap-piu-2-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    },
+    {
+      "idCandidato": "nba-2026-11-24-denver-nuggets-dallas-mavericks-handicap-meno-8-5-trasferta",
+      "motivo": "altra giocata sulla stessa partita"
+    }
+  ],
   "erroriGiro": [
-    "Raccolta di oggi mancante: data/raccolta/2026-11-24.json",
-    "Raccolta NBA di oggi mancante: data/raccolta/2026-11-24-nba.json",
-    "Raccolta tennis di oggi mancante: data/raccolta/2026-11-24-tennis.json",
-    "Raccolta basket di oggi mancante: data/raccolta/2026-11-24-basket.json",
-    "Raccolta pallavolo di oggi mancante: data/raccolta/2026-11-24-pallavolo.json",
-    "Pronostici del 20/11 senza esito dopo 4 giorni (partita non trovata nella fonte degli esiti): Pogon Szczecin - Slask Wroclaw"
+    "Quote Champions League: 2 partite su 9 non trovate su odss-api, quote da The Odds API",
+    "Quote Serie B: 1 partite su 6 non trovate su odss-api, quote da The Odds API",
+    "Esiti alle 17:17: Giocata calcio-2026-10-23-gateshead-tamworth-1x2-1 senza esito da 31 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-01-tenerife-andorra-cf-1x2-2 senza esito da 22 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-06-cd-castellon-sd-eibar-under-over-1-5-under-1-5 senza esito da 17 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-08-andorra-cf-mallorca-1x2-1 senza esito da 16 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-08-estoril-cs-maritimo-under-over-2-5-over-2-5 senza esito da 16 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-14-leicester-city-bradford-city-doppia-chance-x2 senza esito da 10 giorni",
+    "Esiti alle 17:17: Giocata calcio-2026-11-14-carlisle-united-boston-united-angoli-under-over-11-5-over-11-5 senza esito da 10 giorni",
+    "odss-api alle 17:18: 3 eventi NBA con casa e trasferta invertite rispetto al calendario, ignorati: Detroit Pistons - Orlando Magic, Boston Celtics - Washington Wizards, Dallas Mavericks - Denver Nuggets",
+    "Esiti tennis alle 17:24: Giocata M-tennis-2026-11-13-karolina-muchova-mirra-andreeva-vincente-incontro-karolina-muchova+nba-2026-11-13-new-orleans-pelicans-memphis-grizzlies-totale-punti-234-5-over-234-5 senza esito da 10 giorni",
+    "Esiti tennis alle 17:24: Giocata tennis-2026-11-13-karolina-muchova-mirra-andreeva-vincente-incontro-karolina-muchova senza esito da 10 giorni",
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi",
+    "Giro di Claude non eseguito: notizie non controllate",
+    "48 partite già iniziate escluse",
+    "odss-api alle 17:17: 4 partite senza righe a tempo intero (full_time), senza quote: Orlando Pirates FC - Lamontville Golden Arrows, SE Palmeiras U20 (F) - EC Taruma AM, Palmeiras U20 Wom. - Taruma U20 Wom., SE Palmeiras U20 (W) - EC Taruma AM"
   ],
   "schedinePronostici": []
 }
