@@ -103,7 +103,7 @@
       "n": 3356,
       "limite": 0.8524,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -353,7 +353,7 @@
           "prob": 0.8644,
           "limite": 0.8524,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-20-machida-zelvia-v-varen-nagasaki",
@@ -394,8 +394,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.51
     },
     {
       "id": "sp-2026-11-20-vgxg2l",
@@ -522,5 +522,5 @@
       "quotaFinale": 0
     }
   ],
-  "aggiornataAlle": "2026-11-23T17:33:22+01:00"
+  "aggiornataAlle": "2026-11-24T12:39:24+01:00"
 }

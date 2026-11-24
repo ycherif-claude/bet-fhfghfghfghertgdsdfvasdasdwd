@@ -754,7 +754,7 @@
           "quota": null,
           "probMercato": null,
           "giocabile": false,
-          "esito": null,
+          "esito": "persa",
           "migliore": true
         }
       ]
@@ -1485,7 +1485,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -1503,8 +1503,8 @@
         "prob": 0.7232,
         "probModello": 0.6997471184463164,
         "valueAtteso": -0.059840000000000004,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.3
       },
       {
         "id": "L-calcio-2026-11-23-botafogo-sao-paulo",
@@ -1523,7 +1523,7 @@
             "quotaBet365": null,
             "probMercato": 0.7277,
             "probModello": 0.6969201503994509,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7284,
             "bookmaker": [
               [
@@ -1541,8 +1541,8 @@
         "prob": 0.7277,
         "probModello": 0.6969201503994509,
         "valueAtteso": -0.06126699999999996,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.29
       },
       {
         "id": "L-calcio-2026-11-23-santos-gremio",
@@ -1561,7 +1561,7 @@
             "quotaBet365": null,
             "probMercato": 0.5873,
             "probModello": 0.5403447201503065,
-            "esito": null,
+            "esito": "persa",
             "probModelloTarato": 0.6292,
             "bookmaker": [
               [
@@ -1591,8 +1591,8 @@
         "prob": 0.5873,
         "probModello": 0.5403447201503065,
         "valueAtteso": -0.048573999999999895,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "margine": [
@@ -1613,7 +1613,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -1638,7 +1638,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -1800,8 +1800,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilita": [
@@ -1822,7 +1822,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -1847,7 +1847,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -2009,8 +2009,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "modello": [
@@ -2031,7 +2031,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.7352135252152251,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7531,
             "bookmaker": [
               [
@@ -2052,7 +2052,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -2214,8 +2214,8 @@
         "prob": 0.43748521989906275,
         "probModello": 0.50661037,
         "valueAtteso": -0.1272169863013698,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "confermate": [
@@ -2236,7 +2236,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -2261,7 +2261,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -2423,8 +2423,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilitaConfermate": [
@@ -2445,7 +2445,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -2470,7 +2470,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -2632,8 +2632,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "doppie": [],
@@ -2657,7 +2657,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -2682,7 +2682,7 @@
             "quotaBet365": null,
             "probMercato": 0.7277,
             "probModello": 0.6969201503994509,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7284,
             "bookmaker": [
               [
@@ -2702,8 +2702,8 @@
         "prob": 0.52627264,
         "probModello": 0.53187768,
         "valueAtteso": -0.09537680228800005,
-        "esito": null,
-        "ritorno": null
+        "esito": "vinta",
+        "ritorno": 1.72
       }
     ],
     "tutte": [
@@ -2724,7 +2724,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -2749,7 +2749,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -2911,8 +2911,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "probabilitaTutte": [
@@ -2933,7 +2933,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -2958,7 +2958,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -3120,8 +3120,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "modelloTutte": [
@@ -3142,7 +3142,7 @@
             "quotaBet365": null,
             "probMercato": 0.6948,
             "probModello": 0.7352135252152251,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7531,
             "bookmaker": [
               [
@@ -3163,7 +3163,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -3325,8 +3325,8 @@
         "prob": 0.43748521989906275,
         "probModello": 0.50661037,
         "valueAtteso": -0.1272169863013698,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ],
     "confermateTutte": [
@@ -3347,7 +3347,7 @@
             "quotaBet365": null,
             "probMercato": 0.7232,
             "probModello": 0.6997471184463164,
-            "esito": null,
+            "esito": "vinta",
             "probModelloTarato": 0.7302,
             "bookmaker": [
               [
@@ -3372,7 +3372,7 @@
             "quotaBet365": null,
             "probMercato": 0.6296563326123529,
             "probModello": 0.6753803831858215,
-            "esito": null,
+            "esito": "persa",
             "bookmaker": [
               [
                 "pokerstars",
@@ -3534,8 +3534,8 @@
         "prob": 0.45536745974525356,
         "probModello": 0.49120553999999994,
         "valueAtteso": -0.11203345349675553,
-        "esito": null,
-        "ritorno": null
+        "esito": "persa",
+        "ritorno": 0
       }
     ]
   },
