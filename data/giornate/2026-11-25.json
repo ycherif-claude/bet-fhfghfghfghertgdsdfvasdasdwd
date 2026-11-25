@@ -1824,7 +1824,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1856,7 +1856,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "gambe": [
@@ -1969,7 +1969,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2009,7 +2009,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2154,7 +2154,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2194,7 +2194,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2276,8 +2276,8 @@
         }
       },
       "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata su infortuni o riposi; ricerca web senza risultati datati oggi (ricerca web (ESPN/report NBA), 21:35)",
-      "oraUltimoControllo": "2026-11-25T21:30:17+01:00",
+      "motivoStato": "giocatori chiave non indicati dal giro del mattino; quota 2,40 ≥ minima 2,11",
+      "oraUltimoControllo": "2026-11-26T00:22:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -2398,7 +2398,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2479,7 +2479,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2559,7 +2559,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2599,7 +2599,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2680,7 +2680,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2720,7 +2720,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2801,9 +2801,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "confermata",
-      "motivoStato": "nessuna novità concreta trovata su infortuni o riposi; ricerca web senza risultati datati oggi (ricerca web (ESPN/report NBA), 21:35)",
-      "oraUltimoControllo": "2026-11-25T21:30:17+01:00",
+      "stato": "in_revisione",
+      "motivoStato": "in revisione: quota 1,56 sotto la minima 1,67",
+      "oraUltimoControllo": "2026-11-26T00:22:34+01:00",
       "esito": null,
       "prova": true
     },
@@ -2842,7 +2842,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3877,7 +3877,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "nba",
@@ -5330,7 +5336,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "nba",
@@ -6615,7 +6627,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "nba",
@@ -8280,7 +8298,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "nba",
@@ -9024,7 +9048,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "calcio",
@@ -9548,7 +9578,13 @@
               "leovegas",
               1.3
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.3,
+            "prob": 0.7269723254853366,
+            "alle": "2026-11-26T00:22:34+01:00",
+            "minutiPrima": 37
+          }
         },
         {
           "sport": "calcio",
@@ -10376,7 +10412,23 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            },
+            "ricontrollo": {
+              "esito": "fuori",
+              "motivi": [
+                "modello e mercato non più d'accordo (mercato 73%)"
+              ],
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           }
         ],
         "quota": 1.36,
@@ -10414,7 +10466,15 @@
                 "winamax",
                 1.39
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.43,
+              "prob": 0.6448461017081759,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 97
+            }
           }
         ],
         "quota": 1.42,
@@ -11327,7 +11387,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           },
           {
             "sport": "calcio",
@@ -12117,7 +12183,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           },
           {
             "sport": "calcio",
@@ -13831,7 +13903,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           }
         ],
         "quota": 1.88,
@@ -14218,7 +14296,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           },
           {
             "sport": "calcio",
@@ -15689,7 +15773,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           },
           {
             "sport": "calcio",
@@ -16479,7 +16569,13 @@
                 "leovegas",
                 1.3
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.3,
+              "prob": 0.7269723254853366,
+              "alle": "2026-11-26T00:22:34+01:00",
+              "minutiPrima": 37
+            }
           },
           {
             "sport": "calcio",
