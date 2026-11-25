@@ -1,0 +1,809 @@
+{
+  "data": "2026-11-25",
+  "generataAlle": "2026-11-25T17:06:08+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 3,
+      "rimaste": 178
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League femminile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Quote PlusLiga: nessuna partita su odss-api, quote da OddsPapi"
+  ],
+  "partite": [
+    {
+      "idPartita": "pallavolo-2026-11-25-azs-olsztyn-resovia-rzeszow",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "AZS Olsztyn - Resovia Rzeszow",
+      "casa": "AZS Olsztyn",
+      "trasferta": "Resovia Rzeszow",
+      "inizio": "2026-11-25T17:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "AZS Olsztyn": 1395,
+        "Resovia Rzeszow": 1570
+      },
+      "pesoModello": 0.5,
+      "ragionamentoBase": [
+        "Elo: AZS Olsztyn 1395 – Resovia Rzeszow 1570, vantaggio campo compreso: vittoria della casa 34% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "AZS Olsztyn",
+          "probModello": null,
+          "probModelloStudio": 0.33995100696635544,
+          "probPinnacle": 0.2909641158668396,
+          "quota": 3.2,
+          "fonteQuota": "mediana di 103 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 3.25,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se AZS Olsztyn vince la partita.",
+          "bookmaker": [
+            [
+              "888sport",
+              3.25
+            ],
+            [
+              "admiralbet",
+              3.25
+            ],
+            [
+              "bet365",
+              3.25
+            ],
+            [
+              "stake",
+              3.25
+            ],
+            [
+              "bwin",
+              3.2
+            ],
+            [
+              "pokerstars",
+              3.2
+            ],
+            [
+              "sisal",
+              3.2
+            ],
+            [
+              "snai",
+              3.2
+            ],
+            [
+              "betflag",
+              3.15
+            ],
+            [
+              "goldbet",
+              3.15
+            ],
+            [
+              "lottomatica",
+              3.15
+            ],
+            [
+              "netbet",
+              3.15
+            ],
+            [
+              "planetwin365",
+              3.15
+            ],
+            [
+              "winamax",
+              3.15
+            ],
+            [
+              "leovegas",
+              3.1
+            ],
+            [
+              "quigioco",
+              3.1
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Resovia Rzeszow",
+          "probModello": null,
+          "probModelloStudio": 0.6600489930336446,
+          "probPinnacle": 0.7090358841331604,
+          "quota": 1.3,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,31 su 103 bookmaker",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 1.3,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Resovia Rzeszow vince la partita.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.333
+            ],
+            [
+              "admiralbet",
+              1.33
+            ],
+            [
+              "stake",
+              1.33
+            ],
+            [
+              "winamax",
+              1.32
+            ],
+            [
+              "betflag",
+              1.31
+            ],
+            [
+              "bwin",
+              1.31
+            ],
+            [
+              "goldbet",
+              1.31
+            ],
+            [
+              "lottomatica",
+              1.31
+            ],
+            [
+              "netbet",
+              1.31
+            ],
+            [
+              "planetwin365",
+              1.31
+            ],
+            [
+              "bet365",
+              1.3
+            ],
+            [
+              "leovegas",
+              1.3
+            ],
+            [
+              "pokerstars",
+              1.3
+            ],
+            [
+              "sisal",
+              1.3
+            ],
+            [
+              "snai",
+              1.3
+            ],
+            [
+              "quigioco",
+              1.29
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.1943714912602052,
+          "probPinnacle": 0.19651108560360775,
+          "quota": 4.7,
+          "fonteQuota": "mediana di 30 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: AZS Olsztyn -1,5 vince se AZS Olsztyn vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              4.8
+            ],
+            [
+              "stake",
+              4.7
+            ],
+            [
+              "netbet",
+              4.65
+            ],
+            [
+              "leovegas",
+              4.6
+            ],
+            [
+              "winamax",
+              4.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.8056285087397947,
+          "probPinnacle": 0.8034889143963923,
+          "quota": 1.16,
+          "fonteQuota": "mediana di 30 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Resovia Rzeszow +1,5 vince se Resovia Rzeszow vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.16
+            ],
+            [
+              "leovegas",
+              1.16
+            ],
+            [
+              "netbet",
+              1.16
+            ],
+            [
+              "stake",
+              1.16
+            ],
+            [
+              "winamax",
+              1.13
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": 0.5469546230384044,
+          "probPinnacle": 0.4388830347734457,
+          "quota": 1.97,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 2,13 su 45 bookmaker",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 1.97,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: AZS Olsztyn +1,5 vince se AZS Olsztyn vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              2.15
+            ],
+            [
+              "netbet",
+              2.13
+            ],
+            [
+              "stake",
+              2.13
+            ],
+            [
+              "888sport",
+              2.1
+            ],
+            [
+              "leovegas",
+              2.1
+            ],
+            [
+              "winamax",
+              2
+            ],
+            [
+              "bet365",
+              1.97
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": 0.45304537696159564,
+          "probPinnacle": 0.5611169652265543,
+          "quota": 1.64,
+          "fonteQuota": "mediana di 45 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 1.69,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Resovia Rzeszow -1,5 vince se Resovia Rzeszow vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bet365",
+              1.69
+            ],
+            [
+              "888sport",
+              1.667
+            ],
+            [
+              "leovegas",
+              1.65
+            ],
+            [
+              "stake",
+              1.64
+            ],
+            [
+              "bwin",
+              1.63
+            ],
+            [
+              "netbet",
+              1.63
+            ],
+            [
+              "winamax",
+              1.62
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.7272377174399707,
+          "probPinnacle": 0.6052093973442288,
+          "quota": 1.53,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "leovegas",
+              1.53
+            ],
+            [
+              "stake",
+              1.53
+            ],
+            [
+              "bwin",
+              1.52
+            ],
+            [
+              "888sport",
+              1.5
+            ],
+            [
+              "netbet",
+              1.5
+            ],
+            [
+              "winamax",
+              1.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": 0.2727622825600293,
+          "probPinnacle": 0.3947906026557712,
+          "quota": 2.37,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "888sport",
+              2.5
+            ],
+            [
+              "stake",
+              2.39
+            ],
+            [
+              "bwin",
+              2.37
+            ],
+            [
+              "leovegas",
+              2.35
+            ],
+            [
+              "netbet",
+              2.3
+            ],
+            [
+              "winamax",
+              2.25
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "idPartita": "pallavolo-2026-11-25-gks-katowice-projekt-warsaw",
+      "sport": "pallavolo",
+      "competizione": "PlusLiga",
+      "partita": "GKS Katowice - Projekt Warsaw",
+      "casa": "GKS Katowice",
+      "trasferta": "Projekt Warsaw",
+      "inizio": "2026-11-25T20:30:00+01:00",
+      "modello": "solo-pinnacle",
+      "lambda": null,
+      "elo": null,
+      "pesoModello": null,
+      "ragionamentoBase": [
+        "Meno di 20 partite salvate per almeno una squadra: probabilità solo dal mercato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "GKS Katowice",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.1972134682368552,
+          "quota": 4.33,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 4,36 su 103 bookmaker",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 4.33,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se GKS Katowice vince la partita.",
+          "bookmaker": [
+            [
+              "admiralbet",
+              4.6
+            ],
+            [
+              "bwin",
+              4.5
+            ],
+            [
+              "stake",
+              4.4
+            ],
+            [
+              "winamax",
+              4.4
+            ],
+            [
+              "betflag",
+              4.36
+            ],
+            [
+              "goldbet",
+              4.36
+            ],
+            [
+              "lottomatica",
+              4.36
+            ],
+            [
+              "planetwin365",
+              4.36
+            ],
+            [
+              "netbet",
+              4.35
+            ],
+            [
+              "888sport",
+              4.333
+            ],
+            [
+              "bet365",
+              4.33
+            ],
+            [
+              "leovegas",
+              4.3
+            ],
+            [
+              "pokerstars",
+              4.25
+            ],
+            [
+              "quigioco",
+              4.25
+            ],
+            [
+              "sisal",
+              4.25
+            ],
+            [
+              "snai",
+              4.25
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Projekt Warsaw",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.8027865317631447,
+          "quota": 1.17,
+          "fonteQuota": "bet365 via OddsPapi, più bassa della mediana 1,18 su 103 bookmaker",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "quotaBet365": 1.17,
+          "oraQuotaBet365": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Vincente: vince se Projekt Warsaw vince la partita.",
+          "bookmaker": [
+            [
+              "888sport",
+              1.2
+            ],
+            [
+              "admiralbet",
+              1.19
+            ],
+            [
+              "betflag",
+              1.18
+            ],
+            [
+              "bwin",
+              1.18
+            ],
+            [
+              "goldbet",
+              1.18
+            ],
+            [
+              "lottomatica",
+              1.18
+            ],
+            [
+              "netbet",
+              1.18
+            ],
+            [
+              "planetwin365",
+              1.18
+            ],
+            [
+              "pokerstars",
+              1.18
+            ],
+            [
+              "sisal",
+              1.18
+            ],
+            [
+              "snai",
+              1.18
+            ],
+            [
+              "stake",
+              1.18
+            ],
+            [
+              "winamax",
+              1.18
+            ],
+            [
+              "bet365",
+              1.17
+            ],
+            [
+              "leovegas",
+              1.16
+            ],
+            [
+              "quigioco",
+              1.16
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.13399067278771806,
+          "quota": 7,
+          "fonteQuota": "mediana di 27 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: GKS Katowice -1,5 vince se GKS Katowice vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              7.5
+            ],
+            [
+              "winamax",
+              7.5
+            ],
+            [
+              "netbet",
+              6.75
+            ],
+            [
+              "leovegas",
+              6.5
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set -1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.866009327212282,
+          "quota": 1.07,
+          "fonteQuota": "mediana di 27 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Handicap set: Projekt Warsaw +1,5 vince se Projekt Warsaw vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.083
+            ],
+            [
+              "leovegas",
+              1.08
+            ],
+            [
+              "netbet",
+              1.07
+            ],
+            [
+              "winamax",
+              1.06
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "casa",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.3180236604036186,
+          "quota": 2.75,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: GKS Katowice +1,5 vince se GKS Katowice vince la partita o perde 2-3.",
+          "bookmaker": [
+            [
+              "bwin",
+              2.75
+            ],
+            [
+              "leovegas",
+              2.75
+            ],
+            [
+              "netbet",
+              2.72
+            ],
+            [
+              "winamax",
+              2.6
+            ]
+          ]
+        },
+        {
+          "mercato": "Handicap set +1.5",
+          "selezione": "trasferta",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.6819763395963814,
+          "quota": 1.4,
+          "fonteQuota": "mediana di 40 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Handicap set: Projekt Warsaw -1,5 vince se Projekt Warsaw vince 3-0 o 3-1.",
+          "bookmaker": [
+            [
+              "bwin",
+              1.4
+            ],
+            [
+              "leovegas",
+              1.4
+            ],
+            [
+              "netbet",
+              1.4
+            ],
+            [
+              "winamax",
+              1.39
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Over 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.5504101614183646,
+          "quota": 1.64,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Over 3.5 vince se si gioca il quarto set (la partita finisce 3-1, 1-3, 3-2 o 2-3).",
+          "bookmaker": [
+            [
+              "888sport",
+              1.667
+            ],
+            [
+              "leovegas",
+              1.65
+            ],
+            [
+              "stake",
+              1.64
+            ],
+            [
+              "bwin",
+              1.63
+            ],
+            [
+              "netbet",
+              1.62
+            ],
+            [
+              "winamax",
+              1.62
+            ]
+          ]
+        },
+        {
+          "mercato": "Totale set 3.5",
+          "selezione": "Under 3.5",
+          "probModello": null,
+          "probModelloStudio": null,
+          "probPinnacle": 0.4495898385816353,
+          "quota": 2.1,
+          "fonteQuota": "mediana di 44 bookmaker (OddsPapi)",
+          "oraQuota": "2026-11-25T17:06:08+01:00",
+          "frequenzaCampionato": null,
+          "spiegazione": "Totale set: Under 3.5 vince se la partita finisce 3-0 o 0-3.",
+          "bookmaker": [
+            [
+              "stake",
+              2.14
+            ],
+            [
+              "888sport",
+              2.1
+            ],
+            [
+              "bwin",
+              2.1
+            ],
+            [
+              "leovegas",
+              2.1
+            ],
+            [
+              "netbet",
+              2.08
+            ],
+            [
+              "winamax",
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
