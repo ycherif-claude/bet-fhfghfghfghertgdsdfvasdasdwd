@@ -92,8 +92,8 @@
       "alle": "2026-11-26T00:22:34+01:00"
     },
     "nba-2026-11-25-new-york-knicks-cleveland-cavaliers-vincente-new-york-knicks": {
-      "esito": "revisione",
-      "motivo": "in revisione: quota 1,56 sotto la minima 1,67",
+      "esito": "annullata",
+      "motivo": "Claude: quota 1,56 sotto la minima 1,67 e nessuna notizia concreta (infortuni o formazioni) che alzi la probabilità dei Knicks rispetto al mattino: il value sparisce (ricerca web sul report infortuni Knicks-Cavaliers senza notizie per la partita, 00:24)",
       "problemi": [
         {
           "tipo": "quota",
@@ -103,7 +103,8 @@
       "dettagli": [
         "giocatori chiave non indicati dal giro del mattino"
       ],
-      "alle": "2026-11-26T00:22:34+01:00"
+      "alle": "2026-11-26T00:23:24+01:00",
+      "claude": true
     }
   },
   "claude": {
