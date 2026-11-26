@@ -1,0 +1,359 @@
+{
+  "data": "2026-11-26",
+  "generataAlle": "2026-11-26T16:49:06+01:00",
+  "crediti": {
+    "oddspapi": {
+      "usate": 1,
+      "rimaste": 177
+    }
+  },
+  "competizioniNonCoperte": [
+    "Champions League femminile: senza storico gratuito della stagione in corso",
+    "Champions League maschile: senza storico gratuito della stagione in corso"
+  ],
+  "erroriGiro": [
+    "Quote pallavolo: 1 partite di odss-api nei campionati ammessi non abbinate (squadre o orario)",
+    "Esiti pallavolo alle 16:49: Giocata pallavolo-2026-11-18-trefl-gdansk-warta-zawiercie-totale-set-3-5-under-3-5 senza esito da 7 giorni"
+  ],
+  "partite": [
+    {
+      "idOdss": [
+        "017eafe61f7c564c",
+        "0ee67d3fb6f032d6",
+        "2830aa3c9a0bfa4e",
+        "58c28ef505bf36b2",
+        "70bcbd07d396f572",
+        "e66ba2c54f438ae9"
+      ],
+      "idPartita": "pallavolo-2026-11-26-perugia-volley-volley-civitanova",
+      "sport": "pallavolo",
+      "competizione": "SuperLega",
+      "partita": "Perugia Volley - Volley Civitanova",
+      "casa": "Perugia Volley",
+      "trasferta": "Volley Civitanova",
+      "inizio": "2026-11-26T20:30:00+01:00",
+      "modello": "elo",
+      "lambda": null,
+      "elo": {
+        "Perugia Volley": 1834,
+        "Volley Civitanova": 1707
+      },
+      "pesoModello": 0.25,
+      "ragionamentoBase": [
+        "Elo: Perugia Volley 1834 – Volley Civitanova 1707, vantaggio campo compreso: vittoria della casa 75% (ultime 2 stagioni TheSportsDB); solo informativo: il vincente usa il mercato finché il modello non è tarato"
+      ],
+      "mercati": [
+        {
+          "mercato": "Vincente",
+          "selezione": "Perugia Volley",
+          "probModello": null,
+          "probModelloStudio": 0.7461647785409413,
+          "probPinnacle": 0.6543102202994118,
+          "quota": 1.45,
+          "fonteQuota": "mediana di 140 bookmaker (odss-api)",
+          "oraQuota": "2026-11-26T16:49:06+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Perugia Volley vince la partita.",
+          "bookmaker": [
+            [
+              "fastbet",
+              1.455
+            ],
+            [
+              "zonagioco",
+              1.455
+            ],
+            [
+              "betsson",
+              1.45
+            ],
+            [
+              "netwin",
+              1.45
+            ],
+            [
+              "starcasino",
+              1.45
+            ],
+            [
+              "bgame",
+              1.43
+            ],
+            [
+              "codere",
+              1.43
+            ],
+            [
+              "eurobet",
+              1.43
+            ],
+            [
+              "marathonbet",
+              1.43
+            ],
+            [
+              "perlaplay",
+              1.43
+            ],
+            [
+              "sportbet",
+              1.43
+            ],
+            [
+              "sunbet",
+              1.43
+            ],
+            [
+              "totosi",
+              1.43
+            ],
+            [
+              "williamhill",
+              1.43
+            ],
+            [
+              "admiralbet",
+              1.42
+            ],
+            [
+              "betwin360",
+              1.42
+            ],
+            [
+              "casinosanremo",
+              1.42
+            ],
+            [
+              "eplay24",
+              1.42
+            ],
+            [
+              "gioca7",
+              1.42
+            ],
+            [
+              "netbet",
+              1.42
+            ],
+            [
+              "sportium",
+              1.42
+            ],
+            [
+              "stanleybet",
+              1.42
+            ],
+            [
+              "starvegas",
+              1.42
+            ],
+            [
+              "staryes",
+              1.42
+            ],
+            [
+              "vincitu",
+              1.42
+            ],
+            [
+              "daznbet",
+              1.41
+            ],
+            [
+              "domusbet",
+              1.41
+            ],
+            [
+              "leovegas",
+              1.36
+            ],
+            [
+              "winamax",
+              1.36
+            ],
+            [
+              "betflag",
+              1.35
+            ],
+            [
+              "goldbet",
+              1.35
+            ],
+            [
+              "lottomatica",
+              1.35
+            ],
+            [
+              "planetwin365",
+              1.35
+            ],
+            [
+              "888sport",
+              1.34
+            ],
+            [
+              "888sport_it",
+              1.34
+            ]
+          ]
+        },
+        {
+          "mercato": "Vincente",
+          "selezione": "Volley Civitanova",
+          "probModello": null,
+          "probModelloStudio": 0.2538352214590587,
+          "probPinnacle": 0.34568977970058656,
+          "quota": 2.62,
+          "fonteQuota": "mediana di 140 bookmaker (odss-api)",
+          "oraQuota": "2026-11-26T16:49:06+01:00",
+          "frequenzaCampionato": null,
+          "etichettaMercato": "Consenso bookmaker",
+          "spiegazione": "Vincente: vince se Volley Civitanova vince la partita.",
+          "bookmaker": [
+            [
+              "betflag",
+              3.05
+            ],
+            [
+              "goldbet",
+              3.05
+            ],
+            [
+              "lottomatica",
+              3.05
+            ],
+            [
+              "planetwin365",
+              3.05
+            ],
+            [
+              "winamax",
+              3.05
+            ],
+            [
+              "betsson",
+              2.8
+            ],
+            [
+              "leovegas",
+              2.8
+            ],
+            [
+              "netwin",
+              2.8
+            ],
+            [
+              "starcasino",
+              2.8
+            ],
+            [
+              "888sport",
+              2.75
+            ],
+            [
+              "888sport_it",
+              2.75
+            ],
+            [
+              "bgame",
+              2.7
+            ],
+            [
+              "codere",
+              2.7
+            ],
+            [
+              "eurobet",
+              2.7
+            ],
+            [
+              "marathonbet",
+              2.7
+            ],
+            [
+              "perlaplay",
+              2.7
+            ],
+            [
+              "sportbet",
+              2.7
+            ],
+            [
+              "sunbet",
+              2.7
+            ],
+            [
+              "totosi",
+              2.7
+            ],
+            [
+              "williamhill",
+              2.7
+            ],
+            [
+              "betwin360",
+              2.67
+            ],
+            [
+              "casinosanremo",
+              2.67
+            ],
+            [
+              "eplay24",
+              2.67
+            ],
+            [
+              "gioca7",
+              2.67
+            ],
+            [
+              "netbet",
+              2.67
+            ],
+            [
+              "sportium",
+              2.67
+            ],
+            [
+              "staryes",
+              2.67
+            ],
+            [
+              "admiralbet",
+              2.65
+            ],
+            [
+              "domusbet",
+              2.65
+            ],
+            [
+              "stanleybet",
+              2.65
+            ],
+            [
+              "starvegas",
+              2.65
+            ],
+            [
+              "vincitu",
+              2.65
+            ],
+            [
+              "daznbet",
+              2.63
+            ],
+            [
+              "fastbet",
+              2.625
+            ],
+            [
+              "zonagioco",
+              2.625
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

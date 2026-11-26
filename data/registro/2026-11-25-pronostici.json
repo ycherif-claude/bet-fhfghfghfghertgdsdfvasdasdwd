@@ -16,7 +16,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -33,7 +33,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true
     },
     {
@@ -50,7 +50,7 @@
       "n": 328,
       "limite": 0.8621,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.17,
       "bookmaker": "sportium"
@@ -69,7 +69,7 @@
       "n": 510,
       "limite": 0.8536,
       "quotaMinima": 1.14,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -86,7 +86,7 @@
       "n": 328,
       "limite": 0.8621,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.02,
       "bookmaker": "sportium"
@@ -105,7 +105,7 @@
       "n": 510,
       "limite": 0.8536,
       "quotaMinima": 1.14,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -122,7 +122,7 @@
       "n": 161,
       "limite": 0.8302,
       "quotaMinima": 1.13,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -139,7 +139,7 @@
       "n": 347,
       "limite": 0.8268,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.23
     },
@@ -157,7 +157,7 @@
       "n": 328,
       "limite": 0.8621,
       "quotaMinima": 1.12,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.13
     },
@@ -175,7 +175,7 @@
       "n": 510,
       "limite": 0.8536,
       "quotaMinima": 1.14,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -192,7 +192,7 @@
       "n": 347,
       "limite": 0.8268,
       "quotaMinima": 1.16,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false,
       "quota": 1.16
     },
@@ -210,7 +210,7 @@
       "n": 1190,
       "limite": 0.8961,
       "quotaMinima": 1.1,
-      "esito": null,
+      "esito": "vinta",
       "migliore": false
     },
     {
@@ -227,7 +227,7 @@
       "n": 2396,
       "limite": 0.8236,
       "quotaMinima": 1.2,
-      "esito": null,
+      "esito": "vinta",
       "migliore": true,
       "quota": 1.1
     },
@@ -245,7 +245,7 @@
       "n": 5679,
       "limite": 0.8105,
       "quotaMinima": 1.22,
-      "esito": null,
+      "esito": "persa",
       "migliore": true
     },
     {
@@ -262,7 +262,7 @@
       "n": 2373,
       "limite": 0.8036,
       "quotaMinima": 1.23,
-      "esito": null,
+      "esito": "persa",
       "migliore": false
     }
   ],
@@ -285,7 +285,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-25-lille-bayern-munich",
@@ -302,7 +302,7 @@
           "prob": 0.8667,
           "limite": 0.8268,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         }
       ],
       "quota": 1.5,
@@ -310,8 +310,8 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "vinta",
+      "quotaFinale": 1.5
     },
     {
       "id": "sp-2026-11-25-18xkc8a",
@@ -332,7 +332,7 @@
           "prob": 0.8994,
           "limite": 0.8621,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-25-inter-milan-vfb-stuttgart",
@@ -349,7 +349,7 @@
           "prob": 0.8994,
           "limite": 0.8621,
           "giocabile": false,
-          "esito": null
+          "esito": "vinta"
         },
         {
           "idPartita": "calcio-2026-11-25-monterrey-america",
@@ -365,7 +365,7 @@
           "prob": 0.8207,
           "limite": 0.8105,
           "giocabile": false,
-          "esito": null
+          "esito": "persa"
         }
       ],
       "quota": 1.61,
@@ -373,8 +373,9 @@
       "quotaDaVerificare": true,
       "prova": true,
       "etichetta": "PROVA – non giocare",
-      "esito": null,
-      "quotaFinale": null
+      "esito": "persa",
+      "quotaFinale": 0
     }
-  ]
+  ],
+  "aggiornataAlle": "2026-11-26T16:51:16+01:00"
 }
