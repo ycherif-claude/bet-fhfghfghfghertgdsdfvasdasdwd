@@ -1529,7 +1529,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -1560,9 +1560,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,36",
+      "oraUltimoControllo": "2026-11-28T05:58:57+01:00",
       "esito": null,
       "gambe": [
         {
@@ -1754,9 +1754,9 @@
           "motivo": "giornata piena"
         }
       },
-      "stato": "in_attesa",
-      "motivoStato": null,
-      "oraUltimoControllo": null,
+      "stato": "confermata",
+      "motivoStato": "formazioni ufficiali uscite (giocatori chiave non indicati dal giro del mattino); quota 2,36 ≥ minima 2,31",
+      "oraUltimoControllo": "2026-11-28T05:58:57+01:00",
       "esito": null,
       "prova": true
     },
@@ -1876,7 +1876,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2157,7 +2157,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2198,7 +2198,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2279,7 +2279,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -2319,7 +2319,7 @@
         }
       },
       "stato": "in_attesa",
-      "motivoStato": null,
+      "motivoStato": "controllo prima della partita non eseguito: valutata sui dati del mattino",
       "oraUltimoControllo": null,
       "esito": null,
       "prova": true
@@ -3761,7 +3761,13 @@
               "winbet",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.4,
+            "prob": 0.665275846082522,
+            "alle": "2026-11-28T05:58:57+01:00",
+            "minutiPrima": 1
+          }
         }
       ],
       "quota": 27.44,
@@ -5548,7 +5554,13 @@
               "winbet",
               1.36
             ]
-          ]
+          ],
+          "chiusura": {
+            "quota": 1.4,
+            "prob": 0.665275846082522,
+            "alle": "2026-11-28T05:58:57+01:00",
+            "minutiPrima": 1
+          }
         },
         {
           "sport": "calcio",
@@ -9219,7 +9231,21 @@
                 "leovegas",
                 1.22
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.28,
+              "prob": 0.722489037377323,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            },
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.28,
+              "prob": 0.722489037377323,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.28,
@@ -9409,7 +9435,15 @@
                 "leovegas",
                 1.21
               ]
-            ]
+            ],
+            "ricontrollo": {
+              "esito": "confermata",
+              "motivi": [],
+              "quota": 1.26,
+              "prob": 0.7472959685349065,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 61
+            }
           }
         ],
         "quota": 1.27,
@@ -10323,7 +10357,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.96,
@@ -12003,7 +12043,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.93,
@@ -12288,7 +12334,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.93,
@@ -15038,7 +15090,13 @@
                 "leovegas",
                 1.22
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.28,
+              "prob": 0.722489037377323,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           },
           {
             "sport": "calcio",
@@ -16506,7 +16564,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.96,
@@ -18186,7 +18250,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.93,
@@ -18471,7 +18541,13 @@
                 "winbet",
                 1.38
               ]
-            ]
+            ],
+            "chiusura": {
+              "quota": 1.38,
+              "prob": 0.6633519374414656,
+              "alle": "2026-11-28T05:58:57+01:00",
+              "minutiPrima": 1
+            }
           }
         ],
         "quota": 1.93,
