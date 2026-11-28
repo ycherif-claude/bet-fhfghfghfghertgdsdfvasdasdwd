@@ -133,7 +133,8 @@ test('ogni CSV è scaricato una volta sola, stagione per stagione', async () => 
   const f = fonti({ eventiPer: { soccer_italy_serie_a: [ev('1', 'Inter Milan', 'Lecce'), ev('2', 'Milan', 'Roma')] } });
   const r = await lancia(f);
   assert.equal(r.partite.length, 2);
-  assert.deepEqual(f.chiamate.csv, ['I1/2627', 'I1/2526', 'I1/2425']);
+  // Le 3 stagioni del modello, poi altre 3 solo per gli scontri diretti del video [utente, 28/11/2026].
+  assert.deepEqual(f.chiamate.csv, ['I1/2627', 'I1/2526', 'I1/2425', 'I1/2324', 'I1/2223', 'I1/2122']);
 });
 
 test('fonte CSV che fallisce: partita senza modello, errore con nome fonte e ora', async () => {
@@ -145,6 +146,14 @@ test('fonte CSV che fallisce: partita senza modello, errore con nome fonte e ora
   assert.deepEqual(p.ragionamentoBase, []);
   assert.ok(p.mercati.length > 0);
   assert.ok(p.mercati.every((m) => m.probModello === null && m.probPinnacle !== null));
+});
+
+test('una stagione vecchia (solo scontri diretti del video) che fallisce non dà errori e non tocca il modello', async () => {
+  const f = fonti({ eventiPer: SERIE_A, csvKo: ['2223'] });
+  const r = await lancia(f);
+  assert.equal(r.erroriGiro.filter((e) => e.includes('2223')).length, 0);
+  assert.ok(r.partite[0].lambda);
+  assert.ok(r.partite[0].filtriVideo);
 });
 
 test('una stagione che fallisce non fa perdere le altre', async () => {

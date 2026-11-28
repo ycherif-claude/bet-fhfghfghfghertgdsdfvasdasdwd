@@ -51,11 +51,14 @@ function stagioneDi(data) {
   return `${yy(inizio)}${yy(inizio + 1)}`;
 }
 
-function stagioniDa(data) {
+function stagioniDa(data, quante = 3, da = 0) {
   const corrente = Number(stagioneDi(data).slice(0, 2));
   const yy = (n) => String(n).padStart(2, '0');
-  return [0, 1, 2].map((i) => `${yy(corrente - i)}${yy(corrente - i + 1)}`);
+  return Array.from({ length: quante }, (_, k) => k + da).map((i) => `${yy(corrente - i)}${yy(corrente - i + 1)}`);
 }
+// Scontri diretti della strategia del video [utente, 28/11/2026]: 6 stagioni invece delle 3 del modello. Prova su 3
+// stagioni di 11 paesi: +12% di partite con la stessa percentuale; con 10 stagioni ne passano meno e vanno peggio.
+const STAGIONI_VIDEO = 6;
 
 const virgola = (n) => n.toFixed(1).replace('.', ',');
 
@@ -195,6 +198,12 @@ export async function eseguiRaccolta({ data, adesso, fonti, chiavi }) {
         forze: stimaForze(righe, { oggi: data, squadreUltimaStagione: ultima }),
         frequenze: frequenzeGol(righe, { oggi: data }),
       };
+      // Stagioni più vecchie solo per gli scontri diretti del video: un errore qui non tocca il modello.
+      const vecchie = [];
+      for (const stagione of stagioniDa(data, STAGIONI_VIDEO - stagioni.length, stagioni.length)) {
+        try { vecchie.push(...await fonti.footballDataUk.partite(codice, [stagione])); } catch { /* scontri diretti più corti */ }
+      }
+      stato.righeVideo = [...vecchie, ...righe];
     }
     leghe.set(codice, stato);
     return stato;
@@ -312,7 +321,7 @@ function costruisciPartita({ c, evento, odssEv = null, base, stato, coppa = null
     }
     ragionamentoBase = [`Gol attesi: ${casa} ${virgola(lam.casa)} – ${trasferta} ${virgola(lam.trasferta)} (gol e xG, ultime 2 stagioni)`];
     // Strategia del video (banco di prova) [utente, 07/11/2026].
-    video = filtriVideo(stato.righe, csvCasa, csvTrasferta, data);
+    video = filtriVideo(stato.righeVideo ?? stato.righe, csvCasa, csvTrasferta, data);
     for (const g of mercatiGol(lam.casa, lam.trasferta, stato.forze.quotaPT)) {
       mercati.push(voce(g.mercato, g.selezione, g.prob, stato.frequenze.get(`${g.mercato}|${g.selezione}`) ?? null));
     }
@@ -420,12 +429,15 @@ async function legaExtra(codice, { data, fonti, errore }) {
     errore(`football-data.co.uk ${codice}`, e);
     return null;
   }
-  const stagioni = [...new Set(tutte.map((x) => x.stagione))].sort().reverse().slice(0, 3);
+  const tutteStagioni = [...new Set(tutte.map((x) => x.stagione))].sort().reverse();
+  const stagioni = tutteStagioni.slice(0, 3);
   const righe = tutte.filter((x) => stagioni.includes(x.stagione));
   if (!righe.length) return null;
+  const perVideo = tutteStagioni.slice(0, STAGIONI_VIDEO);
   const ultima = stagioni[1] ? new Set(righe.filter((x) => x.stagione === stagioni[1]).flatMap((x) => [x.casa, x.trasferta])) : undefined;
   return {
     righe,
+    righeVideo: tutte.filter((x) => perVideo.includes(x.stagione)),
     nomi: [...new Set(righe.flatMap((x) => [x.casa, x.trasferta]))],
     forze: stimaForze(righe, { oggi: data, squadreUltimaStagione: ultima }),
     frequenze: frequenzeGol(righe, { oggi: data }),
